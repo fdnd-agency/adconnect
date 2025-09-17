@@ -1,5 +1,7 @@
-# Overlegplatform AD's
+# ADConnect
 
-[Desig Challenge](https://github.com/fdnd-agency/overlegplatformads/wiki/Design-Challenge)
+[Desig Challenge](https://github.com/fdnd-agency/adconnect/wiki/Design-Challenge)
+
+
 
 
