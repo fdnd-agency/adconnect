@@ -1,9 +1,21 @@
 # Afspraken over samenwerking
-- Elke lesdag houden we een stand-up (ma, woe, vrij)
+## Afspraken binnen het team
+- Elke ma, wo, vr houden we een standup
 - Communiceren via Teams
-- Voortgang bijhouden in projectboard
-- Houd je aan de afgesproken werkwijze
+- Voortgang bijhouden in projectboard (eigen issues sluiten)
+- Houd je aan de afgesproken werkwijze (zie onder de teamcanvas).
 - Laat weten als je ergens tegenaan loopt
+
+## Afspraken met opdrachtgever
+- Productowner: Erwin de Beer
+- Communicatie hoofdzakelijk per mail en zo nodig via teams
+- Feedback mag tussen de sprintreview door gecommuniceerd worden
+
+### Komende sprint reviews
+- 9 oktober: Sprintreview (15:30 - 16:00)
+-	30 oktober: Sprintreview   
+-	27 november: Sprintreview   
+-	18 december: Sprintreview  
 
 ## Teamcanvas
 <img width="982" height="690" alt="Image" src="https://github.com/user-attachments/assets/b6a47b12-243f-43c9-a4ae-047b1689f128" />
@@ -27,66 +39,17 @@
 - Afbeeldingen/schermopname 
 
 ## FDND conventies
+We houden de code conventies van FDND agencie aan. Hieronder de belangrijkste conventies genoemd.
 [zie FDND website](https://docs.fdnd.nl/conventies.html)
 
-## Code conventies
-### HTML / Liquid
-- Gebruik semantische HTML: `<section>`, `<article>`, `<main>`
-- kebab-case voor classnamen: `section-title`
-- Voeg alt-teksten toe aan afbeeldingen (voor toegankelijkheid)
+### Code conventies
+- Hanteer consistente naamgeving
+- Volg best practices voor HTML-structuur en semantiek.
+- Gebruik CSS-nesting, pseudo-private custom properties en zorg voor een dynamisch kleurenpalet.
+- Gebruik template literals, object destructuring en kies bewust tussen const, let en var.
+- Volg richtlijnen voor data, routes, componentstructuur en CSS binnen SvelteKit-projecten.
 
-### CSS
-- kebab-case voor classnamen: `.form-field`
-- Naamgeving in het engels
-- Schrijf mobile-first met zo mogelijk geneste media queries
-- Gebruik `--custom-properties` waar mogelijk
-- Houd CSS DRY (vermijd dubbele regels)
-
-### JavaScript
-- Server side structuur volgens sitemap (routes)
-- camelCase voor variabelen/functies: handleSubmit
-- Gebruik `const`/`let`
-- Voeg comments of JSDoc toe bij functies
-
-### Animaties
-- Begin alle animatie classes met 'animation'
-- Het tweede deel van de classname hoort bij hoe de animatie zichtbaar/onzichtbaar wordt, e.g fade-in
-- Het derde deel van de classname hoort bij de richting van de animatie + wordt onderscheiden door een --, e.g --up of --down
-
-## Oplever todo's:
-
-Wat moet er in de oplevering zitten?
-
-- [`README.md`](#readme)
-- [Alles moet getest zijn](#testen)
-- [Projectboard](#projectboard)
-- Live staan + live link
-- Geen open pull requests
-
-### Projectboard
-- Moscow is toegepast
-- Issues in juiste fase
-- Issues sluiten
-- Backlog met issues die niet opgepakt worden
-
-### Refactor
-- Structuur van je mappen
-- Netjes uitlijnen van code
-- Ongebruikte code is verwijderd
-- Ongebruikte files zijn verwijderd
-- Comments in code
-- Comments met bronnen
-- Conventies uit `CONTRIBUTING.md` zijn gehandhaafd
-
-### README
-- Informatie voor installatie
-- Omschrijving van het project
-- Ontwerpkeuzes uitleggen
-- Functionaliteiten uitleg
-
-### Testen
-- Performance
-- A11y, tab, kleur, screenreader
-- User test
-- Responsive + Device test
-- Html validator
+### Design conventies
+- Zorg voor gebruiksvriendelijke en toegankelijke ontwerpen.
+- Werk samen in design systemen en valideer ontwerpen zowel in Figma als in de browser.
+- Gebruik variabelen, stijlen en organiseer je Figma-bestanden effectief.
