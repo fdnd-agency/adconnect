@@ -36,7 +36,12 @@
 - Waar wil je feedback op
 
 ### Visuals 
-- Afbeeldingen/schermopname 
+- Afbeeldingen/schermopname
+
+## Onze Git Flow 
+We houden de Git Flow van [FDND agency](https://docs.fdnd.nl/conventies.html#branching-strategy) aan.
+
+<img width="536" height="643" alt="image" src="https://github.com/user-attachments/assets/522ae521-4c91-4c00-93aa-bf11d44c5ff6" />
 
 ## FDND conventies
 We houden de code conventies van FDND agencie aan. Hieronder de belangrijkste conventies genoemd.
