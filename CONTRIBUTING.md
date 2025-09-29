@@ -60,7 +60,7 @@ We follow the code conventions of FDND agency. Below the most important conventi
 
 ### Code conventions
 
-- Follow consistent name-giving
+- Follow consistent naming
 - Follow best practices for HTML-structure and semantics.
 - Use CSS-nesting, pseudo-private custom properties and use a dynamic colour palette.
 - Use template literals, object destructuring and choose wisely between const, let en var.
