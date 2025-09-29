@@ -5,7 +5,7 @@
 - We'll hold a standup every Monday, Wednesday, and Friday
 - Communication through Teams
 - Keep up with the progress by using the projectboard (close own issues)
-- Follow the agreed upon workflow (see teamcanvas).
+- Follow the agreed-upon workflow (see teamcanvas).
 - Communicate when you get stuck.
 
 ## Agreements with client
