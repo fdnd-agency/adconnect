@@ -1,4 +1,7 @@
 <script>
+    // Export prop
+    export let article;
+
     // Import afbeeldingen
     import fallback from '$lib/assets/news-fallback.jpg';
     import calendar from '$lib/assets/icon-calendar.svg';
@@ -7,16 +10,16 @@
     import ButtonLight from "$lib/components/ButtonLight.svelte";
 </script>
 
-<!-- News card -->
 <article>
     <img src="{fallback}" alt="" width="300" height="210">
 
     <div>
-        <h3>Titel</h3>
+        <h3>{article.title}</h3>
         <p><img src="{calendar}" alt="" width="15" height="15">17 april 2026</p>
-        <p>Description</p>
+        <p>{article.description}</p>
         <ButtonLight href="/">Bekijk artikel</ButtonLight>
     </div>
+    
 </article>
 
 <style>
