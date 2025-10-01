@@ -10,8 +10,9 @@
 	<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap">
   </svelte:head>
   <!-- stylesheet -->
-  <link rel="stylesheet" href="stylesheet.css">
-  
+  <link rel="stylesheet" href="/stylesheet.css">
+
+
   <main>
   <slot />
 </main>

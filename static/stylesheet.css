@@ -68,7 +68,7 @@
 /*ACCENT COLORS*/
 /* darker */
 --blue-900: #001329;
---blue-800: #002A5C;
+--blue-800: #001F44;
 
 /* lighter */
 --blue-600: #0058C2;
@@ -121,6 +121,11 @@
 
 /* =============== GLOBAL STYLES =============== */
 
+  /* Focus state */
+  *:focus-visible {
+    outline: 3px dashed var(--primary-orange);
+    outline-offset: 4px;
+  }
 
 /* Headings */
 h1 {
@@ -129,6 +134,7 @@ h1 {
   font-size: var(--h1-size);
   line-height: var(--h1-line-height);
   max-width: var(--h1-max-width);
+  color: var(--blue-800);
 }
 
 h2 {
@@ -136,6 +142,7 @@ h2 {
   font-size: var(--h2-size);
   line-height: var(--h2-line-height);
   max-width: var(--h2-max-width);
+  color: var(--blue-800);
 }
 
 h3 {
@@ -143,6 +150,7 @@ h3 {
   font-size: var(--h3-size);
   line-height: var(--h3-line-height);
   max-width: var(--h3-max-width);
+  color: var(--blue-800);
 }
 
 h4 {
@@ -150,6 +158,7 @@ h4 {
   font-size: var(--h4-size);
   line-height: var(--h4-line-height);
   max-width: var(--h4-max-width);
+  color: var(--blue-800);
 }
 
 h5 {
@@ -157,6 +166,7 @@ h5 {
   font-size: var(--h5-size);
   line-height: var(--h5-line-height);
   max-width: var(--h5-max-width);
+  color: var(--blue-800);
 }
 
 /* Paragraphs */
@@ -205,9 +215,5 @@ p {
     border: none;
   }
 
-  /* Focus state */
-*:focus-visible {
-  outline: 3px dashed var(--primary-orange);
-  outline-offset: 4px;
-}
+
 }
