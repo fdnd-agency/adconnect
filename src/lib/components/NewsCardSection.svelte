@@ -8,3 +8,20 @@
         <li><NewsCard /></li>
     {/each}
 </ul>
+
+<style>
+    ul {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 90vw;
+        width: 90dvw;
+
+    }
+
+     li {
+        list-style-type: none;
+    }
+
+</style>
