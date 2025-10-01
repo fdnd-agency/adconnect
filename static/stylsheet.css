@@ -1,3 +1,4 @@
+:root {
 
 /* =============== TYPOGRAPHY =============== */
 
@@ -117,3 +118,90 @@
   
 
 }
+
+/* =============== GLOBAL STYLES =============== */
+
+
+/* Headings */
+h1 {
+  font-family: var(--font-heading);
+  font-weight: var(--heading-font-weight);
+  font-size: var(--h1-size);
+  line-height: var(--h1-line-height);
+  max-width: var(--h1-max-width);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: var(--h2-size);
+  line-height: var(--h2-line-height);
+  max-width: var(--h2-max-width);
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: var(--h3-size);
+  line-height: var(--h3-line-height);
+  max-width: var(--h3-max-width);
+}
+
+h4 {
+  font-family: var(--font-heading);
+  font-size: var(--h4-size);
+  line-height: var(--h4-line-height);
+  max-width: var(--h4-max-width);
+}
+
+h5 {
+  font-family: var(--font-heading);
+  font-size: var(--h5-size);
+  line-height: var(--h5-line-height);
+  max-width: var(--h5-max-width);
+}
+
+/* Paragraphs */
+p {
+  font-family: var(--font-body);
+  font-weight: var(--text-font-weight);
+  font-size: var(--p-m-size);
+  line-height: var(--p-m-line-height);
+  max-width: var(--p-m-max-width);
+}
+
+/* Buttons */
+.button-blue {
+  background: var(--button-blue-bg);
+  color: var(--button-blue-text);
+  border: var(--button-blue-border);
+  border-radius: var(--button-blue-radius);
+  padding: var(--button-blue-padding);
+  font-size: var(--button-blue-font-size);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+  font-family: var(--button-blue-font-family);
+
+  &:hover {
+    background-color: var(--text-white);
+    color: var(--primary-blue);
+    border: none;
+    outline: 1.5px solid var(--primary-blue);
+  }
+}
+
+.button-outline {
+  background: var(--button-outline-bg);
+  color: var(--button-outline-text);
+  border: var(--button-outline-border);
+  border-radius: var(--button-outline-radius);
+  padding: var(--button-outline-padding);
+  font-size: var(--button-outline-font-size);
+  font-weight: var(--button-font-weight);
+  font-family: var(--button-outline-font-family);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--primary-blue);
+    color: var(--text-white);
+    border: none;
+  }
+
