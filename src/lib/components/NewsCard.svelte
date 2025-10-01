@@ -35,7 +35,7 @@
         object-fit: cover;
     }
 
-    section {
+    div {
         padding: 1em;
         gap: 1em;
         display: flex;
