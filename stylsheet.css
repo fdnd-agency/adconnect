@@ -1,0 +1,115 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap');
+
+:root {
+
+/* =============== TYPOGRAPHY =============== */
+
+/* Font-family*/
+--primary-font-family: 'Clash Display Variable', sans-serif;
+--Text-font-family: 'Archivo' sans-serif;
+
+/* Font-weight*/
+--heading-font-weight: 600;
+--button-font-weight: 400;
+--ad-dag-font-weight: 500;
+--text-font-weight: 400;
+
+
+/* Headings*/
+  --h1-size: 40px;   
+  --h1-line-height: 1.2;
+  --h1-max-width: 60ch;
+
+  --h2-size: 32px;     
+  --h2-line-height: 1.3;
+  --h2-max-width: 65ch;
+
+  --h3-size: 24px;
+  --h3-line-height: 1.3;
+  --h3-max-width: 65ch;
+
+  --h4-size: 20px;  
+  --h4-line-height: 1.4;
+  --h4-max-width: 70ch;
+
+  /* Paragraphs */
+  --p-l-size: 20px; 
+  --p-l-line-height: 1.6;
+  --p-l-max-width: 70ch;
+
+  --p-m-size: 18px;   
+  --p-m-line-height: 1.6;
+  --p-m-max-width: 70ch;
+
+  --p-s-size: 17px;   
+  --p-s-line-height: 1.6;
+  --p-s-max-width: 70ch;
+
+  --p-xs-size: 16px;   
+  --p-xs-line-height: 1.6;
+  --p-xs-max-width: 70ch;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+/* =============== COLOR =============== */
+
+/*PRIMARY COLORS */ 
+--primary-blue:   #00408D;   
+--primary-orange: #E75234;   
+--background:  #FAFAFA;  
+--text-white:  #FFFFFF;  
+--text-darkblue:#000C1A;   
+
+/*ACCENT COLORS*/
+/* darker */
+--blue-900: #001329;
+--blue-800: #002A5C;
+
+/* lighter */
+--blue-600: #0058C2;
+--blue-500: #006FF5;
+--blue-400: #298AFF;
+--blue-300: #5CA5FF;
+--blue-200: #8FC1FF;
+--blue-100: #C2DDFF;
+
+/* darker */
+--orange-900: #CD3618; 
+
+/* lighter */
+--orange-500: #F67055;
+--orange-300: #F99986;
+--orange-100: #FBC2B6;
+
+/*NEUTRAL COLORS*/
+--neutral-900: #13171D; 
+--neutral-800: #171D24;
+--neutral-700: #242D39;
+--neutral-600: #435264;
+--neutral-500: #49596C;
+--neutral-300: #A1AEBD;
+--neutral-200: #D2D5D9;
+
+/* =============== BUTTONS =============== */
+
+  /* Blue Button */
+  --button-blue-bg: var(--primary-blue);
+  --button-blue-text: var(--text-white);
+  --button-blue-border: none;
+  --button-blue-radius: 15px;
+  --button-blue-padding: 1.2rem 2rem;
+  --button-blue-font-size: 16px;
+
+  /* Outline Button */
+  --button-outline-bg: var(--text-white);
+  --button-outline-text: var(--primary-blue);
+  --button-outline-border: 2px solid var(--primary-blue);
+  --button-outline-radius: 15px;
+  --button-outline-padding: 1.2rem 2rem;
+  --button-outline-font-size: 16px;
+
+}
