@@ -205,3 +205,9 @@ p {
     border: none;
   }
 
+  /* Focus state */
+*:focus-visible {
+  outline: 3px dashed var(--primary-orange);
+  outline-offset: 4px;
+}
+}
