@@ -1,11 +1,15 @@
 <script>
     // Import component
     import NewsCard from "$lib/components/NewsCard.svelte";
+
+    // Retrieve news data
+    export let news;
 </script>
 
+<!-- Cards section -->
 <ul>
-    {#each news.slice(0, 3) as article}
-        <li><NewsCard /></li>
+     {#each news.slice(0, 3) as article}
+        <li><NewsCard {article}/></li>
     {/each}
 </ul>
 
