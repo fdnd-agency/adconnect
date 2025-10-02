@@ -27,6 +27,14 @@
         border: 1px solid #CCCCCC;
         border-radius: 1em;
         padding: .7em;
+        transition: .2s ease-in-out;
+
+        &:hover {
+            border: 1px solid #00408D;
+            box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+            translate: 0 -1%;
+            transition: .2s ease-in-out;
+        }
     }
 
     article > img:first-of-type {
