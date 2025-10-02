@@ -39,11 +39,11 @@
   }
 
   .hero-light {
-    background-color: hsl(218 39% 81% / 30%);
+    background-color: var(--blue-100);
   }
 
   .hero-dark {
-    background-color: hsl(213 100% 28% / 100%); /* darker blue */
+    background-color: var(--primary-blue);
     color: var(--text-white);
   }
 
