@@ -113,3 +113,116 @@
 	</div>
 
 </footer>
+
+<style>
+
+
+	:global(*) {
+		margin: 0;
+		padding: 0;
+	}
+
+	footer {
+		background-color: #00408D;
+		border-radius: 1em 1em 0 0;
+		margin: 0;
+		padding: 2em;
+		color: #fff;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5em;
+
+	}
+
+	a {
+		color: #fff;
+		text-decoration: none;
+		display: block;
+		transition: .2s ease-in-out;
+
+		&:hover {
+			transition: .2s ease-in-out;
+			transform: translate(5%, 0%);
+		}
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: .7em;
+
+		li {
+			list-style-type: none;
+		}
+	}
+
+	footer img {
+		grid-column: 1 / 2;
+		grid-row: 2 / 3;
+	}
+
+	footer section:nth-of-type(1) {
+		grid-column: 1 / 2;
+		grid-row: 1 / 2;
+		padding: 0 0 1em 0;
+
+	 }
+
+	 footer section:nth-of-type(5) {
+		grid-column: 2 / 3;
+		grid-row: 2 / 3;
+	 }
+
+	 .divider {
+		height: 1px;
+		background-color: #fff;
+		grid-column: 1 / -1;
+	}
+
+	.footer-bottom {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-direction: column;
+		gap: .5em;
+		justify-content: space-between;
+
+	}
+
+	.desktop-menu {
+		display: none;
+		
+	}
+
+	.mobile-menu {
+		display: block;
+		
+	}
+
+	/* Dropdown menu */
+	details {
+		margin: -.7em 0 0 0;
+	}
+
+	summary {
+		list-style: none;
+		cursor: pointer;
+		display: flex;
+		gap: .5em;
+	}
+
+	/* Change icon when open and close */
+	summary::after {
+		content: url('/static/chevon-down.svg'); 
+	}
+
+	details[open] summary::after {
+		content: url('/static/chevron-up.svg'); 
+	}
+
+</style>
