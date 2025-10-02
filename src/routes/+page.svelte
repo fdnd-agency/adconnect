@@ -12,3 +12,4 @@
 	<title>Home | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
+<NewsCardSection news={data.news.slice(0, 3)}/>

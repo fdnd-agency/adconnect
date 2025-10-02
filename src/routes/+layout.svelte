@@ -141,19 +141,23 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.5em;
+	}
 
 		@media (min-width: 768px) {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 2em;
+			footer {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2em;
+			}
 		}
 
 		@media (min-width: 1024px) {
-			 grid-template-columns: 2fr 1fr 1fr 1fr;
-    		grid-auto-rows: auto;
-			padding: 5dvw 5dvw 2em 5dvw;
+			footer {
+				grid-template-columns: 2fr 1fr 1fr 1fr;
+    			grid-auto-rows: auto;
+				padding: 5dvw 5dvw 2em 5dvw;
+			}
 		}
-	}
 
 	a {
 		color: #fff;
@@ -225,8 +229,10 @@
 
 	.desktop-menu {
 		display: none;
-		
-		@media (min-width: 768px) {
+	}
+
+	@media (min-width: 768px) {
+		.desktop-menu {
 			display: flex;
 			flex-direction: column;
 			gap: 1em;
@@ -235,8 +241,10 @@
 
 	.mobile-menu {
 		display: block;
-		
-		@media (min-width: 768px) {
+	}
+	
+	@media (min-width: 768px) {
+		.mobile-menu {
 			display: none;
 		}
 	}
