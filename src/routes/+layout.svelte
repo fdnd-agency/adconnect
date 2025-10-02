@@ -116,6 +116,9 @@
 
 <style>
 
+	:root {
+  		interpolate-size: allow-keywords;
+	}
 
 	:global(*) {
 		margin: 0;
@@ -252,4 +255,15 @@
 		content: url('/static/chevron-up.svg'); 
 	}
 
+	/* Animation open and close */
+	::details-content {
+		transition: height 0.5s ease, content-visibility 0.5s ease allow-discrete;
+		height: 0;
+		overflow: clip;
+		padding: .7em 0 0 0;
+	}
+
+	[open]::details-content {
+		height: auto;
+	}
 </style>
