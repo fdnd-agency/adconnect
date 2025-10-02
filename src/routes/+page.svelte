@@ -8,4 +8,8 @@
     const news = data.news; 
 </script>
 
+<svelte:head>
+	<title>Home | Overlegplatform Associate Degrees</title>
+</svelte:head>
+
 <NewsCardSection news={data.news}/>
