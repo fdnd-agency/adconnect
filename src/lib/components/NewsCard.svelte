@@ -14,9 +14,9 @@
     <img src="{fallback}" alt="" width="300" height="210">
 
     <div>
-        <h3>{article.title}</h3>
+        <h3 class="truncate single">{article.title}</h3>
         <p><img src="{calendar}" alt="" width="15" height="15">17 april 2026</p>
-        <p>{article.description}</p>
+        <p class="truncate two">{article.description}</p>
         <ButtonLight href="/">Bekijk artikel</ButtonLight>
     </div>
     
@@ -43,8 +43,28 @@
         align-items: flex-start
     }
 
-    h1, h2, h3, h4, h5, h6, p {
+    h3, p {
         margin: 0;
+        width: 100%;
+    }
+
+    /* Truncate words */
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box; 
+        -webkit-box-orient: vertical;
+        }
+
+    /* Truncate one sentence */
+    .truncate.single {
+        white-space: nowrap;
+        -webkit-line-clamp: 1;
+    }
+
+    /* Truncate two sentences */
+    .truncate.two {
+        -webkit-line-clamp: 2;
     }
   
 </style>
