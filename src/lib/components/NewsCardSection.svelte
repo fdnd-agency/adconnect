@@ -8,7 +8,7 @@
 
 <!-- Cards section -->
 <ul>
-     {#each news.slice(0, 3) as article}
+     {#each news as article}
         <li><NewsCard {article}/></li>
     {/each}
 </ul>
