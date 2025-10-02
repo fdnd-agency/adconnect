@@ -121,11 +121,6 @@
   		interpolate-size: allow-keywords;
 	}
 
-	 *:focus-visible {
-    outline: 3px dashed #E75234;
-    outline-offset: 4px;
-  }
-
 	:global(*) {
 		margin: 0;
 		padding: 0;
