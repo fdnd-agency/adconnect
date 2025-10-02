@@ -7,10 +7,10 @@
   export let breadcrumb = "";
 </script>
 
-<article class="hero {$page.url.pathname === '/' ? 'hero--light' : 'hero--dark'}">
+<article class="hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">
   <section class="hero-content">
     {#if $page.url.pathname !== "/"}
-      <nav class="hero__breadcrumb">
+      <nav class="hero-breadcrumb">
         {#if breadcrumb}
           {breadcrumb}
         {:else}
@@ -38,11 +38,11 @@
     justify-content: center;
   }
 
-  .hero--light {
+  .hero-light {
     background-color: hsl(218 39% 81% / 30%);
   }
 
-  .hero--dark {
+  .hero-dark {
     background-color: hsl(213 100% 28% / 100%); /* darker blue */
     color: var(--text-white);
   }
