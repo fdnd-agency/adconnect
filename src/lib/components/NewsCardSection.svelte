@@ -21,10 +21,12 @@
         gap: 1em;
         width: 90vw;
         width: 90dvw;
+    }
 
-        @media screen and (min-width: 720px) {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    @media screen and (min-width: 720px) {
+        ul {
+          display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));  
         }
     }
 
