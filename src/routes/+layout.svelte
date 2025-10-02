@@ -9,11 +9,13 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children?.()}
+<main>
+	{@render children?.()}	
+</main>
 
 <footer class="footer-grid">
-	<img src="{logodark}" alt="Terug naar homepagina" width="230" height="75">
-	
+	<a href="/" class="logo"><img src="{logodark}" alt="Terug naar homepagina" width="230" height="75"></a>
+
 	<section>
 		<h3>AdConnect</h3>
 		<p>Lorem ipsum dolor sit amet consectetur. Massa et enim vitae quis eget. Quam elit elementum vivamus libero vitae nulla nec eget. Porttitor nunc tristique dictumst dui at augue vitae a. Nisl orci ultricies nec quisque. Nulla laoreet elit id vitae ullamcorper.</p>
@@ -115,14 +117,24 @@
 </footer>
 
 <style>
-
 	:root {
   		interpolate-size: allow-keywords;
 	}
 
+	 *:focus-visible {
+    outline: 3px dashed #E75234;
+    outline-offset: 4px;
+  }
+
 	:global(*) {
 		margin: 0;
 		padding: 0;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center
 	}
 
 	footer {
@@ -176,7 +188,7 @@
 		}
 	}
 
-	footer img {
+	.logo	 {
 		grid-column: 1 / 2;
 		grid-row: 2 / 3;
 	}

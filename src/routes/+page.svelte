@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+    // import NewsCardSection component
+    import NewsCardSection from "$lib/components/NewsCardSection.svelte";
+
+    let { data } = $props(); // rune die data doorgeeft tussen page.server.js en page.svelte ("magische property")
+    
+    // Retrieve news data
+    const news = data.news; 
+</script>
+
+<svelte:head>
+	<title>Home | Overlegplatform Associate Degrees</title>
+</svelte:head>
+
+<NewsCardSection news={data.news.slice(0, 3)}/>
