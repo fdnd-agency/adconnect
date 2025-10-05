@@ -1,11 +1,14 @@
 <script>
-	import favicon from '$lib/assets/favicon.svg';
-
+	import TopNav from '$lib/components/TopNav.svelte';
+	import NavPros from '$lib/components/NavPros.svelte';
 	let { children } = $props();
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
+<header>
+<TopNav />
+</header>
 
+<main>
 {@render children?.()}
+</main>
+
