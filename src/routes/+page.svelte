@@ -1,3 +1,4 @@
+ <script>
  // import NewsCardSection component
     import NewsCardSection from "$lib/components/NewsCardSection.svelte";
 
