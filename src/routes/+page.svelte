@@ -1,3 +1,17 @@
+ // import NewsCardSection component
+    import NewsCardSection from "$lib/components/NewsCardSection.svelte";
+
+    let { data } = $props(); // rune die data doorgeeft tussen page.server.js en page.svelte ("magische property")
+    
+    // Retrieve news data
+    const news = data.news; 
+</script>
+
+<svelte:head>
+	<title>Home | Overlegplatform Associate Degrees</title>
+</svelte:head>
+
+<NewsCardSection news={data.news.slice(0, 3)}/>
 
    <section>
       <h1>Welcome to SvelteKit</h1>
@@ -27,8 +41,3 @@
       <button class="button-blue">Primary Blue</button>
       <button class="button-outline">Outline Button</button>
     </section>
-  
-    
-
-    
-  

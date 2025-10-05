@@ -12,10 +12,15 @@
   <!-- stylesheet -->
   <link rel="stylesheet" href="/stylesheet.css">
 
-
-  <main>
-  <slot />
+<main>
+	{@render children?.()}	
 </main>
   
-
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center
+	}
+</style>
 
