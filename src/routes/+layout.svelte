@@ -1,5 +1,5 @@
-<script>
-	//importeren
+  <script>
+  let { children } = $props();
   </script>
   
   <svelte:head>
@@ -12,10 +12,9 @@
   <!-- stylesheet -->
   <link rel="stylesheet" href="/stylesheet.css">
 
-
   <main>
-  <slot />
-</main>
+    {@render children?.()}	
+  </main>
   
-
+ 
 

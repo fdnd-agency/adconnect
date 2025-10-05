@@ -48,7 +48,7 @@
   --p-s-max-width: 70ch;
 
   --p-xs-size: 16px;   
-  --p-xs-line-height: 18;
+  --p-xs-line-height: 1.8;
   --p-xs-max-width: 70ch;
 
   --weight-light: 300;
@@ -128,45 +128,40 @@
   }
 
 /* Headings */
-h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: var(--heading-font-weight);
-  font-size: var(--h1-size);
-  line-height: var(--h1-line-height);
-  max-width: var(--h1-max-width);
+  font-weight: var(--heading-font-weight); 
   color: var(--blue-800);
+}
+
+h1 {
+font-size: var(--h1-size);
+line-height: var(--h1-line-height);
+max-width: var(--h1-max-width);
 }
 
 h2 {
-  font-family: var(--font-heading);
-  font-size: var(--h2-size);
-  line-height: var(--h2-line-height);
-  max-width: var(--h2-max-width);
-  color: var(--blue-800);
+font-size: var(--h2-size);
+line-height: var(--h2-line-height);
+max-width: var(--h2-max-width);
 }
 
 h3 {
-  font-family: var(--font-heading);
   font-size: var(--h3-size);
   line-height: var(--h3-line-height);
   max-width: var(--h3-max-width);
-  color: var(--blue-800);
 }
 
 h4 {
-  font-family: var(--font-heading);
   font-size: var(--h4-size);
   line-height: var(--h4-line-height);
   max-width: var(--h4-max-width);
-  color: var(--blue-800);
 }
 
 h5 {
-  font-family: var(--font-heading);
   font-size: var(--h5-size);
   line-height: var(--h5-line-height);
   max-width: var(--h5-max-width);
-  color: var(--blue-800);
 }
 
 /* Paragraphs */
