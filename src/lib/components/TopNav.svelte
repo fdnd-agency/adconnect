@@ -1,6 +1,22 @@
+<script>
+  import { page } from '$app/stores';
+  $: currentPath = $page.url.pathname;
+</script>
 
 <nav>
   <section class='nav-left'>
+    <ul>
+      <li>
+        <a href="/" class="pro {currentPath === '/' ? 'active' : ''}">
+          Professionals
+        </a>
+      </li>
+      <li>
+        <a href="/students" class="stu {currentPath === '/students' ? 'active' : ''}">
+          Studenten
+        </a>
+      </li>
+    </ul>
   </section>
 
   <section class='nav-right'>
@@ -51,4 +67,22 @@ a:hover {
   box-shadow: 0 4px 10px rgba(0, 64, 141, 0.2);
 }
 
+.pro:hover {
+  padding-bottom: 1rem;
+ 
+}
+
+
+.stu:hover {
+  padding-bottom: 1rem;
+}
+
+.pro.active,
+.stu.active {
+  background-color: white;
+  padding-bottom: 2rem;
+  &:hover {
+    box-shadow: none;
+  }
+}
 </style>
