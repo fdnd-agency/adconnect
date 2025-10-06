@@ -212,15 +212,8 @@ p {
   }
 }
 a {
-  background: var(--button-outline-bg);
-  color: var(--button-outline-text);
-  border: var(--button-outline-border);
-  border-radius: var(--button-outline-radius);
-  padding: var(--button-outline-padding);
-  font-size: var(--button-outline-font-size);
   font-weight: var(--button-font-weight);
   font-family: var(--button-outline-font-family);
-  cursor: pointer;
   text-decoration: none;
 
   &:hover {
