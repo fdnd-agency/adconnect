@@ -166,7 +166,6 @@
 		transition: .2s ease-in-out;
 
 		&:hover {
-			transition: .2s ease-in-out;
 			transform: translate(5%, 0%);
 		}
 	}
@@ -231,19 +230,17 @@
 		display: none;
 	}
 
+	.mobile-menu {
+		display: block;
+	}
+	
 	@media (min-width: 768px) {
 		.desktop-menu {
 			display: flex;
 			flex-direction: column;
 			gap: 1em;
 		}
-	}
 
-	.mobile-menu {
-		display: block;
-	}
-	
-	@media (min-width: 768px) {
 		.mobile-menu {
 			display: none;
 		}
