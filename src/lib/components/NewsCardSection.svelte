@@ -21,6 +21,7 @@
         gap: 1em;
         width: 90vw;
         width: 90dvw;
+        padding: 2em 0 4em 0;
     }
 
     @media screen and (min-width: 720px) {
