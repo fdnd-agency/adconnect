@@ -36,6 +36,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 2em;
   }
 
   .hero-light {
@@ -52,7 +53,6 @@
   }
 
   .hero-content {
-    padding-top: 2em;
     padding-bottom: 2em;
     width: 90vw;
     width: 90dvw;
@@ -107,7 +107,6 @@
 
     .hero-image {
       max-width: 604px;
-      padding-top: 2em;
     }
   }
 </style>
