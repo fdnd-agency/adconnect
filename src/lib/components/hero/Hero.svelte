@@ -45,6 +45,10 @@
   .hero-dark {
     background-color: var(--primary-blue);
     color: var(--text-white);
+
+    h1 {
+      color: var(--text-white);
+    }
   }
 
   .hero-content {
@@ -52,6 +56,10 @@
     padding-bottom: 2em;
     width: 90vw;
     width: 90dvw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
   }
 
   .hero-image {
@@ -72,16 +80,11 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
-      padding: 2em 1em 0 1em;
     }
 
     .hero-content {
       width: 40vw;
       width: 40dvw;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .hero-image {
@@ -104,6 +107,7 @@
 
     .hero-image {
       max-width: 604px;
+      padding-top: 2em;
     }
   }
 </style>

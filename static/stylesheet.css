@@ -184,6 +184,7 @@ p {
   font-weight: var(--button-font-weight);
   cursor: pointer;
   font-family: var(--button-blue-font-family);
+  width: fit-content;
 
   &:hover {
     background-color: var(--text-white);
@@ -203,6 +204,7 @@ p {
   font-weight: var(--button-font-weight);
   font-family: var(--button-outline-font-family);
   cursor: pointer;
+  width: fit-content;
 
   &:hover {
     background-color: var(--primary-blue);
