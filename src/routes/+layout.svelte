@@ -139,6 +139,9 @@
     margin: 0;
     padding: 0;
   }
+  :global(body) {
+    overflow-x: hidden;
+  }
 
   main {
     display: flex;
@@ -155,6 +158,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5em;
+  
 
     h3 {
       color: var(--text-white);
