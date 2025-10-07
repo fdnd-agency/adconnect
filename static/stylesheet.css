@@ -95,7 +95,7 @@
 
   /* =============== BUTTONS =============== */
 
-  /* Blue Button */
+  /* Outline White Button */
   --button-blue-bg: var(--primary-blue);
   --button-blue-text: var(--text-white);
   --button-blue-border: 1.5px solid var(--text-white);
@@ -104,12 +104,12 @@
   --button-blue-font-size: 16px;
   --button-blue-font-family: var(--font-heading);
 
-  /* Outline Button */
+  /* Outline Blue Button */
   --button-outline-bg: var(--text-white);
   --button-outline-text: var(--primary-blue);
   --button-outline-border: 1.5px solid var(--primary-blue);
   --button-outline-radius: 15px;
-  --button-outline-padding: 1rem 2rem;
+  --button-outline-padding: 1.2rem 2rem;
   --button-outline-font-size: 16px;
   --button-outline-font-family: var(--font-heading);
 }
@@ -189,8 +189,7 @@ p {
   &:hover {
     background-color: var(--text-white);
     color: var(--primary-blue);
-    border: none;
-    outline: 1.5px solid var(--primary-blue);
+    border: var(--button-outline-border);
   }
 }
 
@@ -209,10 +208,10 @@ p {
   &:hover {
     background-color: var(--primary-blue);
     color: var(--text-white);
-    border: none;
-    outline: 1.5px solid var(--text-white);
+    border: var(--button-blue-border);
   }
 }
+
 a {
   font-weight: var(--button-font-weight);
   font-family: var(--button-outline-font-family);
