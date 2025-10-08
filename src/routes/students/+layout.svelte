@@ -1,5 +1,5 @@
 <script>
-    import NavStudent from '$lib/components/NavStudent.svelte';
+    import NavStudent from '$lib/components/header/NavStudent.svelte';
 </script>
 
 <NavStudent />
