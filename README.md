@@ -1,8 +1,6 @@
 # ADConnect
 
-Client: Overlegplatform Associate degrees
-
-## About the Consultation Platform Ad’s
+**Client: Overlegplatform Associate degrees**
 
 The Consultation Platform for Associate Degrees is a collaboration between all Dutch universities of applied sciences that offer — or plan to offer — Associate Degree programs. Since 2019, they have been working to increase the visibility and strengthen the position of these programs within education and government. They share knowledge, develop joint program profiles, and organize events such as the National AD Day and the AD Talent Award. They also focus on important themes such as progression to bachelor’s programs, practice-oriented learning, and internationalization to improve the quality of Associate Degree programs.
 
@@ -23,8 +21,23 @@ Hier staat de [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/D
 ## Description
 - Menu
 - Hero
-- Cards
-- Footer
+
+### Cards
+- Semantic HTML, for example using `<article>` with a `<h3>`, `<p>`, and `<a>`.  
+- Multiple tests performed, including: Accessibility test, Performance test, and testing in older browsers.  
+- Responsive using a `grid` layout.  
+- Used components within components.  
+- All data is dynamically loaded from the server JS.
+
+https://github.com/user-attachments/assets/10ace37c-4bbe-4006-8576-8b98df3fc218
+
+### Footer
+- Used semantic HTML, for example `<footer>` with a `<details>` and `<summary>`.  
+- Multiple tests performed, including: Accessibility test, Performance test, and testing in older browsers.  
+- Responsive using a `grid` layout.  
+- Dropdown menu for mobile so it does not become a long list, making it more user-friendly.
+
+https://github.com/user-attachments/assets/b136cfc9-5af5-4485-937f-3c58ff0d6d53
 
 ## Features
 In this project, we use SvelteKit to build a dynamic squad page with reusable components and routes. Data is fetched via the Directus API.
