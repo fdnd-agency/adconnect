@@ -137,3 +137,36 @@ body:has(.menu[open]) { overflow: hidden; }
 
 .desktop-nav { display: none; }
 
+/* Desktop */
+@media (min-width: 1250px) {
+  .logo--mobile { display: none; }
+  .logo--desktop { display: block; height: 50px; margin-left: 60px; margin-top: 10px; }
+
+  .menu { display: none; }
+  .desktop-nav {
+    display: flex;
+    position: relative;
+    gap: 3rem;
+    margin: 0;
+    padding: 0 1.5rem;
+    list-style: none;
+  }
+  .menu-button {
+    font-weight: var(--heading-font-weight);
+    color: var(--blue-800);
+    padding: .5rem 1rem;
+
+    &:hover {
+       background: var(--blue-200); 
+    }
+  
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .menu::before,
+  summary span { transition: none !important; }
+}
+</style>
