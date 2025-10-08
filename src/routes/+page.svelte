@@ -12,10 +12,16 @@
 </svelte:head>
 
 <NavPros />
-<Hero title="Overlegplatform Associate Degrees" description="Het overlegplatform voor Associate Degree opleidingen in Nederland.">
+
+
+<Hero
+  title="Overlegplatform Associate Degrees"
+  description="Het overlegplatform voor Associate Degree opleidingen in Nederland.">
   <a slot="primary" href="/dev/hero" class="button-outline-white">Lorum Ipsum →</a>
   <a slot="secondary" href="/dev/hero" class="button-outline-blue">Lorum Action →</a>
 </Hero>
-<NewsCardSection news={data.news.slice(0, 3)}/>
+
+<NewsCardSection news={data.news.slice(0, 3)} />
+
 
 
