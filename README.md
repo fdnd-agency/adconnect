@@ -63,7 +63,12 @@ In this project, we use SvelteKit to build a dynamic squad page with reusable co
 
 ### Data
 Data is fetched in `+page.server.js` for the corresponding route. A fetch is performed to the Directus API, the data is processed, and then rendered to the respective `+page.svelte` page.  
-- See for example the [`+page.server.js` of the home page](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/%2Bpage.server.js).  
+- See for example the [`+page.server.js` of the home page](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/%2Bpage.server.js).
+
+### Data Model
+The data model displays all the fields that appear on the website.
+
+[![](https://mermaid.ink/img/pako:eNrNVV1r2zAU_SvmQt-c4I_YTvxWUsP6EHtk2QbDEDTr1hGzJSNLoV2a_z7b6do0araOsjE9CO4R595z7pWtHRSCIsSA8oqRUpI651a3DvtVNv-4SNLVB2t3APrFuLIYfYpbJRkvLcVUhQZKsS0kaxQT3DhrK10-gZQoHLYDtM8fCGny-e-UJ1pthDTgl3KT0sDwtkDZKAPfoBQGKJHQNdWSPBdyYvmI8FXQu5M-JJ_-0SB-ZeSca8VqfKvB1btkkfx3Bv_IQpotrtPL1fUbbJyRSijK34vtK-EWuVof1ztvgfG2U6Ff7FkhtGxNSiNxy4Ru12fOkepiuAXrLZGMcPOukErXXLev6ec8y5bvs2XX0Sx9RUc5qU1BlSjFSdqLC2uJVacS22ff1v39aCR2x1OMrRxK_CaaBiuaQ87BhlIyCrGSGm2oUdakD2FQl4PaYKcBeh7FG6Ir1bP2Ha0h_IsQ9U-mFLrcQHxDqraLdNPP5-EP_IhK5N3Y50JzBbHr-ZMhC8Q7uIV45Hnu2JmF3sRz_ak3caPQhrsOd6OxNwnCcDbzXSfwp850b8P3obQ7nvoz34mCIHCiMPScyAakTAm5OLwCw2Ow_wHeLc-y?type=png)](https://mermaid.live/edit#pako:eNrNVV1r2zAU_SvmQt-c4I_YTvxWUsP6EHtk2QbDEDTr1hGzJSNLoV2a_z7b6do0araOsjE9CO4R595z7pWtHRSCIsSA8oqRUpI651a3DvtVNv-4SNLVB2t3APrFuLIYfYpbJRkvLcVUhQZKsS0kaxQT3DhrK10-gZQoHLYDtM8fCGny-e-UJ1pthDTgl3KT0sDwtkDZKAPfoBQGKJHQNdWSPBdyYvmI8FXQu5M-JJ_-0SB-ZeSca8VqfKvB1btkkfx3Bv_IQpotrtPL1fUbbJyRSijK34vtK-EWuVof1ztvgfG2U6Ff7FkhtGxNSiNxy4Ru12fOkepiuAXrLZGMcPOukErXXLev6ec8y5bvs2XX0Sx9RUc5qU1BlSjFSdqLC2uJVacS22ff1v39aCR2x1OMrRxK_CaaBiuaQ87BhlIyCrGSGm2oUdakD2FQl4PaYKcBeh7FG6Ir1bP2Ha0h_IsQ9U-mFLrcQHxDqraLdNPP5-EP_IhK5N3Y50JzBbHr-ZMhC8Q7uIV45Hnu2JmF3sRz_ak3caPQhrsOd6OxNwnCcDbzXSfwp850b8P3obQ7nvoz34mCIHCiMPScyAakTAm5OLwCw2Ow_wHeLc-y)
 
 ## Installation
 To build this project, the following steps must be completed. `Node.js` and `npm` (or alternatives such as `pnpm` or `yarn`) are required as a package manager to get started.  
