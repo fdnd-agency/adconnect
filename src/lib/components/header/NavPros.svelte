@@ -24,3 +24,13 @@
       <li><a href="/contact">contact</a></li>
     </ul>
   </details>
+
+  <ul class="desktop-nav">
+    <li><a class='menu-button' href="/over-ad">Over Associate degree's</a></li>
+    <li><a  class='menu-button' href="/documenten">Documenten</a></li>
+    <li><a  class='menu-button'href="/talentaward">TalentAward</a></li>
+    <li><a  class='menu-button'href="/nieuws">Nieuws</a></li>
+    <li><a  class='button-outline-white'href="/ad-dag">Kom naar Ad-dag</a></li>
+  </ul>
+</nav>
+
