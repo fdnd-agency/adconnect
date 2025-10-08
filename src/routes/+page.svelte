@@ -1,11 +1,9 @@
 <script>
- // import NewsCardSection component
-    import NewsCardSection from "$lib/components/NewsCardSection.svelte";
-    import NavPros from '$lib/components/NavPros.svelte';
-    import Hero from "$lib/components/hero/Hero.svelte"; // import Hero componen
+  import NewsCardSection from "$lib/components/NewsCardSection.svelte";
+  import NavPros from '$lib/components/header/NavPros.svelte';
+  import Hero from "$lib/components/hero/Hero.svelte";
 
-  let { data } = $props(); // rune die data doorgeeft tussen page.server.js en page.svelte ("magische property")
-  // Retrieve news data
+  let { data } = $props(); 
   const news = data.news;
 </script>
 
