@@ -11,13 +11,12 @@
 </script>
 
 <article>
-    <img src="{fallback}" alt="" width="300" height="210">
+    <img src={`https://fdnd-agency.directus.app/assets/${article.hero}`} alt={article.title} width="300" height="210" />
 
     <div>
         <h3 class="truncate single">{article.title}</h3>
-        <p><img src="{calendar}" alt="" width="15" height="15">17 april 2026</p>
         <p class="truncate two">{article.description}</p>
-        <ButtonLight href="/">Bekijk artikel</ButtonLight>
+        <a class="button-outline-blue" href="/">Lees meer</a>
     </div>
     
 </article>
