@@ -1,5 +1,6 @@
 <script>
   import { page } from '$app/stores';
+  $: currentPath = $page.url.pathname;
 </script>
 
 <nav>
@@ -74,6 +75,13 @@
   .stu:hover {
     padding-bottom: 1rem;
   }
+
+  .pro.active,
+  .stu.active {
+    background-color: white;
+    padding-bottom: 2rem;
+  }
+
   /* DESKTOP */
   @media (min-width: 700px) {
     .nav-left {
