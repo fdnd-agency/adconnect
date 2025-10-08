@@ -1,23 +1,32 @@
 # ADConnect
 
-Opdrachtgevers: Overlegplatform Ad's
+Client: Overlegplatform Associate degrees
 
-## Over Overlegpplatform Ad's
+## About the Consultation Platform Ad’s
 
-Het Overlegplatform Associate degrees is een samenwerking van alle Nederlandse hogescholen die Ad-opleidingen aanbieden of willen starten. Sinds 2019 zetten ze zich in om deze opleidingen beter zichtbaar en sterker gepositioneerd te krijgen binnen het onderwijs en bij de overheid. Ze delen kennis, ontwikkelen gezamenlijke opleidingsprofielen en organiseren evenementen zoals de Landelijke Ad-dag en de Ad Talent Award. Ook werken ze aan belangrijke thema’s zoals doorstroom naar bacheloropleidingen, praktijkgericht leren en internationalisering om de kwaliteit van Ad-opleidingen te verbeteren.
+The Consultation Platform for Associate Degrees is a collaboration between all Dutch universities of applied sciences that offer — or plan to offer — Associate Degree programs. Since 2019, they have been working to increase the visibility and strengthen the position of these programs within education and government. They share knowledge, develop joint program profiles, and organize events such as the National AD Day and the AD Talent Award. They also focus on important themes such as progression to bachelor’s programs, practice-oriented learning, and internationalization to improve the quality of Associate Degree programs.
 
-### Vraag opdrachtgever
-Ontwikkel een gebruiksvriendelijk en technisch efficiënt platform dat de meerwaarde van Associate degrees duidelijk overbrengt aan de gebruiker. De gebruiker moet eenvoudig de passende informatie kunnen vinden door middel van een logische websitestructuur en een doordacht herontwerp. Daarnaast moet de website ook vertaald kunnen worden naar Engels om een bredere doelgroep te bereiken.
+## Client’s request
+
+Develop a user-friendly and technically efficient platform that clearly communicates the added value of Associate Degrees to the user. The user must be able to easily find relevant information through a logical website structure and a well-thought-out redesign. In addition, the website should be translatable into English to reach a broader audience.
 
 Hier staat de [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/Design-Challenge) verder toegelicht.
 
-## Inhoudsopgave
+## Table of Contents
 
-  * [Installatie](#installatie)
-  * [Bronnen](#bronnen)
-  * [Licentie](#licentie)
+  * [Description](#description)
+  * [Installation](#installation)
+  * [Features](#features)
+  * [Resources](#resources)
+  * [License](#license)
 
-## Installatie
+## Description
+- Menu
+- Hero
+- Cards
+- Footer
+
+## Installation
 Everything you need to build a Svelte project, powered by sv.
 
 ### Creating a project
@@ -44,8 +53,8 @@ npm run dev -- --open
 
 ## Bronnen
 - Overlegplatform Associate Degrees
-- Huidige huisstijl
-- Redesign in Figma (Tweedejaars studenten)
+- Current styleguide
+- Redesign in Figma
 
 ## Licentie
 This project is licensed under the terms of the MIT license.
