@@ -33,7 +33,7 @@
     margin: 0;
   }
 
-  /* MOBILE FIRST */
+  /* MOBILE*/
   nav {
     display: flex;
     justify-content: space-between;
@@ -66,7 +66,7 @@
   }
 
   a:hover {
-    background: #a9c6f7;
+    background: var(--blue-200);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 64, 141, 0.2);
   }
@@ -78,7 +78,7 @@
 
   .pro.active,
   .stu.active {
-    background-color: white;
+    background-color: var(--background);
     padding-bottom: 2rem;
   }
 

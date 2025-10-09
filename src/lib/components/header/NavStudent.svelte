@@ -34,7 +34,7 @@
   
   <style>
 
-  /* MOBILE FIRST */
+  /* MOBILE*/
   nav {
     display: flex;
     position: relative;
@@ -42,8 +42,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 1rem;
-    background: #fff;
-    box-shadow: var(--shadow);
+    background: var(--background);
   }
   
   .logo {
@@ -102,7 +101,7 @@
     margin: 0;
     padding: clamp(1rem,3vw,2rem);
     box-sizing: border-box;
-    background: #fff;
+    background: var(--background);
     list-style: none;
     text-align: left;
     transform: translateX(100%);
@@ -125,7 +124,7 @@
   .menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
   .panel a {
     display: block;
-    color: #0a0a0a;
+    color: var(--blue-800);
     font-weight: 500;
     font-size: 1.2rem;
     text-decoration: none;
