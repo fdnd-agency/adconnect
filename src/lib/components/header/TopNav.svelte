@@ -83,7 +83,7 @@
   }
 
   /* DESKTOP */
-  @media (min-width: 700px) {
+  @media (min-width: 1024px) {
     .nav-left {
       margin-left: 5rem;
     }

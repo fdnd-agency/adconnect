@@ -137,8 +137,11 @@ body:has(.menu[open]) { overflow: hidden; }
 
 .desktop-nav { display: none; }
 
-/* Desktop */
-@media (min-width: 1250px) {
+
+
+
+/* desktop */
+@media (min-width: 1024px) {
   .logo--mobile { display: none; }
   .logo--desktop { display: block; height: 50px; margin-left: 60px; margin-top: 10px; }
 
