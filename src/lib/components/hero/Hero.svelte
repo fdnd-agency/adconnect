@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  import placeholder from "$lib/assets/placeholder-hero.jpeg";
+  import placeholder from "$lib/assets/placeholder-hero.png";
 
   export let title = "";
   export let description = "";
@@ -37,6 +37,8 @@
     align-items: center;
     justify-content: center;
     padding-top: 2em;
+    background-color: var(--blue-100);
+  
   }
 
   .hero-light {
@@ -63,8 +65,8 @@
   }
 
   .hero-image {
+    object-fit: cover;
     width: 90vw;
-    width: 90dvw;
     max-height: 416px;
     border-radius: 30px 30px 0 0;
   }

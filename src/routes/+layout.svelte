@@ -1,22 +1,27 @@
 <script>
+	import TopNav from '$lib/components/header/TopNav.svelte';
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
-  let { children } = $props();
+	let { children } = $props();
 </script>
-
-<svelte:head>
+  
+  <svelte:head>
   <link rel="icon" href={favicon} />
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap" />
-  <!-- stylesheet -->
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap">
+ <!-- stylesheet -->
   <link rel="stylesheet" href="/stylesheet.css" />
 </svelte:head>
 
+<header>
+<TopNav />
+</header>
+
 <main>
-  {@render children?.()}
+{@render children?.()}
 </main>
 
 <footer class="footer-grid">
@@ -133,6 +138,9 @@
     margin: 0;
     padding: 0;
   }
+  :global(body) {
+    overflow-x: hidden;
+  }
 
   main {
     display: flex;
@@ -149,6 +157,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5em;
+  
 
     h3 {
       color: var(--text-white);
@@ -293,3 +302,4 @@
     height: auto;
   }
 </style>
+

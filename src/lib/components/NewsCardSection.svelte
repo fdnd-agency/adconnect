@@ -20,19 +20,22 @@
         flex-direction: column;
         gap: 1em;
         width: 90vw;
-        width: 90dvw;
-        padding: 2em 0 4em 0;
+        padding: 4em 0 4em 0;
     }
+
 
     @media screen and (min-width: 720px) {
         ul {
           display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));  
+          width: 80vw;
+          grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));  
+          max-height: calc(3 * 25em);
         }
     }
-
      li {
         list-style-type: none;
     }
 
+
+            
 </style>
