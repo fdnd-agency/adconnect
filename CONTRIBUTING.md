@@ -1,4 +1,4 @@
-<img width="276" height="275" alt="image" src="https://github.com/user-attachments/assets/ba3648c7-cc7c-4815-8704-39a7037acb1c" /># Rules for the project
+# Rules for the project
 
 ## Rules within the team
 
