@@ -7,12 +7,15 @@
 - Keep up with the progress by using the projectboard (close own issues)
 - Follow the agreed-upon workflow (see teamcanvas).
 - Communicate when you get stuck.
+- Take the lead during the sprintreview and sprintplanning.
+- Set clear deadlines: Every task or issue must include a realistic deadline to ensure steady progress and shared expectations.  
 
 ## Agreements with client
 
 - Productowner: Erwin de Beer.
 - Communication through e-mail and if necessary through teams.
 - Feedback may be given at any moment, also between sprintreviews.
+- Communicate clearly with the client to avoid miscommunications.
 
 ### Upcoming sprint reviews
 
@@ -28,6 +31,7 @@
 ## Workflow
 
 - We work by using issues and feature branches.
+- Add deadlines to your issue/task.
 - First merge the development branch to your work before you commit.
 - Merge to the development branch. NOT THE MAIN.
 - Make a PR for your work:
@@ -64,6 +68,7 @@ We follow the code conventions of FDND agency. Below the most important conventi
 - Follow best practices for HTML-structure and semantics.
 - Use CSS-nesting, pseudo-private custom properties and use a dynamic colour palette.
 - Use template literals, object destructuring and choose wisely between const, let en var.
+- Label commits clearly (fix:, docs:, style: etc)
 - Follow guidelines for data, routes, component-structure and CSS within SvelteKit-projects.
 
 ### Design conventions
@@ -71,3 +76,28 @@ We follow the code conventions of FDND agency. Below the most important conventi
 - Make user-friendly and accessible designs.
 - Work together in design systems and validate designs in both Figma and the browser.
 - Use variables, styles en organize your Figma-files effectively.
+
+## DoR:
+
+A Definition of Ready (DoR) is a set of criteria that a user story must meet before the team can start working on it in a sprint.
+It ensures that the story is clear, feasible, and valuable, so the team doesn’t waste time figuring things out mid-sprint.
+
+### DoR's:
+- User story written clearly with format "As a.... I want to.... So that...." and approved by Product Owner.
+- Acceptance criteria defined (what “done” looks like).
+- Sources or research material available.
+- Poker planned.
+- Story estimated and added to sprint backlog.
+- No external dependencies (e.g., waiting for content from another team).
+
+## DoD:
+
+A Definition of Done (DoD) is a shared checklist of criteria that a product increment must meet before it is considered complete, releasable, and ready for customers.
+
+### DoD's:
+- Acceptance Criteria
+- Accessibility (A11y)
+- Tested
+- Reviewed
+- PR Merged
+- Deployed to Staging

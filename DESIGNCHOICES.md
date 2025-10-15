@@ -1,0 +1,1 @@
+This document explains the main design choices made during the development of this project. It describes the reasoning behind visual, technical, and interaction decisions to show how the final result supports the project goals and user experience.
