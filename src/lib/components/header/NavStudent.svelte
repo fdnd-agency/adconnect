@@ -4,8 +4,8 @@
   </script>
   
   <nav>
-    <img class="logo logo--mobile" src={logomobile} alt="Logo" />
-    <img class="logo logo--desktop" src={logo} alt="Logo" />
+    <img class="logo-mobile" src={logomobile} alt="Logo" />
+    <img class="logo-desktop" src={logo} alt="Logo" />
     <details class="menu">
       <summary>
         <span></span>
@@ -51,7 +51,7 @@
     margin-top: 10px;
   }
 
-  .logo--desktop { display: none; }
+  .logo-desktop { display: none; }
   
   summary {
     display: inline-block;
@@ -141,8 +141,8 @@
   
   /* Desktop */
   @media (min-width: 1024px) {
-    .logo--mobile { display: none; }
-    .logo--desktop { display: block; height: 50px; margin-left: 60px; margin-top: 10px; }
+    .logo-mobile { display: none; }
+    .logo-desktop { display: block; height: 50px; margin-left: 60px; margin-top: 10px; }
   
     .menu { display: none; }
     .desktop-nav {
