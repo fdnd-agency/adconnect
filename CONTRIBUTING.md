@@ -76,3 +76,28 @@ We follow the code conventions of FDND agency. Below the most important conventi
 - Make user-friendly and accessible designs.
 - Work together in design systems and validate designs in both Figma and the browser.
 - Use variables, styles en organize your Figma-files effectively.
+
+## DoR:
+
+A Definition of Ready (DoR) is a set of criteria that a user story must meet before the team can start working on it in a sprint.
+It ensures that the story is clear, feasible, and valuable, so the team doesn’t waste time figuring things out mid-sprint.
+
+### DoR's:
+- User story written clearly with format "As a.... I want to.... So that...." and approved by Product Owner.
+- Acceptance criteria defined (what “done” looks like).
+- Sources or research material available.
+- Poker planned.
+- Story estimated and added to sprint backlog.
+- No external dependencies (e.g., waiting for content from another team).
+
+## DoD:
+
+A Definition of Done (DoD) is a shared checklist of criteria that a product increment must meet before it is considered complete, releasable, and ready for customers.
+
+### DoD's:
+- Acceptance Criteria
+- Accessibility (A11y)
+- Tested
+- Reviewed
+- PR Merged
+- Deployed to Staging
