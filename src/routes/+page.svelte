@@ -1,7 +1,7 @@
 <script>
   import NewsCardSection from "$lib/components/NewsCardSection.svelte";
   import NavPros from '$lib/components/header/NavPros.svelte';
-  import Card from '$lib/components/Card.svelte';
+  import NewsCard from '$lib/components/NewsCard.svelte';
   import Hero from "$lib/components/hero/Hero.svelte"; // import Hero component
 
   let { data } = $props(); 
