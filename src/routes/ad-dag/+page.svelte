@@ -62,7 +62,7 @@
 	</article>
 </section>
 
-<section>
+<section class='info-1'>
 	<article>
 		<h2>Wat kun je verwachten van de Ad-dag?</h2>
 		<p>De dag bestaat uit een inspirerend programma vol discussies, presentaties en workshops.
@@ -81,7 +81,8 @@
 	</article>
 	<img src="https://fdnd-agency.directus.app/assets/8f4e5b1e-1f3e-4c7d-9f7e-4e2b8e6f0c3b" alt="Ad-dag afbeelding" width="300" height="210" />
 </section>
-<section>
+
+<section class='info-2'>
 	<img src="https://fdnd-agency.directus.app/assets/8f4e5b1e-1f3e-4c7d-9f7e-4e2b8e6f0c3b" alt="Ad-dag afbeelding" width="300" height="210" />
 	<article>
 		<h2>Wat kun je verwachten van de Ad-dag?</h2>
@@ -100,3 +101,21 @@
         </p>
 	</article>
 </section>
+
+<style>
+      /* Desktop */
+  @media (min-width: 1024px) {
+    .cards {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .info-1, .info-2 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2em;
+    }
+  }
+</style>
