@@ -16,7 +16,7 @@
     <div>
         <h3 class="truncate single">{article.title}</h3>
         <p class="truncate two">{article.description}</p>
-        <a class="button-outline-blue" href="/">Lees meer</a>
+        <a class="button-outline-blue" href="/">Meer informatie</a>
     </div>
     
 </article>
@@ -53,6 +53,10 @@
     h3, p {
         margin: 0;
         width: 100%;
+    }
+
+    h3 {
+        font-size: 22px;
     }
 
     /* Truncate words */
