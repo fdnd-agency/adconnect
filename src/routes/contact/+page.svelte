@@ -107,6 +107,10 @@
         align-items: center;
         gap: 1em;
 
+        @media (min-width: 768px) {
+            padding: 5em 5%;
+            gap: 1.5em;
+        }
     }
 
     nav.hero-breadcrumb {
@@ -134,6 +138,12 @@
         width: 100%;
     }
 
+    @media (min-width: 768px) {
+        .contact-wrapper {
+            flex-direction: row;
+            gap: 2em;
+        }
+    }
 
     .contact-form {
         background-color: var(--text-white);
@@ -142,6 +152,20 @@
         padding: 1.5em;
     }
 
+    @media (min-width: 768px) {
+        .contact-form {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+        }
+
+        .contact-form label:nth-child(1),
+        .contact-form label:nth-child(4),
+        .contact-form button {
+            grid-column: 1 / -1; /* full-width */
+        }
+    }
 
     form {
         display: flex;
@@ -204,17 +228,22 @@
         }
     }
 
+    @media (min-width: 768px) {
+        .contact-info {
+            width: 40%;
+        }
+    }
     
     .circle-info {
         display: none;
 
-         /* @media (min-width: 768px) {
+         @media (min-width: 768px) {
             width: 17em;
             right: -10%;
             bottom: -10%;
             display: block;
             position: absolute;
-        } */
+        }
     }
 
     .contact-info h2, .contact-info p {
@@ -231,6 +260,9 @@
         box-sizing: border-box;
         position: relative;
 
+        @media (min-width: 768px) {
+            padding: 5em 5%;
+        }
     }
 
     .faq h2 {
@@ -247,6 +279,11 @@
 
         p {
             width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            width: 55vw;
+            align-self: center;
         }
     }
 
@@ -293,5 +330,13 @@
         left: -10%;
         bottom: -10%;
         z-index: 0;
+
+         @media (min-width: 768px) {
+            width: 25em;
+            left: 5%;
+            bottom: -15%;
+            position: absolute;
+             z-index: 0;
+        }
     }
 </style>
