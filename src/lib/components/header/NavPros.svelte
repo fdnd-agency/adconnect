@@ -1,5 +1,5 @@
 <script>
-  import logo from '$lib/assets/logo.svg';
+  import logo from '$lib/assets/logo-desktop.svg';
   import logomobile from '$lib/assets/logomobile.svg';
 </script>
 
