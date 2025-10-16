@@ -169,9 +169,9 @@ h5 {
 p {
   font-family: var(--font-body);
   font-weight: var(--text-font-weight);
-  font-size: var(--p-m-size);
-  line-height: var(--p-m-line-height);
-  max-width: var(--p-m-max-width);
+  font-size: var(--p-s-size);
+  line-height: var(--p-s-line-height);
+  max-width: var(--p-s-max-width);
 }
 
 /* Buttons */
