@@ -6,6 +6,8 @@
     import mail from '$lib/assets/icon-mail.svg';
     import map from '$lib/assets/icon-map.svg';
     import phone from '$lib/assets/icon-phone.svg';
+    import lightcircle from '$lib/assets/light-circle.svg';
+    import darkcircle from '$lib/assets/dark-circle.svg';
 
     export let breadcrumb = "";
 
@@ -18,6 +20,7 @@
 <NavPros />
 
 <section class="contact-hero">
+
      {#if $page.url.pathname !== "/"}
       <nav class="hero-breadcrumb">
         {#if breadcrumb}
@@ -29,7 +32,7 @@
     {/if}
 
     <h1>Vragen? Neem contact op</h1>
-    <p>Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
+    <p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
 
     <div class="contact-wrapper">
         <section class="contact-info">
@@ -40,6 +43,8 @@
                 <li><a href="mailto:platformassociatedegrees@outlook.com"><img src="{mail}" alt="">platformassociatedegrees@outlook.com</a></li>
                 <li><a href="/"><img src="{map}" alt="">Amsterdam</a></li>
             </ul>
+
+            <img class="circle-info" src="{lightcircle}" alt="">
         </section>
 
         <form class="contact-form">
@@ -49,34 +54,40 @@
                 <label for="mail">E-mailadres
                     <input type="email" id="mail" placeholder="Bijv. pietervdv@gmail.com">
                 </label>
+                <label for="phone">Telefoonnummer
+                    <input type="phone" id="phone" placeholder="Bijv. +31 6503287958">
+                </label>
                 <label for="message">Bericht
                     <textarea id="message" placeholder="Beste Overlegplatform Ad's.."></textarea>
                 </label>
-                <button>Formulier verzenden</button>
+                <button class="button-outline-white">Formulier verzenden</button>
         </form>
     </div>
 </section>
 
-<section>
+<section class="faq">
     <h2>Veelgestelde vragen</h2>
 
+    <img class="circle-faq" src="{darkcircle}" alt="">
+
     <details open>
-        <summary>Wat is een Ad-dag?</summary>
+        <summary>Wat is een Associate Degree Ad?</summary>
         <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna.</p>
     </details>
 
     <details>
-        <summary>Wat is een Ad-dag?</summary>
+        <summary>Hoe lang duurt een Associate Degree?</summary>
         <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna.</p>
     </details>
 
     <details>
-        <summary>Wat is een Ad-dag?</summary>
+        <summary>Wat is het verschil tussen een Associate Degree en een Bachelor</summary>
         <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna.</p>
     </details>
 
     <details>
-        <summary>Wat is een Ad-dag?</summary>
+        <summary>Welke voordelen heeft het behalen van een Associate Degree?</summary>
         <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna.</p>
     </details>
 </section>
+
