@@ -40,6 +40,8 @@
     align-items: center;
     background-color: var(--blue-150);
     padding: 1rem;
+    position: relative;
+    z-index: 99;
   }
 
   ul {

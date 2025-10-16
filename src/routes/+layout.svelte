@@ -157,6 +157,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.5em;
+    position: relative;
+    z-index: 20;
   
 
     h3 {

@@ -42,6 +42,7 @@
     width: 100%;
     padding: 1rem;
     background: var(--background);
+    z-index: 99;
   }
   
   .logo {

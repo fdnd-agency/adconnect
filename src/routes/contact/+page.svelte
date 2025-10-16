@@ -91,3 +91,207 @@
     </details>
 </section>
 
+<style>
+    :global(main) {
+        display: flex;
+        align-items: unset !important;
+    }
+
+    .contact-hero {
+        box-sizing: border-box;
+        background-color: var(--blue-100);
+        width: 100%;
+        padding: 3em 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+
+    }
+
+    nav.hero-breadcrumb {
+        display: flex;
+        justify-content: center;
+        margin: 0 0 -1em 0;
+        font-weight: var(--button-font-weight);
+        font-family: var(--button-outline-font-family);
+        gap: .5em;
+
+        a {
+            color: var(--blue-800);
+            font-weight: var(--heading-font-weight);
+        }
+    }
+
+    h1, .intro {
+        text-align: center;
+    }
+
+    .contact-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1em;
+        width: 100%;
+    }
+
+
+    .contact-form {
+        background-color: var(--text-white);
+        border: 1px solid var(--neutral-300);
+        border-radius: 1em;
+        padding: 1.5em;
+    }
+
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: .8em;
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-family: var(--font-body);
+        font-weight: var(--text-font-weight);
+        font-size: var(--p-s-size);
+
+        input, textarea {
+            font-family: var(--font-body);
+            font-weight: var(--text-font-weight);
+            font-size: var(--p-s-size);
+            padding: .9em;
+            background-color: #F2F2F2;
+            border: 1px solid var(--neutral-300);
+            border-radius: .5em;
+            margin: .5em 0 0 0;
+
+            &::-webkit-input-placeholder {
+                color: var(--blue-800);
+            }
+        }
+
+        textarea {
+            height: 7em;
+        }
+    }
+
+    .contact-info {
+        background-color: var(--primary-blue);
+        display: flex;
+        flex-direction: column;
+        padding: 1.5em;
+        border-radius: 1em;
+        gap: .7em;
+        position: relative;
+        overflow: hidden;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: .5em;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: .5em;
+            color: var(--text-white);
+            word-break: break-all;
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    
+    .circle-info {
+        display: none;
+
+         /* @media (min-width: 768px) {
+            width: 17em;
+            right: -10%;
+            bottom: -10%;
+            display: block;
+            position: absolute;
+        } */
+    }
+
+    .contact-info h2, .contact-info p {
+        color: var(--text-white);
+        word-break: break-all;
+    }
+
+    /* FAQ */
+    .faq {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 3em 5%;
+        box-sizing: border-box;
+        position: relative;
+
+    }
+
+    .faq h2 {
+        text-align: center;
+    }
+
+    details {
+        border: 1px solid var(--neutral-300);
+        border-radius: .5em;
+        padding: 1em;
+        position: relative;
+        z-index: 1;
+        background-color: var(--text-white);
+
+        p {
+            width: 100%;
+        }
+    }
+
+    details summary {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between; /* tekst links, icoon rechts */
+        align-items: center;
+        gap: 0.5em;
+        font-family: var(--font-body);
+        font-weight: var(--text-font-weight);
+        font-size: var(--p-s-size);
+        line-height: 2em;
+    }
+
+    ::details-content {
+        transition:
+        height 0.5s ease,
+        content-visibility 0.5s ease allow-discrete;
+        height: 0;
+        overflow: clip;
+    }
+
+    [open]::details-content {
+        height: auto;
+    }
+  
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details summary::after {
+        content: url("/static/chevron-down-blue.svg"); 
+        transition: transform 0.3s;
+    }
+
+    details[open] summary::after {
+        transform: rotate(180deg);
+    }
+
+    .circle-faq {
+        position: absolute;
+        width: 20em;
+        left: -10%;
+        bottom: -10%;
+        z-index: 0;
+    }
+</style>
