@@ -26,7 +26,7 @@
         {#if breadcrumb}
           {breadcrumb}
         {:else}
-          <a href="/">Home</a>{$page.url.pathname}
+          <a href="/">Home</a><a href="/{$page.url.pathname}">{$page.url.pathname}</a>
         {/if}
       </nav>
     {/if}
@@ -121,9 +121,12 @@
         font-family: var(--button-outline-font-family);
         gap: .5em;
 
+        a:first-of-type {
+            font-weight: var(--heading-font-weight);
+        }
+        
         a {
             color: var(--blue-800);
-            font-weight: var(--heading-font-weight);
         }
     }
 
