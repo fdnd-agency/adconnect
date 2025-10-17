@@ -48,16 +48,16 @@
         </section>
 
         <form class="contact-form">
-                <label for="name">Voor + Achternaam
-                    <input type="text" id="name" placeholder="Bijv. Pieter van der Veen">
+                <label for="name"><p>Voor + Achternaam<span>*</span></p>
+                    <input type="text" id="name" placeholder="Bijv. Pieter van der Veen" required>
                 </label>
-                <label for="mail">E-mailadres
+                <label for="mail"><p>E-mailadres<span>*</span></p>
                     <input type="email" id="mail" placeholder="Bijv. pietervdv@gmail.com">
                 </label>
-                <label for="tel">Telefoonnummer
-                    <input type="tel" id="tel" placeholder="Bijv. +31 6503287958">
+                <label for="tel"><p>Telefoonnummer<span>*</span></p>
+                    <input type="tel" id="tel" placeholder="Bijv. +31 650328798">
                 </label>
-                <label for="message">Bericht
+                <label for="message"><p>Bericht<span>*</span></p>
                     <textarea id="message" placeholder="Beste Overlegplatform Ad's.."></textarea>
                 </label>
                 <button class="button-outline-white">Formulier verzenden</button>
@@ -182,6 +182,15 @@
         font-family: var(--font-body);
         font-weight: var(--text-font-weight);
         font-size: var(--p-s-size);
+
+        p {
+            display: flex;
+            gap: .5em;
+
+            span {
+                color: var(--primary-orange);
+            }
+        }
 
         input, textarea {
             font-family: var(--font-body);
