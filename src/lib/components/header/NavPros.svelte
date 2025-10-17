@@ -44,6 +44,8 @@
     padding: 1rem;
     background: var(--background);
     z-index: 99;
+    position: sticky;
+    top: 2.6em;
   }
   
   .logo-mobile img {

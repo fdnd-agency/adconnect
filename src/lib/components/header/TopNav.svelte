@@ -33,6 +33,12 @@
     margin: 0;
   }
 
+  :global(header) {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+
   /* MOBILE*/
   nav {
     display: flex;
@@ -42,6 +48,8 @@
     padding: 1rem;
     position: relative;
     z-index: 99;
+    position: sticky;
+    top: 0;
   }
 
   ul {
