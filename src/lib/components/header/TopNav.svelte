@@ -33,6 +33,12 @@
     margin: 0;
   }
 
+  :global(header) {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+
   /* MOBILE*/
   nav {
     display: flex;
@@ -40,6 +46,10 @@
     align-items: center;
     background-color: var(--blue-150);
     padding: 1rem;
+    position: relative;
+    z-index: 99;
+    position: sticky;
+    top: 0;
   }
 
   ul {
@@ -85,12 +95,18 @@
   /* DESKTOP */
   @media (min-width: 1024px) {
     .nav-left {
-      margin-left: 5rem;
+      margin-left: 5%;
+    }
+
+    .nav-right {
+      width: 100%;
     }
 
     .nav-right ul {
       display: flex;
       gap: 1rem;
+      margin-right: 5%;
+      justify-content: flex-end;
     }
   }
 </style>

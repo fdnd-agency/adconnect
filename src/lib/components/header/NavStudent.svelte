@@ -1,11 +1,11 @@
 <script>
-    import logo from '$lib/assets/logo.svg';
+    import logo from '$lib/assets/logo-desktop.svg';
     import logomobile from '$lib/assets/logomobile.svg';
   </script>
   
   <nav>
-    <img class="logo-mobile" src={logomobile} alt="Logo" />
-    <img class="logo-desktop" src={logo} alt="Logo" />
+    <a class="logo-mobile" href="/"><img src={logomobile} alt="Logo" /></a>
+    <a class="logo-desktop" href="/"><img src={logo} alt="Logo" /></a>
     <details class="menu">
       <summary>
         <span></span>
@@ -13,7 +13,7 @@
         <span></span>
       </summary>
       <ul class="panel">
-        <li><a href="student/over-ad">Over Associate degree's</a></li>
+        <li><a href="student/over-ad">Over Ad's</a></li>
         <li><a href="student/talentaward">TalentAward</a></li>
         <li><a href="student/nieuws">Nieuws</a></li>
         <li><a href="/student/ad-dag">kom naar Ad-dag</a></li>
@@ -24,7 +24,7 @@
     </details>
   
     <ul class="desktop-nav">
-      <li><a class='menu-button' href="/over-ad">Over Associate degree's</a></li>
+      <li><a class='menu-button' href="/over-ad">Over Ad's</a></li>
       <li><a class='menu-button' href="/talentaward">TalentAward</a></li>
       <li><a class='menu-button' href="/nieuws">Nieuws</a></li>
       <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
@@ -42,9 +42,12 @@
     width: 100%;
     padding: 1rem;
     background: var(--background);
+    z-index: 99;
+    position: sticky;
+    top: 2.9em;
   }
   
-  .logo {
+  .logo-mobile img {
     display: block;
     height: 35px;
     margin-left: 55px;
@@ -73,7 +76,7 @@
     transform-origin: center;
     transition: all .3s ease;
   }
-  .menu { display: block; position: relative; z-index: 0; margin-right: 35px; }
+  .menu { display: block; position: relative; z-index: 0; margin-right: 5%; }
   .menu:hover summary span { width: 32px; }
   
   .menu::before {
@@ -142,16 +145,23 @@
   /* Desktop */
   @media (min-width: 1024px) {
     .logo-mobile { display: none; }
-    .logo-desktop { display: block; height: 50px; margin-left: 60px; margin-top: 10px; }
+    .logo-desktop { display: block; margin-left: 5%; height: 50px; }
+
+    .logo-desktop img {
+      width: 12em;
+    }
   
     .menu { display: none; }
     .desktop-nav {
       display: flex;
       position: relative;
-      gap: 3rem;
-      margin: 0;
-      padding: 0 1.5rem;
+      gap: 2rem;
+      margin: 0 5% 0 0;
       list-style: none;
+    }
+
+    nav {
+      padding: 1rem 0;
     }
 
     .menu-button {
