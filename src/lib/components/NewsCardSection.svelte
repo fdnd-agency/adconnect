@@ -19,8 +19,9 @@
         display: flex;
         flex-direction: column;
         gap: 1em;
-        width: 90vw;
+        width: 90%;
         padding: 4em 0 4em 0;
+        align-self: center;
     }
 
 

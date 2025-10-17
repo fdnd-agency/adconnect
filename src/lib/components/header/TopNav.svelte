@@ -87,12 +87,18 @@
   /* DESKTOP */
   @media (min-width: 1024px) {
     .nav-left {
-      margin-left: 5rem;
+      margin-left: 5%;
+    }
+
+    .nav-right {
+      width: 100%;
     }
 
     .nav-right ul {
       display: flex;
       gap: 1rem;
+      margin-right: 5%;
+      justify-content: flex-end;
     }
   }
 </style>

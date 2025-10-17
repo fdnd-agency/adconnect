@@ -224,7 +224,7 @@ a {
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 64, 141, 0.2);
+    /* box-shadow: 0 4px 10px rgba(0, 64, 141, 0.2); */
   }
 }
 
