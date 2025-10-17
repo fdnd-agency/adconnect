@@ -54,8 +54,8 @@
                 <label for="mail">E-mailadres
                     <input type="email" id="mail" placeholder="Bijv. pietervdv@gmail.com">
                 </label>
-                <label for="phone">Telefoonnummer
-                    <input type="phone" id="phone" placeholder="Bijv. +31 6503287958">
+                <label for="tel">Telefoonnummer
+                    <input type="tel" id="tel" placeholder="Bijv. +31 6503287958">
                 </label>
                 <label for="message">Bericht
                     <textarea id="message" placeholder="Beste Overlegplatform Ad's.."></textarea>
