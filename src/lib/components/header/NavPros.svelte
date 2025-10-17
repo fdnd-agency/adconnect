@@ -75,7 +75,7 @@
     transform-origin: center;
     transition: all .3s ease;
   }
-  .menu { display: block; position: relative; z-index: 0; margin-right: 35px; }
+  .menu { display: block; position: relative; z-index: 0; margin-right: 5%; }
   .menu:hover summary span { width: 32px; }
   
   .menu::before {
