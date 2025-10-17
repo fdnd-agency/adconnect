@@ -26,7 +26,7 @@
         {#if breadcrumb}
           {breadcrumb}
         {:else}
-          <a href="/">Home</a><a href="/{$page.url.pathname}">{$page.url.pathname}</a>
+          <a href="/">Home</a><a href="{$page.url.pathname}">{$page.url.pathname}</a>
         {/if}
       </nav>
     {/if}
