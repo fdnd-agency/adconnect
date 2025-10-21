@@ -36,6 +36,9 @@
         justify-content: center;
         box-sizing: border-box;
 
+        @media (min-width: 1024px) {
+            padding: 5em 0;
+        }
     }
 
     /* Background colors */
@@ -63,6 +66,16 @@
         width: 90%;
     }
 
+    @media (min-width: 1024px) {
+        .wrapper {
+            flex-direction: row;
+            gap: 4em;
+        }
+
+        .image-right .wrapper {
+            flex-direction: row-reverse;
+        }
+    }
 
     .visual {
         width: 90%;
@@ -70,4 +83,19 @@
         object-fit: cover;
     }
 
+    @media (min-width: 1024px) {
+        .wrapper {
+          width: 90%;
+          max-width: 1400px;
+        }
+
+        .visual {
+          width: 50%;
+          margin: 0;
+        }
+
+        .content {
+          width: 50%;
+        }
+    }
 </style>
