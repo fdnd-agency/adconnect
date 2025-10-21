@@ -8,3 +8,20 @@
     <hr class="line" />
 </div>
 
+<style>
+    .divider-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        width: 90%;
+        max-width: 1400px;
+    }
+
+    hr {
+        flex: 1;
+        border: none;
+        height: 1px;
+        border-top: 1px solid var(--neutral-200);
+    }
+</style>

@@ -91,3 +91,73 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
   background="white"
 />
 
+<style>
+    .about-ad-hero {
+        padding: 3em 5%;
+        max-width: 1400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3em;
+
+        }
+
+        .intro {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+             h2, p {
+            text-align: center;
+        }
+        }
+    }
+
+    .benefits {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5em;
+    }
+
+    }
+
+    /* Logo section */
+    .logo-section {
+        display: flex;
+        gap: 2em;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: var(--blue-100);
+        padding: 0 0 3em 0;
+
+    }
+
+    /* Themes section */
+    .themes {
+        background-color: var(--blue-100);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5em;
+        padding: 0 0 3em 0;
+
+    }
+
+    .themes .intro {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        max-width: 1400px;
+    }
+
+    .themes-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+    }
+</style>
+
