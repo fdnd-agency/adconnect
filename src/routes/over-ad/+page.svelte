@@ -162,20 +162,27 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
 
     .themes .intro {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
+        gap: 1em;
         width: 90%;
         max-width: 1400px;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            align-items: center;
+        }
     }
 
     .themes-section {
         display: flex;
         flex-direction: column;
         gap: 1em;
+        width: 90%;
 
         @media (min-width: 768px) {
             display: grid;
-            width: 90%;
             grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));  
             max-width: 1400px;
         }
