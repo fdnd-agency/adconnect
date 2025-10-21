@@ -5,8 +5,8 @@
     export let text;
     export let link = "#";
     export let linkText = "Lees meer";
-    export let imagePosition = "left"; // 'left' of 'right'
-    export let background = "blue";    // 'blue' of 'white'
+    export let imagePosition = "left";
+    export let background = "blue";
 </script>
 
 <section
