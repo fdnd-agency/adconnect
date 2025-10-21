@@ -18,3 +18,52 @@
   </article>
 {/each}
 
+<style>
+    article {
+        border: 1px solid #CCCCCC;
+        border-radius: 1em;
+        padding: 2em;
+        transition: .2s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        background-color: var(--text-white);
+
+        &:hover {
+            border: 1px solid #00408D;
+            box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+            translate: 0 -1%;
+            transition: .2s ease-in-out;
+        }
+    }
+
+    h3 {
+        font-size: 23px;
+    }
+
+    .wrapper-text {
+        display: flex;
+        align-items: center;
+        gap: .5em;
+    }
+
+    /* Truncate words */
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box; 
+        -webkit-box-orient: vertical;
+        }
+
+    /* Truncate one sentence */
+    .truncate.single {
+        white-space: nowrap;
+        -webkit-line-clamp: 1;
+    }
+
+    /* Truncate two sentences */
+    .truncate.two {
+        -webkit-line-clamp: 3;
+    }
+  
+</style>
