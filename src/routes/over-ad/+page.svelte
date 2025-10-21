@@ -100,6 +100,9 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
         align-items: center;
         gap: 3em;
 
+        @media (min-width: 1024px) {
+            padding: 5em 5%;
+            gap: 4em;
         }
 
         .intro {
@@ -119,6 +122,11 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
         gap: 2.5em;
     }
 
+    @media (min-width: 1024px) {
+        .benefits {
+            flex-direction: row;
+            
+        }
     }
 
     /* Logo section */
@@ -131,6 +139,10 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
         background-color: var(--blue-100);
         padding: 0 0 3em 0;
 
+        @media (min-width: 768px) {
+            gap: 3em;
+            padding: 0 0 5em 0;
+        }
     }
 
     /* Themes section */
@@ -143,6 +155,9 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
         gap: 1.5em;
         padding: 0 0 3em 0;
 
+        @media (min-width: 768px) {
+            padding: 0 0 5em 0;
+        }
     }
 
     .themes .intro {
@@ -158,6 +173,12 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
         flex-direction: column;
         gap: 1em;
 
+        @media (min-width: 768px) {
+            display: grid;
+            width: 90%;
+            grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));  
+            max-width: 1400px;
+        }
     }
 </style>
 

@@ -29,6 +29,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        @media (min-width: 768px) {
+            flex: 0 0 25%;
+        }
     }
 
     img {
