@@ -1,5 +1,6 @@
 <script>
     export let image;
+    export let alt;
     export let dots;
     export let title;
     export let text;
@@ -26,3 +27,47 @@
         </div>
     </div>
 </section>
+
+<style>
+    section {
+        width: 100%;
+        padding: 3em 0;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+
+    }
+
+    /* Background colors */
+    .bg-blue { 
+        background-color: var(--blue-100); 
+    }
+
+    .bg-white { 
+        background-color: white; 
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 2em;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 90%;
+    }
+
+
+    .visual {
+        width: 90%;
+        border-radius: 1em;
+        object-fit: cover;
+    }
+
+</style>
