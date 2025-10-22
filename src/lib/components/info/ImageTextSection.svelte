@@ -8,16 +8,20 @@
     export let linkText = "Lees meer";
     export let imagePosition = "left";
     export let background = "blue";
+
+    import lightcircle from '$lib/assets/light-circle.svg';
 </script>
 
 <section
     class:image-right={imagePosition === 'right'}
     class:image-left={imagePosition === 'left'}
     class:bg-blue={background === 'blue'}
-    class:bg-white={background === 'white'}
-    >
+    class:bg-white={background === 'white'}>
     <div class="wrapper">
+      <div class="img-wrapper">
+        <img class="circle" src="{lightcircle}" alt="">
         <img class="visual" src={image} alt="{alt}">
+      </div>
 
         <div class="content">
             <img src={dots} alt="" width="80" height="80">
@@ -29,73 +33,96 @@
 </section>
 
 <style>
-    section {
-        width: 100%;
-        padding: 3em 0;
-        display: flex;
-        justify-content: center;
-        box-sizing: border-box;
+  section {
+      width: 100%;
+      padding: 3em 0;
+      display: flex;
+      justify-content: center;
+      box-sizing: border-box;
 
-        @media (min-width: 1024px) {
-            padding: 5em 0;
-        }
-    }
+      @media (min-width: 1024px) {
+          padding: 5em 0;
+      }
+  }
 
-    /* Background colors */
-    .bg-blue { 
-        background-color: var(--blue-100); 
-    }
+  /* Background colors */
+  .bg-blue { 
+      background-color: var(--blue-100); 
+  }
 
-    .bg-white { 
-        background-color: white; 
-    }
+  .bg-white { 
+      background-color: white; 
+  }
 
-    .wrapper {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 2em;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-    }
+  .wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 2em;
+      width: 90%;
+      align-items: center;
+      justify-content: center;
+  }
 
-    .content {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        width: 90%;
-    }
+  .img-wrapper {
+    position: relative;
+    width: 100%;
 
     @media (min-width: 1024px) {
-        .wrapper {
-            flex-direction: row;
-            gap: 4em;
-        }
-
-        .image-right .wrapper {
-            flex-direction: row-reverse;
-        }
+      width: 50%;
     }
+  }
 
-    .visual {
-        width: 90%;
-        border-radius: 1em;
-        object-fit: cover;
-    }
+  .circle {
+    position: absolute;
+    z-index: 0;
+    right: -10%;
+    bottom: -10%;
+    width: 20em;
 
     @media (min-width: 1024px) {
-        .wrapper {
-          width: 90%;
-          max-width: 1400px;
-        }
-
-        .visual {
-          width: 50%;
-          margin: 0;
-        }
-
-        .content {
-          width: 50%;
-        }
+      left: -10%;
     }
+  }
+
+  .content {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+      .wrapper {
+          flex-direction: row;
+          gap: 4em;
+      }
+
+      .image-right .wrapper {
+          flex-direction: row-reverse;
+      }
+  }
+
+  .visual {
+      width: 100%;
+      border-radius: 1em;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+  }
+
+  @media (min-width: 1024px) {
+      .wrapper {
+        width: 90%;
+        max-width: 1400px;
+      }
+
+      .visual {
+        width: 100%;
+        margin: 0;
+      }
+
+      .content {
+        width: 50%;
+      }
+  }
 </style>
