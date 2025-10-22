@@ -57,6 +57,7 @@
 
 <ImageTextSection
   image={doorstroom}
+  alt="Doorstroom Ad-bachelor"
   dots={dots}
   title="Doorstroom Ad-bachelor"
   text="Lorem ipsum dolor sit amet consectetur. Consequat elementum nec magna mollis. Ultricies at et sed amet eu. Condimentum elit non faucibus purus ut amet integer laoreet nec. A parturient amet ante arcu ut. Adipiscing aliquet libero amet nibh. Varius leo vel id quam faucibus commodo sollicitudin. Massa enim sed libero pharetra. Id aliquam luctus pharetra ac sapien sed id dictum. Facilisi mauris tristique morbi commodo. Diam tellus ut lacus id duis."
@@ -80,6 +81,7 @@
 
 <ImageTextSection
   image={overleggen}
+  alt="Ad-overleggen en Ad-profielen"
   dots={dots}
   title="Landelijke Ad-overleggen en Ad-profielen"
   text="Lorem ipsum dolor sit amet consectetur. Felis nunc ac mauris arcu tortor urna varius. Mi convallis odio nisi tellus egestas morbi dignissim. Eget consequat augue eget risus. Venenatis mi dignissim facilisi sed. Mauris elit diam nibh aliquet curabitur lacus.
@@ -94,6 +96,7 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
 
 <ImageTextSection
   image={awards}
+  alt="Ad-talent Awards genomineerden"
   dots={dots}
   title="Ad Talent Awards"
   text="Lorem ipsum dolor sit amet consectetur. Consequat elementum nec magna mollis. Ultricies at et sed amet eu. Condimentum elit non faucibus purus ut amet integer laoreet nec. A parturient amet ante arcu ut. Adipiscing aliquet libero amet nibh. Varius leo vel id quam faucibus commodo sollicitudin. Massa enim sed libero pharetra. Id aliquam luctus pharetra ac sapien sed id dictum. Facilisi mauris tristique morbi commodo. Diam tellus ut lacus id duis."
