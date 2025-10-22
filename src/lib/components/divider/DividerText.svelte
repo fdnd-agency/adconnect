@@ -22,6 +22,6 @@
         flex: 1;
         border: none;
         height: 1px;
-        border-top: 1px solid var(--neutral-200);
+        border-top: 1px solid var(--neutral-300);
     }
 </style>

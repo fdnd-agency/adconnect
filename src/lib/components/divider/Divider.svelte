@@ -8,7 +8,7 @@
     hr {
         flex: 1;
         border: none;
-        border-top: 1px solid var(--neutral-200);
+        border-top: 1px solid var(--neutral-300);
         width: 90%;
         max-width: 1400px;
     }
