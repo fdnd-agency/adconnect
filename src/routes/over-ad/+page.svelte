@@ -28,7 +28,7 @@
 <Hero
   title="Over Associate Degree's"
   description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor tempus eleifend nunc.">
-  <a slot="primary" href="/dev/hero" class="button-outline-white">Lees meer →</a>
+  <a slot="primary" href="#benefit" class="button-outline-white" id="benefit">Lees meer →</a>
 </Hero>
 
 <section class="about-ad-hero">
@@ -60,7 +60,7 @@
   dots={dots}
   title="Doorstroom Ad-bachelor"
   text="Lorem ipsum dolor sit amet consectetur. Consequat elementum nec magna mollis. Ultricies at et sed amet eu. Condimentum elit non faucibus purus ut amet integer laoreet nec. A parturient amet ante arcu ut. Adipiscing aliquet libero amet nibh. Varius leo vel id quam faucibus commodo sollicitudin. Massa enim sed libero pharetra. Id aliquam luctus pharetra ac sapien sed id dictum. Facilisi mauris tristique morbi commodo. Diam tellus ut lacus id duis."
-  link="/"
+  link="/ad-dag"
   linkText="Kom naar de Ad-dag"
   imagePosition="left"
 />
@@ -72,10 +72,7 @@
 </section>
 
 <section class="themes">
-    <div class="intro">
-        <h2>Populair binnen Associate degrees</h2>
-        <a class="button-outline-white" href="/">Alle thema's bekijken</a>
-    </div>
+    <h2>Populair binnen Associate degrees</h2>
     <section class="themes-section">
         <ThemeCard {themes}/>
     </section>
@@ -87,7 +84,7 @@
   title="Landelijke Ad-overleggen en Ad-profielen"
   text="Lorem ipsum dolor sit amet consectetur. Felis nunc ac mauris arcu tortor urna varius. Mi convallis odio nisi tellus egestas morbi dignissim. Eget consequat augue eget risus. Venenatis mi dignissim facilisi sed. Mauris elit diam nibh aliquet curabitur lacus.
 Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tincidunt at etiam nibh vitae. Scelerisque sapien velit consectetur dolor."
-  link="/meer"
+  link="/ad-overleggen"
   linkText="Meer over Ad-overleggen"
   imagePosition="right"
   background="white"
@@ -100,7 +97,7 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
   dots={dots}
   title="Ad Talent Awards"
   text="Lorem ipsum dolor sit amet consectetur. Consequat elementum nec magna mollis. Ultricies at et sed amet eu. Condimentum elit non faucibus purus ut amet integer laoreet nec. A parturient amet ante arcu ut. Adipiscing aliquet libero amet nibh. Varius leo vel id quam faucibus commodo sollicitudin. Massa enim sed libero pharetra. Id aliquam luctus pharetra ac sapien sed id dictum. Facilisi mauris tristique morbi commodo. Diam tellus ut lacus id duis."
-  link="/"
+  link="/talent-award"
   linkText="Meer over Ad talent Awards"
   imagePosition="left"
   background="white"
@@ -114,20 +111,12 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
         flex-direction: column;
         align-items: center;
         gap: 3em;
+        align-self: center;
+        margin: auto;
 
         @media (min-width: 1024px) {
             padding: 5em 5%;
             gap: 4em;
-        }
-
-        .intro {
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-
-             h2, p {
-            text-align: center;
-        }
         }
     }
 

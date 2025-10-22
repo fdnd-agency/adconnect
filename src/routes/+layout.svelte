@@ -165,7 +165,6 @@
   .wrapper {
     background-color: var(--primary-blue);
     margin: 0;
-    padding: 2em;
     color: #fff;
     display: flex;
     flex-direction: column;
