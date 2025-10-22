@@ -11,7 +11,6 @@
     <img src="{check}" alt="">
     <h3>{title}</h3>
     <p class="truncate two">{excerpt}</p>
-    <a class="button-outline-blue" href="/">Lees meer</a>
 </article>
 
 <style>
@@ -19,7 +18,7 @@
         display: flex;
         flex-direction: column;
         gap: 1em;
-        padding: 1.5em;
+        padding: 2.5em;
         border: 1px solid var(--neutral-300);
         border-radius: 1em;
     }
@@ -29,6 +28,6 @@
         background-color: var(--orange-500);
         padding: 1em;
         border-radius: .5em;
-        margin: -3em 0 0 0;
+        margin: -3.8em 0 0 0;
     }
 </style>
