@@ -1,7 +1,8 @@
 <script>
   import NewsCardSection from "$lib/components/NewsCardSection.svelte";
   import NavPros from '$lib/components/header/NavPros.svelte';
-  import Hero from "$lib/components/hero/Hero.svelte";
+  import NewsCard from '$lib/components/NewsCard.svelte';
+  import Hero from "$lib/components/hero/Hero.svelte"; // import Hero component
 
   let { data } = $props(); 
   const news = data.news;
@@ -22,6 +23,3 @@
 </Hero>
 
 <NewsCardSection news={data.news.slice(0, 3)} />
-
-
-

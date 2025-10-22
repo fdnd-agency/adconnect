@@ -62,6 +62,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 1em;
+    margin: 0 5%;
   }
 
   .hero-image {
@@ -69,6 +70,7 @@
     width: 90vw;
     max-height: 416px;
     border-radius: 30px 30px 0 0;
+    margin: 0 5%;
   }
 
   .hero-cta {
@@ -81,7 +83,7 @@
     .hero {
       flex-direction: row;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
     }
 
     .hero-content {
@@ -105,6 +107,7 @@
     .hero-content {
       width: 30vw;
       width: 30dvw;
+      object-fit: cover;
     }
 
     .hero-image {
