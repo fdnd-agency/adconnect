@@ -92,11 +92,6 @@
 </section>
 
 <style>
-    :global(main) {
-        display: flex;
-        align-items: unset !important;
-    }
-
     .contact-hero {
         box-sizing: border-box;
         background-color: var(--blue-100);
