@@ -9,6 +9,8 @@
   import LogoSection from '$lib/components/cooperation/LogoSection.svelte';
 
   import doorstroom from '$lib/assets/doorstroom-ad-dag.jpg';
+  import overleggen from '$lib/assets/overleggen.jpg';
+  import awards from '$lib/assets/ad-talent-awards.jpg';
   import dots from '$lib/assets/dots.svg';
 
   let { data } = $props(); 
@@ -80,7 +82,7 @@
 </section>
 
 <ImageTextSection
-  image={doorstroom}
+  image={overleggen}
   dots={dots}
   title="Landelijke Ad-overleggen en Ad-profielen"
   text="Lorem ipsum dolor sit amet consectetur. Felis nunc ac mauris arcu tortor urna varius. Mi convallis odio nisi tellus egestas morbi dignissim. Eget consequat augue eget risus. Venenatis mi dignissim facilisi sed. Mauris elit diam nibh aliquet curabitur lacus.
@@ -88,6 +90,19 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
   link="/meer"
   linkText="Meer over Ad-overleggen"
   imagePosition="right"
+  background="white"
+/>
+
+<Divider />
+
+<ImageTextSection
+  image={awards}
+  dots={dots}
+  title="Ad Talent Awards"
+  text="Lorem ipsum dolor sit amet consectetur. Consequat elementum nec magna mollis. Ultricies at et sed amet eu. Condimentum elit non faucibus purus ut amet integer laoreet nec. A parturient amet ante arcu ut. Adipiscing aliquet libero amet nibh. Varius leo vel id quam faucibus commodo sollicitudin. Massa enim sed libero pharetra. Id aliquam luctus pharetra ac sapien sed id dictum. Facilisi mauris tristique morbi commodo. Diam tellus ut lacus id duis."
+  link="/"
+  linkText="Meer over Ad talent Awards"
+  imagePosition="left"
   background="white"
 />
 
