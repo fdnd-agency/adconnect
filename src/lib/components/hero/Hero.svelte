@@ -102,18 +102,19 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
-      padding: 3em 0 0 5%;
+      padding: 3em 0 0 0;
       gap: 2em;
     }
 
     .hero-media {
-      margin-right: 10%;
+      margin: 0 5%;
       width: 50%;
     }
 
     .hero-content {
       width: 40vw;
       width: 40dvw;
+      padding: 0 0 0 5%;
     }
 
     .hero-cta {
