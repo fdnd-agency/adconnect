@@ -11,8 +11,6 @@ export async function load({ params }) {
     const themeResponse = await fetch(`${baseUrl}${themeEndpoint}${filter}${fields}`);
     const themeData = await themeResponse.json();
 
-    console.log(themeData)
-
     return {
         theme: themeData.data,
     };
