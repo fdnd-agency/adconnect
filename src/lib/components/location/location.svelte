@@ -29,4 +29,14 @@
     border-radius: 1em;
     box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
     }
+
+    @media (min-width: 768px) {
+        iframe {
+            width: 1000px;
+            height: 800px;
+              
+        
+    }
+
+    }
 </style>
