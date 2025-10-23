@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="/stylesheet.css" />
 </svelte:head>
 
-<header>
+<header class="general-header">
 <TopNav />
 </header>
 
@@ -142,7 +142,7 @@
     scroll-behavior: smooth;
   }
   :global(header) {
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   main {

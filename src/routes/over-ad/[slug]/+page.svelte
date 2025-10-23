@@ -1,12 +1,15 @@
 <script>
     import NavPros from '$lib/components/header/NavPros.svelte';
     import Hero from "$lib/components/hero/Hero.svelte";
+    import ThemeCard from '$lib/components/theme/ThemeCard.svelte';
+    import Divider from '$lib/components/divider/Divider.svelte';
 
     import placeholder from "$lib/assets/placeholder-hero.png";
 
     let { data } = $props(); 
 
     const theme = data.theme[0];
+    const themes = data.themes;
 </script>
 
 <svelte:head>
@@ -33,6 +36,15 @@
             <a href="/dev/hero" class="button-outline-blue">Ik wil naar de Ad-dag →</a>
         </section>
     </div>
+</section>
+
+<Divider />
+
+<section class="other-themes">
+    <h2>Bekijk andere populaire thema's</h2>
+    <section class="themes">
+        <ThemeCard themes={themes.slice(0, 3)} />
+    </section>
 </section>
 
 <style>
@@ -116,6 +128,33 @@
         .ad-day {
             position: sticky;
             top: 10em;
+        }
+    }
+
+    .other-themes {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        width: 90%;
+        margin: auto;
+        padding: 3em 0;
+        align-items: center;
+
+        @media (min-width: 768px) {
+            max-width: 1400px;
+            padding: 5em 0;
+        }
+    }
+
+    .other-themes .themes {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    @media (min-width: 768px) {
+        .other-themes .themes {
+            flex-direction: row;
         }
     }
 </style>
