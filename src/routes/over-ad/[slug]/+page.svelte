@@ -46,6 +46,12 @@
         max-width: 1400px;
     }
 
+    .detail {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
     @media (min-width: 768px) {
         .wrapper-detail {
             flex-direction: row;
@@ -54,9 +60,6 @@
         }
         
         .detail {
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
             width: 55%;
 
             :global(p) {
