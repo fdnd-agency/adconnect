@@ -53,7 +53,7 @@
             padding: 5em 0;
         }
         
-        article  {
+        .detail {
             display: flex;
             flex-direction: column;
             gap: 1em;
