@@ -23,9 +23,9 @@
 </Hero>
 
 <section class="wrapper-detail">
-    <article class="detail">
+    <div class="detail">
         {@html theme.body}
-    </article>
+    </div>
 
     <div class="wrapper-ad-day">
         <section class="ad-day">
