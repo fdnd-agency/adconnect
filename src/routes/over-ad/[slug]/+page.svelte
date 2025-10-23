@@ -35,3 +35,38 @@
         </section>
     </div>
 </section>
+
+<style>
+    .wrapper-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 90%;
+        padding: 3em 0;
+        max-width: 1400px;
+    }
+
+
+    :global(.detail img) {
+        width: 100%;
+        max-width: 70%;
+        object-fit: cover;
+        border-radius: 1em;
+    }
+
+    .ad-day {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 2em;
+        background-color: var(--primary-blue);
+        color: var(--text-white);
+        border-radius: 1em;
+
+        h2 {
+            color: var(--text-white);
+            font-size: var(--h4-size);
+        }
+    }
+
+</style>
