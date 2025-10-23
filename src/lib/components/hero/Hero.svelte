@@ -1,6 +1,5 @@
 <script>
   import { page } from "$app/stores";
-  import placeholder from "$lib/assets/placeholder-hero.png";
 
   export let title = "";
   export let description = "";
@@ -14,7 +13,7 @@
         {#if breadcrumb}
           {breadcrumb}
         {:else}
-          <a href="/">Home</a><a href="{$page.url.pathname}">{$page.url.pathname}</a>
+          {$page.url.pathname}
         {/if}
       </nav>
     {/if}
@@ -25,7 +24,10 @@
       <slot name="secondary" />
     </div>
   </section>
-  <img class="hero-image" src={placeholder} alt="" />
+  <section class="hero-media">
+    <slot name="media" />
+    <slot />
+  </section>
 </article>
 
 <style>
@@ -49,22 +51,8 @@
     background-color: var(--primary-blue);
     color: var(--text-white);
 
-    a {
-      color: var(--text-white);
-    }
-
     h1 {
       color: var(--text-white);
-    }
-  }
-
-  .hero-breadcrumb {
-    display: flex;
-    flex-direction: row;
-    gap: .5em;
-
-    a:first-of-type {
-      font-weight: var(--heading-font-weight);
     }
   }
 
@@ -76,15 +64,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 1em;
-    margin: 0 0 0 5%;
-  }
-
-  .hero-image {
-    object-fit: cover;
-    width: 90vw;
-    max-height: 416px;
-    border-radius: 30px 30px 0 0;
-    margin: 0 5% 0 0;
   }
 
   .hero-cta {
@@ -97,18 +76,12 @@
     .hero {
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
     }
 
     .hero-content {
       width: 40vw;
       width: 40dvw;
-    }
-
-    .hero-image {
-      width: 50vw;
-      width: 50dvw;
-      align-self: flex-end;
     }
 
     .hero-cta {
@@ -119,11 +92,9 @@
 
   @media (min-width: 1024px) {
     .hero-content {
-      object-fit: cover;
-    }
-
-    .hero-image {
-      max-width: 604px;
+      width: 30vw;
+      width: 30dvw;
     }
   }
 </style>
+
