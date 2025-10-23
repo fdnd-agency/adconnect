@@ -5,6 +5,8 @@
   export let title = "";
   export let description = "";
   export let breadcrumb = "";
+  export let image = "";
+  export let alt = "";
 </script>
 
 <article class="hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">
@@ -25,7 +27,7 @@
       <slot name="secondary" />
     </div>
   </section>
-  <img class="hero-image" src={placeholder} alt="" />
+  <img class="hero-image" src={image || placeholder} alt="{alt}" />
 </article>
 
 <style>
