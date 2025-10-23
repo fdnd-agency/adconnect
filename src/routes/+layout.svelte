@@ -25,7 +25,8 @@
 </main>
 
 <footer class="footer-grid">
-  <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" /></a>
+  <div class="wrapper">
+    <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" /></a>
 
   <section>
     <h3>AdConnect</h3>
@@ -121,11 +122,12 @@
     </details>
   </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <div class="footer-bottom">
-    <p>© Overlegplatform Associate Degrees. Alle rechten voorbehouden</p>
-    <p>Ontwikkeld door studenten FDND</p>
+    <div class="footer-bottom">
+      <p>© Overlegplatform Associate Degrees. Alle rechten voorbehouden</p>
+      <p>Ontwikkeld door studenten FDND</p>
+    </div>
   </div>
 </footer>
 
@@ -137,37 +139,45 @@
   :global(*) {
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
   }
   :global(body) {
     overflow-x: hidden;
   }
 
   main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    overflow: hidden;
+    margin: 7.9em 0 0 0;
   }
 
   footer {
-    background-color: #00408d;
-    border-radius: 1em 1em 0 0;
-    margin: 0;
-    padding: 2em;
-    color: #fff;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
-    position: relative;
-    z-index: 20;
-  
+    background-color: var(--primary-blue);
+    border-radius: 1em 1em 0 0;
 
     h3 {
       color: var(--text-white);
     }
   }
 
+  .wrapper {
+    background-color: var(--primary-blue);
+    margin: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    position: relative;
+    z-index: 20;
+    width: 90%;
+    align-self: center;
+    padding: 2em 0;
+  }
+
   @media (min-width: 768px) {
-    footer {
+    .wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2em;
@@ -175,10 +185,12 @@
   }
 
   @media (min-width: 1024px) {
-    footer {
+    .wrapper {
       grid-template-columns: 2fr 1fr 1fr 1fr;
       grid-auto-rows: auto;
-      padding: 5dvw 5dvw 2em 5dvw;
+      width: 90%;
+      max-width: 1400px;
+      padding: 5em 0 2em 0;
     }
   }
 
