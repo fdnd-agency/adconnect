@@ -25,28 +25,3 @@
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
-<style>
-.hero-image {
-  display: block;
-  width: 100%;
-  max-height: 416px;
-  object-fit: cover;
-  border-radius: 30px 30px 0 0;
-}
-
-@media (min-width: 768px) {
-  .hero-image {
-    border-radius: 24px;
-    max-width: 604px;
-    margin-left: auto; 
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-image {
-    max-width: 640px;
-  }
-}
-
-</style>
-

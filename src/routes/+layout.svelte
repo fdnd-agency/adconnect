@@ -141,12 +141,11 @@
     padding: 0;
     scroll-behavior: smooth;
   }
-  :global(body) {
+  :global(header) {
     overflow-x: hidden;
   }
 
   main {
-    overflow: hidden;
     margin: 7.9em 0 0 0;
   }
 

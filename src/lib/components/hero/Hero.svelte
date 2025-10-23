@@ -16,7 +16,7 @@
         {#if breadcrumb}
           {breadcrumb}
         {:else}
-          {$page.url.pathname}
+          <a href="/">Home</a><a href={$page.url.pathname}>{$page.url.pathname}</a>
         {/if}
       </nav>
     {/if}
@@ -44,7 +44,6 @@
     justify-content: center;
     padding-top: 2em;
     background-color: var(--blue-100);
-  
   }
 
   .hero-light {
@@ -54,6 +53,12 @@
   .hero-dark {
     background-color: var(--primary-blue);
     color: var(--text-white);
+
+    .hero-breadcrumb {
+      display: flex;
+      flex-direction: row;
+      gap: .5em;
+    }
 
     h1 {
       color: var(--text-white);
@@ -68,6 +73,10 @@
     flex-direction: column;
     justify-content: center;
     gap: 1em;
+
+    a {
+      color: var(--text-white);
+    }
   }
 
   .hero-cta {
@@ -76,11 +85,30 @@
     gap: 0.5em;
   }
 
+  .hero-media {
+    width: 90%;
+    display: flex;
+
+    :global(img) {
+      border-radius: 1em 1em 0 0;
+      height: 25em;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
   @media (min-width: 768px) {
     .hero {
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
+      padding: 3em 0 0 5%;
+      gap: 2em;
+    }
+
+    .hero-media {
+      margin-right: 10%;
+      width: 50%;
     }
 
     .hero-content {
@@ -96,8 +124,8 @@
 
   @media (min-width: 1024px) {
     .hero-content {
-      width: 30vw;
-      width: 30dvw;
+      width: 50vw;
+      width: 50dvw;
     }
   }
 </style>

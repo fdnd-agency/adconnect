@@ -17,9 +17,8 @@
 
 <Hero
   title={theme.title}
-  description={theme.description}
-  image={`https://fdnd-agency.directus.app/assets/${theme.hero}`}
-  alt={theme.title}>
+  description={theme.description}>
+  <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${theme.hero}`} alt={theme.title} />
 </Hero>
 
 <section class="wrapper-detail">
@@ -44,6 +43,7 @@
         width: 90%;
         padding: 3em 0;
         max-width: 1400px;
+        margin: auto;
     }
 
     .detail {
