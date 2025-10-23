@@ -19,6 +19,7 @@
    blijf op de hoogte "
 ></Hero>
 
+<section class="intro">
 <article>
 	<h2>Wat is de landelijke Ad-dag?</h2>
 	<p>
@@ -31,8 +32,9 @@
 		tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt
 		concrete ideeën mee om morgen toe te passen.
 	</p>
-	<img src={addag1} alt="Ad-dag afbeelding" />
 </article>
+	<img src={addag1} alt="Ad-dag afbeelding" />
+</section>
 
 <section>
 	<img src={logomobile} alt="logo" />
@@ -73,7 +75,7 @@
 		</p>
 	</details>
 
-	<img src={addag2} alt="Ad-dag afbeelding" />
+	<img src={addag2} alt="Ad-dag afbeelding" width="500"/>
 </section>
 
 <section>
@@ -86,7 +88,7 @@
 </section>
 
 <section class="cards">
-	<article>
+	<article class="programma">
 		<img class="logo-mobile" src={logomobile} alt="Logo" />
 		<h2>Programma</h2>
 		<p>
@@ -96,7 +98,7 @@
 		</p>
 		<a class="button-outline-blue">Bekijk Programma </a>
 	</article>
-	<article>
+	<article class="workshops">
 		<img class="logo-mobile" src={logomobile} alt="Logo" />
 		<h2>Workshops</h2>
 		<p>
@@ -107,3 +109,29 @@
 		<a class="button-outline-blue">Bekijk Workshops </a>
 	</article>
 </section>
+
+<style>
+.intro {
+	display: flex;
+	flex-direction: column;
+}
+.cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+  column-gap: 2em;
+  grid-template-rows: repeat(4, auto);
+}
+.programma, .workshops {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+}
+
+@media (min-width: 768px) {
+
+	
+	.cards {
+			grid-template-columns: repeat(2, 1fr);
+	}
+}
+</style>
