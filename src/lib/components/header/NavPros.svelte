@@ -138,8 +138,9 @@
     text-decoration: none;
     padding: .5rem 1rem;
   }
- 
-  body:has(.menu[open]) { overflow: hidden; }
+  :global(body:has(.menu[open])) {
+  overflow: hidden;
+}
 
   .desktop-nav { display: none; }
   
