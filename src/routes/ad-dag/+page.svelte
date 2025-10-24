@@ -26,8 +26,8 @@
   
   <section class="intro">
 	<article>
-	  <h2>Wat is de landelijke Ad-dag?</h2>
-	  <p>
+	  <h2 tabindex="0">Wat is de landelijke Ad-dag?</h2>
+	  <p tabindex="0">
 		De Landelijke Ad-dag is het jaarlijkse moment waarop Associate
 		degree (Ad)-onderwijs centraal staat. Studenten, docenten,
 		coördinatoren, beleidsmakers en het werkveld komen samen om kennis
