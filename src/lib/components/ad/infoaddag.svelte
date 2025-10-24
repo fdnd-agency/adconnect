@@ -133,3 +133,11 @@
       align-self: center;
     }
   
+    @media (min-width: 768px) {
+      .addag-2 {
+        height: 400px;
+        width: 1000px;
+      }
+    }
+  </style>
+  

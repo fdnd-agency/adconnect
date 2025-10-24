@@ -124,5 +124,12 @@
       margin-top: 1em;
       align-self: center;
     }
+    @media (min-width: 768px) { 
+      .cards { 
+        grid-template-columns: repeat(2, 1fr);
+       gap: 2em; 
+
+      }
+    }
   </style>
   

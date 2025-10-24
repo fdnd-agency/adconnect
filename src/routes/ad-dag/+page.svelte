@@ -70,21 +70,17 @@
   
   
 	@media (min-width: 768px) {
-		.cards {
-			grid-template-columns: repeat(2, 1fr);
-			gap: 2em;
+	  .intro {
+		flex-direction: row;
+		gap: 2em;
+		align-items: center;
+		padding: 5em 5%;
+		gap: 4em;
+  
+		img {
+		  width: 600px;
 		}
-
-		.intro {
-			flex-direction: row;
-			gap: 2em;
-			align-items: center;
-			padding: 5em 5%;
-			gap: 4em;
-
-			img {
-				width: 600px;
-			}
-		}
+	  }
 	}
-</style>
+  </style>
+  
