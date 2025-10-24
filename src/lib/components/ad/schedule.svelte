@@ -3,9 +3,9 @@
   </script>
   
   <section class="schedule" style="text-align: center;">
-    <div style="display: inline-block; max-width: 400px;">
-      <h2>Planning</h2>
-      <p>
+    <div style="display: inline-block; max-width: 400px;" >
+      <h2 tabindex="0" >Planning</h2>
+      <p tabindex="0">
         Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at
         eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum
         egestas iaculis. Pellentesque elementum urna.
@@ -16,27 +16,27 @@
       <article class="card">
         <div class="wrapper-text">
           <img class="logo" src={logomobile} alt="Logo" />
-          <h2>Programma</h2>
+          <h2 tabindex="0">Programma</h2>
         </div>
-        <p>
+        <p tabindex="0">
           Lorem ipsum dolor sit amet consectetur. Ultrices at quis
           pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis
           eu lectus interdum egestas iaculis. Pellentesque elementum urna.
         </p>
-        <a class="button-outline-blue">Bekijk Programma </a>
+        <a class="button-outline-blue"  href="#">Bekijk Programma </a>
       </article>
   
       <article class="card">
         <div class="wrapper-text">
           <img class="logo" src={logomobile} alt="Logo" />
-          <h2>Workshops</h2>
+          <h2 tabindex="0">Workshops</h2>
         </div>
-        <p>
+        <p tabindex="0">
           Lorem ipsum dolor sit amet consectetur. Ultrices at quis
           pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis
           eu lectus interdum egestas iaculis. Pellentesque elementum urna.
         </p>
-        <a class="button-outline-blue">Bekijk Workshops </a>
+        <a class="button-outline-blue" href="#" >Bekijk Workshops </a>
       </article>
     </section>
   </section>

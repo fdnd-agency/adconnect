@@ -7,11 +7,14 @@
 	import Schedule from "$lib/components/ad/Schedule.svelte";
   </script>
   
+  <svelte:head>
+  <title> Ad dag | Overlegplatform Associate Degrees</title>
+</svelte:head>
   
   <NavPros />
   
-  <Hero
-	title="Ad Dag "
+  <Hero 
+	title="Ad Dag " 
 	description="De landelijke Ad-dag 2025 is hét moment waarop studenten, 
 	docenten en professionals uit het Ad-onderwijs samenkomen.Ontdek, leer en 
 	inspireer elkaar tijdens een dag vol sprekers, workshops en ontmoetingen.
@@ -22,8 +25,8 @@
   
   <section class="intro">
 	<article>
-	  <h2>Wat is de landelijke Ad-dag?</h2>
-	  <p>
+	  <h2 tabindex="0">Wat is de landelijke Ad-dag?</h2>
+	  <p tabindex="0">
 		De Landelijke Ad-dag is het jaarlijkse moment waarop Associate
 		degree (Ad)-onderwijs centraal staat. Studenten, docenten,
 		coördinatoren, beleidsmakers en het werkveld komen samen om kennis
