@@ -13,6 +13,7 @@
   
   <NavPros />
   
+  <main>
   <Hero 
 	title="Ad Dag " 
 	description="De landelijke Ad-dag 2025 is hét moment waarop studenten, 
@@ -25,8 +26,8 @@
   
   <section class="intro">
 	<article>
-	  <h2 tabindex="0">Wat is de landelijke Ad-dag?</h2>
-	  <p tabindex="0">
+	  <h2>Wat is de landelijke Ad-dag?</h2>
+	  <p>
 		De Landelijke Ad-dag is het jaarlijkse moment waarop Associate
 		degree (Ad)-onderwijs centraal staat. Studenten, docenten,
 		coördinatoren, beleidsmakers en het werkveld komen samen om kennis
@@ -44,7 +45,7 @@
   
   <InfoAddag />
   <Schedule />
-  
+</main>
   
   <style>
 	.logo {
