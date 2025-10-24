@@ -50,11 +50,25 @@
 	}
   
 	.intro {
+	  display: flex;
+	  flex-direction: column;
+	  padding: 3em 5%;
+	  max-width: 1400px;
+	  align-items: center;
+	  gap: 0.5em;
+	  align-self: center;
+	  margin: auto;
+  
+	  article {
+		max-width: 600px;
+  
 		p {
-			width: 100%;
+		  margin-top: 1em;
 		}
-
+	  }
 	}
+  
+  
 	@media (min-width: 768px) {
 		.cards {
 			grid-template-columns: repeat(2, 1fr);
