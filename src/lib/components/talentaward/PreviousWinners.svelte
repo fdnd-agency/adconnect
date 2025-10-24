@@ -81,4 +81,12 @@
     }
   }
 
+  @media (min-width: 768px) {
+    li {
+      flex: 0 0 22%;
+    }
+    img {
+      max-height: 200px;
+    }
+  }
 </style>
