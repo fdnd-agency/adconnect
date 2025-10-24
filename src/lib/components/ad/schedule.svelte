@@ -3,14 +3,14 @@
   </script>
   
   <section class="schedule" style="text-align: center;">
-    <div style="display: inline-block; max-width: 400px;" >
+    <section style="display: inline-block; max-width: 400px;" >
       <h2 tabindex="0" >Planning</h2>
       <p tabindex="0">
         Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at
         eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum
         egestas iaculis. Pellentesque elementum urna.
       </p>
-    </div>
+    </section>
   
     <section class="cards">
       <article class="card">
