@@ -14,7 +14,7 @@
     </summary>
     <ul class="panel">
       <li><a href="/over-ad">Over Ad's</a></li>
-      <li><a href="/documenten">Documenten</a></li>
+      <li><a href="/publicaties">Publicaties</a></li>
       <li><a href="/talentaward">TalentAward</a></li>
       <li><a href="/nieuws">Nieuws</a></li>
       <li><a href="/ad-dag">Kom naar Ad-dag</a></li>
@@ -26,7 +26,7 @@
 
   <ul class="desktop-nav">
     <li><a class='menu-button' href="/over-ad">Over Ad's</a></li>
-    <li><a class='menu-button' href="/documenten">Documenten</a></li>
+    <li><a class='menu-button' href="/publicaties">Publicaties</a></li>
     <li><a class='menu-button' href="/talentaward">TalentAward</a></li>
     <li><a class='menu-button' href="/nieuws">Nieuws</a></li>
     <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
