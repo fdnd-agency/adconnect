@@ -92,4 +92,15 @@
             top: -20%;
         }
     }
+    @media (min-width: 1024px) {
+        .circle-left {
+            left: -1%;
+            bottom: -10%;
+        }
+
+        .circle-right {
+            right: -1%;
+            top: -10%;
+        }
+    }
 </style>
