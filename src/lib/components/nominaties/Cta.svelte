@@ -34,3 +34,49 @@
     <a href="#" class="button-outline-blue">Nomineer</a>
     <img class="circle-right" src={darkcircle} alt="" />
 </section>
+
+<style>
+    section {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5rem 1rem;
+        gap: 1rem;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 5rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        max-width: 500px;
+        text-align: left;
+    }
+
+    a {
+        margin-top: 1.5rem;
+        margin-bottom: 2em;
+    }
+
+    .circle-left {
+        position: absolute;
+        width: 20em;
+        left: -20%;
+        bottom: -20%;
+        z-index: 0;
+    }
+    
+    .circle-right {
+        position: absolute;
+        width: 20em;
+        right: -40%;
+        top: -1%;
+        z-index: 0;
+    }
+
+</style>
