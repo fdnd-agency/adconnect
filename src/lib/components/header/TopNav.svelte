@@ -34,9 +34,10 @@
   }
 
   :global(header) {
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 99;
+    width: 100%;
   }
 
   /* MOBILE*/

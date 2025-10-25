@@ -44,8 +44,8 @@
     padding: 1rem;
     background: var(--background);
     z-index: 99;
-    position: sticky;
-    top: 2.6em;
+    position: fixed;
+    top: 2.8em;
   }
   
   .logo-mobile img {
@@ -138,8 +138,9 @@
     text-decoration: none;
     padding: .5rem 1rem;
   }
- 
-  body:has(.menu[open]) { overflow: hidden; }
+  :global(body:has(.menu[open])) {
+  overflow: hidden;
+}
 
   .desktop-nav { display: none; }
   

@@ -1,6 +1,5 @@
 <script>
   import { page } from "$app/stores";
-  import placeholder from "$lib/assets/placeholder-hero.png";
 
   export let title = "";
   export let description = "";
@@ -25,7 +24,10 @@
       <slot name="secondary" />
     </div>
   </section>
-  <img class="hero-image" src={placeholder} alt="" />
+  <section class="hero-media">
+    <slot name="media" />
+    <slot />
+  </section>
 </article>
 
 <style>
@@ -62,15 +64,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 1em;
-    margin: 0 5%;
-  }
-
-  .hero-image {
-    object-fit: cover;
-    width: 90vw;
-    max-height: 416px;
-    border-radius: 30px 30px 0 0;
-    margin: 0 5%;
   }
 
   .hero-cta {
@@ -83,18 +76,12 @@
     .hero {
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
     }
 
     .hero-content {
       width: 40vw;
       width: 40dvw;
-    }
-
-    .hero-image {
-      width: 50vw;
-      width: 50dvw;
-      align-self: flex-end;
     }
 
     .hero-cta {
@@ -107,11 +94,7 @@
     .hero-content {
       width: 30vw;
       width: 30dvw;
-      object-fit: cover;
-    }
-
-    .hero-image {
-      max-width: 604px;
     }
   }
 </style>
+

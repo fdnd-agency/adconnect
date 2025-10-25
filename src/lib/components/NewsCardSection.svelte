@@ -22,6 +22,7 @@
         width: 90%;
         padding: 4em 0 4em 0;
         align-self: center;
+        margin: auto;
     }
 
 
