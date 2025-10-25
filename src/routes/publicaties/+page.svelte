@@ -61,3 +61,43 @@
 </div>
 
 
+<style>
+    .filter-buttons {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 1em;
+        width: 90%;
+        padding: 3em 0 0 0;
+
+        }
+
+        .filter {
+            display: flex;
+            flex-direction: row;
+            gap: 1em;
+        }
+    }
+
+    .button-outline-blue.active {
+        background-color: var(--primary-blue);
+        color: white;
+    }
+
+    .section-documents {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 90%;
+        padding: 3em 0;
+
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        gap: 1em;
+
+    }
+</style>
