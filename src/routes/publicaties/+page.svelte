@@ -70,6 +70,9 @@
         width: 90%;
         padding: 3em 0 0 0;
 
+        @media (min-width: 768px) {
+            padding: 5em 0 0 0;
+            max-width: 1400px;
         }
 
         .filter {
@@ -91,6 +94,10 @@
         width: 90%;
         padding: 3em 0;
 
+        @media (min-width: 768px) {
+            padding: 5em 0;
+            max-width: 1400px;
+        }
     }
 
     ul {
@@ -99,5 +106,10 @@
         list-style-type: none;
         gap: 1em;
 
+        @media (min-width: 768px) {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));  
+            max-width: 1400px;
+        }
     }
 </style>
