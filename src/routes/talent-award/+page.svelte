@@ -27,6 +27,7 @@
         href="#learn-more"
         class="button-outline-white"
         id="Nominate">Nomineer Talent</a
+    >
 </Hero>
 
 <section class="intro">
@@ -135,3 +136,88 @@
     >
 </section>
 
+<style>
+    .intro,
+    .nominate {
+        text-align: left;
+        margin: 0 auto;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: min(900px, 92vw);
+
+        .logo {
+            display: block;
+            margin: 1rem auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        p {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+    }
+
+    .nominate {
+        align-items: center;
+        gap: 1em;
+    }
+
+    .cards-ta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 2rem auto 5rem;
+        padding: 0 1rem;
+        text-align: center;
+        margin-bottom: 5em;
+    }
+
+    .cards-ta article {
+        box-sizing: border-box;
+        padding: 2rem;
+        border-radius: 20px;
+        flex: 1 1 clamp(260px, 30vw, 420px);
+        max-width: 100%;
+        max-width: 450px;
+        min-width: 350px;
+    }
+
+    .cards-ta article .logo {
+        display: block;
+        margin: 0 auto 1rem auto;
+    }
+
+    .cards-ta article h2 {
+        max-width: 36ch;
+        margin: 0 auto 1rem;
+        text-align: left;
+    }
+
+    .cards-ta article p {
+        max-width: 50ch;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .cards-ta article.dark {
+        background-color: var(--primary-blue);
+        color: var(--text-white);
+    }
+    .cards-ta article.dark h2 {
+        color: var(--text-white);
+    }
+
+    .cards-ta article.light {
+        background-color: var(--blue-100);
+        border: 3px solid var(--primary-blue);
+        color: var(--blue-800);
+    }
