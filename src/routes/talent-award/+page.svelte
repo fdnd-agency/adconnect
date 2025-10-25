@@ -221,3 +221,23 @@
         border: 3px solid var(--primary-blue);
         color: var(--blue-800);
     }
+
+    @media (min-width: 768px) {
+        .cards-ta {
+            gap: 2rem;
+            margin-bottom: 5em;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .cards-ta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            justify-content: center;
+            max-width: 1500px;
+            margin: 0 auto;
+            margin-bottom: 5em;
+        }
+    }
+</style>
