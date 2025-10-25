@@ -70,4 +70,25 @@ p {
 
   }
 }
+  @media screen and (min-width: 1024px) {
+
+    .winner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  
+      align-items: start;
+      padding: 3rem;
+      }
+
+    .info {
+      grid-column: 1 / 2;
+      text-align: center;
+    }
+    
+    .visual {
+      grid-column: 2 / 2;
+  }
+}
+
+
 </style>
