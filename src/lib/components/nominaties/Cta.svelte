@@ -79,4 +79,17 @@
         z-index: 0;
     }
 
+    @media (min-width: 768px) {
+        .circle-left {
+            width: 25em;
+            left: -10%;
+            bottom: -20%;
+        }
+
+        .circle-right {
+            width: 25em;
+            right: -10%;
+            top: -20%;
+        }
+    }
 </style>
