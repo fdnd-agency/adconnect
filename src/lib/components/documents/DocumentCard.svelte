@@ -12,7 +12,7 @@
 </script>
 
 <article>
-    <h3 class="truncate two">{document.title}</h3>
+    <h2 class="truncate two">{document.title}</h2>
     <div class="card-info">
         <span><img src="{label}" alt=""><p>{document.category.title}</p></span>
         <span><img src="{calendar}" alt=""><p>{document.date.slice(0,4)}</p></span>
@@ -52,12 +52,12 @@
         }
     }
 
-    h3, p {
+    h2, p {
         margin: 0;
         width: 100%;
     }
 
-    h3 {
+    h2{
         font-size: 25px;
         height: 2.5em;
     }
