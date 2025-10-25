@@ -20,13 +20,13 @@
     <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${document.hero}`} alt={document.title} />
 </Hero>
 
-<section class="wrapper-detail">
+<div class="wrapper-detail">
     <div class="detail">
         <p>{document.description}</p>
         {#if document.source_file}
         <div class="file">
             <p>Hieronder een preview van het document of bekijk <a target="_blank" href={`https://fdnd-agency.directus.app/assets/${document.source_file.id}`}>hier</a> het hele document</p>
-            <iframe title="{document.title}" src={`https://fdnd-agency.directus.app/assets/${document.source_file.id}`} type="application/pdf"></iframe>
+            <iframe title="{document.title}" src={`https://fdnd-agency.directus.app/assets/${document.source_file.id}`}></iframe>
         </div>
         {/if}
     </div>
@@ -38,7 +38,7 @@
             <a href="/dev/hero" class="button-outline-blue">Ik wil naar de Ad-dag →</a>
         </section>
     </div>
-</section>
+</div>
 <!-- 
 <section class="other-documents">
     <h2>Bekijk andere populaire thema's</h2>
