@@ -46,3 +46,91 @@
         <DocumentCard documents={documents.slice(0, 3)} />
     </section>
 </section> -->
+
+<style>
+    .wrapper-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 90%;
+        padding: 3em 0;
+        max-width: 1400px;
+        margin: auto;
+    }
+
+    .detail {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+    }
+
+
+    .file {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        gap: 1em;
+
+        iframe {
+            height: 30em;
+        }
+
+        #document {
+            width: 100%;
+        }
+    }
+
+    /* Truncate words */
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box; 
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        }
+
+
+    :global(.detail img) {
+        width: 100%;
+        max-width: 70%;
+        object-fit: cover;
+        border-radius: 1em;
+    }
+
+
+    .ad-day {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 2em;
+        background-color: var(--primary-blue);
+        color: var(--text-white);
+        border-radius: 1em;
+
+        h2 {
+            color: var(--text-white);
+            font-size: var(--h4-size);
+        }
+    }
+
+
+    .other-documents {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        width: 90%;
+        margin: auto;
+        padding: 3em 0;
+        align-items: center;
+
+    }
+
+    .other-documents .documents {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    }
+</style>
