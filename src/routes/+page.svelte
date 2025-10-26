@@ -3,10 +3,13 @@
   import NavPros from "$lib/components/header/NavPros.svelte";
   import Hero from "$lib/components/hero/Hero.svelte";
   import placeholder from "$lib/assets/placeholder-hero.png";
-  import Cooperation from "$lib/components/cooperation/LogoSection.svelte";
+  import LogoSection from "$lib/components/cooperation/LogoSection.svelte";
+  import DividerText from "$lib/components/divider/DividerText.svelte";
+  import Divider from "$lib/components/divider/Divider.svelte";
 
   let { data } = $props();
   const news = data.news;
+  const cooperation = data.cooperation;
 </script>
 
 <svelte:head>
@@ -49,6 +52,21 @@
   @media (min-width: 1024px) {
     .hero-image {
       max-width: 640px;
+    }
+  }
+
+  .logo-section {
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--blue-100);
+    padding: 0 0 3em 0;
+
+    @media (min-width: 768px) {
+      gap: 3em;
+      padding: 0 0 5em 0;
     }
   }
 </style>
