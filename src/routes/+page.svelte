@@ -23,7 +23,11 @@
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
-<Cooperation />
+<section class="logo-section">
+  <DividerText text="Partijen waarmee wij samenwerken" />
+  <LogoSection {cooperation} />
+  <Divider />
+</section>
 
 <style>
   .hero-image {
