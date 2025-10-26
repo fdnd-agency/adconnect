@@ -6,7 +6,7 @@
   export let breadcrumb = "";
 </script>
 
-<article class="hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">
+<article class="hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}" id="main">
   <section class="hero-content">
     {#if $page.url.pathname !== "/"}
       <nav class="hero-breadcrumb">

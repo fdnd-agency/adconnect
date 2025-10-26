@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="/stylesheet.css" />
 </svelte:head>
 
+<a href="#main" class="skip-link">Ga naar content</a>
+
 <header>
 <TopNav />
 </header>
@@ -149,6 +151,26 @@
     overflow: hidden;
     margin: 7.9em 0 0 0;
   }
+
+  /* Skiplink */
+  .skip-link {
+      text-decoration: none;
+      color: var(--text-white);
+      background-color: var(--primary-blue);
+      border: 1px solid var(--primary-text);
+      padding: .7em 1.2em;
+      border-radius: 5px;
+      transition: .3s ease-in;
+      position: absolute;
+      top: -10rem;
+      left: 45%;
+      z-index: 99999999;
+  }
+
+  .skip-link:focus-visible {
+      top: 0;
+  }
+
 
   footer {
     width: 100%;
