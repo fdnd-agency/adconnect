@@ -1,10 +1,11 @@
 <script>
   import NewsCardSection from "$lib/components/NewsCardSection.svelte";
-  import NavPros from '$lib/components/header/NavPros.svelte';
+  import NavPros from "$lib/components/header/NavPros.svelte";
   import Hero from "$lib/components/hero/Hero.svelte";
   import placeholder from "$lib/assets/placeholder-hero.png";
+  import InformationCards from "$lib/components/information-cards/InformationCards.svelte";
 
-  let { data } = $props(); 
+  let { data } = $props();
   const news = data.news;
 </script>
 
@@ -14,10 +15,7 @@
 
 <NavPros />
 
-
-<Hero
-  title="Overlegplatform Associate Degrees"
-  description="Het overlegplatform voor Associate Degree opleidingen in Nederland.">
+<Hero title="Overlegplatform Associate Degrees" description="Het overlegplatform voor Associate Degree opleidingen in Nederland.">
   <a slot="primary" href="/dev/hero" class="button-outline-white">Lorum Ipsum →</a>
   <a slot="secondary" href="/dev/hero" class="button-outline-blue">Lorum Action →</a>
   <img class="hero-image" src={placeholder} alt="" />
@@ -25,28 +23,52 @@
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
+<InformationCards
+  heading="Meer informatie over.."
+  intro="Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen."
+  items={[
+    {
+      title: "Ad-overleggen",
+      description:
+        "Lorem ipsum dolor sit amet consectetur. Sed eros at sapien amet. Curabitur etiam fames tortor facilisis pellentesque vitae mollis aenean mi.",
+      buttonText: "Meer over Ad-overleggen",
+      buttonLink: "/overleggen",
+    },
+    {
+      title: "Ad-dag",
+      description: "Vivamus dui imperdiet purus nunc vel nec ullamcorper. Dictum tristique in lacus.",
+      buttonText: "Meer over Ad-dag",
+      buttonLink: "/ad-dag",
+    },
+    {
+      title: "Ad-profielen",
+      description: "Sed blandit dapibus rutrum neque tempor facilisis a neque. Est consequat tincidunt.",
+      buttonText: "Meer over Ad-profielen",
+      buttonLink: "/profielen",
+    },
+  ]}
+/>
+
 <style>
-.hero-image {
-  display: block;
-  width: 100%;
-  max-height: 416px;
-  object-fit: cover;
-  border-radius: 30px 30px 0 0;
-}
-
-@media (min-width: 768px) {
   .hero-image {
-    border-radius: 24px;
-    max-width: 604px;
-    margin-left: auto; 
+    display: block;
+    width: 100%;
+    max-height: 416px;
+    object-fit: cover;
+    border-radius: 30px 30px 0 0;
   }
-}
 
-@media (min-width: 1024px) {
-  .hero-image {
-    max-width: 640px;
+  @media (min-width: 768px) {
+    .hero-image {
+      border-radius: 24px;
+      max-width: 604px;
+      margin-left: auto;
+    }
   }
-}
 
+  @media (min-width: 1024px) {
+    .hero-image {
+      max-width: 640px;
+    }
+  }
 </style>
-
