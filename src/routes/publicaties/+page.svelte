@@ -74,6 +74,7 @@
         gap: 1em;
         width: 90%;
         padding: 3em 0 0 0;
+        margin: auto;
 
         @media (min-width: 768px) {
             padding: 5em 0 0 0;
@@ -99,6 +100,7 @@
         gap: 1em;
         width: 90%;
         padding: 3em 0;
+        margin: auto;
 
         @media (min-width: 768px) {
             padding: 5em 0;
