@@ -11,7 +11,7 @@
 <NavPros />
 
 <div class="wrapper-error" id="main">
-  <img src="{bird}" alt="">
+  <img src="{bird}" alt="404 error">
 
   <section>
     <h1>Oeps {page.status} error</h1>
