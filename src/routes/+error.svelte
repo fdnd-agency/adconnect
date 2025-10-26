@@ -28,3 +28,54 @@
     </ul>
   </section>
 </div>
+
+<style>
+  .wrapper-error {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: auto;
+    width: 90%;
+    max-width: 1400px;
+    padding: 3em 0;
+
+
+    img {
+      width: 20em;
+      align-self: center;
+
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      margin: auto;
+    }
+
+    h1, p {
+      text-align: center;
+
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: .5em 1.5em;
+      justify-content: center;
+    }
+
+    li:first-of-type {
+      list-style-type: none;
+    }
+
+    a {
+      color: var(--blue-800);
+
+      &:hover {
+        color: var(--primary-orange);
+      }
+    }
+  }
+</style>
