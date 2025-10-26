@@ -43,7 +43,7 @@
 </Hero>
 
 <div class="filter-buttons">
-    <p>Kies een categorie:</p>
+    <p>Filter op categorie:</p>
     <div class="filter">
         <a href="?category=alle-publicaties" class="button-outline-blue {selectedCategory === 'alle-publicaties' ? 'active' : ''}"> Alle publicaties</a>
 
@@ -54,7 +54,10 @@
 </div>
 
 <div class="section-documents">
-    <p>Aantal artikelen: {documents.length}</p>
+    <div class="filter-info">
+        <p>Categorie: {selectedCategory}</p>
+        <p>Aantal artikelen: {documents.length}</p>
+    </div>
     <ul>
         {#each documents as document}
             <li><DocumentCard {document}/></li>
