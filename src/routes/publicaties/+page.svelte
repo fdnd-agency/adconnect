@@ -46,7 +46,7 @@
         <a href="?category=alle-publicaties" class="button-outline-blue {selectedCategory === 'alle-publicaties' ? 'active' : ''}"> Alle publicaties</a>
 
         {#each categories as categorie}
-            <a href={`?category=${categorie.title}`} class="button-outline-blue {selectedCategory === categorie.title ? 'active' : ''}"> {categorie.title}</a>
+            <a href={`?category=${categorie.title.toLowerCase()}`} class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}">{categorie.title}</a>
         {/each}  
     </div>
 </div>
@@ -98,6 +98,11 @@
         @media (min-width: 768px) {
             padding: 5em 0;
             max-width: 1400px;
+        }
+
+        .filter-info {
+            display: flex;
+            gap: 1.5em;
         }
     }
 

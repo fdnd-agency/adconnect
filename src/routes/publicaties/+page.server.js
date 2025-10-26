@@ -15,7 +15,7 @@ export async function load({ url }) {
             filter = '';
         } else {
             // Choose category, then add parameter 'category=..' in url
-            filter = `&filter[category][title]=${encodeURIComponent(category)}`;
+            filter = `&filter[category][title][_icontains]=${category}`;
 
         }
     } else {
