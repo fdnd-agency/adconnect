@@ -4,6 +4,7 @@
     import DocumentCard from '$lib/components/documents/DocumentCard.svelte';
     import NavPros from '$lib/components/header/NavPros.svelte';
     import Hero from '$lib/components/hero/Hero.svelte';
+    import placeholder from "$lib/assets/placeholder-hero.png";
 
     // Haal data op uit page.server.js via props
     let { data } = $props(); 
@@ -38,6 +39,7 @@
 <Hero
   title="Publicaties"
   description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor cies donec porttitor tempus eleifend nunc.tempus eleifend nunc.">
+  <img class="hero-image" src={placeholder} alt="" />
 </Hero>
 
 <div class="filter-buttons">

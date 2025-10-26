@@ -17,7 +17,7 @@
 <Hero
     title={document.title}
     description={document.description.split(' ').slice(0, 20).join(' ') + '...'}>
-    <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${document.hero}`} alt={document.title} />
+    <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${document.hero_image}`} alt={document.title} />
 </Hero>
 
 <div class="wrapper-detail">
