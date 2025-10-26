@@ -39,11 +39,18 @@
     max-width: 1400px;
     padding: 3em 0;
 
+    @media (min-width: 768px) {
+      padding: 5em 0;
+      flex-direction: row;
+    }
 
     img {
       width: 20em;
       align-self: center;
 
+      @media (min-width: 768px) {
+        width: 25em;
+      }
     }
 
     section {
@@ -56,6 +63,10 @@
     h1, p {
       text-align: center;
 
+      @media (min-width: 768px) {
+        text-align: left;
+        max-width: 30em;
+      }
     }
 
     ul {
@@ -64,6 +75,10 @@
       flex-wrap: wrap;
       gap: .5em 1.5em;
       justify-content: center;
+
+      @media (min-width: 768px) {
+        justify-content: left;
+      }
     }
 
     li:first-of-type {
