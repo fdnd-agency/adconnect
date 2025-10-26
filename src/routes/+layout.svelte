@@ -31,7 +31,7 @@
     <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" /></a>
 
   <section>
-    <h3>AdConnect</h3>
+    <h2>AdConnect</h2>
     <p>
       Lorem ipsum dolor sit amet consectetur. Massa et enim vitae quis eget. Quam elit elementum vivamus libero vitae nulla nec eget. Porttitor nunc
       tristique dictumst dui at augue vitae a. Nisl orci ultricies nec quisque. Nulla laoreet elit id vitae ullamcorper.
@@ -40,7 +40,7 @@
 
   <section>
     <div class="desktop-menu">
-      <h3>Menu</h3>
+      <h2>Menu</h2>
       <ul>
         <li><a href="/">Wat zijn Ad's?</a></li>
         <li><a href="/">Documenten</a></li>
@@ -51,7 +51,7 @@
     </div>
 
     <details class="mobile-menu">
-      <summary><h3>Menu</h3></summary>
+      <summary><h2>Menu</h2></summary>
       <ul>
         <li><a href="/">Wat zijn Ad's?</a></li>
         <li><a href="/">Documenten</a></li>
@@ -64,7 +64,7 @@
 
   <section>
     <div class="desktop-menu">
-      <h3>Thema's</h3>
+      <h2>Thema's</h2>
       <ul>
         <li><a href="/">Impactmakerschap</a></li>
         <li><a href="/">Niveau 5</a></li>
@@ -74,7 +74,7 @@
     </div>
 
     <details class="mobile-menu">
-      <summary><h3>Thema's</h3></summary>
+      <summary><h2>Thema's</h2></summary>
       <ul>
         <li><a href="/">Impactmakerschap</a></li>
         <li><a href="/">Niveau 5</a></li>
@@ -86,7 +86,7 @@
 
   <section>
     <div class="desktop-menu">
-      <h3>Leden van bestuur</h3>
+      <h2>Leden van bestuur</h2>
       <ul>
         <li><a href="/">Roland van der Poel (voorzitter)</a></li>
         <li><a href="/">Carolien van Rijswijk</a></li>
@@ -97,7 +97,7 @@
     </div>
 
     <details class="mobile-menu">
-      <summary><h3>Leden van bestuur</h3></summary>
+      <summary><h2>Leden van bestuur</h2></summary>
       <ul>
         <li><a href="/">Roland van der Poel (voorzitter)</a></li>
         <li><a href="/">Roland van der Poel (voorzitter)</a></li>
@@ -110,14 +110,14 @@
 
   <section>
     <div class="desktop-menu">
-      <h3>Contact</h3>
+      <h2>Contact</h2>
       <ul>
         <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
       </ul>
     </div>
 
     <details class="mobile-menu">
-      <summary><h3>Contact</h3></summary>
+      <summary><h2>Contact</h2></summary>
       <ul>
         <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
       </ul>
@@ -179,8 +179,9 @@
     background-color: var(--primary-blue);
     border-radius: 1em 1em 0 0;
 
-    h3 {
+    h2 {
       color: var(--text-white);
+      font-size: 25px;
     }
   }
 
