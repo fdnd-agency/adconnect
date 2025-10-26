@@ -31,7 +31,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    width: 90%;
   }
 
   .info-card-head {
@@ -51,10 +50,6 @@
   }
 
   @media (min-width: 768px) {
-    .info-card {
-      width: 80%;
-    }
-
     .button-outline-blue {
       margin-top: auto;
     }
