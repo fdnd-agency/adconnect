@@ -61,7 +61,7 @@
     .detail {
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        gap: 2em;
     }
 
     @media (min-width: 768px) {
@@ -92,9 +92,12 @@
 
     :global(.detail img) {
         width: 100%;
-        max-width: 70%;
         object-fit: cover;
         border-radius: 1em;
+
+        @media (min-width: 768px) {
+           max-width: 70%;
+        }
     }
 
     @media (min-width: 768px) {
