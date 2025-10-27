@@ -14,7 +14,7 @@
          <h3 class="truncate single">{theme.title}</h3>
     </div>
     <p class="truncate two">{theme.description}</p>
-    <a class="button-outline-blue" href={`over-ad/${theme.slug}`}>Meer informatie</a>
+    <a class="button-outline-blue" href={`/over-ad/${theme.slug}`}>Meer informatie</a>
   </article>
 {/each}
 
