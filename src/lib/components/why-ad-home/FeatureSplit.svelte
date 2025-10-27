@@ -65,6 +65,10 @@
     padding: 2rem;
   }
 
+  .feature-intro {
+    max-width: 40ch;
+  }
+
   .feature-list {
     list-style: none;
     display: flex;
