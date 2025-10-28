@@ -5,6 +5,7 @@
 	import addag1 from "$lib/assets/addag-1.png";
 	import InfoAddag from "$lib/components/ad/InfoAddag.svelte";
 	import Schedule from "$lib/components/ad/Schedule.svelte";
+  import Location from "$lib/components/location/location.svelte";
   </script>
   
   <svelte:head>
@@ -42,9 +43,9 @@
 	<img src={addag1} alt="" width="450px" />
   </section>
   
-  
-  <InfoAddag />
+   <InfoAddag />
   <Schedule />
+   <Location/>
 </main>
   
   <style>

@@ -21,7 +21,7 @@
 
   <section class="nav-right">
     <ul>
-      <li><a href="/nominaties">Nominaties</a></li>
+      <li><a href="talent-award/nominaties">Nominaties</a></li>
       <li><a href="/over-ons">Over ons</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
@@ -33,6 +33,13 @@
     margin: 0;
   }
 
+  :global(header) {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+  }
+
   /* MOBILE*/
   nav {
     display: flex;
@@ -40,6 +47,10 @@
     align-items: center;
     background-color: var(--blue-150);
     padding: 1rem;
+    position: relative;
+    z-index: 99;
+    position: sticky;
+    top: 0;
   }
 
   ul {
@@ -85,12 +96,18 @@
   /* DESKTOP */
   @media (min-width: 1024px) {
     .nav-left {
-      margin-left: 5rem;
+      margin-left: 5%;
+    }
+
+    .nav-right {
+      width: 100%;
     }
 
     .nav-right ul {
       display: flex;
       gap: 1rem;
+      margin-right: 5%;
+      justify-content: flex-end;
     }
   }
 </style>

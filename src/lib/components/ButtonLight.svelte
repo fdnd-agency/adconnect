@@ -1,9 +1,10 @@
 <script>
     export let href = "";
+    export let className = "";
 </script>
 
 <!-- Knop -->
-<a href={href}>
+<a class={className} href={href}>
   <slot/>
 </a>
 
