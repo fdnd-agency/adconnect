@@ -18,7 +18,7 @@
       <li><a href="/talent-award">TalentAward</a></li>
       <li><a href="/nieuws">Nieuws</a></li>
       <li><a href="/ad-dag">Kom naar Ad-dag</a></li>
-      <li><a href="nominaties">Nominanties</a></li>
+      <li><a href="/talent-award/nominaties">Nominanties</a></li>
       <li><a href="over-ons">over ons</a></li>
       <li><a href="/contact">contact</a></li>
     </ul>
