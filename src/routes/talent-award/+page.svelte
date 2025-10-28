@@ -218,7 +218,7 @@
 
     .cards-ta article.light {
         background-color: var(--blue-100);
-        border: 3px solid var(--primary-blue);
+        border: 1.5px solid var(--primary-blue);
         color: var(--blue-800);
     }
 
