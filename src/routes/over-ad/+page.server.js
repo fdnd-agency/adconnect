@@ -1,0 +1,24 @@
+export async function load({ url }) {
+    
+    // Data from Directus API
+    const baseUrl = "https://fdnd-agency.directus.app/items/";
+    const themesEndpoint = "adconnect_themes";
+    const cooperationEndpoint = "adconnect_cooperation";
+    const fieldsThemes = "?fields=title,description,hero,slug";
+    const fieldsCooperation = "?fields=url,name,logo";
+
+    // Convert themes data to json
+    const themesResponse = await fetch(baseUrl + themesEndpoint + fieldsThemes);
+    const themesData = await themesResponse.json();
+
+    // Convert cooperation data to json
+    const cooperationResponse = await fetch(baseUrl + cooperationEndpoint + fieldsCooperation);
+    const cooperationData = await cooperationResponse.json();
+
+    console.log(cooperationData)
+    
+    return {
+        themes: themesData.data,
+        cooperation: cooperationData.data,
+    };
+}

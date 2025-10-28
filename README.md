@@ -73,14 +73,6 @@ The data model displays all the fields that appear on the website.
 ## Installation
 To build this project, the following steps must be completed. `Node.js` and `npm` (or alternatives such as `pnpm` or `yarn`) are required as a package manager to get started.  
 
-### Create Project
-- If you want to start a new SvelteKit project, run the following command in the terminal:
-
-```
-npx sv create
-```
-
-- Then follow the steps displayed in the terminal.
 
 ### Install
 - Once the project is set up, run the following command to install all dependencies:
