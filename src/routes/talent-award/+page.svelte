@@ -5,6 +5,7 @@
     import Divider from "$lib/components/divider/Divider.svelte";
     import logomobile from "$lib/assets/logomobile.svg";
     import logodark from "$lib/assets/logomobiledark.svg";
+    import PreviousWinners from "$lib/components/talentaward/PreviousWinners.svelte";
 </script>
 
 <svelte:head>
@@ -136,6 +137,8 @@
     >
 </section>
 
+<PreviousWinners />
+
 <style>
     .intro,
     .nominate {
@@ -241,3 +244,5 @@
         }
     }
 </style>
+
+
