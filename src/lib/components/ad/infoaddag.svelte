@@ -121,7 +121,7 @@
     }
   
     details summary::after {
-      content: url("/static/chevron-down-blue.svg");
+      content: url("");
       transition: transform 0.3s;
     }
   
