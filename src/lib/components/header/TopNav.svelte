@@ -21,7 +21,7 @@
 
   <section class="nav-right">
     <ul>
-      <li><a href="/nominaties">Nominaties</a></li>
+      <li><a href="talent-award/nominaties">Nominaties</a></li>
       <li><a href="/over-ons">Over ons</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>

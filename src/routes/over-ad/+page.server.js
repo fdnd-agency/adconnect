@@ -14,8 +14,6 @@ export async function load({ url }) {
     // Convert cooperation data to json
     const cooperationResponse = await fetch(baseUrl + cooperationEndpoint + fieldsCooperation);
     const cooperationData = await cooperationResponse.json();
-
-    console.log(cooperationData)
     
     return {
         themes: themesData.data,
