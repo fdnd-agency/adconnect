@@ -19,8 +19,21 @@ Hier staat de [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/D
   * [License](#license)
 
 ## Description
-- Menu
-- Hero
+### Filter publications
+- Used semantic HTML. I’m using an `<a>` element.
+- The filter is server side rendered which means it also works when client side JS is disabled.
+- Performed responsive and accessibility testing.
+
+https://github.com/user-attachments/assets/eec6b157-3cfb-4d3b-bfc5-e33aed4bdd43
+
+### Cooperation carousel
+- Used semantic HTML: `<ul>`, `<li>`, and an `<a>` containing an `<img>`.  
+- Built mobile-first, then enhanced for larger screens using `@media` queries.  
+- Created the carousel as a reusable component, allowing it to be used across multiple pages.  
+- Performed responsive and accessibility testing.  
+- All data (logos) is dynamically fetched from the Directus API.  
+
+https://github.com/user-attachments/assets/6083738d-67c2-4acb-bd97-e92b0c4173b7
 
 ### Cards
 - Semantic HTML, for example using `<article>` with a `<h3>`, `<p>`, and `<a>`.  
