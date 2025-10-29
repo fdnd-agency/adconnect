@@ -55,7 +55,6 @@ https://github.com/user-attachments/assets/b136cfc9-5af5-4485-937f-3c58ff0d6d53
 ## Features
 In this project, we use SvelteKit to build a dynamic squad page with reusable components and routes. Data is fetched via the Directus API.
 
-
 ### Routes
 - [`/`](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/%2Bpage.svelte): On the home page, all news article data is fetched and rendered on the homepage.  
 - [`/over-ad`](https://github.com/fdnd-agency/adconnect/tree/dev/src/routes/over-ad): In this route, the themes are fetched.  
@@ -64,15 +63,25 @@ In this project, we use SvelteKit to build a dynamic squad page with reusable co
 - [`/nominaties`](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/talent-award/nominaties/%2Bpage.svelte): In this route, all data of the nominees is fetched.  
 - [`/nominaties/[id]`](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/talent-award/nominaties/%5Bid%5D/%2Bpage.svelte): In this route, all data of the nominees is fetched, and information about the specific nominee is displayed.  
 - [`/over-ons`](https://github.com/fdnd-agency/adconnect/tree/dev/src/routes/over-ons): In this route, information about the Associate Degrees Advisory Platform is displayed.  
-- [`/documenten`](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/documenten/%2Bpage.svelte): In this route, all information about important documents is fetched and rendered.  
-- [`/contact`](https://github.com/fdnd-agency/adconnect/tree/dev/src/routes/contact): In this route, a contact form and relevant information to contact the Associate Degrees Advisory Platform is displayed.  
+- [`/plubicaties`](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/publicaties/%2Bpage.svelte): In this route, all information about important documents is fetched and rendered.
+- [`/plubicaties[slug]`](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/publicaties/%5Bslug%5D/%2Bpage.svelte): In this route all specific information form a document is fetched and rendered.  
+- [`/contact`](https://github.com/fdnd-agency/adconnect/tree/dev/src/routes/contact): In this route a contact form and relevant information to contact the Associate Degrees Advisory Platform is displayed.  
 - [`/nieuws`](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/nieuws/%5Bid%5D/page.server.js): In this route, all news article data is fetched and rendered.  
 - [`/nieuws[id]`](https://github.com/fdnd-agency/adconnect/tree/dev/src/routes/contact): In this route, all data of the specific news article is fetched and rendered.  
 
 ### Components 
 - [`Hero.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/hero/Hero.svelte): This contains the hero section that is loaded on all pages.  
 - [`NewsCard.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/NewsCard.svelte): This component is a news article that is loaded within the `NewsCardSection.svelte` component.  
-- [`NewsCardSection.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/NewsCardSection.svelte): This component is a section containing all news articles (`NewsCard` component) and is loaded.  
+- [`NewsCardSection.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/NewsCardSection.svelte): This component is a section containing all news articles (`NewsCard` component) and is loaded.
+- [`ThemeCard.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/theme/ThemeCard.svelte): This component is a theme article with data form the Directus database.
+- [`ImageTextSection.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/info/ImageTextSection.svelte): This component is a section with an image and text information.
+- [`DocumentCard.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/documents/DocumentCard.svelte): This component a document card article with data form the Directus database.
+- [`Divider.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/divider/Divider.svelte): This component a divider (a thin line) between sections.
+- [`DividerText.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/divider/DividerText.svelte): This component a divider with text (a thin line) between sections.
+- [`DevelopmentTemplate.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/development/DevelopmentTemplate.svelte): This component is a template for pages who are in development mode.
+- [`LogoSection.svelte`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/cooperation/LogoSection.svelte): This component is a section with logo's (cooperations).
+- [`BenefitCard`](https://github.com/fdnd-agency/adconnect/blob/dev/src/lib/components/benefits/BenefitCard.svelte): This component a card of the benefits of Ad's.
+
 
 ### Data
 Data is fetched in `+page.server.js` for the corresponding route. A fetch is performed to the Directus API, the data is processed, and then rendered to the respective `+page.svelte` page.  
