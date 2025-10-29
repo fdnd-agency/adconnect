@@ -74,7 +74,7 @@
   --blue-400: #298aff;
   --blue-300: #5ca5ff;
   --blue-200: #8fc1ff;
-  --blue-150: #D1E0F9;
+  --blue-150: #d1e0f9;
   --blue-100: #c2ddff58;
 
   /* darker */
@@ -133,6 +133,7 @@ h6 {
   font-family: var(--font-heading);
   font-weight: var(--heading-font-weight);
   color: var(--blue-800);
+  text-wrap: balance;
 }
 
 h1 {
@@ -227,5 +228,3 @@ a {
     /* box-shadow: 0 4px 10px rgba(0, 64, 141, 0.2); */
   }
 }
-
-

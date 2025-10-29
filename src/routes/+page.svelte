@@ -6,6 +6,7 @@
   import LogoSection from "$lib/components/cooperation/LogoSection.svelte";
   import DividerText from "$lib/components/divider/DividerText.svelte";
   import Divider from "$lib/components/divider/Divider.svelte";
+  import FeatureSplit from "$lib/components/why-ad-home/FeatureSplit.svelte";
 
   let { data } = $props();
   const news = data.news;
@@ -31,6 +32,15 @@
   <LogoSection {cooperation} />
   <Divider />
 </section>
+<FeatureSplit
+  title="Waarom kiezen voor een Associate Degree"
+  intro="Lorem ipsum dolor sit amet consectetur. Vitae arcu justo ultricies aliquet morbi eu ac faucibus. Purus porta cursus risus interdum consequat nec."
+  bullets={["Lorem ipsum dolor sit amet consectetur.", "Lorem ipsum dolor sit amet consectetur. Nam.", "Lorem ipsum dolor sit"]}
+  ctaText="Lorem ipsum dolor sit"
+  ctaLink="/meer"
+  imageSrc="/images/award.jpg"
+  imageAlt="Studenten bij AdTalent award"
+/>
 
 <style>
   .hero-image {
