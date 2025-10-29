@@ -61,7 +61,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: var(--background);
+    background-color: var(--text-white);
     padding: 0 0 3em 0;
 
     @media (min-width: 768px) {

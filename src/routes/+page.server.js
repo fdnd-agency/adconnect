@@ -11,10 +11,6 @@ export async function load({ url }) {
   const cooperationResponse = await fetch(baseUrl + cooperationEndpoint + fieldsCooperation);
   const cooperationData = await cooperationResponse.json();
 
-  console.log(cooperationData);
-
-  console.log(newsData);
-
   return {
     news: newsData.data,
     cooperation: cooperationData.data,
