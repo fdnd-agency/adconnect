@@ -48,7 +48,8 @@
   .feature {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    text-align: center;
+    align-items: stretch;
     justify-content: center;
     padding-bottom: 5rem;
   }
@@ -60,6 +61,7 @@
   .feature-content {
     display: flex;
     flex-direction: column;
+    flex: 1;
     width: 100%;
     gap: 1rem;
     padding: 2rem;
@@ -85,6 +87,8 @@
 
   .feature-media {
     display: none;
+    flex: 1;
+    height: 100%;
   }
 
   @media (min-width: 768px) {
