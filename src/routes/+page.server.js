@@ -8,8 +8,6 @@ export async function load({ url }) {
     const newsResponse = await fetch(baseUrl + fields);
     const newsData = await newsResponse.json();
 
-    console.log(newsData);
-
     return {
         news: newsData.data,
     };
