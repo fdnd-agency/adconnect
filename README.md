@@ -2,13 +2,18 @@
 
 **Client: Overlegplatform Associate degrees**
 
-The Consultation Platform for Associate Degrees is a collaboration between all Dutch universities of applied sciences that offer — or plan to offer — Associate Degree programs. Since 2019, they have been working to increase the visibility and strengthen the position of these programs within education and government. They share knowledge, develop joint program profiles, and organize events such as the National AD Day and the AD Talent Award. They also focus on important themes such as progression to bachelor’s programs, practice-oriented learning, and internationalization to improve the quality of Associate Degree programs.
+The Consultation Platform for Associate Degrees is a collaboration between all Dutch universities of applied sciences that offer, or plan to offer Associate Degree programs. Since 2019, they have been working to increase the visibility and strengthen the position of these programs within education and government. They share knowledge, develop joint program profiles, and organize events such as the National AD Day and the AD Talent Award. They also focus on important themes such as progression to bachelor’s programs, practice-oriented learning, and internationalization to improve the quality of Associate Degree programs.
 
 ## Client’s request
 
-Develop a user-friendly and technically efficient platform that clearly communicates the added value of Associate Degrees to the user. The user must be able to easily find relevant information through a logical website structure and a well-thought-out redesign. In addition, the website should be translatable into English to reach a broader audience.
+Develop a user friendly and technically efficient platform that clearly communicates the added value of Associate Degrees to the user. The user must be able to easily find relevant information through a logical website structure and a well thoughtout redesign. In addition, the website should be translatable into English to reach a broader audience.
 
-Hier staat de [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/Design-Challenge) verder toegelicht.
+Here is the [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/Design-Challenge) explained.
+
+[Livelink to the website](https://adconnect.netlify.app/)
+
+![mockups](https://github.com/user-attachments/assets/deb29554-9ac7-4852-9571-0bced02c7f68)
+
 
 ## Table of Contents
 
