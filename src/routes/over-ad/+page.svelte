@@ -12,6 +12,7 @@
   import overleggen from '$lib/assets/overleggen.jpg';
   import awards from '$lib/assets/ad-talent-awards.jpg';
   import dots from '$lib/assets/dots.svg';
+  import placeholder from "$lib/assets/placeholder-hero.png";
 
   let { data } = $props(); 
 
@@ -28,6 +29,7 @@
 <Hero
   title="Over Associate Degree's"
   description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor tempus eleifend nunc.">
+  <img class="hero-image" src={placeholder} alt="" />
   <a slot="primary" href="#benefit" class="button-outline-white" id="benefit">Lees meer →</a>
 </Hero>
 
