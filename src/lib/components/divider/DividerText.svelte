@@ -16,6 +16,7 @@
         gap: 1rem;
         width: 90%;
         max-width: 1400px;
+        margin: 2em auto;
     }
 
     hr {
@@ -24,4 +25,5 @@
         height: 1px;
         border-top: 1px solid var(--neutral-300);
     }
+
 </style>
