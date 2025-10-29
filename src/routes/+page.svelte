@@ -89,4 +89,18 @@
       max-width: 640px;
     }
   }
+
+.logo-section {
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--text-white);
+    padding: 0 0 3em 0;
+    @media (min-width: 768px) {
+      gap: 3em;
+      padding: 0 0 5em 0;
+    }
+  }
 </style>
