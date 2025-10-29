@@ -19,7 +19,7 @@
 
 <NavPros />
 
-<section class="contact-hero">
+<section class="contact-hero" id="main">
 
      {#if $page.url.pathname !== "/"}
       <nav class="hero-breadcrumb">
