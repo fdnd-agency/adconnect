@@ -35,7 +35,7 @@
   buttonText="Lorem ipsum dolor"
   buttonLink="#"
   imageAlt="Studenten ontvangen award"
-<InformationCards
+  InformationCards
   heading="Meer informatie over.."
   intro="Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen."
   items={[
@@ -59,6 +59,7 @@
       buttonLink: "/profielen",
     },
   ]}
+  />
 <section class="logo-section">
   <DividerText text="Partijen waarmee wij samenwerken" />
   <LogoSection {cooperation} />
