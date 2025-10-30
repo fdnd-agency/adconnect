@@ -3,8 +3,8 @@
 	import Hero from "$lib/components/hero/Hero.svelte";
 	import logomobile from "$lib/assets/logomobile.svg";
 	import addag1 from "$lib/assets/addag-1.png";
-	import InfoAddag from "$lib/components/ad/InfoAddag.svelte";
-	import Schedule from "$lib/components/ad/Schedule.svelte";
+	import InfoAddag from "$lib/components/ad/infoaddag.svelte";
+	import Schedule from "$lib/components/ad/schedule.svelte";
   import Location from "$lib/components/location/location.svelte";
   </script>
   
