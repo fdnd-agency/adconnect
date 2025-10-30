@@ -4,8 +4,8 @@
   
   <section class="schedule" style="text-align: center;">
     <section style="display: inline-block; max-width: 400px;" >
-      <h2 tabindex="0" >Planning</h2>
-      <p tabindex="0">
+      <h2>Planning</h2>
+      <p>
         Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at
         eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum
         egestas iaculis. Pellentesque elementum urna.
@@ -16,9 +16,9 @@
       <article class="card">
         <div class="wrapper-text">
           <img class="logo" src={logomobile} alt="Logo" />
-          <h2 tabindex="0">Programma</h2>
+          <h2>Programma</h2>
         </div>
-        <p tabindex="0">
+        <p>
           Lorem ipsum dolor sit amet consectetur. Ultrices at quis
           pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis
           eu lectus interdum egestas iaculis. Pellentesque elementum urna.
@@ -29,14 +29,14 @@
       <article class="card">
         <div class="wrapper-text">
           <img class="logo" src={logomobile} alt="Logo" />
-          <h2 tabindex="0">Workshops</h2>
+          <h2>Workshops</h2>
         </div>
-        <p tabindex="0">
+        <p>
           Lorem ipsum dolor sit amet consectetur. Ultrices at quis
           pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis
           eu lectus interdum egestas iaculis. Pellentesque elementum urna.
         </p>
-        <a class="button-outline-blue" href="#" >Bekijk Workshops </a>
+        <a class="button-outline-blue" href="link" >Bekijk Workshops </a>
       </article>
     </section>
   </section>
