@@ -169,19 +169,8 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
         }
     }
 
-    .themes .intro {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 1em;
-        width: 90%;
-        max-width: 1400px;
-
-        @media (min-width: 768px) {
-            flex-direction: row;
-            align-items: center;
-        }
+    .themes h2 {
+        text-align: center;
     }
 
     .themes-section {
