@@ -8,7 +8,10 @@
 - Follow the agreed-upon workflow (see teamcanvas).
 - Communicate when you get stuck.
 - Take the lead during the sprintreview and sprintplanning.
-- Set clear deadlines: Every task or issue must include a realistic deadline to ensure steady progress and shared expectations.  
+- Set clear deadlines: Every task or issue must include a realistic deadline to ensure steady progress and shared expectations.
+- At the start of the sprint divide tasks and break them down into smaller components.
+- At the end of the sprint hold a short feedback round for each team member.
+- Ask for feedback during the process from teammates.
 
 ## Agreements with client
 
