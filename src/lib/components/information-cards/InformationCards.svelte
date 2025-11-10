@@ -32,6 +32,8 @@
     padding: 3rem 1.5rem;
     gap: 2rem;
     background: var(--primary-blue);
+    z-index: 1;
+    position: relative;
   }
 
   .info-cards-heading {

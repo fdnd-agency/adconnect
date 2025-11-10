@@ -35,7 +35,9 @@
   buttonText="Lorem ipsum dolor"
   buttonLink="#"
   imageAlt="Studenten ontvangen award"
-  InformationCards
+/>
+
+<InformationCards
   heading="Meer informatie over.."
   intro="Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen."
   items={[
@@ -59,12 +61,14 @@
       buttonLink: "/profielen",
     },
   ]}
-  />
+/>
+
 <section class="logo-section">
   <DividerText text="Partijen waarmee wij samenwerken" />
   <LogoSection {cooperation} />
   <Divider />
 </section>
+
 <FeatureSplit
   title="Waarom kiezen voor een Associate Degree"
   intro="Lorem ipsum dolor sit amet consectetur. Vitae arcu justo ultricies aliquet morbi eu ac faucibus. Purus porta cursus risus interdum consequat nec."
@@ -98,7 +102,7 @@
     }
   }
 
-.logo-section {
+  .logo-section {
     display: flex;
     gap: 2em;
     flex-direction: column;
