@@ -64,4 +64,15 @@
     details[open] summary::after {
         transform: rotate(180deg);
     }
+
+    @media (prefers-reduced-motion: reduce) {
+        ::details-content {
+            transition: none;
+        }
+
+        details summary::after {
+            transition: none;
+        }
+    }
+
 </style>
