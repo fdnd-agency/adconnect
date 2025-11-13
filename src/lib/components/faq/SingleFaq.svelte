@@ -91,4 +91,11 @@
         }
     }
 
+   @media (inverted-colors: inverted) {
+        details {
+            background-color: var(--primary-orange);
+            color: var(--text-white);
+        }
+    }
+
 </style>
