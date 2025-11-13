@@ -4,7 +4,7 @@
 	export let open = false;
 </script>
 
-<details bind:open>
+<details class="adaptive" bind:open>
 	<summary>{question}</summary>
 	<p>{answer}</p>
 </details>
@@ -57,7 +57,10 @@
     }
 
     details summary::after {
-        content: url("/static/chevron-down-blue.svg"); 
+        content: url("/static/chevron-down-white.svg"); 
+        padding: .05em .7em;
+        border-radius: .4em;
+        background-color: var(--primary-orange);
         transition: transform 0.3s;
     }
 
@@ -78,6 +81,13 @@
     @media (prefers-contrast: more) {
         details {
             outline: 2px solid var(--primary-blue);
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        details.adaptive {
+            background-color: var(--primary-blue);
+            color: var(--text-white);
         }
     }
 
