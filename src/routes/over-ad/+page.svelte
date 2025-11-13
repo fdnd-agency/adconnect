@@ -126,19 +126,21 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
     }
 
     .benefits {
-        display: flex;
         display: grid;
         gap: 2.5em;
         width: 100%;
         grid-template-columns: 1fr;
     }
 
+    @media (min-width: 640px) {
+        .benefits {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     @media (min-width: 1024px) {
         .benefits {
-            flex-direction: row;
-            
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 
