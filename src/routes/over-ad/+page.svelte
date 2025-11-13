@@ -127,8 +127,12 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
 
     .benefits {
         display: flex;
-        flex-direction: column;
+        display: grid;
         gap: 2.5em;
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
     }
 
     @media (min-width: 1024px) {
