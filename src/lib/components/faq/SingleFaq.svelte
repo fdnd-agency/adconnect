@@ -75,4 +75,10 @@
         }
     }
 
+    @media (prefers-contrast: more) {
+        details {
+            outline: 2px solid var(--primary-blue);
+        }
+    }
+
 </style>
