@@ -3,17 +3,15 @@
     export let title = "";
     export let excerpt = "";
 
-    // Import afbeeldingen
+    // Import img
     import check from '$lib/assets/icon-check-white.svg';
 </script>
 
 <article>
-    <div class="inner-wrapper">
-        <img src="{check}" alt="">
-        <div class="info">
-            <h3>{title}</h3>
-            <p class="truncate two">{excerpt}</p>
-        </div>
+    <img src="{check}" alt="">
+    <div class="info">
+        <h3>{title}</h3>
+        <p class="truncate two">{excerpt}</p>
     </div>
 </article>
 
@@ -25,15 +23,14 @@
         padding: 2.5em;
         border: 1px solid var(--neutral-300);
         border-radius: 1em;
-        container-type: inline-size;
     }
 
-    .inner-wrapper {
+    /* .inner-wrapper {
         display: flex;
         flex-direction: column;
         gap: 1.3em;
         align-items: baseline;
-    }
+    } */
 
     .info {
         display: flex;
@@ -52,9 +49,9 @@
         border-radius: .5em;
     }
 
-    @container (width > 300px) {
-        .inner-wrapper {
-            flex-direction: row;
+    @container (width > 1100px) {
+        article {
+            flex-direction: row; 
             align-items: start;
         }
     }

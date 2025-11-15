@@ -130,6 +130,7 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
         gap: 2.5em;
         width: 100%;
         grid-template-columns: 1fr;
+        container-type: inline-size;
     }
 
     @media (min-width: 640px) {
