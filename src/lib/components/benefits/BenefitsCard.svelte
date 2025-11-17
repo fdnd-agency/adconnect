@@ -8,10 +8,12 @@
 </script>
 
 <article>
-    <img src="{check}" alt="">
-    <div class="info">
-        <h3>{title}</h3>
-        <p class="truncate two">{excerpt}</p>
+    <div class="inner-wrapper">
+        <img src="{check}" alt="">
+        <div class="info">
+            <h3>{title}</h3>
+            <p class="truncate two">{excerpt}</p>
+        </div>
     </div>
 </article>
 
@@ -23,14 +25,15 @@
         padding: 2.5em;
         border: 1px solid var(--neutral-300);
         border-radius: 1em;
+        container-type: inline-size;
     }
 
-    /* .inner-wrapper {
+    .inner-wrapper {
         display: flex;
         flex-direction: column;
         gap: 1.3em;
         align-items: baseline;
-    } */
+    }
 
     .info {
         display: flex;
@@ -49,8 +52,8 @@
         border-radius: .5em;
     }
 
-    @container (width > 1100px) {
-        article {
+    @container (width > 300px) {
+        .inner-wrapper {
             flex-direction: row; 
             align-items: start;
         }
