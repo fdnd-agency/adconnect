@@ -1,6 +1,8 @@
 <script>
     import { page } from "$app/stores";
     import NavPros from '$lib/components/header/NavPros.svelte';
+    import MultipleFaq from '$lib/components/faq/MultipleFaq.svelte';
+    import SingleFaq from '$lib/components/faq/SingleFaq.svelte';
 
     // Import afbeeldingen
     import mail from '$lib/assets/icon-mail.svg';
@@ -65,30 +67,31 @@
     </div>
 </section>
 
-<section class="faq">
+<section class="faq-section">
     <h2>Veelgestelde vragen</h2>
 
-    <img class="circle-faq" src="{darkcircle}" alt="">
+    <MultipleFaq>
+        <SingleFaq
+            open={true}
+            question="Wat is een Associate Degree Ad?"
+            answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+        />
+        
+        <SingleFaq
+            question="Hoe lang duurt een Associate degree?"
+            answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+        />
 
-    <details open>
-        <summary>Wat is een Associate Degree Ad?</summary>
-        <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna.</p>
-    </details>
+        <SingleFaq
+            question="Wat is het verschil tussen een Associate Degree en een Bachelor?"
+            answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+        />
 
-    <details>
-        <summary>Hoe lang duurt een Associate Degree?</summary>
-        <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna.</p>
-    </details>
-
-    <details>
-        <summary>Wat is het verschil tussen een Associate Degree en een Bachelor</summary>
-        <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna.</p>
-    </details>
-
-    <details>
-        <summary>Welke voordelen heeft het behalen van een Associate Degree?</summary>
-        <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna.</p>
-    </details>
+        <SingleFaq
+            question="Welke voordelen heeft het behalen van een Associate Degree?"
+            answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+        />
+    </MultipleFaq>
 </section>
 
 <style>
@@ -259,10 +262,10 @@
     }
 
     /* FAQ */
-    .faq {
+    .faq-section {
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        gap: 2em;
         padding: 3em 5%;
         box-sizing: border-box;
         position: relative;
@@ -272,78 +275,7 @@
         }
     }
 
-    .faq h2 {
+    .faq-section h2 {
         text-align: center;
-    }
-
-    details {
-        border: 1px solid var(--neutral-300);
-        border-radius: .5em;
-        padding: 1em;
-        position: relative;
-        z-index: 1;
-        background-color: var(--text-white);
-
-        p {
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            width: 55vw;
-            align-self: center;
-        }
-    }
-
-    details summary {
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between; /* tekst links, icoon rechts */
-        align-items: center;
-        gap: 0.5em;
-        font-family: var(--font-body);
-        font-weight: var(--text-font-weight);
-        font-size: var(--p-s-size);
-        line-height: 2em;
-    }
-
-    ::details-content {
-        transition:
-        height 0.5s ease,
-        content-visibility 0.5s ease allow-discrete;
-        height: 0;
-        overflow: clip;
-    }
-
-    [open]::details-content {
-        height: auto;
-    }
-  
-    summary::-webkit-details-marker {
-        display: none;
-    }
-
-    details summary::after {
-        content: url("/static/chevron-down-blue.svg"); 
-        transition: transform 0.3s;
-    }
-
-    details[open] summary::after {
-        transform: rotate(180deg);
-    }
-
-    .circle-faq {
-        position: absolute;
-        width: 20em;
-        left: -10%;
-        bottom: -10%;
-        z-index: 0;
-
-         @media (min-width: 768px) {
-            width: 25em;
-            left: 5%;
-            bottom: -15%;
-            position: absolute;
-             z-index: 0;
-        }
     }
 </style>
