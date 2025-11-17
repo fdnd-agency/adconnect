@@ -1,6 +1,5 @@
 <script>
-	import FaqItem from '$lib/components/faq/SingleFaq.svelte';
-	import darkcircle from '$lib/assets/dark-circle.svg';
+    import { darkcircle } from '$lib'
 </script>
 
 <section class="faq">

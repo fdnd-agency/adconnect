@@ -1,15 +1,11 @@
 <script>
     import { page } from "$app/stores";
-    import NavPros from '$lib/components/header/NavPros.svelte';
-    import MultipleFaq from '$lib/components/faq/MultipleFaq.svelte';
-    import SingleFaq from '$lib/components/faq/SingleFaq.svelte';
 
-    // Import afbeeldingen
-    import mail from '$lib/assets/icon-mail.svg';
-    import map from '$lib/assets/icon-map.svg';
-    import phone from '$lib/assets/icon-phone.svg';
-    import lightcircle from '$lib/assets/light-circle.svg';
-    import darkcircle from '$lib/assets/dark-circle.svg';
+    // Import components Atomic Design
+    import { MultipleFaq, SingleFaq, NavPros } from '$lib'
+   
+    // Import images Atomic Design
+    import { mail, map, phone, lightcircle, darkcircle } from '$lib'
 
     export let breadcrumb = "";
 

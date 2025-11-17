@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/state';
-  import bird from "$lib/assets/vector-bird.jpg";
+  import { bird } from '$lib';
   import NavPros from '$lib/components/header/NavPros.svelte';
 </script>
 

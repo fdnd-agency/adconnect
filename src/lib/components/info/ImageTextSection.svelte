@@ -9,7 +9,7 @@
     export let imagePosition = "left";
     export let background = "blue";
 
-    import lightcircle from '$lib/assets/light-circle.svg';
+    import { lightcircle } from '$lib';
 </script>
 
 <section

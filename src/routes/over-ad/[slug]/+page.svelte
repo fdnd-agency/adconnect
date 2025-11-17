@@ -1,10 +1,11 @@
 <script>
-    import NavPros from '$lib/components/header/NavPros.svelte';
     import Hero from "$lib/components/hero/Hero.svelte";
     import ThemeCard from '$lib/components/theme/ThemeCard.svelte';
     import Divider from '$lib/components/divider/Divider.svelte';
 
     import placeholder from "$lib/assets/placeholder-hero.png";
+
+    import { NavPros } from '$lib'
 
     let { data } = $props(); 
 

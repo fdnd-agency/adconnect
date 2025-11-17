@@ -1,18 +1,17 @@
 <script>
-  import NavPros from '$lib/components/header/NavPros.svelte';
+  // Import components
   import Hero from "$lib/components/hero/Hero.svelte";
-  import BenefitCard from "$lib/components/benefits/BenefitsCard.svelte";
   import ImageTextSection from '$lib/components/info/ImageTextSection.svelte';
   import ThemeCard from '$lib/components/theme/ThemeCard.svelte';
   import DividerText from '$lib/components/divider/DividerText.svelte';
   import Divider from '$lib/components/divider/Divider.svelte';
   import LogoSection from '$lib/components/cooperation/LogoSection.svelte';
 
-  import doorstroom from '$lib/assets/doorstroom-ad-dag.jpg';
-  import overleggen from '$lib/assets/overleggen.jpg';
-  import awards from '$lib/assets/ad-talent-awards.jpg';
-  import dots from '$lib/assets/dots.svg';
-  import placeholder from "$lib/assets/placeholder-hero.png";
+  // Import images
+  import { doorstroom, overleggen, awards, dots, placeholder } from '$lib';
+
+  // Import Atomic Design
+  import { BenefitsCard, NavPros } from '$lib'
 
   let { data } = $props(); 
 
@@ -40,20 +39,20 @@
     </section>
 
     <section class="benefits">
-        <BenefitCard
+        <BenefitsCard
             title="Doorstroom mogelijkheid"
             excerpt="Lorem ipsum dolor sit amet consectetur. Eget consectetur nec commodo risus convallis tristique. Facilisis amet rutrum purus diam nulla metus. Pellentesque.">
-        </BenefitCard>
+        </BenefitsCard>
 
-        <BenefitCard
+        <BenefitsCard
             title="Korte studieduur"
             excerpt="Lorem ipsum dolor sit amet consectetur. Eget consectetur nec commodo risus convallis tristique. Facilisis amet rutrum purus diam nulla metus. Pellentesque.">
-        </BenefitCard>
+        </BenefitsCard>
 
-        <BenefitCard
+        <BenefitsCard
             title="Persoonlijk & kleinschalig"
             excerpt="Lorem ipsum dolor sit amet consectetur. Eget consectetur nec commodo risus convallis tristique. Facilisis amet rutrum purus diam nulla metus. Pellentesque.">
-        </BenefitCard>
+        </BenefitsCard>
     </section>
 </section>
 

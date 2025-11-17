@@ -2,9 +2,11 @@
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import DocumentCard from '$lib/components/documents/DocumentCard.svelte';
-    import NavPros from '$lib/components/header/NavPros.svelte';
     import Hero from '$lib/components/hero/Hero.svelte';
     import placeholder from "$lib/assets/placeholder-hero.png";
+
+    // Import components Atomic Design
+    import { NavPros } from '$lib'
 
     // Haal data op uit page.server.js via props
     let { data } = $props(); 
