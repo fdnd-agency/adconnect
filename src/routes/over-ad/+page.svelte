@@ -1,7 +1,7 @@
 <script>
   import NavPros from '$lib/components/header/NavPros.svelte';
   import Hero from "$lib/components/hero/Hero.svelte";
-  import BenefitCard from "$lib/components/benefits/BenefitCard.svelte";
+  import BenefitCard from "$lib/components/benefits/BenefitsCard.svelte";
   import ImageTextSection from '$lib/components/info/ImageTextSection.svelte';
   import ThemeCard from '$lib/components/theme/ThemeCard.svelte';
   import DividerText from '$lib/components/divider/DividerText.svelte';
@@ -126,15 +126,21 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
     }
 
     .benefits {
-        display: flex;
-        flex-direction: column;
+        display: grid;
         gap: 2.5em;
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+        .benefits {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     @media (min-width: 1024px) {
         .benefits {
-            flex-direction: row;
-            
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 
