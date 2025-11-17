@@ -13,6 +13,13 @@
 - At the end of the sprint hold a short feedback round for each team member.
 - Ask for feedback during the process from teammates.
 
+## Rules implementing container queries
+- Use container queries only when component resizing is needed.
+- Add an extra (div) wrapper only if it has a clear structural purpose (for example grouping/separating elements).
+- Give containers clear and consistent names.
+- Apply `@container` to the nearest logical parent of the component.
+- Mention new or changed container query usage in your pull request.
+
 ## Agreements with client
 
 - Productowner: Erwin de Beer.
