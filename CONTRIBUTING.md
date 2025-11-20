@@ -13,19 +13,6 @@
 - At the end of the sprint hold a short feedback round for each team member.
 - Ask for feedback during the process from teammates.
 
-## Rules implementing container queries
-- Use container queries only when component resizing is needed.
-- Add an extra (div) wrapper only if it has a clear structural purpose (for example grouping/separating elements).
-- Give containers clear and consistent names.
-- Apply `@container` to the nearest logical parent of the component.
-- Mention new or changed container query usage in your pull request.
-
-## Rules implementing media query user preferences
-- Our project supports these user-preference media queries: prefers-color-scheme: dark, inverted-colors, prefers-contrast: more, and prefers-reduced-motion: reduce.
-- Global design values (like colors) should be defined as CSS variables in :root.
-- These variables can then be adjusted inside the relevant media queries when a user preference is detected.
-- Even without any user preferences active, the default design should remain usable, accessible, and readable.
-
 ## Agreements with client
 
 - Productowner: Erwin de Beer.
@@ -92,6 +79,19 @@ We follow the code conventions of FDND agency. Below the most important conventi
 - Make user-friendly and accessible designs.
 - Work together in design systems and validate designs in both Figma and the browser.
 - Use variables, styles en organize your Figma-files effectively.
+
+## Rules implementing container queries
+- Use container queries only when component resizing is needed.
+- Add an extra (div) wrapper only if it has a clear structural purpose (for example grouping/separating elements).
+- Give containers clear and consistent names.
+- Apply `@container` to the nearest logical parent of the component.
+- Mention new or changed container query usage in your pull request.
+
+## Rules implementing media query user preferences
+- Always start with default CSS and add media queries as overrides.
+- Keep it simple and semantic with clear names like `@media (prefers-color-scheme: dark)`.
+- Use only what is relevant for UX.
+- Group related rules together such as all `prefers-reduced-motion` styles.
 
 ## DoR:
 
