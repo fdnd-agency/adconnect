@@ -20,6 +20,12 @@
 - Apply `@container` to the nearest logical parent of the component.
 - Mention new or changed container query usage in your pull request.
 
+## Rules implementing media query user preferences
+- Our project supports these user-preference media queries: prefers-color-scheme: dark, inverted-colors, prefers-contrast: more, and prefers-reduced-motion: reduce.
+- Global design values (like colors) should be defined as CSS variables in :root.
+- These variables can then be adjusted inside the relevant media queries when a user preference is detected.
+- Even without any user preferences active, the default design should remain usable, accessible, and readable.
+
 ## Agreements with client
 
 - Productowner: Erwin de Beer.
