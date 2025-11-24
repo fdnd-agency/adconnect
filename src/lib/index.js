@@ -3,6 +3,8 @@
 // Molecules
 export { default as SingleFaq } from './molecules/SingleFaq.svelte';
 export { default as BenefitsCard } from './molecules/BenefitsCard.svelte';
+export { default as ThemeCard } from './molecules/ThemeCard.svelte';
+
 
 // Organisms
 export { default as MultipleFaq } from './organisms/MultipleFaq.svelte';
