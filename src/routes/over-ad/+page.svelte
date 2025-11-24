@@ -27,7 +27,7 @@
 <Hero
   title="Over Associate Degree's"
   description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor tempus eleifend nunc.">
-  <img class="hero-image" src={placeholder} alt="" />
+  <img class="hero-image" src={placeholder} alt="" fetchpriority=high />
   <a slot="primary" href="#benefit" class="button-outline-white" id="benefit">Lees meer →</a>
 </Hero>
 
