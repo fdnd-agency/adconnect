@@ -1,7 +1,8 @@
 <script>
     import DocumentCard from "$lib/components/documents/DocumentCard.svelte";
-    import NavPros from '$lib/components/header/NavPros.svelte';
     import Hero from '$lib/components/hero/Hero.svelte';
+
+    import { NavPros } from '$lib'
 
     let { data } = $props(); 
     let documents = data.documents;

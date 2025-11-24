@@ -2,13 +2,8 @@
     // Export prop
     export let document;
 
-    // Import afbeeldingen
-    import fallback from '$lib/assets/news-fallback.jpg';
-    import calendar from '$lib/assets/icon-calendar-orange.svg';
-    import label from '$lib/assets/icon-label.svg';
-
-    // Import component
-    import ButtonLight from "$lib/components/ButtonLight.svelte";
+    // Import images
+    import { fallback, calendar, label } from '$lib';
 </script>
 
 <article>

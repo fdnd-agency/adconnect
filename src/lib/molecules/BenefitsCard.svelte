@@ -4,7 +4,7 @@
     export let excerpt = "";
 
     // Import img
-    import check from '$lib/assets/icon-check-white.svg';
+    import { check } from '$lib'
 </script>
 
 <article>

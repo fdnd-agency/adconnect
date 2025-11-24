@@ -3,7 +3,7 @@
     export let themes;
 
     // Import image
-    import dots from '$lib/assets/dots.svg';
+    import { dots } from '$lib';
     
 </script>
 

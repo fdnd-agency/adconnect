@@ -1,7 +1,9 @@
 <script>
-	import TopNav from '$lib/components/header/TopNav.svelte';
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
+
+  import { TopNav } from '$lib'
+
 	let { children } = $props();
 </script>
   

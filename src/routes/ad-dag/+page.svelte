@@ -1,15 +1,14 @@
 <script>
-	import NavPros from "$lib/components/header/NavPros.svelte";
 	import Hero from "$lib/components/hero/Hero.svelte";
 	import logomobile from "$lib/assets/logomobile.svg";
 	import addag1 from "$lib/assets/addag-1.png";
 	import InfoAddag from "$lib/components/ad/infoaddag.svelte";
 	import Schedule from "$lib/components/ad/schedule.svelte";
   	import Location from "$lib/components/location/location.svelte";
-  	import Faq from '$lib/components/faq/MultipleFaq.svelte';
-	import SingleFaq from '$lib/components/faq/SingleFaq.svelte';
     import addag2 from "$lib/assets/addag-2.png";
-  import MultipleFaq from "$lib/components/faq/MultipleFaq.svelte";
+
+	import { MultipleFaq, SingleFaq, NavPros } from '$lib'
+
   </script>
   
   <svelte:head>

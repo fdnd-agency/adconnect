@@ -1,7 +1,8 @@
 <script>
   import { page } from '$app/state';
-  import bird from "$lib/assets/vector-bird.jpg";
-  import NavPros from '$lib/components/header/NavPros.svelte';
+
+  // Import Atomic Design
+  import { NavPros, bird } from '$lib'
 </script>
 
 <svelte:head>
