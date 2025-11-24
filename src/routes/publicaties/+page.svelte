@@ -3,7 +3,7 @@
     import { page } from '$app/stores';
     import DocumentCard from '$lib/components/documents/DocumentCard.svelte';
     import Hero from '$lib/components/hero/Hero.svelte';
-    import placeholder from "$lib/assets/placeholder-hero.png";
+    import placeholder from "$lib/assets/placeholder-hero.webp";
 
     // Import components Atomic Design
     import { NavPros } from '$lib'

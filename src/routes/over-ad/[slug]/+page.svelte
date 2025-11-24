@@ -3,7 +3,7 @@
     import ThemeCard from '$lib/components/theme/ThemeCard.svelte';
     import Divider from '$lib/components/divider/Divider.svelte';
 
-    import placeholder from "$lib/assets/placeholder-hero.png";
+    import placeholder from "$lib/assets/placeholder-hero.webp";
 
     import { NavPros } from '$lib'
 

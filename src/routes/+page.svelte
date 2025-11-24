@@ -1,7 +1,7 @@
 <script>
   import NewsCardSection from "$lib/components/NewsCardSection.svelte";
   import Hero from "$lib/components/hero/Hero.svelte";
-  import placeholder from "$lib/assets/placeholder-hero.png";
+  import placeholder from "$lib/assets/placeholder-hero.webp";
   import Information from "$lib/components/information-home/Information.svelte";
   import InformationCards from "$lib/components/information-cards/InformationCards.svelte";
   import LogoSection from "$lib/components/cooperation/LogoSection.svelte";
