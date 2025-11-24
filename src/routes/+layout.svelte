@@ -30,7 +30,7 @@
 
 <footer class="footer-grid">
   <div class="wrapper">
-    <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" /></a>
+    <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
 
   <section>
     <h2>AdConnect</h2>
