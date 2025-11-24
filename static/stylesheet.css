@@ -57,42 +57,42 @@
   /* =============== COLOR =============== */
 
   /*PRIMARY COLORS */
-  --primary-blue: #00408d;
-  --primary-orange: #e75234;
-  --background: #fafafa;
-  --text-white: #ffffff;
-  --text-darkblue: #000c1a;
+  --primary-blue: hsl(213, 100%, 28%);
+  --primary-orange: hsl(10, 79%, 55%);
+  --background: hsl(0, 0%, 98%);
+  --text-white: hsl(0, 0%, 100%);
+  --text-darkblue: hsl(212, 100%, 5%);
 
   /*ACCENT COLORS*/
   /* darker */
-  --blue-900: #001329;
-  --blue-800: #001f44;
+  --blue-900: hsl(212, 100%, 8%);
+  --blue-800: hsl(213, 100%, 13%);
 
   /* lighter */
-  --blue-600: #0058c2;
-  --blue-500: #006ff5;
-  --blue-400: #298aff;
-  --blue-300: #5ca5ff;
-  --blue-200: #8fc1ff;
-  --blue-150: #d1e0f9;
-  --blue-100: #c2ddff58;
+  --blue-600: hsl(213, 100%, 38%);
+  --blue-500: hsl(213, 100%, 48%);
+  --blue-400: hsl(213, 100%, 58%);
+  --blue-300: hsl(213, 100%, 68%);
+  --blue-200: hsl(213, 100%, 78%);
+  --blue-150: hsl(218, 77%, 90%);
+  --blue-100: hsla(213, 100%, 88%, 0.345);
 
   /* darker */
-  --orange-900: #cd3618;
+  --orange-900: hsl(10, 79%, 45%);
 
   /* lighter */
-  --orange-500: #f67055;
-  --orange-300: #f99986;
-  --orange-100: #fbc2b6;
+  --orange-500: hsl(10, 90%, 65%);
+  --orange-300: hsl(10, 91%, 75%);
+  --orange-100: hsl(10, 90%, 85%);
 
   /*NEUTRAL COLORS*/
-  --neutral-900: #13171d;
-  --neutral-800: #171d24;
-  --neutral-700: #242d39;
-  --neutral-600: #435264;
-  --neutral-500: #49596c;
-  --neutral-300: #a1aebd;
-  --neutral-200: #d2d5d9;
+  --neutral-900: hsl(216, 21%, 9%);
+  --neutral-800: hsl(212, 22%, 12%);
+  --neutral-700: hsl(214, 23%, 18%);
+  --neutral-600: hsl(213, 20%, 33%);
+  --neutral-500: hsl(213, 19%, 35%);
+  --neutral-300: hsl(212, 18%, 69%);
+  --neutral-200: hsl(214, 8%, 84%);
 
   /* =============== BUTTONS =============== */
 
