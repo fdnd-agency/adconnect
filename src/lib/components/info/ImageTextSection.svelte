@@ -20,7 +20,7 @@
     <div class="wrapper">
       <div class="img-wrapper">
         <img class="circle" src="{lightcircle}" alt="">
-        <img class="visual" src={image} alt="{alt}">
+        <img class="visual" src={image} alt="{alt}" loading="lazy">
       </div>
 
         <div class="content">
