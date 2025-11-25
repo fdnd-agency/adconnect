@@ -73,14 +73,15 @@
     padding-bottom: 1rem;
   }
 
-  li {
-    display: flex;
-  }
-
   .pro.active,
   .stu.active {
     background-color: var(--background);
     padding: .5rem .8rem 2rem .8rem;
+    color: #000;
+  }
+
+  .pro, .stu {
+    color: #000;
   }
 
   /* DESKTOP */
@@ -97,12 +98,11 @@
       display: flex;
       gap: 2rem;
       margin-right: 5%;
-      margin-top: -2em;
       justify-content: flex-end;
     }
 
    /* Hover animatie & active state */
-   a {
+   .menu-button {
       position: relative;
       text-decoration: none;
       color: #000;
@@ -110,7 +110,7 @@
       transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
-    a::after {
+    .menu-button::after {
       content: "";
       position: absolute;
       left: 0;
@@ -121,11 +121,11 @@
       transition: width 0.3s ease;
     }
 
-    a:hover::after {
+    .menu-button:hover::after {
       width: 100%;
     }
 
-    a.active::after {
+    .menu-button.active::after {
       width: 100%;
     }
   }
