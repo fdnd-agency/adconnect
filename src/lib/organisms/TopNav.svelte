@@ -73,10 +73,14 @@
     padding-bottom: 1rem;
   }
 
+  li {
+    display: flex;
+  }
+
   .pro.active,
   .stu.active {
     background-color: var(--background);
-    padding-bottom: 2rem;
+    padding: .5rem .8rem 2rem .8rem;
   }
 
   /* DESKTOP */
@@ -93,6 +97,7 @@
       display: flex;
       gap: 2rem;
       margin-right: 5%;
+      margin-top: -2em;
       justify-content: flex-end;
     }
 
