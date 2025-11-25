@@ -41,7 +41,7 @@
 <Hero
   title="Publicaties"
   description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor cies donec porttitor tempus eleifend nunc.tempus eleifend nunc.">
-  <img class="hero-image" src={placeholder} alt="" />
+  <img class="hero-image" src={placeholder} alt="" fetchpriority=high />
 </Hero>
 
 <div class="filter-buttons">
