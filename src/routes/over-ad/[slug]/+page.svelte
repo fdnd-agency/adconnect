@@ -21,7 +21,7 @@
 <Hero
   title={theme.title}
   description={theme.description}>
-  <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${theme.hero}`} alt={theme.title} />
+  <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${theme.hero}`} alt={theme.title} fetchpriority=high />
 </Hero>
 
 <section class="wrapper-detail">
