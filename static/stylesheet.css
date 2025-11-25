@@ -56,43 +56,53 @@
 
   /* =============== COLOR =============== */
 
+  /* Base HSL system */
+  --blue-hue: 213;
+  --blue-sat: 100%;
+
+  --orange-hue: 10;
+  --orange-sat: 80%;
+
+  --neutral-hue: 213;
+  --neutral-sat: 10%;
+
   /*PRIMARY COLORS */
-  --primary-blue: hsl(213, 100%, 28%);
-  --primary-orange: hsl(10, 79%, 55%);
+  --primary-blue: hsl(var(--blue-hue), var(--blue-sat), 28%);
+  --primary-orange: hsl(var(--orange-hue), var(--orange-sat), 55%);
   --background: hsl(0, 0%, 98%);
   --text-white: hsl(0, 0%, 100%);
-  --text-darkblue: hsl(212, 100%, 5%);
+  --text-darkblue: hsl(var(--blue-hue), var(--blue-sat), 5%);
 
   /*ACCENT COLORS*/
   /* darker */
-  --blue-900: hsl(212, 100%, 8%);
-  --blue-800: hsl(213, 100%, 13%);
+  --blue-900: hsl(var(--blue-hue), var(--blue-sat), 8%);
+  --blue-800: hsl(var(--blue-hue), var(--blue-sat), 13%);
 
   /* lighter */
-  --blue-600: hsl(213, 100%, 38%);
-  --blue-500: hsl(213, 100%, 48%);
-  --blue-400: hsl(213, 100%, 58%);
-  --blue-300: hsl(213, 100%, 68%);
-  --blue-200: hsl(213, 100%, 78%);
-  --blue-150: hsl(218, 77%, 90%);
-  --blue-100: hsla(213, 100%, 88%, 0.345);
+  --blue-600: hsl(var(--blue-hue), var(--blue-sat), 38%);
+  --blue-500: hsl(var(--blue-hue), var(--blue-sat), 48%);
+  --blue-400: hsl(var(--blue-hue), var(--blue-sat), 58%);
+  --blue-300: hsl(var(--blue-hue), var(--blue-sat), 68%);
+  --blue-200: hsl(var(--blue-hue), var(--blue-sat), 78%);
+  --blue-150: hsl(var(--blue-hue), var(--blue-sat), 90%);
+  --blue-100: hsl(var(--blue-hue), var(--blue-sat), 88%);
 
   /* darker */
-  --orange-900: hsl(10, 79%, 45%);
+  --orange-900: hsl(var(--orange-hue), var(--orange-sat), 45%);
 
   /* lighter */
-  --orange-500: hsl(10, 90%, 65%);
-  --orange-300: hsl(10, 91%, 75%);
-  --orange-100: hsl(10, 90%, 85%);
+  --orange-500: hsl(var(--orange-hue), var(--orange-sat), 65%);
+  --orange-300: hsl(var(--orange-hue), var(--orange-sat), 75%);
+  --orange-100: hsl(var(--orange-hue), var(--orange-sat), 85%);
 
   /*NEUTRAL COLORS*/
-  --neutral-900: hsl(216, 21%, 9%);
-  --neutral-800: hsl(212, 22%, 12%);
-  --neutral-700: hsl(214, 23%, 18%);
-  --neutral-600: hsl(213, 20%, 33%);
-  --neutral-500: hsl(213, 19%, 35%);
-  --neutral-300: hsl(212, 18%, 69%);
-  --neutral-200: hsl(214, 8%, 84%);
+  --neutral-900: hsl(var(--neutral-hue), var(--neutral-sat), 9%);
+  --neutral-800: hsl(var(--neutral-hue), var(--neutral-sat), 12%);
+  --neutral-700: hsl(var(--neutral-hue), var(--neutral-sat), 18%);
+  --neutral-600: hsl(var(--neutral-hue), var(--neutral-sat), 33%);
+  --neutral-500: hsl(var(--neutral-hue), var(--neutral-sat), 35%);
+  --neutral-300: hsl(var(--neutral-hue), var(--neutral-sat), 69%);
+  --neutral-200: hsl(var(--neutral-hue), var(--neutral-sat), 84%);
 
   /* =============== BUTTONS =============== */
 
