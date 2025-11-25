@@ -1,6 +1,7 @@
 <script>
     import logo from '$lib/assets/logo-desktop.svg';
     import logomobile from '$lib/assets/logomobile.svg';
+    import { page } from '$app/stores';
   </script>
   
   <nav>
@@ -24,9 +25,9 @@
     </details>
   
     <ul class="desktop-nav">
-      <li><a class='menu-button' href="/over-ad">Over Ad's</a></li>
-      <li><a class='menu-button' href="/talent-award">Talent Award</a></li>
-      <li><a class='menu-button' href="/nieuws">Nieuws</a></li>
+      <li><a class={$page.url.pathname === "/over-ad" ? "menu-button active" : "menu-button"} href="/studenten/over-ad">Over Ad's</a></li>
+      <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/studenten/talent-award">Talent Award</a></li>
+      <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/studenten/nieuws">Nieuws</a></li>
       <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
     </ul>
   </nav>
@@ -164,14 +165,24 @@
       padding: 1rem 0;
     }
 
+    /* Hover animatie menu items */
     .menu-button {
-    font-weight: var(--heading-font-weight);
-    color: var(--blue-800);
-    padding: .5rem 1rem;
-    &:hover {
-       background: var(--blue-200); 
+      font-weight: var(--heading-font-weight);
+      color: var(--blue-800);
+      padding: .5rem 1rem;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        height: 2px;
+        width: 0%;
+        background: currentColor;
+        transition: 0.3s ease;
+      }
     }
-  }
   }
   
   /* Accessibility */
@@ -179,6 +190,23 @@
     .panel,
     .menu::before,
     summary span { transition: none !important; }
+  }
+
+  /* Active state */
+  a {
+    position: relative;
+  }
+
+  a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(1);
+    transition: 0.3s ease;
   }
   </style>
   
