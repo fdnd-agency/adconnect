@@ -1,9 +1,33 @@
 :root {
   /* =============== TYPOGRAPHY =============== */
 
-  /* Font-family*/
+  @font-face {
+    font-family: "Archivo";
+    src: url("/fonts/Archivo.woff2") format("woff2"), url("/fonts/Archivo.woff") format("woff");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Archivo";
+    src: url("/fonts/Archivo Italic.woff2") format("woff2"), url("/fonts/Archivo Italic.woff") format("woff");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "ClashDisplay";
+    src: url("/fonts/Clash Display Variable.woff2") format("woff2"), url("/fonts/Clash Display Variable.woff") format("woff");
+    font-weight: 200 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Font families (CSS variables) */
   --font-body: "Archivo", sans-serif;
-  --font-heading: "Clash Display", sans-serif;
+  --font-heading: "ClashDisplay", sans-serif;
 
   /* Font-weight*/
   --heading-font-weight: 600;
