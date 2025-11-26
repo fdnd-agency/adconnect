@@ -31,6 +31,8 @@
     <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/talent-award">Talent Award</a></li>
     <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/nieuws">Nieuws</a></li>
     <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
+
+    <div class="follower"></div>
   </ul>
 </nav>
 
@@ -172,9 +174,9 @@
       font-weight: var(--heading-font-weight);
       color: var(--blue-800);
       padding: .5rem 1rem;
-      position: relative;
+      /* position: relative; */
 
-      &::after {
+      /* &::after {
         content: "";
         position: absolute;
         left: 0;
@@ -183,7 +185,7 @@
         width: 0%;
         background: currentColor;
         transition: 0.3s ease;
-      }
+      } */
     }
   }
 
@@ -198,7 +200,30 @@
     summary span { transition: none !important; }
   }
 
-  /* Active state */
+  /* Hover animatie menu items */
+    .menu-button {
+      font-weight: var(--heading-font-weight);
+      color: var(--blue-800);
+      padding: .5rem 1rem;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        height: 2px;
+        width: 0%;
+        background: currentColor;
+        transition: 0.3s ease;
+      }
+    }
+
+    .menu-button:hover::after {
+      width: 100%;
+    }
+
+  
   a {
     position: relative;
   }
@@ -214,5 +239,5 @@
     transform: scaleX(1);
     transition: 0.3s ease;
   }
-  </style>
+</style>
   
