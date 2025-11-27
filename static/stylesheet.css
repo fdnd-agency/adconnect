@@ -85,7 +85,7 @@
   --blue-300: hsl(var(--blue-hue), var(--blue-sat), 68%);
   --blue-200: hsl(var(--blue-hue), var(--blue-sat), 78%);
   --blue-150: hsl(var(--blue-hue), var(--blue-sat), 90%);
-  --blue-100: hsl(var(--blue-hue), var(--blue-sat), 88%);
+  --blue-100: hsl(var(--blue-hue), var(--blue-sat), 95%);
 
   /* darker */
   --orange-900: hsl(var(--orange-hue), var(--orange-sat), 45%);
