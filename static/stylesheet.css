@@ -56,43 +56,53 @@
 
   /* =============== COLOR =============== */
 
+  /* Base HSL system */
+  --blue-hue: 213;
+  --blue-sat: 100%;
+
+  --orange-hue: 10;
+  --orange-sat: 80%;
+
+  --neutral-hue: 213;
+  --neutral-sat: 10%;
+
   /*PRIMARY COLORS */
-  --primary-blue: #00408d;
-  --primary-orange: #e75234;
-  --background: #fafafa;
-  --text-white: #ffffff;
-  --text-darkblue: #000c1a;
+  --primary-blue: hsl(var(--blue-hue), var(--blue-sat), 28%);
+  --primary-orange: hsl(var(--orange-hue), var(--orange-sat), 55%);
+  --background: hsl(0, 0%, 98%);
+  --text-white: hsl(0, 0%, 100%);
+  --text-darkblue: hsl(var(--blue-hue), var(--blue-sat), 5%);
 
   /*ACCENT COLORS*/
   /* darker */
-  --blue-900: #001329;
-  --blue-800: #001f44;
+  --blue-900: hsl(var(--blue-hue), var(--blue-sat), 8%);
+  --blue-800: hsl(var(--blue-hue), var(--blue-sat), 13%);
 
   /* lighter */
-  --blue-600: #0058c2;
-  --blue-500: #006ff5;
-  --blue-400: #298aff;
-  --blue-300: #5ca5ff;
-  --blue-200: #8fc1ff;
-  --blue-150: #d1e0f9;
-  --blue-100: #c2ddff58;
+  --blue-600: hsl(var(--blue-hue), var(--blue-sat), 38%);
+  --blue-500: hsl(var(--blue-hue), var(--blue-sat), 48%);
+  --blue-400: hsl(var(--blue-hue), var(--blue-sat), 58%);
+  --blue-300: hsl(var(--blue-hue), var(--blue-sat), 68%);
+  --blue-200: hsl(var(--blue-hue), var(--blue-sat), 78%);
+  --blue-150: hsl(var(--blue-hue), var(--blue-sat), 90%);
+  --blue-100: hsl(var(--blue-hue), var(--blue-sat), 88%);
 
   /* darker */
-  --orange-900: #cd3618;
+  --orange-900: hsl(var(--orange-hue), var(--orange-sat), 45%);
 
   /* lighter */
-  --orange-500: #f67055;
-  --orange-300: #f99986;
-  --orange-100: #fbc2b6;
+  --orange-500: hsl(var(--orange-hue), var(--orange-sat), 65%);
+  --orange-300: hsl(var(--orange-hue), var(--orange-sat), 75%);
+  --orange-100: hsl(var(--orange-hue), var(--orange-sat), 85%);
 
   /*NEUTRAL COLORS*/
-  --neutral-900: #13171d;
-  --neutral-800: #171d24;
-  --neutral-700: #242d39;
-  --neutral-600: #435264;
-  --neutral-500: #49596c;
-  --neutral-300: #a1aebd;
-  --neutral-200: #d2d5d9;
+  --neutral-900: hsl(var(--neutral-hue), var(--neutral-sat), 9%);
+  --neutral-800: hsl(var(--neutral-hue), var(--neutral-sat), 12%);
+  --neutral-700: hsl(var(--neutral-hue), var(--neutral-sat), 18%);
+  --neutral-600: hsl(var(--neutral-hue), var(--neutral-sat), 33%);
+  --neutral-500: hsl(var(--neutral-hue), var(--neutral-sat), 35%);
+  --neutral-300: hsl(var(--neutral-hue), var(--neutral-sat), 69%);
+  --neutral-200: hsl(var(--neutral-hue), var(--neutral-sat), 84%);
 
   /* =============== BUTTONS =============== */
 
