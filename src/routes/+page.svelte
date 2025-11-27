@@ -24,8 +24,8 @@
 <NavPros />
 
 <Hero title="Overlegplatform Associate Degrees" description="Het overlegplatform voor Associate Degree opleidingen in Nederland.">
-  <a slot="primary" href="/dev/hero" class="button-outline-white">Lorum Ipsum →</a>
-  <a slot="secondary" href="/dev/hero" class="button-outline-blue">Lorum Action →</a>
+  <a slot="secondary" href="/ad-dag" class="button-outline-white">Kom naar de Ad-dag →</a>
+  <a slot="primary" href="/over-ad" class="button-outline-blue">Meer over Ad's</a>
   <img class="hero-image" src={placeholder} alt="" />
 </Hero>
 
