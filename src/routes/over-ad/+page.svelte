@@ -2,7 +2,6 @@
   // Import components
   import Hero from "$lib/components/hero/Hero.svelte";
   import ImageTextSection from '$lib/components/info/ImageTextSection.svelte';
-  import ThemeCard from '$lib/components/theme/ThemeCard.svelte';
   import DividerText from '$lib/components/divider/DividerText.svelte';
   import Divider from '$lib/components/divider/Divider.svelte';
   import LogoSection from '$lib/components/cooperation/LogoSection.svelte';
@@ -11,7 +10,7 @@
   import { doorstroom, overleggen, awards, dots, placeholder } from '$lib';
 
   // Import Atomic Design
-  import { BenefitsCard, NavPros } from '$lib'
+  import { BenefitsCard, NavPros, ThemeCard } from '$lib'
 
   let { data } = $props(); 
 
@@ -28,7 +27,7 @@
 <Hero
   title="Over Associate Degree's"
   description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor tempus eleifend nunc.">
-  <img class="hero-image" src={placeholder} alt="" />
+  <img class="hero-image" src={placeholder} alt="" fetchpriority=high />
   <a slot="primary" href="#benefit" class="button-outline-white" id="benefit">Lees meer →</a>
 </Hero>
 

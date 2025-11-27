@@ -1,11 +1,10 @@
 <script>
     import Hero from "$lib/components/hero/Hero.svelte";
-    import ThemeCard from '$lib/components/theme/ThemeCard.svelte';
     import Divider from '$lib/components/divider/Divider.svelte';
 
-    import placeholder from "$lib/assets/placeholder-hero.png";
+    import placeholder from "$lib/assets/placeholder-hero.webp";
 
-    import { NavPros } from '$lib'
+    import { NavPros, ThemeCard } from '$lib'
 
     let { data } = $props(); 
 
@@ -22,7 +21,7 @@
 <Hero
   title={theme.title}
   description={theme.description}>
-  <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${theme.hero}`} alt={theme.title} />
+  <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${theme.hero}`} alt={theme.title} fetchpriority=high />
 </Hero>
 
 <section class="wrapper-detail">

@@ -1,7 +1,7 @@
 <script>
   import NewsCardSection from "$lib/components/NewsCardSection.svelte";
   import Hero from "$lib/components/hero/Hero.svelte";
-  import placeholder from "$lib/assets/placeholder-hero.png";
+  import placeholder from "$lib/assets/placeholder-hero.webp";
   import Information from "$lib/components/information-home/Information.svelte";
   import InformationCards from "$lib/components/information-cards/InformationCards.svelte";
   import LogoSection from "$lib/components/cooperation/LogoSection.svelte";
@@ -24,8 +24,8 @@
 <NavPros />
 
 <Hero title="Overlegplatform Associate Degrees" description="Het overlegplatform voor Associate Degree opleidingen in Nederland.">
-  <a slot="primary" href="/dev/hero" class="button-outline-white">Lorum Ipsum →</a>
-  <a slot="secondary" href="/dev/hero" class="button-outline-blue">Lorum Action →</a>
+  <a slot="secondary" href="/ad-dag" class="button-outline-white">Kom naar de Ad-dag →</a>
+  <a slot="primary" href="/over-ad" class="button-outline-blue">Meer over Ad's</a>
   <img class="hero-image" src={placeholder} alt="" />
 </Hero>
 

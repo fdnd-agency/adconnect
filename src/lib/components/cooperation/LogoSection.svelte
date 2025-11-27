@@ -6,7 +6,19 @@
     <ul>
         {#each cooperation as logo}
         <li>
-            <a target="_blank" href="{logo.url}"><img src={`https://fdnd-agency.directus.app/assets/${logo.logo}`} alt={logo.name} /></a>
+            <a target="_blank" href="{logo.url}">
+                <img
+                    src={`https://fdnd-agency.directus.app/assets/${logo.logo}?width=800`}
+                    srcset="
+                        https://fdnd-agency.directus.app/assets/{logo.logo}?width=200 200w,
+                        https://fdnd-agency.directus.app/assets/{logo.logo}?width=400 400w,
+                        https://fdnd-agency.directus.app/assets/{logo.logo}?width=800 800w
+                    "
+                    sizes="(max-width: 600px) 200px, 247px"
+                    alt="{logo.name}"
+                    style="max-width: 100%; height: auto;"
+                    />
+            </a>
         </li>
         {/each}
     </ul>

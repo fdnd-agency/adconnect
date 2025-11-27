@@ -6,7 +6,7 @@
 
 <nav>
   <a class="logo-mobile" href="/"><img src={logomobile} alt="Logo" /></a>
-  <a class="logo-desktop" href="/"><img src={logo} alt="Logo" /></a>
+  <a class="logo-desktop" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
   <details class="menu">
     <summary>
       <span></span>

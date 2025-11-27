@@ -3,7 +3,7 @@
     import { page } from '$app/stores';
     import DocumentCard from '$lib/components/documents/DocumentCard.svelte';
     import Hero from '$lib/components/hero/Hero.svelte';
-    import placeholder from "$lib/assets/placeholder-hero.png";
+    import placeholder from "$lib/assets/placeholder-hero.webp";
 
     // Import components Atomic Design
     import { NavPros } from '$lib'
@@ -41,7 +41,7 @@
 <Hero
   title="Publicaties"
   description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor cies donec porttitor tempus eleifend nunc.tempus eleifend nunc.">
-  <img class="hero-image" src={placeholder} alt="" />
+  <img class="hero-image" src={placeholder} alt="" fetchpriority=high />
 </Hero>
 
 <div class="filter-buttons">

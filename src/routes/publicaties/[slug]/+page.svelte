@@ -18,7 +18,7 @@
 <Hero
     title={document.title}
     description={document.description.split(' ').slice(0, 20).join(' ') + '...'}>
-    <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${document.hero_image}`} alt={document.title} />
+    <img class="hero-image" src={`https://fdnd-agency.directus.app/assets/${document.hero_image}?format=webp`} alt={document.title} fetchpriority=high />
 </Hero>
 
 <div class="wrapper-detail">
@@ -40,13 +40,6 @@
         </section>
     </div>
 </div>
-<!-- 
-<section class="other-documents">
-    <h2>Bekijk andere populaire thema's</h2>
-    <section class="documents">
-        <DocumentCard documents={documents.slice(0, 3)} />
-    </section>
-</section> -->
 
 <style>
     .wrapper-detail {
@@ -154,33 +147,6 @@
         .ad-day {
             position: sticky;
             top: 10em;
-        }
-    }
-
-    .other-documents {
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-        width: 90%;
-        margin: auto;
-        padding: 3em 0;
-        align-items: center;
-
-        @media (min-width: 768px) {
-            max-width: 1400px;
-            padding: 5em 0;
-        }
-    }
-
-    .other-documents .documents {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-    }
-
-    @media (min-width: 768px) {
-        .other-documents .documents {
-            flex-direction: row;
         }
     }
 </style>
