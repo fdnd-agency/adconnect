@@ -2,129 +2,124 @@
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
 
-  import { TopNav } from '$lib'
+  import { TopNav } from "$lib";
 
-	let { children } = $props();
+  let { children } = $props();
 </script>
-  
-  <svelte:head>
+
+<svelte:head>
   <link rel="icon" href={favicon} />
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap">
- <!-- stylesheet -->
+  <!-- stylesheet -->
   <link rel="stylesheet" href="/stylesheet.css" />
 </svelte:head>
 
 <a href="#main" class="skip-link">Ga naar content</a>
 
 <header class="general-header">
-<TopNav />
+  <TopNav />
 </header>
 
 <main>
-{@render children?.()}
+  {@render children?.()}
 </main>
 
 <footer class="footer-grid">
   <div class="wrapper">
     <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
 
-  <section>
-    <h2>AdConnect</h2>
-    <p>
-      Lorem ipsum dolor sit amet consectetur. Massa et enim vitae quis eget. Quam elit elementum vivamus libero vitae nulla nec eget. Porttitor nunc
-      tristique dictumst dui at augue vitae a. Nisl orci ultricies nec quisque. Nulla laoreet elit id vitae ullamcorper.
-    </p>
-  </section>
+    <section>
+      <h2>AdConnect</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur. Massa et enim vitae quis eget. Quam elit elementum vivamus libero vitae nulla nec eget. Porttitor nunc
+        tristique dictumst dui at augue vitae a. Nisl orci ultricies nec quisque. Nulla laoreet elit id vitae ullamcorper.
+      </p>
+    </section>
 
-  <section>
-    <div class="desktop-menu">
-      <h2>Menu</h2>
-      <ul>
-        <li><a href="/">Wat zijn Ad's?</a></li>
-        <li><a href="/">Documenten</a></li>
-        <li><a href="/">Nieuws</a></li>
-        <li><a href="/">Evenementen</a></li>
-        <li><a href="/">Nominaties</a></li>
-      </ul>
-    </div>
+    <section>
+      <div class="desktop-menu">
+        <h2>Menu</h2>
+        <ul>
+          <li><a href="/">Wat zijn Ad's?</a></li>
+          <li><a href="/">Documenten</a></li>
+          <li><a href="/">Nieuws</a></li>
+          <li><a href="/">Evenementen</a></li>
+          <li><a href="/">Nominaties</a></li>
+        </ul>
+      </div>
 
-    <details class="mobile-menu">
-      <summary><h2>Menu</h2></summary>
-      <ul>
-        <li><a href="/">Wat zijn Ad's?</a></li>
-        <li><a href="/">Documenten</a></li>
-        <li><a href="/">Nieuws</a></li>
-        <li><a href="/">Evenementen</a></li>
-        <li><a href="/">Nominaties</a></li>
-      </ul>
-    </details>
-  </section>
+      <details class="mobile-menu">
+        <summary><h2>Menu</h2></summary>
+        <ul>
+          <li><a href="/">Wat zijn Ad's?</a></li>
+          <li><a href="/">Documenten</a></li>
+          <li><a href="/">Nieuws</a></li>
+          <li><a href="/">Evenementen</a></li>
+          <li><a href="/">Nominaties</a></li>
+        </ul>
+      </details>
+    </section>
 
-  <section>
-    <div class="desktop-menu">
-      <h2>Thema's</h2>
-      <ul>
-        <li><a href="/">Impactmakerschap</a></li>
-        <li><a href="/">Niveau 5</a></li>
-        <li><a href="/">Doorstroom Ad’s</a></li>
-        <li><a href="/">Onderzoek houding</a></li>
-      </ul>
-    </div>
+    <section>
+      <div class="desktop-menu">
+        <h2>Thema's</h2>
+        <ul>
+          <li><a href="/">Impactmakerschap</a></li>
+          <li><a href="/">Niveau 5</a></li>
+          <li><a href="/">Doorstroom Ad’s</a></li>
+          <li><a href="/">Onderzoek houding</a></li>
+        </ul>
+      </div>
 
-    <details class="mobile-menu">
-      <summary><h2>Thema's</h2></summary>
-      <ul>
-        <li><a href="/">Impactmakerschap</a></li>
-        <li><a href="/">Niveau 5</a></li>
-        <li><a href="/">Doorstroom Ad’s</a></li>
-        <li><a href="/">Onderzoek houding</a></li>
-      </ul>
-    </details>
-  </section>
+      <details class="mobile-menu">
+        <summary><h2>Thema's</h2></summary>
+        <ul>
+          <li><a href="/">Impactmakerschap</a></li>
+          <li><a href="/">Niveau 5</a></li>
+          <li><a href="/">Doorstroom Ad’s</a></li>
+          <li><a href="/">Onderzoek houding</a></li>
+        </ul>
+      </details>
+    </section>
 
-  <section>
-    <div class="desktop-menu">
-      <h2>Leden van bestuur</h2>
-      <ul>
-        <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-        <li><a href="/">Carolien van Rijswijk</a></li>
-        <li><a href="/">Carolien van Rijswijk</a></li>
-        <li><a href="/">Carolien van Rijswijk</a></li>
-        <li><a href="/">Carolien van Rijswijk</a></li>
-      </ul>
-    </div>
+    <section>
+      <div class="desktop-menu">
+        <h2>Leden van bestuur</h2>
+        <ul>
+          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
+          <li><a href="/">Carolien van Rijswijk</a></li>
+          <li><a href="/">Carolien van Rijswijk</a></li>
+          <li><a href="/">Carolien van Rijswijk</a></li>
+          <li><a href="/">Carolien van Rijswijk</a></li>
+        </ul>
+      </div>
 
-    <details class="mobile-menu">
-      <summary><h2>Leden van bestuur</h2></summary>
-      <ul>
-        <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-        <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-        <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-        <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-        <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-      </ul>
-    </details>
-  </section>
+      <details class="mobile-menu">
+        <summary><h2>Leden van bestuur</h2></summary>
+        <ul>
+          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
+          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
+          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
+          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
+          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
+        </ul>
+      </details>
+    </section>
 
-  <section>
-    <div class="desktop-menu">
-      <h2>Contact</h2>
-      <ul>
-        <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
-      </ul>
-    </div>
+    <section>
+      <div class="desktop-menu">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
+        </ul>
+      </div>
 
-    <details class="mobile-menu">
-      <summary><h2>Contact</h2></summary>
-      <ul>
-        <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
-      </ul>
-    </details>
-  </section>
+      <details class="mobile-menu">
+        <summary><h2>Contact</h2></summary>
+        <ul>
+          <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
+        </ul>
+      </details>
+    </section>
 
     <div class="divider"></div>
 
@@ -155,23 +150,22 @@
 
   /* Skiplink */
   .skip-link {
-      text-decoration: none;
-      color: var(--text-white);
-      background-color: var(--primary-blue);
-      border: 1px solid var(--primary-text);
-      padding: .7em 1.2em;
-      border-radius: 5px;
-      transition: .3s ease-in;
-      position: absolute;
-      top: -10rem;
-      left: 45%;
-      z-index: 99999999;
+    text-decoration: none;
+    color: var(--text-white);
+    background-color: var(--primary-blue);
+    border: 1px solid var(--primary-text);
+    padding: 0.7em 1.2em;
+    border-radius: 5px;
+    transition: 0.3s ease-in;
+    position: absolute;
+    top: -10rem;
+    left: 45%;
+    z-index: 99999999;
   }
 
   .skip-link:focus-visible {
-      top: 0;
+    top: 0;
   }
-
 
   footer {
     width: 100%;
@@ -340,4 +334,3 @@
     height: auto;
   }
 </style>
-
