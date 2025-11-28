@@ -73,9 +73,9 @@ We follow the code conventions of FDND agency. Below the most important conventi
 - Use template literals, object destructuring and choose wisely between const, let en var.
 - Label commits clearly (fix:, docs:, style: etc)
 - Follow guidelines for data, routes, component-structure and CSS within SvelteKit-projects.
+- Atomic: each commit does one thing (one bugfix, one feature, one refactor, one test addition).
 
 ### Design conventions
-
 - Make user-friendly and accessible designs.
 - Work together in design systems and validate designs in both Figma and the browser.
 - Use variables, styles en organize your Figma-files effectively.
