@@ -18,6 +18,7 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
-		"@sveltejs/adapter-auto": "^6.1.0"
+		"@sveltejs/adapter-auto": "^6.1.0",
+		"gsap": "^3.13.0"
 	}
 }

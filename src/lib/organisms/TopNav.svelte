@@ -1,16 +1,18 @@
 <script>
   import { page } from '$app/stores';
-  $: currentPath = $page.url.pathname;
 </script>
 
 <nav>
+  <!-- Navigation left -->
   <section class="nav-left">
     <ul>
+      <!-- Active link professionals -->
       <li>
         <a href="/" class="pro {currentPath === '/' ? 'active' : ''}">
           Professionals
         </a>
       </li>
+      <!-- Active link students -->
       <li>
         <a href="/students" class="stu {currentPath === '/students' ? 'active' : ''}">
           Studenten
@@ -19,6 +21,7 @@
     </ul>
   </section>
 
+  <!-- Navigation right -->
   <section class="nav-right">
     <ul>
       <li><a class={$page.url.pathname === "/nominaties" ? "active" : "menu-button"} href="/nominaties">Nominaties</a></li>
@@ -59,11 +62,13 @@
     padding: 0;
   }
 
+  /* Navigation left */
   .nav-left ul {
     display: flex;
     gap: 2rem;
   }
 
+  /* Navigation right */
   .nav-right ul {
     display: none;
   }
