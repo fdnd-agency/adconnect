@@ -5,8 +5,7 @@
 </script>
 
 <nav>
-  <a class="logo-mobile" href="/"><img src={logomobile} alt="Logo" /></a>
-  <a class="logo-desktop" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
+  <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
   <details class="menu">
     <summary>
       <span></span>
@@ -31,8 +30,6 @@
     <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/talent-award">Talent Award</a></li>
     <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/nieuws">Nieuws</a></li>
     <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
-
-    <div class="follower"></div>
   </ul>
 </nav>
 
@@ -44,21 +41,17 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 5%;
     background: var(--background);
     z-index: 99;
     position: fixed;
     top: 2.8em;
-  }
-  
-  .logo-mobile img {
-    display: block;
-    height: 35px;
-    margin-left: 55px;
-    margin-top: 10px;
-  }
+    box-sizing: border-box;
 
-  .logo-desktop { display: none; }
+    .logo img {
+      height: 50px;
+    }
+  }
   
   summary {
     display: inline-block;
@@ -68,7 +61,10 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  summary::-webkit-details-marker { display: none; }
+  summary::-webkit-details-marker { 
+    display: none; 
+  }
+
   summary span {
     display: block;
     position: relative;
@@ -80,8 +76,15 @@
     transform-origin: center;
     transition: all .3s ease;
   }
-  .menu { display: block; position: relative; z-index: 0; margin-right: 5%; }
-  .menu:hover summary span { width: 32px; }
+
+  .menu { 
+    display: block; 
+    position: relative; 
+    z-index: 0; 
+  }
+  .menu:hover summary span { 
+    width: 32px; 
+  }
   
   .menu::before {
     content: "";
@@ -141,22 +144,28 @@
     text-decoration: none;
     padding: .5rem 1rem;
   }
+
   :global(body:has(.menu[open])) {
-  overflow: hidden;
-}
+    overflow: hidden;
+  }
 
   .desktop-nav { display: none; }
   
   /* Desktop */
   @media (min-width: 1160px) {
-    .logo-mobile { display: none; }
-    .logo-desktop { display: block; height: 50px; margin-left: 5%; }
+    .logo { 
+      display: block; 
+      height: 50px; 
+      margin-left: 5%; }
 
-    .logo-desktop img {
+    .logo img {
       width: 12em;
     }
   
-    .menu { display: none; }
+    .menu { 
+      display: none; 
+    }
+
     .desktop-nav {
       display: flex;
       position: relative;
@@ -174,18 +183,6 @@
       font-weight: var(--heading-font-weight);
       color: var(--blue-800);
       padding: .5rem 1rem;
-      /* position: relative; */
-
-      /* &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        height: 2px;
-        width: 0%;
-        background: currentColor;
-        transition: 0.3s ease;
-      } */
     }
   }
 
