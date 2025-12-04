@@ -10,10 +10,10 @@
 	let magicCursor;
 
 	// When the component is loaded the magical cursor animation is going to start
-	onMount(async() => {
+	onMount(() => {
 
 		// When the mouse is moving the following function is busy..
-		const mouseMove = (e) => {
+		const pointerMove = (e) => {
 
 			// Make the trail of stars and circles
 			const amountStar = Math.random() < 0.3; // 30 procent chance on stars
@@ -28,7 +28,9 @@
 			magicCursor.appendChild(cursorTrail);
 
 			// Start position of trail
-			gsap.set(cursorTrail, {
+			const startTrail = gsap.quickSetter(cursorTrail, "css");
+
+			startTrail({
 				x: e.clientX - 10,
 				y: e.clientY - 10,
 				rotate: Math.random() * 180,
@@ -49,11 +51,14 @@
 			});
 		};
 
-		// When the cursor is moving add the function (animation) mouseMove
-		window.addEventListener("mousemove", mouseMove);
+		// Slow down the animation so it doesn’t run too many times
+		const throttledPointerMove = throttle(pointerMove, 20);
 
 		// The mouse is magical when moving :)
-		return () => window.removeEventListener("mousemove", mouseMove);
+		window.addEventListener("pointermove", throttledPointerMove);
+
+		// When the mouse is not moving remove the animation
+		return () => window.removeEventListener("pointermove", throttledPointerMove);
 	});
 </script>
 
