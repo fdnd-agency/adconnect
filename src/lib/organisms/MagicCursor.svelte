@@ -14,8 +14,10 @@
 		// When the mouse is moving the following function is busy..
 		const mouseMove = (e) => {
 
+			// Make the trail of stars and circles
+			const amountStar = Math.random() < 0.3; // 30 procent chance on stars
 			const cursorTrail = document.createElement("div"); // Create a div for every trail
-			cursorTrail.className = "circle"; 
+			cursorTrail.className = amountStar ? "star" : "circle"; 
 			
 			// Choose random colors for the trail
 			const color = colors[Math.floor(Math.random() * colors.length)];
@@ -54,7 +56,7 @@
 	});
 </script>
 
-<div id="cursor"></div>
+<div id="cursor" bind:this={magicCursor}></div>
 
 <style>
 	/* Cursor */
@@ -79,4 +81,15 @@
 		filter: drop-shadow(0 0 8px var(--trail-color));
 	}
 
+	/* This is the trail of a star */
+	:global(.star) {
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		pointer-events: none;
+		background-color: var(--trail-color);
+		clip-path: polygon(50% 0%, 60% 50%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 50%);
+		mix-blend-mode: lighten;
+		will-change: transform, opacity;
+	}
 </style>
