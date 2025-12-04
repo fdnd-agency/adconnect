@@ -1,5 +1,6 @@
 <script>
   import { page } from '$app/stores';
+  $: currentPath = $page.url.pathname;
 </script>
 
 <nav>

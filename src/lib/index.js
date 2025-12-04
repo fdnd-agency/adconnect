@@ -11,6 +11,7 @@ export { default as MultipleFaq } from './organisms/MultipleFaq.svelte';
 export { default as NavPros } from './organisms/NavPros.svelte';
 export { default as NavStudent } from './organisms/NavStudent.svelte';
 export { default as TopNav } from './organisms/TopNav.svelte';
+export { default as MagicCursor } from './organisms/MagicCursor.svelte';
 
 // Templates
 
@@ -32,4 +33,3 @@ export { default as bird } from './assets/vector-bird.jpg';
 export { default as fallback } from './assets/news-fallback.jpg';
 export { default as calendar } from './assets/icon-calendar-orange.svg';
 export { default as label } from './assets/icon-label.svg';
-

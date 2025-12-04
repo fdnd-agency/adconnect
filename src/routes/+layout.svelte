@@ -1,8 +1,8 @@
 <script>
+  // Import images
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
-
-  import { TopNav } from "$lib";
+  import { TopNav, MagicCursor } from "$lib";
 
   let { children } = $props();
 </script>
@@ -12,6 +12,8 @@
   <!-- stylesheet -->
   <link rel="stylesheet" href="/stylesheet.css" />
 </svelte:head>
+
+<MagicCursor />
 
 <a href="#main" class="skip-link">Ga naar content</a>
 
@@ -330,7 +332,7 @@
     padding: 0.7em 0 0 0;
   }
 
-  [open]::details-content {
-    height: auto;
-  }
+	[open]::details-content {
+		height: auto;
+	}
 </style>
