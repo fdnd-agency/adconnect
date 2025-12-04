@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import { gsap } from "gsap";
+	import throttle from "just-throttle";
 
 	// Array with all the colors
 	const colors = [ "#FFEE87", "#FF6FFF", "#FF4500", "#8A2BE2", "#4B0082", "#1E90FF", "#FFC0CB", "#FFFFFF" ];

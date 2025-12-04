@@ -19,6 +19,7 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-auto": "^6.1.0",
-		"gsap": "^3.13.0"
+		"gsap": "^3.13.0",
+		"just-throttle": "^4.2.0"
 	}
 }
