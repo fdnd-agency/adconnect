@@ -65,37 +65,54 @@
 <div id="cursor" bind:this={magicCursor}></div>
 
 <style>
-	/* Cursor */
-	#cursor {
-		position: fixed;
-		inset: 0;
-		pointer-events: none;
-		z-index: 999999;
-		overflow: hidden;
-	}
+	@media (min-width: 768px) {
+		/* Cursor */
+		#cursor {
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			z-index: 999999;
+			overflow: hidden;
+		}
 
-	/* This is the trail of a circle */
-	:global(.circle) {
-		position: absolute;
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-		pointer-events: none;
-		mix-blend-mode: lighten;
-		will-change: transform, opacity;
-		background: radial-gradient(circle, var(--trail-color), transparent 60%);
-		filter: drop-shadow(0 0 8px var(--trail-color));
-	}
+		/* This is the trail of a circle */
+		:global(.circle) {
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			pointer-events: none;
+			mix-blend-mode: lighten;
+			will-change: transform, opacity;
+			background: radial-gradient(circle, var(--trail-color), transparent 60%);
+			filter: drop-shadow(0 0 8px var(--trail-color));
+		}
 
-	/* This is the trail of a star */
-	:global(.star) {
-		position: absolute;
-		width: 15px;
-		height: 15px;
-		pointer-events: none;
-		background-color: var(--trail-color);
-		clip-path: polygon(50% 0%, 60% 50%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 50%);
-		mix-blend-mode: lighten;
-		will-change: transform, opacity;
+		/* This is the trail of a star */
+		:global(.star) {
+			position: absolute;
+			width: 15px;
+			height: 15px;
+			pointer-events: none;
+			background-color: var(--trail-color);
+			clip-path: polygon(50% 0%, 60% 50%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 50%);
+			mix-blend-mode: lighten;
+			will-change: transform, opacity;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			:global(.circle),
+			:global(.star) {
+				display: none;
+			}
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:global(.circle),
+			:global(.star) {
+				background-color: #004cff;
+				background: radial-gradient(circle,#00FFFF 0%, #004cff 100%);
+			}
+		}
 	}
 </style>
