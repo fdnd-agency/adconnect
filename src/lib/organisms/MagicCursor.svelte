@@ -100,6 +100,7 @@
 			will-change: transform, opacity;
 		}
 
+		/* Animation of when prefers-reduced-motion: reduce */
 		@media (prefers-reduced-motion: reduce) {
 			:global(.circle),
 			:global(.star) {
@@ -107,6 +108,7 @@
 			}
 		}
 
+		/* Animation has darker colors when prefers-color-scheme: dark */
 		@media (prefers-color-scheme: dark) {
 			:global(.circle),
 			:global(.star) {
