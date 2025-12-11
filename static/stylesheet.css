@@ -153,7 +153,7 @@
 
 /* Focus state */
 *:focus-visible {
-  outline: 3px dashed var(--primary-orange);
+  outline: 3px dashed #2742F3;
   outline-offset: 4px;
 }
 
