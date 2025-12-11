@@ -2,7 +2,7 @@
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
 
-  import { TopNav } from "$lib";
+//   import { TopNav } from "$lib";
 
   let { children } = $props();
 </script>
@@ -15,15 +15,15 @@
 
 <a href="#main" class="skip-link">Ga naar content</a>
 
-<header class="general-header">
+<!-- <header class="general-header">
   <TopNav />
-</header>
+</header> -->
 
 <main>
   {@render children?.()}
 </main>
 
-<footer class="footer-grid">
+<!-- <footer class="footer-grid">
   <div class="wrapper">
     <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
 
@@ -128,7 +128,7 @@
       <p>Ontwikkeld door studenten FDND</p>
     </div>
   </div>
-</footer>
+</footer> -->
 
 <style>
   :root {
