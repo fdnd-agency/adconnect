@@ -13,3 +13,71 @@
     <path class="paw-right" d="M213 337.5C213 322.312 225.312 310 240.5 310C255.688 310 268 322.312 268 337.5V338H213V337.5Z" fill="#C44F01"/>
     <rect class="brows" x="17" y="70" width="310" height="40" fill="#F37827"/>
 </svg>
+
+<style>
+    svg {
+        position: fixed;
+        bottom: 0;
+        width: 60%;
+        max-width: 18em;
+
+        /* Brows */
+        .brows {
+            transition: transform 0.3s ease;
+        }
+
+        /* Mouth */
+        .mouth {
+            transition: transform 0.3s ease;
+            transform-origin: center;
+        }
+
+        .teeth-left {
+            transition: transform 0.3s ease;
+            transform-origin: center;
+        }
+
+        .teeth-right {
+            transition: transform 0.3s ease;
+            transform-origin: center;
+        }
+
+        .outer-eye-left,
+        .outer-eye-right {
+            transform-origin: center center;
+            animation: blink 4s infinite;
+        }
+    }
+
+    /* When switcher is on brows are going down */
+    :global(.mood:has(.switcher:checked) + svg .brows) {
+        transform: translateY(40px); /* pas aan naar wat mooi is */
+        transition: transform 0.3s ease;
+    }
+
+    /* When switcher is on mouth is inverted */
+    :global(.mood:has(.switcher:checked) ~  svg .mouth) {
+        transform: translateY(155px) scaleY(-1);
+    }
+
+    /* When switcher is on teeth left is inverted */
+    :global(.mood:has(.switcher:checked) ~ svg .teeth-left) {
+        transform: translateY(155px) scaleY(-1);
+    }
+
+    /* When switcher is on teeth right is inverted */
+    :global(.mood:has(.switcher:checked) ~ svg .teeth-right ){
+        transform: translateY(155px) scaleY(-1);
+    }
+
+    /* Eyes blinking */
+    @keyframes blink {
+        0%, 90%, 100% { 
+            transform: scaleY(1); 
+        }
+
+        95% { 
+            transform: scaleY(0.1); 
+        }
+    }
+</style>
