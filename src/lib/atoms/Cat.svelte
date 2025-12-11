@@ -15,6 +15,7 @@
 </svg>
 
 <style>
+    /* Cat svg */
     svg {
         position: fixed;
         bottom: 0;

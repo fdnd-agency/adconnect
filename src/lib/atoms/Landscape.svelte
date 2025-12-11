@@ -55,6 +55,7 @@
 </svg>
 
 <style>
+    /* Landscape svg */
     svg {
         background-color: #BCFFFE;
         transition: background-color 0.5s ease; 
@@ -66,6 +67,7 @@
         z-index: -1;
     }
 
+    /* When switcher is on the */
     :global(.wrapper:has(.switcher:checked) .scene) {
         background-color: #424799;
         transition: background-color 0.5s ease; 
