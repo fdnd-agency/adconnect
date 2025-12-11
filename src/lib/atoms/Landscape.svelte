@@ -53,3 +53,79 @@
     </linearGradient>
     </defs>
 </svg>
+
+<style>
+    svg {
+        background-color: #BCFFFE;
+        transition: background-color 0.5s ease; 
+        position: fixed;  
+        top: 0;
+        left: 0;
+        width: 100vw;      /* volledige breedte van scherm */
+        height: 100vh;     /* volledige hoogte van scherm */
+        z-index: -1;
+    }
+
+    :global(.wrapper:has(.switcher:checked) .scene) {
+        background-color: #424799;
+        transition: background-color 0.5s ease; 
+        background-color: color-mix(in srgb, #79669E 70%, #424799 30%);
+    }
+
+    .moon {
+        transition: transform 1s ease;
+        transform: translateY(100%);
+    }
+
+    :global(.wrapper:has(.switcher:checked) .moon) {
+        transform: translateY(-10%);
+    }
+
+    .clouds {
+        transform: translateY(-10%);
+        transition: transform 1s ease;
+    }
+
+    :global(.wrapper:has(.switcher:checked) .clouds) {
+        transition: transform 1s ease;
+        transform: translateY(100%);
+    }
+
+    /* Sterren standaard onzichtbaar */
+    .scene .star {
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    /* Wanneer switcher aan → sterren zichtbaar */
+    :global(.wrapper:has(.switcher:checked) .star) {
+        opacity: 1;
+    }
+
+    :global(.wrapper:has(.switcher:checked) .water) {
+        fill: #E6E6FF;
+    }
+
+    /* Wanneer switcher aan → andere kleuren */
+    :global(.wrapper:has(.switcher:checked) linearGradient stop:first-child) { 
+        stop-color: #445483; 
+    }
+
+    :global(.wrapper:has(.switcher:checked) linearGradient stop:last-child) { 
+        stop-color: #95BBEA;
+    }
+
+    /* Vloeiende overgang */
+    :global(.wrapper linearGradient stop) {
+    transition: stop-color 1s ease;
+    }
+
+    /* Alleen mountains gradient veranderen */
+    :global(.wrapper:has(.switcher:checked) #paintMountains_linear stop:first-child) { 
+        stop-color: #445483; 
+    }
+
+    :global(.wrapper:has(.switcher:checked) #paintMountains_linear stop:last-child) { 
+        stop-color: #3E517C; 
+    }
+</style>
