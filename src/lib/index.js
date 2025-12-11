@@ -1,4 +1,8 @@
 // Atoms
+export { default as Sun } from './atoms/Sun.svelte';
+export { default as Cloud } from './atoms/Cloud.svelte';
+export { default as Cat } from './atoms/Cat.svelte';
+export { default as Landscape } from './atoms/Landscape.svelte';
 
 // Molecules
 export { default as SingleFaq } from './molecules/SingleFaq.svelte';
