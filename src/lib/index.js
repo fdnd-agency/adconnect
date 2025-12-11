@@ -36,4 +36,5 @@ export { default as bird } from './assets/vector-bird.jpg';
 export { default as fallback } from './assets/news-fallback.jpg';
 export { default as calendar } from './assets/icon-calendar-orange.svg';
 export { default as label } from './assets/icon-label.svg';
+export { default as info } from './assets/info-icon.svg';
 

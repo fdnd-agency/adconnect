@@ -50,23 +50,23 @@
     }
 
     /* When switcher is on brows are going down */
-    :global(.mood:has(.switcher:checked) + svg .brows) {
+    :global(.wrapper:has(.switcher:checked) svg .brows) {
         transform: translateY(40px); /* pas aan naar wat mooi is */
         transition: transform 0.3s ease;
     }
 
     /* When switcher is on mouth is inverted */
-    :global(.mood:has(.switcher:checked) ~  svg .mouth) {
+    :global(.wrapper:has(.switcher:checked) svg .mouth) {
         transform: translateY(155px) scaleY(-1);
     }
 
     /* When switcher is on teeth left is inverted */
-    :global(.mood:has(.switcher:checked) ~ svg .teeth-left) {
+    :global(.wrapper:has(.switcher:checked) svg .teeth-left) {
         transform: translateY(155px) scaleY(-1);
     }
 
     /* When switcher is on teeth right is inverted */
-    :global(.mood:has(.switcher:checked) ~ svg .teeth-right ){
+    :global(.wrapper:has(.switcher:checked) svg .teeth-right ){
         transform: translateY(155px) scaleY(-1);
     }
 
