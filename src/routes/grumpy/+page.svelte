@@ -2,7 +2,11 @@
     import { Sun, Cloud, Cat, Landscape, info } from '$lib'
 </script>
 
-<div class="wrapper">
+<svelte:head>
+  <title>Grumpy switch</title>
+</svelte:head>
+
+<div class="wrapper" id="main">
     <div class="wrapper-switcher">
         <!-- Switch mood -->
         <div class="mood">
