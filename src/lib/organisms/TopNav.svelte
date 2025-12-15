@@ -2,35 +2,37 @@
   import { page } from '$app/state';
 </script>
 
-<nav>
-  <section class="nav-left">
-    <ul>
-      <li>
-        <a href="/" class="pro {!page.url.pathname.includes('/studenten') && !page.url.pathname.includes('/werkgevers') ? 'active' : ''}">
-          Professionals
-        </a>
-      </li>
-      <li>
-        <a href="/studenten" class="stu {page.url.pathname.includes('/studenten') ? 'active' : ''}">
-          Studenten
-        </a>
-      </li>
-      <li>
-        <a href="/werkgevers" class="stu {page.url.pathname.includes('/werkgevers') ? 'active' : ''}">
-          Werkgevers
-        </a>
-      </li>
-    </ul>
-  </section>
+<header>
+  <nav>
+    <section class="nav-left">
+      <ul>
+        <li>
+          <a href="/" class="pro {!page.url.pathname.includes('/studenten') && !page.url.pathname.includes('/werkgevers') ? 'active' : ''}">
+            Professionals
+          </a>
+        </li>
+        <li>
+          <a href="/studenten" class="stu {page.url.pathname.includes('/studenten') ? 'active' : ''}">
+            Studenten
+          </a>
+        </li>
+        <li>
+          <a href="/werkgevers" class="stu {page.url.pathname.includes('/werkgevers') ? 'active' : ''}">
+            Werkgevers
+          </a>
+        </li>
+      </ul>
+    </section>
 
-  <section class="nav-right">
-    <ul>
-      <li><a class={page.url.pathname === "/nominaties" ? "active" : "menu-button"} href="/nominaties">Nominaties</a></li>
-      <li><a class={page.url.pathname === "/over-ons" ? "active" : "menu-button"} href="/over-ons">Over ons</a></li>
-      <li><a class={page.url.pathname === "/contact" ? "active" : "menu-button"} href="/contact">Contact</a></li>
-    </ul>
-  </section>
-</nav>
+    <section class="nav-right">
+      <ul>
+        <li><a class={page.url.pathname === "/nominaties" ? "active" : "menu-button"} href="/nominaties">Nominaties</a></li>
+        <li><a class={page.url.pathname === "/over-ons" ? "active" : "menu-button"} href="/over-ons">Over ons</a></li>
+        <li><a class={page.url.pathname === "/contact" ? "active" : "menu-button"} href="/contact">Contact</a></li>
+      </ul>
+    </section>
+  </nav>
+</header>
 
 <style>
   :global(body) {
@@ -48,16 +50,24 @@
     width: 100%;
   }
 
+  header {
+    width: 100%;
+    display: flex;
+    position: sticky;
+    top: 0;
+    justify-content: center;
+    z-index: 99;
+    background-color: var(--blue-150);
+    padding: 1rem 5%;
+  }
+
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--blue-150);
-    padding: 1rem 5%;
     position: relative;
-    z-index: 99;
-    position: sticky;
-    top: 0;
+    width: 100%;
+    max-width: 1400px;
   }
 
   ul {

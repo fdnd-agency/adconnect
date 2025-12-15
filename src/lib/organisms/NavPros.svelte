@@ -4,48 +4,58 @@
   import { page } from '$app/stores';
 </script>
 
-<nav>
-  <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
-  <details class="menu">
-    <summary>
-      <span></span>
-      <span></span>
-      <span></span>
-    </summary>
-    <ul class="panel">
-      <li><a href="/over-ad">Over Ad's</a></li>
-      <li><a href="/publicaties">Publicaties</a></li>
-      <li><a href="/talent-award">Talent Award</a></li>
-      <li><a href="/nieuws">Nieuws</a></li>
-      <li><a href="/ad-dag">Kom naar Ad-dag</a></li>
-      <li><a href="/talent-award/nominaties">Nominanties</a></li>
-      <li><a href="over-ons">over ons</a></li>
-      <li><a href="/contact">contact</a></li>
-    </ul>
-  </details>
+<header>
+  <nav>
+    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
+    <details class="menu">
+      <summary>
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+      <ul class="panel">
+        <li><a href="/over-ad">Over Ad's</a></li>
+        <li><a href="/publicaties">Publicaties</a></li>
+        <li><a href="/talent-award">Talent Award</a></li>
+        <li><a href="/nieuws">Nieuws</a></li>
+        <li><a href="/ad-dag">Kom naar Ad-dag</a></li>
+        <li><a href="/talent-award/nominaties">Nominanties</a></li>
+        <li><a href="over-ons">over ons</a></li>
+        <li><a href="/contact">contact</a></li>
+      </ul>
+    </details>
 
-  <ul class="desktop-nav">
-    <li><a class={$page.url.pathname === "/over-ad" ? "menu-button active" : "menu-button"} href="/over-ad">Over Ad's</a></li>
-    <li><a class={$page.url.pathname === "/publicaties" ? "menu-button active" : "menu-button"} href="/publicaties">Publicaties</a></li>
-    <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/talent-award">Talent Award</a></li>
-    <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/nieuws">Nieuws</a></li>
-    <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
-  </ul>
-</nav>
+    <ul class="desktop-nav">
+      <li><a class={$page.url.pathname === "/over-ad" ? "menu-button active" : "menu-button"} href="/over-ad">Over Ad's</a></li>
+      <li><a class={$page.url.pathname === "/publicaties" ? "menu-button active" : "menu-button"} href="/publicaties">Publicaties</a></li>
+      <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/talent-award">Talent Award</a></li>
+      <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/nieuws">Nieuws</a></li>
+      <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
+    </ul>
+  </nav>
+</header>
 
 <style>
   /* MOBILE*/
+  header {
+    background-color: var(--background);
+    width: 100%;
+    display: flex;
+    position: fixed;
+    top: 2.8em;
+    justify-content: center;
+    padding: 1rem 5%;
+  }
+
   nav {
     display: flex;
     position: relative;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem 5%;
     background: var(--background);
     z-index: 99;
-    position: fixed;
-    top: 2.8em;
+    max-width: 1400px;
     box-sizing: border-box;
 
     .logo img {
@@ -156,7 +166,7 @@
     .logo { 
       display: block; 
       height: 50px; 
-      margin-left: 5%; }
+    }
 
     .logo img {
       width: 12em;
@@ -170,7 +180,6 @@
       display: flex;
       position: relative;
       gap: 2rem;
-      margin: 0 5% 0 0;
       list-style: none;
     }
 
