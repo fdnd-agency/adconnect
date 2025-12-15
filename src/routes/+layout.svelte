@@ -83,33 +83,9 @@
 
     <section>
       <div class="desktop-menu">
-        <h2>Leden van bestuur</h2>
-        <ul>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Carolien van Rijswijk</a></li>
-          <li><a href="/">Carolien van Rijswijk</a></li>
-          <li><a href="/">Carolien van Rijswijk</a></li>
-          <li><a href="/">Carolien van Rijswijk</a></li>
-        </ul>
-      </div>
-
-      <details class="mobile-menu">
-        <summary><h2>Leden van bestuur</h2></summary>
-        <ul>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-        </ul>
-      </details>
-    </section>
-
-    <section>
-      <div class="desktop-menu">
         <h2>Contact</h2>
         <ul>
-          <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
+          <li><a href="mailto:platformassociatedegrees@outlook.com">E-mail platform Ad's</a></li>
         </ul>
       </div>
 
