@@ -249,6 +249,5 @@
     transform: scaleX(1);
     transition: 0.3s ease;
   }
-  \
 </style>
   
