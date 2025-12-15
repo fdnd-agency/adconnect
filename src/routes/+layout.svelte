@@ -137,10 +137,10 @@
     top: -10rem;
     left: 45%;
     z-index: 99999999;
-  }
 
-  .skip-link:focus-visible {
-    top: 0;
+	&:focus-visible {
+		top: 0;
+	}
   }
 
   footer {
@@ -168,24 +168,20 @@
     width: 90%;
     align-self: center;
     padding: 2em 0;
-  }
 
-  @media (min-width: 768px) {
-    .wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2em;
-    }
-  }
+	@media (min-width: 768px) {
+		display: grid;
+      	grid-template-columns: 1fr 1fr;
+      	gap: 2em;
+	}
 
-  @media (min-width: 1024px) {
-    .wrapper {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      grid-auto-rows: auto;
-      width: 90%;
-      max-width: 1400px;
-      padding: 5em 0 2em 0;
-    }
+	@media (min-width: 1024px) {
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+      	grid-auto-rows: auto;
+      	width: 90%;
+      	max-width: 1400px;
+      	padding: 5em 0 2em 0;
+	}
   }
 
   a {

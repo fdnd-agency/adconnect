@@ -42,7 +42,8 @@ header {
   position: fixed;
   top: 2.8em;
   justify-content: center;
-  padding: 0 5%;
+  padding: 1em 5%;
+  align-items: center;
 }
 
 nav {
@@ -155,6 +156,10 @@ body:has(.menu[open]) { overflow: hidden; }
   .logo-desktop img {
     width: 12em;
   }
+
+  header {
+      padding: 0 5%;
+    }
 
   .menu { display: none; }
   .desktop-nav {

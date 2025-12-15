@@ -44,7 +44,8 @@
     position: fixed;
     top: 2.8em;
     justify-content: center;
-    padding: 0 5%;
+    padding: 1em 5%;
+    align-items: center;
   }
 
   nav {
@@ -163,6 +164,10 @@
   
   /* Desktop */
   @media (min-width: 1160px) {
+    header {
+      padding: 0 5%;
+    }
+    
     .logo { 
       display: block; 
       height: 50px; 
