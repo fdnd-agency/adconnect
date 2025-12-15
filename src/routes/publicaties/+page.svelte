@@ -60,11 +60,13 @@
         <p>Categorie: {selectedCategory}</p>
         <p>Aantal artikelen: {documents.length}</p>
     </div>
-    <ul>
-        {#each documents as document}
-            <li><DocumentCard {document}/></li>
-        {/each}
-    </ul>
+    <div class="documents-container">
+        <ul>
+            {#each documents as document}
+                <li><DocumentCard {document}/></li>
+            {/each}
+        </ul>
+    </div>
 </div>
 
 
@@ -115,16 +117,29 @@
         }
     }
 
+    .documents-container {
+        container-type: inline-size;
+        container-name: docs-container;
+    }
+
     ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
         display: flex;
         flex-direction: column;
-        list-style-type: none;
         gap: 1em;
+    }
 
-        @media (min-width: 768px) {
+    ul li {
+        list-style-type: none;
+    }
+
+    @container docs-container (min-width: 720px) {
+        ul {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));  
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));
+            gap: 1em;
         }
     }
 </style>

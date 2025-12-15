@@ -7,35 +7,39 @@
 </script>
 
 <!-- Cards section -->
-<ul>
-     {#each news as article}
-        <li><NewsCard {article}/></li>
-    {/each}
-</ul>
+<div class="container">
+    <ul>
+        {#each news as article}
+            <li><NewsCard {article}/></li>
+        {/each}
+    </ul>
+</div>
 
 <style>
-    ul {
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        width: 90%;
-        padding: 4em 0 4em 0;
-        align-self: center;
-        margin: auto;
-    }
+.container {
+  container-type: inline-size;
+  container-name: news-container;
+  padding: 0;
+  padding: 2em 5%;
+  max-width: 1400px;
+  margin: auto;
+}
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    @media screen and (min-width: 720px) {
-        ul {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));  
-        }
-    }
-     li {
-        list-style-type: none;
-    }
+ul li {
+  list-style: none;
+}
 
-
-            
+@container news-container (min-width: 720px) {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    gap: 1em;
+  }
+}
 </style>
