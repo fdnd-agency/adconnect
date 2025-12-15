@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/stylesheet.css" />
 </svelte:head>
 
-<a href="#main" class="skip-link">Ga naar content</a>
+<a href="#main" class="skip-link">Ga naar inhoud</a>
 
 <header class="general-header">
   <TopNav />
