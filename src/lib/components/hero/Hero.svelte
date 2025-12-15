@@ -9,32 +9,40 @@
   export let placeholder = "";
 </script>
 
-<article class="hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}" id="main">
-  <section class="hero-content">
-    {#if $page.url.pathname !== "/"}
-      <nav class="hero-breadcrumb">
-        {#if breadcrumb}
-          {breadcrumb}
-        {:else}
-          <a href="/">Home</a><a href={$page.url.pathname}>{$page.url.pathname}</a>
-        {/if}
-      </nav>
-    {/if}
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <div class="hero-cta">
-      <slot name="primary" />
-      <slot name="secondary" />
-    </div>
-  </section>
-  <img class="hero-image" src={image || placeholder} alt="{alt}" />
-  <section class="hero-media">
-    <slot name="media" />
-    <slot />
-  </section>
-</article>
+<div class="wrapper-hero">
+  <article class="hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}" id="main">
+    <section class="hero-content">
+      {#if $page.url.pathname !== "/"}
+        <nav class="hero-breadcrumb">
+          {#if breadcrumb}
+            {breadcrumb}
+          {:else}
+            <a href="/">Home</a><a href={$page.url.pathname}>{$page.url.pathname}</a>
+          {/if}
+        </nav>
+      {/if}
+      <h1>{title}</h1>
+      <p>{description}</p>
+      <div class="hero-cta">
+        <slot name="primary" />
+        <slot name="secondary" />
+      </div>
+    </section>
+    <img class="hero-image" src={image || placeholder} alt="{alt}" />
+    <section class="hero-media">
+      <slot name="media" />
+      <slot />
+    </section>
+  </article>
+</div>
 
 <style>
+  .wrapper-hero {
+    background-color: var(--blue-100);
+    justify-content: center;
+    display: flex;
+  }
+
   .hero {
     width: 100vw;
     width: 100dvw;
@@ -43,7 +51,8 @@
     align-items: center;
     justify-content: center;
     padding-top: 2em;
-    background-color: var(--blue-100);
+    max-width: 1400px;
+    margin: 0 5% 0 5%;
   }
 
   .hero-light {
@@ -107,14 +116,13 @@
     }
 
     .hero-media {
-      margin: 0 5%;
       width: 50%;
     }
 
     .hero-content {
       width: 40vw;
       width: 40dvw;
-      padding: 0 0 0 5%;
+      max-width: 35vw;
     }
 
     .hero-cta {
