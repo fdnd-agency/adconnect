@@ -9,8 +9,8 @@
   export let placeholder = "";
 </script>
 
-<div class="wrapper-hero">
-  <article class="hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}" id="main">
+<div class="wrapper-hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">
+  <article class="hero" id="main">
     <section class="hero-content">
       {#if $page.url.pathname !== "/"}
         <nav class="hero-breadcrumb">

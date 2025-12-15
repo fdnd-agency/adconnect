@@ -42,7 +42,7 @@ header {
   position: fixed;
   top: 2.8em;
   justify-content: center;
-  padding: 1rem 5%;
+  padding: 0 5%;
 }
 
 nav {
