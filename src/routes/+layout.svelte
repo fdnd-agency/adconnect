@@ -23,6 +23,8 @@
   {@render children?.()}
 </main>
 
+<a class="scroll" href="#">↑</a>
+
 <footer class="footer-grid">
   <div class="wrapper">
     <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
@@ -304,5 +306,15 @@
 
   [open]::details-content {
     height: auto;
+  }
+
+  .scroll {
+	position: fixed;
+	bottom: 2em;
+	right: 5%;
+	font-size: 20px;
+	padding: .7em 1.1em;
+	z-index: 999999;
+	background-color: var(--primary-orange);
   }
 </style>

@@ -165,9 +165,8 @@
   /* Desktop */
   @media (min-width: 1160px) {
     header {
-      padding: 0 5%;
+      padding: 1em 5%;
     }
-    
     .logo { 
       display: block; 
       height: 50px; 
@@ -250,5 +249,6 @@
     transform: scaleX(1);
     transition: 0.3s ease;
   }
+  \
 </style>
   
