@@ -1,36 +1,46 @@
 <script>
-  import { page } from '$app/stores';
-  $: currentPath = $page.url.pathname;
+  import { page } from '$app/state';
 </script>
 
-<nav>
-  <section class="nav-left">
-    <ul>
-      <li>
-        <a href="/" class="pro {currentPath === '/' ? 'active' : ''}">
-          Professionals
-        </a>
-      </li>
-      <li>
-        <a href="/students" class="stu {currentPath === '/students' ? 'active' : ''}">
-          Studenten
-        </a>
-      </li>
-    </ul>
-  </section>
+<header>
+  <nav>
+    <section class="nav-left">
+      <ul>
+        <li>
+          <a href="/" class="pro {!page.url.pathname.includes('/studenten') && !page.url.pathname.includes('/werkgevers') ? 'active' : ''}">
+            Professionals
+          </a>
+        </li>
+        <li>
+          <a href="/studenten" class="stu {page.url.pathname.includes('/studenten') ? 'active' : ''}">
+            Studenten
+          </a>
+        </li>
+        <li>
+          <a href="/werkgevers" class="stu {page.url.pathname.includes('/werkgevers') ? 'active' : ''}">
+            Werkgevers
+          </a>
+        </li>
+      </ul>
+    </section>
 
-  <section class="nav-right">
-    <ul>
-      <li><a class={$page.url.pathname === "/nominaties" ? "active" : "menu-button"} href="/nominaties">Nominaties</a></li>
-      <li><a class={$page.url.pathname === "/over-ons" ? "active" : "menu-button"} href="/over-ons">Over ons</a></li>
-      <li><a class={$page.url.pathname === "/contact" ? "active" : "menu-button"} href="/contact">Contact</a></li>
-    </ul>
-  </section>
-</nav>
+    <section class="nav-right">
+      <ul>
+        <li><a class={page.url.pathname === "/nominaties" ? "active" : "menu-button"} href="/nominaties">Nominaties</a></li>
+        <li><a class={page.url.pathname === "/over-ons" ? "active" : "menu-button"} href="/over-ons">Over ons</a></li>
+        <li><a class={page.url.pathname === "/contact" ? "active" : "menu-button"} href="/contact">Contact</a></li>
+      </ul>
+    </section>
+  </nav>
+</header>
 
 <style>
   :global(body) {
     margin: 0;
+  }
+
+  :global(*) {
+    box-sizing: border-box;
   }
 
   :global(header) {
@@ -40,17 +50,24 @@
     width: 100%;
   }
 
-  /* MOBILE*/
+  header {
+    width: 100%;
+    display: flex;
+    position: sticky;
+    top: 0;
+    justify-content: center;
+    z-index: 99;
+    background-color: var(--blue-150);
+    padding: 1rem 5%;
+  }
+
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--blue-150);
-    padding: 1rem;
     position: relative;
-    z-index: 99;
-    position: sticky;
-    top: 0;
+    width: 100%;
+    max-width: 1400px;
   }
 
   ul {
@@ -61,72 +78,59 @@
 
   .nav-left ul {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;  
+    
+    /* Active link in menu */
+    a {
+      color: var(--primary-text);
+
+      &:hover {
+        padding-bottom: 1rem;
+      }
+
+      &.active {
+        background-color: var(--background);
+        padding: .5rem .8rem 2rem .8rem;
+        color: #000;
+      }
+    }
   }
 
   .nav-right ul {
     display: none;
-  }
 
-  .pro:hover,
-  .stu:hover {
-    padding-bottom: 1rem;
-  }
-
-  .pro.active,
-  .stu.active {
-    background-color: var(--background);
-    padding: .5rem .8rem 2rem .8rem;
-    color: #000;
-  }
-
-  .pro, .stu {
-    color: #000;
-  }
-
-  /* DESKTOP */
-  @media (min-width: 1024px) {
-    .nav-left {
-      margin-left: 5%;
-    }
-
-    .nav-right {
+    @media (min-width: 1024px) {
       width: 100%;
-    }
-
-    .nav-right ul {
       display: flex;
       gap: 2rem;
-      margin-right: 5%;
       justify-content: flex-end;
     }
 
-   /* Hover animatie & active state */
-   .menu-button {
+    a {
       position: relative;
       text-decoration: none;
       color: #000;
       border-radius: 10px;
       transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
 
-    .menu-button::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0;        /* start bij 0 voor normale links */
-      height: 2px;
-      background: currentColor;
-      transition: width 0.3s ease;
-    }
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        background: currentColor;
+        transition: width 0.3s ease;
+      }
 
-    .menu-button:hover::after {
-      width: 100%;
-    }
+      &:hover::after {
+        width: 100%;
+      }
 
-    .menu-button.active::after {
-      width: 100%;
+      &.active::after {
+        width: 100%;
+      }
     }
   }
 </style>

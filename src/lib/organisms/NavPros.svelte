@@ -4,61 +4,65 @@
   import { page } from '$app/stores';
 </script>
 
-<nav>
-  <a class="logo-mobile" href="/"><img src={logomobile} alt="Logo" /></a>
-  <a class="logo-desktop" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
-  <details class="menu">
-    <summary>
-      <span></span>
-      <span></span>
-      <span></span>
-    </summary>
-    <ul class="panel">
-      <li><a href="/over-ad">Over Ad's</a></li>
-      <li><a href="/publicaties">Publicaties</a></li>
-      <li><a href="/talent-award">Talent Award</a></li>
-      <li><a href="/nieuws">Nieuws</a></li>
-      <li><a href="/ad-dag">Kom naar Ad-dag</a></li>
-      <li><a href="/talent-award/nominaties">Nominanties</a></li>
-      <li><a href="over-ons">over ons</a></li>
-      <li><a href="/contact">contact</a></li>
+<header>
+  <nav>
+    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
+    <details class="menu">
+      <summary>
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+      <ul class="panel">
+        <li><a href="/over-ad">Over Ad's</a></li>
+        <li><a href="/publicaties">Publicaties</a></li>
+        <li><a href="/talent-award">Talent Award</a></li>
+        <li><a href="/nieuws">Nieuws</a></li>
+        <li><a href="/ad-dag">Kom naar Ad-dag</a></li>
+        <li><a href="/talent-award/nominaties">Nominanties</a></li>
+        <li><a href="over-ons">over ons</a></li>
+        <li><a href="/contact">contact</a></li>
+      </ul>
+    </details>
+
+    <ul class="desktop-nav">
+      <li><a class={$page.url.pathname === "/over-ad" ? "menu-button active" : "menu-button"} href="/over-ad">Over Ad's</a></li>
+      <li><a class={$page.url.pathname === "/publicaties" ? "menu-button active" : "menu-button"} href="/publicaties">Publicaties</a></li>
+      <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/talent-award">Talent Award</a></li>
+      <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/nieuws">Nieuws</a></li>
+      <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
     </ul>
-  </details>
-
-  <ul class="desktop-nav">
-    <li><a class={$page.url.pathname === "/over-ad" ? "menu-button active" : "menu-button"} href="/over-ad">Over Ad's</a></li>
-    <li><a class={$page.url.pathname === "/publicaties" ? "menu-button active" : "menu-button"} href="/publicaties">Publicaties</a></li>
-    <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/talent-award">Talent Award</a></li>
-    <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/nieuws">Nieuws</a></li>
-    <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
-
-    <div class="follower"></div>
-  </ul>
-</nav>
+  </nav>
+</header>
 
 <style>
   /* MOBILE*/
+  header {
+    background-color: var(--background);
+    width: 100%;
+    display: flex;
+    position: fixed;
+    top: 2.8em;
+    justify-content: center;
+    padding: 1em 5%;
+    align-items: center;
+  }
+
   nav {
     display: flex;
     position: relative;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem;
     background: var(--background);
     z-index: 99;
-    position: fixed;
-    top: 2.8em;
-  }
-  
-  .logo-mobile img {
-    display: block;
-    height: 35px;
-    margin-left: 55px;
-    margin-top: 10px;
-  }
+    max-width: 1400px;
+    box-sizing: border-box;
 
-  .logo-desktop { display: none; }
+    .logo img {
+      height: 50px;
+    }
+  }
   
   summary {
     display: inline-block;
@@ -68,7 +72,10 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  summary::-webkit-details-marker { display: none; }
+  summary::-webkit-details-marker { 
+    display: none; 
+  }
+
   summary span {
     display: block;
     position: relative;
@@ -80,8 +87,15 @@
     transform-origin: center;
     transition: all .3s ease;
   }
-  .menu { display: block; position: relative; z-index: 0; margin-right: 5%; }
-  .menu:hover summary span { width: 32px; }
+
+  .menu { 
+    display: block; 
+    position: relative; 
+    z-index: 0; 
+  }
+  .menu:hover summary span { 
+    width: 32px; 
+  }
   
   .menu::before {
     content: "";
@@ -141,27 +155,35 @@
     text-decoration: none;
     padding: .5rem 1rem;
   }
+
   :global(body:has(.menu[open])) {
-  overflow: hidden;
-}
+    overflow: hidden;
+  }
 
   .desktop-nav { display: none; }
   
   /* Desktop */
   @media (min-width: 1160px) {
-    .logo-mobile { display: none; }
-    .logo-desktop { display: block; height: 50px; margin-left: 5%; }
+    header {
+      padding: 1em 5%;
+    }
+    .logo { 
+      display: block; 
+      height: 50px; 
+    }
 
-    .logo-desktop img {
+    .logo img {
       width: 12em;
     }
   
-    .menu { display: none; }
+    .menu { 
+      display: none; 
+    }
+
     .desktop-nav {
       display: flex;
       position: relative;
       gap: 2rem;
-      margin: 0 5% 0 0;
       list-style: none;
     }
 
@@ -174,18 +196,6 @@
       font-weight: var(--heading-font-weight);
       color: var(--blue-800);
       padding: .5rem 1rem;
-      /* position: relative; */
-
-      /* &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        height: 2px;
-        width: 0%;
-        background: currentColor;
-        transition: 0.3s ease;
-      } */
     }
   }
 

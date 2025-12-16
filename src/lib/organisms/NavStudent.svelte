@@ -1,12 +1,12 @@
 <script>
-    import logo from '$lib/assets/logo-desktop.svg';
-    import logomobile from '$lib/assets/logomobile.svg';
-    import { page } from '$app/stores';
-  </script>
-  
+  import logo from '$lib/assets/logo-desktop.svg';
+  import logomobile from '$lib/assets/logomobile.svg';
+  import { page } from '$app/stores';
+</script>
+
+<header>
   <nav>
-    <a class="logo-mobile" href="/"><img src={logomobile} alt="Logo" /></a>
-    <a class="logo-desktop" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
+    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
     <details class="menu">
       <summary>
         <span></span>
@@ -31,182 +31,190 @@
       <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
     </ul>
   </nav>
-  
-  <style>
+</header>
 
-  /* MOBILE*/
+<style>
+/* MOBILE*/
+header {
+  background-color: var(--background);
+  width: 100%;
+  display: flex;
+  position: fixed;
+  top: 2.8em;
+  justify-content: center;
+  padding: 1em 5%;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--background);
+  z-index: 99;
+  max-width: 1400px;
+  box-sizing: border-box;
+
+  .logo img {
+    height: 50px;
+  }
+}
+
+summary {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+summary::-webkit-details-marker { display: none; }
+summary span {
+  display: block;
+  position: relative;
+  width: 28px;
+  height: 3px;
+  margin: 6px 0;
+  background: var(--blue-800);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: all .3s ease;
+}
+.menu { display: block; position: relative; z-index: 0; margin-right: 5%; }
+.menu:hover summary span { width: 32px; }
+
+.menu::before {
+  content: "";
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0,0,0,0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+.menu[open]::before { background: rgba(0,0,0,.25); opacity: 1; pointer-events: auto; }
+
+.panel {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: clamp(1rem,3vw,2rem);
+  box-sizing: border-box;
+  background: var(--background);
+  list-style: none;
+  text-align: left;
+  transform: translateX(100%);
+  transition: transform .45s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+
+.menu[open] .panel { transform: translateX(0); }
+.menu[open] summary {
+  display: inline-block;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1001;
+  padding: 6px;
+  background: transparent;
+  border-radius: 8px;
+}
+
+.menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.menu[open] summary span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+.menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+.panel a {
+  display: block;
+  color: var(--blue-800);
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: .5rem 1rem;
+}
+
+body:has(.menu[open]) { overflow: hidden; }
+
+.desktop-nav { display: none; }
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .logo-mobile { display: none; }
+  .logo-desktop { display: block; margin-left: 5%; height: 50px; }
+
+  .logo-desktop img {
+    width: 12em;
+  }
+
+  header {
+      padding: 0 5%;
+    }
+
+  .menu { display: none; }
+  .desktop-nav {
+    display: flex;
+    position: relative;
+    gap: 2rem;
+    margin: 0 5% 0 0;
+    list-style: none;
+  }
+
   nav {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1rem;
-    background: var(--background);
-    z-index: 99;
-    position: fixed;
-    top: 2.8em;
-  }
-  
-  .logo-mobile img {
-    display: block;
-    height: 35px;
-    margin-left: 55px;
-    margin-top: 10px;
+    padding: 1rem 0;
   }
 
-  .logo-desktop { display: none; }
-  
-  summary {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    list-style: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  summary::-webkit-details-marker { display: none; }
-  summary span {
-    display: block;
-    position: relative;
-    width: 28px;
-    height: 3px;
-    margin: 6px 0;
-    background: var(--blue-800);
-    border-radius: 2px;
-    transform-origin: center;
-    transition: all .3s ease;
-  }
-  .menu { display: block; position: relative; z-index: 0; margin-right: 5%; }
-  .menu:hover summary span { width: 32px; }
-  
-  .menu::before {
-    content: "";
-    display: block;
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    background: rgba(0,0,0,0);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .3s ease;
-  }
-
-  .menu[open]::before { background: rgba(0,0,0,.25); opacity: 1; pointer-events: auto; }
-  
-  .panel {
-    display: flex;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.2rem;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: clamp(1rem,3vw,2rem);
-    box-sizing: border-box;
-    background: var(--background);
-    list-style: none;
-    text-align: left;
-    transform: translateX(100%);
-    transition: transform .45s cubic-bezier(.22,.61,.36,1);
-    will-change: transform;
-  }
-
-  .menu[open] .panel { transform: translateX(0); }
-  .menu[open] summary {
-    display: inline-block;
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 1001;
-    padding: 6px;
-    background: transparent;
-    border-radius: 8px;
-  }
-
-  .menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-  .menu[open] summary span:nth-child(2) { transform: scaleX(0); opacity: 0; }
-  .menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-  .panel a {
-    display: block;
+  /* Hover animatie menu items */
+  .menu-button {
+    font-weight: var(--heading-font-weight);
     color: var(--blue-800);
-    font-weight: 500;
-    font-size: 1.2rem;
-    text-decoration: none;
     padding: .5rem 1rem;
-  }
- 
-  body:has(.menu[open]) { overflow: hidden; }
-
-  .desktop-nav { display: none; }
-  
-  /* Desktop */
-  @media (min-width: 1024px) {
-    .logo-mobile { display: none; }
-    .logo-desktop { display: block; margin-left: 5%; height: 50px; }
-
-    .logo-desktop img {
-      width: 12em;
-    }
-  
-    .menu { display: none; }
-    .desktop-nav {
-      display: flex;
-      position: relative;
-      gap: 2rem;
-      margin: 0 5% 0 0;
-      list-style: none;
-    }
-
-    nav {
-      padding: 1rem 0;
-    }
-
-    /* Hover animatie menu items */
-    .menu-button {
-      font-weight: var(--heading-font-weight);
-      color: var(--blue-800);
-      padding: .5rem 1rem;
-      position: relative;
-
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        height: 2px;
-        width: 0%;
-        background: currentColor;
-        transition: 0.3s ease;
-      }
-    }
-  }
-  
-  /* Accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    .panel,
-    .menu::before,
-    summary span { transition: none !important; }
-  }
-
-  /* Active state */
-  a {
     position: relative;
-  }
 
-  a.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
-    background: currentColor;
-    transform: scaleX(1);
-    transition: 0.3s ease;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      height: 2px;
+      width: 0%;
+      background: currentColor;
+      transition: 0.3s ease;
+    }
   }
-  </style>
-  
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .menu::before,
+  summary span { transition: none !important; }
+}
+
+/* Active state */
+a {
+  position: relative;
+}
+
+a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(1);
+  transition: 0.3s ease;
+}
+</style>

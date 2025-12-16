@@ -46,7 +46,6 @@
     }
 
     img {
-        width: .8em;
         background-color: var(--orange-500);
         padding: .8em;
         border-radius: .5em;

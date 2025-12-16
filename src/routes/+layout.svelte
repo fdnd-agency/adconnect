@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/stylesheet.css" />
 </svelte:head>
 
-<a href="#main" class="skip-link">Ga naar content</a>
+<a href="#main" class="skip-link">Ga naar inhoud</a>
 
 <header class="general-header">
   <TopNav />
@@ -22,6 +22,8 @@
 <main>
   {@render children?.()}
 </main>
+
+<a class="scroll" href="#">↑</a>
 
 <footer class="footer-grid">
   <div class="wrapper">
@@ -83,33 +85,9 @@
 
     <section>
       <div class="desktop-menu">
-        <h2>Leden van bestuur</h2>
-        <ul>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Carolien van Rijswijk</a></li>
-          <li><a href="/">Carolien van Rijswijk</a></li>
-          <li><a href="/">Carolien van Rijswijk</a></li>
-          <li><a href="/">Carolien van Rijswijk</a></li>
-        </ul>
-      </div>
-
-      <details class="mobile-menu">
-        <summary><h2>Leden van bestuur</h2></summary>
-        <ul>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-          <li><a href="/">Roland van der Poel (voorzitter)</a></li>
-        </ul>
-      </details>
-    </section>
-
-    <section>
-      <div class="desktop-menu">
         <h2>Contact</h2>
         <ul>
-          <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
+          <li><a href="mailto:platformassociatedegrees@outlook.com">E-mail platform Ad's</a></li>
         </ul>
       </div>
 
@@ -161,10 +139,10 @@
     top: -10rem;
     left: 45%;
     z-index: 99999999;
-  }
 
-  .skip-link:focus-visible {
-    top: 0;
+	&:focus-visible {
+		top: 0;
+	}
   }
 
   footer {
@@ -192,24 +170,20 @@
     width: 90%;
     align-self: center;
     padding: 2em 0;
-  }
 
-  @media (min-width: 768px) {
-    .wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2em;
-    }
-  }
+	@media (min-width: 768px) {
+		display: grid;
+      	grid-template-columns: 1fr 1fr;
+      	gap: 2em;
+	}
 
-  @media (min-width: 1024px) {
-    .wrapper {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      grid-auto-rows: auto;
-      width: 90%;
-      max-width: 1400px;
-      padding: 5em 0 2em 0;
-    }
+	@media (min-width: 1024px) {
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+      	grid-auto-rows: auto;
+      	width: 90%;
+      	max-width: 1400px;
+      	padding: 5em 0 2em 0;
+	}
   }
 
   a {
@@ -332,5 +306,15 @@
 
   [open]::details-content {
     height: auto;
+  }
+
+  .scroll {
+	position: fixed;
+	bottom: 2em;
+	right: 5%;
+	font-size: 20px;
+	padding: .7em 1.1em;
+	z-index: 999999;
+	background-color: var(--primary-orange);
   }
 </style>
