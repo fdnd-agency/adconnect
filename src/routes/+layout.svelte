@@ -11,6 +11,7 @@
   <link rel="icon" href={favicon} />
   <!-- stylesheet -->
   <link rel="stylesheet" href="/stylesheet.css" />
+  <link rel="stylesheet" href="/viewtransition.css" />
 </svelte:head>
 
 <a href="#main" class="skip-link">Ga naar inhoud</a>

@@ -1,0 +1,41 @@
+/* Activate view page transition */
+@view-transition {
+    navigation: auto;
+}
+
+/* View page transition only on main */
+main {
+    view-transition-name: content;
+}
+
+/* Old page */
+::view-transition-old(content) {
+    animation: .8s ease-in both move-out;
+}
+
+/* New page */
+::view-transition-new(content) {
+    animation: .8s ease-in both move-in;
+}
+
+/* Animation move out */
+@keyframes move-out {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Animation move out */
+@keyframes move-in {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
