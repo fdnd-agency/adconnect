@@ -71,3 +71,19 @@ main {
     }
 }
 
+/* Reduce motion when the user has this option on */
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    /* Disable automatic view transitions */
+    @view-transition {
+        navigation: none;
+    }
+
+    html::view-transition-old(content),
+    html::view-transition-new(content) {
+        animation-name: none;
+        animation-duration: 0s;
+        transition: none;
+    }
+}
