@@ -2,7 +2,7 @@
 	// Imports tools, images and components
 	import { onNavigate } from '$app/navigation'
   	import { page } from "$app/stores";
-	
+
   	import favicon from "$lib/assets/favicon-adc.svg";
   	import logodark from "$lib/assets/logo-dark.svg";
   	import { TopNav, NavPros } from "$lib";
@@ -164,7 +164,7 @@
   :global(*) {
     margin: 0;
     padding: 0;
-    scroll-behavior: autoh;
+    scroll-behavior: smooth;
   }
   :global(header) {
     overflow: hidden;
@@ -362,7 +362,7 @@
 	right: 5%;
 	font-size: 20px;
 	padding: .7em 1.1em;
-	z-index: 999999;
+	z-index: 9999999;
 	background-color: var(--primary-orange);
   }
 </style>
