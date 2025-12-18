@@ -364,5 +364,9 @@
 	padding: .7em 1.1em;
 	z-index: 9999999;
 	background-color: var(--primary-orange);
+
+	@media (min-width: 768px) {
+		display: none;
+  	}
   }
 </style>
