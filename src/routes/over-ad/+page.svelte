@@ -10,7 +10,7 @@
   import { doorstroom, overleggen, awards, dots, placeholder } from '$lib';
 
   // Import Atomic Design
-  import { BenefitsCard, NavPros, ThemeCard } from '$lib'
+  import { BenefitsCard, ThemeCard } from '$lib'
 
   let { data } = $props(); 
 
@@ -21,8 +21,6 @@
 <svelte:head>
   <title>Over Ad's | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
   title="Over Associate Degree's"

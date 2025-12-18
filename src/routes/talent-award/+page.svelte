@@ -5,15 +5,11 @@
     import logomobile from "$lib/assets/logomobile.svg";
     import logodark from "$lib/assets/logomobiledark.svg";
     import PreviousWinners from "$lib/components/talentaward/PreviousWinners.svelte";
-
-    import { NavPros } from '$lib'
 </script>
 
 <svelte:head>
     <title>Talent Award| Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
     title="Ad Talent Award"

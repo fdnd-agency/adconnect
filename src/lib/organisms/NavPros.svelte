@@ -1,12 +1,12 @@
 <script>
-  import logo from '$lib/assets/logo-desktop.svg';
-  import logomobile from '$lib/assets/logomobile.svg';
-  import { page } from '$app/stores';
+  import logo from "$lib/assets/logo-desktop.svg";
+  import logomobile from "$lib/assets/logomobile.svg";
+  import { page } from "$app/stores";
 </script>
 
 <header>
   <nav>
-    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
+    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy" /></a>
     <details class="menu">
       <summary>
         <span></span>
@@ -26,11 +26,41 @@
     </details>
 
     <ul class="desktop-nav">
-      <li><a class={$page.url.pathname === "/over-ad" ? "menu-button active" : "menu-button"} href="/over-ad">Over Ad's</a></li>
-      <li><a class={$page.url.pathname === "/publicaties" ? "menu-button active" : "menu-button"} href="/publicaties">Publicaties</a></li>
-      <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/talent-award">Talent Award</a></li>
-      <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/nieuws">Nieuws</a></li>
-      <li><a class='button-outline-white' href="/ad-dag">Kom naar Ad-dag</a></li>
+      <li>
+        <a
+          class={$page.url.pathname === "/over-ad"
+            ? "menu-button active"
+            : "menu-button"}
+          href="/over-ad">Over Ad's</a
+        >
+      </li>
+      <li>
+        <a
+          class={$page.url.pathname === "/publicaties"
+            ? "menu-button active"
+            : "menu-button"}
+          href="/publicaties">Publicaties</a
+        >
+      </li>
+      <li>
+        <a
+          class={$page.url.pathname === "/talent-award"
+            ? "menu-button active"
+            : "menu-button"}
+          href="/talent-award">Talent Award</a
+        >
+      </li>
+      <li>
+        <a
+          class={$page.url.pathname === "/nieuws"
+            ? "menu-button active"
+            : "menu-button"}
+          href="/nieuws">Nieuws</a
+        >
+      </li>
+      <li>
+        <a class="button-outline-white" href="/ad-dag">Kom naar Ad-dag</a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -46,6 +76,7 @@
     justify-content: center;
     padding: 1em 5%;
     align-items: center;
+    z-index: 999;
   }
 
   nav {
@@ -63,7 +94,7 @@
       height: 50px;
     }
   }
-  
+
   summary {
     display: inline-block;
     position: relative;
@@ -72,8 +103,8 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  summary::-webkit-details-marker { 
-    display: none; 
+  summary::-webkit-details-marker {
+    display: none;
   }
 
   summary span {
@@ -85,32 +116,36 @@
     background: var(--blue-800);
     border-radius: 2px;
     transform-origin: center;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
   }
 
-  .menu { 
-    display: block; 
-    position: relative; 
-    z-index: 0; 
+  .menu {
+    display: block;
+    position: relative;
+    z-index: 0;
   }
-  .menu:hover summary span { 
-    width: 32px; 
+  .menu:hover summary span {
+    width: 32px;
   }
-  
+
   .menu::before {
     content: "";
     display: block;
     position: fixed;
     inset: 0;
     z-index: 999;
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     opacity: 0;
     pointer-events: none;
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
   }
 
-  .menu[open]::before { background: rgba(0,0,0,.25); opacity: 1; pointer-events: auto; }
-  
+  .menu[open]::before {
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .panel {
     display: flex;
     position: fixed;
@@ -122,17 +157,19 @@
     width: 100vw;
     height: 100vh;
     margin: 0;
-    padding: clamp(1rem,3vw,2rem);
+    padding: clamp(1rem, 3vw, 2rem);
     box-sizing: border-box;
     background: var(--background);
     list-style: none;
     text-align: left;
     transform: translateX(100%);
-    transition: transform .45s cubic-bezier(.22,.61,.36,1);
+    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
     will-change: transform;
   }
 
-  .menu[open] .panel { transform: translateX(0); }
+  .menu[open] .panel {
+    transform: translateX(0);
+  }
   .menu[open] summary {
     display: inline-block;
     position: fixed;
@@ -144,40 +181,49 @@
     border-radius: 8px;
   }
 
-  .menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-  .menu[open] summary span:nth-child(2) { transform: scaleX(0); opacity: 0; }
-  .menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  .menu[open] summary span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .menu[open] summary span:nth-child(2) {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  .menu[open] summary span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
   .panel a {
     display: block;
     color: var(--blue-800);
     font-weight: 500;
     font-size: 1.2rem;
     text-decoration: none;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
   }
 
   :global(body:has(.menu[open])) {
     overflow: hidden;
   }
 
-  .desktop-nav { display: none; }
-  
+  .desktop-nav {
+    display: none;
+  }
+
   /* Desktop */
   @media (min-width: 1160px) {
     header {
       padding: 1em 5%;
     }
-    .logo { 
-      display: block; 
-      height: 50px; 
+    .logo {
+      display: block;
+      height: 50px;
     }
 
     .logo img {
       width: 12em;
     }
-  
-    .menu { 
-      display: none; 
+
+    .menu {
+      display: none;
     }
 
     .desktop-nav {
@@ -195,45 +241,46 @@
     .menu-button {
       font-weight: var(--heading-font-weight);
       color: var(--blue-800);
-      padding: .5rem 1rem;
+      padding: 0.5rem 1rem;
     }
   }
 
-    .menu-button:hover::after {
-      width: 100%;
-    }
-  
+  .menu-button:hover::after {
+    width: 100%;
+  }
+
   /* Accessibility */
   @media (prefers-reduced-motion: reduce) {
     .panel,
     .menu::before,
-    summary span { transition: none !important; }
+    summary span {
+      transition: none !important;
+    }
   }
 
   /* Hover animatie menu items */
-    .menu-button {
-      font-weight: var(--heading-font-weight);
-      color: var(--blue-800);
-      padding: .5rem 1rem;
-      position: relative;
+  .menu-button {
+    font-weight: var(--heading-font-weight);
+    color: var(--blue-800);
+    padding: 0.5rem 1rem;
+    position: relative;
 
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        height: 2px;
-        width: 0%;
-        background: currentColor;
-        transition: 0.3s ease;
-      }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      height: 2px;
+      width: 0%;
+      background: currentColor;
+      transition: 0.3s ease;
     }
+  }
 
-    .menu-button:hover::after {
-      width: 100%;
-    }
+  .menu-button:hover::after {
+    width: 100%;
+  }
 
-  
   a {
     position: relative;
   }
@@ -250,4 +297,3 @@
     transition: 0.3s ease;
   }
 </style>
-  

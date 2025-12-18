@@ -5,9 +5,6 @@
     import Hero from '$lib/components/hero/Hero.svelte';
     import placeholder from "$lib/assets/placeholder-hero.webp";
 
-    // Import components Atomic Design
-    import { NavPros } from '$lib'
-
     // Haal data op uit page.server.js via props
     let { data } = $props(); 
     let documents = $state(data.documents);
@@ -35,8 +32,6 @@
 <svelte:head>
   <title>Documenten | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
   title="Publicaties"

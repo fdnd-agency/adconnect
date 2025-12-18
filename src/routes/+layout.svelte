@@ -2,7 +2,7 @@
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
 
-  import { TopNav } from "$lib";
+  import { TopNav, NavPros } from "$lib";
 
   let { children } = $props();
 </script>
@@ -18,6 +18,7 @@
 
 <header class="general-header">
   <TopNav />
+  <NavPros />
 </header>
 
 <main>

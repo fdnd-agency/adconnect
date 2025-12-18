@@ -9,9 +9,6 @@
   import Divider from "$lib/components/divider/Divider.svelte";
   import FeatureSplit from "$lib/components/why-ad-home/FeatureSplit.svelte";
 
-  // Import Atomic Design
-  import { NavPros } from '$lib'
-
   let { data } = $props();
   const news = data.news;
   const cooperation = data.cooperation;
@@ -20,8 +17,6 @@
 <svelte:head>
   <title>Home | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero title="Overlegplatform Associate Degrees" description="Het overlegplatform voor Associate Degree opleidingen in Nederland.">
   <a slot="secondary" href="/ad-dag" class="button-outline-white">Kom naar de Ad-dag →</a>

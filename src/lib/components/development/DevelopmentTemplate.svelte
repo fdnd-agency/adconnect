@@ -2,14 +2,12 @@
   import { page } from '$app/state';
 
   // Import Atomic Design
-  import { NavPros, bird } from '$lib'
+  import { bird } from '$lib'
 </script>
 
 <svelte:head>
     <title>Pagina in ontwikkeling | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <div class="wrapper-error" id="main">
   <img src="{bird}" alt="404 error">

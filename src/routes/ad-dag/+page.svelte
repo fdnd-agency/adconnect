@@ -7,15 +7,13 @@
   	import Location from "$lib/components/location/location.svelte";
     import addag2 from "$lib/assets/addag-2.png";
 
-	import { MultipleFaq, SingleFaq, NavPros } from '$lib'
+	import { MultipleFaq, SingleFaq } from '$lib'
 
   </script>
   
   <svelte:head>
   <title> Ad dag | Overlegplatform Associate Degrees</title>
 </svelte:head>
-  
-  <NavPros />
   
   <main>
   <Hero 
