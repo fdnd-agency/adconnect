@@ -7,27 +7,28 @@ main {
     view-transition-name: content;
 }
 
-/* Animation forwards */
-html.forwards {
-    --old-move: move-out-left;
-    --new-move: move-in-right;
-}
+@media (min-width: 768px) {
+    /* Animation forwards */
+    html.forwards {
+        --old-move: move-out-left;
+        --new-move: move-in-right;
+    }
 
-/* Animation backwards */
-html.backwards {
-    --old-move: move-out-right;
-    --new-move: move-in-left;
-}
+    /* Animation backwards */
+    html.backwards {
+        --old-move: move-out-right;
+        --new-move: move-in-left;
+    }
 
-/* Apply animation */
-html::view-transition-old(content) {
-    animation: .6s ease-in both var(--old-move);
-}
+    /* Apply animation */
+    html::view-transition-old(content) {
+        animation: .6s ease-in both var(--old-move);
+    }
 
-html::view-transition-new(content) {
-    animation: .6s ease-in both var(--new-move);
+    html::view-transition-new(content) {
+        animation: .6s ease-in both var(--new-move);
+    }
 }
-
 
 /* Animations for slide and out (old and new) */
 @keyframes move-out-left {
@@ -69,3 +70,4 @@ html::view-transition-new(content) {
         transform: translateX(0%);
     }
 }
+
