@@ -211,7 +211,7 @@
   /* Desktop */
   @media (min-width: 1160px) {
     header {
-      padding: 1em 5%;
+      padding: 0em 5%;
     }
     .logo {
       display: block;

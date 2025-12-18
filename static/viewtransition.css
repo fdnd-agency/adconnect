@@ -3,23 +3,34 @@
     navigation: auto;
 }
 
-/* View page transition only on main */
 main {
     view-transition-name: content;
 }
 
-/* Old page */
-::view-transition-old(content) {
-    animation: .8s ease-in both move-out;
+/* Animation forwards */
+html.forwards {
+    --old-move: move-out-left;
+    --new-move: move-in-right;
 }
 
-/* New page */
-::view-transition-new(content) {
-    animation: .8s ease-in both move-in;
+/* Animation backwards */
+html.backwards {
+    --old-move: move-out-right;
+    --new-move: move-in-left;
 }
 
-/* Animation move out */
-@keyframes move-out {
+/* Apply animation */
+html::view-transition-old(content) {
+    animation: .6s ease-in both var(--old-move);
+}
+
+html::view-transition-new(content) {
+    animation: .6s ease-in both var(--new-move);
+}
+
+
+/* Animations for slide and out (old and new) */
+@keyframes move-out-left {
     from {
         transform: translateX(0%);
     }
@@ -29,10 +40,29 @@ main {
     }
 }
 
-/* Animation move out */
-@keyframes move-in {
+@keyframes move-in-right {
     from {
         transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes move-out-right {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes move-in-left {
+    from {
+        transform: translateX(-100%);
     }
 
     to {
