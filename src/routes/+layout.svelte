@@ -5,6 +5,19 @@
   import { TopNav, NavPros } from "$lib";
 
   let { children } = $props();
+
+  import { onNavigate } from "$app/navigation";
+
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 </script>
 
 <svelte:head>
@@ -29,13 +42,23 @@
 
 <footer class="footer-grid">
   <div class="wrapper">
-    <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
+    <a href="/" class="logo"
+      ><img
+        src={logodark}
+        alt="Terug naar homepagina"
+        width="230"
+        height="75"
+        loading="lazy"
+      /></a
+    >
 
     <section>
       <h2>AdConnect</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur. Massa et enim vitae quis eget. Quam elit elementum vivamus libero vitae nulla nec eget. Porttitor nunc
-        tristique dictumst dui at augue vitae a. Nisl orci ultricies nec quisque. Nulla laoreet elit id vitae ullamcorper.
+        Lorem ipsum dolor sit amet consectetur. Massa et enim vitae quis eget.
+        Quam elit elementum vivamus libero vitae nulla nec eget. Porttitor nunc
+        tristique dictumst dui at augue vitae a. Nisl orci ultricies nec
+        quisque. Nulla laoreet elit id vitae ullamcorper.
       </p>
     </section>
 
@@ -89,14 +112,22 @@
       <div class="desktop-menu">
         <h2>Contact</h2>
         <ul>
-          <li><a href="mailto:platformassociatedegrees@outlook.com">E-mail platform Ad's</a></li>
+          <li>
+            <a href="mailto:platformassociatedegrees@outlook.com"
+              >E-mail platform Ad's</a
+            >
+          </li>
         </ul>
       </div>
 
       <details class="mobile-menu">
         <summary><h2>Contact</h2></summary>
         <ul>
-          <li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
+          <li>
+            <a href="mailto:platformassociatedegrees@outlook.com"
+              >platformassociatedegrees@outlook.com</a
+            >
+          </li>
         </ul>
       </details>
     </section>
@@ -125,7 +156,7 @@
   }
 
   main {
-    margin: 7.9em 0 0 0;
+    margin: 9.9em 0 0 0;
   }
 
   /* Skiplink */
@@ -142,9 +173,9 @@
     left: 45%;
     z-index: 99999999;
 
-	&:focus-visible {
-		top: 0;
-	}
+    &:focus-visible {
+      top: 0;
+    }
   }
 
   footer {
@@ -173,19 +204,19 @@
     align-self: center;
     padding: 2em 0;
 
-	@media (min-width: 768px) {
-		display: grid;
-      	grid-template-columns: 1fr 1fr;
-      	gap: 2em;
-	}
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2em;
+    }
 
-	@media (min-width: 1024px) {
-		grid-template-columns: 2fr 1fr 1fr 1fr;
-      	grid-auto-rows: auto;
-      	width: 90%;
-      	max-width: 1400px;
-      	padding: 5em 0 2em 0;
-	}
+    @media (min-width: 1024px) {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      grid-auto-rows: auto;
+      width: 90%;
+      max-width: 1400px;
+      padding: 5em 0 2em 0;
+    }
   }
 
   a {
@@ -311,12 +342,12 @@
   }
 
   .scroll {
-	position: fixed;
-	bottom: 2em;
-	right: 5%;
-	font-size: 20px;
-	padding: .7em 1.1em;
-	z-index: 999999;
-	background-color: var(--primary-orange);
+    position: fixed;
+    bottom: 2em;
+    right: 5%;
+    font-size: 20px;
+    padding: 0.7em 1.1em;
+    z-index: 999999;
+    background-color: var(--primary-orange);
   }
 </style>
