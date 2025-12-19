@@ -25,6 +25,18 @@ Here is the [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/Des
   * [License](#license)
 
 ## Description
+### View page transition
+When switching between pages the new page slides in from the right side of the screen. It also detects when you go back to the previous page, then the animatie is reverted so the user has more logical by navigating the website.
+- Uses the View Transitions API (document.startViewTransition) for smooth page navigation.
+- Determines navigation direction (forwards / backwards) based on the URL to support visual hierarchy.
+- Controls animations through CSS classes on `<html>` combined with `@keyframes`.
+- Waits for scroll-to-top before starting the transition to keep visual focus.
+- Enabled on desktop `@media min-width: 768px`, keeping mobile interactions calm.
+- Respects `prefers-reduced-motion` and falls back gracefully when unsupported.
+- The view page transition is an enhancement
+
+https://github.com/user-attachments/assets/dce2ad1a-61f2-4cec-a410-09ffbd8a5cb7
+
 ### Filter publications
 - Used semantic HTML. I’m using an `<a>` element.
 - The filter is server side rendered which means it also works when client side JS is disabled.
@@ -34,7 +46,7 @@ https://github.com/user-attachments/assets/eec6b157-3cfb-4d3b-bfc5-e33aed4bdd43
 
 ### Cooperation carousel
 - Used semantic HTML: `<ul>`, `<li>`, and an `<a>` containing an `<img>`.  
-- Built mobile-first, then enhanced for larger screens using `@media` queries.  
+- Built mobile first, then enhanced for larger screens using `@media` queries.  
 - Created the carousel as a reusable component, allowing it to be used across multiple pages.  
 - Performed responsive and accessibility testing.  
 - All data (logos) is dynamically fetched from the Directus API.  
