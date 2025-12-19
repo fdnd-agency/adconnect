@@ -35,7 +35,7 @@ When switching between pages the new page slides in from the right side of the s
 - Respects `prefers-reduced-motion` and falls back gracefully when unsupported.
 - The view page transition is an enhancement
 
-https://github.com/user-attachments/assets/dce2ad1a-61f2-4cec-a410-09ffbd8a5cb7
+https://github.com/user-attachments/assets/8ddc4cad-fab4-466c-a49d-6f040d12bc5a
 
 ### Filter publications
 - Used semantic HTML. I’m using an `<a>` element.
