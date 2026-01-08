@@ -1,0 +1,41 @@
+import { Resend } from "resend";
+import { RESEND_API_KEY } from "$env/static/private";
+import { fail } from '@sveltejs/kit';
+
+// Connecting the API KEY to the variable resend
+const resend = new Resend(RESEND_API_KEY);
+
+// Form submitting 
+export const actions = {
+    // The default function that is going to run
+    default: async ({ request }) => { // 'request' contains all the form field data
+
+        // Retrieves the form field data from the 'request'
+        const formData = await request.formData();
+
+        // Variables to get the form fields
+        const name = formData.get("name");
+        const email = formData.get("email");
+        const message = formData.get("message");
+
+        console.log("Check data submitted", { name, email, message});
+
+        try {
+            // Send the email using Resend
+            await resend.emails.send({
+                from: 'Overlegplatform Ad <onboarding@resend.dev>',
+                to: 'amschalker@gmail.com',
+                subject: "Nieuwe inzending contactformulier",
+                text: `Naam: ${name}\nEmail: ${email}\nBericht: ${message}`
+            });
+
+            // Confirmation to the form
+            return { success: true };
+            
+        // If something goes wrong tell the form it failed
+        } catch (error) {
+            console.error("Resend error:", error);
+            return fail(500, { error: "Het verzenden is mislukt." });
+        }
+    }
+};
