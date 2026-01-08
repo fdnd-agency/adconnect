@@ -102,15 +102,52 @@
         </section>
       {/if}
 
-      {#if status === "success"}
-        <section class="success visible">
-          <div class="info">
-            <h3>Bedankt, je formulier is verzonden!</h3>
-            <p>Jouw formulier is succesvol naar ons verzonden.  We nemen zo snel mogelijk contact op per mail.</p>
-          </div>
-          <img src={birdcheck} alt="" />
-        </section>
-      {/if}
+      <div class="wrapper-form">
+        {#if (status === "") | (status === "error")}
+          <form class="contact-form" method="POST" use:enhance={formSubmit}>
+            <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b" />
+            <input type="hidden" name="subject" value="Nieuwe inzending contactformulier" />
+            <input type="hidden" name="from_name" value="Overlegplatform Ad" />
+            <label for="name"
+              ><p>Naam + Achternaam<span>*</span></p>
+              <input type="text" name="name" id="name" placeholder="Bijv. Jan van Huizen" required />
+            </label>
+            <label for="email"
+              ><p>E-mailadres<span>*</span></p>
+              <input type="email" name="email" id="email" placeholder="Bijv. janvanhuizen@gmail.com" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
+            </label>
+            <label for="message"
+              ><p>Jouw vraag<span>*</span></p>
+              <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
+            </label>
+            <div>
+              <button class="button-outline-white" type="submit">Formulier verzenden</button>
+              {#if status === "error"}
+                <section class="error visible">
+                  <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
+                </section>
+              {/if}
+            </div>
+          </form>
+        {/if}
+
+        {#if status === "submitting"}
+          <section class="loading visible">
+            <h3>Formulier verzenden...</h3>
+            <img class="spinner" src={loading} alt="" />
+          </section>
+        {/if}
+
+        {#if status === "success"}
+          <section class="success visible">
+            <div class="info">
+              <h3>Bedankt, je formulier is verzonden!</h3>
+              <p>Jouw formulier is succesvol naar ons verzonden.  We nemen zo snel mogelijk contact op per mail.</p>
+            </div>
+            <img src={birdcheck} alt="" />
+          </section>
+        {/if}
+      </div>
     </div>
   </div>
 </section>
