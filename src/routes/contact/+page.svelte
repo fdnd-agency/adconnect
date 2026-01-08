@@ -58,12 +58,11 @@
 
     <div class="contact-wrapper">
         <section class="contact-info">
-            <h2>Contactgegevens</h2>
-            <p>Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
+            <h2 class="white">Contactgegevens</h2>
+            <p class="white">Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
             <ul>
-                <li><a href="/"><img src="{phone}" alt="">Telefoonnummer</a></li>
-                <li><a href="mailto:platformassociatedegrees@outlook.com"><img src="{mail}" alt="">platformads@outlook.com</a></li>
-                <li><a href="/"><img src="{map}" alt="">Amsterdam</a></li>
+                <li><a href="/" class="white"><img src="{phone}" alt="">Telefoonnummer</a></li>
+                <li><a href="mailto:platformassociatedegrees@outlook.com" class="white"><img src="{mail}" alt="">platformads@outlook.com</a></li>
             </ul>
 
             <img class="circle-info" src="{lightcircle}" alt="">
@@ -277,6 +276,7 @@
 
     .contact-info {
         background-color: var(--primary-blue);
+        color: var(--text-white);
         display: flex;
         flex-direction: column;
         padding: 1.5em;
@@ -290,6 +290,10 @@
             display: flex;
             flex-direction: column;
             gap: .5em;
+        }
+
+        h2 {
+            font-size: 25px;
         }
 
         a {
@@ -308,7 +312,7 @@
             width: 40%;
         }
     }
-    
+
     .circle-info {
         display: none;
 
@@ -319,10 +323,6 @@
             display: block;
             position: absolute;
         }
-    }
-
-    .contact-info h2, .contact-info p {
-        color: var(--text-white);
     }
 
     /* FAQ */
@@ -392,5 +392,9 @@
 
     .error {
         color: red;
+    }
+
+    .white {
+        color: var(--text-white);
     }
 </style>
