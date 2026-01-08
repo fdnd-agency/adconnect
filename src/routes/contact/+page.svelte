@@ -53,90 +53,52 @@
   <h1>Vragen? Neem contact op</h1>
   <p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
 
-  <div class="contact-wrapper">
-    <section class="contact-info">
-      <h2>Contactgegevens</h2>
-      <p>Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
-      <ul>
-        <li><a href="/"><img src={phone} alt="" />Telefoonnummer</a></li>
-        <li><a href="mailto:platformassociatedegrees@outlook.com"><img src={mail} alt="" />platformads@outlook.com</a></li>
-        <li><a href="/"><img src={map} alt="" />Amsterdam</a></li>
-      </ul>
+    <div class="contact-wrapper">
+        <section class="contact-info">
+            <h2>Contactgegevens</h2>
+            <p>Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
+            <ul>
+                <li><a href="/"><img src="{phone}" alt="">Telefoonnummer</a></li>
+                <li><a href="mailto:platformassociatedegrees@outlook.com"><img src="{mail}" alt="">platformads@outlook.com</a></li>
+                <li><a href="/"><img src="{map}" alt="">Amsterdam</a></li>
+            </ul>
 
-      <img class="circle-info" src={lightcircle} alt="" />
-    </section>
-
-    <div class="wrapper-form">
-      {#if (status === "") | (status === "error")}
-        <form class="contact-form" method="POST" use:enhance={formSubmit}>
-          <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b" />
-          <input type="hidden" name="subject" value="Nieuwe inzending contactformulier" />
-          <input type="hidden" name="from_name" value="Overlegplatform Ad" />
-          <label for="name"
-            ><p>Naam + Achternaam<span>*</span></p>
-            <input type="text" name="name" id="name" placeholder="Bijv. Jan van Huizen" required />
-          </label>
-          <label for="email"
-            ><p>E-mailadres<span>*</span></p>
-            <input type="email" name="email" id="email" placeholder="Bijv. janvanhuizen@gmail.com" required />
-          </label>
-          <label for="message"
-            ><p>Jouw vraag<span>*</span></p>
-            <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
-          </label>
-          <div>
-            <button class="button-outline-white" type="submit">Formulier verzenden</button>
-            {#if status === "error"}
-              <section class="error visible">
-                <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
-              </section>
-            {/if}
-          </div>
-        </form>
-      {/if}
-
-      {#if status === "submitting"}
-        <section class="loading visible">
-          <h3>Formulier verzenden...</h3>
-          <img class="spinner" src={loading} alt="" />
+            <img class="circle-info" src="{lightcircle}" alt="">
         </section>
-      {/if}
 
-      <div class="wrapper-form">
-        {#if (status === "") | (status === "error")}
-          <form class="contact-form" method="POST" use:enhance={formSubmit}>
-            <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b" />
-            <input type="hidden" name="subject" value="Nieuwe inzending contactformulier" />
-            <input type="hidden" name="from_name" value="Overlegplatform Ad" />
-            <label for="name"
-              ><p>Naam + Achternaam<span>*</span></p>
-              <input type="text" name="name" id="name" placeholder="Bijv. Jan van Huizen" required />
-            </label>
-            <label for="email"
-              ><p>E-mailadres<span>*</span></p>
-              <input type="email" name="email" id="email" placeholder="Bijv. janvanhuizen@gmail.com" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
-            </label>
-            <label for="message"
-              ><p>Jouw vraag<span>*</span></p>
-              <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
-            </label>
-            <div>
-              <button class="button-outline-white" type="submit">Formulier verzenden</button>
-              {#if status === "error"}
-                <section class="error visible">
-                  <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
+        <div class="wrapper-form">
+            {#if status === "" | status === "error"}
+            <form class="contact-form" method="POST" use:enhance={formSubmit}>
+                <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b">
+                <input type="hidden" name="subject" value="Nieuwe inzending contactformulier">
+                <input type="hidden" name="from_name" value="Overlegplatform Ad">
+                <label for="name"><p>Naam + Achternaam<span>*</span></p>
+                    <input type="text" name="name" id="name" placeholder="Bijv. Jan van Huizen" required />
+                </label>
+                <label for="email"><p>E-mailadres<span>*</span></p>
+                    <input type="email" name="email" id="email" placeholder="Bijv. janvanhuizen@gmail.com" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"/>
+                </label>
+                <label for="message"><p>Jouw vraag<span>*</span></p>
+                    <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
+                </label>
+                <div>
+                    <button class="button-outline-white" type="submit">Formulier verzenden</button>
+                    {#if status === "error"}
+                        <section class="error visible">
+                            <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
+                        </section>
+                    {/if}
+                </div>
+                
+            </form>
+            {/if}
+        
+            {#if status === "submitting"}
+                <section class="loading visible">
+                    <h3>Formulier verzenden...</h3>
+                    <img class="spinner" src="{loading}" alt="">
                 </section>
-              {/if}
-            </div>
-          </form>
-        {/if}
-
-        {#if status === "submitting"}
-          <section class="loading visible">
-            <h3>Formulier verzenden...</h3>
-            <img class="spinner" src={loading} alt="" />
-          </section>
-        {/if}
+            {/if}
 
         {#if status === "success"}
           <section class="success visible">
@@ -215,22 +177,16 @@
     width: 100%;
   }
 
-  @media (min-width: 768px) {
-    .contact-wrapper {
-      flex-direction: row;
-      gap: 2em;
+    @media (min-width: 768px) {
+        .contact-wrapper {
+            flex-direction: row;
+            gap: 2em;
+        }
     }
-  }
-  @media (min-width: 768px) {
-    .contact-wrapper {
-      flex-direction: row;
-      gap: 2em;
-    }
-  }
 
-  .contact-form {
-    width: 100%;
-  }
+    .contact-form {
+        width: 100%;
+    }
 
   .wrapper-form {
     width: 100%;
@@ -319,125 +275,112 @@
     position: relative;
     overflow: hidden;
 
-    ul {
-      list-style-type: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-    }
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: .5em;
+        }
 
-    a {
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      color: var(--text-white);
-      word-break: break-all;
-      position: relative;
-      z-index: 1;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .contact-info {
-      width: 40%;
-    }
-  }
-
-  .circle-info {
-    display: none;
-
-    @media (min-width: 768px) {
-      width: 17em;
-      right: -10%;
-      bottom: -10%;
-      display: block;
-      position: absolute;
-    }
-  }
-
-  .contact-info h2,
-  .contact-info p {
-    color: var(--text-white);
-  }
-
-  /* FAQ */
-  .faq-section {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    padding: 3em 5%;
-    box-sizing: border-box;
-    position: relative;
-
-    @media (min-width: 768px) {
-      padding: 5em 5%;
-    }
-  }
-
-  .faq-section h2 {
-    text-align: center;
-  }
-
-  /* States form */
-  .spinner {
-    width: 5em;
-    height: 5em;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .loading,
-  .success,
-  .error {
-    display: flex;
-  }
-
-  .loading {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h3 {
-      text-align: center;
-    }
-  }
-
-  .success {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .info {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-    }
-    .info {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-
-      @media (min-width: 768px) {
-        width: 50%;
-      }
+        a {
+            display: flex;
+            align-items: center;
+            gap: .5em;
+            color: var(--text-white);
+            word-break: break-all;
+            position: relative;
+            z-index: 1;
+        }
     }
 
     @media (min-width: 768px) {
-      flex-direction: row;
+        .contact-info {
+            width: 40%;
+        }
     }
-  }
+    
+    .circle-info {
+        display: none;
 
-  .error {
-    color: red;
-  }
+         @media (min-width: 768px) {
+            width: 17em;
+            right: -10%;
+            bottom: -10%;
+            display: block;
+            position: absolute;
+        }
+    }
+
+    .contact-info h2, .contact-info p {
+        color: var(--text-white);
+    }
+
+    /* FAQ */
+    .faq-section {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        padding: 3em 5%;
+        box-sizing: border-box;
+        position: relative;
+
+        @media (min-width: 768px) {
+            padding: 5em 5%;
+        }
+    }
+
+    .faq-section h2 {
+        text-align: center;
+    }
+
+    /* States form */
+    .spinner {
+        width: 5em;
+        height: 5em;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .loading, .success, .error { 
+        display: flex; 
+    }
+
+    .loading {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .success {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .info {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            @media (min-width: 768px) {
+                width: 50%;
+            }
+        }
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+    }
+
+    .error {
+        color: red;
+    }
 </style>
