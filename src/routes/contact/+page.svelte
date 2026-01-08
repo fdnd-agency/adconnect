@@ -195,6 +195,10 @@
         }
     }
 
+    .contact-form {
+        width: 100%;
+    }
+
     .wrapper-form {
         width: 100%;
         background-color: var(--text-white);
@@ -371,10 +375,14 @@
         justify-content: center;
 
         .info {
-            width: 50%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 1em;
+
+            @media (min-width: 768px) {
+                width: 50%;
+            }
         }
 
         @media (min-width: 768px) {
