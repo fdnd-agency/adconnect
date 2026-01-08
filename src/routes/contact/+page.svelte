@@ -9,6 +9,28 @@
 
     export let breadcrumb = "";
 
+    // Variable to check the status of the form
+    let status = "";
+
+    // Function when form is submitting
+    function formSubmit() {
+
+        // When submitting show the loading UI state
+        status = "submitting";
+        
+        return async ({ result, update }) => {
+            // When the form is correct submitted then show succes UI state
+            if (result.type === 'success') {
+                status = "success";
+            // When the form isn't correct submitted then show error UI state
+            } else if (result.type === 'failure') {
+                status = "error";
+            }
+            
+            // Update the form to see the correct UI state
+            await update();
+        };
+    }
 </script>
 
 <svelte:head>
@@ -62,7 +84,33 @@
                 </label>
                 <div>
                     <button class="button-outline-white" type="submit">Formulier verzenden</button>
+                    {#if status === "error"}
+                        <section class="error visible">
+                            <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
+                        </section>
+                    {/if}
                 </div>
+                
+            </form>
+            {/if}
+        
+            {#if status === "submitting"}
+                <section class="loading visible">
+                    <h3>Formulier verzenden...</h3>
+                    <img class="spinner" src="{loading}" alt="">
+                </section>
+            {/if}
+
+            {#if status === "success"}
+                <section class="success visible">
+                    <div class="info">
+                        <h3>Bedankt, je formulier is verzonden!</h3>
+                        <p>Jouw formulier is succesvol naar ons verzonden.  We nemen zo snel mogelijk contact op per mail.</p>
+                    </div>
+                    <img src="{birdcheck}" alt="">
+                </section>
+            {/if}
+        </div>
     </div>
 </section>
 
@@ -276,5 +324,52 @@
 
     .faq-section h2 {
         text-align: center;
+    }
+
+    /* States form */
+    .spinner {
+        width: 5em;
+        height: 5em;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .loading, .success, .error { 
+        display: flex; 
+    }
+
+    .loading {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .success {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .info {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+    }
+
+    .error {
+        color: red;
     }
 </style>
