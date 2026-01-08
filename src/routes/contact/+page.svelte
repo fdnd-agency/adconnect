@@ -79,7 +79,7 @@
                     <input type="text" name="name" id="name" placeholder="Bijv. Jan van Huizen" required />
                 </label>
                 <label for="email"><p>E-mailadres<span>*</span></p>
-                    <input type="email" name="email" id="email" placeholder="Bijv. janvanhuizen@gmail.com" required />
+                    <input type="email" name="email" id="email" placeholder="Bijv. janvanhuizen@gmail.com" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"/>
                 </label>
                 <label for="message"><p>Jouw vraag<span>*</span></p>
                     <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>

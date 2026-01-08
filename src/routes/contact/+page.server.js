@@ -5,6 +5,9 @@ import { fail } from '@sveltejs/kit';
 // Connecting the API KEY to the variable resend
 const resend = new Resend(RESEND_API_KEY);
 
+// Email validation regex
+let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 // Form submitting 
 export const actions = {
     // The default function that is going to run
@@ -19,6 +22,11 @@ export const actions = {
         const message = formData.get("message");
 
         console.log("Check data submitted", { name, email, message});
+
+        // Check if there is an correct email
+        if (!regex.test(email)) {
+            return fail(400, { error: "Ongeldig e-mailadres." });
+        }
 
         try {
             // Send the email using Resend
