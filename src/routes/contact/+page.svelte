@@ -45,21 +45,24 @@
             <img class="circle-info" src="{lightcircle}" alt="">
         </section>
 
-        <form class="contact-form">
-                <label for="name"><p>Voor + Achternaam<span>*</span></p>
-                    <input type="text" id="name" placeholder="Bijv. Pieter van der Veen" required>
+        <div class="wrapper-form">
+            {#if status === "" | status === "error"}
+            <form class="contact-form" method="POST" use:enhance={formSubmit}>
+                <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b">
+                <input type="hidden" name="subject" value="Nieuwe inzending contactformulier">
+                <input type="hidden" name="from_name" value="Overlegplatform Ad">
+                <label for="name"><p>Naam + Achternaam<span>*</span></p>
+                    <input type="text" name="name" id="name" placeholder="Bijv. Jan van Huizen" required />
                 </label>
-                <label for="mail"><p>E-mailadres<span>*</span></p>
-                    <input type="email" id="mail" placeholder="Bijv. pietervdv@gmail.com">
+                <label for="email"><p>E-mailadres<span>*</span></p>
+                    <input type="email" name="email" id="email" placeholder="Bijv. janvanhuizen@gmail.com" required />
                 </label>
-                <label for="tel"><p>Telefoonnummer<span>*</span></p>
-                    <input type="tel" id="tel" placeholder="Bijv. +31 650328798">
+                <label for="message"><p>Jouw vraag<span>*</span></p>
+                    <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
                 </label>
-                <label for="message"><p>Bericht<span>*</span></p>
-                    <textarea id="message" placeholder="Beste Overlegplatform Ad's.."></textarea>
-                </label>
-                <button class="button-outline-white">Formulier verzenden</button>
-        </form>
+                <div>
+                    <button class="button-outline-white" type="submit">Formulier verzenden</button>
+                </div>
     </div>
 </section>
 
