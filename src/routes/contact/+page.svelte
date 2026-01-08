@@ -257,6 +257,16 @@
         }
     }
 
+    input:invalid:not(:placeholder-shown),
+    textarea:invalid:not(:placeholder-shown) {
+        outline: 2px solid red;
+    }
+
+    input:valid,
+    textarea:valid {
+        outline: 2px solid rgb(1, 213, 5);
+    }
+
     .contact-info {
         background-color: var(--primary-blue);
         display: flex;
