@@ -9,7 +9,7 @@
     // Import images Atomic Design
     import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading } from '$lib'
 
-    export let breadcrumb = "";
+    const breadcrumb = ""
 
     // Variable to check the status of the form
     let status = "";
