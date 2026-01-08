@@ -6,8 +6,7 @@
   // Import components Atomic Design
   import { MultipleFaq, SingleFaq, NavPros, Breadcrumb } from "$lib";
 
-  // Import images Atomic Design
-  import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading } from "$lib";
+  const breadcrumb = "";
 
   export let breadcrumb = "";
 
