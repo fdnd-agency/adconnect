@@ -1,5 +1,7 @@
 <script>
     import { page } from "$app/stores";
+    $: pathname = $page.url.pathname;
+    import { enhance } from "$app/forms";
 
     // Import components Atomic Design
     import { MultipleFaq, SingleFaq, NavPros } from '$lib'
@@ -41,12 +43,12 @@
 
 <section class="contact-hero" id="main">
 
-     {#if $page.url.pathname !== "/"}
+     {#if pathname !== "/"}
       <nav class="hero-breadcrumb">
         {#if breadcrumb}
           {breadcrumb}
         {:else}
-          <a href="/">Home</a><a href="{$page.url.pathname}">{$page.url.pathname}</a>
+          <a href="/">Home</a><a href="{pathname}">{pathname}</a>
         {/if}
       </nav>
     {/if}
@@ -60,7 +62,7 @@
             <p>Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
             <ul>
                 <li><a href="/"><img src="{phone}" alt="">Telefoonnummer</a></li>
-                <li><a href="mailto:platformassociatedegrees@outlook.com"><img src="{mail}" alt="">platformassociatedegrees@outlook.com</a></li>
+                <li><a href="mailto:platformassociatedegrees@outlook.com"><img src="{mail}" alt="">platformads@outlook.com</a></li>
                 <li><a href="/"><img src="{map}" alt="">Amsterdam</a></li>
             </ul>
 
@@ -193,11 +195,15 @@
         }
     }
 
-    .contact-form {
+    .wrapper-form {
+        width: 100%;
         background-color: var(--text-white);
         border: 1px solid var(--neutral-300);
         border-radius: 1em;
         padding: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     @media (min-width: 768px) {
@@ -208,9 +214,7 @@
             gap: 1em;
         }
 
-        .contact-form label:nth-child(1),
-        .contact-form label:nth-child(4),
-        .contact-form button {
+        .contact-form label:nth-child(6) {
             grid-column: 1 / -1; /* full-width */
         }
     }
@@ -315,7 +319,6 @@
 
     .contact-info h2, .contact-info p {
         color: var(--text-white);
-        word-break: break-all;
     }
 
     /* FAQ */
