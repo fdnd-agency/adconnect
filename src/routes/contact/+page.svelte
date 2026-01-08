@@ -221,6 +221,16 @@
       gap: 2em;
     }
   }
+  @media (min-width: 768px) {
+    .contact-wrapper {
+      flex-direction: row;
+      gap: 2em;
+    }
+  }
+
+  .contact-form {
+    width: 100%;
+  }
 
   .wrapper-form {
     width: 100%;
@@ -410,6 +420,16 @@
       display: flex;
       flex-direction: column;
       gap: 1em;
+    }
+    .info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      @media (min-width: 768px) {
+        width: 50%;
+      }
     }
 
     @media (min-width: 768px) {
