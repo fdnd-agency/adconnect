@@ -5,7 +5,7 @@
     import { MultipleFaq, SingleFaq, NavPros, Breadcrumb } from '$lib'
    
     // Import images Atomic Design
-    import { mail, map, phone, lightcircle, darkcircle } from '$lib'
+    import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading } from '$lib'
 
     export let breadcrumb = "";
 
