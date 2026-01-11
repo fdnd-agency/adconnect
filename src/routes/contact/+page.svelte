@@ -82,15 +82,14 @@
                 <label for="message"><p>Jouw vraag<span>*</span></p>
                     <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
                 </label>
-                <div>
-                    <button class="button-outline-white" type="submit">Formulier verzenden</button>
-                    {#if status === "error"}
-                        <section class="error visible">
-                            <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
-                        </section>
-                    {/if}
-                </div>
-                
+
+                <button class="button-outline-white" type="submit">Formulier verzenden</button>
+                {#if status === "error"}
+                    <div class="error visible">
+                        <img src="{wrong}" alt="">
+                        <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
+                    </div>
+                {/if} 
             </form>
             {/if}
         
@@ -182,6 +181,7 @@
         .contact-wrapper {
             flex-direction: row;
             gap: 2em;
+            max-width: 1400px;
         }
     }
 
