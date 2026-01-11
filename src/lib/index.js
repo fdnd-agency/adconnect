@@ -34,5 +34,6 @@ export { default as calendar } from './assets/icon-calendar-orange.svg';
 export { default as label } from './assets/icon-label.svg';
 export { default as loading } from './assets/icon-loading.svg';
 export { default as birdcheck } from './assets/bird-send-succesful.jpg';
+export { default as wrong } from './assets/icon-error.svg';
 
 

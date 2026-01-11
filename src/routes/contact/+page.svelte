@@ -7,7 +7,7 @@
     import { MultipleFaq, SingleFaq, NavPros } from '$lib'
    
     // Import images Atomic Design
-    import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading } from '$lib'
+    import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from '$lib'
 
     const breadcrumb = ""
 
@@ -83,14 +83,15 @@
                 <label for="message"><p>Jouw vraag<span>*</span></p>
                     <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
                 </label>
-                <div>
+
                     <button class="button-outline-white" type="submit">Formulier verzenden</button>
-                    {#if status === "error"}
-                        <section class="error visible">
+                    <!-- {#if status === "error"} -->
+                        <div class="error visible">
+                            <img src="{wrong}" alt="">
                             <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
-                        </section>
-                    {/if}
-                </div>
+                        </div>
+                    <!-- {/if} -->
+
                 
             </form>
             {/if}
@@ -392,6 +393,12 @@
 
     .error {
         color: red;
+        display: flex;
+        align-items: baseline;
+        gap: 1em;
+        background-color: #FFE4E4;
+        padding: .3em;
+        border-radius: .5em;
     }
 
     .white {
