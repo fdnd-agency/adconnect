@@ -4,7 +4,7 @@
     import { enhance } from "$app/forms";
 
     // Import components Atomic Design
-    import { MultipleFaq, SingleFaq, NavPros } from '$lib'
+    import { MultipleFaq, SingleFaq, NavPros, ErrorState, SuccesState, LoadingState } from '$lib'
    
     // Import images Atomic Design
     import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from '$lib'
@@ -85,31 +85,17 @@
                 </label>
 
                 <button class="button-outline-white" type="submit">Formulier verzenden</button>
-                {#if status === "error"}
-                    <div class="error visible">
-                        <img src="{wrong}" alt="">
-                        <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
-                    </div>
-                {/if} 
+                
+                <!-- Error state -->
+                <ErrorState {status} />
             </form>
             {/if}
         
-            {#if status === "submitting"}
-                <section class="loading visible">
-                    <h3>Formulier verzenden...</h3>
-                    <img class="spinner" src="{loading}" alt="">
-                </section>
-            {/if}
+            <!-- Loading state -->
+            <LoadingState {status} />
 
-            {#if status === "success"}
-                <section class="success visible">
-                    <div class="info">
-                        <h3>Bedankt, je formulier is verzonden!</h3>
-                        <p>Jouw formulier is succesvol naar ons verzonden.  We nemen zo snel mogelijk contact op per mail.</p>
-                    </div>
-                    <img src="{birdcheck}" alt="">
-                </section>
-            {/if}
+            <!-- Succes state -->
+            <SuccesState {status} />
         </div>
     </div>
 </section>
@@ -341,63 +327,6 @@
 
     .faq-section h2 {
         text-align: center;
-    }
-
-    /* States form */
-    .spinner {
-        width: 5em;
-        height: 5em;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    
-    .loading, .success, .error { 
-        display: flex; 
-    }
-
-    .loading {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        h3 {
-            text-align: center;
-        }
-    }
-
-    .success {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        .info {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-
-            @media (min-width: 768px) {
-                width: 50%;
-            }
-        }
-
-        @media (min-width: 768px) {
-            flex-direction: row;
-        }
-    }
-
-    .error {
-        color: red;
-        display: flex;
-        align-items: baseline;
-        gap: 1em;
-        background-color: #FFE4E4;
-        padding: .3em;
-        border-radius: .5em;
     }
 
     .white {
