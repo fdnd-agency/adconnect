@@ -1,8 +1,7 @@
 <script>
-    import DocumentCard from "$lib/components/documents/DocumentCard.svelte";
-    import Hero from '$lib/components/hero/Hero.svelte';
+    import DocumentCard from "$lib/molecules/DocumentCard.svelte";
 
-    import { NavPros } from '$lib'
+    import { NavPros, Hero } from '$lib'
 
     let { data } = $props(); 
     let documents = data.documents;
@@ -35,8 +34,8 @@
     <div class="wrapper-ad-day">
         <section class="ad-day">
             <h2>Kom naar de Ad-dag!</h2>
-            <p>Deze trendanalyse geeft een overzicht van de instroomontwikkeling in de bekostigde Ad’s, als ook de bewegingen per sector...</p>
-            <a href="/dev/hero" class="button-outline-blue">Ik wil naar de Ad-dag →</a>
+            <p>Ontdek alles over Associate Degrees en laat je inspireren tijdens workshops en presentaties op de Landelijke Ad-dag.</p>
+            <a href="/ad-dag" class="button-outline-blue">Meer weten over de Ad-dag</a>
         </section>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <script>
-    import DevelopmentTemplate from '$lib/components/development/DevelopmentTemplate.svelte';
+    import { Development } from '$lib'
 </script>
 
-<DevelopmentTemplate />
+<Development />

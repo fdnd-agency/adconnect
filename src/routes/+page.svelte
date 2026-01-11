@@ -1,16 +1,12 @@
 <script>
   import NewsCardSection from "$lib/components/NewsCardSection.svelte";
-  import Hero from "$lib/components/hero/Hero.svelte";
   import placeholder from "$lib/assets/placeholder-hero.webp";
   import Information from "$lib/components/information-home/Information.svelte";
   import InformationCards from "$lib/components/information-cards/InformationCards.svelte";
-  import LogoSection from "$lib/components/cooperation/LogoSection.svelte";
-  import DividerText from "$lib/components/divider/DividerText.svelte";
-  import Divider from "$lib/components/divider/Divider.svelte";
   import FeatureSplit from "$lib/components/why-ad-home/FeatureSplit.svelte";
 
   // Import Atomic Design
-  import { NavPros } from '$lib'
+  import { NavPros, DividerText, Divider, LogoSection, Hero } from '$lib'
 
   let { data } = $props();
   const news = data.news;

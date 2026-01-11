@@ -1,5 +1,4 @@
 <script>
-	import Hero from "$lib/components/hero/Hero.svelte";
 	import logomobile from "$lib/assets/logomobile.svg";
 	import addag1 from "$lib/assets/addag-1.png";
 	import InfoAddag from "$lib/components/ad/infoaddag.svelte";
@@ -7,7 +6,7 @@
   	import Location from "$lib/components/location/location.svelte";
     import addag2 from "$lib/assets/addag-2.png";
 
-	import { MultipleFaq, SingleFaq, NavPros } from '$lib'
+	import { MultipleFaq, SingleFaq, NavPros, Hero } from '$lib'
 
   </script>
   

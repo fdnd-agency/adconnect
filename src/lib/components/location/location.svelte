@@ -1,5 +1,5 @@
 <script>
-    import DividerText from "../divider/DividerText.svelte";
+    import DividerText from "../../molecules/DividerText.svelte";
 </script>
 
 <DividerText text="Locatie Ad Dag "/>

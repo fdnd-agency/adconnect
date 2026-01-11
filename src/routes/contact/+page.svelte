@@ -85,7 +85,7 @@
                 </label>
 
                 <button class="button-outline-white" type="submit">Formulier verzenden</button>
-                
+
                 <!-- Error state -->
                 <ErrorState {status} />
             </form>
@@ -106,23 +106,23 @@
     <MultipleFaq>
         <SingleFaq
             open={true}
-            question="Wat is een Associate Degree Ad?"
-            answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+            question="Wat is een Associate degree?"
+            answer="Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding."
         />
         
         <SingleFaq
             question="Hoe lang duurt een Associate degree?"
-            answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+            answer="Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring."
         />
 
         <SingleFaq
-            question="Wat is het verschil tussen een Associate Degree en een Bachelor?"
-            answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+            question="Wat is het verschil tussen een Associate degree en een Bachelor?"
+            answer="Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld."
         />
 
         <SingleFaq
-            question="Welke voordelen heeft het behalen van een Associate Degree?"
-            answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+            question="Welke voordelen heeft het behalen van een Associate degree?"
+            answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
         />
     </MultipleFaq>
 </section>
