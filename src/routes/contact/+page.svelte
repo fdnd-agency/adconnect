@@ -3,10 +3,11 @@
   $: pathname = $page.url.pathname;
   import { enhance } from "$app/forms";
 
-  // Import components Atomic Design
-  import { MultipleFaq, SingleFaq, NavPros, Breadcrumb } from "$lib";
-
-  const breadcrumb = "";
+    // Import components Atomic Design
+    import { MultipleFaq, SingleFaq, NavPros } from '$lib'
+   
+    // Import images Atomic Design
+    import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading } from '$lib'
 
   export let breadcrumb = "";
 
@@ -274,6 +275,15 @@
     gap: 0.7em;
     position: relative;
     overflow: hidden;
+    .contact-info {
+        background-color: var(--primary-blue);
+        display: flex;
+        flex-direction: column;
+        padding: 1.5em;
+        border-radius: 1em;
+        gap: .7em;
+        position: relative;
+        overflow: hidden;
 
         ul {
             list-style-type: none;
