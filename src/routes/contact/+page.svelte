@@ -95,33 +95,19 @@
             ><p>Jouw vraag<span>*</span></p>
             <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
           </label>
-          <div>
-            <button class="button-outline-white" type="submit">Formulier verzenden</button>
-            {#if status === "error"}
-              <section class="error visible">
-                <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
-              </section>
-            {/if}
-          </div>
+
+          <button class="button-outline-white" type="submit">Formulier verzenden</button>
+
+          <!-- Error state -->
+          <ErrorState {status} />
         </form>
       {/if}
 
-      {#if status === "submitting"}
-        <section class="loading visible">
-          <h3>Formulier verzenden...</h3>
-          <img class="spinner" src={loading} alt="" />
-        </section>
-      {/if}
+      <!-- Loading state -->
+      <LoadingState {status} />
 
-      {#if status === "success"}
-        <section class="success visible">
-          <div class="info">
-            <h3>Bedankt, je formulier is verzonden!</h3>
-            <p>Jouw formulier is succesvol naar ons verzonden.  We nemen zo snel mogelijk contact op per mail.</p>
-          </div>
-          <img src={birdcheck} alt="" />
-        </section>
-      {/if}
+      <!-- Succes state -->
+      <SuccesState {status} />
     </div>
   </div>
 </section>
@@ -132,23 +118,23 @@
   <MultipleFaq>
     <SingleFaq
       open={true}
-      question="Wat is een Associate Degree Ad?"
-      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+      question="Wat is een Associate degree?"
+      answer="Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding."
     />
 
     <SingleFaq
       question="Hoe lang duurt een Associate degree?"
-      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+      answer="Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring."
     />
 
     <SingleFaq
-      question="Wat is het verschil tussen een Associate Degree en een Bachelor?"
-      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+      question="Wat is het verschil tussen een Associate degree en een Bachelor?"
+      answer="Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld."
     />
 
     <SingleFaq
-      question="Welke voordelen heeft het behalen van een Associate Degree?"
-      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
+      question="Welke voordelen heeft het behalen van een Associate degree?"
+      answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
     />
   </MultipleFaq>
 </section>

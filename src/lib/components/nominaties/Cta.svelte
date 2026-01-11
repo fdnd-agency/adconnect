@@ -1,5 +1,5 @@
 <script>
-    import Divider from "$lib/components/divider/Divider.svelte";
+    import Divider from "$lib/molecules/Divider.svelte";
     import darkcircle from "$lib/assets/dark-circle.svg";
 </script>
 

@@ -1,12 +1,13 @@
 <script>
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
-    import DocumentCard from '$lib/components/documents/DocumentCard.svelte';
-    import Hero from '$lib/components/hero/Hero.svelte';
-    import placeholder from "$lib/assets/placeholder-hero.webp";
+    import DocumentCard from '$lib/molecules/DocumentCard.svelte';
 
-    // Import components Atomic Design
-    import { NavPros } from '$lib'
+    // Import images
+    import { publicatie } from '$lib'
+
+    // Import components
+    import { NavPros, Hero } from '$lib'
 
     // Haal data op uit page.server.js via props
     let { data } = $props(); 
@@ -40,8 +41,8 @@
 
 <Hero
   title="Publicaties"
-  description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor cies donec porttitor tempus eleifend nunc.tempus eleifend nunc.">
-  <img class="hero-image" src={placeholder} alt="" fetchpriority=high />
+  description="Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs.">
+  <img class="hero-image" src={publicatie} alt="" fetchpriority=high />
 </Hero>
 
 <div class="filter-buttons">
