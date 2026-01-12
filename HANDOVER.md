@@ -47,3 +47,5 @@ Based on issue #15, the website structure has been revised. Example structure fo
 ### What is recommended as the first step for the next team?
 
 The recommended first step for the next team is to clearly define and refine all target groups for the AdConnect website together with the product owner. At the moment, the platform distinguishes between students and professionals, but during the project it became clear that the group “professionals” may actually consist of multiple sub-groups with different needs, such as employers, study advisors, HR managers, or partner organisations.
+
+By mapping out these target groups in more detail, the team can better understand who AdConnect is really serving and what information each group is looking for about Associate Degrees. This makes it much easier to decide what content should be shown to whom, which user stories are needed, and which features should be prioritised.
