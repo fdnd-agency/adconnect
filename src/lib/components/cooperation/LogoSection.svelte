@@ -7,7 +7,7 @@
         {#each cooperation as logo}
         <li>
             <a target="_blank" href="{logo.url}">
-                <img
+                <img width="200" height="100"
                     src={`https://fdnd-agency.directus.app/assets/${logo.logo}?width=800`}
                     srcset="
                         https://fdnd-agency.directus.app/assets/{logo.logo}?width=200 200w,
