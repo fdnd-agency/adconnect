@@ -4,7 +4,6 @@
 
   export let title = "";
   export let description = "";
-  export let breadcrumb = "";
   export let image = "";
   export let alt = "";
   export let placeholder = "";
@@ -37,6 +36,7 @@
     background-color: var(--blue-100);
     justify-content: center;
     display: flex;
+    padding: 2.3em 0 0 0;
   }
 
   .hero {
@@ -78,10 +78,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 1em;
-
-    a {
-      color: var(--text-white);
-    }
   }
 
   .hero-cta {
@@ -91,7 +87,7 @@
   }
 
   .hero-media {
-    width: 90%;
+    width: 100%;
     display: flex;
 
     :global(img) {
