@@ -44,7 +44,7 @@ Based on issue #15, the website structure has been revised. Example structure fo
 - `/students/news` – News for students
 - `/students/talent-awards` – Talent Awards page for students
 
-### What is recommended as the first step for the next team?
+## 2. First step for the next team
 
 The recommended first step for the next team is to clearly define and refine all target groups for the AdConnect website together with the product owner. At the moment, the platform distinguishes between students and professionals, but during the project it became clear that the group “professionals” may actually consist of multiple sub-groups with different needs, such as employers, study advisors, HR managers, or partner organisations.
 
