@@ -13,15 +13,10 @@
 <div class="wrapper-hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">
   <article class="hero" id="main">
     <section class="hero-content">
-      {#if $page.url.pathname !== "/"}
-        <nav class="hero-breadcrumb">
-          {#if breadcrumb}
-            {breadcrumb}
-          {:else}
-            <a href="/">Home</a><a href={$page.url.pathname}>{$page.url.pathname}</a>
-          {/if}
-        </nav>
-      {/if}
+
+      <!-- Breadcrumbs -->
+      <Breadcrumb />
+
       <h1>{title}</h1>
       <p>{description}</p>
       <div class="hero-cta">
