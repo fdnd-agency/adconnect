@@ -1,5 +1,6 @@
 <script>
   import { page } from "$app/stores";
+  import { Breadcrumb } from '$lib'
 
   export let title = "";
   export let description = "";

@@ -1,4 +1,5 @@
 // Atoms
+export { default as Breadcrumb } from './atoms/Breadcrumb.svelte';
 
 // Molecules
 export { default as SingleFaq } from './molecules/SingleFaq.svelte';
@@ -32,4 +33,3 @@ export { default as bird } from './assets/vector-bird.jpg';
 export { default as fallback } from './assets/news-fallback.jpg';
 export { default as calendar } from './assets/icon-calendar-orange.svg';
 export { default as label } from './assets/icon-label.svg';
-
