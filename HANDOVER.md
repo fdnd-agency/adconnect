@@ -44,7 +44,40 @@ Based on issue #15, the website structure has been revised. Example structure fo
 - `/students/news` – News for students
 - `/students/talent-awards` – Talent Awards page for students
 
-### 3. Biggest points of attention and challenges
+## Status
+
+### Key Features Already Working
+
+#### 1. View Page Transitions
+- New pages slide in from the right when navigating forward; going back reverses the animation for logical flow.
+- Utilizes the View Transitions API (`document.startViewTransition`) for smooth navigation.
+- Determines navigation direction (forwards/backwards) based on URL to support visual hierarchy.
+- Animations controlled via CSS classes on `<html>` combined with `@keyframes`.
+- Waits for scroll-to-top before starting the transition to maintain visual focus.
+- Enabled on desktop screens (`min-width: 768px`) to keep mobile interactions minimal.
+- Respects `prefers-reduced-motion` and gracefully falls back when unsupported.
+- Considered an enhancement rather than core functionality.  
+
+#### 2. Filter Publications
+- Built with semantic HTML using `<a>` elements.
+- Server-side rendered**, so filtering works even when client-side JS is disabled.
+- Fully responsive and accessibility tested.  
+
+#### 3. Cooperation Carousel
+- Semantic HTML structure: `<ul>` containing `<li>` elements with `<a>` wrapping `<img>`.
+- Mobile-first approach, enhanced for larger screens with `@media` queries.
+- Carousel created as a reusable component for multiple pages.
+- Fully responsive and accessibility tested.
+- All logos/data dynamically fetched from the Directus API.  
+
+#### 4. Cards
+- Semantic HTML: `<article>` with `<h3>`, `<p>`, and `<a>` elements.
+- Multiple tests performed: Accessibility, Performance, and older browser compatibility.
+- Responsive layout implemented using CSS grid.
+- Uses components within components for modularity.
+- All card data dynamically loaded from server JS.
+
+## 3. Biggest points of attention and challenges
 
 The most important focus of this project is the navigation system. On the old website, the navigation was complex, unclear, and not tailored to the different target audiences. For the new website, we designed a clearer and more structured navigation approach.
 
