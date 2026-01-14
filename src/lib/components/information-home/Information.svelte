@@ -2,6 +2,8 @@
   import dots from "$lib/assets/dots.svg";
   import imageSrc from "$lib/assets/doorstroom-ad-dag.webp";
 
+  import { overad } from '$lib'
+
   export let title = "";
   export let description = "";
   export let buttonText = "";
@@ -21,7 +23,7 @@
   </div>
 
   <div class="information-image">
-    <img src={imageSrc} alt={imageAlt} />
+    <img src={overad} alt={imageAlt} />
   </div>
 </section>
 
@@ -42,7 +44,8 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    width: 75%;
+    max-width: 700px;
+    width: 60%;
     gap: 0.75em;
   }
 
@@ -54,6 +57,8 @@
     width: 100%;
     border-radius: 33px 33px 0 0;
     object-fit: cover;
+    object-position: bottom;
+    height: 30em;
   }
 
   @media (min-width: 768px) {

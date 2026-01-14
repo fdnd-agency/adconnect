@@ -2,7 +2,7 @@
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
 
-  import { TopNav } from "$lib";
+  import { TopNav, icondown } from "$lib";
 
   let { children } = $props();
 </script>
@@ -23,7 +23,7 @@
   {@render children?.()}
 </main>
 
-<a class="scroll" href="#">↑</a>
+<a class="scroll" href="#"><img src={icondown} alt=""></a>
 
 <footer class="footer-grid">
   <div class="wrapper">
@@ -314,12 +314,16 @@
   }
 
   .scroll {
-	position: fixed;
-	bottom: 2em;
-	right: 5%;
-	font-size: 20px;
-	padding: .7em 1.1em;
-	z-index: 999999;
-	background-color: var(--primary-orange);
+    position: fixed;
+    bottom: 2em;
+    right: 5%;
+    font-size: 20px;
+    padding: .8em 1.1em 1em 1.1em;
+    z-index: 999999;
+    background-color: var(--primary-orange);
+
+    img {
+      width: 1em;
+    }
   }
 </style>
