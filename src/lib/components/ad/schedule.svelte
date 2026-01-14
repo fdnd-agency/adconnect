@@ -3,12 +3,11 @@
   </script>
   
   <section class="schedule" style="text-align: center;">
-    <section style="display: inline-block; max-width: 400px;" >
+    <section style="display: inline-block; max-width: 700px;" >
       <h2>Planning</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at
-        eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum
-        egestas iaculis. Pellentesque elementum urna.
+      Beleef de Landelijke Ad‑dag!
+De Landelijke Ad‑dag belooft een bruisende dag vol inspiratie, ontmoetingen en praktijkvoorbeelden te worden. Geleid door Maikel van Duinen, radiotalent en docent, word je meegenomen in een energieke dag vol boeiende sessies, waaronder een keynote over de maatschappelijke en economische impact van de Ad, inspirerende gesprekken tussen onderwijs, werkveld en studenten, de feestelijke uitreiking van de Ad Talent Award, workshops en excursies om de impact van Ad‑studenten van dichtbij te ervaren, en optredens met volop gelegenheid om elkaar te ontmoeten.
       </p>
     </section>
   
@@ -19,9 +18,12 @@
           <h2>Programma</h2>
         </div>
         <p>
-          Lorem ipsum dolor sit amet consectetur. Ultrices at quis
-          pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis
-          eu lectus interdum egestas iaculis. Pellentesque elementum urna.
+          Programma in het kort (concept):<br/>
+          09.30 – 10.00 | Inloop met koffie/thee<br/>
+          10.00 – 13.00 | Opening, keynote, gesprekken en Ad Talent Award<br/>
+          13.00 – 13.45 | Lunch<br/>
+          13.45 – 15.30 | Workshops en excursies<br/>
+          15.30 – 17.00 | Borrel & ontmoeting<br/><br/>
         </p>
         <a class="button-outline-blue"  href="#">Bekijk Programma </a>
       </article>
@@ -32,9 +34,7 @@
           <h2>Workshops</h2>
         </div>
         <p>
-          Lorem ipsum dolor sit amet consectetur. Ultrices at quis
-          pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis
-          eu lectus interdum egestas iaculis. Pellentesque elementum urna.
+          Tijdens de Landelijke Ad‑dag worden verschillende workshops georganiseerd waarin deelnemers samen leren, ervaringen delen en praktische handvatten krijgen op thema’s zoals diversiteit, professionalisering, inzet van technologie binnen Ad‑onderwijs, loopbaanontwikkeling, duurzaamheid en samenwerking met werkveld en onderwijs. De precieze workshoptitels en inhoud worden jaarlijks aangepast en zijn onderdeel van het programma
         </p>
         <a class="button-outline-blue" href="link" >Bekijk Workshops </a>
       </article>
@@ -64,9 +64,9 @@
   
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+      grid-template-columns: 1fr;
       grid-template-rows: repeat(4, auto);
-      margin-top: 3em;
+      margin-top: 5em;
       gap: 1em;
       margin-bottom: 2em;
   
@@ -79,7 +79,9 @@
         flex-direction: column;
         gap: 1em;
         background-color: var(--text-white);
-  
+        text-align: center;
+        margin: 0 auto; 
+      
         p {
           max-width: 500px;
         }
@@ -124,11 +126,10 @@
       margin-top: 1em;
       align-self: center;
     }
-    @media (min-width: 768px) { 
+    @media (min-width: 1024px) { 
       .cards { 
         grid-template-columns: repeat(2, 1fr);
-       gap: 2em; 
-
+        gap: 0.5em;
       }
     }
   </style>
