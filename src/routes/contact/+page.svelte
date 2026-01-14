@@ -4,7 +4,7 @@
     import { enhance } from "$app/forms";
 
     // Import components Atomic Design
-    import { MultipleFaq, SingleFaq, NavPros, ErrorState, SuccesState, LoadingState } from '$lib'
+    import { MultipleFaq, SingleFaq, NavPros, Breadcrumb, ErrorState, SuccesState, LoadingState } from '$lib'
    
     // Import images Atomic Design
     import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from '$lib'
@@ -43,15 +43,10 @@
 
 <section class="contact-hero" id="main">
 
-     {#if pathname !== "/"}
-      <nav class="hero-breadcrumb">
-        {#if breadcrumb}
-          {breadcrumb}
-        {:else}
-          <a href="/">Home</a><a href="{pathname}">{pathname}</a>
-        {/if}
-      </nav>
-    {/if}
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+         <Breadcrumb />
+    </div>
 
     <h1>Vragen? Neem contact op</h1>
     <p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
@@ -147,19 +142,9 @@
         }
     }
 
-    nav.hero-breadcrumb {
-        display: flex;
-        justify-content: center;
+    .breadcrumbs {
         margin: 0 0 -1em 0;
-        font-weight: var(--button-font-weight);
-        font-family: var(--button-outline-font-family);
-        gap: .5em;
-
-        a:first-of-type {
-            font-weight: var(--heading-font-weight);
-        }
-        
-        a {
+        :global(a) {
             color: var(--blue-800);
         }
     }

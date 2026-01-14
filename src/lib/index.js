@@ -1,4 +1,5 @@
 // Atoms
+export { default as Breadcrumb } from './atoms/Breadcrumb.svelte';
 
 // Molecules
 export { default as SingleFaq } from './molecules/SingleFaq.svelte';
@@ -45,6 +46,3 @@ export { default as birdcheck } from './assets/bird-send-succesful.jpg';
 export { default as wrong } from './assets/icon-error.svg';
 export { default as overad } from './assets/over-ad-hero.jpeg';
 export { default as publicatie } from './assets/publicatie-hero.jpeg';
-
-
-
