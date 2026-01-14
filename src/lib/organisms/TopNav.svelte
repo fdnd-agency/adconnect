@@ -4,26 +4,6 @@
 
 <header>
   <nav>
-    <section class="nav-left">
-      <ul>
-        <li>
-          <a href="/" class="pro {!page.url.pathname.includes('/studenten') && !page.url.pathname.includes('/werkgevers') ? 'active' : ''}">
-            Professionals
-          </a>
-        </li>
-        <li>
-          <a href="/studenten" class="stu {page.url.pathname.includes('/studenten') ? 'active' : ''}">
-            Studenten
-          </a>
-        </li>
-        <li>
-          <a href="/werkgevers" class="stu {page.url.pathname.includes('/werkgevers') ? 'active' : ''}">
-            Werkgevers
-          </a>
-        </li>
-      </ul>
-    </section>
-
     <section class="nav-right">
       <ul>
         <li><a class={page.url.pathname === "/over-ons" ? "active" : "menu-button"} href="/over-ons">Over ons</a></li>
@@ -67,6 +47,7 @@
     position: relative;
     width: 100%;
     max-width: 1400px;
+    justify-content: flex-end
   }
 
   ul {
@@ -75,25 +56,6 @@
     padding: 0;
   }
 
-  .nav-left ul {
-    display: flex;
-    gap: 1rem;  
-    
-    /* Active link in menu */
-    a {
-      color: var(--primary-text);
-
-      &:hover {
-        padding-bottom: 1rem;
-      }
-
-      &.active {
-        background-color: var(--background);
-        padding: .5rem .8rem 2rem .8rem;
-        color: #000;
-      }
-    }
-  }
 
   .nav-right ul {
     display: none;
