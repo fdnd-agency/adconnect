@@ -1,38 +1,29 @@
 <script>
   import { page } from "$app/stores";
 
- // Get all URL breadcrumbs, removing empty breadcrumbs
-  $: breadcrumbs = $page.url.pathname.split("/").filter(Boolean);
+  // Current URL path and split it into usable segments (remove the empty ones)
+  $: segments = $page.url.pathname.split("/").filter(Boolean);
+
+  // The first part of the URL is the main section of the page (example: /publicaties/slug -> "publicaties")
+  $: firstBreadcrumb = segments[0];
 
   // Replace '-' with space and capitalize the first letter of words 
   const format = breadcrumb => breadcrumb.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-
-  // Creates the URL for this breadcrumb so it can be clickable (example = Publicatie \ Detailpage)
-  const buildPath = (index) => '/' + breadcrumbs.slice(0, index + 1).join('/');
 </script>
 
-<!-- Checks if there are any breadcrumbs to show -->
-{#if breadcrumbs.length}
+<!-- Only show breadcrumbs when there's at least one segment in the URL -->
+{#if firstBreadcrumb}
     <nav class="hero-breadcrumb" aria-label="Breadcrumb">
 
-        <!-- Top level page -->
-        {#if breadcrumbs.length === 1}
+        <!-- Always start the breadcrumb trail with Home -->
         <a href="/">Home</a>
-        <span> \ </span>
-        {/if}
+        <span class="separator"> \ </span>
 
-        {#each breadcrumbs as breadcrumb, i}
-            {#if i < breadcrumbs.length - 1}
-                <!-- All breadcrumbs except last are clickable -->
-                <a href="{buildPath(i)}">{format(breadcrumb)}</a>
-                <span class="separator"> \ </span>
-            {:else}
-                <!-- Last breadcrumb -->
-                <span aria-current="page">{format(breadcrumb)}</span>
-            {/if}
-        {/each}
+        <!-- Show the main section based on the first URL segment -->
+        <a href="/{firstBreadcrumb}">{format(firstBreadcrumb)}</a>
     </nav>
 {/if}
+
 
 <style>
     a {
