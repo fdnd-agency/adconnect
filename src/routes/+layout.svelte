@@ -2,7 +2,7 @@
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
 
-  import { TopNav } from "$lib";
+  import { TopNav, icondown } from "$lib";
 
   let { children } = $props();
 </script>
@@ -23,17 +23,16 @@
   {@render children?.()}
 </main>
 
-<a class="scroll" href="#">↑</a>
+<a class="scroll" href="#"><img src={icondown} alt=""></a>
 
 <footer class="footer-grid">
   <div class="wrapper">
     <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
 
     <section>
-      <h2>AdConnect</h2>
+      <h2>Overlegplatform Ad's</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur. Massa et enim vitae quis eget. Quam elit elementum vivamus libero vitae nulla nec eget. Porttitor nunc
-        tristique dictumst dui at augue vitae a. Nisl orci ultricies nec quisque. Nulla laoreet elit id vitae ullamcorper.
+        Het Overlegplatform Associate degrees brengt Ad-opleidingen samen om kennis te delen en profielen af te stemmen. Zo blijven opleidingen relevant voor het werkveld en goed voorbereid op doorstroom naar vervolgstudies.
       </p>
     </section>
 
@@ -41,22 +40,26 @@
       <div class="desktop-menu">
         <h2>Menu</h2>
         <ul>
-          <li><a href="/">Wat zijn Ad's?</a></li>
-          <li><a href="/">Documenten</a></li>
-          <li><a href="/">Nieuws</a></li>
-          <li><a href="/">Evenementen</a></li>
-          <li><a href="/">Nominaties</a></li>
+          <li><a href="/over-ad">Over Ad's?</a></li>
+          <li><a href="/publicaties">Publicaties</a></li>
+          <li><a href="/nieuws">Nieuws</a></li>
+          <li><a href="/talent-award">Talent Award</a></li>
+          <li><a href="/ad-dag">Ad-dag</a></li>
+          <li><a href="/over-ons">Over ons</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
 
       <details class="mobile-menu">
         <summary><h2>Menu</h2></summary>
         <ul>
-          <li><a href="/">Wat zijn Ad's?</a></li>
-          <li><a href="/">Documenten</a></li>
-          <li><a href="/">Nieuws</a></li>
-          <li><a href="/">Evenementen</a></li>
-          <li><a href="/">Nominaties</a></li>
+          <li><a href="/over-ad">Over Ad's?</a></li>
+          <li><a href="/publicaties">Publicaties</a></li>
+          <li><a href="/nieuws">Nieuws</a></li>
+          <li><a href="/talent-award">Talent Award</a></li>
+          <li><a href="/ad-dag">Ad-dag</a></li>
+          <li><a href="/over-ons">Over ons</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </details>
     </section>
@@ -65,10 +68,12 @@
       <div class="desktop-menu">
         <h2>Thema's</h2>
         <ul>
-          <li><a href="/">Impactmakerschap</a></li>
-          <li><a href="/">Niveau 5</a></li>
-          <li><a href="/">Doorstroom Ad’s</a></li>
-          <li><a href="/">Onderzoek houding</a></li>
+          <li><a href="/over-ad/handreiking-impactmakerschap">Handrijking impactmakerschap</a></li>
+          <li><a href="/over-ad/impactmakerschap">Impactmakerschap</a></li>
+          <li><a href="/over-ad/niveau-5">Niveau 5</a></li>
+          <li><a href="/over-ad/doorstroom-ad-bachelor">Doorstroom Ad bachelor</a></li>
+          <li><a href="/over-ad/leren-in-beroepspraktijk">Leren in beroepspraktijk</a></li>
+          <li><a href="/over-ad/internationalisering">Internationalisering</a></li>
         </ul>
       </div>
 
@@ -102,7 +107,7 @@
     <div class="divider"></div>
 
     <div class="footer-bottom">
-      <p>© Overlegplatform Associate Degrees. Alle rechten voorbehouden</p>
+      <p>© Overlegplatform Associate degrees. Alle rechten voorbehouden</p>
       <p>Ontwikkeld door studenten FDND</p>
     </div>
   </div>
@@ -309,12 +314,16 @@
   }
 
   .scroll {
-	position: fixed;
-	bottom: 2em;
-	right: 5%;
-	font-size: 20px;
-	padding: .7em 1.1em;
-	z-index: 999999;
-	background-color: var(--primary-orange);
+    position: fixed;
+    bottom: 2em;
+    right: 5%;
+    font-size: 20px;
+    padding: .8em 1.1em 1em 1.1em;
+    z-index: 999999;
+    background-color: var(--primary-orange);
+
+    img {
+      width: 1em;
+    }
   }
 </style>

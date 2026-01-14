@@ -52,6 +52,9 @@
     align-items: stretch;
     justify-content: center;
     padding-bottom: 5rem;
+    max-width: 1400px;
+    margin: auto;
+    width: 90%;
   }
 
   .feature-dots {
@@ -64,11 +67,10 @@
     flex: 1;
     width: 100%;
     gap: 1rem;
-    padding: 2rem;
-  }
 
-  .feature-intro {
-    max-width: 40ch;
+    h2, p {
+       text-align: left;
+    }
   }
 
   .feature-list {
@@ -92,19 +94,22 @@
   }
 
   @media (min-width: 768px) {
+    .feature {
+      gap: 3em;
+    }
     .feature-content {
-      max-width: 575px;
+      width: 50%;
     }
 
     .feature-media {
       display: block;
       padding: 2rem;
+      width: 50%;
     }
 
     .feature-img {
       max-height: 455px;
       width: 100%;
-      max-width: 590px;
       border-radius: 33px;
       object-fit: cover;
     }
