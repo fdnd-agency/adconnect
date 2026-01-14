@@ -5,6 +5,9 @@ import { fail } from '@sveltejs/kit';
 // Connecting the API KEY to the variable resend
 const resend = new Resend(RESEND_API_KEY);
 
+// API link with contact data is retrieved
+const contactAPI = 'https://fdnd-agency.directus.app/items/adconnect_contact';
+
 // Email validation regex
 let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -37,7 +40,21 @@ export const actions = {
                 text: `Naam: ${name}\nEmail: ${email}\nBericht: ${message}`
             });
 
-            // Confirmation to the form
+            // Retrieve data in API Directus
+            const directusResponse = await fetch(contactAPI,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json;charset=UTF-8"
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        message
+                    })
+                }
+            );
+
             return { success: true };
             
         // If something goes wrong tell the form it failed
