@@ -65,7 +65,7 @@
     <Divider />
 </section>
 
-<section class="themes">
+<section class="themes" >
     <h2>Thema's binnen Associate degrees</h2>
     <section class="themes-section">
         <ThemeCard {themes}/>
@@ -78,8 +78,8 @@
   dots={dots}
   title="Landelijke Ad-overleggen en Ad-profielen"
   text="Het Overlegplatform organiseert regelmatig landelijke overleggen waarin vertegenwoordigers van alle Ad-opleidingen samenkomen. Tijdens deze bijeenkomsten worden nieuwe Ad-profielen besproken, kwaliteitsrichtlijnen gedeeld en best practices uitgewisseld. Zo blijven opleidingen actueel en goed afgestemd op het werkveld."
-  link="/ad-overleggen"
-  linkText="Meer over Ad-overleggen"
+  link="/contact"
+  linkText="Meer weten? Neem contact op"
   imagePosition="right"
   background="white"
 />
