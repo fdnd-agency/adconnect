@@ -5,7 +5,8 @@
 	import Schedule from "$lib/components/ad/schedule.svelte";
 	import Location from "$lib/components/location/location.svelte";
 	import addag2 from "$lib/assets/addag-2.png";
-	import placeholder from "$lib/assets/placeholder-hero.webp";
+	import Addag from "$lib/assets/addag.webp";
+	import addag3 from "$lib/assets/addag-3.webp";
 	import { MultipleFaq, SingleFaq, NavPros } from "$lib";
 </script>
 
@@ -25,7 +26,7 @@
 	 uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of 
 	 blijf op de hoogte "
 	>
-		<img class="hero-image" src={placeholder} alt="" fetchpriority="high" />
+		<img class="hero-image" src={Addag} alt="" fetchpriority="high" />
 	</Hero>
 
 	<section class="intro">
@@ -43,7 +44,7 @@
 				concrete ideeën mee om morgen toe te passen.
 			</p>
 		</article>
-		<img src={addag1} alt="" width="450px" />
+		<img src={addag3} alt="" width="450px"  />
 	</section>
 
 	<section class="info-addag">
@@ -89,6 +90,11 @@
 		gap: 4em;
 		align-self: center;
 		margin: auto;
+
+		img {
+			width: 100%;
+			border-radius: 1em;
+		}
 
 		article {
 			max-width: 600px;
