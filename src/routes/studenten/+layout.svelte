@@ -1,9 +1,5 @@
 <script>
-    import { NavStudent } from '$lib'
+    import { Development } from '$lib'
 </script>
 
-<NavStudent />
-
-<main>
-    <slot />
-</main>
+<Development />

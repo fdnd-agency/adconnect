@@ -1,12 +1,9 @@
 <script>
-    import Hero from "$lib/components/hero/Hero.svelte";
-    import DividerText from "$lib/components/divider/DividerText.svelte";
-    import Divider from "$lib/components/divider/Divider.svelte";
     import logomobile from "$lib/assets/logomobile.svg";
     import logodark from "$lib/assets/logomobiledark.svg";
     import PreviousWinners from "$lib/components/talentaward/PreviousWinners.svelte";
 
-    import { NavPros } from '$lib'
+    import { NavPros, Hero, Divider, DividerText } from '$lib'
 </script>
 
 <svelte:head>

@@ -1,16 +1,9 @@
 <script>
-  // Import components
-  import Hero from "$lib/components/hero/Hero.svelte";
-  import ImageTextSection from '$lib/components/info/ImageTextSection.svelte';
-  import DividerText from '$lib/components/divider/DividerText.svelte';
-  import Divider from '$lib/components/divider/Divider.svelte';
-  import LogoSection from '$lib/components/cooperation/LogoSection.svelte';
-
   // Import images
-  import { doorstroom, overleggen, awards, dots, placeholder } from '$lib';
+  import { doorstroom, overleggen, awards, dots, placeholder, overad } from '$lib';
 
-  // Import Atomic Design
-  import { BenefitsCard, NavPros, ThemeCard } from '$lib'
+  // Import components
+  import { BenefitsCard, NavPros, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
 
   let { data } = $props(); 
 
@@ -26,31 +19,31 @@
 
 <Hero
   title="Over Associate Degree's"
-  description="Lorem ipsum dolor sit amet consectetur. Urna quis turpis egestas mauris. Nulla bibendum ultricies donec porttitor tempus eleifend nunc.">
-  <img class="hero-image" src={placeholder} alt="" fetchpriority=high />
+  description="Associate Degrees zijn praktijkgerichte opleidingen van twee jaar die studenten voorbereiden op het werkveld en doorstroom naar een bachelor.">
+  <img class="hero-image" src={overad} alt="" fetchpriority=high />
   <a slot="primary" href="#benefit" class="button-outline-white" id="benefit">Lees meer →</a>
 </Hero>
 
 <section class="about-ad-hero">
     <section class="intro">
         <h2>Waarom kiezen voor Associate Degree's?</h2>
-        <p>Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum.</p>
+        <p>Associate Degrees combineren praktijk en theorie in een korte, intensieve opleiding. Ze bereiden studenten effectief voor op actuele beroepen en geven een stevige basis voor verdere studie.</p>
     </section>
 
     <section class="benefits">
         <BenefitsCard
             title="Doorstroom mogelijkheid"
-            excerpt="Lorem ipsum dolor sit amet consectetur. Eget consectetur nec commodo risus convallis tristique. Facilisis amet rutrum purus diam nulla metus. Pellentesque.">
+            excerpt="Met een Ad-opleiding stroom je gemakkelijk door naar een bachelor. Kennis en vaardigheden sluiten direct aan op vervolgopleidingen en het werkveld.">
         </BenefitsCard>
 
         <BenefitsCard
             title="Korte studieduur"
-            excerpt="Lorem ipsum dolor sit amet consectetur. Eget consectetur nec commodo risus convallis tristique. Facilisis amet rutrum purus diam nulla metus. Pellentesque.">
+            excerpt="Ad-opleidingen duren doorgaans twee jaar. Hierdoor kan je snel aan de slag in het werkveld, terwijl je tegelijkertijd een erkend diploma haalt dat je carrièrekansen vergroot.">
         </BenefitsCard>
 
         <BenefitsCard
             title="Persoonlijk & kleinschalig"
-            excerpt="Lorem ipsum dolor sit amet consectetur. Eget consectetur nec commodo risus convallis tristique. Facilisis amet rutrum purus diam nulla metus. Pellentesque.">
+            excerpt="De opleidingen zijn kleinschalig en persoonlijk ingericht. Docenten kennen de studenten goed, waardoor begeleiding op maat mogelijk is en studenten optimaal kunnen groeien.">
         </BenefitsCard>
     </section>
 </section>
@@ -60,7 +53,7 @@
   alt="Doorstroom Ad-bachelor"
   dots={dots}
   title="Doorstroom Ad-bachelor"
-  text="Lorem ipsum dolor sit amet consectetur. Consequat elementum nec magna mollis. Ultricies at et sed amet eu. Condimentum elit non faucibus purus ut amet integer laoreet nec. A parturient amet ante arcu ut. Adipiscing aliquet libero amet nibh. Varius leo vel id quam faucibus commodo sollicitudin. Massa enim sed libero pharetra. Id aliquam luctus pharetra ac sapien sed id dictum. Facilisi mauris tristique morbi commodo. Diam tellus ut lacus id duis."
+  text="Met een Ad-diploma kun je rechtstreeks doorstromen naar een bacheloropleiding. Het programma is zo opgebouwd dat de kennis en vaardigheden aansluiten op de vervolgopleiding en de beroepspraktijk, zodat studenten soepel verder kunnen bouwen aan hun carrière."
   link="/ad-dag"
   linkText="Kom naar de Ad-dag"
   imagePosition="left"
@@ -72,8 +65,8 @@
     <Divider />
 </section>
 
-<section class="themes">
-    <h2>Populair binnen Associate degrees</h2>
+<section class="themes" >
+    <h2>Thema's binnen Associate degrees</h2>
     <section class="themes-section">
         <ThemeCard {themes}/>
     </section>
@@ -84,10 +77,9 @@
   alt="Ad-overleggen en Ad-profielen"
   dots={dots}
   title="Landelijke Ad-overleggen en Ad-profielen"
-  text="Lorem ipsum dolor sit amet consectetur. Felis nunc ac mauris arcu tortor urna varius. Mi convallis odio nisi tellus egestas morbi dignissim. Eget consequat augue eget risus. Venenatis mi dignissim facilisi sed. Mauris elit diam nibh aliquet curabitur lacus.
-Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tincidunt at etiam nibh vitae. Scelerisque sapien velit consectetur dolor."
-  link="/ad-overleggen"
-  linkText="Meer over Ad-overleggen"
+  text="Het Overlegplatform organiseert regelmatig landelijke overleggen waarin vertegenwoordigers van alle Ad-opleidingen samenkomen. Tijdens deze bijeenkomsten worden nieuwe Ad-profielen besproken, kwaliteitsrichtlijnen gedeeld en best practices uitgewisseld. Zo blijven opleidingen actueel en goed afgestemd op het werkveld."
+  link="/contact"
+  linkText="Meer weten? Neem contact op"
   imagePosition="right"
   background="white"
 />
@@ -99,7 +91,7 @@ Leo id non id volutpat. Facilisi mus laoreet suspendisse tellus nunc. Eget tinci
   alt="Ad-talent Awards genomineerden"
   dots={dots}
   title="Ad Talent Awards"
-  text="Lorem ipsum dolor sit amet consectetur. Consequat elementum nec magna mollis. Ultricies at et sed amet eu. Condimentum elit non faucibus purus ut amet integer laoreet nec. A parturient amet ante arcu ut. Adipiscing aliquet libero amet nibh. Varius leo vel id quam faucibus commodo sollicitudin. Massa enim sed libero pharetra. Id aliquam luctus pharetra ac sapien sed id dictum. Facilisi mauris tristique morbi commodo. Diam tellus ut lacus id duis."
+  text="De Ad Talent Awards vieren de prestaties van studenten, docenten en opleidingen binnen het Associate Degree-onderwijs. De awards zetten talenten in het zonnetje die met hun inzet, creativiteit en innovatieve aanpak een positieve impact maken in het werkveld en de samenleving. Door deelname en nominaties worden best practices gedeeld en wordt de waarde van Ad-opleidingen zichtbaar voor een breed publiek."
   link="/talent-award"
   linkText="Meer over Ad talent Awards"
   imagePosition="left"

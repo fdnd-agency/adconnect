@@ -1,5 +1,4 @@
 <script>
-	import Hero from "$lib/components/hero/Hero.svelte";
 	import logomobile from "$lib/assets/logomobile.svg";
 	import addag1 from "$lib/assets/addag-1.png"
 	import Schedule from "$lib/components/ad/schedule.svelte";
@@ -7,7 +6,7 @@
 	import addag2 from "$lib/assets/addag-2.png";
 	import Addag from "$lib/assets/addag.webp";
 	import addag3 from "$lib/assets/addag-3.webp";
-	import { MultipleFaq, SingleFaq, NavPros } from "$lib";
+	import { MultipleFaq, SingleFaq, NavPros, Hero } from '$lib'
 </script>
 
 <svelte:head>

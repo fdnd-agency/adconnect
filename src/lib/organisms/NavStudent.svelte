@@ -6,7 +6,7 @@
 
 <header>
   <nav>
-    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy"/></a>
+    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy" width="200" height="80" /></a>
     <details class="menu">
       <summary>
         <span></span>
