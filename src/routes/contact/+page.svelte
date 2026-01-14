@@ -79,6 +79,7 @@
 
     <div class="wrapper-form">
       {#if (status === "") | (status === "error")}
+        <h2>Contactformulier</h2>
         <form class="contact-form" method="POST" use:enhance={formSubmit}>
           <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b" />
           <input type="hidden" name="subject" value="Nieuwe inzending contactformulier" />
@@ -97,6 +98,8 @@
           </label>
 
           <button class="button-outline-white" type="submit">Formulier verzenden</button>
+
+          <p class="strict">Velden met een '<span class="orange">*</span>' zijn verplicht</p>
 
           <!-- Error state -->
           <ErrorState {status} />
@@ -173,6 +176,10 @@
     flex-direction: column-reverse;
     gap: 1em;
     width: 100%;
+
+    h2 {
+      font-size: 25px;
+    }
   }
 
   @media (min-width: 768px) {
@@ -193,8 +200,10 @@
     border-radius: 1em;
     padding: 1.5em;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
     justify-content: center;
+    gap: 1em;
   }
 
   @media (min-width: 768px) {
@@ -214,6 +223,18 @@
     display: flex;
     flex-direction: column;
     gap: 0.8em;
+
+    .strict {
+      background-color: var(--blue-100);
+      padding: 0.5em 1em;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 0.5em;
+    }
+
+    .orange {
+      color: var(--primary-orange);
+    }
   }
 
   label {
