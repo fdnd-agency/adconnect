@@ -37,7 +37,7 @@
 
 <InformationCards
   heading="Meer informatie over.."
-  intro="Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen."
+  intro="Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen"
   items={[
     {
       title: "Ad-overleggen",
