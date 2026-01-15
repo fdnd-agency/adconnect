@@ -108,6 +108,7 @@
       object-fit: cover;
       position: relative;
       z-index: 1;
+      height: 20em;
   }
 
   @media (min-width: 1024px) {
@@ -119,6 +120,7 @@
       .visual {
         width: 100%;
         margin: 0;
+        height: 27em;
       }
 
       .content {

@@ -59,12 +59,6 @@
     background-color: var(--primary-blue);
     color: var(--text-white);
 
-    .hero-breadcrumb {
-      display: flex;
-      flex-direction: row;
-      gap: .5em;
-    }
-
     h1 {
       color: var(--text-white);
     }
@@ -92,7 +86,7 @@
 
     :global(img) {
       border-radius: 1em 1em 0 0;
-      height: 25em;
+      height: 20em;
       width: 100%;
       object-fit: cover;
     }
@@ -109,6 +103,10 @@
 
     .hero-media {
       width: 50%;
+
+      :global(img) {
+        height: 25em;
+      }
     }
 
     .hero-content {
@@ -120,6 +118,7 @@
     .hero-cta {
       flex-direction: row;
       padding-bottom: 2em;
+      flex-wrap: wrap;
     }
   }
 

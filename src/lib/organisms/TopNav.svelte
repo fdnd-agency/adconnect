@@ -58,14 +58,11 @@
 
 
   .nav-right ul {
-    display: none;
-
-    @media (min-width: 1024px) {
       width: 100%;
       display: flex;
       gap: 2rem;
       justify-content: flex-end;
-    }
+
 
     a {
       position: relative;
