@@ -1,12 +1,12 @@
 <script>
-  import logo from '$lib/assets/logo-desktop.svg';
-  import logomobile from '$lib/assets/logomobile.svg';
+  import { logo } from '$lib'
+
   import { page } from '$app/stores';
 </script>
 
 <header>
   <nav>
-    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy" width="200" height="80" /></a>
+    <a class="logo" href="/"><img src={logo} alt="Logo" loading="lazy" width="200" height="150"/></a>
     <details class="menu">
       <summary>
         <span></span>
@@ -18,10 +18,9 @@
         <li><a href="/publicaties">Publicaties</a></li>
         <li><a href="/talent-award">Talent Award</a></li>
         <li><a href="/nieuws">Nieuws</a></li>
-        <li><a href="/ad-dag">Kom naar Ad-dag</a></li>
-        <li><a href="/talent-award/nominaties">Nominanties</a></li>
-        <li><a href="over-ons">over ons</a></li>
-        <li><a href="/contact">contact</a></li>
+        <li><a href="/ad-dag">Ad-dag</a></li>
+        <li><a href="over-ons">Over ons</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
     </details>
 
@@ -165,7 +164,7 @@
   /* Desktop */
   @media (min-width: 1160px) {
     header {
-      padding: 1em 5%;
+      padding: .5em 5%;
     }
     .logo { 
       display: block; 

@@ -2,7 +2,7 @@
   import favicon from "$lib/assets/favicon-adc.svg";
   import logodark from "$lib/assets/logo-dark.svg";
 
-  import { TopNav, icondown } from "$lib";
+  import { TopNav, icondown, logowhite } from "$lib";
 
   let { children } = $props();
 </script>
@@ -23,11 +23,11 @@
   {@render children?.()}
 </main>
 
-<a class="scroll" href="#"><img src={icondown} alt=""></a>
+<a class="scroll" href="#"><img src={icondown} alt=""><span class="sr-only">Scroll naar beneden</span></a>
 
 <footer class="footer-grid">
   <div class="wrapper">
-    <a href="/" class="logo"><img src={logodark} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
+    <a href="/" class="logo"><img src={logowhite} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
 
     <section>
       <h2>Overlegplatform Ad's</h2>
@@ -122,9 +122,6 @@
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
-  }
-  :global(header) {
-    overflow: hidden;
   }
 
   main {
@@ -318,12 +315,21 @@
     bottom: 2em;
     right: 5%;
     font-size: 20px;
-    padding: .8em 1.1em 1em 1.1em;
+    padding: .6em .8em .8em .8em;
     z-index: 999999;
     background-color: var(--primary-orange);
 
     img {
       width: 1em;
     }
+  }
+
+  .sr-only {
+    position: absolute; 
+    width: 1px;      
+    height: 1px;
+    padding: 0;
+    margin: -1px;         
+    overflow: hidden;
   }
 </style>

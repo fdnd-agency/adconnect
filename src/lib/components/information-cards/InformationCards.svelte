@@ -53,12 +53,13 @@
     align-items: stretch;
     gap: 1rem;
     max-width: 1400px;
-    width: 90%;
+    width: 100%;
   }
 
   @media (min-width: 768px) {
     .info-cards-grid {
       flex-direction: row;
+      width: 90%;
     }
 
     .info-cards {

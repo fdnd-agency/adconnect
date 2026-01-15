@@ -13,7 +13,7 @@
 
 <section class="feature">
   <div class="feature-content">
-    <img src={dots} alt="" class="feature-dots" />
+    <img src={dots} alt="" class="feature-dots" width="80" height="60" />
 
     <h2 class="feature-title">{title}</h2>
 
@@ -25,7 +25,7 @@
       <ul class="feature-list">
         {#each bullets as item}
           <li class="feature-list-item">
-            <img src="/check-circle.svg" alt="" />
+            <img src="/check-circle.svg" alt="" width="17" height="17"/>
             <p>{item}</p>
           </li>
         {/each}
@@ -55,10 +55,6 @@
     max-width: 1400px;
     margin: auto;
     width: 90%;
-  }
-
-  .feature-dots {
-    width: 102px;
   }
 
   .feature-content {
