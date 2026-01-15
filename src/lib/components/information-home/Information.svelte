@@ -2,6 +2,8 @@
   import dots from "$lib/assets/dots.svg";
   import imageSrc from "$lib/assets/doorstroom-ad-dag.webp";
 
+  import { overad } from '$lib'
+
   export let title = "";
   export let description = "";
   export let buttonText = "";
@@ -11,7 +13,7 @@
 
 <section class="information">
   <div class="information-content">
-    <img src={dots} alt="" class="information-dots" />
+    <img src={dots} alt="" class="information-dots" width="80" height="60" />
     <h2 class="information-title">{title}</h2>
     <p class="information-description">{description}</p>
 
@@ -21,7 +23,7 @@
   </div>
 
   <div class="information-image">
-    <img src={imageSrc} alt={imageAlt} />
+    <img src={overad} alt={imageAlt} width="550" height="250"/>
   </div>
 </section>
 
@@ -32,8 +34,7 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding: 4rem 2rem;
-    background: var(--background);
+    padding: 1rem 2rem 4rem;
     margin-bottom: -7.5rem;
   }
 
@@ -42,23 +43,38 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    width: 75%;
+    max-width: 700px;
+    width: 100%;
     gap: 0.75em;
   }
 
   .information-image {
-    width: 80%;
+    width: 100%;
   }
 
   .information-image img {
     width: 100%;
     border-radius: 33px 33px 0 0;
     object-fit: cover;
+    object-position: bottom;
+    height: 20em;
   }
 
   @media (min-width: 768px) {
     .information {
       margin-bottom: -10rem;
+    }
+
+    .information-content {
+      width: 60%;
+    }
+
+    .information-image {
+      width: 80%;
+
+      img {
+        height: 30em;
+      }
     }
   }
 

@@ -14,7 +14,7 @@
     <img src={`https://fdnd-agency.directus.app/assets/${article.hero}`} alt={article.title} width="300" height="210" />
 
     <div>
-        <h3 class="truncate single">{article.title}</h3>
+        <h2 class="truncate single">{article.title}</h2>
         <p class="truncate two">{article.description}</p>
         <a class="button-outline-blue" href="/">Meer informatie</a>
     </div>
@@ -50,12 +50,12 @@
         align-items: flex-start
     }
 
-    h3, p {
+    h2, p {
         margin: 0;
         width: 100%;
     }
 
-    h3 {
+    h2 {
         font-size: 22px;
     }
 

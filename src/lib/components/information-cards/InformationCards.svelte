@@ -52,11 +52,18 @@
     justify-content: center;
     align-items: stretch;
     gap: 1rem;
+    max-width: 1400px;
+    width: 100%;
   }
 
   @media (min-width: 768px) {
     .info-cards-grid {
       flex-direction: row;
+      width: 90%;
+    }
+
+    .info-cards {
+      padding: 6em 0;
     }
   }
 </style>

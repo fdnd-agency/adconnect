@@ -1,9 +1,9 @@
 <script>
   import { page } from "$app/stores";
+  import { Breadcrumb } from '$lib'
 
   export let title = "";
   export let description = "";
-  export let breadcrumb = "";
   export let image = "";
   export let alt = "";
   export let placeholder = "";
@@ -12,15 +12,10 @@
 <div class="wrapper-hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">
   <article class="hero" id="main">
     <section class="hero-content">
-      {#if $page.url.pathname !== "/"}
-        <nav class="hero-breadcrumb">
-          {#if breadcrumb}
-            {breadcrumb}
-          {:else}
-            <a href="/">Home</a><a href={$page.url.pathname}>{$page.url.pathname}</a>
-          {/if}
-        </nav>
-      {/if}
+
+      <!-- Breadcrumbs -->
+      <Breadcrumb />
+
       <h1>{title}</h1>
       <p>{description}</p>
       <div class="hero-cta">
@@ -41,6 +36,7 @@
     background-color: var(--blue-100);
     justify-content: center;
     display: flex;
+    padding: 2.3em 0 0 0;
   }
 
   .hero {
@@ -63,12 +59,6 @@
     background-color: var(--primary-blue);
     color: var(--text-white);
 
-    .hero-breadcrumb {
-      display: flex;
-      flex-direction: row;
-      gap: .5em;
-    }
-
     h1 {
       color: var(--text-white);
     }
@@ -82,10 +72,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 1em;
-
-    a {
-      color: var(--text-white);
-    }
   }
 
   .hero-cta {
@@ -95,12 +81,12 @@
   }
 
   .hero-media {
-    width: 90%;
+    width: 100%;
     display: flex;
 
     :global(img) {
       border-radius: 1em 1em 0 0;
-      height: 25em;
+      height: 20em;
       width: 100%;
       object-fit: cover;
     }
@@ -117,6 +103,10 @@
 
     .hero-media {
       width: 50%;
+
+      :global(img) {
+        height: 25em;
+      }
     }
 
     .hero-content {
@@ -128,6 +118,7 @@
     .hero-cta {
       flex-direction: row;
       padding-bottom: 2em;
+      flex-wrap: wrap;
     }
   }
 

@@ -1,10 +1,6 @@
 <script>
-    import Hero from "$lib/components/hero/Hero.svelte";
-    import Divider from '$lib/components/divider/Divider.svelte';
-
-    import placeholder from "$lib/assets/placeholder-hero.webp";
-
-    import { NavPros, ThemeCard } from '$lib'
+    // Import components
+    import { NavPros, ThemeCard, Hero, Divider } from '$lib'
 
     let { data } = $props(); 
 
@@ -32,8 +28,8 @@
     <div class="wrapper-ad-day">
         <section class="ad-day">
             <h2>Kom naar de Ad-dag!</h2>
-            <p>Deze trendanalyse geeft een overzicht van de instroomontwikkeling in de bekostigde Ad’s, als ook de bewegingen per sector...</p>
-            <a href="/dev/hero" class="button-outline-blue">Ik wil naar de Ad-dag →</a>
+            <p>Ontdek alles over Associate Degrees en laat je inspireren tijdens workshops en presentaties op de Landelijke Ad-dag.</p>
+            <a href="/ad-dag" class="button-outline-blue">Meer weten over de Ad-dag</a>
         </section>
     </div>
 </section>
@@ -41,7 +37,7 @@
 <Divider />
 
 <section class="other-themes">
-    <h2>Bekijk andere populaire thema's</h2>
+    <h2>Bekijk ook andere thema's</h2>
     <section class="themes">
         <ThemeCard themes={themes.slice(0, 3)} />
     </section>

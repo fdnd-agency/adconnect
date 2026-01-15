@@ -20,7 +20,7 @@
     <div class="wrapper">
       <div class="img-wrapper">
         <img class="circle" src="{lightcircle}" alt="">
-        <img class="visual" src={image} alt="{alt}" loading="lazy">
+        <img class="visual" src={image} alt="{alt}" loading="lazy" width="350" height="450">
       </div>
 
         <div class="content">
@@ -108,6 +108,7 @@
       object-fit: cover;
       position: relative;
       z-index: 1;
+      height: 20em;
   }
 
   @media (min-width: 1024px) {
@@ -119,6 +120,7 @@
       .visual {
         width: 100%;
         margin: 0;
+        height: 27em;
       }
 
       .content {

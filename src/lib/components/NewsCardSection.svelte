@@ -1,6 +1,7 @@
 <script>
     // Import component
     import NewsCard from "$lib/components/NewsCard.svelte";
+    import { DividerText } from '$lib'
 
     // Retrieve news data
     export let news;
@@ -8,11 +9,12 @@
 
 <!-- Cards section -->
 <div class="container">
-    <ul>
-        {#each news as article}
-            <li><NewsCard {article}/></li>
-        {/each}
-    </ul>
+  <DividerText text="Het laatste nieuws" />
+  <ul>
+      {#each news as article}
+          <li><NewsCard {article}/></li>
+      {/each}
+  </ul>
 </div>
 
 <style>
@@ -23,6 +25,12 @@
   padding: 2em 5%;
   max-width: 1400px;
   margin: auto;
+
+  :global(.divider-container) {
+    margin: 0;
+    width: 100%;
+    padding: 0 0 2em 0;
+  }
 }
 
 ul {

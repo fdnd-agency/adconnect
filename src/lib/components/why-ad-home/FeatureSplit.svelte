@@ -13,7 +13,7 @@
 
 <section class="feature">
   <div class="feature-content">
-    <img src={dots} alt="" class="feature-dots" />
+    <img src={dots} alt="" class="feature-dots" width="80" height="60" />
 
     <h2 class="feature-title">{title}</h2>
 
@@ -25,7 +25,7 @@
       <ul class="feature-list">
         {#each bullets as item}
           <li class="feature-list-item">
-            <img src="/check-circle.svg" alt="" />
+            <img src="/check-circle.svg" alt="" width="17" height="17"/>
             <p>{item}</p>
           </li>
         {/each}
@@ -52,10 +52,9 @@
     align-items: stretch;
     justify-content: center;
     padding-bottom: 5rem;
-  }
-
-  .feature-dots {
-    width: 102px;
+    max-width: 1400px;
+    margin: auto;
+    width: 90%;
   }
 
   .feature-content {
@@ -64,11 +63,10 @@
     flex: 1;
     width: 100%;
     gap: 1rem;
-    padding: 2rem;
-  }
 
-  .feature-intro {
-    max-width: 40ch;
+    h2, p {
+       text-align: left;
+    }
   }
 
   .feature-list {
@@ -92,19 +90,22 @@
   }
 
   @media (min-width: 768px) {
+    .feature {
+      gap: 3em;
+    }
     .feature-content {
-      max-width: 575px;
+      width: 50%;
     }
 
     .feature-media {
       display: block;
       padding: 2rem;
+      width: 50%;
     }
 
     .feature-img {
       max-height: 455px;
       width: 100%;
-      max-width: 590px;
       border-radius: 33px;
       object-fit: cover;
     }
