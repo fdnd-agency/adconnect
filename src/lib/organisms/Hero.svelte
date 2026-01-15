@@ -37,6 +37,7 @@
     justify-content: center;
     display: flex;
     padding: 2.3em 0 0 0;
+    margin-top: 4em;
   }
 
   .hero {
