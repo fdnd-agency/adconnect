@@ -64,3 +64,14 @@
 </div>
 
 <Divider />
+
+<section class="advice">
+  <img class="logo" src={logomobile} alt="Ad Talent Award Logo" width="50" height="50" />
+  <h2>Gevraagd en ongevraagd advies</h2>
+  <p>
+    Het Ad platform is als onderdeel van de Vereniging Hogescholen het adviserend en beleidsvoorbereidend orgaan dat zich als opdracht heeft gesteld
+    de plaats van het Ad in het Nederlands hoger onderwijs te versterken. Het platform geeft gevraagd en ongevraagd advies en werkt programmatisch en
+    middels (met de portefeuillehouder onderwijs van de Vereniging Hogescholen afgestemde) jaarplannen aan deze opdracht. Het platform kent vanuit
+    elke hogeschool die een Ad verzorgd een afgevaardigde in het platform.
+  </p>
+</section>
