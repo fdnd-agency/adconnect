@@ -51,4 +51,14 @@
       Hogeschool) Dirk Cornelissen (Vereniging Hogescholen)en Nina Spithost (NHL-Stenden),  dit document opgesteld.
     </p>
   </section>
+  <section class="origin-letter">
+    <h2>Oprichtingsbrief</h2>
+    <p>
+      “Het overlegplatform Ad (OP-Ad) vormt – analoog aan het reeds bestaande landelijk platform masters – een community of practice. In principe zijn
+      alle instellingen met een Ad in dit netwerk op medewerkersniveau vertegenwoordigd. Kennis en ervaring van alle hogescholen wordt er gebundeld.
+      Daarnaast dient dit platform als een voorportaal voor de besluitvorming in de Vereniging Hogescholen over alle zaken die de Ad-opleidingen
+      regarderen. De relevante stukken ter voorbereiding van de bestuurlijke besluitvorming worden in en door het OP-Ad voorbereid. Het OP-Ad
+      rapporteert aan de portefeuillehouder onderwijs van de Vereniging Hogescholen.”
+    </p>
+  </section>
 </div>
