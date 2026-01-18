@@ -75,3 +75,18 @@
     elke hogeschool die een Ad verzorgd een afgevaardigde in het platform.
   </p>
 </section>
+
+<style>
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 5em;
+
+    h2 {
+      padding-bottom: 1em;
+    }
+  }
+</style>
