@@ -1,5 +1,5 @@
 <script>
-    import { Development } from '$lib'
+  import { Hero } from "$lib";
 </script>
 
-<Development />
+<Hero />
