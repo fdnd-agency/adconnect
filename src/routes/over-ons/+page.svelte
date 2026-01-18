@@ -110,4 +110,17 @@
       }
     }
   }
+
+  .advice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 5em;
+
+    h2 {
+      padding-bottom: 1em;
+    }
+  }
 </style>
