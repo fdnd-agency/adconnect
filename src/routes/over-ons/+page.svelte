@@ -35,3 +35,5 @@
     Ad-opleidingen.
   </p>
 </section>
+
+<Divider />
