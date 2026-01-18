@@ -89,4 +89,25 @@
       padding-bottom: 1em;
     }
   }
+
+  .origins {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.5em;
+    padding: 5em;
+
+    @media (min-width: 1000px) {
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+
+    .origin-text,
+    .origin-letter {
+      h2 {
+        padding-bottom: 1em;
+      }
+    }
+  }
 </style>
