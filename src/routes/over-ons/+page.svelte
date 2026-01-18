@@ -37,3 +37,18 @@
 </section>
 
 <Divider />
+
+<div class="origins">
+  <section class="origin-text">
+    <h2>Oorsprong van de website</h2>
+    <p>
+      In een gesprek tussen leden van het Overlegplatform Associate Degree en Jan Bogerd (portefeuillehouder onderwijs Vereniging Hogescholen) en
+      Bridget Kievits (bestuurscommissie onderwijs) op 21 januari 2019 is het verzoek naar voren gekomen om scenario’s te beschrijven over de positie
+      van het Platform Associate degree.
+    </p>
+    <p>
+      Naar aanleiding van dit verzoek hebben Jaap ten Have (Windesheim, voorzitter Landelijk Platform Associate degrees), Niels Strolenberg (Hanze
+      Hogeschool) Dirk Cornelissen (Vereniging Hogescholen)en Nina Spithost (NHL-Stenden),  dit document opgesteld.
+    </p>
+  </section>
+</div>
