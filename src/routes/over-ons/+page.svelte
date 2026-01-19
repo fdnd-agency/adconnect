@@ -36,7 +36,11 @@
   </p>
 </section>
 
-<Divider />
+<section class="logo-section">
+  <DividerText text="Partijen waarmee wij samenwerken" />
+  <LogoSection {cooperation} />
+  <Divider />
+</section>
 
 <div class="origins">
   <section class="origin-text">
@@ -74,12 +78,6 @@
     middels (met de portefeuillehouder onderwijs van de Vereniging Hogescholen afgestemde) jaarplannen aan deze opdracht. Het platform kent vanuit
     elke hogeschool die een Ad verzorgt een afgevaardigde in het platform.
   </p>
-</section>
-
-<section class="logo-section">
-  <DividerText text="Partijen waarmee wij samenwerken" />
-  <LogoSection {cooperation} />
-  <Divider />
 </section>
 
 <style>
