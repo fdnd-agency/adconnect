@@ -76,6 +76,12 @@
   </p>
 </section>
 
+<section class="logo-section">
+  <DividerText text="Partijen waarmee wij samenwerken" />
+  <LogoSection {cooperation} />
+  <Divider />
+</section>
+
 <style>
   .intro {
     display: flex;
