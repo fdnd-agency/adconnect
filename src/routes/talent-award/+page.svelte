@@ -31,7 +31,7 @@
 </Hero>
 
 <section class="intro">
-  <img class="logo" src={logomobile} alt="Ad Talent Award Logo" width="50" height="50" />
+  <img class="logo" src={logomobile} alt="Logo" width="50" height="50" />
   <h2>Wat is Ad Talent award?</h2>
   <p>
     De Ad Talent Award is een jaarlijkse onderscheiding die door het Overlegplatform Associate degrees wordt uitgereikt. Elke aangesloten hogeschool
@@ -42,7 +42,7 @@
 
 <section class="cards-ta">
   <article class="light">
-    <img class="logo" src={logomobile} alt="Ad Talent Award Logo" width="50" height="50" />
+    <img class="logo" src={logomobile} alt="Logo" width="50" height="50" />
     <h2>Wat maakt iemand tot een Ad Talent?</h2>
     <p>
       Een Ad Talent is een student die uitblinkt in zijn of haar Associate degree-opleiding. Dit kan blijken uit academische prestaties, leiderschap,
@@ -52,7 +52,7 @@
   </article>
 
   <article class="dark">
-    <img class="logo" src={logodark} alt="Ad Talent Award Logo" width="50" height="50" />
+    <img class="logo" src={logodark} alt="Logo" width="50" height="50" />
     <h2>Waarom de Ad Talent Award?</h2>
     <p>
       De Ad Talent Award is opgericht om de uitmuntendheid en het potentieel van Associate degree-studenten te erkennen en te vieren. Door deze
@@ -63,7 +63,7 @@
   </article>
 
   <article class="light">
-    <img class="logo" src={logomobile} alt="Ad Talent Award Logo" width="50" height="50" />
+    <img class="logo" src={logomobile} alt="Logo" width="50" height="50" />
     <h2>Hoe gaat de verkiezing in zijn werk?</h2>
     <p>
       Elke hogeschool die is aangesloten bij het Overlegplatform Associate degrees kan één student nomineren voor de Ad Talent Award. Een
@@ -93,7 +93,7 @@
 </section>
 
 <section class="nominate">
-  <img class="logo" src={logomobile} alt="Ad Talent Award Logo" width="50" height="50" />
+  <img class="logo" src={logomobile} alt="Logo" width="50" height="50" />
   <h2>Voorgaande nominaties</h2>
   <p>
     Ontdek de talentvolle studenten die zijn genomineerd voor de AD Talent Award. Jaarlijks dragen hogescholen Associate degree-studenten voor die
@@ -112,7 +112,7 @@
         <h3>{item.title}</h3>
 
         {#if item.profile_picture}
-          <img src={imageUrl(item.profile_picture.id ?? item.profile_picture)} alt="" class="profile-photo" />
+          <img src={imageUrl(item.profile_picture.id ?? item.profile_picture)} alt="item.title" class="profile-photo" />
         {/if}
       </li>
     {/each}
