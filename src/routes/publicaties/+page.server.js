@@ -1,8 +1,13 @@
 export async function load({ url }) {
     
     // Data from Directus API
+    // If it's a fixed url, check .env (local, production, etc.)
     const baseUrl = "https://fdnd-agency.directus.app/items/";
     const documentsEndpoint = "adconnect_documents";
+    // Seems like this needs to be dynanimic to add filters later
+    // QS get params => $page.url.searchParams.get('XXXX')
+    // const title = url.searchParams.get('title');
+    // const fields = `?fields=${title},id,description,slug,hero_image,source_file,category.*,date`;
     const fields = "?fields=title,id,description,slug,hero_image,source_file,category.*,date";
 
     // Get the category from string
