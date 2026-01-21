@@ -4,8 +4,9 @@
   import Schedule from "$lib/components/ad/schedule.svelte";
   import Location from "$lib/components/location/location.svelte";
   import addag2 from "$lib/assets/addag-2.png";
+  import addag3 from "$lib/assets/addag-3.webp";
 
-  import { MultipleFaq, SingleFaq, NavPros, Hero } from "$lib";
+  import { MultipleFaq, SingleFaq, NavPros, Hero, Addag } from "$lib";
 </script>
 
 <svelte:head>

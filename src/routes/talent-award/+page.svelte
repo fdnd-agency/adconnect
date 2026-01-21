@@ -6,6 +6,8 @@
   let { data } = $props();
 
   import { NavPros, Hero, Divider, DividerText } from "$lib";
+
+  const imageUrl = (id) => `https://fdnd-agency.directus.app/assets/${id}`;
 </script>
 
 <svelte:head>
