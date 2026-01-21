@@ -178,3 +178,20 @@
         align-items: center;
         gap: 0.75em;
     }
+
+    @container news-container (min-width: 768px) {
+        ul {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @container news-container (min-width: 1024px) {
+        ul {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        article {
+            padding: 2.5em;
+        }
+    }
+</style>
