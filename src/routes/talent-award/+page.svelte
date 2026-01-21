@@ -244,6 +244,10 @@
     }
 
     .cards-ta article {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 3;
+
         padding: 2rem;
         border-radius: 20px;
     }
