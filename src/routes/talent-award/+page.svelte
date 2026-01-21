@@ -8,6 +8,7 @@
 
     let { data } = $props();
 
+    const imageUrl = (id) => `https://fdnd-agency.directus.app/assets/${id}`;
 </script>
 
 <svelte:head>
