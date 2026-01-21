@@ -1,5 +1,4 @@
 <script>
-    import { Development } from '$lib'
     import { Nieuwshero } from "$lib";
 
     /* Import images */
@@ -14,7 +13,6 @@
     let { data } = $props();
 </script>
 
-<Development /><svelte:head>
 <svelte:head>
     <title>Nieuws | Overlegplatform Associate Degrees</title>
 </svelte:head>
