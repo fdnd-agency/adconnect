@@ -5,6 +5,17 @@ export async function load({ fetch }) {
   
 	const json = await res.json();
 
+/**
+ * Sorteert nieuwsberichten op datum (nieuwste eerst)
+ * en maakt selecties van de nieuwste items.
+ *
+ * @param {Object} json - Het JSON object met nieuwsdata
+ * @param {Array} json.data - Array met nieuwsitems (met een `date` veld)
+ * @returns {Object} Object met:
+ *  - news: alle nieuwsitems gesorteerd
+ *  - latest3: de 3 nieuwste items
+ *  - latest9: de 9 nieuwste items
+ */
 const sortedNews = [...json.data].sort(
 	(a, b) => new Date(b.date) - new Date(a.date)
   );
