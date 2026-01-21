@@ -41,3 +41,31 @@
 </section>
 
 <style>
+	.news-detail {
+		display: flex;
+		flex-direction: column;
+		gap: 2em;
+		width: 80%;
+		padding: 3em 0;
+		margin: auto;
+	}
+
+	article {
+		max-width: 600px;
+		margin: 0 auto;
+		padding: 1.5em 0;
+
+		h2 {
+			font-size: 1.5rem;
+			margin-bottom: 1em;
+		}
+	}
+
+	img {
+		width: 100%;
+		max-width: 500px;
+		height: auto;
+		border-radius: 0.5em;
+		margin: 0 auto;
+		display: block;
+	}
