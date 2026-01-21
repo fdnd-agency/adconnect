@@ -5,3 +5,13 @@ export async function load({ fetch }) {
   
 	const json = await res.json();
 
+const sortedNews = [...json.data].sort(
+	(a, b) => new Date(b.date) - new Date(a.date)
+  );
+  
+  return {
+	news: sortedNews,
+	latest3: sortedNews.slice(0, 3),
+	latest9: sortedNews.slice(0, 9)
+  };
+}
