@@ -224,7 +224,7 @@ p {
   transition: ease-in-out 0.2s;
 
   &:hover {
-    background-color: #00000000;
+    background-color: white;
     color: var(--primary-blue);
     border: var(--button-outline-border);
   }
