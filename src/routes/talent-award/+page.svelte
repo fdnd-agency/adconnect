@@ -253,6 +253,8 @@
     }
 
     .cards-ta article .logo {
+        justify-self: center;
+        margin-bottom: 1rem;
     }
 
     .cards-ta article h2 {
@@ -271,6 +273,7 @@
         background-color: var(--primary-blue);
         color: var(--text-white);
     }
+
     .cards-ta article.dark h2 {
         color: var(--text-white);
     }
@@ -281,6 +284,13 @@
         color: var(--blue-800);
     }
 
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
     @media (min-width: 768px) {
         .cards-ta {
             gap: 2rem;
