@@ -158,6 +158,7 @@ cd adconnect
 
 ```
 npm install
+npm install resend
 ```
 
 3. Set up environment variables
