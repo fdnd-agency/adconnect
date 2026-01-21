@@ -5,6 +5,7 @@
 
     import logomobile from "$lib/assets/logomobile.svg";
     import logodark from "$lib/assets/logomobiledark.svg";
+    import Talent from "$lib/assets/ad-talent-awards.jpg";
 
     let { data } = $props();
 
