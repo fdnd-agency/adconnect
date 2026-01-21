@@ -98,3 +98,83 @@
         </ul>
     </section>
 </section>
+
+<style>
+    .news {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        width: 90%;
+        padding: 3em 0;
+        margin: auto;
+    }
+
+    @media (min-width: 768px) {
+        .news {
+            padding: 5em 0;
+            max-width: 1400px;
+        }
+    }
+
+    .intro {
+        text-align: center;
+        margin: auto;
+        margin-bottom: 5em;
+    }
+
+    .news-container {
+        container-type: inline-size;
+        container-name: news-container;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+    }
+
+    li {
+        display: grid;
+    }
+
+    article {
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        gap: 1.25em;
+        border: 1px solid var( --neutral-700);
+        border-radius: 1em;
+        padding: 2em;
+        background: var(--text-white);
+        transition: 0.2s ease-in-out;
+
+        h2 {
+            max-width: 30ch;
+        }
+
+        p {
+            max-width: 60ch;
+            line-height: 1.6;
+        }
+
+        a {
+            align-self: start;
+            margin-top: auto;
+        }
+    }
+
+    article:hover {
+            border-color: var(--blue-900);
+            box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+            translate: 0 -1%;
+        }
+    
+
+    .date {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.75em;
+    }
