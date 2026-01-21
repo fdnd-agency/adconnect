@@ -50,3 +50,4 @@ export { default as zaal } from './assets/zaal-ad-dag.jpg';
 export { default as icondown } from './assets/chevron-down.svg';
 export { default as logo } from './assets/logo-dark-blue.svg';
 export { default as logowhite } from './assets/logo-white.svg';
+export { default as Nieuwshero } from './assets/heronews.jpg';
