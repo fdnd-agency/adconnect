@@ -68,3 +68,33 @@
         </section>
     </section>
 </section>
+<section class="news">
+    <h2>Alle nieuws</h2>
+    <p>Aantal artikelen: {data.news.length}</p>
+
+    <section class="news-container">
+        <ul>
+            {#each data.latest9 as item}
+                <li>
+                    <article>
+                        <section class="date">
+                            <img src={calendar} alt="" />
+                            <p>{formatDateNL(item.date)}</p>
+                        </section>
+
+                        <h2>{item.title}</h2>
+                        <p>{item.description}</p>
+
+                        <a
+                            class="button-outline-blue"
+                             alt="{item.title}"
+                            href={`/nieuws/${item.uuid}`}
+                        >
+                            Meer informatie
+                        </a>
+                    </article>
+                </li>
+            {/each}
+        </ul>
+    </section>
+</section>
