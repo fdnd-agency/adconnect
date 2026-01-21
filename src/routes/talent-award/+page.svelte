@@ -81,7 +81,7 @@
     <ul>
       {#each data.nomination.filter((item) => item.header?.toLowerCase() === "winnaar" && item.profile_picture) as winner (winner.id)}
         <li>
-          <img src={imageUrl(winner.profile_picture)} alt={winner.title} height="200px" />
+          <img src={imageUrl(winner.profile_picture)} alt={winner.title} height="200px" width="200px" />
           <section>
             <h3>{winner.title}</h3>
             <p>{winner.excerpt}</p>
