@@ -115,6 +115,24 @@
     </article>
 </section>
 
+<section>
+    <DividerText text="Voorgaande talent award winnaars" />
+
+    <section class="previous-winners">
+        <section class="slider">
+            <ul>
+                {#each data.nomination.filter((item) => item.header?.toLowerCase() === "winnaar" && item.profile_picture) as winner (winner.id)}
+                    <li>
+                        <img
+                            src={imageUrl(winner.profile_picture)}
+                            alt={winner.title}
+                        />
+                    </li>
+                {/each}
+            </ul>
+        </section>
+    </section>
+</section>
 
 <section class="nominate">
     <img
