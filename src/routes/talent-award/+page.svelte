@@ -1,14 +1,11 @@
 <script>
     import Hero from "$lib/components/hero/Hero.svelte";
     import DividerText from "$lib/components/divider/DividerText.svelte";
-    import Divider from "$lib/components/divider/Divider.svelte";
     import { NavPros } from "$lib";
 
     import logomobile from "$lib/assets/logomobile.svg";
     import logodark from "$lib/assets/logomobiledark.svg";
-    import PreviousWinners from "$lib/components/talentaward/PreviousWinners.svelte";
 
-    import { NavPros } from '$lib'
 </script>
 
 <svelte:head>
@@ -26,11 +23,6 @@
      in het zonnetje gezet. Op de jaarlijkse Ad-dag ontvangen zij de Ad Talent Award als 
      ambassadeurs van het Ad-onderwijs in Nederland."
 >
-    <a
-        slot="primary"
-        href="#learn-more"
-        class="button-outline-white"
-        id="Nominate">Nomineer Talent</a
     >
 </Hero>
 
@@ -116,7 +108,6 @@
     </article>
 </section>
 
-<Divider />
 
 <section class="nominate">
     <img
@@ -126,21 +117,10 @@
         width="50"
         height="50"
     />
-    <h2>Nomineer een Ad Talent</h2>
     <p>
-        Ken jij een Associate degree-student die uitblinkt in zijn of haar
-        opleiding en een positieve impact maakt? Nomineer deze student dan voor
-        de Ad Talent Award! Stuur een motivatiebrief en relevante documenten
-        naar het Overlegplatform Associate degrees via [e-mailadres] vóór
-        [deadline]. Samen kunnen we de prestaties van onze Ad-talenten vieren en
-        hen de erkenning geven die ze verdienen.
     </p>
-    <a href="#Nominate" class="button-outline-white" id="Nomineer"
-        >Nomineer nu</a
-    >
 </section>
 
-<PreviousWinners />
 
 <style>
     .intro,
@@ -176,30 +156,16 @@
     }
 
     .cards-ta {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
         gap: 2rem;
-        max-width: 1200px;
-        margin: 2rem auto 5rem;
         padding: 0 1rem;
-        text-align: center;
-        margin-bottom: 5em;
     }
 
     .cards-ta article {
-        box-sizing: border-box;
         padding: 2rem;
         border-radius: 20px;
-        flex: 1 1 clamp(260px, 30vw, 420px);
-        max-width: 100%;
-        max-width: 450px;
-        min-width: 350px;
     }
 
     .cards-ta article .logo {
-        display: block;
-        margin: 0 auto 1rem auto;
     }
 
     .cards-ta article h2 {
@@ -247,5 +213,3 @@
         }
     }
 </style>
-
-
