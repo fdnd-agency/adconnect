@@ -90,12 +90,6 @@
     }
   }
 
-  .intro {
-    text-align: center;
-    margin: auto;
-    margin-bottom: 5em;
-  }
-
   .news-container {
     container-type: inline-size;
     container-name: news-container;
