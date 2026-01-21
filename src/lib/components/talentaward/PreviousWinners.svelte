@@ -10,11 +10,6 @@
     <section class="slider">
       <ul>
         <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href=""> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
       </ul>
     </section>
 
