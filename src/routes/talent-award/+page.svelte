@@ -291,6 +291,81 @@
         gap: 1.5rem;
         margin-bottom: 2rem;
         margin-top: 1rem;
+    }
+
+    .slider {
+        overflow: visible;
+        width: 100vw;
+        max-width: 1400px;
+    }
+
+    ul {
+        display: flex;
+        animation: scroll 10s linear infinite;
+    }
+
+    ul:hover {
+        animation-play-state: paused;
+    }
+
+    h3 {
+        min-width: 200px;
+    }
+
+    li {
+        flex: 0 0 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nomination {
+        position: relative;
+        margin-bottom: 3rem;
+    }
+
+    .profile-photo {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        width: 150px;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.2s ease;
+    }
+
+    .nomination:hover .profile-photo {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .previous-winners {
+        background-color: var(--blue-100);
+        padding: 2rem;
+        border-radius: 15px;
+    }
+
+    .previous-winners img {
+        max-height: 180px;
+        border-radius: 15px;
+        filter: grayscale(100%);
+        transition: 0.2s ease;
+    }
+
+    .previous-winners img:hover {
+        filter: grayscale(0%);
+    }
+
+    @keyframes scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-25%);
+        }
+    }
+
     @media (min-width: 768px) {
         .cards-ta {
             gap: 2rem;
