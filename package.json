@@ -19,6 +19,6 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-auto": "^6.1.0",
-		"resend": "^6.7.0"
+		"resend": "^6.8.0"
 	}
 }
