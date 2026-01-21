@@ -41,27 +41,21 @@
 <NavPros />
 
 <section class="contact-hero" id="main">
-  {#if pathname !== "/"}
-    <nav class="hero-breadcrumb">
-      {#if breadcrumb}
-        {breadcrumb}
-      {:else}
-        <a href="/">Home</a><a href={pathname}>{pathname}</a>
-      {/if}
-    </nav>
-  {/if}
+  <!-- Breadcrumbs -->
+  <div class="breadcrumbs">
+    <Breadcrumb />
+  </div>
 
   <h1>Vragen? Neem contact op</h1>
   <p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
 
   <div class="contact-wrapper">
     <section class="contact-info">
-      <h2>Contactgegevens</h2>
-      <p>Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
+      <h2 class="white">Contactgegevens</h2>
+      <p class="white">Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
       <ul>
-        <li><a href="/"><img src={phone} alt="" />Telefoonnummer</a></li>
-        <li><a href="mailto:platformassociatedegrees@outlook.com"><img src={mail} alt="" />platformads@outlook.com</a></li>
-        <li><a href="/"><img src={map} alt="" />Amsterdam</a></li>
+        <li><a href="/" class="white"><img src={phone} alt="" />Telefoonnummer</a></li>
+        <li><a href="mailto:platformassociatedegrees@outlook.com" class="white"><img src={mail} alt="" />platformads@outlook.com</a></li>
       </ul>
 
       <img class="circle-info" src={lightcircle} alt="" />
@@ -69,6 +63,7 @@
 
     <div class="wrapper-form">
       {#if (status === "") | (status === "error")}
+        <h2>Contactformulier</h2>
         <form class="contact-form" method="POST" use:enhance={formSubmit}>
           <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b" />
           <input type="hidden" name="subject" value="Nieuwe inzending contactformulier" />
@@ -85,80 +80,21 @@
             ><p>Jouw vraag<span>*</span></p>
             <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
           </label>
-          <div>
-            <button class="button-outline-white" type="submit">Formulier verzenden</button>
-            {#if status === "error"}
-              <section class="error visible">
-                <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
-              </section>
-            {/if}
-          </div>
+
+          <button class="button-outline-white" type="submit">Formulier verzenden</button>
+
+          <p class="strict">Velden met een '<span class="orange">*</span>' zijn verplicht</p>
+
+          <!-- Error state -->
+          <ErrorState {status} />
         </form>
       {/if}
 
-      <!-- Breadcrumbs -->
-      <div class="breadcrumbs">
-        <Breadcrumb />
-      </div>
+      <!-- Loading state -->
+      <LoadingState {status} />
 
-      <h1>Vragen? Neem contact op</h1>
-      <p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
-
-      <div class="contact-wrapper">
-        <section class="contact-info">
-          <h2 class="white">Contactgegevens</h2>
-          <p class="white">Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
-          <ul>
-            <li><a href="/" class="white"><img src={phone} alt="" />Telefoonnummer</a></li>
-            <li><a href="mailto:platformassociatedegrees@outlook.com" class="white"><img src={mail} alt="" />platformads@outlook.com</a></li>
-          </ul>
-
-          <img class="circle-info" src={lightcircle} alt="" />
-        </section>
-
-        <div class="wrapper-form">
-          {#if (status === "") | (status === "error")}
-            <h2>Contactformulier</h2>
-            <form class="contact-form" method="POST" use:enhance={formSubmit}>
-              <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b" />
-              <input type="hidden" name="subject" value="Nieuwe inzending contactformulier" />
-              <input type="hidden" name="from_name" value="Overlegplatform Ad" />
-              <label for="name"
-                ><p>Naam + Achternaam<span>*</span></p>
-                <input type="text" name="name" id="name" placeholder="Bijv. Jan van Huizen" required />
-              </label>
-              <label for="email"
-                ><p>E-mailadres<span>*</span></p>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Bijv. janvanhuizen@gmail.com"
-                  required
-                  pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-                />
-              </label>
-              <label for="message"
-                ><p>Jouw vraag<span>*</span></p>
-                <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
-              </label>
-
-              <button class="button-outline-white" type="submit">Formulier verzenden</button>
-
-              <p class="strict">Velden met een '<span class="orange">*</span>' zijn verplicht</p>
-
-              <!-- Error state -->
-              <ErrorState {status} />
-            </form>
-          {/if}
-
-          <!-- Loading state -->
-          <LoadingState {status} />
-
-          <!-- Succes state -->
-          <SuccesState {status} />
-        </div>
-      </div>
+      <!-- Succes state -->
+      <SuccesState {status} />
     </div>
   </div>
 </section>
@@ -201,11 +137,9 @@
     align-items: center;
     gap: 1em;
 
-    .breadcrumbs {
-        margin: 0 0 -1em 0;
-        :global(a) {
-            color: var(--blue-800);
-        }
+    @media (min-width: 768px) {
+      padding: 5em 5%;
+      gap: 1.5em;
     }
   }
 
@@ -226,74 +160,135 @@
     flex-direction: column-reverse;
     gap: 1em;
     width: 100%;
+
+    h2 {
+      font-size: 25px;
+    }
   }
 
   @media (min-width: 768px) {
     .contact-wrapper {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 1em;
-        width: 100%;
-
-        h2 {
-            font-size: 25px;
-        }
+      flex-direction: row;
+      gap: 2em;
+      max-width: 1400px;
     }
+  }
 
-    @media (min-width: 768px) {
-        .contact-wrapper {
-            flex-direction: row;
-            gap: 2em;
-            max-width: 1400px;
-        }
-    }
+  .contact-form {
+    width: 100%;
+  }
 
+  .wrapper-form {
+    width: 100%;
+    background-color: var(--text-white);
+    border: 1px solid var(--neutral-300);
+    border-radius: 1em;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  @media (min-width: 768px) {
     .contact-form {
-        width: 100%;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1em;
     }
 
-    .wrapper-form {
-        width: 100%;
-        background-color: var(--text-white);
-        border: 1px solid var(--neutral-300);
-        border-radius: 1em;
-        padding: 1.5em;
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        justify-content: center;
-        gap: 1em;
+    .contact-form label:nth-child(6) {
+      grid-column: 1 / -1; /* full-width */
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+
+    .strict {
+      background-color: var(--blue-100);
+      padding: 0.5em 1em;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 0.5em;
     }
 
-    @media (min-width: 768px) {
-        .contact-form {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1em;
-        }
+    .orange {
+      color: var(--primary-orange);
+    }
+  }
 
-        .contact-form label:nth-child(6) {
-            grid-column: 1 / -1; /* full-width */
-        }
+  label {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+    font-weight: var(--text-font-weight);
+    font-size: var(--p-s-size);
+
+    p {
+      display: flex;
+      gap: 0.5em;
+
+      span {
+        color: var(--primary-orange);
+      }
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: .8em;
+    input,
+    textarea {
+      font-family: var(--font-body);
+      font-weight: var(--text-font-weight);
+      font-size: var(--p-s-size);
+      padding: 0.9em;
+      background-color: #f2f2f2;
+      border: 1px solid var(--neutral-300);
+      border-radius: 0.5em;
+      margin: 0.5em 0 0 0;
 
-        .strict {
-            background-color: var(--blue-100);
-            padding: .5em 1em;
-            width: fit-content;
-            height: fit-content;
-            border-radius: .5em;
-        }
+      &::-webkit-input-placeholder {
+        color: var(--blue-800);
+      }
+    }
 
-        .orange {
-            color: var(--primary-orange);
-        }
+    textarea {
+      height: 7em;
+    }
+  }
+
+  input:invalid:not(:placeholder-shown),
+  textarea:invalid:not(:placeholder-shown) {
+    outline: 2px solid red;
+  }
+
+  input:valid,
+  textarea:valid {
+    outline: 2px solid rgb(1, 213, 5);
+  }
+
+  .contact-info {
+    background-color: var(--primary-blue);
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    border-radius: 1em;
+    gap: 0.7em;
+    position: relative;
+    overflow: hidden;
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    h2 {
+      font-size: 25px;
     }
 
     a {
@@ -307,47 +302,9 @@
     }
   }
 
-    input:invalid:not(:placeholder-shown),
-    textarea:invalid:not(:placeholder-shown) {
-        outline: 2px solid red;
-    }
-
-    input:valid,
-    textarea:valid {
-        outline: 2px solid rgb(1, 213, 5);
-    }
-
+  @media (min-width: 768px) {
     .contact-info {
-        background-color: var(--primary-blue);
-        color: var(--text-white);
-        display: flex;
-        flex-direction: column;
-        padding: 1.5em;
-        border-radius: 1em;
-        gap: .7em;
-        position: relative;
-        overflow: hidden;
-
-        ul {
-            list-style-type: none;
-            display: flex;
-            flex-direction: column;
-            gap: .5em;
-        }
-
-        h2 {
-            font-size: 25px;
-        }
-
-        a {
-            display: flex;
-            align-items: center;
-            gap: .5em;
-            color: var(--text-white);
-            word-break: break-all;
-            position: relative;
-            z-index: 1;
-        }
+      width: 40%;
     }
   }
 
@@ -355,27 +312,12 @@
     display: none;
 
     @media (min-width: 768px) {
-        .contact-info {
-            width: 40%;
-        }
+      width: 17em;
+      right: -10%;
+      bottom: -10%;
+      display: block;
+      position: absolute;
     }
-
-    .circle-info {
-        display: none;
-
-         @media (min-width: 768px) {
-            width: 17em;
-            right: -10%;
-            bottom: -10%;
-            display: block;
-            position: absolute;
-        }
-    }
-  }
-
-  .contact-info h2,
-  .contact-info p {
-    color: var(--text-white);
   }
 
   /* FAQ */
@@ -387,26 +329,16 @@
     box-sizing: border-box;
     position: relative;
 
-    /* FAQ */
-    .faq-section {
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-        padding: 3em 5%;
-        box-sizing: border-box;
-        position: relative;
-
-        @media (min-width: 768px) {
-            padding: 5em 5%;
-        }
-    }
-
     @media (min-width: 768px) {
-      flex-direction: row;
+      padding: 5em 5%;
     }
+  }
 
-    .white {
-        color: var(--text-white);
-    }
+  .faq-section h2 {
+    text-align: center;
+  }
+
+  .white {
+    color: var(--text-white);
   }
 </style>
