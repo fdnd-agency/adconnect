@@ -151,6 +151,30 @@
     </p>
 </section>
 
+<section>
+    <DividerText text="Voorgaande nominaties" />
+</section>
+
+<!-- SLIDER -->
+<section class="slider">
+    <ul>
+        {#each data.nomination as item (item.id)}
+            <li class="nomination">
+                <h3>{item.title}</h3>
+
+                {#if item.profile_picture}
+                    <img
+                        src={imageUrl(
+                            item.profile_picture.id ?? item.profile_picture,
+                        )}
+                        alt={item.title}
+                        class="profile-photo"
+                    />
+                {/if}
+            </li>
+        {/each}
+    </ul>
+</section>
 
 <style>
     .intro,
