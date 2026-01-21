@@ -4,6 +4,14 @@
 
 The Consultation Platform for Associate Degrees is a collaboration between all Dutch universities of applied sciences that offer, or plan to offer Associate Degree programs. Since 2019, they have been working to increase the visibility and strengthen the position of these programs within education and government. They share knowledge, develop joint program profiles, and organize events such as the National AD Day and the AD Talent Award. They also focus on important themes such as progression to bachelor’s programs, practice-oriented learning, and internationalization to improve the quality of Associate Degree programs.
 
+### Client’s request
+
+Develop a user friendly and technically efficient platform that clearly communicates the added value of Associate Degrees to the user. The user must be able to easily find relevant information through a logical website structure and a well thoughtout redesign. In addition, the website should be translatable into English to reach a broader audience.
+
+Here is the [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/Design-Challenge) explained.
+
+[Livelink to the website](https://adconnect.dev.fdnd.nl/)
+
 ### Team
 
 This project was created and developed by the following team members:
@@ -14,20 +22,11 @@ This project was created and developed by the following team members:
 
 Each team member contributed to different parts of the project, such as frontend development, CMS integration, documentation, and collaboration within the team.
 
-### Client’s request
-
-Develop a user friendly and technically efficient platform that clearly communicates the added value of Associate Degrees to the user. The user must be able to easily find relevant information through a logical website structure and a well thoughtout redesign. In addition, the website should be translatable into English to reach a broader audience.
-
-Here is the [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/Design-Challenge) explained.
-
-[Livelink to the website](https://adconnect.dev.fdnd.nl/)
-
 ![mockups](https://github.com/user-attachments/assets/deb29554-9ac7-4852-9571-0bced02c7f68)
-
 
 ## Table of Contents
 
-  * [Design choices](#Designchoices)
+  * [Design choices](#designchoices)
   * [Description](#description)
   * [Features](#features)
   * [Installation](#installation)
@@ -38,11 +37,21 @@ Here is the [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/Des
 ## Design choices
 
 Curious about the thought process behind this website?
-In our design, we aimed to create something that feels professional, trustworthy, and youthful at the same time. From our color palette and typography to the updated AdConnect logo, playful mascot, and clear navigation structure every choice was made with purpose. read more about this in out designchoices.md
+In our design we aimed to create something that feels professional, trustworthy, and youthful at the same time. From our color palette and typography to the updated AdConnect logo, playful mascot, and clear navigation structure every choice was made with purpose. read more about this in out designchoices.md
 
 [Design choices](https://github.com/fdnd-agency/adconnect/blob/dev/DESIGNCHOICES.md)
 
 ## Description
+### PE contactform 
+On the contact page, we developed a contact form. The form works server-side and is enhanced with client-side JavaScript and CSS.
+- Uses semantic HTML elements such as `<form>`, `<input>`, and `<section>`.
+- Developed mobile-first, with `@media queries` for wider screens.
+- The form works server-side. Data is stored in the Directus API and sent via email using Resend.
+- Enhanced with client-side JavaScript, while ensuring the form can be submitted without JavaScript.
+- UI states added, including loading, success, and error states.
+
+https://github.com/user-attachments/assets/158a2a80-ed2e-45a1-b576-eb3449f91301
+
 ### View page transition
 When switching between pages the new page slides in from the right side of the screen. It also detects when you go back to the previous page, then the animatie is reverted so the user has more logical by navigating the website.
 - Uses the View Transitions API (document.startViewTransition) for smooth page navigation.
@@ -71,25 +80,8 @@ https://github.com/user-attachments/assets/eec6b157-3cfb-4d3b-bfc5-e33aed4bdd43
 
 https://github.com/user-attachments/assets/6083738d-67c2-4acb-bd97-e92b0c4173b7
 
-### Cards
-- Semantic HTML, for example using `<article>` with a `<h3>`, `<p>`, and `<a>`.  
-- Multiple tests performed, including: Accessibility test, Performance test, and testing in older browsers.  
-- Responsive using a `grid` layout.  
-- Used components within components.  
-- All data is dynamically loaded from the server JS.
-
-https://github.com/user-attachments/assets/10ace37c-4bbe-4006-8576-8b98df3fc218
-
-### Footer
-- Used semantic HTML, for example `<footer>` with a `<details>` and `<summary>`.  
-- Multiple tests performed, including: Accessibility test, Performance test, and testing in older browsers.  
-- Responsive using a `grid` layout.  
-- Dropdown menu for mobile so it does not become a long list, making it more user-friendly.
-
-https://github.com/user-attachments/assets/b136cfc9-5af5-4485-937f-3c58ff0d6d53
-
 ## Features
-In this project, we use SvelteKit to build a dynamic squad page with reusable components and routes. Data is fetched via the Directus API.
+In this project we use SvelteKit to build a dynamic squad page with reusable components and routes. Data is fetched via the Directus API.
 
 ### Routes
 - [`/`](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/%2Bpage.svelte): On the home page, all news article data is fetched and rendered on the homepage.  
@@ -110,21 +102,46 @@ In this project, we use SvelteKit to build a dynamic squad page with reusable co
 The project uses reusable Svelte components to build the user interface. These components are structured based on Atomic Design principles (atoms, molecules, and organisms).
 
 - Components are used for page sections such as navigation, hero sections, cards, forms, and content blocks  
-- Most components receive their data from the Directus CMS, making the website dynamic and easy to manage  
+- Most components receive their data from the Directus CMS making the website dynamic and easy to manage  
 - Some components are still located in the general `components` folder  
   - This is due to our first implementation approach  
-  - As a *could have*, these components can be moved to the Atomic Design structure in the future  
+  - As a `*could have*` these components can be moved to the Atomic Design structure in the future  
 
-A more detailed description of each component can be found in the `docs/components` documentation.
+A more detailed description of each component can be found in the [docs/components](https://github.com/fdnd-agency/adconnect/blob/dev/docs/components.md) documentation.
 
-### Data
-Data is fetched in `+page.server.js` for the corresponding route. A fetch is performed to the Directus API, the data is processed, and then rendered to the respective `+page.svelte` page.  
-- See for example the [`+page.server.js` of the home page](https://github.com/fdnd-agency/adconnect/blob/dev/src/routes/%2Bpage.server.js).
+## Data
+
+### Overview
+- The project uses Directus as a headless CMS.
+- Directus manages all website content (text, images, sections).
+- Content is delivered via an API and rendered by the SvelteKit frontend.
+
+### Content & API
+- Content is structured in collections (e.g. news, events, documents).
+- Each collection has predefined fields for content editors.
+- Data is fetched from Directus through API endpoints.
+
+### Fetching data
+- Data is retrieved server-side in `+page.server.js` for each route.
+- A request is made to the Directus API endpoint for the relevant collection.
+- The returned data is processed and then passed to the page component (`+page.svelte`) for rendering.
+- Fetching server-side ensures faster initial load, improved SEO, and keeps API keys secure.
+
+### Contact Form
+- The contact form sends emails using Resend.
+- Submitted messages are also stored in Directus.
+- API keys and credentials are handled securely via environment variables.
+
+For more detailed information see the dedicated [CMS documentation page](https://github.com/fdnd-agency/adconnect/blob/dev/docs/cms.md).
 
 ### Data Model
-The data model displays all the fields that appear on the website.
+The data model shows how the different collections relate to each other.
 
-[![](https://mermaid.ink/img/pako:eNrNVV1r2zAU_SvmQt-c4I_YTvxWUsP6EHtk2QbDEDTr1hGzJSNLoV2a_z7b6do0araOsjE9CO4R595z7pWtHRSCIsSA8oqRUpI651a3DvtVNv-4SNLVB2t3APrFuLIYfYpbJRkvLcVUhQZKsS0kaxQT3DhrK10-gZQoHLYDtM8fCGny-e-UJ1pthDTgl3KT0sDwtkDZKAPfoBQGKJHQNdWSPBdyYvmI8FXQu5M-JJ_-0SB-ZeSca8VqfKvB1btkkfx3Bv_IQpotrtPL1fUbbJyRSijK34vtK-EWuVof1ztvgfG2U6Ff7FkhtGxNSiNxy4Ru12fOkepiuAXrLZGMcPOukErXXLev6ec8y5bvs2XX0Sx9RUc5qU1BlSjFSdqLC2uJVacS22ff1v39aCR2x1OMrRxK_CaaBiuaQ87BhlIyCrGSGm2oUdakD2FQl4PaYKcBeh7FG6Ir1bP2Ha0h_IsQ9U-mFLrcQHxDqraLdNPP5-EP_IhK5N3Y50JzBbHr-ZMhC8Q7uIV45Hnu2JmF3sRz_ak3caPQhrsOd6OxNwnCcDbzXSfwp850b8P3obQ7nvoz34mCIHCiMPScyAakTAm5OLwCw2Ow_wHeLc-y?type=png)](https://mermaid.live/edit#pako:eNrNVV1r2zAU_SvmQt-c4I_YTvxWUsP6EHtk2QbDEDTr1hGzJSNLoV2a_z7b6do0araOsjE9CO4R595z7pWtHRSCIsSA8oqRUpI651a3DvtVNv-4SNLVB2t3APrFuLIYfYpbJRkvLcVUhQZKsS0kaxQT3DhrK10-gZQoHLYDtM8fCGny-e-UJ1pthDTgl3KT0sDwtkDZKAPfoBQGKJHQNdWSPBdyYvmI8FXQu5M-JJ_-0SB-ZeSca8VqfKvB1btkkfx3Bv_IQpotrtPL1fUbbJyRSijK34vtK-EWuVof1ztvgfG2U6Ff7FkhtGxNSiNxy4Ru12fOkepiuAXrLZGMcPOukErXXLev6ec8y5bvs2XX0Sx9RUc5qU1BlSjFSdqLC2uJVacS22ff1v39aCR2x1OMrRxK_CaaBiuaQ87BhlIyCrGSGm2oUdakD2FQl4PaYKcBeh7FG6Ir1bP2Ha0h_IsQ9U-mFLrcQHxDqraLdNPP5-EP_IhK5N3Y50JzBbHr-ZMhC8Q7uIV45Hnu2JmF3sRz_ak3caPQhrsOd6OxNwnCcDbzXSfwp850b8P3obQ7nvoz34mCIHCiMPScyAakTAm5OLwCw2Ow_wHeLc-y)
+For more detailed information see the dedicated [Data Model documentation page](https://github.com/fdnd-agency/adconnect/blob/dev/docs/datamodel.md)
+
+Below is the mermaid diagram that visualizes the main data relationships:
+
+[![](https://mermaid.ink/img/pako:eNq9VFFr2zAQ_ivhnk2IHbuO_TZSw_oQe7QZg2EImnV1BLZkzlJoG_LfpzjtklXN1lJaPci-T3x3930St4VKcYQUkC4Fq4m1pRzZddgvi_n3RZYvb0bbA7BfQuqR4Me41yRkPdJCN-igHPuKRKeFks5Z35j6CHKmcdgO0K58JOTZj48pz4xeK3Lgl3Kz2sHwrkLqtIOvkZQDEjK-4obY3408k3xC-KX4_TMfll-zRfYZF_EvIY7qN0nIi8VV_mV59Q4ZZ1plHOn_ze4r4QalXp3WOy9ByN52YV70rFKGepfSEW6EMv3qzDlyUw2vYLVhJJh0HxBrTCtN_xo_50Vx_S27to4W-Ssclax1G2pUrU7Sggc1CQ6pJoMetEgt24cwpC9Br9EmgdT-crxlptEllHJnaR2TP5Vqn5ikTL2G9JY1vY1Mtzf4ccL8QQmlvbe5MlJDGoezIQmkW7iDNJiM_SCcRrM4DCb2G0Ue3EN6kYynsR_Moij2k4mfJDsPHoay_jgIkii4iKZ-EoaxH8UeIBda0eIw4YZBt_sN1CR5BQ?type=png)](https://mermaid.live/edit#pako:eNq9VFFr2zAQ_ivhnk2IHbuO_TZSw_oQe7QZg2EImnV1BLZkzlJoG_LfpzjtklXN1lJaPci-T3x3930St4VKcYQUkC4Fq4m1pRzZddgvi_n3RZYvb0bbA7BfQuqR4Me41yRkPdJCN-igHPuKRKeFks5Z35j6CHKmcdgO0K58JOTZj48pz4xeK3Lgl3Kz2sHwrkLqtIOvkZQDEjK-4obY3408k3xC-KX4_TMfll-zRfYZF_EvIY7qN0nIi8VV_mV59Q4ZZ1plHOn_ze4r4QalXp3WOy9ByN52YV70rFKGepfSEW6EMv3qzDlyUw2vYLVhJJh0HxBrTCtN_xo_50Vx_S27to4W-Ssclax1G2pUrU7Sggc1CQ6pJoMetEgt24cwpC9Br9EmgdT-crxlptEllHJnaR2TP5Vqn5ikTL2G9JY1vY1Mtzf4ccL8QQmlvbe5MlJDGoezIQmkW7iDNJiM_SCcRrM4DCb2G0Ue3EN6kYynsR_Moij2k4mfJDsPHoay_jgIkii4iKZ-EoaxH8UeIBda0eIw4YZBt_sN1CR5BQ)
 
 ## Installation
 To build this project, the following steps must be completed. `Node.js` and `npm` (or alternatives such as `pnpm` or `yarn`) are required as a package manager to get started.  
