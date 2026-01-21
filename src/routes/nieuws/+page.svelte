@@ -15,6 +15,7 @@
 </script>
 
 <Development /><svelte:head>
+<svelte:head>
     <title>Nieuws | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
