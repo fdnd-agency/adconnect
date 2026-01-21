@@ -6,6 +6,8 @@
     import logomobile from "$lib/assets/logomobile.svg";
     import logodark from "$lib/assets/logomobiledark.svg";
 
+    let { data } = $props();
+
 </script>
 
 <svelte:head>
