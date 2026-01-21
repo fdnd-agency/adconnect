@@ -69,3 +69,23 @@
 		margin: 0 auto;
 		display: block;
 	}
+
+	@media (min-width: 900px) {
+		.news-detail {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 4em;
+		}
+
+		article {
+			margin: 0;
+			padding: 2em 0;
+		}
+
+		img {
+			width: 500px;
+			height: 500px;
+			object-fit: cover;
+		}
+	}
+</style>
