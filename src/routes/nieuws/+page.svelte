@@ -37,7 +37,7 @@
               <h2>{item.title}</h2>
               <p>{item.description}</p>
 
-              <a class="button-outline-blue" alt={item.title} href={`/nieuws/${item.uuid}`}> Meer informatie </a>
+              <a class="button-outline-blue" href={`/nieuws/${item.uuid}`}> Meer informatie <span class="sr-only"> over {item.title}</span></a>
             </article>
           </li>
         {/each}
@@ -62,7 +62,7 @@
             <h2>{item.title}</h2>
             <p>{item.description}</p>
 
-            <a class="button-outline-blue" alt={item.title} href={`/nieuws/${item.uuid}`}> Meer informatie </a>
+            <a class="button-outline-blue" href={`/nieuws/${item.uuid}`}> Meer informatie <span class="sr-only"> over {item.title}</span> </a>
           </article>
         </li>
       {/each}
@@ -134,6 +134,16 @@
     align-items: center;
     gap: 0.75em;
   }
+
+  .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
   @container news-container (min-width: 768px) {
     ul {
       grid-template-columns: repeat(2, 1fr);
