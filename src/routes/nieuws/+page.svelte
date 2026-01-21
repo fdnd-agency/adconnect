@@ -37,3 +37,34 @@
             Nederland.
         </p>
     </section>
+
+    <section class="latest-news">
+        <h2 style="margin: 1em;">Laatste nieuws</h2>
+
+        <section class="news-container">
+            <ul>
+                {#each data.latest3 as item}
+                    <li>
+                        <article>
+                            <section class="date">
+                                <img src={calendar} alt="" />
+                                <p>{formatDateNL(item.date)}</p>
+                            </section>
+
+                            <h2>{item.title}</h2>
+                            <p>{item.description}</p>
+
+                            <a
+                                class="button-outline-blue"
+                                alt="{item.title}"
+                                href={`/nieuws/${item.uuid}`}
+                            >
+                                Meer informatie
+                            </a>
+                        </article>
+                    </li>
+                {/each}
+            </ul>
+        </section>
+    </section>
+</section>
