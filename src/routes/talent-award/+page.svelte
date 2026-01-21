@@ -78,15 +78,17 @@
   <DividerText text="Voorgaande talent award winnaars" />
 
   <section class="previous-winners">
-    <section class="slider">
-      <ul>
-        {#each data.nomination.filter((item) => item.header?.toLowerCase() === "winnaar" && item.profile_picture) as winner (winner.id)}
-          <li>
-            <img src={imageUrl(winner.profile_picture)} alt={winner.title} />
-          </li>
-        {/each}
-      </ul>
-    </section>
+    <ul>
+      {#each data.nomination.filter((item) => item.header?.toLowerCase() === "winnaar" && item.profile_picture) as winner (winner.id)}
+        <li>
+          <img src={imageUrl(winner.profile_picture)} alt={winner.title} height="200px" />
+          <section>
+            <h3>{winner.title}</h3>
+            <p>{winner.excerpt}</p>
+          </section>
+        </li>
+      {/each}
+    </ul>
   </section>
 </section>
 
@@ -104,13 +106,13 @@
 </section>
 
 <section class="slider">
-  <ul>
+  <ul class="slider-ul">
     {#each data.nomination as item (item.id)}
       <li class="nomination">
         <h3>{item.title}</h3>
 
         {#if item.profile_picture}
-          <img src={imageUrl(item.profile_picture.id ?? item.profile_picture)} alt={item.title} class="profile-photo" />
+          <img src={imageUrl(item.profile_picture.id ?? item.profile_picture)} alt="" class="profile-photo" />
         {/if}
       </li>
     {/each}
@@ -158,18 +160,8 @@
     gap: 2rem;
     padding: 0 1rem;
     margin: 2rem auto 5rem;
-  }
-
-  @container cards (min-width: 786px) {
-    .cards-ta {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .cards-ta article:nth-child(3) {
-      grid-column: 1 / -1;
-      justify-self: center;
-      max-width: 420px;
-    }
+    width: 90%;
+    max-width: 1400px;
   }
 
   @container cards (min-width: 1024px) {
@@ -240,7 +232,7 @@
     max-width: 1400px;
   }
 
-  ul {
+  .slider-ul {
     display: flex;
     animation: scroll 10s linear infinite;
   }
@@ -285,17 +277,30 @@
     background-color: var(--blue-100);
     padding: 2rem;
     border-radius: 15px;
+    width: 90%;
+    max-width: 1000px;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      align-items: flex-start;
+
+      section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
   }
 
   .previous-winners img {
-    max-height: 180px;
     border-radius: 15px;
-    filter: grayscale(100%);
-    transition: 0.2s ease;
-  }
-
-  .previous-winners img:hover {
-    filter: grayscale(0%);
   }
 
   @keyframes scroll {
@@ -324,5 +329,9 @@
       margin: 0 auto;
       margin-bottom: 5em;
     }
+  }
+
+  :global(main) {
+    overflow-x: hidden;
   }
 </style>
