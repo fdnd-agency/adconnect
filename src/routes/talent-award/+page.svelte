@@ -24,8 +24,12 @@
      Ad-ambassadeur.  Elke hogeschool aangesloten bij het Overlegplatform Associate 
      degrees kan zijn of haar Ad-talent nomineren. En … twee van hen worden extra 
      in het zonnetje gezet. Op de jaarlijkse Ad-dag ontvangen zij de Ad Talent Award als 
-     ambassadeurs van het Ad-onderwijs in Nederland."
+     ambassadeurs van het Ad-onderwijs in Nederland
+     "
 >
+    <img class="hero-image" src={Talent} alt="" fetchpriority="high" />
+    <a slot="primary" href="#benefit" class="button-outline-white" id="benefit"
+        >Lees meer →</a
     >
 </Hero>
 
