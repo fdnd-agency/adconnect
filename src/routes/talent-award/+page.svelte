@@ -210,8 +210,37 @@
     }
 
     .cards-ta {
+        container-type: inline-size;
+        container-name: cards;
+
+        display: grid;
         gap: 2rem;
         padding: 0 1rem;
+        margin: 2rem auto 5rem;
+    }
+
+    @container cards (min-width: 786px) {
+        .cards-ta {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .cards-ta article:nth-child(3) {
+            grid-column: 1 / -1;
+            justify-self: center;
+            max-width: 420px;
+        }
+    }
+
+    @container cards (min-width: 1024px) {
+        .cards-ta {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .cards-ta article:nth-child(3) {
+            grid-column: auto;
+            justify-self: stretch;
+            max-width: none;
+        }
     }
 
     .cards-ta article {
