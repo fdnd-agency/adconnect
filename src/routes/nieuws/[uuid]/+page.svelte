@@ -26,6 +26,16 @@
 	</Hero>
 {/each}
 
+<section class="news-detail">
+	{#each data.news as item}
+		<article>
+			<h2>{item.title}</h2>
+			<p>{@html item.body}</p>
+		</article>
+
+		<img
+			src={`https://fdnd-agency.directus.app/assets/${item.hero}`}
+			alt={item.title}
 		/>
 	{/each}
 </section>
