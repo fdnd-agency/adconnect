@@ -156,7 +156,6 @@
     <DividerText text="Voorgaande nominaties" />
 </section>
 
-<!-- SLIDER -->
 <section class="slider">
     <ul>
         {#each data.nomination as item (item.id)}
@@ -385,4 +384,5 @@
             margin-bottom: 5em;
         }
     }
+
 </style>
