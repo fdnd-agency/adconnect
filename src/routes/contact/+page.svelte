@@ -1,37 +1,38 @@
 <script>
-  import { page } from "$app/stores";
-  $: pathname = $page.url.pathname;
-  import { enhance } from "$app/forms";
+    import { page } from "$app/stores";
+    $: pathname = $page.url.pathname;
+    import { enhance } from "$app/forms";
 
-  // Import components Atomic Design
-  import { MultipleFaq, SingleFaq, NavPros } from "$lib";
+    // Import components Atomic Design
+    import { MultipleFaq, SingleFaq, NavPros, Breadcrumb, ErrorState, SuccesState, LoadingState } from '$lib'
+   
+    // Import images Atomic Design
+    import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from '$lib'
 
-  // Import images Atomic Design
-  import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading } from "$lib";
+    const breadcrumb = ""
 
-  export let breadcrumb = "";
+    // Variable to check the status of the form
+    let status = "";
 
-  // Variable to check the status of the form
-  let status = "";
+    // Function when form is submitting
+    function formSubmit() {
 
-  // Function when form is submitting
-  function formSubmit() {
-    // When submitting show the loading UI state
-    status = "submitting";
-
-    return async ({ result, update }) => {
-      // When the form is correct submitted then show succes UI state
-      if (result.type === "success") {
-        status = "success";
-        // When the form isn't correct submitted then show error UI state
-      } else if (result.type === "failure") {
-        status = "error";
-      }
-
-      // Update the form to see the correct UI state
-      await update();
-    };
-  }
+        // When submitting show the loading UI state
+        status = "submitting";
+        
+        return async ({ result, update }) => {
+            // When the form is correct submitted then show succes UI state
+            if (result.type === 'success') {
+                status = "success";
+            // When the form isn't correct submitted then show error UI state
+            } else if (result.type === 'failure') {
+                status = "error";
+            }
+            
+            // Update the form to see the correct UI state
+            await update();
+        };
+    }
 </script>
 
 <svelte:head>
@@ -96,51 +97,87 @@
         </form>
       {/if}
 
-      {#if status === "submitting"}
-        <section class="loading visible">
-          <h3>Formulier verzenden...</h3>
-          <img class="spinner" src={loading} alt="" />
-        </section>
-      {/if}
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+         <Breadcrumb />
+    </div>
 
-      {#if status === "success"}
-        <section class="success visible">
-          <div class="info">
-            <h3>Bedankt, je formulier is verzonden!</h3>
-            <p>Jouw formulier is succesvol naar ons verzonden.  We nemen zo snel mogelijk contact op per mail.</p>
-          </div>
-          <img src={birdcheck} alt="" />
+    <h1>Vragen? Neem contact op</h1>
+    <p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
+
+    <div class="contact-wrapper">
+        <section class="contact-info">
+            <h2 class="white">Contactgegevens</h2>
+            <p class="white">Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
+            <ul>
+                <li><a href="/" class="white"><img src="{phone}" alt="">Telefoonnummer</a></li>
+                <li><a href="mailto:platformassociatedegrees@outlook.com" class="white"><img src="{mail}" alt="">platformads@outlook.com</a></li>
+            </ul>
+
+            <img class="circle-info" src="{lightcircle}" alt="">
         </section>
-      {/if}
+
+        <div class="wrapper-form">
+            {#if status === "" | status === "error"}
+            <h2>Contactformulier</h2>
+            <form class="contact-form" method="POST" use:enhance={formSubmit}>
+                <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b">
+                <input type="hidden" name="subject" value="Nieuwe inzending contactformulier">
+                <input type="hidden" name="from_name" value="Overlegplatform Ad">
+                <label for="name"><p>Naam + Achternaam<span>*</span></p>
+                    <input type="text" name="name" id="name" placeholder="Bijv. Jan van Huizen" required />
+                </label>
+                <label for="email"><p>E-mailadres<span>*</span></p>
+                    <input type="email" name="email" id="email" placeholder="Bijv. janvanhuizen@gmail.com" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"/>
+                </label>
+                <label for="message"><p>Jouw vraag<span>*</span></p>
+                    <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
+                </label>
+
+                <button class="button-outline-white" type="submit">Formulier verzenden</button>
+
+                <p class="strict">Velden met een '<span class="orange">*</span>' zijn verplicht</p>
+
+                <!-- Error state -->
+                <ErrorState {status} />
+            </form>
+            {/if}
+        
+            <!-- Loading state -->
+            <LoadingState {status} />
+
+            <!-- Succes state -->
+            <SuccesState {status} />
+        </div>
     </div>
   </div>
 </section>
 
 <section class="faq-section">
-  <h2>Veelgestelde vragen</h2>
+    <h2>Veelgestelde vragen</h2>
 
-  <MultipleFaq>
-    <SingleFaq
-      open={true}
-      question="Wat is een Associate Degree Ad?"
-      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
-    />
+    <MultipleFaq>
+        <SingleFaq
+            open={true}
+            question="Wat is een Associate degree?"
+            answer="Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding."
+        />
+        
+        <SingleFaq
+            question="Hoe lang duurt een Associate degree?"
+            answer="Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring."
+        />
 
-    <SingleFaq
-      question="Hoe lang duurt een Associate degree?"
-      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
-    />
+        <SingleFaq
+            question="Wat is het verschil tussen een Associate degree en een Bachelor?"
+            answer="Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld."
+        />
 
-    <SingleFaq
-      question="Wat is het verschil tussen een Associate Degree en een Bachelor?"
-      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
-    />
-
-    <SingleFaq
-      question="Welke voordelen heeft het behalen van een Associate Degree?"
-      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
-    />
-  </MultipleFaq>
+        <SingleFaq
+            question="Welke voordelen heeft het behalen van een Associate degree?"
+            answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
+        />
+    </MultipleFaq>
 </section>
 
 <style>
@@ -154,9 +191,11 @@
     align-items: center;
     gap: 1em;
 
-    @media (min-width: 768px) {
-      padding: 5em 5%;
-      gap: 1.5em;
+    .breadcrumbs {
+        margin: 0 0 -1em 0;
+        :global(a) {
+            color: var(--blue-800);
+        }
     }
   }
 
@@ -181,107 +220,70 @@
 
   @media (min-width: 768px) {
     .contact-wrapper {
-      flex-direction: row;
-      gap: 2em;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1em;
+        width: 100%;
+
+        h2 {
+            font-size: 25px;
+        }
     }
-  }
 
-  .contact-form {
-    width: 100%;
-  }
+    @media (min-width: 768px) {
+        .contact-wrapper {
+            flex-direction: row;
+            gap: 2em;
+            max-width: 1400px;
+        }
+    }
 
-  .wrapper-form {
-    width: 100%;
-    background-color: var(--text-white);
-    border: 1px solid var(--neutral-300);
-    border-radius: 1em;
-    padding: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (min-width: 768px) {
     .contact-form {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1em;
+        width: 100%;
     }
 
-    .contact-form label:nth-child(6) {
-      grid-column: 1 / -1; /* full-width */
-    }
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8em;
-  }
-
-  label {
-    display: flex;
-    flex-direction: column;
-    font-family: var(--font-body);
-    font-weight: var(--text-font-weight);
-    font-size: var(--p-s-size);
-
-    p {
-      display: flex;
-      gap: 0.5em;
-
-      span {
-        color: var(--primary-orange);
-      }
+    .wrapper-form {
+        width: 100%;
+        background-color: var(--text-white);
+        border: 1px solid var(--neutral-300);
+        border-radius: 1em;
+        padding: 1.5em;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: center;
+        gap: 1em;
     }
 
-    input,
-    textarea {
-      font-family: var(--font-body);
-      font-weight: var(--text-font-weight);
-      font-size: var(--p-s-size);
-      padding: 0.9em;
-      background-color: #f2f2f2;
-      border: 1px solid var(--neutral-300);
-      border-radius: 0.5em;
-      margin: 0.5em 0 0 0;
+    @media (min-width: 768px) {
+        .contact-form {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+        }
 
-      &::-webkit-input-placeholder {
-        color: var(--blue-800);
-      }
+        .contact-form label:nth-child(6) {
+            grid-column: 1 / -1; /* full-width */
+        }
     }
 
-    textarea {
-      height: 7em;
-    }
-  }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: .8em;
 
-  input:invalid:not(:placeholder-shown),
-  textarea:invalid:not(:placeholder-shown) {
-    outline: 2px solid red;
-  }
+        .strict {
+            background-color: var(--blue-100);
+            padding: .5em 1em;
+            width: fit-content;
+            height: fit-content;
+            border-radius: .5em;
+        }
 
-  input:valid,
-  textarea:valid {
-    outline: 2px solid rgb(1, 213, 5);
-  }
-
-  .contact-info {
-    background-color: var(--primary-blue);
-    display: flex;
-    flex-direction: column;
-    padding: 1.5em;
-    border-radius: 1em;
-    gap: 0.7em;
-    position: relative;
-    overflow: hidden;
-
-    ul {
-      list-style-type: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
+        .orange {
+            color: var(--primary-orange);
+        }
     }
 
     a {
@@ -295,9 +297,47 @@
     }
   }
 
-  @media (min-width: 768px) {
+    input:invalid:not(:placeholder-shown),
+    textarea:invalid:not(:placeholder-shown) {
+        outline: 2px solid red;
+    }
+
+    input:valid,
+    textarea:valid {
+        outline: 2px solid rgb(1, 213, 5);
+    }
+
     .contact-info {
-      width: 40%;
+        background-color: var(--primary-blue);
+        color: var(--text-white);
+        display: flex;
+        flex-direction: column;
+        padding: 1.5em;
+        border-radius: 1em;
+        gap: .7em;
+        position: relative;
+        overflow: hidden;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: .5em;
+        }
+
+        h2 {
+            font-size: 25px;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: .5em;
+            color: var(--text-white);
+            word-break: break-all;
+            position: relative;
+            z-index: 1;
+        }
     }
   }
 
@@ -305,11 +345,21 @@
     display: none;
 
     @media (min-width: 768px) {
-      width: 17em;
-      right: -10%;
-      bottom: -10%;
-      display: block;
-      position: absolute;
+        .contact-info {
+            width: 40%;
+        }
+    }
+
+    .circle-info {
+        display: none;
+
+         @media (min-width: 768px) {
+            width: 17em;
+            right: -10%;
+            bottom: -10%;
+            display: block;
+            position: absolute;
+        }
     }
   }
 
@@ -327,69 +377,25 @@
     box-sizing: border-box;
     position: relative;
 
-    @media (min-width: 768px) {
-      padding: 5em 5%;
-    }
-  }
+    /* FAQ */
+    .faq-section {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        padding: 3em 5%;
+        box-sizing: border-box;
+        position: relative;
 
-  .faq-section h2 {
-    text-align: center;
-  }
-
-  /* States form */
-  .spinner {
-    width: 5em;
-    height: 5em;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .loading,
-  .success,
-  .error {
-    display: flex;
-  }
-
-  .loading {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h3 {
-      text-align: center;
-    }
-  }
-
-  .success {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .info {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-
-      @media (min-width: 768px) {
-        width: 50%;
-      }
+        @media (min-width: 768px) {
+            padding: 5em 5%;
+        }
     }
 
     @media (min-width: 768px) {
       flex-direction: row;
     }
-  }
 
-  .error {
-    color: red;
-  }
+    .white {
+        color: var(--text-white);
+    }
 </style>
