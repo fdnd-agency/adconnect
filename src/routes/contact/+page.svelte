@@ -63,23 +63,12 @@
         <li><a href="mailto:platformassociatedegrees@outlook.com"><img src={mail} alt="" />platformads@outlook.com</a></li>
         <li><a href="/"><img src={map} alt="" />Amsterdam</a></li>
       </ul>
-      <div class="contact-wrapper">
-        <section class="contact-info">
-          <h2>Contactgegevens</h2>
-          <p>Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
-          <ul>
-            <li><a href="/"><img src={phone} alt="" />Telefoonnummer</a></li>
-            <li><a href="mailto:platformassociatedegrees@outlook.com"><img src={mail} alt="" />platformads@outlook.com</a></li>
-            <li><a href="/"><img src={map} alt="" />Amsterdam</a></li>
-          </ul>
-        </section>
-      </div>
+
       <img class="circle-info" src={lightcircle} alt="" />
     </section>
 
     <div class="wrapper-form">
       {#if (status === "") | (status === "error")}
-        <h2>Contactformulier</h2>
         <form class="contact-form" method="POST" use:enhance={formSubmit}>
           <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b" />
           <input type="hidden" name="subject" value="Nieuwe inzending contactformulier" />
@@ -96,21 +85,33 @@
             ><p>Jouw vraag<span>*</span></p>
             <textarea name="message" id="message" placeholder="Beste Overlegplatform Ad's, ik heb een vraag over.." required></textarea>
           </label>
-
-          <button class="button-outline-white" type="submit">Formulier verzenden</button>
-
-          <p class="strict">Velden met een '<span class="orange">*</span>' zijn verplicht</p>
-
-          <!-- Error state -->
-          <ErrorState {status} />
+          <div>
+            <button class="button-outline-white" type="submit">Formulier verzenden</button>
+            {#if status === "error"}
+              <section class="error visible">
+                <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
+              </section>
+            {/if}
+          </div>
         </form>
       {/if}
 
-      <!-- Loading state -->
-      <LoadingState {status} />
+      {#if status === "submitting"}
+        <section class="loading visible">
+          <h3>Formulier verzenden...</h3>
+          <img class="spinner" src={loading} alt="" />
+        </section>
+      {/if}
 
-      <!-- Succes state -->
-      <SuccesState {status} />
+      {#if status === "success"}
+        <section class="success visible">
+          <div class="info">
+            <h3>Bedankt, je formulier is verzonden!</h3>
+            <p>Jouw formulier is succesvol naar ons verzonden.  We nemen zo snel mogelijk contact op per mail.</p>
+          </div>
+          <img src={birdcheck} alt="" />
+        </section>
+      {/if}
     </div>
   </div>
 </section>
@@ -121,23 +122,23 @@
   <MultipleFaq>
     <SingleFaq
       open={true}
-      question="Wat is een Associate degree?"
-      answer="Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding."
+      question="Wat is een Associate Degree Ad?"
+      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
     />
 
     <SingleFaq
       question="Hoe lang duurt een Associate degree?"
-      answer="Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring."
+      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
     />
 
     <SingleFaq
-      question="Wat is het verschil tussen een Associate degree en een Bachelor?"
-      answer="Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld."
+      question="Wat is het verschil tussen een Associate Degree en een Bachelor?"
+      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
     />
 
     <SingleFaq
-      question="Welke voordelen heeft het behalen van een Associate degree?"
-      answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
+      question="Welke voordelen heeft het behalen van een Associate Degree?"
+      answer="Lorem ipsum dolor sit amet consectetur. Ultrices at quis pellentesque at eget ut suspendisse. Rhoncus purus ultrices quis eu lectus interdum egestas iaculis. Pellentesque elementum urna."
     />
   </MultipleFaq>
 </section>
@@ -176,10 +177,6 @@
     flex-direction: column-reverse;
     gap: 1em;
     width: 100%;
-
-    h2 {
-      font-size: 25px;
-    }
   }
 
   @media (min-width: 768px) {
@@ -200,10 +197,8 @@
     border-radius: 1em;
     padding: 1.5em;
     display: flex;
-    flex-direction: column;
-    align-items: left;
+    align-items: center;
     justify-content: center;
-    gap: 1em;
   }
 
   @media (min-width: 768px) {
@@ -223,18 +218,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.8em;
-
-    .strict {
-      background-color: var(--blue-100);
-      padding: 0.5em 1em;
-      width: fit-content;
-      height: fit-content;
-      border-radius: 0.5em;
-    }
-
-    .orange {
-      color: var(--primary-orange);
-    }
   }
 
   label {
@@ -293,130 +276,120 @@
     gap: 0.7em;
     position: relative;
     overflow: hidden;
-    .contact-info {
-      background-color: var(--primary-blue);
+
+    ul {
+      list-style-type: none;
       display: flex;
       flex-direction: column;
-      padding: 1.5em;
-      border-radius: 1em;
-      gap: 0.7em;
+      gap: 0.5em;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      color: var(--text-white);
+      word-break: break-all;
       position: relative;
-      overflow: hidden;
+      z-index: 1;
+    }
+  }
 
-      ul {
-        list-style-type: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-      }
+  @media (min-width: 768px) {
+    .contact-info {
+      width: 40%;
+    }
+  }
 
-      a {
-        display: flex;
-        align-items: center;
-        gap: 0.5em;
-        color: var(--text-white);
-        word-break: break-all;
-        position: relative;
-        z-index: 1;
+  .circle-info {
+    display: none;
+
+    @media (min-width: 768px) {
+      width: 17em;
+      right: -10%;
+      bottom: -10%;
+      display: block;
+      position: absolute;
+    }
+  }
+
+  .contact-info h2,
+  .contact-info p {
+    color: var(--text-white);
+  }
+
+  /* FAQ */
+  .faq-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 3em 5%;
+    box-sizing: border-box;
+    position: relative;
+
+    @media (min-width: 768px) {
+      padding: 5em 5%;
+    }
+  }
+
+  .faq-section h2 {
+    text-align: center;
+  }
+
+  /* States form */
+  .spinner {
+    width: 5em;
+    height: 5em;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loading,
+  .success,
+  .error {
+    display: flex;
+  }
+
+  .loading {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      text-align: center;
+    }
+  }
+
+  .success {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      @media (min-width: 768px) {
+        width: 50%;
       }
     }
 
     @media (min-width: 768px) {
-      .contact-info {
-        width: 40%;
-      }
+      flex-direction: row;
     }
+  }
 
-    .circle-info {
-      display: none;
-
-      @media (min-width: 768px) {
-        width: 17em;
-        right: -10%;
-        bottom: -10%;
-        display: block;
-        position: absolute;
-      }
-    }
-
-    .contact-info h2,
-    .contact-info p {
-      color: var(--text-white);
-    }
-
-    /* FAQ */
-    .faq-section {
-      display: flex;
-      flex-direction: column;
-      gap: 2em;
-      padding: 3em 5%;
-      box-sizing: border-box;
-      position: relative;
-
-      @media (min-width: 768px) {
-        padding: 5em 5%;
-      }
-    }
-
-    .faq-section h2 {
-      text-align: center;
-    }
-
-    /* States form */
-    .spinner {
-      width: 5em;
-      height: 5em;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .loading,
-    .success,
-    .error {
-      display: flex;
-    }
-
-    .loading {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      h3 {
-        text-align: center;
-      }
-    }
-
-    .success {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      .info {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-
-        @media (min-width: 768px) {
-          width: 50%;
-        }
-      }
-
-      @media (min-width: 768px) {
-        flex-direction: row;
-      }
-    }
-
-    .error {
-      color: red;
-    }
+  .error {
+    color: red;
   }
 </style>
