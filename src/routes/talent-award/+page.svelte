@@ -142,7 +142,12 @@
         width="50"
         height="50"
     />
+    <h2>Voorgaande nominaties</h2>
     <p>
+        Ontdek de talentvolle studenten die zijn genomineerd voor de AD Talent
+        Award. Jaarlijks dragen hogescholen Associate degree-studenten voor die
+        uitblinken in de praktijk, waarna een jury de uiteindelijke winnaars
+        kiest.
     </p>
 </section>
 
