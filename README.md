@@ -52,18 +52,6 @@ On the contact page, we developed a contact form. The form works server-side and
 
 https://github.com/user-attachments/assets/158a2a80-ed2e-45a1-b576-eb3449f91301
 
-### View page transition
-When switching between pages the new page slides in from the right side of the screen. It also detects when you go back to the previous page, then the animatie is reverted so the user has more logical by navigating the website.
-- Uses the View Transitions API (document.startViewTransition) for smooth page navigation.
-- Determines navigation direction (forwards / backwards) based on the URL to support visual hierarchy.
-- Controls animations through CSS classes on `<html>` combined with `@keyframes`.
-- Waits for scroll-to-top before starting the transition to keep visual focus.
-- Enabled on desktop `@media min-width: 768px`, keeping mobile interactions calm.
-- Respects `prefers-reduced-motion` and falls back gracefully when unsupported.
-- The view page transition is an enhancement
-
-https://github.com/user-attachments/assets/8ddc4cad-fab4-466c-a49d-6f040d12bc5a
-
 ### Filter publications
 - Used semantic HTML. I’m using an `<a>` element.
 - The filter is server side rendered which means it also works when client side JS is disabled.
