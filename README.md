@@ -1,4 +1,4 @@
-## ADConnect
+## AdConnect
 
 **Client: Overlegplatform Associate degrees**
 
