@@ -1,7 +1,6 @@
 <script>
     // Import component
-    import NewsCard from "$lib/components/NewsCard.svelte";
-    import { DividerText } from '$lib'
+    import { DividerText, NewsCard } from '$lib'
 
     // Retrieve news data
     export let news;

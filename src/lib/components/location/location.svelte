@@ -1,13 +1,14 @@
 <script>
   import DividerText from "../../molecules/DividerText.svelte";
-  import locationImage from "$lib/assets/location.jpg";
+
+  import { locationImage } from "$lib";
 </script>
 
 <DividerText text="Locatie Ad Dag " />
 
 <p>
-  Addag is een programma dat meestal wordt aangeboden op en van Aeres scholen.
-  Voor meer informatie over deelname of planning kun je contact met ons opnemen
+  Addag is een programma dat meestal wordt aangeboden op en van Aeres scholen. Voor meer informatie over deelname of planning kun je contact met ons
+  opnemen
 </p>
 
 <img class="location-img" src={locationImage} alt="" width="600" height="300" />

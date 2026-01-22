@@ -164,7 +164,7 @@
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 875px) {
         .contact-wrapper {
             flex-direction: row;
             gap: 2em;
@@ -285,7 +285,7 @@
         }
 
         h2 {
-            font-size: 25px;
+           font-size: clamp(1.1875rem, 1.0237rem + 0.6897vw, 1.5625rem);
         }
 
         a {
@@ -299,7 +299,7 @@
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 875px) {
         .contact-info {
             width: 40%;
         }

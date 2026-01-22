@@ -13,7 +13,7 @@
         <span><img src="{calendar}" alt=""><p>{document.date.slice(0,4)}</p></span>
     </div>
     <p class="truncate two">{document.description}</p>
-    <a class="button-outline-blue" href="/publicaties/{document.slug}">Meer informatie</a>
+    <a class="button-outline-blue" href="/publicaties/{document.slug}" aria-label="Meer informatie over {document.title}">Meer informatie</a>
 </article>
 
 <style>
