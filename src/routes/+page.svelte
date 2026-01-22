@@ -1,12 +1,11 @@
 <script>
-  import NewsCardSection from "$lib/components/NewsCardSection.svelte";
   import placeholder from "$lib/assets/placeholder-hero.webp";
   import Information from "$lib/components/information-home/Information.svelte";
   import InformationCards from "$lib/components/information-cards/InformationCards.svelte";
   import FeatureSplit from "$lib/components/why-ad-home/FeatureSplit.svelte";
 
   // Import components
-  import { NavPros, DividerText, Divider, LogoSection, Hero } from '$lib'
+  import { NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection } from '$lib'
 
   // Import images
   import { zaal } from '$lib'

@@ -6,8 +6,6 @@
   import fallback from "$lib/assets/news-fallback.jpg";
   import calendar from "$lib/assets/icon-calendar.svg";
 
-  // Import component
-  import ButtonLight from "$lib/components/ButtonLight.svelte";
 </script>
 
 <article>

@@ -10,6 +10,7 @@ export { default as SuccesState } from "./molecules/SuccesState.svelte";
 export { default as LoadingState } from "./molecules/LoadingState.svelte";
 export { default as Divider } from "./molecules/Divider.svelte";
 export { default as DividerText } from "./molecules/DividerText.svelte";
+export { default as NewsCard } from "./molecules/NewsCard.svelte";
 
 // Organisms
 export { default as MultipleFaq } from "./organisms/MultipleFaq.svelte";
@@ -19,6 +20,7 @@ export { default as TopNav } from "./organisms/TopNav.svelte";
 export { default as ImageTextSection } from "./organisms/ImageTextSection.svelte";
 export { default as LogoSection } from "./organisms/LogoSection.svelte";
 export { default as Hero } from "./organisms/Hero.svelte";
+export { default as NewsCardSection } from "./organisms/NewsCardSection.svelte";
 
 // Templates
 export { default as Development } from "./templates/DevelopmentTemplate.svelte";

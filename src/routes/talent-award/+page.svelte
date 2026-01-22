@@ -18,25 +18,22 @@
 
 <Hero
   title="Ad Talent Award"
-  description="Jaarlijks wordt door het Overlegplatform de Ad Talent Award 
-    uitgereikt, waarmee twee Associate degree-talenten verkozen worden tot landelijke
-     Ad-ambassadeur.  Elke hogeschool aangesloten bij het Overlegplatform Associate 
-     degrees kan zijn of haar Ad-talent nomineren. En … twee van hen worden extra 
-     in het zonnetje gezet. Op de jaarlijkse Ad-dag ontvangen zij de Ad Talent Award als 
-     ambassadeurs van het Ad-onderwijs in Nederland
-     "
->
+  description="Jaarlijks reikt het Overlegplatform de Ad Talent Award uit aan twee Associate degree-talenten, die worden benoemd tot landelijke Ad-ambassadeurs. Alle aangesloten hogescholen kunnen een Ad-talent nomineren. De winnaars ontvangen de award tijdens de jaarlijkse Ad-dag en vertegenwoordigen het Ad-onderwijs in Nederland.">
   <img class="hero-image" src={Talent} alt="" fetchpriority="high" />
-  <a slot="primary" href="#benefit" class="button-outline-white" id="benefit">Lees meer →</a>
+  <a slot="primary" href="#benefit" class="button-outline-white" id="benefit"
+    >Lees meer →</a
+  >
 </Hero>
 
 <section class="intro">
   <img class="logo" src={logomobile} alt="Logo" width="50" height="50" />
   <h2>Wat is Ad Talent award?</h2>
   <p>
-    De Ad Talent Award is een jaarlijkse onderscheiding die door het Overlegplatform Associate degrees wordt uitgereikt. Elke aangesloten hogeschool
-    kan één student nomineren als “Ad Talent” en van alle genomineerden worden er twee landelijk uitgeroepen tot Ad-ambassadeur. Deze erkenning vindt
-    plaats tijdens de jaarlijkse Ad-dag.
+    De Ad Talent Award is een jaarlijkse onderscheiding die door het
+    Overlegplatform Associate degrees wordt uitgereikt. Elke aangesloten
+    hogeschool kan één student nomineren als “Ad Talent” en van alle
+    genomineerden worden er twee landelijk uitgeroepen tot Ad-ambassadeur. Deze
+    erkenning vindt plaats tijdens de jaarlijkse Ad-dag.
   </p>
 </section>
 
@@ -45,9 +42,12 @@
     <img class="logo" src={logomobile} alt="Logo" width="50" height="50" />
     <h2>Wat maakt iemand tot een Ad Talent?</h2>
     <p>
-      Een Ad Talent is een student die uitblinkt in zijn of haar Associate degree-opleiding. Dit kan blijken uit academische prestaties, leiderschap,
-      betrokkenheid bij de gemeenschap, innovatie of andere opmerkelijke bijdragen aan de hogeschool en de bredere samenleving. Ad Talenten worden
-      erkend voor hun inzet, passie en potentieel om een positieve impact te maken in hun vakgebied en daarbuiten.
+      Een Ad Talent is een student die uitblinkt in zijn of haar Associate
+      degree-opleiding. Dit kan blijken uit academische prestaties, leiderschap,
+      betrokkenheid bij de gemeenschap, innovatie of andere opmerkelijke
+      bijdragen aan de hogeschool en de bredere samenleving. Ad Talenten worden
+      erkend voor hun inzet, passie en potentieel om een positieve impact te
+      maken in hun vakgebied en daarbuiten.
     </p>
   </article>
 
@@ -55,9 +55,12 @@
     <img class="logo" src={logodark} alt="Logo" width="50" height="50" />
     <h2>Waarom de Ad Talent Award?</h2>
     <p>
-      De Ad Talent Award is opgericht om de uitmuntendheid en het potentieel van Associate degree-studenten te erkennen en te vieren. Door deze
-      onderscheiding willen we niet alleen de prestaties van individuele studenten benadrukken, maar ook het belang van Ad-onderwijs in Nederland
-      onderstrepen. De award dient als inspiratie voor andere studenten en draagt bij aan het versterken van de reputatie van Associate degrees als
+      De Ad Talent Award is opgericht om de uitmuntendheid en het potentieel van
+      Associate degree-studenten te erkennen en te vieren. Door deze
+      onderscheiding willen we niet alleen de prestaties van individuele
+      studenten benadrukken, maar ook het belang van Ad-onderwijs in Nederland
+      onderstrepen. De award dient als inspiratie voor andere studenten en
+      draagt bij aan het versterken van de reputatie van Associate degrees als
       waardevolle en impactvolle opleidingsvorm.
     </p>
   </article>
@@ -66,10 +69,14 @@
     <img class="logo" src={logomobile} alt="Logo" width="50" height="50" />
     <h2>Hoe gaat de verkiezing in zijn werk?</h2>
     <p>
-      Elke hogeschool die is aangesloten bij het Overlegplatform Associate degrees kan één student nomineren voor de Ad Talent Award. Een
-      onafhankelijke jury, bestaande uit vertegenwoordigers van het onderwijsveld en het bedrijfsleven, beoordeelt de nominaties op basis van vooraf
-      vastgestelde criteria. De beoordeling omvat academische prestaties, leiderschap, maatschappelijke betrokkenheid en andere relevante factoren. Na
-      een grondige evaluatie worden twee winnaars geselecteerd en tijdens de jaarlijkse Ad-dag bekendgemaakt als de landelijke Ad-ambassadeurs.
+      Elke hogeschool die is aangesloten bij het Overlegplatform Associate
+      degrees kan één student nomineren voor de Ad Talent Award. Een
+      onafhankelijke jury, bestaande uit vertegenwoordigers van het
+      onderwijsveld en het bedrijfsleven, beoordeelt de nominaties op basis van
+      vooraf vastgestelde criteria. De beoordeling omvat academische prestaties,
+      leiderschap, maatschappelijke betrokkenheid en andere relevante factoren.
+      Na een grondige evaluatie worden twee winnaars geselecteerd en tijdens de
+      jaarlijkse Ad-dag bekendgemaakt als de landelijke Ad-ambassadeurs.
     </p>
   </article>
 </section>
@@ -81,7 +88,12 @@
     <ul>
       {#each data.nomination.filter((item) => item.header?.toLowerCase() === "winnaar" && item.profile_picture) as winner (winner.id)}
         <li>
-          <img src={imageUrl(winner.profile_picture)} alt={winner.title} height="200px" width="200px" />
+          <img
+            src={imageUrl(winner.profile_picture)}
+            alt={winner.title}
+            height="200px"
+            width="200px"
+          />
           <section>
             <h3>{winner.title}</h3>
             <p>{winner.excerpt}</p>
@@ -96,7 +108,8 @@
   <img class="logo" src={logomobile} alt="Logo" width="50" height="50" />
   <h2>Voorgaande nominaties</h2>
   <p>
-    Ontdek de talentvolle studenten die zijn genomineerd voor de AD Talent Award. Jaarlijks dragen hogescholen Associate degree-studenten voor die
+    Ontdek de talentvolle studenten die zijn genomineerd voor de AD Talent
+    Award. Jaarlijks dragen hogescholen Associate degree-studenten voor die
     uitblinken in de praktijk, waarna een jury de uiteindelijke winnaars kiest.
   </p>
 </section>
@@ -112,7 +125,11 @@
         <h3>{item.title}</h3>
 
         {#if item.profile_picture}
-          <img src={imageUrl(item.profile_picture.id ?? item.profile_picture)} alt="item.title" class="profile-photo" />
+          <img
+            src={imageUrl(item.profile_picture.id ?? item.profile_picture)}
+            alt="item.title"
+            class="profile-photo"
+          />
         {/if}
       </li>
     {/each}

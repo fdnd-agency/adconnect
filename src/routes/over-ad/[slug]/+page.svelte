@@ -29,7 +29,7 @@
         <section class="ad-day">
             <h2>Kom naar de Ad-dag!</h2>
             <p>Ontdek alles over Associate Degrees en laat je inspireren tijdens workshops en presentaties op de Landelijke Ad-dag.</p>
-            <a href="/ad-dag" class="button-outline-blue">Meer weten over de Ad-dag</a>
+            <a href="/ad-dag" class="button-outline-white">Meer weten over de Ad-dag</a>
         </section>
     </div>
 </section>
@@ -120,6 +120,11 @@
         h2 {
             color: var(--text-white);
             font-size: var(--h4-size);
+        }
+
+        a:hover {
+           color: var(--text-darkblue); 
+           background-color: var(--text-white);
         }
     }
 
