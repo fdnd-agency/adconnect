@@ -72,6 +72,22 @@
         overflow-x: hidden;
     }
 
+    .dream-light {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2;
+        filter: blur(120px);
+        background: radial-gradient(
+                circle at 25% 30%,
+                #ffb4ff59,
+                transparent 40%
+            ),
+            radial-gradient(circle at 75% 60%, #78a0ff59, transparent 45%),
+            radial-gradient(circle at 50% 85%, #ffd2e659, transparent 50%);
+    }
+
+
     .gallery {
         position: relative;
         min-height: 220vh;
