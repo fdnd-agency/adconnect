@@ -185,10 +185,17 @@ npm run dev -- --open
 - [Technical documentation (docs folder)](https://github.com/fdnd-agency/adconnect/tree/dev/docs)
 
 ## User Guide
+### Adding Content in Directus
+#### Quick Steps to Add Content
 
-This project is built with SvelteKit and uses Directus as a headless CMS.  
-If you want to run the project locally, follow the installation steps in the README.  
-For more details on how to use the platform as an editor, see the documentation in the Directus dashboard.
+1. Go to `Content` in the left menu.
+2. Select the desired collection (e.g., Themes or News).
+3. Click Create Item or the `+` button.
+4. Fill in the fields (`title`, `text`, `images`, etc.).
+5. Set the status to Published (if ready).
+6. Click `Save`.
+
+[Link to Directus Editor Guide ](https://directus.io/docs/guides/content/editor)
 
 ## License
 This project is licensed under the terms of the MIT license.
