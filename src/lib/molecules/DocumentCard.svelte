@@ -9,8 +9,8 @@
 <article>
     <h2 class="truncate two">{document.title}</h2>
     <div class="card-info">
-        <span><img src="{label}" alt=""><p>{document.category.title}</p></span>
-        <span><img src="{calendar}" alt=""><p>{document.date.slice(0,4)}</p></span>
+        <span><img src="{label}" alt=""><p>{document.category?.title ?? 'Geen categorie'}</p></span>
+        <span><img src="{calendar}" alt=""><p>{document.date?.slice(0, 4) ?? 'Geen datum'}</p></span>
     </div>
     <p class="truncate two">{document.description}</p>
     <a class="button-outline-blue" href="/publicaties/{document.slug}" aria-label="Meer informatie over {document.title}">Meer informatie</a>
