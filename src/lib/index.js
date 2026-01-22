@@ -46,7 +46,7 @@ export { default as label } from "./assets/icon-label.svg";
 export { default as loading } from "./assets/icon-loading.svg";
 export { default as birdcheck } from "./assets/bird-send-succesful.jpg";
 export { default as wrong } from "./assets/icon-error.svg";
-export { default as overad } from "./assets/over-ad-hero.jpeg";
+export { default as overad } from "./assets/over-ad-hero.webp";
 export { default as publicatie } from "./assets/publicatie-hero.jpeg";
 export { default as zaal } from "./assets/zaal-ad-dag.jpg";
 export { default as icondown } from "./assets/chevron-down.svg";
