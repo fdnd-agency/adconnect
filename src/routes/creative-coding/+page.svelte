@@ -59,3 +59,32 @@
     
     </section>
 </section>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .body {
+        background: #f6f1ec;
+    }
+        background: center/cover;
+        border-radius: 4px;
+    .small {
+        width: 180px;
+        height: 260px;
+    }
+    .medium {
+        width: 240px;
+        height: 360px;
+    }
+    .large {
+        width: 320px;
+        height: 480px;
+    }
+    .tall {
+        width: 220px;
+        height: 520px;
+    }
