@@ -110,36 +110,56 @@
     .a {
         top: 12%;
         left: 6%;
+        transform: translateZ(-420px) rotateY(28deg);
     }
     .b {
         top: 10%;
         left: 46%;
+        transform: translateZ(260px);
     }
     .c {
         top: 16%;
         left: 78%;
+        transform: translateZ(-380px) rotateY(-32deg);
     }
     .d {
         top: 44%;
         left: 2%;
+        transform: translateZ(-240px) rotateY(38deg);
     }
     .e {
         top: 40%;
         left: 42%;
+        transform: translateZ(340px);
     }
     .f {
         top: 50%;
         left: 80%;
+        transform: translateZ(-300px) rotateY(-28deg);
     }
     .g {
         top: 76%;
         left: 12%;
+        transform: translateZ(-380px) rotateY(34deg);
     }
     .h {
         top: 72%;
         left: 52%;
+        transform: translateZ(280px);
     }
     .i {
         top: 78%;
         left: 84%;
+        transform: translateZ(-460px) rotateY(-38deg);
     }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-36px) rotate(1.6deg) scale(1.03);
+        }
+    }
+
