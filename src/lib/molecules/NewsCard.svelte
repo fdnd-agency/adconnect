@@ -14,7 +14,7 @@
   <div>
     <h2 class="truncate single">{article.title}</h2>
     <p class="truncate two">{article.description}</p>
-    <a class="button-outline-blue" href="/nieuws/{article.uuid}">Meer informatie</a>
+    <a class="button-outline-blue" href="/nieuws/{article.uuid}" aria-label="Meer informatie over {article.title}">Meer informatie</a>
   </div>
 </article>
 
