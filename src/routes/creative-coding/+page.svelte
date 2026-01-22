@@ -69,9 +69,27 @@
 
     .body {
         background: #f6f1ec;
+        overflow-x: hidden;
     }
+
+    .gallery {
+        position: relative;
+        min-height: 220vh;
+        perspective: 1800px;
+    }
+
+    .img {
+        position: absolute;
         background: center/cover;
         border-radius: 4px;
+        opacity: 0.55;
+        filter: blur(14px) saturate(130%);
+        box-shadow: 0 50px 100px #00000059;
+        animation: float 22s ease-in-out infinite;
+        transition: 0.4s;
+        border-radius: 5px;
+    }
+
     .small {
         width: 180px;
         height: 260px;
