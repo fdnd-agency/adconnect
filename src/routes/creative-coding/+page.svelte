@@ -88,3 +88,40 @@
         width: 220px;
         height: 520px;
     }
+
+    .a {
+        top: 12%;
+        left: 6%;
+    }
+    .b {
+        top: 10%;
+        left: 46%;
+    }
+    .c {
+        top: 16%;
+        left: 78%;
+    }
+    .d {
+        top: 44%;
+        left: 2%;
+    }
+    .e {
+        top: 40%;
+        left: 42%;
+    }
+    .f {
+        top: 50%;
+        left: 80%;
+    }
+    .g {
+        top: 76%;
+        left: 12%;
+    }
+    .h {
+        top: 72%;
+        left: 52%;
+    }
+    .i {
+        top: 78%;
+        left: 84%;
+    }
