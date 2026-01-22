@@ -1,5 +1,17 @@
 <script>
+    import { onMount } from "svelte";
     import { NavPros } from "$lib";
+
+    let cursor;
+
+    onMount(() => {
+        window.addEventListener("mousemove", (e) => {
+            if (!cursor) return;
+
+            cursor.style.left = e.clientX - 140 + "px";
+            cursor.style.top = e.clientY - 140 + "px";
+        });
+    });
 </script>
 
 <svelte:head>
@@ -58,6 +70,8 @@
     ></section>
     
     </section>
+
+    <section class="cursor" bind:this={cursor}></section>
 </section>
 
 <style>
@@ -186,3 +200,16 @@
         }
     }
 
+    .cursor {
+        position: fixed;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 30;
+        mask: radial-gradient(circle, #000 42%, transparent 68%);
+        backdrop-filter: saturate(130%) contrast(120%);
+        box-shadow:
+            0 0 60px #ffb4ff40,
+            0 0 120px #78a0ff40;
+    }
