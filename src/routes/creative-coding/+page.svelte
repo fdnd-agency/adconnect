@@ -90,6 +90,13 @@
         border-radius: 5px;
     }
 
+    .img:hover {
+        filter: none;
+        opacity: 1;
+        transform: translateZ(420px) scale(1.08);
+        z-index: 20;
+    }
+
     .small {
         width: 180px;
         height: 260px;
