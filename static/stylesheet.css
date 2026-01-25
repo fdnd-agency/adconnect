@@ -150,7 +150,7 @@
   /* Outline Blue Button */
   --button-outline-bg: var(--text-white);
   --button-outline-text: light-dark(var(--primary-blue), var(--text-white));
-  --button-outline-border: 1.5px solid light-dark(var(--primary-blue), var(--text-white));
+  --button-outline-border: 1.5px solid light-dark(var(--primary-blue), var(--primary-orange));
   --button-outline-radius: 15px;
   --button-outline-padding: 1.1rem 1.8rem;
   --button-outline-font-size: 16px;
