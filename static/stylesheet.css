@@ -239,7 +239,7 @@ p {
 }
 
 .button-outline-blue {
-  background: #00000000;
+  background: var(--text-white);
   color: var(--button-outline-text);
   border: var(--button-outline-border);
   border-radius: var(--button-outline-radius);

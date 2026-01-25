@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  import { Breadcrumb } from '$lib'
+  import { Breadcrumb } from "$lib";
 
   export let title = "";
   export let description = "";
@@ -12,7 +12,6 @@
 <div class="wrapper-hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">
   <article class="hero" id="main">
     <section class="hero-content">
-
       <!-- Breadcrumbs -->
       <Breadcrumb />
 
@@ -23,7 +22,7 @@
         <slot name="secondary" />
       </div>
     </section>
-    <img class="hero-image" src={image || placeholder} alt="{alt}" />
+    <img class="hero-image" src={image || placeholder} {alt} />
     <section class="hero-media">
       <slot name="media" />
       <slot />
@@ -33,7 +32,7 @@
 
 <style>
   .wrapper-hero {
-    background-color: var(--blue-100);
+    background-color: light-dark(var(--blue-100), var(--blue-800));
     justify-content: center;
     display: flex;
     padding: 2.3em 0 0 0;
@@ -52,7 +51,11 @@
   }
 
   .hero-light {
-    background-color: var(--blue-100);
+    background-color: light-dark(var(--blue-100), var(--blue-800));
+
+    h1 {
+      color: light-dark(var(--blue-800), var(--text-white));
+    }
   }
 
   .hero-dark {
@@ -129,4 +132,3 @@
     }
   }
 </style>
-
