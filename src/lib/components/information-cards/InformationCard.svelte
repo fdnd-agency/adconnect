@@ -25,7 +25,7 @@
 
 <style>
   .info-card {
-    background: var(--background); /* light panel */
+    background: light-dark(var(--background), var(--blue-800)); /* light panel */
     border-radius: 20px;
     padding: 2rem;
     display: flex;
@@ -46,7 +46,7 @@
   }
 
   .info-card-desc {
-    color: #0e3a40;
+    color: light-dark(#0e3a40, var(--text-white));
   }
 
   @media (min-width: 768px) {

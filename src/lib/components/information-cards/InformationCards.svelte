@@ -31,7 +31,7 @@
     align-items: center;
     padding: 3rem 1.5rem;
     gap: 2rem;
-    background: var(--primary-blue);
+    background: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
     z-index: 1;
     position: relative;
   }
