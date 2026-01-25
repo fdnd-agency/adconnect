@@ -109,7 +109,7 @@
     border: 1px solid var(--neutral-700);
     border-radius: 1em;
     padding: 2em;
-    background: var(--text-white);
+    background: light-dark(var(--text-white), hsl(210, 30%, 8%));
     transition: 0.2s ease-in-out;
     h2 {
       max-width: 30ch;
@@ -136,13 +136,13 @@
   }
 
   .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-}
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
 
   @container news-container (min-width: 768px) {
     ul {
