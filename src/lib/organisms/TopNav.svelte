@@ -1,5 +1,5 @@
 <script>
-  import { page } from '$app/state';
+  import { page } from "$app/state";
 </script>
 
 <header>
@@ -36,7 +36,7 @@
     top: 0;
     justify-content: center;
     z-index: 99;
-    background-color: var(--blue-150);
+    background-color: light-dark(var(--blue-150), var(--blue-800));
     padding: 1rem 5%;
   }
 
@@ -47,7 +47,7 @@
     position: relative;
     width: 100%;
     max-width: 1400px;
-    justify-content: flex-end
+    justify-content: flex-end;
   }
 
   ul {
@@ -56,18 +56,16 @@
     padding: 0;
   }
 
-
   .nav-right ul {
-      width: 100%;
-      display: flex;
-      gap: 2rem;
-      justify-content: flex-end;
-
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-end;
 
     a {
       position: relative;
       text-decoration: none;
-      color: #000;
+      color: light-dark(#000, #fff);
       border-radius: 10px;
       transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 
