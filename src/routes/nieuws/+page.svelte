@@ -71,36 +71,30 @@
 </section>
 
 <style>
-  .news {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    width: 90%;
-    padding: 3em 0;
-    margin: auto;
-  }
-  @media (min-width: 768px) {
-    .news {
-      max-width: 1400px;
-    }
-  }
-  .news-container {
-    container-type: inline-size;
-    container-name: news-container;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5em;
-    h2 {
-      font-size: 25px;
-    }
-  }
-  li {
-    display: grid;
+ .news {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: min(90%, 1400px);
+  margin: auto;
+  padding: 3em 0;
+}
+
+.news-container {
+  container: news-container / inline-size;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
+
+  h2 {
+    font-size: 25px;
   }
   article {
     display: grid;
@@ -123,38 +117,54 @@
       margin-top: auto;
     }
   }
-  article:hover {
-    border-color: var(--blue-900);
-    box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
-    translate: 0 -1%;
-  }
-  .date {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.75em;
+
+  p {
+    max-width: 60ch;
+    line-height: 1.6;
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
+  a {
+    align-self: start;
+    margin-top: auto;
+  }
+}
+
+article:hover {
+  border-color: var(--blue-900);
+  box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+  translate: 0 -1%;
+}
+
+.date {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@container news-container (min-width: 768px) {
+  ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container news-container (min-width: 1024px) {
+  ul {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  @container news-container (min-width: 768px) {
-    ul {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  article {
+    padding: 2.5em;
   }
-  @container news-container (min-width: 1024px) {
-    ul {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    article {
-      padding: 2.5em;
-    }
-  }
+}
+
 </style>

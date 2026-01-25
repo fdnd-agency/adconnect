@@ -35,47 +35,7 @@ Together with first-year students, a concept has been developed to reach the rig
 - Target Audiences: Professionals, Students, Employers
 - Functionality: Clicking on a target audience shows the relevant pages, making content tailored and easy to access for the visitor.
 
-### Website Structure
-
-Based on issue #15, the website structure has been revised. Example structure for the **Students** target audience:
-
-- `/students` – Home page for students
-- `/students/about-ad` – About Ad page for students
-- `/students/news` – News for students
-- `/students/talent-awards` – Talent Awards page for students
-
-## Status
-
-### Key Features Already Working
-
-#### 1. View Page Transitions
-- New pages slide in from the right when navigating forward; going back reverses the animation for logical flow.
-- Utilizes the View Transitions API (`document.startViewTransition`) for smooth navigation.
-- Determines navigation direction (forwards/backwards) based on URL to support visual hierarchy.
-- Animations controlled via CSS classes on `<html>` combined with `@keyframes`.
-- Waits for scroll-to-top before starting the transition to maintain visual focus.
-- Enabled on desktop screens (`min-width: 768px`) to keep mobile interactions minimal.
-- Respects `prefers-reduced-motion` and gracefully falls back when unsupported.
-- Considered an enhancement rather than core functionality.  
-
-#### 2. Filter Publications
-- Built with semantic HTML using `<a>` elements.
-- Server-side rendered**, so filtering works even when client-side JS is disabled.
-- Fully responsive and accessibility tested.  
-
-#### 3. Cooperation Carousel
-- Semantic HTML structure: `<ul>` containing `<li>` elements with `<a>` wrapping `<img>`.
-- Mobile-first approach, enhanced for larger screens with `@media` queries.
-- Carousel created as a reusable component for multiple pages.
-- Fully responsive and accessibility tested.
-- All logos/data dynamically fetched from the Directus API.  
-
-#### 4. Cards
-- Semantic HTML: `<article>` with `<h3>`, `<p>`, and `<a>` elements.
-- Multiple tests performed: Accessibility, Performance, and older browser compatibility.
-- Responsive layout implemented using CSS grid.
-- Uses components within components for modularity.
-- All card data dynamically loaded from server JS.
+The Target Audience feature has been developed but is temporarily placed on a separate branch to avoid confusing the user. In addition we have created an [issue](https://github.com/fdnd-agency/adconnect/issues/234) in the backlog explaining everything about this feature.
 
 ## 3. Biggest points of attention and challenges
 
