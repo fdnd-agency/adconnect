@@ -101,7 +101,7 @@
   /*PRIMARY COLORS */
   --primary-blue: hsl(var(--blue-hue), var(--blue-sat), 28%);
   --primary-orange: hsl(var(--orange-hue), var(--orange-sat), 55%);
-  --background: hsl(0, 0%, 98%);
+  --background: light-dark(hsl(0, 0%, 98%), hsl(210, 30%, 8%));
   --text-white: hsl(0, 0%, 100%);
   --text-darkblue: hsl(var(--blue-hue), var(--blue-sat), 5%);
 
