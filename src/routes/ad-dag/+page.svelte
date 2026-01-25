@@ -33,7 +33,7 @@
       <h2>Wat is de landelijke Ad-dag?</h2>
       <p>
         De Landelijke Ad-dag is het jaarlijkse moment waarop Associate degree (Ad)-onderwijs centraal staat. Studenten, docenten, coördinatoren,
-        beleidsmakers en het werkveld komen samen om kennis te delen, inspiratie op te doen en elkaar te ontmoeten.  Verwacht een mix van plenaire
+        beleidsmakers en het werkveld komen samen om kennis te delen, inspiratie op te doen en elkaar te ontmoeten. Verwacht een mix van plenaire
         sessies, panelgesprekken, workshops en praktijkvoorbeelden waarin je ziet wat niveau 5 toevoegt aan het hbo en aan organisaties. Het is
         tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt concrete ideeën mee om morgen toe te passen.
       </p>
@@ -116,7 +116,7 @@
   .info-addag {
     display: flex;
     flex-direction: column;
-    background-color: var(--blue-100);
+    background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
     gap: 2em;
     padding: 3em 5%;
     box-sizing: border-box;

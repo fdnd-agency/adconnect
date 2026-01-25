@@ -23,7 +23,7 @@
   {@render children?.()}
 </main>
 
-<a class="scroll" href="#"><img src={icondown} alt=""><span class="sr-only">Scroll naar beneden</span></a>
+<a class="scroll" href="#"><img src={icondown} alt="" /><span class="sr-only">Scroll naar beneden</span></a>
 
 <footer class="footer-grid">
   <div class="wrapper">
@@ -32,7 +32,8 @@
     <section>
       <h2>Overlegplatform Ad's</h2>
       <p>
-        Het Overlegplatform Associate degrees brengt Ad-opleidingen samen om kennis te delen en profielen af te stemmen. Zo blijven opleidingen relevant voor het werkveld en goed voorbereid op doorstroom naar vervolgstudies.
+        Het Overlegplatform Associate degrees brengt Ad-opleidingen samen om kennis te delen en profielen af te stemmen. Zo blijven opleidingen
+        relevant voor het werkveld en goed voorbereid op doorstroom naar vervolgstudies.
       </p>
     </section>
 
@@ -142,16 +143,16 @@
     left: 45%;
     z-index: 99999999;
 
-	&:focus-visible {
-		top: 0;
-	}
+    &:focus-visible {
+      top: 0;
+    }
   }
 
   footer {
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: var(--primary-blue);
+    background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
     border-radius: 1em 1em 0 0;
 
     h2 {
@@ -161,7 +162,7 @@
   }
 
   .wrapper {
-    background-color: var(--primary-blue);
+    background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
     margin: 0;
     color: #fff;
     display: flex;
@@ -173,19 +174,19 @@
     align-self: center;
     padding: 2em 0;
 
-	@media (min-width: 768px) {
-		display: grid;
-      	grid-template-columns: 1fr 1fr;
-      	gap: 2em;
-	}
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2em;
+    }
 
-	@media (min-width: 1024px) {
-		grid-template-columns: 2fr 1fr 1fr 1fr;
-      	grid-auto-rows: auto;
-      	width: 90%;
-      	max-width: 1400px;
-      	padding: 5em 0 2em 0;
-	}
+    @media (min-width: 1024px) {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      grid-auto-rows: auto;
+      width: 90%;
+      max-width: 1400px;
+      padding: 5em 0 2em 0;
+    }
   }
 
   a {
@@ -315,7 +316,7 @@
     bottom: 2em;
     right: 5%;
     font-size: 20px;
-    padding: .6em .8em .8em .8em;
+    padding: 0.6em 0.8em 0.8em 0.8em;
     z-index: 999999;
     background-color: var(--primary-orange);
 
@@ -325,11 +326,11 @@
   }
 
   .sr-only {
-    position: absolute; 
-    width: 1px;      
+    position: absolute;
+    width: 1px;
     height: 1px;
     padding: 0;
-    margin: -1px;         
+    margin: -1px;
     overflow: hidden;
   }
 </style>
