@@ -59,7 +59,7 @@
   }
 
   .hero-dark {
-    background-color: light-dark(var(--primary-blue), var(--blue-800));
+    background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
     color: var(--text-white);
 
     h1 {
