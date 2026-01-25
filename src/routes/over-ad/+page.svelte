@@ -25,34 +25,32 @@
   <a slot="primary" href="#benefit" class="button-outline-white" id="benefit">Lees meer →</a>
 </Hero>
 
-<div class="blend-in">
-  <section class="about-ad-hero">
-    <section class="intro">
-      <h2>Waarom kiezen voor Associate Degree's?</h2>
-      <p>
-        Associate Degrees combineren praktijk en theorie in een korte, intensieve opleiding. Ze bereiden studenten effectief voor op actuele beroepen
-        en geven een stevige basis voor verdere studie.
-      </p>
-    </section>
-
-    <section class="benefits">
-      <BenefitsCard
-        title="Doorstroom mogelijkheid"
-        excerpt="Met een Ad-opleiding stroom je gemakkelijk door naar een bachelor. Kennis en vaardigheden sluiten direct aan op vervolgopleidingen en het werkveld."
-      ></BenefitsCard>
-
-      <BenefitsCard
-        title="Korte studieduur"
-        excerpt="Ad-opleidingen duren doorgaans twee jaar. Hierdoor kan je snel aan de slag in het werkveld, terwijl je tegelijkertijd een erkend diploma haalt dat je carrièrekansen vergroot."
-      ></BenefitsCard>
-
-      <BenefitsCard
-        title="Persoonlijk & kleinschalig"
-        excerpt="De opleidingen zijn kleinschalig en persoonlijk ingericht. Docenten kennen de studenten goed, waardoor begeleiding op maat mogelijk is en studenten optimaal kunnen groeien."
-      ></BenefitsCard>
-    </section>
+<section class="about-ad-hero">
+  <section class="intro">
+    <h2>Waarom kiezen voor Associate Degree's?</h2>
+    <p>
+      Associate Degrees combineren praktijk en theorie in een korte, intensieve opleiding. Ze bereiden studenten effectief voor op actuele beroepen en
+      geven een stevige basis voor verdere studie.
+    </p>
   </section>
-</div>
+
+  <section class="benefits">
+    <BenefitsCard
+      title="Doorstroom mogelijkheid"
+      excerpt="Met een Ad-opleiding stroom je gemakkelijk door naar een bachelor. Kennis en vaardigheden sluiten direct aan op vervolgopleidingen en het werkveld."
+    ></BenefitsCard>
+
+    <BenefitsCard
+      title="Korte studieduur"
+      excerpt="Ad-opleidingen duren doorgaans twee jaar. Hierdoor kan je snel aan de slag in het werkveld, terwijl je tegelijkertijd een erkend diploma haalt dat je carrièrekansen vergroot."
+    ></BenefitsCard>
+
+    <BenefitsCard
+      title="Persoonlijk & kleinschalig"
+      excerpt="De opleidingen zijn kleinschalig en persoonlijk ingericht. Docenten kennen de studenten goed, waardoor begeleiding op maat mogelijk is en studenten optimaal kunnen groeien."
+    ></BenefitsCard>
+  </section>
+</section>
 
 <ImageTextSection
   image={doorstroom}
@@ -105,10 +103,6 @@
 />
 
 <style>
-  .blend-in {
-    width: 100%;
-    background-color: light-dark(var(--text-white), hsl(210, 30%, 8%));
-  }
   .about-ad-hero {
     padding: 3em 5%;
     max-width: 1400px;
@@ -118,7 +112,7 @@
     gap: 3em;
     align-self: center;
     margin: auto;
-    background-color: light-dark(var(--text-white), hsl(210, 30%, 8%));
+    background-color: light-dark(var(--text-white), var(--blue-800));
 
     @media (min-width: 1024px) {
       padding: 5em 5%;
