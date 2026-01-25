@@ -5,10 +5,10 @@
   import FeatureSplit from "$lib/components/why-ad-home/FeatureSplit.svelte";
 
   // Import components
-  import { NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection } from '$lib'
+  import { NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection } from "$lib";
 
   // Import images
-  import { zaal } from '$lib'
+  import { zaal } from "$lib";
 
   let { data } = $props();
   const news = data.news;
@@ -21,10 +21,13 @@
 
 <NavPros />
 
-<Hero title="Het landelijke platform voor Associate degrees" description="Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.">
+<Hero
+  title="Het landelijke platform voor Associate degrees"
+  description="Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken."
+>
   <a slot="secondary" href="/ad-dag" class="button-outline-white">Kom naar de Ad-dag →</a>
   <a slot="primary" href="/over-ad" class="button-outline-blue">Meer over Ad's</a>
-  <img class="hero-image" src={zaal} alt="" fetchpriority="high" width="300" height="210"/>
+  <img class="hero-image" src={zaal} alt="" fetchpriority="high" width="300" height="210" />
 </Hero>
 
 <NewsCardSection news={data.news.slice(0, 3)} />
@@ -44,14 +47,14 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
   items={[
     {
       title: "Doorstroom Ad",
-      description:
-        "Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma.",
+      description: "Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma.",
       buttonText: "Meer over doorstroom Ad's",
       buttonLink: "/over-ad/doorstroom-ad-bachelor",
     },
     {
       title: "Ad-dag",
-      description: "De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.",
+      description:
+        "De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.",
       buttonText: "Meer over de Ad-dag",
       buttonLink: "/ad-dag",
     },
@@ -73,7 +76,11 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 <FeatureSplit
   title="Waarom kiezen voor een Associate degree?"
   intro="Een Associate degree combineert praktijkgericht onderwijs met doorstroommogelijkheden, zodat je snel ervaring opdoet én een diploma haalt."
-  bullets={["Praktijkgericht leren en direct vaardigheden toepassen", "Korte studieduur van 2 jaar", "Doorstromen naar een bacheloropleiding mogelijk"]}
+  bullets={[
+    "Praktijkgericht leren en direct vaardigheden toepassen",
+    "Korte studieduur van 2 jaar",
+    "Doorstromen naar een bacheloropleiding mogelijk",
+  ]}
   ctaText="Meer over Associate degrees"
   ctaLink="/over-ad"
   imageSrc="/images/award.jpg"
@@ -109,7 +116,6 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: var(--text-white);
     padding: 0 0 3em 0;
     @media (min-width: 768px) {
       gap: 3em;
