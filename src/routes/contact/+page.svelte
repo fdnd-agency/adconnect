@@ -243,6 +243,7 @@
       font-family: var(--font-body);
       font-weight: var(--text-font-weight);
       font-size: var(--p-s-size);
+      color: var(--blue-800);
       padding: 0.9em;
       background-color: #f2f2f2;
       border: 1px solid var(--neutral-300);
