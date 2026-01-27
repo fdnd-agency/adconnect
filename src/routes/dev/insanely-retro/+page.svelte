@@ -83,6 +83,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Retro Art List</title>
+</svelte:head>
+
 <div class="images">
   <img class="Group2" src="/src/lib/assets/Group 2.svg" alt="" />
   <img class="Group3" src="/src/lib/assets/Group 3.svg" alt="" />
