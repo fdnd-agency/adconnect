@@ -55,3 +55,7 @@ export { default as logowhite } from "./assets/logo-white.svg";
 export { default as locationImage } from "./assets/location.jpg";
 export { default as Addag } from "./assets/addag.webp";
 export { default as Nieuwshero } from "./assets/heronews.webp";
+export { default as group2 } from "./assets/Group 2.svg";
+export { default as group3 } from "./assets/Group 3.svg";
+export { default as group4 } from "./assets/Group 3.svg";
+export { default as group5 } from "./assets/Group 3.svg";
