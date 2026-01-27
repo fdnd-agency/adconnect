@@ -19,6 +19,7 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-auto": "^6.1.0",
+		"gsap": "^3.14.2",
 		"resend": "^6.8.0"
 	}
 }

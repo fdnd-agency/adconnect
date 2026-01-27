@@ -15,9 +15,9 @@
 
 <a href="#main" class="skip-link">Ga naar inhoud</a>
 
-<header class="general-header">
+<!-- <header class="general-header">
   <TopNav />
-</header>
+</header> -->
 
 <main>
   {@render children?.()}
@@ -25,7 +25,7 @@
 
 <a class="scroll" href="#"><img src={icondown} alt="" /><span class="sr-only">Scroll naar beneden</span></a>
 
-<footer class="footer-grid">
+<!-- <footer class="footer-grid">
   <div class="wrapper">
     <a href="/" class="logo"><img src={logowhite} alt="Terug naar homepagina" width="230" height="75" loading="lazy" /></a>
 
@@ -112,11 +112,19 @@
       <p>Ontwikkeld door studenten FDND</p>
     </div>
   </div>
-</footer>
+</footer> -->
 
 <style>
   :root {
     interpolate-size: allow-keywords;
+  }
+
+  main {
+    height: 6165px;
+
+    @media (min-width: 1267px) {
+      height: 3360px;
+    }
   }
 
   :global(*) {
@@ -125,9 +133,9 @@
     scroll-behavior: smooth;
   }
 
-  main {
+  /* main {
     margin: 7.9em 0 0 0;
-  }
+  } */
 
   /* Skiplink */
   .skip-link {
