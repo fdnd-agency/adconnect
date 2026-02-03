@@ -6,10 +6,10 @@
 
 <header>
   <nav>
-    <a class="logo" href="/">
+    <a class="logo" href="/" aria-label="Home – AdConnect logo">
       <picture>
         <source srcset={logowhite} media="(prefers-color-scheme: dark)" />
-        <img src={logo} alt="Logo" loading="lazy" width="200" height="150" />
+        <img src={logo} alt="" loading="lazy" width="200" height="150" />
       </picture>
     </a>
 
