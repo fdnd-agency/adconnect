@@ -25,7 +25,8 @@
 
 ## Teamcanvas
 
-<img width="982" height="690" alt="Image" src="https://github.com/user-attachments/assets/b6a47b12-243f-43c9-a4ae-047b1689f128" />
+<img width="1226" height="870" alt="afbeelding" src="https://github.com/user-attachments/assets/3b9bfd3b-8e6f-4015-b397-12366342885d" />
+
 
 ## Workflow
 
