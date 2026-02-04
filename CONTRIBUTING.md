@@ -138,3 +138,4 @@ A Definition of Done (DoD) is a shared checklist of criteria that a product incr
 - Tested
 - Reviewed
 - PR Merged
+- Adherence to code conventions
