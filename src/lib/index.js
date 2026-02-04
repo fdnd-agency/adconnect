@@ -11,6 +11,11 @@ export { default as LoadingState } from "./molecules/LoadingState.svelte";
 export { default as Divider } from "./molecules/Divider.svelte";
 export { default as DividerText } from "./molecules/DividerText.svelte";
 export { default as NewsCard } from "./molecules/NewsCard.svelte";
+export { default as InformationCard } from "./molecules/InformationCard.svelte";
+export { default as Information } from "./molecules/Information.svelte";
+export { default as Location } from "./molecules/location.svelte";
+export { default as Cta } from "./molecules/Cta.svelte";
+export { default as PreviousWinners } from "./molecules/PreviousWinners.svelte";
 
 // Organisms
 export { default as MultipleFaq } from "./organisms/MultipleFaq.svelte";
@@ -21,6 +26,10 @@ export { default as ImageTextSection } from "./organisms/ImageTextSection.svelte
 export { default as LogoSection } from "./organisms/LogoSection.svelte";
 export { default as Hero } from "./organisms/Hero.svelte";
 export { default as NewsCardSection } from "./organisms/NewsCardSection.svelte";
+export { default as InformationCards } from "./organisms/InformationCards.svelte";
+export { default as Schedule } from "./organisms/schedule.svelte";
+export { default as FeatureSplit} from "./organisms/FeatureSplit.svelte";
+
 
 // Templates
 export { default as Development } from "./templates/DevelopmentTemplate.svelte";

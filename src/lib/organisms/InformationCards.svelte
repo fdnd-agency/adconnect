@@ -1,5 +1,5 @@
 <script>
-  import InformationCard from "$lib/components/information-cards/InformationCard.svelte";
+  import InformationCard from "$lib/molecules/InformationCard.svelte";
 
   export let heading = "";
   export let intro = "";

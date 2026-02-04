@@ -1,5 +1,5 @@
 <script>
-  import DividerText from "../../molecules/DividerText.svelte";
+  import DividerText from "./DividerText.svelte";
 
   import { locationImage } from "$lib";
 </script>
