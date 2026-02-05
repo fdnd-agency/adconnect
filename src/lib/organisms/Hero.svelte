@@ -1,12 +1,12 @@
 <script>
-  import { page } from "$app/stores";
-  import { Breadcrumb } from "$lib";
+  import { page } from '$app/stores'
+  import { Breadcrumb } from '$lib'
 
-  export let title = "";
-  export let description = "";
-  export let image = "";
-  export let alt = "";
-  export let placeholder = "";
+  export let title = ''
+  export let description = ''
+  export let image = ''
+  export let alt = ''
+  export let placeholder = ''
 </script>
 
 <div class="wrapper-hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">

@@ -1,9 +1,9 @@
 <script>
     import { loading } from '$lib'
-    export let status;
+    export let status
 </script>
 
-{#if status === "submitting"}
+{#if status === 'submitting'}
     <section class="loading visible">
         <h3>Formulier verzenden...</h3>
         <img class="spinner" src="{loading}" alt="">

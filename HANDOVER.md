@@ -72,3 +72,6 @@ The recommended first step for the next team is to clearly define and refine all
 By mapping out these target groups in more detail, the team can better understand who AdConnect is really serving and what information each group is looking for about Associate Degrees. This makes it much easier to decide what content should be shown to whom, which user stories are needed, and which features should be prioritised.
 
 Once these groups are clearly defined, tasks can be divided more effectively within the team, content can be structured more logically, and the website can be designed in a way that fits the goals of each user group. This prevents confusion, reduces the risk of building irrelevant features, and ensures that AdConnect provides clear and relevant information about Associate Degrees to everyone who uses the platform.
+
+## sprint goal
+All student pages are well developed with content from the database.

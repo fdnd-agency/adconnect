@@ -1,15 +1,15 @@
 <script>
   // Import images
-  import { doorstroom, overleggen, awards, dots, placeholder, overad } from "$lib";
-  import logomobile from "$lib/assets/logomobile.svg";
+  import { doorstroom, overleggen, awards, dots, placeholder, overad } from '$lib'
+  import logomobile from '$lib/assets/logomobile.svg'
 
   // Import components
-  import { BenefitsCard, NavPros, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from "$lib";
+  import { BenefitsCard, NavPros, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
 
-  let { data } = $props();
+  const { data } = $props()
 
-  const themes = data.themes;
-  const cooperation = data.cooperation;
+  const { themes } = data
+  const { cooperation } = data
 </script>
 
 <svelte:head>

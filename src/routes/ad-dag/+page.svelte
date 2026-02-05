@@ -16,11 +16,11 @@
 <main>
   <Hero
     title="Ad Dag "
-    description="De landelijks Ad-dag 2025 is hét moment waarop studenten, 
-	docenten en professionals uit het Ad-onderwijs samenkomen.Ontdek, leer en 
+    description="De landelijks Ad-dag 2025 is hét moment waarop studenten,
+	docenten en professionals uit het Ad-onderwijs samenkomen.Ontdek, leer en
 	inspireer elkaar tijdens een dag vol sprekers, workshops en ontmoetingen.
 	Ervaar hoe de Ad-professional als veranderaar impact maakt en vier samen de
-	 uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of 
+	 uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of
 	 blijf op de hoogte "
   >
     <img class="hero-image" src={Addag} alt="" fetchpriority="high" />

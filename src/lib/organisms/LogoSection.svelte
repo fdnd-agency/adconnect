@@ -1,5 +1,5 @@
 <script>
-  export let cooperation;
+  export let cooperation
 </script>
 
 <div class="carousel">

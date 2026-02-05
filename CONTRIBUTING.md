@@ -126,7 +126,6 @@ It ensures that the story is clear, feasible, and valuable, so the team doesn’
 - Sources or research material available.
 - Poker planned.
 - Story estimated and added to sprint backlog.
-- No external dependencies (e.g., waiting for content from another team).
 
 ## DoD:
 
@@ -139,4 +138,4 @@ A Definition of Done (DoD) is a shared checklist of criteria that a product incr
 - Tested
 - Reviewed
 - PR Merged
-- Deployed to Staging
+- Adherence to code conventions

@@ -1,15 +1,15 @@
 <script>
-  import placeholder from "$lib/assets/placeholder-hero.webp";
+  import placeholder from '$lib/assets/placeholder-hero.webp'
 
   // Import components
-  import { NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from "$lib";
+  import { NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from "$lib";
 
   // Import images
-  import { zaal } from "$lib";
+  import { zaal } from '$lib'
 
-  let { data } = $props();
-  const news = data.news;
-  const cooperation = data.cooperation;
+  const { data } = $props()
+  const { news } = data
+  const { cooperation } = data
 </script>
 
 <svelte:head>
@@ -22,8 +22,8 @@
   title="Het landelijke platform voor Associate degrees"
   description="Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken."
 >
-  <a slot="secondary" href="/ad-dag" class="button-outline-white">Kom naar de Ad-dag →</a>
-  <a slot="primary" href="/over-ad" class="button-outline-blue">Meer over Ad's</a>
+<Link slot="secondary" href="/ad-dag" class="button-outline-white">Kom naar de Ad-dag →</Link>
+<Link slot="primary" href="/over-ad" class="button-outline-blue">Meer over Ad's</Link>
   <img class="hero-image" src={zaal} alt="" fetchpriority="high" width="300" height="210" />
 </Hero>
 
@@ -42,25 +42,25 @@
   intro="Leer alles over Associate degrees, doorstroommogelijkheden en netwerkevenementen.
 Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatform."
   items={[
-    {
-      title: "Doorstroom Ad",
-      description: "Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma.",
-      buttonText: "Meer over doorstroom Ad's",
-      buttonLink: "/over-ad/doorstroom-ad-bachelor",
-    },
-    {
-      title: "Ad-dag",
-      description:
-        "De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.",
-      buttonText: "Meer over de Ad-dag",
-      buttonLink: "/ad-dag",
-    },
-    {
-      title: "Ad-talent Award",
-      description: "Jaarlijks wordt door het Overlegplatform de Ad Talent Award uitgereikt, waarmee 2 Associate degree-talenten verkozen worden.",
-      buttonText: "Meer over Talent Awards",
-      buttonLink: "/talent-award",
-    },
+  	{
+  		title: 'Doorstroom Ad',
+  		description: 'Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma.',
+  		buttonText: "Meer over doorstroom Ad's",
+  		buttonLink: '/over-ad/doorstroom-ad-bachelor'
+  	},
+  	{
+  		title: 'Ad-dag',
+  		description:
+        'De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.',
+  		buttonText: 'Meer over de Ad-dag',
+  		buttonLink: '/ad-dag'
+  	},
+  	{
+  		title: 'Ad-talent Award',
+  		description: 'Jaarlijks wordt door het Overlegplatform de Ad Talent Award uitgereikt, waarmee 2 Associate degree-talenten verkozen worden.',
+  		buttonText: 'Meer over Talent Awards',
+  		buttonLink: '/talent-award'
+  	}
   ]}
 />
 
@@ -74,9 +74,9 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
   title="Waarom kiezen voor een Associate degree?"
   intro="Een Associate degree combineert praktijkgericht onderwijs met doorstroommogelijkheden, zodat je snel ervaring opdoet én een diploma haalt."
   bullets={[
-    "Praktijkgericht leren en direct vaardigheden toepassen",
-    "Korte studieduur van 2 jaar",
-    "Doorstromen naar een bacheloropleiding mogelijk",
+  	'Praktijkgericht leren en direct vaardigheden toepassen',
+  	'Korte studieduur van 2 jaar',
+  	'Doorstromen naar een bacheloropleiding mogelijk'
   ]}
   ctaText="Meer over Associate degrees"
   ctaLink="/over-ad"

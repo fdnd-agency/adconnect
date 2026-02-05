@@ -1,9 +1,9 @@
 <script>
     import { birdcheck } from '$lib'
-    export let status;
+    export let status
 </script>
 
-{#if status === "success"}
+{#if status === 'success'}
     <section class="success visible">
         <div class="info">
             <h3>Bedankt, je formulier is verzonden!</h3>

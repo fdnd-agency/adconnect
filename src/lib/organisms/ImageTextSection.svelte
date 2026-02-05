@@ -1,22 +1,22 @@
 <script>
-  export let image;
-  export let alt;
-  export let dots;
-  export let title;
-  export let text;
-  export let link = "#";
-  export let linkText = "Lees meer";
-  export let imagePosition = "left";
-  export let background = "blue";
+  export let image
+  export let alt
+  export let dots
+  export let title
+  export let text
+  export let link = '#'
+  export let linkText = 'Lees meer'
+  export let imagePosition = 'left'
+  export let background = 'blue'
 
-  import { lightcircle } from "$lib";
+  import { lightcircle } from '$lib'
 </script>
 
 <section
-  class:image-right={imagePosition === "right"}
-  class:image-left={imagePosition === "left"}
-  class:bg-blue={background === "blue"}
-  class:bg-white={background === "white"}
+  class:image-right={imagePosition === 'right'}
+  class:image-left={imagePosition === 'left'}
+  class:bg-blue={background === 'blue'}
+  class:bg-white={background === 'white'}
 >
   <div class="wrapper">
     <div class="img-wrapper">

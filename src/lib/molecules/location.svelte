@@ -1,7 +1,7 @@
 <script>
-  import DividerText from "./DividerText.svelte";
+  import DividerText from '../../molecules/DividerText.svelte'
 
-  import { locationImage } from "$lib";
+  import { locationImage } from '$lib'
 </script>
 
 <DividerText text="Locatie Ad Dag " />
