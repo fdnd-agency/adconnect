@@ -5,7 +5,7 @@
   import FeatureSplit from "$lib/components/why-ad-home/FeatureSplit.svelte";
 
   // Import components
-  import { NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection } from "$lib";
+  import { NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection, Link } from "$lib";
 
   // Import images
   import { zaal } from "$lib";
@@ -25,8 +25,8 @@
   title="Het landelijke platform voor Associate degrees"
   description="Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken."
 >
-  <a slot="secondary" href="/ad-dag" class="button-outline-white">Kom naar de Ad-dag →</a>
-  <a slot="primary" href="/over-ad" class="button-outline-blue">Meer over Ad's</a>
+<Link slot="secondary" href="/ad-dag" class="button-outline-white">Kom naar de Ad-dag →</Link>
+<Link slot="primary" href="/over-ad" class="button-outline-blue">Meer over Ad's</Link>
   <img class="hero-image" src={zaal} alt="" fetchpriority="high" width="300" height="210" />
 </Hero>
 

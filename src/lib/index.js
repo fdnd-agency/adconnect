@@ -1,5 +1,6 @@
 // Atoms
 export { default as Breadcrumb } from "./atoms/Breadcrumb.svelte";
+export { default as Link} from "./atoms/Link.svelte";
 
 // Molecules
 export { default as SingleFaq } from "./molecules/SingleFaq.svelte";
