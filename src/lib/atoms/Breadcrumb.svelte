@@ -1,14 +1,14 @@
 <script>
-  import { page } from "$app/stores";
+  import { page } from '$app/stores'
 
   // Current URL path and split it into usable segments (remove the empty ones)
-  $: segments = $page.url.pathname.split("/").filter(Boolean);
+  $: segments = $page.url.pathname.split('/').filter(Boolean)
 
   // The first part of the URL is the main section of the page (example: /publicaties/slug -> "publicaties")
-  $: firstBreadcrumb = segments[0];
+  $: firstBreadcrumb = segments[0]
 
-  // Replace '-' with space and capitalize the first letter of words 
-  const format = breadcrumb => breadcrumb.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+  // Replace '-' with space and capitalize the first letter of words
+  const format = breadcrumb => breadcrumb.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
 </script>
 
 <!-- Only show breadcrumbs when there's at least one segment in the URL -->

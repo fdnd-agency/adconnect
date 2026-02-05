@@ -1,9 +1,9 @@
 <script>
   // Retrieve themes data
-  export let themes;
+  export let themes
 
   // Import image
-  import { dots } from "$lib";
+  import { dots } from '$lib'
 </script>
 
 {#each themes as theme}

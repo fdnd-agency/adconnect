@@ -1,11 +1,11 @@
 <script>
-  import DocumentCard from "$lib/molecules/DocumentCard.svelte";
+  import DocumentCard from '$lib/molecules/DocumentCard.svelte'
 
-  import { NavPros, Hero } from "$lib";
+  import { NavPros, Hero } from '$lib'
 
-  let { data } = $props();
-  let documents = data.documents;
-  const { document } = data;
+  const { data } = $props()
+  const { documents } = data
+  const { document } = data
 </script>
 
 <svelte:head>
@@ -14,7 +14,7 @@
 
 <NavPros />
 
-<Hero title={document.title} description={document.description.split(" ").slice(0, 20).join(" ") + "..."}>
+<Hero title={document.title} description={`${document.description.split(' ').slice(0, 20).join(' ')  }...`}>
   <img
     class="hero-image"
     src={`https://fdnd-agency.directus.app/assets/${document.hero_image}?format=webp`}

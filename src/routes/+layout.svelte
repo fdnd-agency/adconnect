@@ -1,10 +1,10 @@
 <script>
-  import favicon from "$lib/assets/favicon-adc.svg";
-  import logodark from "$lib/assets/logo-dark.svg";
+  import favicon from '$lib/assets/favicon-adc.svg'
+  import logodark from '$lib/assets/logo-dark.svg'
 
-  import { TopNav, icondown, logowhite } from "$lib";
+  import { TopNav, icondown, logowhite } from '$lib'
 
-  let { children } = $props();
+  const { children } = $props()
 </script>
 
 <svelte:head>

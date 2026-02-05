@@ -1,9 +1,9 @@
 <script>
   // Import component
-  import { DividerText, NewsCard } from "$lib";
+  import { DividerText, NewsCard } from '$lib'
 
   // Retrieve news data
-  export let news;
+  export let news
 </script>
 
 <!-- Cards section -->

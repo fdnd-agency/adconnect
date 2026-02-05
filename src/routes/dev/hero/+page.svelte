@@ -1,5 +1,5 @@
 <script>
-  import Hero from "$lib/organisms/Hero.svelte";
+  import Hero from '$lib/organisms/Hero.svelte'
   // import ButtonDark from "$lib/components/ButtonDark.svelte";
 </script>
 

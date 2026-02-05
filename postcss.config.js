@@ -1,7 +1,7 @@
-import postcssNesting from "postcss-nesting";
+import postcssNesting from 'postcss-nesting'
 
 export default {
-  plugins: {
-    "postcss-nesting": {},
-  },
-};
+	plugins: {
+		'postcss-nesting': {}
+	}
+}

@@ -1,14 +1,14 @@
 <script>
-  import dots from "$lib/assets/dots.svg";
-  import imageSrc from "$lib/assets/doorstroom-ad-dag.webp";
+  import dots from '$lib/assets/dots.svg'
+  import imageSrc from '$lib/assets/doorstroom-ad-dag.webp'
 
   import { overad } from '$lib'
 
-  export let title = "";
-  export let description = "";
-  export let buttonText = "";
-  export let buttonLink = "#";
-  export let imageAlt = "";
+  export let title = ''
+  export let description = ''
+  export let buttonText = ''
+  export let buttonLink = '#'
+  export let imageAlt = ''
 </script>
 
 <section class="information">

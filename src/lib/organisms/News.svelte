@@ -1,8 +1,8 @@
 <script>
   // Export prop
-  export let news;
+  export let news
   // Import images
-  import { fallback, calendar, label } from "$lib";
+  import { fallback, calendar, label } from '$lib'
 </script>
 
 <article>
