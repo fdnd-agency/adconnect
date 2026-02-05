@@ -1,6 +1,5 @@
 <script>
-    import Cta from '$lib/components/nominaties/Cta.svelte'
-    import { NavPros } from '$lib'
+    import { NavPros, Cta } from '$lib'
 </script>
 
 <NavPros />
