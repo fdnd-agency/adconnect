@@ -1,5 +1,5 @@
 title: "AdConnect"
-status: "in progress"
+status: "active year-1 year-2"
 main_link: "https://adconnect.agency.fdnd.nl/"
 dev_link: "https://adconnect.dev.fdnd.nl/"
 tech_stack: ["SvelteKit", "Directus"]
