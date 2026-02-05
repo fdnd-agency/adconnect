@@ -1,6 +1,6 @@
 <script>
-  import DividerText from "$lib/molecules/DividerText.svelte";
-  import Testwinner from "$lib/assets/test-winner.png";
+  import DividerText from '$lib/molecules/DividerText.svelte'
+  import Testwinner from '$lib/assets/test-winner.png'
 </script>
 
 <section>

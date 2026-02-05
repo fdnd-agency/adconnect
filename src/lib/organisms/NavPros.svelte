@@ -1,7 +1,7 @@
 <script>
-  import { logo, logowhite } from "$lib";
+  import { logo, logowhite } from '$lib'
 
-  import { page } from "$app/stores";
+  import { page } from '$app/stores'
 </script>
 
 <header>
@@ -31,10 +31,10 @@
     </details>
 
     <ul class="desktop-nav">
-      <li><a class={$page.url.pathname === "/over-ad" ? "menu-button active" : "menu-button"} href="/over-ad">Over Ad's</a></li>
-      <li><a class={$page.url.pathname === "/publicaties" ? "menu-button active" : "menu-button"} href="/publicaties">Publicaties</a></li>
-      <li><a class={$page.url.pathname === "/talent-award" ? "menu-button active" : "menu-button"} href="/talent-award">Talent Award</a></li>
-      <li><a class={$page.url.pathname === "/nieuws" ? "menu-button active" : "menu-button"} href="/nieuws">Nieuws</a></li>
+      <li><a class={$page.url.pathname === '/over-ad' ? 'menu-button active' : 'menu-button'} href="/over-ad">Over Ad's</a></li>
+      <li><a class={$page.url.pathname === '/publicaties' ? 'menu-button active' : 'menu-button'} href="/publicaties">Publicaties</a></li>
+      <li><a class={$page.url.pathname === '/talent-award' ? 'menu-button active' : 'menu-button'} href="/talent-award">Talent Award</a></li>
+      <li><a class={$page.url.pathname === '/nieuws' ? 'menu-button active' : 'menu-button'} href="/nieuws">Nieuws</a></li>
       <li><a class="button-outline-white" href="/ad-dag">Kom naar Ad-dag</a></li>
     </ul>
   </nav>

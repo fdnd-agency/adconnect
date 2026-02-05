@@ -1,5 +1,5 @@
 <script>
-  import logomobile from "$lib/assets/logomobile.svg";
+  import logomobile from '$lib/assets/logomobile.svg'
 </script>
 
 <section class="schedule" style="text-align: center;">

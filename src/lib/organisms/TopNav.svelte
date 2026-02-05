@@ -1,13 +1,13 @@
 <script>
-  import { page } from "$app/state";
+  import { page } from '$app/state'
 </script>
 
 <header>
   <nav>
     <section class="nav-right">
       <ul>
-        <li><a class={page.url.pathname === "/over-ons" ? "active" : "menu-button"} href="/over-ons">Over ons</a></li>
-        <li><a class={page.url.pathname === "/contact" ? "active" : "menu-button"} href="/contact">Contact</a></li>
+        <li><a class={page.url.pathname === '/over-ons' ? 'active' : 'menu-button'} href="/over-ons">Over ons</a></li>
+        <li><a class={page.url.pathname === '/contact' ? 'active' : 'menu-button'} href="/contact">Contact</a></li>
       </ul>
     </section>
   </nav>

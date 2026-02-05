@@ -1,13 +1,13 @@
 <script>
-  import logomobile from "$lib/assets/logomobile.svg";
-  import logodark from "$lib/assets/logomobiledark.svg";
-  import Talent from "$lib/assets/ad-talent-awards.jpg";
+  import logomobile from '$lib/assets/logomobile.svg'
+  import logodark from '$lib/assets/logomobiledark.svg'
+  import Talent from '$lib/assets/ad-talent-awards.jpg'
 
-  let { data } = $props();
+  const { data } = $props()
 
-  import { NavPros, Hero, Divider, DividerText } from "$lib";
+  import { NavPros, Hero, Divider, DividerText } from '$lib'
 
-  const imageUrl = (id) => `https://fdnd-agency.directus.app/assets/${id}`;
+  const imageUrl = (id) => `https://fdnd-agency.directus.app/assets/${id}`
 </script>
 
 <svelte:head>
@@ -73,7 +73,7 @@
 
   <section class="previous-winners">
     <ul>
-      {#each data.nomination.filter((item) => item.header?.toLowerCase() === "winnaar" && item.profile_picture) as winner (winner.id)}
+      {#each data.nomination.filter((item) => item.header?.toLowerCase() === 'winnaar' && item.profile_picture) as winner (winner.id)}
         <li>
           <img src={imageUrl(winner.profile_picture)} alt={winner.title} height="200px" width="200px" />
           <section>

@@ -1,10 +1,10 @@
 <script>
   // Export prop
-  export let article;
+  export let article
 
   // Import afbeeldingen
-  import fallback from "$lib/assets/news-fallback.jpg";
-  import calendar from "$lib/assets/icon-calendar.svg";
+  import fallback from '$lib/assets/news-fallback.jpg'
+  import calendar from '$lib/assets/icon-calendar.svg'
 
 </script>
 

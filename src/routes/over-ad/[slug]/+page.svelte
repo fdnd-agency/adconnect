@@ -1,11 +1,11 @@
 <script>
   // Import components
-  import { NavPros, ThemeCard, Hero, Divider } from "$lib";
+  import { NavPros, ThemeCard, Hero, Divider } from '$lib'
 
-  let { data } = $props();
+  const { data } = $props()
 
-  const theme = data.theme[0];
-  const themes = data.themes;
+  const theme = data.theme[0]
+  const { themes } = data
 </script>
 
 <svelte:head>

@@ -1,9 +1,9 @@
 <script>
     // Export prop
-    export let document;
+    export let document
 
     // Import images
-    import { fallback, calendar, label } from '$lib';
+    import { fallback, calendar, label } from '$lib'
 </script>
 
 <article>
@@ -61,7 +61,7 @@
     .truncate {
         overflow: hidden;
         text-overflow: ellipsis;
-        display: -webkit-box; 
+        display: -webkit-box;
         -webkit-box-orient: vertical;
         }
 
@@ -75,5 +75,5 @@
     .truncate.two {
         -webkit-line-clamp: 2;
     }
-  
+
 </style>

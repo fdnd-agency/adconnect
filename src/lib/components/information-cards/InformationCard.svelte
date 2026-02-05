@@ -1,12 +1,12 @@
 <script>
   // Allows a default icon, but you can override per card
-  import defaultDots from "$lib/assets/dots.svg";
+  import defaultDots from '$lib/assets/dots.svg'
 
-  export let title = "";
-  export let description = "";
-  export let buttonText = "";
-  export let buttonLink = "#";
-  export let iconSrc = defaultDots; // override with any image if needed
+  export let title = ''
+  export let description = ''
+  export let buttonText = ''
+  export let buttonLink = '#'
+  export let iconSrc = defaultDots // override with any image if needed
 </script>
 
 <article class="info-card">
