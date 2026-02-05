@@ -1,14 +1,14 @@
 <script>
-  import dots from "$lib/assets/dots.svg";
-  import imageSrc from "$lib/assets/doorstroom-ad-dag.webp";
+  import dots from '$lib/assets/dots.svg'
+  import imageSrc from '$lib/assets/doorstroom-ad-dag.webp'
 
-  export let title = "";
-  export let intro = "";
+  export let title = ''
+  export let intro = ''
   /** @type {string[]} */
-  export let bullets = [];
-  export let ctaText = "";
-  export let ctaLink = "#";
-  export let imageAlt = "";
+  export let bullets = []
+  export let ctaText = ''
+  export let ctaLink = '#'
+  export let imageAlt = ''
 </script>
 
 <section class="feature">

@@ -1,7 +1,7 @@
 <script>
-	export let question;
-	export let answer;
-	export let open = false;
+	export let question
+	export let answer
+	export let open = false
 </script>
 
 <details class="adaptive" bind:open>
@@ -51,13 +51,13 @@
     [open]::details-content {
         height: auto;
     }
-  
+
     summary::-webkit-details-marker {
         display: none;
     }
 
     details summary::after {
-        content: url("/static/chevron-down-white.svg"); 
+        content: url("/static/chevron-down-white.svg");
         padding: .05em .7em;
         border-radius: .4em;
         background-color: var(--primary-orange);

@@ -1,7 +1,7 @@
 <script>
     // Export prop
-    export let title = "";
-    export let excerpt = "";
+    export let title = ''
+    export let excerpt = ''
 
     // Import img
     import { check } from '$lib'
@@ -53,7 +53,7 @@
 
     @container (width > 300px) {
         .inner-wrapper {
-            flex-direction: row; 
+            flex-direction: row;
             align-items: start;
         }
     }

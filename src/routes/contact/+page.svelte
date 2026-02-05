@@ -1,36 +1,36 @@
 <script>
-  import { page } from "$app/stores";
-  $: pathname = $page.url.pathname;
-  import { enhance } from "$app/forms";
+  import { page } from '$app/stores'
+  $: pathname = $page.url.pathname
+  import { enhance } from '$app/forms'
 
   // Import components Atomic Design
-  import { MultipleFaq, SingleFaq, NavPros, Breadcrumb, ErrorState, SuccesState, LoadingState } from "$lib";
+  import { MultipleFaq, SingleFaq, NavPros, Breadcrumb, ErrorState, SuccesState, LoadingState } from '$lib'
 
   // Import images Atomic Design
-  import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from "$lib";
+  import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from '$lib'
 
-  const breadcrumb = "";
+  const breadcrumb = ''
 
   // Variable to check the status of the form
-  let status = "";
+  let status = ''
 
   // Function when form is submitting
   function formSubmit() {
-    // When submitting show the loading UI state
-    status = "submitting";
+  	// When submitting show the loading UI state
+  	status = 'submitting'
 
-    return async ({ result, update }) => {
-      // When the form is correct submitted then show succes UI state
-      if (result.type === "success") {
-        status = "success";
-        // When the form isn't correct submitted then show error UI state
-      } else if (result.type === "failure") {
-        status = "error";
-      }
+  	return async ({ result, update }) => {
+  		// When the form is correct submitted then show succes UI state
+  		if (result.type === 'success') {
+  			status = 'success'
+  			// When the form isn't correct submitted then show error UI state
+  		} else if (result.type === 'failure') {
+  			status = 'error'
+  		}
 
-      // Update the form to see the correct UI state
-      await update();
-    };
+  		// Update the form to see the correct UI state
+  		await update()
+  	}
   }
 </script>
 
@@ -62,7 +62,7 @@
     </section>
 
     <div class="wrapper-form">
-      {#if (status === "") | (status === "error")}
+      {#if (status === '') | (status === 'error')}
         <h2>Contactformulier</h2>
         <form class="contact-form" method="POST" use:enhance={formSubmit}>
           <input type="hidden" name="access_key" value="6195e1b0-246a-4f48-ad4a-36914847623b" />

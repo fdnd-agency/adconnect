@@ -1,12 +1,12 @@
 <script>
-  import { goto } from "$app/navigation";
-  import { page } from "$app/stores";
+  import { goto } from '$app/navigation'
+  import { page } from '$app/stores'
   // Import images
-  import { Nieuwshero } from "$lib";
+  import { Nieuwshero } from '$lib'
   // Import components
-  import { NavPros, Hero } from "$lib";
+  import { NavPros, Hero } from '$lib'
   // Haal data op uit page.server.js via props
-  let { data } = $props();
+  const { data } = $props()
 </script>
 
 <svelte:head>

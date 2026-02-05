@@ -1,6 +1,6 @@
 <script>
-    import Divider from "$lib/molecules/Divider.svelte";
-    import darkcircle from "$lib/assets/dark-circle.svg";
+    import Divider from '$lib/molecules/Divider.svelte'
+    import darkcircle from '$lib/assets/dark-circle.svg'
 </script>
 
 <Divider />
@@ -58,7 +58,7 @@
         bottom: -20%;
         z-index: 0;
     }
-    
+
     .circle-right {
         position: absolute;
         width: 20em;

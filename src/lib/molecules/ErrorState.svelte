@@ -1,14 +1,14 @@
 <script>
     import { wrong } from '$lib'
-    export let status;
+    export let status
 </script>
 
-{#if status === "error"}
+{#if status === 'error'}
     <div class="error visible">
         <img src="{wrong}" alt="">
         <p>Oeps er is iets fout gegaan, het formulier is niet verzonden probeer het opnieuw.</p>
     </div>
-{/if} 
+{/if}
 
 <style>
     .error {

@@ -1,10 +1,10 @@
 <script>
-  import InformationCard from "$lib/components/information-cards/InformationCard.svelte";
+  import InformationCard from '$lib/components/information-cards/InformationCard.svelte'
 
-  export let heading = "";
-  export let intro = "";
+  export let heading = ''
+  export let intro = ''
   /** @type {{ title:string, description:string, buttonText:string, buttonLink:string, iconSrc?:string }[]} */
-  export let items = [];
+  export let items = []
 </script>
 
 <section class="info-cards">

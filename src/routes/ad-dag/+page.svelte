@@ -1,12 +1,12 @@
 <script>
-  import logomobile from "$lib/assets/logomobile.svg";
-  import addag1 from "$lib/assets/addag-1.png";
-  import Schedule from "$lib/components/ad/schedule.svelte";
-  import Location from "$lib/components/location/location.svelte";
-  import addag2 from "$lib/assets/addag-2.png";
-  import addag3 from "$lib/assets/addag-3.webp";
+  import logomobile from '$lib/assets/logomobile.svg'
+  import addag1 from '$lib/assets/addag-1.png'
+  import Schedule from '$lib/components/ad/schedule.svelte'
+  import Location from '$lib/components/location/location.svelte'
+  import addag2 from '$lib/assets/addag-2.png'
+  import addag3 from '$lib/assets/addag-3.webp'
 
-  import { MultipleFaq, SingleFaq, NavPros, Hero, Addag } from "$lib";
+  import { MultipleFaq, SingleFaq, NavPros, Hero, Addag } from '$lib'
 </script>
 
 <svelte:head>
@@ -18,11 +18,11 @@
 <main>
   <Hero
     title="Ad Dag "
-    description="De landelijks Ad-dag 2025 is hét moment waarop studenten, 
-	docenten en professionals uit het Ad-onderwijs samenkomen.Ontdek, leer en 
+    description="De landelijks Ad-dag 2025 is hét moment waarop studenten,
+	docenten en professionals uit het Ad-onderwijs samenkomen.Ontdek, leer en
 	inspireer elkaar tijdens een dag vol sprekers, workshops en ontmoetingen.
 	Ervaar hoe de Ad-professional als veranderaar impact maakt en vier samen de
-	 uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of 
+	 uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of
 	 blijf op de hoogte "
   >
     <img class="hero-image" src={Addag} alt="" fetchpriority="high" />

@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/state';
+	import { page } from '$app/state'
 
   // Import Atomic Design
   import { NavPros, bird } from '$lib'

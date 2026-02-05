@@ -10,20 +10,21 @@
 		"prepare": "svelte-kit sync || echo ''"
 	},
 	"devDependencies": {
+		"@eslint/js": "^9.39.2",
 		"@sveltejs/adapter-auto": "^7.0.0",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
+		"eslint": "^9.39.2",
+		"eslint-plugin-svelte": "^3.14.0",
+		"globals": "^17.3.0",
 		"postcss": "^8.5.6",
 		"postcss-nesting": "^13.0.2",
 		"svelte": "^5.0.0",
+		"svelte-eslint-parser": "^1.4.1",
 		"vite": "^7.3.1"
 	},
 	"dependencies": {
-<<<<<<< HEAD
-		"resend": "^6.8.0"
-=======
 		"@sveltejs/adapter-auto": "^6.1.0",
 		"resend": "^6.9.1"
->>>>>>> 7c02e6e866a8a7e82b7f21766b43d3b8395d154f
 	}
 }
