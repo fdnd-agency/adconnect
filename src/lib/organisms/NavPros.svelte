@@ -20,6 +20,7 @@
         <span></span>
       </summary>
       <ul class="panel">
+        <li><a href="/">Home</a></li>
         <li><a href="/over-ad">Over Ad's</a></li>
         <li><a href="/publicaties">Publicaties</a></li>
         <li><a href="/talent-award">Talent Award</a></li>
@@ -31,6 +32,7 @@
     </details>
 
     <ul class="desktop-nav">
+      <li><a class={$page.url.pathname === '/' ? 'menu-button active' : 'menu-button'} href="/">Home</a></li>
       <li><a class={$page.url.pathname === '/over-ad' ? 'menu-button active' : 'menu-button'} href="/over-ad">Over Ad's</a></li>
       <li><a class={$page.url.pathname === '/publicaties' ? 'menu-button active' : 'menu-button'} href="/publicaties">Publicaties</a></li>
       <li><a class={$page.url.pathname === '/talent-award' ? 'menu-button active' : 'menu-button'} href="/talent-award">Talent Award</a></li>
