@@ -4,7 +4,7 @@
   import { enhance } from '$app/forms'
 
   // Import components Atomic Design
-  import { MultipleFaq, SingleFaq, NavPros, Breadcrumb, ErrorState, SuccesState, LoadingState } from '$lib'
+  import { NavPros, Breadcrumb, ErrorState, SuccesState, LoadingState } from '$lib'
 
   // Import images Atomic Design
   import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from '$lib'
@@ -97,33 +97,6 @@
       <SuccesState {status} />
     </div>
   </div>
-</section>
-
-<section class="faq-section">
-  <h2>Veelgestelde vragen</h2>
-
-  <MultipleFaq>
-    <SingleFaq
-      open={true}
-      question="Wat is een Associate degree?"
-      answer="Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding."
-    />
-
-    <SingleFaq
-      question="Hoe lang duurt een Associate degree?"
-      answer="Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring."
-    />
-
-    <SingleFaq
-      question="Wat is het verschil tussen een Associate degree en een Bachelor?"
-      answer="Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld."
-    />
-
-    <SingleFaq
-      question="Welke voordelen heeft het behalen van een Associate degree?"
-      answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
-    />
-  </MultipleFaq>
 </section>
 
 <style>
@@ -322,22 +295,6 @@
   }
 
   /* FAQ */
-  .faq-section {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    padding: 3em 5%;
-    box-sizing: border-box;
-    position: relative;
-
-    @media (min-width: 768px) {
-      padding: 5em 5%;
-    }
-  }
-
-  .faq-section h2 {
-    text-align: center;
-  }
 
   .white {
     color: var(--text-white);
