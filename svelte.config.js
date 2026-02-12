@@ -13,7 +13,7 @@ const config = {
 				'default-src': ['self'],
 				'script-src': ['self'],
 				'style-src': ['self', 'unsafe-inline'], // Required for Svelte transitions
-				'img-src': ['self', 'https://fdnd-agency.directus.app'],
+				'img-src': ['self', 'data:', 'https://fdnd-agency.directus.app'],
 				'font-src': ['self'],
 				'connect-src': ['self', 'https://fdnd-agency.directus.app'],
 				'frame-src': ['self', 'https://fdnd-agency.directus.app'], // PDF viewer iframes in publicaties
