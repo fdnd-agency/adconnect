@@ -205,9 +205,13 @@
     .desktop-nav {
       display: flex;
       position: relative;
-      gap: 2rem;
+      gap: 1.5rem;
       list-style: none;
     }
+
+    .desktop-nav a {
+            white-space: nowrap;
+        }
 
     nav {
       padding: 1rem 0;
