@@ -35,6 +35,6 @@ export async function load({ url }) {
 	return {
 		documents: documentsData.data,
 		categories: categoriesData.data,
-		selectedCategory: category || 'alle-categories'
+		selectedCategory: category || 'alle-publicaties'
 	}
 }
