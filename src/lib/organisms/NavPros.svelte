@@ -205,7 +205,7 @@
     .desktop-nav {
       display: flex;
       position: relative;
-      gap: 2rem;
+      gap: 1.5rem;
       list-style: none;
     }
 
