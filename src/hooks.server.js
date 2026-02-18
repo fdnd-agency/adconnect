@@ -1,4 +1,4 @@
-import { AuthService } from '$lib/server/auth.js'
+import { AuthService } from '$lib/server/authService'
 
 export async function handle({ event, resolve }) {
 	const accessToken = event.cookies.get('access_token')
