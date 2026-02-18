@@ -67,53 +67,6 @@
 </ul>
 
 <style>
-	.info-list {
-		display: flex;
-		flex-direction: column;
-		justify-self: center;
-		align-items: center;
-		gap: 1em;
-		padding: 0em;
-		font-family: var(--font-body);
-
-		@media (min-width: 400px) {
-			display: grid;
-			grid-template-columns: max-content max-content;
-			justify-content: center;
-			justify-items: center;
-		}
-
-		@media (min-width: 900px) {
-			display: flex;
-			flex-direction: row;
-			justify-content: unset;
-			justify-items: unset;
-		}
-
-		@media (min-width: 1000px) {
-			display: grid;
-			grid-template-columns: max-content max-content max-content;
-			justify-content: center;
-			justify-items: center;
-		}
-
-		@media (min-width: 1200px) {
-			display: flex;
-			flex-direction: row;
-			justify-content: unset;
-			justify-items: unset;
-		}
-	}
-
-	li {
-		background-color: var(--background);
-		padding: 1em;
-		border: var(--button-outline-border);
-		border-radius: var(--button-outline-radius);
-		width: fit-content;
-		list-style: none;
-	}
-
 	@media (max-width: 999px) {
 		.container-nav {
 			display: none;
@@ -160,6 +113,10 @@
 		}
 	}
 
+	h1{
+		margin: 0;
+	}
+
 	.container-user {
 		background-color: var(--background);
 		padding: 4em;
@@ -176,5 +133,52 @@
 		@media (min-width: 1000px) {
 			flex-direction: row;
 		}
+	}
+
+	.info-list {
+		display: flex;
+		flex-direction: column;
+		justify-self: center;
+		align-items: center;
+		gap: 1em;
+		padding: 0em;
+		font-family: var(--font-body);
+
+		@media (min-width: 400px) {
+			display: grid;
+			grid-template-columns: max-content max-content;
+			justify-content: center;
+			justify-items: center;
+		}
+
+		@media (min-width: 900px) {
+			display: flex;
+			flex-direction: row;
+			justify-content: unset;
+			justify-items: unset;
+		}
+
+		@media (min-width: 1000px) {
+			display: grid;
+			grid-template-columns: max-content max-content max-content;
+			justify-content: center;
+			justify-items: center;
+		}
+
+		@media (min-width: 1200px) {
+			display: flex;
+			flex-direction: row;
+			justify-content: unset;
+			justify-items: unset;
+		}
+	}
+
+	li {
+		background-color: var(--background);
+		padding: 1em;
+		border: var(--button-outline-border);
+		border-radius: var(--button-outline-radius);
+		width: fit-content;
+		list-style: none;
 	}
 </style>
