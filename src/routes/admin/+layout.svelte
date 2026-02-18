@@ -47,32 +47,38 @@
 							</li>
 							<li>
 								<a
-									href="/admin/themas"
+									href=""
 									class="nav-link">Thema's</a
 								>
 							</li>
 							<li>
 								<a
-									href="/admin/nominaties"
+									href=""
 									class="nav-link">Events</a
 								>
 							</li>
 							<li>
 								<a
-									href="/admin/documenten"
+									href=""
 									class="nav-link">Documenten</a
 								>
 							</li>
 							<li>
 								<a
-									href="/admin/nominaties"
+									href=""
 									class="nav-link">Nominaties</a
 								>
 							</li>
 							<li>
 								<a
-									href="/admin/nieuws"
+									href=""
 									class="nav-link">Nieuws</a
+								>
+							</li>
+							<li>
+								<a
+									href=""
+									class="nav-link">Samenwerken</a
 								>
 							</li>
 						</ul>
@@ -98,26 +104,38 @@
 					</li>
 					<li>
 						<a
-							href="/admin/themas"
+							href=""
 							class="nav-link">Thema's</a
 						>
 					</li>
 					<li>
 						<a
-							href="/admin/documenten"
+							href=""
+							class="nav-link">Events</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
 							class="nav-link">Documenten</a
 						>
 					</li>
 					<li>
 						<a
-							href="/admin/nominaties"
+							href=""
 							class="nav-link">Nominaties</a
 						>
 					</li>
 					<li>
 						<a
-							href="/admin/nieuws"
+							href=""
 							class="nav-link">Nieuws</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
+							class="nav-link">Samenwerken</a
 						>
 					</li>
 				</ul>
