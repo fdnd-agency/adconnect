@@ -4,10 +4,6 @@
 	import { logo, logowhite } from '$lib'
 </script>
 
-<!-- <div class="user-info">
-				<p class="user-email">{data.user?.email ?? ''}</p>
-			</div> -->
-
 <header class="admin-header">
 	<nav class="admin-nav">
 		<div class="header-logo">
@@ -124,11 +120,6 @@
 							class="nav-link">Nieuws</a
 						>
 					</li>
-					<!-- <li>
-						<a href="/admin/logout" class="logout-btn" data-sveltekit-reload>
-						  Uitloggen
-						</a>
-					  </li> -->
 				</ul>
 			{:else}
 				<div class="welcome-section">

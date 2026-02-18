@@ -10,22 +10,23 @@
 <div class="container-nav">
 	<button
 		popovertarget="my-popover"
-		class="button-outline-blue"
+		class="button-outline-white"
 		id="user-btn"
 	>
-		{data.user?.email ?? ''} 
+		{data.user?.email ?? ''}
 	</button>
 
 	<div
 		popover
 		id="my-popover"
+		class="button-outline-white "
 	>
 		<a
 			href="/admin/logout"
 			class="logout-btn"
 			data-sveltekit-reload
 		>
-			Uitloggen 
+			Uitloggen
 		</a>
 	</div>
 </div>
@@ -35,19 +36,39 @@
 </div>
 
 <style>
-	.container-nav {
-		display: flex;
-		justify-content: end;
-		position: relative;
-		anchor-name: --userbtn;
-	}
+@media (max-width: 999px) {
+  .container-nav {
+    display: none;
+  }
+}
 
-	#my-popover {
-		background: white;
-		padding: 10px 14px;
-		border-radius: 8px;
-		border: 1px solid #ddd;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-		position-area: bottom;
+@media (min-width: 1000px) {
+  .container-nav {
+    display: flex;
+    justify-content: end;
+    position: relative;
+  }
+
+  #my-popover {
+    padding: 1em;
+    border-radius: 8px;
+    position-area: bottom;
+
+  }
+
+  #user-btn::after {
+    content: url('/static/chevon-down.svg');
+    padding: 0.05em 0.7em;
+    transition: transform 0.3s;
+  }
+}
+
+.logout-btn{
+	color: var(--button-blue-text);
+
+	&:hover{
+	    color: var(--primary-blue);
 	}
+}
+
 </style>
