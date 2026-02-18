@@ -12,7 +12,7 @@
 	<p class="subtitle">Dit is het admin portaal van ADConnect.</p>
 </div>
 
-<style>
+<!-- <style>
 	.dashboard h1 {
 		font-family: 'ClashDisplay', sans-serif;
 		font-size: 1.75rem;
@@ -26,4 +26,4 @@
 		font-size: 1rem;
 		margin: 0;
 	}
-</style>
+</style> -->

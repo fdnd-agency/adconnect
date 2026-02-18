@@ -1,267 +1,290 @@
 <script>
 	/** @type {{ data: { user: any }, children: import('svelte').Snippet }} */
 	let { data, children } = $props()
+	import { logo, logowhite } from '$lib'
 </script>
 
-<div class="admin-layout">
-	<aside
-		class="sidebar"
-		class:sidebar-wide={!data.user}
-	>
-		<!-- Decorative blobs -->
-		<div class="sidebar-blob sidebar-blob-top"></div>
-		<div class="sidebar-blob sidebar-blob-bottom"></div>
-
-		<div class="sidebar-inner">
-			<!-- Logo -->
-			<div class="sidebar-logo">
-				<div class="logo-dots">
-					<div class="dot-row">
-						<span class="dot dot-sm"></span>
-						<span class="dot dot-sm"></span>
-						<span class="dot dot-sm"></span>
-						<span class="dot dot-sm dot-orange"></span>
-					</div>
-					<div class="dot-row">
-						<span class="dot dot-lg"></span>
-						<span class="dot dot-lg"></span>
-						<span class="dot dot-lg"></span>
-					</div>
+	<!-- <div class="user-info">
+				<p class="user-email">{data.user?.email ?? ''}</p>
+			</div> -->
+			  
+			  <header class="admin-header">
+				<nav class="admin-nav">
+				   <div class="header-logo">
+				  <a class="logo-admin" href="/admin" aria-label="Home – AdConnect logo">
+					<picture>
+					  <source srcset={logowhite} media="(prefers-color-scheme: dark)" />
+					  <img src={logo} alt="" loading="lazy" width="200" height="150" />
+					</picture>
+				  </a>
 				</div>
-				<span class="logo-text">AdConnect</span>
-			</div>
 
-			{#if data.user}
-				<!-- Logged in: show nav -->
-				<nav>
-					<a
-						href="/admin"
-						class="nav-link">Dashboard</a
-					>
+				<div class="container-header">
+				  {#if data.user}
+					<details class="menu">
+					  <summary aria-label="Menu openen">
+						<span></span>
+						<span></span>
+						<span></span>
+					  </summary>
+			  
+					  <div class="panel">
+						<ul class="mobile-links">
+						  <li><a href="/admin" class="nav-link">Dashboard</a></li>
+						  <li><a href="/admin/themas" class="nav-link">Thema's</a></li>
+						   <li><a href="/admin/nominaties" class="nav-link">Events</a></li>
+						  <li><a href="/admin/documenten" class="nav-link">Documenten</a></li>
+						  <li><a href="/admin/nominaties" class="nav-link">Nominaties</a></li>
+						  <li><a href="/admin/nieuws" class="nav-link">Nieuws</a></li>
+						</ul>
+			  
+						<div class="sidebar-footer">
+						  <a href="/admin/logout" class="logout-btn" data-sveltekit-reload>
+							Uitloggen
+						  </a>
+						</div>
+					  </div>
+					</details>
+			  
+					<ul class="desktop-nav">
+					  <li><a href="/admin" class="nav-link">Dashboard</a></li>
+					  <li><a href="/admin/themas" class="nav-link">Thema's</a></li>
+					  <li><a href="/admin/documenten" class="nav-link">Documenten</a></li>
+					  <li><a href="/admin/nominaties" class="nav-link">Nominaties</a></li>
+					  <li><a href="/admin/nieuws" class="nav-link">Nieuws</a></li>
+					  <li>
+						<a href="/admin/logout" class="logout-btn" data-sveltekit-reload>
+						  Uitloggen
+						</a>
+					  </li>
+					</ul>
+				  {:else}
+					<div class="welcome-section">
+					  <h1 class="welcome-text">Welkom Terug!</h1>
+					</div>
+				  {/if}
+				</div>
 				</nav>
+			  </header>
 
-				<!-- Footer with user info -->
-				<div class="sidebar-footer">
-					<div class="user-info">
-						<span class="user-email">{data.user?.email ?? ''}</span>
-					</div>
-					<a
-						href="/admin/logout"
-						class="logout-btn"
-						data-sveltekit-reload>Uitloggen</a
-					>
-				</div>
-			{:else}
-				<!-- Not logged in (login page): show welcome -->
-				<div class="welcome-section">
-					<h2 class="welcome-text">Welkom Terug!</h2>
-				</div>
-			{/if}
-		</div>
-	</aside>
+			  <main class="admin-content">
+				{@render children()}
+			</main>
+			  
+			  <style>
+				.admin-header {
+				  background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+				  width: 100%;
+				  position: sticky;
+				  top: 0;
+				  z-index: 999;
+				  display: flex;
+				  justify-content: center;
 
-	<main class="admin-content">
-		{@render children()}
-	</main>
-</div>
+				@media (min-width: 1000px) {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 260px;
+                  height: 100vh;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-start;
+                  background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+				}
+			}
+			  
+				.admin-nav {
+				  width: 100%;
+				  display: flex;
+				  justify-content: space-between;
+				  align-items: center;
+				  position: relative;
 
-<style>
-	.admin-layout {
-		display: flex;
-		min-height: 100vh;
-		font-family: 'Archivo', sans-serif;
-	}
+				@media (min-width: 1000px) {
+                  flex-direction: column;
+                  align-items: flex-start;
+                  height: 100%;
+                }
+			}
 
-	/* ===== Sidebar ===== */
-	.sidebar {
-		width: 220px;
-		background: var(--primary-blue, hsl(213, 100%, 28%));
-		color: #fff;
-		flex-shrink: 0;
-		position: relative;
-		overflow: hidden;
-		transition: width 0.2s ease;
-	}
+				.header-logo{
+	              background-color: var(--background);
+	              width: fit-content;
+	              padding: 1em;
+				@media (min-width: 1000px) {
+                  width: 100%;
+                  padding: 0;
+                  margin-bottom: 2rem;
+                }
+            }
 
-	.sidebar-wide {
-		width: 35%;
-		min-width: 320px;
-		max-width: 450px;
-	}
+				.container-header{
+					padding: 1em;
+					align-self: center;
+					margin-bottom: auto;
+				}
+			  
+				.logo-admin img {
+				  height: 50px;
+				  width: auto;
+				@media (min-width: 1000px) {
+				  height: 60px;
+				}
+			}
+			  
+				summary {
+				  display: inline-block;
+				  cursor: pointer;
+				  list-style: none;
+				}
+			  
+				summary span {
+				  display: block;
+				  width: 28px;
+				  height: 3px;
+				  margin: 6px 0;
+				  background-color: var(--background);
+				  border-radius: 2px;
+				  transform-origin: center;
+				  transition: all 0.3s ease;
+				}
+			  
+				.menu {
+				  display: block;
+				  position: relative;
+				@media (min-width: 1000px) {
+                  display: none;
+                 }
+				}
+			  
+				.menu::before {
+				  content: "";
+				  display: block;
+				  position: fixed;
+				  inset: 0;
+				  z-index: 999;
+				  background-color: rgba(0, 0, 0, 0);
+				  opacity: 0;
+				  pointer-events: none;
+				  transition: opacity 0.3s ease;
+				}
+			  
+				.menu[open]::before {
+				  background: rgba(0, 0, 0, 0.25);
+				  opacity: 1;
+				  pointer-events: auto;
+				}
+			  
+				.panel {
+				  position: fixed;
+				  inset: 0;
+				  z-index: 1000;
+				  width: 100vw;
+				  height: 100vh;
+				  background-color: var(--background);
+				  display: flex;
+				  flex-direction: column;
+				  justify-content: space-between;
+				  padding: clamp(1rem, 3vw, 2rem);
+				  box-sizing: border-box;
+				  transform: translateX(100%);
+				  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+				}
+			  
+				.menu[open] .panel {
+				  transform: translateX(0);
+				  background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+				}
+			  
+				.menu[open] summary {
+				  position: fixed;
+				  top: 16px;
+				  right: 16px;
+				  z-index: 1001;
+				  padding: 6px;
+				}
+			  
+				.menu[open] summary span:nth-child(1) {
+				  transform: translateY(9px) rotate(45deg);
+				}
+				.menu[open] summary span:nth-child(2) {
+				  transform: scaleX(0);
+				  opacity: 0;
+				}
+				.menu[open] summary span:nth-child(3) {
+				  transform: translateY(-9px) rotate(-45deg);
+				}
+			  
+				.mobile-links {
+				  list-style: none;
+				  margin: 0;
+				  display: flex;
+				  flex-direction: column;
+				  gap: 1em;
+				  padding: 1em;
+				}
+			  
+				.nav-link {
+				  display: block;
+				  text-decoration: none;
+				  font-weight: 600;
+				  font-size: 1.2rem;
+				  color: var(--background);
+				  padding: 0.5rem 1rem;
+				}
 
-	.sidebar-inner {
-		position: relative;
-		z-index: 2;
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-		padding: 1.5rem 1.25rem;
-		box-sizing: border-box;
-	}
+				.sidebar-footer {
+				  padding: 1rem 0;
+				}
+			  
+				.logout-btn {
+				  display: inline-block;
+				  text-decoration: none;
+				  font-weight: 600;
+				  padding: 1em;
+				  border-radius: var(--button-blue-radius);
+				  border: 2px solid currentColor;
+				  color: var(--background);
+				@media (min-width: 1000px) {
+                  margin-top: auto;
+                  width: 100%;
+                  text-align: center;
+                 }
+				}
+		
+				.desktop-nav {
+				  display: none;
+				  list-style: none;
+				  gap: 1.2rem;
+				  align-items: center;
+				  margin: 0;
+				  padding: 0;
 
-	/* Decorative blobs */
-	.sidebar-blob {
-		position: absolute;
-		border-radius: 50%;
-		background: hsla(213, 100%, 40%, 0.3);
-		z-index: 1;
-	}
+				@media (min-width: 1000px) {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  gap: 1rem;
+                  width: 100%;
+                 }
+				}
 
-	.sidebar-blob-top {
-		width: 200px;
-		height: 200px;
-		top: -60px;
-		right: -70px;
-	}
+				@media (min-width: 1000px) {
+                 .desktop-nav .nav-link {
+                    color: var(--background);
+                    font-size: 1.1rem;
+                    padding: 0.6rem 0;
+                    width: 100%;
+                    display: block;
+				}
+			}
 
-	.sidebar-blob-bottom {
-		width: 180px;
-		height: 180px;
-		bottom: -50px;
-		left: -60px;
-	}
-
-	/* Logo */
-	.sidebar-logo {
-		display: flex;
-		flex-direction: column;
-		gap: 0.3rem;
-		margin-bottom: 1.5rem;
-	}
-
-	.logo-dots {
-		display: flex;
-		flex-direction: column;
-		gap: 0.2rem;
-	}
-
-	.dot-row {
-		display: flex;
-		gap: 0.25rem;
-		align-items: center;
-	}
-
-	.dot {
-		border-radius: 50%;
-		background: #fff;
-	}
-
-	.dot-sm {
-		width: 8px;
-		height: 8px;
-	}
-
-	.dot-lg {
-		width: 14px;
-		height: 14px;
-	}
-
-	.dot-orange {
-		background: var(--primary-orange, hsl(10, 80%, 55%));
-	}
-
-	.logo-text {
-		font-family: 'ClashDisplay', sans-serif;
-		font-size: 1rem;
-		font-weight: 600;
-		margin-top: 0.15rem;
-	}
-
-	/* Navigation */
-	nav {
-		display: flex;
-		flex-direction: column;
-		gap: 0.15rem;
-		flex: 1;
-	}
-
-	.nav-link {
-		color: rgba(255, 255, 255, 0.9);
-		text-decoration: none;
-		padding: 0.55rem 0.75rem;
-		border-radius: 6px;
-		font-size: 0.9rem;
-		font-weight: 500;
-		transition:
-			background 0.15s,
-			color 0.15s;
-	}
-
-	.nav-link:hover {
-		background: hsla(0, 0%, 100%, 0.12);
-		color: #fff;
-	}
-
-	/* Footer */
-	.sidebar-footer {
-		border-top: 1px solid hsla(0, 0%, 100%, 0.15);
-		padding-top: 1rem;
-		margin-top: 0.5rem;
-	}
-
-	.user-info {
-		margin-bottom: 0.5rem;
-	}
-
-	.user-email {
-		font-size: 0.8rem;
-		color: rgba(255, 255, 255, 0.7);
-	}
-
-	.logout-btn {
-		display: block;
-		text-align: center;
-		color: rgba(255, 255, 255, 0.8);
-		text-decoration: none;
-		font-size: 0.8rem;
-		padding: 0.45rem 0.75rem;
-		border-radius: 6px;
-		border: 1px solid hsla(0, 0%, 100%, 0.2);
-		transition:
-			background 0.15s,
-			color 0.15s;
-	}
-
-	.logout-btn:hover {
-		background: hsla(0, 0%, 100%, 0.1);
-		color: #fff;
-	}
-
-	/* Welcome (login page) */
-	.welcome-section {
-		flex: 1;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.welcome-text {
-		font-family: 'ClashDisplay', sans-serif;
-		font-size: 1.75rem;
-		font-weight: 600;
-		color: #fff;
-		margin: 0;
-	}
-
-	/* ===== Content ===== */
-	.admin-content {
-		flex: 1;
-		background: #f0f2f8;
-		overflow-y: auto;
-	}
-
-	/* ===== Responsive ===== */
-	@media (max-width: 768px) {
-		.sidebar {
-			width: 180px;
-		}
-
-		.welcome-text {
-			font-size: 1.35rem;
-		}
-
-		.admin-content {
-			padding: 1.5rem 1rem;
-		}
-	}
-</style>
+                @media (min-width: 1000px) {
+                 .admin-content {
+                    margin-left: 260px;
+                    padding: 2rem;
+                }
+            }
+			  </style>
+			  
