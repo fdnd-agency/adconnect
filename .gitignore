@@ -140,3 +140,7 @@ vite.config.ts.timestamp-*
 
 # Resend mail
 .env
+
+# Playwright
+test-results/
+playwright-report/

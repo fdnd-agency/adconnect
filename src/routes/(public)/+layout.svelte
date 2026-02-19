@@ -2,7 +2,7 @@
 	import favicon from '$lib/assets/favicon-adc.svg'
 	import logodark from '$lib/assets/logo-dark.svg'
 
-	import { TopNav, icondown, logowhite } from '$lib'
+	import { Footer, TopNav, icondown, logowhite } from '$lib'
 
 	const { children } = $props()
 </script>
@@ -29,104 +29,7 @@
 	/><span class="sr-only">Scroll naar beneden</span></a
 >
 
-<footer class="footer-grid">
-	<div class="wrapper">
-		<a
-			href="/"
-			class="logo"
-			><img
-				src={logowhite}
-				alt="Terug naar homepagina"
-				width="230"
-				height="75"
-				loading="lazy"
-			/></a
-		>
-
-		<section>
-			<h2>Overlegplatform Ad's</h2>
-			<p>
-				Het Overlegplatform Associate degrees brengt Ad-opleidingen samen om kennis te delen en profielen af te stemmen. Zo blijven opleidingen relevant voor het werkveld en goed voorbereid op
-				doorstroom naar vervolgstudies.
-			</p>
-		</section>
-
-		<section>
-			<div class="desktop-menu">
-				<h2>Menu</h2>
-				<ul>
-					<li><a href="/over-ad">Over Ad's?</a></li>
-					<li><a href="/publicaties">Publicaties</a></li>
-					<li><a href="/nieuws">Nieuws</a></li>
-					<li><a href="/talent-award">Talent Award</a></li>
-					<li><a href="/ad-dag">Ad-dag</a></li>
-					<li><a href="/over-ons">Over ons</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-
-			<details class="mobile-menu">
-				<summary><h2>Menu</h2></summary>
-				<ul>
-					<li><a href="/over-ad">Over Ad's?</a></li>
-					<li><a href="/publicaties">Publicaties</a></li>
-					<li><a href="/nieuws">Nieuws</a></li>
-					<li><a href="/talent-award">Talent Award</a></li>
-					<li><a href="/ad-dag">Ad-dag</a></li>
-					<li><a href="/over-ons">Over ons</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</details>
-		</section>
-
-		<section>
-			<div class="desktop-menu">
-				<h2>Thema's</h2>
-				<ul>
-					<li><a href="/over-ad/handreiking-impactmakerschap">Handreiking impactmakerschap</a></li>
-					<li><a href="/over-ad/impactmakerschap">Impactmakerschap</a></li>
-					<li><a href="/over-ad/niveau-5">Niveau 5</a></li>
-					<li><a href="/over-ad/doorstroom-ad-bachelor">Doorstroom Ad bachelor</a></li>
-					<li><a href="/over-ad/leren-in-beroepspraktijk">Leren in beroepspraktijk</a></li>
-					<li><a href="/over-ad/internationalisering">Internationalisering</a></li>
-				</ul>
-			</div>
-
-			<details class="mobile-menu">
-				<summary><h2>Thema's</h2></summary>
-				<ul>
-					<li><a href="/">Impactmakerschap</a></li>
-					<li><a href="/">Niveau 5</a></li>
-					<li><a href="/">Doorstroom Ad's</a></li>
-					<li><a href="/">Onderzoek houding</a></li>
-				</ul>
-			</details>
-		</section>
-
-		<section>
-			<div class="desktop-menu">
-				<h2>Contact</h2>
-				<ul>
-					<li><a href="mailto:platformassociatedegrees@outlook.com">E-mail platform Ad's</a></li>
-				</ul>
-			</div>
-
-			<details class="mobile-menu">
-				<summary><h2>Contact</h2></summary>
-				<ul>
-					<li><a href="mailto:platformassociatedegrees@outlook.com">platformassociatedegrees@outlook.com</a></li>
-				</ul>
-			</details>
-		</section>
-
-		<div class="divider"></div>
-
-		<div class="footer-bottom">
-			<p>© Overlegplatform Associate degrees. Alle rechten voorbehouden</p>
-			<p>Ontwikkeld door studenten FDND</p>
-		</div>
-	</div>
-</footer>
+<Footer />
 
 <style>
 	:root {

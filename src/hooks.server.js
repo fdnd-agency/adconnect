@@ -1,48 +1,15 @@
-import { DIRECTUS_URL } from '$lib/server/directus.js'
+import { AuthService } from '$lib/server/authService'
 
 export async function handle({ event, resolve }) {
 	const accessToken = event.cookies.get('access_token')
 	const refreshToken = event.cookies.get('refresh_token')
 
 	if (accessToken) {
-		// Validate token by fetching current user
-		const res = await fetch(`${DIRECTUS_URL}/users/me`, {
-			headers: { Authorization: `Bearer ${accessToken}` }
-		})
-		if (res.ok) {
-			event.locals.user = await res.json()
-		}
+		event.locals.user = await AuthService.getUser(accessToken)
 	}
 
-	// If access_token expired but refresh_token exists → refresh
 	if (!event.locals.user && refreshToken) {
-		const res = await fetch(`${DIRECTUS_URL}/auth/refresh`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ refresh_token: refreshToken, mode: 'json' })
-		})
-		if (res.ok) {
-			const { data } = await res.json()
-			event.cookies.set('access_token', data.access_token, {
-				path: '/',
-				httpOnly: true,
-				secure: true,
-				sameSite: 'lax',
-				maxAge: 60 * 15 // 15 minutes
-			})
-			event.cookies.set('refresh_token', data.refresh_token, {
-				path: '/',
-				httpOnly: true,
-				secure: true,
-				sameSite: 'lax',
-				maxAge: 60 * 60 * 24 * 7 // 7 days
-			})
-			// Fetch user with new token
-			const userRes = await fetch(`${DIRECTUS_URL}/users/me`, {
-				headers: { Authorization: `Bearer ${data.access_token}` }
-			})
-			if (userRes.ok) event.locals.user = await userRes.json()
-		}
+		event.locals.user = await AuthService.refreshSession(event.cookies, refreshToken)
 	}
 
 	return resolve(event)
