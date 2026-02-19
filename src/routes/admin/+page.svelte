@@ -2,7 +2,7 @@
 	/** @type {{ data: { user: any } }} */
 	let { data } = $props()
 	import dots from '$lib/assets/dots.svg'
-	import { bird } from '$lib'
+	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events } from '$lib'
 </script>
 
 <svelte:head>
@@ -57,17 +57,82 @@
 	</div>
 </div>
 
-<ul class="info-list">
-	<li>Thema's:0</li>
-	<li>Events:0</li>
-	<li>Documenten:0</li>
-	<li>Nominaties:0</li>
-	<li>Nieuws:0</li>
-	<li>Samenwerken:0</li>
+<ul class="container-info-list">
+	<li class="info-list">Thema's:0</li>
+	<li class="info-list">Events:0</li>
+	<li class="info-list">Documenten:0</li>
+	<li class="info-list">Nominaties:0</li>
+	<li class="info-list">Nieuws:0</li>
+	<li class="info-list">Samenwerken:0</li>
 </ul>
 
-<ul>
-	<li></li>
+<ul class="item-list">
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={GraduationHat}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Thema's</p>
+		<button class="button-outline-white">+Toevoegen</button>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={Events}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Events</p>
+		<button class="button-outline-white">+Toevoegen</button>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={Document}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Documenten</p>
+		<button class="button-outline-white">+Toevoegen</button>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={CupStar}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Nominaties</p>
+		<button class="button-outline-white">+Toevoegen</button>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={NewsPaper}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Nieuws</p>
+		<button class="button-outline-white">+Toevoegen</button>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={Collaborate}
+			alt=""
+			height="50px"
+			width="90px"
+		/>
+		<p>Samenwerken</p>
+		<button class="button-outline-white">+Toevoegen</button>
+	</li>
 </ul>
 
 <style>
@@ -117,16 +182,20 @@
 		}
 	}
 
-	h1{
+	h1 {
 		margin: 0;
 	}
 
 	.container-user {
 		background-color: var(--background);
-		padding: 4em;
+		padding: 2em;
 		border: var(--button-outline-border);
 		border-radius: var(--button-outline-radius);
 		margin: 1em;
+
+		@media (min-width: 1000px) {
+			padding: 4em;
+		}
 	}
 
 	.container-welcome {
@@ -139,7 +208,7 @@
 		}
 	}
 
-	.info-list {
+	.container-info-list {
 		display: flex;
 		flex-direction: column;
 		justify-self: center;
@@ -177,12 +246,55 @@
 		}
 	}
 
-	li {
+	.info-list {
 		background-color: var(--background);
 		padding: 1em;
 		border: var(--button-outline-border);
 		border-radius: var(--button-outline-radius);
-		width: fit-content;
 		list-style: none;
+	}
+
+	.item-list {
+		display: flex;
+		flex-direction: column;
+		justify-self: center;
+		gap: 1em;
+		padding: 0em;
+		font-family: var(--font-body);
+
+		@media (min-width: 400px) {
+			display: grid;
+			grid-template-columns: max-content max-content;
+			justify-content: center;
+			justify-items: center;
+		}
+
+		@media (min-width: 650px) {
+			grid-template-columns: max-content max-content max-content;
+			justify-content: center;
+			justify-items: center;
+		}
+
+		@media (min-width: 1200px) {
+			grid-template-columns: max-content max-content max-content max-content;
+		}
+	}
+
+	.item-card {
+		background-color: var(--background);
+		padding: 1em;
+		border: var(--button-outline-border);
+		border-radius: var(--button-outline-radius);
+		text-align: center;
+		list-style: none;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.item-img {
+		display: flex;
+		align-self: center;
 	}
 </style>
