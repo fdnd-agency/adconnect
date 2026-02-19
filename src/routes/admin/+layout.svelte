@@ -106,42 +106,42 @@
 					</li>
 					<li>
 						<a
-							href="/themas"
+							href=""
 							class="nav-link"
 							class:active={$page.url.pathname === '/themas'}>Thema's</a
 						>
 					</li>
 					<li>
 						<a
-							href="/events"
+							href=""
 							class="nav-link"
 							class:active={$page.url.pathname === '/events'}>Events</a
 						>
 					</li>
 					<li>
 						<a
-							href="/documenten"
+							href=""
 							class="nav-link"
 							class:active={$page.url.pathname === '/documenten'}>Documenten</a
 						>
 					</li>
 					<li>
 						<a
-							href="/nominaties"
+							href=""
 							class="nav-link"
 							class:active={$page.url.pathname === '/nominaties'}>Nominaties</a
 						>
 					</li>
 					<li>
 						<a
-							href="/nieuws"
+							href=""
 							class="nav-link"
 							class:active={$page.url.pathname === '/nieuws'}>Nieuws</a
 						>
 					</li>
 					<li>
 						<a
-							href="/samenwerken"
+							href=""
 							class="nav-link"
 							class:active={$page.url.pathname === '/samenwerken'}>Samenwerken</a
 						>
@@ -218,8 +218,8 @@
 
 	.admin-nav {
 		width: 100%;
-		display: flex;
-		justify-content: space-between;
+		/* display: flex;
+		justify-content: space-between; */
 		align-items: center;
 		position: relative;
 
@@ -230,9 +230,14 @@
 		}
 	}
 
+	h1{
+		text-align: center;
+		color: var(--button-blue-text);
+	}
+
 	.header-logo {
 		background-color: var(--background);
-		width: fit-content;
+		/* width: fit-content; */
 		padding: 1em;
 		@media (min-width: 1000px) {
 			width: 100%;
@@ -240,6 +245,8 @@
 			margin-bottom: 2rem;
 		}
 	}
+
+	
 
 	.container-header {
 		padding: 1em;
@@ -253,8 +260,11 @@
 	.logo-admin img {
 		height: 3.5em;
 		width: auto;
+		display: flex;
+		justify-self: center;
 		@media (min-width: 1000px) {
 			margin: 1em;
+			display: unset;
 		}
 	}
 
@@ -278,6 +288,8 @@
 	.menu {
 		display: block;
 		position: relative;
+		display: flex;
+		justify-content: end;
 		@media (min-width: 1000px) {
 			display: none;
 		}

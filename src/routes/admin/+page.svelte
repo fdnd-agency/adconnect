@@ -224,6 +224,10 @@
 			justify-items: center;
 		}
 
+		@media (min-width: 450px) {
+			grid-template-columns: max-content max-content max-content;
+		}
+
 		@media (min-width: 900px) {
 			display: flex;
 			flex-direction: row;
