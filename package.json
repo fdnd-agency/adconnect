@@ -12,7 +12,8 @@
 		"test": "vitest run && playwright test",
 		"test:unit": "vitest run",
 		"test:e2e": "playwright test",
-		"test:watch": "vitest"
+		"test:watch": "vitest",
+		"postinstall": "playwright install chromium"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.39.2",
