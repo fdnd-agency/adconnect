@@ -218,8 +218,6 @@
 
 	.admin-nav {
 		width: 100%;
-		/* display: flex;
-		justify-content: space-between; */
 		align-items: center;
 		position: relative;
 
@@ -237,7 +235,6 @@
 
 	.header-logo {
 		background-color: var(--background);
-		/* width: fit-content; */
 		padding: 1em;
 		@media (min-width: 1000px) {
 			width: 100%;
