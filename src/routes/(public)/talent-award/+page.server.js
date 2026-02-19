@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit'
 
-export async function load({ params, fetch }) {
+export async function load({ fetch }) {
 	const res = await fetch(`https://fdnd-agency.directus.app/items/adconnect_nominations`)
 
 	const json = await res.json()

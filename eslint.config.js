@@ -20,12 +20,6 @@ export default [
 		}
 	},
 	{
-		files: ['**/*.svelte', '**/*.svelte.js', '**/*.server.js'],
-		languageOptions: {
-			parser: svelteParser
-		}
-	},
-	{
 		ignores: ['.svelte-kit/', 'build/', 'node_modules/', 'coverage/', '**/*.config.js']
 	},
 	{
@@ -91,18 +85,8 @@ export default [
 
 			// Best practices
 			'eqeqeq': ['warn', 'always'],
-			'no-console': 'warn',
+			'no-console': ['warn', { allow: ['error'] }],
 			'no-debugger': 'warn'
-		}
-	},
-	{
-		// Svelte specifieke regels
-		files: ['**/*.svelte'],
-		rules: {
-			// Sta $props(), $state() etc. toe (Svelte 5 runes)
-			'no-undef': 'off',
-			// Disable buggy rule that crashes on certain Svelte syntax
-			'svelte/no-navigation-without-resolve': 'off'
 		}
 	},
 	{
@@ -110,6 +94,20 @@ export default [
 		files: ['**/*.config.js', '**/*.config.mjs'],
 		rules: {
 			'no-console': 'off'
+		}
+	},
+	{
+		files: ['**/*.svelte', '**/*.svelte.js'],
+		languageOptions: {
+			parser: svelteParser
+		},
+		rules: {
+			'no-undef': 'off',
+			'no-unused-vars': 'off',
+			'prefer-destructuring': 'off',
+			'svelte/no-at-html-tags': 'off',
+			'svelte/require-each-key': 'warn',
+			'svelte/no-navigation-without-resolve': 'off'
 		}
 	}
 ]

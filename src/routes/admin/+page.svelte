@@ -1,6 +1,6 @@
 <script>
 	/** @type {{ data: { user: any } }} */
-	let { data } = $props()
+	const { data } = $props()
 	import dots from '$lib/assets/dots.svg'
 	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events } from '$lib'
 </script>

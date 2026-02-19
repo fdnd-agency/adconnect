@@ -31,6 +31,7 @@ export { default as InformationCards } from './organisms/InformationCards.svelte
 export { default as Schedule } from './organisms/schedule.svelte'
 export { default as FeatureSplit } from './organisms/FeatureSplit.svelte'
 export { default as Footer } from './organisms/Footer.svelte'
+export { default as News } from './organisms/News.svelte'
 
 // Templates
 export { default as Development } from './templates/DevelopmentTemplate.svelte'

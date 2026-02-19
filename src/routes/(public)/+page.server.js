@@ -1,9 +1,9 @@
-export async function load({ url }) {
+export async function load() {
 	// Data from Directus API
 	const baseUrl = 'https://fdnd-agency.directus.app/items/'
 	const fields = '?fields=title,description,date_updated,uuid,hero'
 	const cooperationEndpoint = 'adconnect_cooperation'
-	const fieldsCooperation = '?fields=url,name,logo'
+	const fieldsCooperation = '?fields=id,url,name,logo'
 
 	// Convert data to json
 	const newsResponse = await fetch(`${baseUrl}adconnect_news${fields}`)

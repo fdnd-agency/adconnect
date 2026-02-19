@@ -1,6 +1,6 @@
 <script>
 	/** @type {{ data: { user: any }, children: import('svelte').Snippet }} */
-	let { data, children } = $props()
+	const { data, children } = $props()
 	import { logo, logowhite } from '$lib'
 	import { page } from '$app/stores'
 </script>
@@ -228,7 +228,7 @@
 		}
 	}
 
-	h1{
+	h1 {
 		text-align: center;
 		color: var(--button-blue-text);
 	}
@@ -242,8 +242,6 @@
 			margin-bottom: 2rem;
 		}
 	}
-
-	
 
 	.container-header {
 		padding: 1em;
