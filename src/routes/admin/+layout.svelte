@@ -2,6 +2,7 @@
 	/** @type {{ data: { user: any }, children: import('svelte').Snippet }} */
 	let { data, children } = $props()
 	import { logo, logowhite } from '$lib'
+	import { page } from '$app/stores'
 </script>
 
 <header class="admin-header">
@@ -99,43 +100,50 @@
 					<li>
 						<a
 							href="/admin"
-							class="nav-link">Dashboard</a
+							class="nav-link"
+							class:active={$page.url.pathname === '/admin'}>Dashboard</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
-							class="nav-link">Thema's</a
+							href="/themas"
+							class="nav-link"
+							class:active={$page.url.pathname === '/themas'}>Thema's</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
-							class="nav-link">Events</a
+							href="/events"
+							class="nav-link"
+							class:active={$page.url.pathname === '/events'}>Events</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
-							class="nav-link">Documenten</a
+							href="/documenten"
+							class="nav-link"
+							class:active={$page.url.pathname === '/documenten'}>Documenten</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
-							class="nav-link">Nominaties</a
+							href="/nominaties"
+							class="nav-link"
+							class:active={$page.url.pathname === '/nominaties'}>Nominaties</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
-							class="nav-link">Nieuws</a
+							href="/nieuws"
+							class="nav-link"
+							class:active={$page.url.pathname === '/nieuws'}>Nieuws</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
-							class="nav-link">Samenwerken</a
+							href="/samenwerken"
+							class="nav-link"
+							class:active={$page.url.pathname === '/samenwerken'}>Samenwerken</a
 						>
 					</li>
 				</ul>
@@ -153,6 +161,39 @@
 </main>
 
 <style>
+	.nav-link {
+		position: relative;
+		text-decoration: none;
+		padding-bottom: 0.2em;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -2px;
+			height: 2px;
+			width: 0%;
+			background: currentColor;
+			transition: width 0.3s ease;
+		}
+
+		&:hover::after {
+			width: 100%;
+		}
+
+		&.active::after {
+			width: 100%;
+		}
+	}
+	.nav-link.active::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		height: 2px;
+		width: 100%;
+		background: currentColor;
+	}
 	.admin-header {
 		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 		width: 100%;
