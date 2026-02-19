@@ -1,267 +1,422 @@
 <script>
 	/** @type {{ data: { user: any }, children: import('svelte').Snippet }} */
 	let { data, children } = $props()
+	import { logo, logowhite } from '$lib'
+	import { page } from '$app/stores'
 </script>
 
-<div class="admin-layout">
-	<aside
-		class="sidebar"
-		class:sidebar-wide={!data.user}
-	>
-		<!-- Decorative blobs -->
-		<div class="sidebar-blob sidebar-blob-top"></div>
-		<div class="sidebar-blob sidebar-blob-bottom"></div>
+<header class="admin-header">
+	<nav class="admin-nav">
+		<div class="header-logo">
+			<a
+				class="logo-admin"
+				href="/admin"
+				aria-label="Home – AdConnect logo"
+			>
+				<picture>
+					<source
+						srcset={logowhite}
+						media="(prefers-color-scheme: dark)"
+					/>
+					<img
+						src={logo}
+						alt=""
+						loading="lazy"
+						width="200"
+						height="150"
+					/>
+				</picture>
+			</a>
+		</div>
 
-		<div class="sidebar-inner">
-			<!-- Logo -->
-			<div class="sidebar-logo">
-				<div class="logo-dots">
-					<div class="dot-row">
-						<span class="dot dot-sm"></span>
-						<span class="dot dot-sm"></span>
-						<span class="dot dot-sm"></span>
-						<span class="dot dot-sm dot-orange"></span>
-					</div>
-					<div class="dot-row">
-						<span class="dot dot-lg"></span>
-						<span class="dot dot-lg"></span>
-						<span class="dot dot-lg"></span>
-					</div>
-				</div>
-				<span class="logo-text">AdConnect</span>
-			</div>
-
+		<div class="container-header">
 			{#if data.user}
-				<!-- Logged in: show nav -->
-				<nav>
-					<a
-						href="/admin"
-						class="nav-link">Dashboard</a
-					>
-				</nav>
+				<details class="menu">
+					<summary aria-label="Menu openen">
+						<span></span>
+						<span></span>
+						<span></span>
+					</summary>
 
-				<!-- Footer with user info -->
-				<div class="sidebar-footer">
-					<div class="user-info">
-						<span class="user-email">{data.user?.email ?? ''}</span>
+					<div class="panel">
+						<ul class="mobile-links">
+							<li>
+								<a
+									href="/admin"
+									class="nav-link">Dashboard</a
+								>
+							</li>
+							<li>
+								<a
+									href=""
+									class="nav-link">Thema's</a
+								>
+							</li>
+							<li>
+								<a
+									href=""
+									class="nav-link">Events</a
+								>
+							</li>
+							<li>
+								<a
+									href=""
+									class="nav-link">Documenten</a
+								>
+							</li>
+							<li>
+								<a
+									href=""
+									class="nav-link">Nominaties</a
+								>
+							</li>
+							<li>
+								<a
+									href=""
+									class="nav-link">Nieuws</a
+								>
+							</li>
+							<li>
+								<a
+									href=""
+									class="nav-link">Samenwerken</a
+								>
+							</li>
+						</ul>
+
+						<div class="sidebar-footer">
+							<a
+								href="/admin/logout"
+								class="logout-btn"
+								data-sveltekit-reload
+							>
+								Uitloggen
+							</a>
+						</div>
 					</div>
-					<a
-						href="/admin/logout"
-						class="logout-btn"
-						data-sveltekit-reload>Uitloggen</a
-					>
-				</div>
+				</details>
+
+				<ul class="desktop-nav">
+					<li>
+						<a
+							href="/admin"
+							class="nav-link"
+							class:active={$page.url.pathname === '/admin'}>Dashboard</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
+							class="nav-link"
+							class:active={$page.url.pathname === '/themas'}>Thema's</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
+							class="nav-link"
+							class:active={$page.url.pathname === '/events'}>Events</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
+							class="nav-link"
+							class:active={$page.url.pathname === '/documenten'}>Documenten</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
+							class="nav-link"
+							class:active={$page.url.pathname === '/nominaties'}>Nominaties</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
+							class="nav-link"
+							class:active={$page.url.pathname === '/nieuws'}>Nieuws</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
+							class="nav-link"
+							class:active={$page.url.pathname === '/samenwerken'}>Samenwerken</a
+						>
+					</li>
+				</ul>
 			{:else}
-				<!-- Not logged in (login page): show welcome -->
 				<div class="welcome-section">
-					<h2 class="welcome-text">Welkom Terug!</h2>
+					<h1 class="welcome-text">Welkom Terug!</h1>
 				</div>
 			{/if}
 		</div>
-	</aside>
+	</nav>
+</header>
 
-	<main class="admin-content">
-		{@render children()}
-	</main>
-</div>
+<main class="admin-content">
+	{@render children()}
+</main>
 
 <style>
-	.admin-layout {
-		display: flex;
-		min-height: 100vh;
-		font-family: 'Archivo', sans-serif;
-	}
-
-	/* ===== Sidebar ===== */
-	.sidebar {
-		width: 220px;
-		background: var(--primary-blue, hsl(213, 100%, 28%));
-		color: #fff;
-		flex-shrink: 0;
+	.nav-link {
 		position: relative;
-		overflow: hidden;
-		transition: width 0.2s ease;
-	}
+		text-decoration: none;
+		padding-bottom: 0.2em;
 
-	.sidebar-wide {
-		width: 35%;
-		min-width: 320px;
-		max-width: 450px;
-	}
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -2px;
+			height: 2px;
+			width: 0%;
+			background: currentColor;
+			transition: width 0.3s ease;
+		}
 
-	.sidebar-inner {
-		position: relative;
-		z-index: 2;
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-		padding: 1.5rem 1.25rem;
-		box-sizing: border-box;
-	}
+		&:hover::after {
+			width: 100%;
+		}
 
-	/* Decorative blobs */
-	.sidebar-blob {
+		&.active::after {
+			width: 100%;
+		}
+	}
+	.nav-link.active::after {
+		content: '';
 		position: absolute;
-		border-radius: 50%;
-		background: hsla(213, 100%, 40%, 0.3);
-		z-index: 1;
+		left: 0;
+		bottom: 0;
+		height: 2px;
+		width: 100%;
+		background: currentColor;
 	}
-
-	.sidebar-blob-top {
-		width: 200px;
-		height: 200px;
-		top: -60px;
-		right: -70px;
-	}
-
-	.sidebar-blob-bottom {
-		width: 180px;
-		height: 180px;
-		bottom: -50px;
-		left: -60px;
-	}
-
-	/* Logo */
-	.sidebar-logo {
+	.admin-header {
+		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		width: 100%;
+		position: sticky;
+		top: 0;
+		z-index: 999;
 		display: flex;
-		flex-direction: column;
-		gap: 0.3rem;
-		margin-bottom: 1.5rem;
+		justify-content: center;
+
+		@media (min-width: 1000px) {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 260px;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		}
 	}
 
-	.logo-dots {
-		display: flex;
-		flex-direction: column;
-		gap: 0.2rem;
-	}
-
-	.dot-row {
-		display: flex;
-		gap: 0.25rem;
+	.admin-nav {
+		width: 100%;
 		align-items: center;
+		position: relative;
+
+		@media (min-width: 1000px) {
+			flex-direction: column;
+			align-items: flex-start;
+			height: 100%;
+		}
 	}
 
-	.dot {
-		border-radius: 50%;
-		background: #fff;
+	h1{
+		text-align: center;
+		color: var(--button-blue-text);
 	}
 
-	.dot-sm {
-		width: 8px;
-		height: 8px;
+	.header-logo {
+		background-color: var(--background);
+		padding: 1em;
+		@media (min-width: 1000px) {
+			width: 100%;
+			padding: 0;
+			margin-bottom: 2rem;
+		}
 	}
 
-	.dot-lg {
-		width: 14px;
-		height: 14px;
+	
+
+	.container-header {
+		padding: 1em;
+		align-self: center;
+
+		@media (min-width: 1000px) {
+			margin-bottom: auto;
+		}
 	}
 
-	.dot-orange {
-		background: var(--primary-orange, hsl(10, 80%, 55%));
+	.logo-admin img {
+		height: 3.5em;
+		width: auto;
+		display: flex;
+		justify-self: center;
+		@media (min-width: 1000px) {
+			margin: 1em;
+			display: unset;
+		}
 	}
 
-	.logo-text {
-		font-family: 'ClashDisplay', sans-serif;
-		font-size: 1rem;
-		font-weight: 600;
-		margin-top: 0.15rem;
+	summary {
+		display: inline-block;
+		cursor: pointer;
+		list-style: none;
 	}
 
-	/* Navigation */
-	nav {
+	summary span {
+		display: block;
+		width: 28px;
+		height: 3px;
+		margin: 6px 0;
+		background-color: var(--background);
+		border-radius: 2px;
+		transform-origin: center;
+		transition: all 0.3s ease;
+	}
+
+	.menu {
+		display: block;
+		position: relative;
+		display: flex;
+		justify-content: end;
+		@media (min-width: 1000px) {
+			display: none;
+		}
+	}
+
+	.menu::before {
+		content: '';
+		display: block;
+		position: fixed;
+		inset: 0;
+		z-index: 999;
+		background-color: rgba(0, 0, 0, 0);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.3s ease;
+	}
+
+	.menu[open]::before {
+		background: rgba(0, 0, 0, 0.25);
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.panel {
+		position: fixed;
+		inset: 0;
+		z-index: 1000;
+		width: 100vw;
+		height: 100vh;
+		background-color: var(--background);
 		display: flex;
 		flex-direction: column;
-		gap: 0.15rem;
-		flex: 1;
+		justify-content: space-between;
+		box-sizing: border-box;
+		transform: translateX(100%);
+		transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+	}
+
+	.menu[open] .panel {
+		transform: translateX(0);
+		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+	}
+
+	.menu[open] summary {
+		position: fixed;
+		top: 1em;
+		right: 1em;
+		z-index: 1001;
+		padding: 0.5em;
+	}
+
+	.menu[open] summary span:nth-child(1) {
+		transform: translateY(9px) rotate(45deg);
+	}
+	.menu[open] summary span:nth-child(2) {
+		transform: scaleX(0);
+		opacity: 0;
+	}
+	.menu[open] summary span:nth-child(3) {
+		transform: translateY(-9px) rotate(-45deg);
+	}
+
+	.mobile-links {
+		list-style: none;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		padding: 5em 1em;
 	}
 
 	.nav-link {
-		color: rgba(255, 255, 255, 0.9);
+		display: block;
 		text-decoration: none;
-		padding: 0.55rem 0.75rem;
-		border-radius: 6px;
-		font-size: 0.9rem;
-		font-weight: 500;
-		transition:
-			background 0.15s,
-			color 0.15s;
+		font-weight: 600;
+		font-size: 1.2em;
+		color: var(--background);
+		padding: 0.5em 1em;
 	}
 
-	.nav-link:hover {
-		background: hsla(0, 0%, 100%, 0.12);
-		color: #fff;
-	}
-
-	/* Footer */
 	.sidebar-footer {
-		border-top: 1px solid hsla(0, 0%, 100%, 0.15);
-		padding-top: 1rem;
-		margin-top: 0.5rem;
-	}
-
-	.user-info {
-		margin-bottom: 0.5rem;
-	}
-
-	.user-email {
-		font-size: 0.8rem;
-		color: rgba(255, 255, 255, 0.7);
+		padding: 1em;
+		font-size: 1.2em;
 	}
 
 	.logout-btn {
-		display: block;
-		text-align: center;
-		color: rgba(255, 255, 255, 0.8);
+		display: inline-block;
 		text-decoration: none;
-		font-size: 0.8rem;
-		padding: 0.45rem 0.75rem;
-		border-radius: 6px;
-		border: 1px solid hsla(0, 0%, 100%, 0.2);
-		transition:
-			background 0.15s,
-			color 0.15s;
-	}
-
-	.logout-btn:hover {
-		background: hsla(0, 0%, 100%, 0.1);
-		color: #fff;
-	}
-
-	/* Welcome (login page) */
-	.welcome-section {
-		flex: 1;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.welcome-text {
-		font-family: 'ClashDisplay', sans-serif;
-		font-size: 1.75rem;
 		font-weight: 600;
-		color: #fff;
+		padding: 1em;
+		border-radius: var(--button-blue-radius);
+		border: 2px solid currentColor;
+		color: var(--background);
+		@media (min-width: 1000px) {
+			margin-top: auto;
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.desktop-nav {
+		display: none;
+		list-style: none;
+		gap: 1em;
+		align-items: center;
 		margin: 0;
+		padding: 0;
+
+		@media (min-width: 1000px) {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1em;
+			width: 100%;
+		}
 	}
 
-	/* ===== Content ===== */
-	.admin-content {
-		flex: 1;
-		background: #f0f2f8;
-		overflow-y: auto;
+	@media (min-width: 1000px) {
+		.desktop-nav .nav-link {
+			color: var(--background);
+			font-size: 1.2em;
+			width: 100%;
+			display: block;
+		}
 	}
 
-	/* ===== Responsive ===== */
-	@media (max-width: 768px) {
-		.sidebar {
-			width: 180px;
-		}
-
-		.welcome-text {
-			font-size: 1.35rem;
-		}
-
+	@media (min-width: 1000px) {
 		.admin-content {
-			padding: 1.5rem 1rem;
+			margin-left: 260px;
+			padding: 2em;
 		}
 	}
 </style>
