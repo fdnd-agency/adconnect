@@ -1,6 +1,6 @@
 <script>
 	/** @type {{ data: { user: any } }} */
-	let { data } = $props()
+	const { data } = $props()
 </script>
 
 <svelte:head>

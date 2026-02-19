@@ -61,7 +61,7 @@
 			Alle publicaties</a
 		>
 
-		{#each categories as categorie}
+		{#each categories as categorie (categorie.id)}
 			<a
 				href={`?category=${categorie.title.toLowerCase()}`}
 				class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}">{categorie.title}</a
@@ -77,7 +77,7 @@
 	</div>
 	<div class="documents-container">
 		<ul>
-			{#each documents as document}
+			{#each documents as document (document.id)}
 				<li><DocumentCard {document} /></li>
 			{/each}
 		</ul>

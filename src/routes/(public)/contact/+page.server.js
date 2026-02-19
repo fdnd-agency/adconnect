@@ -25,8 +25,6 @@ export const actions = {
 		const email = formData.get('email')
 		const message = formData.get('message')
 
-		console.log('Check data submitted', { name, email, message })
-
 		// Check if there is an correct email
 		if (!regex.test(email)) {
 			return fail(400, { error: 'Ongeldig e-mailadres.' })
@@ -41,8 +39,8 @@ export const actions = {
 				text: `Naam: ${name}\nEmail: ${email}\nBericht: ${message}`
 			})
 
-			// Retrieve data in API Directus
-			const directusResponse = await fetch(contactAPI, {
+			// Post data to API Directus
+			await fetch(contactAPI, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json;charset=UTF-8'

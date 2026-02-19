@@ -1,6 +1,6 @@
 <script>
 	/** @type {{ data: { user: any }, children: import('svelte').Snippet }} */
-	let { data, children } = $props()
+	const { data, children } = $props()
 </script>
 
 <div class="admin-layout">

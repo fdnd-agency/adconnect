@@ -1,4 +1,4 @@
-export async function load({ url }) {
+export async function load({ url: _url }) {
 	// Data from Directus API
 	const baseUrl = 'https://fdnd-agency.directus.app/items/'
 	const themesEndpoint = 'adconnect_themes'

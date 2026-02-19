@@ -2,7 +2,7 @@
 	import bird from '$lib/assets/vector-bird.jpg'
 
 	/** @type {{ form: import('./$types').ActionData }} */
-	let { form } = $props()
+	const { form } = $props()
 </script>
 
 <svelte:head>

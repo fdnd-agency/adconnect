@@ -2,7 +2,7 @@
   import placeholder from '$lib/assets/placeholder-hero.webp'
 
   // Import components
-  import { MultipleFaq, SingleFaq, NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from "$lib";
+  import { MultipleFaq, SingleFaq, NavPros, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from '$lib'
 
   // Import images
   import { zaal } from '$lib'
