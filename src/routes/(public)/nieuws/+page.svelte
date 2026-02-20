@@ -34,7 +34,7 @@
 
 		<section class="news-container">
 			<ul>
-				{#each data.latest3 as item (item.id)}
+				{#each data.latest3 as item (item.uuid)}
 					<li>
 						<article>
 							<section class="date">
@@ -67,7 +67,7 @@
 
 	<section class="news-container">
 		<ul>
-			{#each data.latest9 as item (item.id)}
+			{#each data.latest9 as item (item.uuid)}
 				<li>
 					<article>
 						<section class="date">

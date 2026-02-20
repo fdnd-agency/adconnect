@@ -3,8 +3,8 @@ export async function load({ url: _url }) {
 	const baseUrl = 'https://fdnd-agency.directus.app/items/'
 	const themesEndpoint = 'adconnect_themes'
 	const cooperationEndpoint = 'adconnect_cooperation'
-	const fieldsThemes = '?fields=title,description,hero,slug'
-	const fieldsCooperation = '?fields=url,name,logo'
+	const fieldsThemes = '?fields=id,title,description,hero,slug'
+	const fieldsCooperation = '?fields=id,url,name,logo'
 
 	// Convert themes data to json
 	const themesResponse = await fetch(baseUrl + themesEndpoint + fieldsThemes)
