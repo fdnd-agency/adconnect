@@ -1,12 +1,13 @@
 import { Resend } from 'resend'
 import { RESEND_API_KEY } from '$env/static/private'
 import { fail } from '@sveltejs/kit'
+import { DIRECTUS_URL } from '$lib/server/directus.js'
 
 // Connecting the API KEY to the variable resend
 const resend = new Resend(RESEND_API_KEY)
 
 // API link with contact data is retrieved
-const contactAPI = 'https://fdnd-agency.directus.app/items/adconnect_contact'
+const contactAPI = `${DIRECTUS_URL}/items/adconnect_contact`
 
 // Email validation regex
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/

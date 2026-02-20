@@ -1,4 +1,5 @@
 <script>
+	import { DIRECTUS_URL } from '$lib/constants.js'
 	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
 	// Import images
@@ -28,7 +29,7 @@
 			Terug
 		</a>
 		<img
-			src={`https://fdnd-agency.directus.app/assets/${item.hero}`}
+			src={`${DIRECTUS_URL}/assets/${item.hero}`}
 			alt={item.title}
 		/>
 	</Hero>
