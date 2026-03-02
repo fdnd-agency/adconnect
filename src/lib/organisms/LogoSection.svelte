@@ -1,5 +1,6 @@
 <script>
 	export let cooperation
+	import { DIRECTUS_URL } from '$lib/constants.js'
 </script>
 
 <div class="carousel">
@@ -13,11 +14,11 @@
 					<img
 						width="200"
 						height="100"
-						src={`https://fdnd-agency.directus.app/assets/${logo.logo}?width=800`}
+						src={`${DIRECTUS_URL}/assets/${logo.logo}?width=800`}
 						srcset="
-                        https://fdnd-agency.directus.app/assets/{logo.logo}?width=200 200w,
-                        https://fdnd-agency.directus.app/assets/{logo.logo}?width=400 400w,
-                        https://fdnd-agency.directus.app/assets/{logo.logo}?width=800 800w
+                        {DIRECTUS_URL}/assets/{logo.logo}?width=200 200w,
+                        {DIRECTUS_URL}/assets/{logo.logo}?width=400 400w,
+                        {DIRECTUS_URL}/assets/{logo.logo}?width=800 800w
                     "
 						sizes="(max-width: 600px) 200px, 247px"
 						alt={logo.name}

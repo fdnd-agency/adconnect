@@ -1,5 +1,7 @@
+import { DIRECTUS_URL } from '$lib/server/directus.js'
+
 export async function load({ fetch }) {
-	const res = await fetch('https://fdnd-agency.directus.app/items/adconnect_news')
+	const res = await fetch(`${DIRECTUS_URL}/items/adconnect_news`)
 
 	const json = await res.json()
 

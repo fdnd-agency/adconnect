@@ -1,4 +1,5 @@
 import adapter from '@sveltejs/adapter-auto'
+import { DIRECTUS_URL } from './src/lib/constants.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,10 +14,10 @@ const config = {
 				'default-src': ['self'],
 				'script-src': ['self'],
 				'style-src': ['self', 'unsafe-inline'], // Required for Svelte transitions
-				'img-src': ['self', 'data:', 'https://fdnd-agency.directus.app'],
+				'img-src': ['self', 'data:', DIRECTUS_URL],
 				'font-src': ['self'],
-				'connect-src': ['self', 'https://fdnd-agency.directus.app'],
-				'frame-src': ['self', 'https://fdnd-agency.directus.app'], // PDF viewer iframes in publicaties
+				'connect-src': ['self', DIRECTUS_URL],
+				'frame-src': ['self', DIRECTUS_URL], // PDF viewer iframes in publicaties
 				'object-src': ['none'],
 				'base-uri': ['self'],
 				'form-action': ['self']

@@ -1,1 +1,1 @@
-export const DIRECTUS_URL = 'https://fdnd-agency.directus.app'
+export { DIRECTUS_URL } from '$lib/constants.js'

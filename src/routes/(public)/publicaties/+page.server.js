@@ -1,6 +1,8 @@
+import { DIRECTUS_URL } from '$lib/server/directus.js'
+
 export async function load({ url }) {
 	// Data from Directus API
-	const baseUrl = 'https://fdnd-agency.directus.app/items/'
+	const baseUrl = `${DIRECTUS_URL}/items/`
 	const documentsEndpoint = 'adconnect_documents'
 	const fields = '?fields=title,id,description,slug,hero_image,source_file,category.*,date'
 

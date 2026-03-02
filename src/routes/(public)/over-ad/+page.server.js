@@ -1,6 +1,8 @@
+import { DIRECTUS_URL } from '$lib/server/directus.js'
+
 export async function load({ url: _url }) {
 	// Data from Directus API
-	const baseUrl = 'https://fdnd-agency.directus.app/items/'
+	const baseUrl = `${DIRECTUS_URL}/items/`
 	const themesEndpoint = 'adconnect_themes'
 	const cooperationEndpoint = 'adconnect_cooperation'
 	const fieldsThemes = '?fields=id,title,description,hero,slug'
