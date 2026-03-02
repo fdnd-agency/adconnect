@@ -195,7 +195,7 @@
 		background: currentColor;
 	}
 	.admin-header {
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 		width: 100%;
 		position: sticky;
 		top: 0;
@@ -212,7 +212,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-start;
-			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 		}
 	}
 
@@ -230,7 +230,6 @@
 
 	h1 {
 		text-align: center;
-		color: var(--button-blue-text);
 	}
 
 	.header-logo {
@@ -274,7 +273,7 @@
 		width: 28px;
 		height: 3px;
 		margin: 6px 0;
-		background-color: var(--background);
+		background-color: light-dark(var(--blue-800), var(--text-white));
 		border-radius: 2px;
 		transform-origin: center;
 		transition: all 0.3s ease;
@@ -325,7 +324,7 @@
 
 	.menu[open] .panel {
 		transform: translateX(0);
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 	}
 
 	.menu[open] summary {
@@ -361,7 +360,7 @@
 		text-decoration: none;
 		font-weight: 600;
 		font-size: 1.2em;
-		color: var(--background);
+		color: light-dark(var(--blue-800), var(--text-white));
 		padding: 0.5em 1em;
 	}
 
@@ -377,7 +376,7 @@
 		padding: 1em;
 		border-radius: var(--button-blue-radius);
 		border: 2px solid currentColor;
-		color: var(--background);
+		color: light-dark(var(--blue-800), var(--text-white));
 		@media (min-width: 1000px) {
 			margin-top: auto;
 			width: 100%;
@@ -404,7 +403,7 @@
 
 	@media (min-width: 1000px) {
 		.desktop-nav .nav-link {
-			color: var(--background);
+			color: light-dark(var(--blue-800), var(--text-white));
 			font-size: 1.2em;
 			width: 100%;
 			display: block;
