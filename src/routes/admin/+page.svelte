@@ -213,6 +213,7 @@
 		flex-direction: column;
 		justify-self: center;
 		align-items: center;
+		margin: 1em;
 		gap: 1em;
 		padding: 0em;
 		font-family: var(--font-body);
@@ -231,21 +232,6 @@
 		@media (min-width: 900px) {
 			display: flex;
 			flex-direction: row;
-			justify-content: unset;
-			justify-items: unset;
-		}
-
-		@media (min-width: 1000px) {
-			display: grid;
-			grid-template-columns: max-content max-content max-content;
-			justify-content: center;
-			justify-items: center;
-		}
-
-		@media (min-width: 1200px) {
-			display: flex;
-			flex-direction: row;
-			justify-content: unset;
 			justify-items: unset;
 		}
 	}
