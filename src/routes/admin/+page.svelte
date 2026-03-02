@@ -2,7 +2,10 @@
 	/** @type {{ data: { user: any } }} */
 	const { data } = $props()
 	import dots from '$lib/assets/dots.svg'
-	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events } from '$lib'
+	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question } from '$lib'
+	import { DIRECTUS_URL } from '$lib/constants.js'
+
+	const directusBase = `${DIRECTUS_URL}/admin/content`
 </script>
 
 <svelte:head>
@@ -58,12 +61,13 @@
 </div>
 
 <ul class="container-info-list">
-	<li class="info-list">Thema's:0</li>
-	<li class="info-list">Events:0</li>
-	<li class="info-list">Documenten:0</li>
-	<li class="info-list">Nominaties:0</li>
-	<li class="info-list">Nieuws:0</li>
-	<li class="info-list">Samenwerken:0</li>
+	<li class="info-list">Thema's: {data.themes.size}</li>
+	<li class="info-list">Events: {data.events.size}</li>
+	<li class="info-list">Documenten: {data.documents.size}</li>
+	<li class="info-list">Nominaties: {data.nominations.size}</li>
+	<li class="info-list">Nieuws: {data.news.size}</li>
+	<li class="info-list">Samenwerkingen: {data.cooperations.size}</li>
+	<li class="info-list">FAQ's: {data.faqs.size}</li>
 </ul>
 
 <ul class="item-list">
@@ -76,7 +80,10 @@
 			width="90px"
 		/>
 		<p>Thema's</p>
-		<button class="button-outline-white">+Toevoegen</button>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_themes/+">+Toevoegen</a
+		>
 	</li>
 	<li class="item-card">
 		<img
@@ -87,7 +94,10 @@
 			width="90px"
 		/>
 		<p>Events</p>
-		<button class="button-outline-white">+Toevoegen</button>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_events/+">+Toevoegen</a
+		>
 	</li>
 	<li class="item-card">
 		<img
@@ -98,7 +108,10 @@
 			width="90px"
 		/>
 		<p>Documenten</p>
-		<button class="button-outline-white">+Toevoegen</button>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_documents/+">+Toevoegen</a
+		>
 	</li>
 	<li class="item-card">
 		<img
@@ -109,7 +122,10 @@
 			width="90px"
 		/>
 		<p>Nominaties</p>
-		<button class="button-outline-white">+Toevoegen</button>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_nominations/+">+Toevoegen</a
+		>
 	</li>
 	<li class="item-card">
 		<img
@@ -120,7 +136,10 @@
 			width="90px"
 		/>
 		<p>Nieuws</p>
-		<button class="button-outline-white">+Toevoegen</button>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_news/+">+Toevoegen</a
+		>
 	</li>
 	<li class="item-card">
 		<img
@@ -130,8 +149,25 @@
 			height="50px"
 			width="90px"
 		/>
-		<p>Samenwerken</p>
-		<button class="button-outline-white">+Toevoegen</button>
+		<p>Samenwerkingen</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_collaborations/+">+Toevoegen</a
+		>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={Question}
+			alt=""
+			height="50px"
+			width="90px"
+		/>
+		<p>FAQ's</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_faqs/+">+Toevoegen</a
+		>
 	</li>
 </ul>
 

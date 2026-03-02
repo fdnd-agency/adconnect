@@ -79,7 +79,13 @@
 							<li>
 								<a
 									href=""
-									class="nav-link">Samenwerken</a
+									class="nav-link">Samenwerkingen</a
+								>
+							</li>
+							<li>
+								<a
+									href=""
+									class="nav-link">FAQ's</a
 								>
 							</li>
 						</ul>
@@ -143,7 +149,14 @@
 						<a
 							href=""
 							class="nav-link"
-							class:active={$page.url.pathname === '/samenwerken'}>Samenwerken</a
+							class:active={$page.url.pathname === '/samenwerken'}>Samenwerkingen</a
+						>
+					</li>
+					<li>
+						<a
+							href=""
+							class="nav-link"
+							class:active={$page.url.pathname === '/faqs'}>FAQ's</a
 						>
 					</li>
 				</ul>
