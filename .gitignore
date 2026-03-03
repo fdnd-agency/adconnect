@@ -137,10 +137,3 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-
-# Resend mail
-.env
-
-# Playwright
-test-results/
-playwright-report/
