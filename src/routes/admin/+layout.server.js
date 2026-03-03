@@ -6,18 +6,24 @@ export async function load({ locals, url, cookies }) {
 		throw redirect(303, '/admin/login')
 	}
 
-	const accessToken = cookies.get('access_token')
-
-	await ContentService.fetchContent(accessToken)
+	// Retrieves content from Directus API through the ContentService.
+	const content = await ContentService.fetchContent(cookies.get('access_token'))
 
 	return {
 		user: locals.user?.data ?? null,
-		documents: ContentService.documents,
-		themes: ContentService.themes,
-		events: ContentService.events,
-		cooperations: ContentService.cooperations,
-		news: ContentService.news,
-		nominations: ContentService.nominations,
-		faqs: ContentService.faqs
+		documents: [...content.documents.values()],
+		documentCount: content.documents.size,
+		themes: [...content.themes.values()],
+		themeCount: content.themes.size,
+		events: [...content.events.values()],
+		eventCount: content.events.size,
+		cooperations: [...content.cooperations.values()],
+		cooperationCount: content.cooperations.size,
+		news: [...content.news.values()],
+		newsCount: content.news.size,
+		nominations: [...content.nominations.values()],
+		nominationCount: content.nominations.size,
+		faqs: [...content.faqs.values()],
+		faqCount: content.faqs.size
 	}
 }

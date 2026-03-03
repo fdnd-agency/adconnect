@@ -61,13 +61,13 @@
 </div>
 
 <ul class="container-info-list">
-	<li class="info-list">Thema's: {data.themes.size}</li>
-	<li class="info-list">Events: {data.events.size}</li>
-	<li class="info-list">Documenten: {data.documents.size}</li>
-	<li class="info-list">Nominaties: {data.nominations.size}</li>
-	<li class="info-list">Nieuws: {data.news.size}</li>
-	<li class="info-list">Samenwerkingen: {data.cooperations.size}</li>
-	<li class="info-list">FAQ's: {data.faqs.size}</li>
+	<li class="info-list">Thema's: {data.themeCount}</li>
+	<li class="info-list">Events: {data.eventCount}</li>
+	<li class="info-list">Documenten: {data.documentCount}</li>
+	<li class="info-list">Nominaties: {data.nominationCount}</li>
+	<li class="info-list">Nieuws: {data.newsCount}</li>
+	<li class="info-list">Samenwerkingen: {data.cooperationCount}</li>
+	<li class="info-list">FAQ's: {data.faqCount}</li>
 </ul>
 
 <ul class="item-list">
