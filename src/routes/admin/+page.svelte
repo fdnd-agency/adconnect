@@ -82,6 +82,7 @@
 		<p>Thema's</p>
 		<a
 			class="button-outline-white"
+			target="_blank"
 			href="{directusBase}/adconnect_themes/+">+Toevoegen</a
 		>
 	</li>
@@ -96,6 +97,7 @@
 		<p>Events</p>
 		<a
 			class="button-outline-white"
+			target="_blank"
 			href="{directusBase}/adconnect_events/+">+Toevoegen</a
 		>
 	</li>
@@ -110,6 +112,7 @@
 		<p>Documenten</p>
 		<a
 			class="button-outline-white"
+			target="_blank"
 			href="{directusBase}/adconnect_documents/+">+Toevoegen</a
 		>
 	</li>
@@ -124,6 +127,7 @@
 		<p>Nominaties</p>
 		<a
 			class="button-outline-white"
+			target="_blank"
 			href="{directusBase}/adconnect_nominations/+">+Toevoegen</a
 		>
 	</li>
@@ -138,6 +142,7 @@
 		<p>Nieuws</p>
 		<a
 			class="button-outline-white"
+			target="_blank"
 			href="{directusBase}/adconnect_news/+">+Toevoegen</a
 		>
 	</li>
@@ -152,6 +157,7 @@
 		<p>Samenwerkingen</p>
 		<a
 			class="button-outline-white"
+			target="_blank"
 			href="{directusBase}/adconnect_collaborations/+">+Toevoegen</a
 		>
 	</li>
@@ -166,6 +172,7 @@
 		<p>FAQ's</p>
 		<a
 			class="button-outline-white"
+			target="_blank"
 			href="{directusBase}/adconnect_faqs/+">+Toevoegen</a
 		>
 	</li>

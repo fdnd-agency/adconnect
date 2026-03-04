@@ -48,43 +48,43 @@
 							</li>
 							<li>
 								<a
-									href=""
+									href="/admin/themes"
 									class="nav-link">Thema's</a
 								>
 							</li>
 							<li>
 								<a
-									href=""
+									href="/admin/events"
 									class="nav-link">Events</a
 								>
 							</li>
 							<li>
 								<a
-									href=""
+									href="/admin/documents"
 									class="nav-link">Documenten</a
 								>
 							</li>
 							<li>
 								<a
-									href=""
+									href="/admin/nominations"
 									class="nav-link">Nominaties</a
 								>
 							</li>
 							<li>
 								<a
-									href=""
+									href="/admin/news"
 									class="nav-link">Nieuws</a
 								>
 							</li>
 							<li>
 								<a
-									href=""
+									href="/admin/cooperations"
 									class="nav-link">Samenwerkingen</a
 								>
 							</li>
 							<li>
 								<a
-									href=""
+									href="/admin/faqs"
 									class="nav-link">FAQ's</a
 								>
 							</li>
@@ -112,51 +112,51 @@
 					</li>
 					<li>
 						<a
-							href=""
+							href="/admin/themes"
 							class="nav-link"
-							class:active={$page.url.pathname === '/themas'}>Thema's</a
+							class:active={$page.url.pathname === '/admin/themes'}>Thema's</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
+							href="/admin/events"
 							class="nav-link"
-							class:active={$page.url.pathname === '/events'}>Events</a
+							class:active={$page.url.pathname === '/admin/events'}>Events</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
+							href="/admin/documents"
 							class="nav-link"
-							class:active={$page.url.pathname === '/documenten'}>Documenten</a
+							class:active={$page.url.pathname === '/admin/documents'}>Documenten</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
+							href="/admin/nominations"
 							class="nav-link"
-							class:active={$page.url.pathname === '/nominaties'}>Nominaties</a
+							class:active={$page.url.pathname === '/admin/nominations'}>Nominaties</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
+							href="/admin/news"
 							class="nav-link"
-							class:active={$page.url.pathname === '/nieuws'}>Nieuws</a
+							class:active={$page.url.pathname === '/admin/news'}>Nieuws</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
+							href="/admin/cooperations"
 							class="nav-link"
-							class:active={$page.url.pathname === '/samenwerken'}>Samenwerkingen</a
+							class:active={$page.url.pathname === '/admin/cooperations'}>Samenwerkingen</a
 						>
 					</li>
 					<li>
 						<a
-							href=""
+							href="/admin/faqs"
 							class="nav-link"
-							class:active={$page.url.pathname === '/faqs'}>FAQ's</a
+							class:active={$page.url.pathname === '/admin/faqs'}>FAQ's</a
 						>
 					</li>
 				</ul>
