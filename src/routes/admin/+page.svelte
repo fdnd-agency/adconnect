@@ -2,7 +2,10 @@
 	/** @type {{ data: { user: any } }} */
 	const { data } = $props()
 	import dots from '$lib/assets/dots.svg'
-	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events } from '$lib'
+	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question } from '$lib'
+	import { DIRECTUS_URL } from '$lib/constants.js'
+
+	const directusBase = `${DIRECTUS_URL}/admin/content`
 </script>
 
 <svelte:head>
@@ -59,83 +62,115 @@
 
 <div class="items-wrapper">
 	<ul class="container-info-list">
-		<li class="info-list">Thema's:0</li>
-		<li class="info-list">Events:0</li>
-		<li class="info-list">Documenten:0</li>
-		<li class="info-list">Nominaties:0</li>
-		<li class="info-list">Nieuws:0</li>
-		<li class="info-list">Samenwerken:0</li>
+		<li class="info-list">Thema's: {data.themeCount}</li>
+		<li class="info-list">Events: {data.eventCount}</li>
+		<li class="info-list">Documenten: {data.documentCount}</li>
+		<li class="info-list">Nominaties: {data.nominationCount}</li>
+		<li class="info-list">Nieuws: {data.newsCount}</li>
+		<li class="info-list">Samenwerkingen: {data.cooperationCount}</li>
+	<li class="info-list">FAQ's: {data.faqCount}</li>
 	</ul>
 
-	<ul class="item-list">
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={GraduationHat}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Thema's</p>
-			<button class="button-outline-white">+</button>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={Events}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Events</p>
-			<button class="button-outline-white">+</button>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={Document}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Documenten</p>
-			<button class="button-outline-white">+</button>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={CupStar}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Nominaties</p>
-			<button class="button-outline-white">+</button>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={NewsPaper}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Nieuws</p>
-			<button class="button-outline-white">+</button>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={Collaborate}
-				alt=""
-				height="50px"
-				width="90px"
-			/>
-			<p>Samenwerken</p>
-			<button class="button-outline-white">+</button>
-		</li>
-	</ul>
-</div>
+<ul class="item-list">
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={GraduationHat}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Thema's</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_themes/+">+Toevoegen</a
+		>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={Events}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Events</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_events/+">+Toevoegen</a
+		>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={Document}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Documenten</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_documents/+">+Toevoegen</a
+		>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={CupStar}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Nominaties</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_nominations/+">+Toevoegen</a
+		>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={NewsPaper}
+			alt=""
+			height="60px"
+			width="90px"
+		/>
+		<p>Nieuws</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_news/+">+Toevoegen</a
+		>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={Collaborate}
+			alt=""
+			height="50px"
+			width="90px"
+		/>
+		<p>Samenwerkingen</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_collaborations/+">+Toevoegen</a
+		>
+	</li>
+	<li class="item-card">
+		<img
+			class="item-img"
+			src={Question}
+			alt=""
+			height="50px"
+			width="90px"
+		/>
+		<p>FAQ's</p>
+		<a
+			class="button-outline-white"
+			href="{directusBase}/adconnect_faqs/+">+Toevoegen</a
+		>
+	</li>
+</ul>
 
 <style>
 	@media (max-width: 999px) {
