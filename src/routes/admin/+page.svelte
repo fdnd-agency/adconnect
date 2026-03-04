@@ -68,109 +68,110 @@
 		<li class="info-list">Nominaties: {data.nominationCount}</li>
 		<li class="info-list">Nieuws: {data.newsCount}</li>
 		<li class="info-list">Samenwerkingen: {data.cooperationCount}</li>
-	<li class="info-list">FAQ's: {data.faqCount}</li>
+		<li class="info-list">FAQ's: {data.faqCount}</li>
 	</ul>
 
-<ul class="item-list">
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={GraduationHat}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Thema's</p>
-		<a
-			class="button-outline-white"
-			href="{directusBase}/adconnect_themes/+">+Toevoegen</a
-		>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={Events}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Events</p>
-		<a
-			class="button-outline-white"
-			href="{directusBase}/adconnect_events/+">+Toevoegen</a
-		>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={Document}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Documenten</p>
-		<a
-			class="button-outline-white"
-			href="{directusBase}/adconnect_documents/+">+Toevoegen</a
-		>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={CupStar}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Nominaties</p>
-		<a
-			class="button-outline-white"
-			href="{directusBase}/adconnect_nominations/+">+Toevoegen</a
-		>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={NewsPaper}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Nieuws</p>
-		<a
-			class="button-outline-white"
-			href="{directusBase}/adconnect_news/+">+Toevoegen</a
-		>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={Collaborate}
-			alt=""
-			height="50px"
-			width="90px"
-		/>
-		<p>Samenwerkingen</p>
-		<a
-			class="button-outline-white"
-			href="{directusBase}/adconnect_collaborations/+">+Toevoegen</a
-		>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={Question}
-			alt=""
-			height="50px"
-			width="90px"
-		/>
-		<p>FAQ's</p>
-		<a
-			class="button-outline-white"
-			href="{directusBase}/adconnect_faqs/+">+Toevoegen</a
-		>
-	</li>
-</ul>
+	<ul class="item-list">
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={GraduationHat}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Thema's</p>
+			<a
+				class="button-outline-white"
+				href="{directusBase}/adconnect_themes/+">+</a
+			>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={Events}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Events</p>
+			<a
+				class="button-outline-white"
+				href="{directusBase}/adconnect_events/+">+</a
+			>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={Document}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Documenten</p>
+			<a
+				class="button-outline-white"
+				href="{directusBase}/adconnect_documents/+">+</a
+			>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={CupStar}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Nominaties</p>
+			<a
+				class="button-outline-white"
+				href="{directusBase}/adconnect_nominations/+">+</a
+			>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={NewsPaper}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Nieuws</p>
+			<a
+				class="button-outline-white"
+				href="{directusBase}/adconnect_news/+">+</a
+			>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={Collaborate}
+				alt=""
+				height="50px"
+				width="90px"
+			/>
+			<p>Samenwerkingen</p>
+			<a
+				class="button-outline-white"
+				href="{directusBase}/adconnect_collaborations/+">+</a
+			>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={Question}
+				alt=""
+				height="50px"
+				width="90px"
+			/>
+			<p>FAQ's</p>
+			<a
+				class="button-outline-white"
+				href="{directusBase}/adconnect_faqs/+">+</a
+			>
+		</li>
+	</ul>
+</div>
 
 <style>
 	@media (max-width: 999px) {
@@ -272,10 +273,6 @@
 		@media (min-width: 768px) {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
-
-		@media (min-width: 1250px) {
-			grid-template-columns: repeat(6, minmax(0, 1fr));
-		}
 	}
 
 	.container-info-list {
@@ -290,7 +287,7 @@
 
 	.info-list {
 		background-color: var(--background);
-		padding: 1em;
+		padding: 1em 0.75em;
 		border: var(--button-outline-border);
 		border-radius: var(--button-outline-radius);
 		list-style: none;
@@ -299,6 +296,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		font-size: clamp(0.65rem, 1.2vw, 1rem);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.item-list {
@@ -313,7 +314,7 @@
 
 	.item-card {
 		background-color: var(--background);
-		padding: 1.5em;
+		padding: 1em;
 		border: var(--button-outline-border);
 		border-radius: var(--button-outline-radius);
 		text-align: center;
@@ -326,7 +327,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.75em;
 		justify-content: space-between;
 	}
 
@@ -335,7 +335,8 @@
 	}
 
 	.item-card :global(.button-outline-white) {
-		width: 50%;
+		width: 25%;
+		height: 0;
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
