@@ -208,7 +208,7 @@
 		background: currentColor;
 	}
 	.admin-header {
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 		width: 100%;
 		position: sticky;
 		top: 0;
@@ -225,7 +225,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-start;
-			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 		}
 	}
 
@@ -337,7 +337,7 @@
 
 	.menu[open] .panel {
 		transform: translateX(0);
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 	}
 
 	.menu[open] summary {
