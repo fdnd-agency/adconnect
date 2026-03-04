@@ -57,83 +57,85 @@
 	</div>
 </div>
 
-<ul class="container-info-list">
-	<li class="info-list">Thema's:0</li>
-	<li class="info-list">Events:0</li>
-	<li class="info-list">Documenten:0</li>
-	<li class="info-list">Nominaties:0</li>
-	<li class="info-list">Nieuws:0</li>
-	<li class="info-list">Samenwerken:0</li>
-</ul>
+<div class="items-wrapper">
+	<ul class="container-info-list">
+		<li class="info-list">Thema's:0</li>
+		<li class="info-list">Events:0</li>
+		<li class="info-list">Documenten:0</li>
+		<li class="info-list">Nominaties:0</li>
+		<li class="info-list">Nieuws:0</li>
+		<li class="info-list">Samenwerken:0</li>
+	</ul>
 
-<ul class="item-list">
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={GraduationHat}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Thema's</p>
-		<button class="button-outline-white">+Toevoegen</button>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={Events}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Events</p>
-		<button class="button-outline-white">+Toevoegen</button>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={Document}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Documenten</p>
-		<button class="button-outline-white">+Toevoegen</button>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={CupStar}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Nominaties</p>
-		<button class="button-outline-white">+Toevoegen</button>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={NewsPaper}
-			alt=""
-			height="60px"
-			width="90px"
-		/>
-		<p>Nieuws</p>
-		<button class="button-outline-white">+Toevoegen</button>
-	</li>
-	<li class="item-card">
-		<img
-			class="item-img"
-			src={Collaborate}
-			alt=""
-			height="50px"
-			width="90px"
-		/>
-		<p>Samenwerken</p>
-		<button class="button-outline-white">+Toevoegen</button>
-	</li>
-</ul>
+	<ul class="item-list">
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={GraduationHat}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Thema's</p>
+			<button class="button-outline-white">+</button>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={Events}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Events</p>
+			<button class="button-outline-white">+</button>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={Document}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Documenten</p>
+			<button class="button-outline-white">+</button>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={CupStar}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Nominaties</p>
+			<button class="button-outline-white">+</button>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={NewsPaper}
+				alt=""
+				height="60px"
+				width="90px"
+			/>
+			<p>Nieuws</p>
+			<button class="button-outline-white">+</button>
+		</li>
+		<li class="item-card">
+			<img
+				class="item-img"
+				src={Collaborate}
+				alt=""
+				height="50px"
+				width="90px"
+			/>
+			<p>Samenwerken</p>
+			<button class="button-outline-white">+</button>
+		</li>
+	</ul>
+</div>
 
 <style>
 	@media (max-width: 999px) {
@@ -146,7 +148,10 @@
 		.container-nav {
 			display: flex;
 			justify-content: end;
-			position: relative;
+			position: absolute;
+			top: 1em;
+			right: 1em;
+			z-index: 10;
 		}
 
 		#my-popover {
@@ -194,7 +199,9 @@
 		margin: 1em;
 
 		@media (min-width: 1000px) {
-			padding: 4em;
+			padding: 2em 3em;
+			flex: 1;
+			max-width: 500px;
 		}
 	}
 
@@ -205,35 +212,45 @@
 
 		@media (min-width: 1000px) {
 			flex-direction: row;
+			align-items: center;
+			gap: 2em;
+		}
+	}
+
+	.container-welcome img {
+		max-width: 250px;
+		height: auto;
+	}
+
+	.items-wrapper {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1em;
+		margin: 2em 1em;
+		max-width: 100%;
+		overflow: hidden;
+
+		@media (min-width: 500px) {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		@media (min-width: 768px) {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		@media (min-width: 1250px) {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
 		}
 	}
 
 	.container-info-list {
-		display: flex;
-		flex-direction: column;
-		justify-self: center;
-		align-items: center;
-		margin: 1em;
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1 / -1;
 		gap: 1em;
-		padding: 0em;
+		padding: 0;
+		margin: 0;
 		font-family: var(--font-body);
-
-		@media (min-width: 400px) {
-			display: grid;
-			grid-template-columns: max-content max-content;
-			justify-content: center;
-			justify-items: center;
-		}
-
-		@media (min-width: 450px) {
-			grid-template-columns: max-content max-content max-content;
-		}
-
-		@media (min-width: 900px) {
-			display: flex;
-			flex-direction: row;
-			justify-items: unset;
-		}
 	}
 
 	.info-list {
@@ -242,53 +259,53 @@
 		border: var(--button-outline-border);
 		border-radius: var(--button-outline-radius);
 		list-style: none;
+		min-width: 0;
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.item-list {
 		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1 / -1;
 		gap: 1em;
 		padding: 0;
+		margin: 0;
 		font-family: var(--font-body);
-		justify-content: center;
-		justify-items: center;
-		grid-template-columns: 1fr;
-	}
-
-	@media (min-width: 400px) {
-		.item-list {
-			grid-template-columns: repeat(2, max-content);
-		}
-	}
-
-	@media (min-width: 650px) {
-		.item-list {
-			grid-template-columns: repeat(3, max-content);
-		}
-	}
-
-	@media (min-width: 1200px) {
-		.item-list {
-			grid-template-columns: repeat(4, max-content);
-		}
-	}
-
-	@media (min-width: 1920px) {
-		.item-list {
-			grid-template-columns: repeat(6, max-content);
-		}
 	}
 
 	.item-card {
 		background-color: var(--background);
-		padding: 1em;
+		padding: 1.5em;
 		border: var(--button-outline-border);
 		border-radius: var(--button-outline-radius);
 		text-align: center;
 		list-style: none;
+		width: 100%;
+		box-sizing: border-box;
+		overflow: hidden;
+		min-width: 0;
 
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		gap: 0.75em;
 		justify-content: space-between;
+	}
+
+	.item-card p {
+		margin: 0;
+	}
+
+	.item-card :global(.button-outline-white) {
+		width: 50%;
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
 	}
 
 	.item-img {

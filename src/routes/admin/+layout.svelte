@@ -413,7 +413,8 @@
 	@media (min-width: 1000px) {
 		.admin-content {
 			margin-left: 260px;
-			padding: 2em;
+			padding: 2em 3em;
+			position: relative;
 		}
 	}
 </style>
