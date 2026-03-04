@@ -347,5 +347,12 @@
 	.item-img {
 		display: flex;
 		align-self: center;
+		filter: brightness(0) saturate(100%) invert(11%) sepia(21%) saturate(2878%) hue-rotate(198deg) brightness(95%) contrast(99%);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.item-img {
+			filter: brightness(0) saturate(100%) invert(14%) sepia(95%) saturate(6000%) hue-rotate(358deg) brightness(105%) contrast(115%);
+		}
 	}
 </style>
