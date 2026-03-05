@@ -25,7 +25,7 @@ export class ContentService {
 	 *
 	 * @param {string} path - Collection name, appended to the Directus items base URL.
 	 * @param {string | null} accessToken - Bearer token for authenticated requests (drafts).
-	 * @returns {Promise<Array>} Array of items, or an empty array on failure.
+	 * @returns {Promise<{items: Array, error: Error|null}>} Array of items, or an empty array and Error on failure.
 	 */
 	static async #fetchCollection(path, accessToken = null) {
 		try {
@@ -33,13 +33,14 @@ export class ContentService {
 			const res = await fetch(`${this.#directusBase}/${path}`, { headers })
 			const json = await res.json()
 			if (!json.data) {
-				console.error(`No data returned for ${path}:`, json)
-				return []
+				const error = new Error(`No data returned for ${path}: ${JSON.stringify(json)}`)
+				console.error(error)
+				return { items: [], error }
 			}
-			return json.data
+			return { items: json.data, error: null }
 		} catch (err) {
 			console.error(`Failed to fetch ${path}:`, err)
-			return []
+			return { items: [], error: err }
 		}
 	}
 
@@ -48,7 +49,7 @@ export class ContentService {
 	 *
 	 * @param {string | null} contentType - A key from #collections to fetch a single type, or null to fetch all.
 	 * @param {string | null} accessToken - Pass the access_token cookie value to fetch drafts as an authenticated user.
-	 * @returns {Promise<Record<string, Map>>} Object whose keys are content type names and values are Maps.
+	 * @returns {Promise<{data: Record<string, Map>, errors: Array}>} Object whose keys are content type names and values are Maps.
 	 */
 	static async fetchContent(contentType = null, accessToken = null) {
 		const entries = contentType ? [[contentType, this.#collections[contentType]]] : Object.entries(this.#collections)
@@ -56,14 +57,22 @@ export class ContentService {
 		const names = entries.map(([name]) => name)
 		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, accessToken)))
 
+		const errors = []
 		const mapsByName = names.map((name, index) => {
-			const items = results[index] || []
+			const { items = [], error } = results[index] || {}
+			if (error) {
+				// serialize the error to a simple object
+				errors.push({
+					collection: name,
+					message: error.message ?? String(error)
+				})
+			}
 			const keyField = this.#collections[name].key
 			const map = new Map(items.map((item) => [item[keyField], item]))
 			return [name, map]
 		})
 
-		return Object.fromEntries(mapsByName)
+		return { data: Object.fromEntries(mapsByName), errors }
 	}
 
 	/**

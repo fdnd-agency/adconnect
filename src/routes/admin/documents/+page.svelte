@@ -1,12 +1,13 @@
 <script>
-	const { data } = $props()
-
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	import { enhance } from '$app/forms'
 	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
 	import AdminToolbar from '$lib/organisms/AdminToolbar.svelte'
 	import Count from '$lib/atoms/Count.svelte'
 	import AdminContentList from '$lib/organisms/AdminContentList.svelte'
+	import Error from '$lib/atoms/Error.svelte'
+
+	const { data } = $props()
 
 	const directusBase = `${DIRECTUS_URL}/admin/content`
 
@@ -14,7 +15,7 @@
 
 	let search = $state('')
 
-	const documents = $derived([...data.documents.values()])
+	const documents = $derived(data.documents ? [...data.documents.values()] : [])
 
 	const filtered = $derived(
 		documents
@@ -30,6 +31,10 @@
 <svelte:head>
 	<title>Documenten | ADConnect Admin</title>
 </svelte:head>
+
+{#if data.loadError}
+	<Error message={data.loadError} />
+{/if}
 
 <AdminHeader
 	title="Documenten"
