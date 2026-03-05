@@ -87,7 +87,7 @@ export class ContentService {
 		if (!accessToken) {
 			return fail(403, { error: 'Publiceren mislukt: Unauthorized' })
 		}
-		const res = await fetch(`${DIRECTUS_URL}/items/${this.#collections[contentType].path}/${id}`, {
+		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}/${id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ export class ContentService {
 		if (!accessToken) {
 			return fail(403, { error: 'Verwijderen mislukt: Unauthorized' })
 		}
-		const res = await fetch(`${DIRECTUS_URL}/items/${this.#collections[contentType].path}/${id}`, {
+		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}/${id}`, {
 			method: 'DELETE',
 			headers: { Authorization: `Bearer ${accessToken}` }
 		})
