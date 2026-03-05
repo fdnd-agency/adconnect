@@ -4,37 +4,38 @@
 	import dots from '$lib/assets/dots.svg'
 	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
+	import AdminUserMenu from '$lib/molecules/AdminUserMenu.svelte'
+	import AdminStatItem from '$lib/molecules/AdminStatItem.svelte'
+	import AdminItemCard from '$lib/molecules/AdminItemCard.svelte'
 
 	const directusBase = `${DIRECTUS_URL}/admin/content`
+
+	const stats = $derived([
+		{ label: "Thema's", count: data.themeCount },
+		{ label: 'Events', count: data.eventCount },
+		{ label: 'Documenten', count: data.documentCount },
+		{ label: 'Nominaties', count: data.nominationCount },
+		{ label: 'Nieuws', count: data.newsCount },
+		{ label: 'Samenwerkingen', count: data.cooperationCount },
+		{ label: "FAQ's", count: data.faqCount }
+	])
+
+	const items = [
+		{ icon: GraduationHat, label: "Thema's", collection: 'adconnect_themes' },
+		{ icon: Events, label: 'Events', collection: 'adconnect_events' },
+		{ icon: Document, label: 'Documenten', collection: 'adconnect_documents' },
+		{ icon: CupStar, label: 'Nominaties', collection: 'adconnect_nominations' },
+		{ icon: NewsPaper, label: 'Nieuws', collection: 'adconnect_news' },
+		{ icon: Collaborate, label: 'Samenwerkingen', collection: 'adconnect_collaborations', iconHeight: '50px' },
+		{ icon: Question, label: "FAQ's", collection: 'adconnect_faqs', iconHeight: '50px' }
+	]
 </script>
 
 <svelte:head>
 	<title>Dashboard | ADConnect Admin</title>
 </svelte:head>
 
-<div class="container-nav">
-	<button
-		popovertarget="my-popover"
-		class="button-outline-white"
-		id="user-btn"
-	>
-		{data.user?.email ?? ''}
-	</button>
-
-	<div
-		popover
-		id="my-popover"
-		class="button-outline-white"
-	>
-		<a
-			href="/admin/logout"
-			class="logout-btn"
-			data-sveltekit-reload
-		>
-			Uitloggen
-		</a>
-	</div>
-</div>
+<AdminUserMenu email={data.user?.email ?? ''} />
 
 <section class="dashboard">
 	<img
@@ -55,162 +56,34 @@
 	<div>
 		<img
 			src={bird}
-			alt=""
+			alt="Mascotte van ADConnect"
 		/>
 	</div>
 </div>
 
 <div class="items-wrapper">
 	<ul class="container-info-list">
-		<li class="info-list">Thema's: {data.themeCount}</li>
-		<li class="info-list">Events: {data.eventCount}</li>
-		<li class="info-list">Documenten: {data.documentCount}</li>
-		<li class="info-list">Nominaties: {data.nominationCount}</li>
-		<li class="info-list">Nieuws: {data.newsCount}</li>
-		<li class="info-list">Samenwerkingen: {data.cooperationCount}</li>
-		<li class="info-list">FAQ's: {data.faqCount}</li>
+		{#each stats as stat (stat.label)}
+			<AdminStatItem
+				label={stat.label}
+				count={stat.count}
+			/>
+		{/each}
 	</ul>
 
 	<ul class="item-list">
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={GraduationHat}
-				alt=""
-				height="60px"
-				width="90px"
+		{#each items as item (item.collection)}
+			<AdminItemCard
+				icon={item.icon}
+				label={item.label}
+				href="{directusBase}/{item.collection}/+"
+				iconHeight={item.iconHeight}
 			/>
-			<p>Thema's</p>
-			<a
-				class="button-outline-white"
-				href="{directusBase}/adconnect_themes/+">+</a
-			>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={Events}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Events</p>
-			<a
-				class="button-outline-white"
-				href="{directusBase}/adconnect_events/+">+</a
-			>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={Document}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Documenten</p>
-			<a
-				class="button-outline-white"
-				href="{directusBase}/adconnect_documents/+">+</a
-			>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={CupStar}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Nominaties</p>
-			<a
-				class="button-outline-white"
-				href="{directusBase}/adconnect_nominations/+">+</a
-			>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={NewsPaper}
-				alt=""
-				height="60px"
-				width="90px"
-			/>
-			<p>Nieuws</p>
-			<a
-				class="button-outline-white"
-				href="{directusBase}/adconnect_news/+">+</a
-			>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={Collaborate}
-				alt=""
-				height="50px"
-				width="90px"
-			/>
-			<p>Samenwerkingen</p>
-			<a
-				class="button-outline-white"
-				href="{directusBase}/adconnect_collaborations/+">+</a
-			>
-		</li>
-		<li class="item-card">
-			<img
-				class="item-img"
-				src={Question}
-				alt=""
-				height="50px"
-				width="90px"
-			/>
-			<p>FAQ's</p>
-			<a
-				class="button-outline-white"
-				href="{directusBase}/adconnect_faqs/+">+</a
-			>
-		</li>
+		{/each}
 	</ul>
 </div>
 
 <style>
-	@media (max-width: 999px) {
-		.container-nav {
-			display: none;
-		}
-	}
-
-	@media (min-width: 1000px) {
-		.container-nav {
-			display: flex;
-			justify-content: end;
-			position: absolute;
-			top: 1em;
-			right: 1em;
-			z-index: 10;
-		}
-
-		#my-popover {
-			padding: 1em;
-			border-radius: 8px;
-			position-area: bottom;
-		}
-
-		#user-btn::after {
-			content: url('/static/chevon-down.svg');
-			padding: 0.05em 0.7em;
-			transition: transform 0.3s;
-		}
-	}
-
-	.logout-btn {
-		color: var(--button-blue-text);
-
-		&:hover {
-			color: var(--primary-blue);
-		}
-	}
-
 	.dashboard {
 		display: flex;
 		flex-direction: column;
@@ -285,23 +158,6 @@
 		font-family: var(--font-body);
 	}
 
-	.info-list {
-		background-color: var(--background);
-		padding: 1em 0.75em;
-		border: var(--button-outline-border);
-		border-radius: var(--button-outline-radius);
-		list-style: none;
-		min-width: 0;
-		box-sizing: border-box;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: clamp(0.65rem, 1.2vw, 1rem);
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
 	.item-list {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -310,49 +166,5 @@
 		padding: 0;
 		margin: 0;
 		font-family: var(--font-body);
-	}
-
-	.item-card {
-		background-color: var(--background);
-		padding: 1em;
-		border: var(--button-outline-border);
-		border-radius: var(--button-outline-radius);
-		text-align: center;
-		list-style: none;
-		width: 100%;
-		box-sizing: border-box;
-		overflow: hidden;
-		min-width: 0;
-
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.item-card p {
-		margin: 0;
-	}
-
-	.item-card :global(.button-outline-white) {
-		width: 25%;
-		height: 0;
-		box-sizing: border-box;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-	}
-
-	.item-img {
-		display: flex;
-		align-self: center;
-		filter: brightness(0) saturate(100%) invert(11%) sepia(21%) saturate(2878%) hue-rotate(198deg) brightness(95%) contrast(99%);
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.item-img {
-			filter: brightness(0) saturate(100%) invert(14%) sepia(95%) saturate(6000%) hue-rotate(358deg) brightness(105%) contrast(115%);
-		}
 	}
 </style>
