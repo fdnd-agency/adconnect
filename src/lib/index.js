@@ -1,6 +1,7 @@
 // Atoms
 export { default as Breadcrumb } from './atoms/Breadcrumb.svelte'
 export { default as Link } from './atoms/Link.svelte'
+export { default as AdminNavLink } from './atoms/AdminNavLink.svelte'
 
 // Molecules
 export { default as SingleFaq } from './molecules/SingleFaq.svelte'
@@ -17,6 +18,9 @@ export { default as Information } from './molecules/Information.svelte'
 export { default as Location } from './molecules/location.svelte'
 export { default as Cta } from './molecules/Cta.svelte'
 export { default as PreviousWinners } from './molecules/PreviousWinners.svelte'
+export { default as AdminStatItem } from './molecules/AdminStatItem.svelte'
+export { default as AdminItemCard } from './molecules/AdminItemCard.svelte'
+export { default as AdminUserMenu } from './molecules/AdminUserMenu.svelte'
 
 // Organisms
 export { default as MultipleFaq } from './organisms/MultipleFaq.svelte'
@@ -32,6 +36,7 @@ export { default as Schedule } from './organisms/schedule.svelte'
 export { default as FeatureSplit } from './organisms/FeatureSplit.svelte'
 export { default as Footer } from './organisms/Footer.svelte'
 export { default as News } from './organisms/News.svelte'
+export { default as AdminSidebar } from './organisms/AdminSidebar.svelte'
 
 // Templates
 export { default as Development } from './templates/DevelopmentTemplate.svelte'
@@ -50,7 +55,7 @@ export { default as overleggen } from './assets/overleggen.jpg'
 export { default as awards } from './assets/ad-talent-awards.jpg'
 export { default as dots } from './assets/dots.svg'
 export { default as placeholder } from './assets/placeholder-hero.webp'
-export { default as bird } from './assets/vector-bird.jpg'
+export { default as bird } from './assets/mascot-ad.png'
 export { default as fallback } from './assets/news-fallback.jpg'
 export { default as calendar } from './assets/icon-calendar-orange.svg'
 export { default as label } from './assets/icon-label.svg'
