@@ -1,5 +1,6 @@
 <script>
 	import { enhance } from '$app/forms'
+	import { loading } from '$lib/stores/loadingStore'
 
 	const { filtered, directusBase, contentType, labels = { single: 'item', multiple: 'items' } } = $props()
 
@@ -76,11 +77,14 @@
 							<form
 								method="POST"
 								action="?/publish"
-								use:enhance={() =>
-									async ({ update }) => {
+								use:enhance={() => {
+									loading.set(true)
+									return async ({ update }) => {
 										await update()
+										loading.set(false)
 										openPopup = null
-									}}
+									}
+								}}
 								onsubmit={confirmAction(`Weet je zeker dat je dit ${labels.single} wil publiceren?`)}
 							>
 								<input
@@ -97,11 +101,14 @@
 							<form
 								method="POST"
 								action="?/depublish"
-								use:enhance={() =>
-									async ({ update }) => {
+								use:enhance={() => {
+									loading.set(true)
+									return async ({ update }) => {
 										await update()
+										loading.set(false)
 										openPopup = null
-									}}
+									}
+								}}
 								onsubmit={confirmAction(`Weet je zeker dat je dit ${labels.single} wil depubliceren?`)}
 							>
 								<input
@@ -118,11 +125,14 @@
 							<form
 								method="POST"
 								action="?/delete"
-								use:enhance={() =>
-									async ({ update }) => {
+								use:enhance={() => {
+									loading.set(true)
+									return async ({ update }) => {
 										await update()
+										loading.set(false)
 										openPopup = null
-									}}
+									}
+								}}
 								onsubmit={confirmAction(`Weet je zeker dat je dit ${labels.single} wil verwijderen?`)}
 							>
 								<input

@@ -2,7 +2,10 @@
 	/** @type {{ data: { user: any }, children: import('svelte').Snippet }} */
 	const { data, children } = $props()
 	import AdminSidebar from '$lib/organisms/AdminSidebar.svelte'
+	import LoadingOverlay from '$lib/molecules/LoadingOverlay.svelte'
 </script>
+
+<LoadingOverlay />
 
 <AdminSidebar user={data.user} />
 
