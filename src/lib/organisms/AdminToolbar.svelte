@@ -84,7 +84,6 @@
 		border: var(--button-outline-border);
 		border-radius: var(--button-outline-radius);
 		overflow: hidden;
-		margin-left: 5em;
 	}
 
 	.search-bar input {

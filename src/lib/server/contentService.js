@@ -52,27 +52,34 @@ export class ContentService {
 	 * @returns {Promise<{data: Record<string, Map>, errors: Array}>} Object whose keys are content type names and values are Maps.
 	 */
 	static async fetchContent(contentType = null, accessToken = null) {
-		const entries = contentType ? [[contentType, this.#collections[contentType]]] : Object.entries(this.#collections)
+		const entries = contentType
+			? [[contentType, this.#collections[contentType]]]
+			: Object.entries(this.#collections)
 
-		const names = entries.map(([name]) => name)
-		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, accessToken)))
+		const results = await Promise.all(
+			entries.map(([, cfg]) => this.#fetchCollection(cfg.path, accessToken))
+		)
 
 		const errors = []
-		const mapsByName = names.map((name, index) => {
-			const { items = [], error } = results[index] || {}
+		const maps = entries.map(([name, cfg], index) => {
+			const { items = [], error } = results[index] ?? {}
+
 			if (error) {
-				// serialize the error to a simple object
-				errors.push({
-					collection: name,
-					message: error.message ?? String(error)
-				})
+				errors.push({ collection: name, message: error.message ?? String(error) })
 			}
-			const keyField = this.#collections[name].key
-			const map = new Map(items.map((item) => [item[keyField], item]))
-			return [name, map]
+
+			// Normalize items so they always expose an `id` property used by admin UI.
+			// Some collections (e.g. `news`) use a different primary key field like `uuid`.
+			const normalized = items.map((item) =>
+				cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined
+					? { ...item, id: item[cfg.key] }
+					: item
+			)
+
+			return [name, new Map(normalized.map((item) => [item[cfg.key], item]))]
 		})
 
-		return { data: Object.fromEntries(mapsByName), errors }
+		return { data: Object.fromEntries(maps), errors }
 	}
 
 	/**

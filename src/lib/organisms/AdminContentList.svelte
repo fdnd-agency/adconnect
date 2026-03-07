@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms'
 	import { loading } from '$lib/stores/loadingStore'
 
-	const { filtered, directusBase, contentType, labels = { single: 'item', multiple: 'items' } } = $props()
+	const { filtered, directusBase, contentType, labels = { single: 'item', multiple: 'items', title: 'title', gender: 'dit' } } = $props()
 
 	let openPopup = $state(null)
 
@@ -54,7 +54,7 @@
 			</div>
 
 			<div class="card-body">
-				<p class="card-title">{doc.title ?? 'Zonder titel'}</p>
+				<p class="card-title">{doc[labels.title || 'title'] ?? 'Zonder titel'}</p>
 
 				<div class="popup-anchor">
 					<button
@@ -78,6 +78,9 @@
 								method="POST"
 								action="?/publish"
 								use:enhance={() => {
+									if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil publiceren?`)) {
+										return () => {}
+									}
 									loading.set(true)
 									return async ({ update }) => {
 										await update()
@@ -85,7 +88,6 @@
 										openPopup = null
 									}
 								}}
-								onsubmit={confirmAction(`Weet je zeker dat je dit ${labels.single} wil publiceren?`)}
 							>
 								<input
 									type="hidden"
@@ -102,6 +104,9 @@
 								method="POST"
 								action="?/depublish"
 								use:enhance={() => {
+									if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil depubliceren?`)) {
+										return () => {}
+									}
 									loading.set(true)
 									return async ({ update }) => {
 										await update()
@@ -109,7 +114,6 @@
 										openPopup = null
 									}
 								}}
-								onsubmit={confirmAction(`Weet je zeker dat je dit ${labels.single} wil depubliceren?`)}
 							>
 								<input
 									type="hidden"
@@ -126,6 +130,9 @@
 								method="POST"
 								action="?/delete"
 								use:enhance={() => {
+									if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil verwijderen?`)) {
+										return () => {}
+									}
 									loading.set(true)
 									return async ({ update }) => {
 										await update()
@@ -133,7 +140,6 @@
 										openPopup = null
 									}
 								}}
-								onsubmit={confirmAction(`Weet je zeker dat je dit ${labels.single} wil verwijderen?`)}
 							>
 								<input
 									type="hidden"
@@ -257,8 +263,10 @@
 	/* ---- Action popup ---- */
 	.action-popup {
 		position: absolute;
-		top: -6em;
-		left: calc(100% + 20px);
+		bottom: calc(100% + 8px);
+		right: 0;
+		left: auto;
+		top: auto;
 		margin: 0;
 		padding: 0.5em;
 		border: var(--button-outline-border);
