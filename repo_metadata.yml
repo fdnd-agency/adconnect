@@ -1,6 +1,7 @@
 title: 'AdConnect'
-status: 'active year-1 year-2'
 client: 'Overlegplatform Associate degree'
+status: 'active'
+years: [1, 2]
 main_link: 'https://adconnect.agency.fdnd.nl/'
 dev_link: 'https://adconnect.dev.fdnd.nl/'
 tech_stack: ['SvelteKit', 'Directus']
