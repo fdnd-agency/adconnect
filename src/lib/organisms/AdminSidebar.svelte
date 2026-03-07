@@ -10,7 +10,7 @@
 		{ href: '/admin', label: 'Dashboard', activePath: '/admin' },
 		{ href: '', label: "Thema's", activePath: '/themas' },
 		{ href: '', label: 'Events', activePath: '/events' },
-		{ href: '', label: 'Documenten', activePath: '/documenten' },
+		{ href: '/admin/documents', label: 'Documenten', activePath: '/admin/documents' },
 		{ href: '', label: 'Nominaties', activePath: '/nominaties' },
 		{ href: '', label: 'Nieuws', activePath: '/nieuws' },
 		{ href: '', label: 'Samenwerkingen', activePath: '/samenwerken' },
