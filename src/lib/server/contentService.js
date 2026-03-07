@@ -1,4 +1,5 @@
 import { DIRECTUS_URL } from '$lib/server/directus.js'
+import { fail } from '@sveltejs/kit'
 
 /**
  * Centralizes fetching of all Directus collections.
@@ -7,13 +8,24 @@ import { DIRECTUS_URL } from '$lib/server/directus.js'
 export class ContentService {
 	static #directusBase = `${DIRECTUS_URL}/items`
 
+	/** Registry mapping each content type to its Directus collection path and primary key field. */
+	static #collections = {
+		documents: { path: 'adconnect_documents', key: 'id' },
+		themes: { path: 'adconnect_themes', key: 'id' },
+		events: { path: 'adconnect_events', key: 'id' },
+		cooperations: { path: 'adconnect_cooperation', key: 'id' },
+		news: { path: 'adconnect_news', key: 'uuid' },
+		nominations: { path: 'adconnect_nominations', key: 'id' },
+		faqs: { path: 'adconnect_faqs', key: 'id' }
+	}
+
 	/**
 	 * Fetches a single Directus collection and returns its items.
 	 * Optionally includes an Authorization header to retrieve draft content.
 	 *
 	 * @param {string} path - Collection name, appended to the Directus items base URL.
 	 * @param {string | null} accessToken - Bearer token for authenticated requests (drafts).
-	 * @returns {Promise<Array>} Array of items, or an empty array on failure.
+	 * @returns {Promise<{items: Array, error: Error|null}>} Array of items, or an empty array and Error on failure.
 	 */
 	static async #fetchCollection(path, accessToken = null) {
 		try {
@@ -21,42 +33,132 @@ export class ContentService {
 			const res = await fetch(`${this.#directusBase}/${path}`, { headers })
 			const json = await res.json()
 			if (!json.data) {
-				console.error(`No data returned for ${path}:`, json)
-				return []
+				const error = new Error(`No data returned for ${path}: ${JSON.stringify(json)}`)
+				console.error(error)
+				return { items: [], error }
 			}
-			return json.data
+			return { items: json.data, error: null }
 		} catch (err) {
 			console.error(`Failed to fetch ${path}:`, err)
-			return []
+			return { items: [], error: err }
 		}
 	}
 
 	/**
-	 * Fetches all collections in parallel and returns them as Maps.
+	 * Fetches collections in parallel and returns them as Maps keyed by each collection's primary key.
 	 *
+	 * @param {string | null} contentType - A key from #collections to fetch a single type, or null to fetch all.
 	 * @param {string | null} accessToken - Pass the access_token cookie value to fetch drafts as an authenticated user.
-	 * @returns {Promise<{documents: Map, themes: Map, events: Map, cooperations: Map, news: Map, nominations: Map, faqs: Map}>}
+	 * @returns {Promise<{data: Record<string, Map>, errors: Array}>} Object whose keys are content type names and values are Maps.
 	 */
-	static async fetchContent(accessToken = null) {
-		const [documents, themes, events, cooperations, news, nominations, faqs] =
-			await Promise.all([
-				this.#fetchCollection('adconnect_documents', accessToken),
-				this.#fetchCollection('adconnect_themes', accessToken),
-				this.#fetchCollection('adconnect_events', accessToken),
-				this.#fetchCollection('adconnect_cooperation', accessToken),
-				this.#fetchCollection('adconnect_news', accessToken),
-				this.#fetchCollection('adconnect_nominations', accessToken),
-				this.#fetchCollection('adconnect_faqs', accessToken)
-			])
+	static async fetchContent(contentType = null, accessToken = null) {
+		const entries = contentType
+			? [[contentType, this.#collections[contentType]]]
+			: Object.entries(this.#collections)
 
-		return {
-			documents: new Map(documents.map((item) => [item.id, item])),
-			themes: new Map(themes.map((item) => [item.id, item])),
-			events: new Map(events.map((item) => [item.id, item])),
-			cooperations: new Map(cooperations.map((item) => [item.id, item])),
-			news: new Map(news.map((item) => [item.uuid, item])),
-			nominations: new Map(nominations.map((item) => [item.id, item])),
-			faqs: new Map(faqs.map((item) => [item.id, item]))
+		const results = await Promise.all(
+			entries.map(([, cfg]) => this.#fetchCollection(cfg.path, accessToken))
+		)
+
+		const errors = []
+		const maps = entries.map(([name, cfg], index) => {
+			const { items = [], error } = results[index] ?? {}
+
+			if (error) {
+				errors.push({ collection: name, message: error.message ?? String(error) })
+			}
+
+			// Normalize items so they always expose an `id` property used by admin UI.
+			// Some collections (e.g. `news`) use a different primary key field like `uuid`.
+			const normalized = items.map((item) =>
+				cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined
+					? { ...item, id: item[cfg.key] }
+					: item
+			)
+
+			return [name, new Map(normalized.map((item) => [item[cfg.key], item]))]
+		})
+
+		return { data: Object.fromEntries(maps), errors }
+	}
+
+	/**
+	 * Sets the status of the specified content to published.
+	 *
+	 * @param {string} id - Id of the item to publish.
+	 * @param {string} contentType - A key from #collections identifying the collection to update.
+	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
+	 * @returns {Promise<{success: true} | import('@sveltejs/kit').ActionFailure>}
+	 */
+	static async publishContent(id, contentType, accessToken = null) {
+		if (!accessToken) {
+			return fail(403, { error: 'Publiceren mislukt: Unauthorized' })
+		}
+		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${accessToken}`
+			},
+			body: JSON.stringify({ status: 'published' })
+		})
+
+		if (!res.ok) {
+			return fail(res.status, { error: 'Publiceren mislukt.' })
+		} else {
+			return { success: true }
+		}
+	}
+
+	/**
+	 * Sets the status of the specified content back to draft.
+	 *
+	 * @param {string} id - Id of the item to depublish.
+	 * @param {string} contentType - A key from #collections identifying the collection to update.
+	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
+	 * @returns {Promise<{success: true} | import('@sveltejs/kit').ActionFailure>}
+	 */
+	static async depublishContent(id, contentType, accessToken = null) {
+		if (!accessToken) {
+			return fail(403, { error: 'Depubliceren mislukt: Unauthorized' })
+		}
+		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${accessToken}`
+			},
+			body: JSON.stringify({ status: 'draft' })
+		})
+
+		if (!res.ok) {
+			return fail(res.status, { error: 'Depubliceren mislukt.' })
+		} else {
+			return { success: true }
+		}
+	}
+
+	/**
+	 * Deletes the specified content.
+	 *
+	 * @param {string} id - Id of the item to delete.
+	 * @param {string} contentType - A key from #collections identifying the collection to delete from.
+	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
+	 * @returns {Promise<{success: true} | import('@sveltejs/kit').ActionFailure>}
+	 */
+	static async deleteContent(id, contentType, accessToken = null) {
+		if (!accessToken) {
+			return fail(403, { error: 'Verwijderen mislukt: Unauthorized' })
+		}
+		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}/${id}`, {
+			method: 'DELETE',
+			headers: { Authorization: `Bearer ${accessToken}` }
+		})
+
+		if (!res.ok) {
+			return fail(res.status, { error: 'Verwijderen mislukt.' })
+		} else {
+			return { success: true }
 		}
 	}
 }

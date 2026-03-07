@@ -1,21 +1,23 @@
 <script>
-	/** @type {{ user?: any }} */
 	const { user = null } = $props()
 
 	import { logo, logowhite } from '$lib'
 	import AdminNavLink from '$lib/atoms/AdminNavLink.svelte'
 	import { page } from '$app/stores'
+	import { onMount } from 'svelte'
 
 	const navItems = [
 		{ href: '/admin', label: 'Dashboard', activePath: '/admin' },
-		{ href: '', label: "Thema's", activePath: '/themas' },
-		{ href: '', label: 'Events', activePath: '/events' },
-		{ href: '', label: 'Documenten', activePath: '/documenten' },
-		{ href: '', label: 'Nominaties', activePath: '/nominaties' },
-		{ href: '', label: 'Nieuws', activePath: '/nieuws' },
-		{ href: '', label: 'Samenwerkingen', activePath: '/samenwerken' },
-		{ href: '', label: "FAQ's", activePath: '/faqs' }
+		{ href: '/admin/themes', label: "Thema's", activePath: '/admin/themes' },
+		{ href: '/admin/events', label: 'Events', activePath: '/admin/events' },
+		{ href: '/admin/documents', label: 'Documenten', activePath: '/admin/documents' },
+		{ href: '/admin/nominations', label: 'Nominaties', activePath: '/admin/nominations' },
+		{ href: '/admin/news', label: 'Nieuws', activePath: '/admin/news' },
+		{ href: '/admin/cooperations', label: 'Samenwerkingen', activePath: '/admin/cooperations' },
+		{ href: '/admin/faqs', label: "FAQ's", activePath: '/admin/faqs' }
 	]
+
+	let menuElement = $state(null)
 </script>
 
 <header class="admin-header">
@@ -44,14 +46,22 @@
 
 		<div class="container-header">
 			{#if user}
-				<details class="menu">
+				<details
+					class="menu"
+					bind:this={menuElement}
+				>
 					<summary aria-label="Menu openen">
 						<span></span>
 						<span></span>
 						<span></span>
 					</summary>
 
-					<div class="panel">
+					<button
+						class="panel"
+						type="button"
+						aria-label="Menu sluiten"
+						onclick={() => (menuElement.open = false)}
+					>
 						<ul class="mobile-links">
 							{#each navItems as item (item.activePath)}
 								<li>
@@ -73,7 +83,7 @@
 								Uitloggen
 							</a>
 						</div>
-					</div>
+					</button>
 				</details>
 
 				<ul class="desktop-nav">

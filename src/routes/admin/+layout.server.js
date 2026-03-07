@@ -7,10 +7,11 @@ export async function load({ locals, url, cookies }) {
 	}
 
 	// Retrieves content from Directus API through the ContentService.
-	const content = await ContentService.fetchContent(cookies.get('access_token'))
+	const { data: content, errors } = await ContentService.fetchContent(null, cookies.get('access_token'))
 
 	return {
 		user: locals.user?.data ?? null,
+		fetchErrors: errors,
 		documents: [...content.documents.values()],
 		documentCount: content.documents.size,
 		themes: [...content.themes.values()],
