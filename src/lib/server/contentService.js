@@ -174,22 +174,26 @@ export class ContentService {
 		if (!accessToken) {
 			return fail(403, { error: 'Aanmaken mislukt: Unauthorized' })
 		}
-		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${accessToken}`
-			},
-			body: JSON.stringify(data)
-		})
+		try {
+			const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${accessToken}`
+				},
+				body: JSON.stringify(data)
+			})
 
-		if (!res.ok) {
-			return fail(res.status, { error: 'Aanmaken mislukt.' })
-		} else {
+			if (!res.ok) {
+				return fail(res.status, { error: 'Aanmaken mislukt.' })
+			}
 			const json = await res.json()
 			const createdItem = json.data
 			const itemId = createdItem?.[this.#collections[contentType].key]
 			return { success: true, id: itemId }
+		} catch (err) {
+			console.error('Failed to post content:', err)
+			return fail(500, { error: 'Aanmaken mislukt.' })
 		}
 	}
 }
