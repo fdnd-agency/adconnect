@@ -206,6 +206,12 @@
 		margin: 0 0 2rem;
 	}
 
+	@media (prefers-color-scheme: dark) {
+		h1 {
+			color: var(--text-white);
+		}
+	}
+
 	/* Error */
 	.error-message {
 		display: flex;
