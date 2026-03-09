@@ -1,5 +1,5 @@
 <script>
-	import bird from '$lib/assets/vector-bird.jpg'
+	import { bird } from '$lib'
 
 	/** @type {{ form: import('./$types').ActionData }} */
 	const { form } = $props()
@@ -145,9 +145,17 @@
 <style>
 	.login-page {
 		display: flex;
-		min-height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 10;
 		font-family: 'Archivo', sans-serif;
-		background: #fff;
+		background: light-dark(var(--text-white), var(--blue-900));
+		overflow: auto;
 	}
 
 	/* ===== Form Side ===== */
@@ -196,6 +204,12 @@
 		color: #111;
 		text-align: center;
 		margin: 0 0 2rem;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		h1 {
+			color: var(--text-white);
+		}
 	}
 
 	/* Error */
