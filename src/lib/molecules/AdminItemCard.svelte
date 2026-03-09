@@ -58,7 +58,7 @@
 
 	@media (prefers-color-scheme: dark) {
 		.item-img {
-			filter: brightness(0) saturate(100%) invert(14%) sepia(95%) saturate(6000%) hue-rotate(358deg) brightness(105%) contrast(115%);
+			filter: brightness(0) saturate(100%) invert(30%) sepia(75%) saturate(600%) hue-rotate(322deg) brightness(125%);
 		}
 	}
 </style>
