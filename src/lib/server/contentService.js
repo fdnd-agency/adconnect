@@ -161,4 +161,39 @@ export class ContentService {
 			return { success: true }
 		}
 	}
+
+	/**
+	 * Creates new content with the specified fields.
+	 *
+	 * @param {Object} data - Object containing all fields for the new content item.
+	 * @param {string} contentType - A key from #collections identifying the collection to create in.
+	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
+	 * @returns {Promise<{success: true, id: string} | import('@sveltejs/kit').ActionFailure>}
+	 */
+	static async postContent(data, contentType, accessToken = null) {
+		if (!accessToken) {
+			return fail(403, { error: 'Aanmaken mislukt: Unauthorized' })
+		}
+		try {
+			const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${accessToken}`
+				},
+				body: JSON.stringify(data)
+			})
+
+			if (!res.ok) {
+				return fail(res.status, { error: 'Aanmaken mislukt.' })
+			}
+			const json = await res.json()
+			const createdItem = json.data
+			const itemId = createdItem?.[this.#collections[contentType].key]
+			return { success: true, id: itemId }
+		} catch (err) {
+			console.error('Failed to post content:', err)
+			return fail(500, { error: 'Aanmaken mislukt.' })
+		}
+	}
 }
