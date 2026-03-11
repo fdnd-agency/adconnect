@@ -218,10 +218,14 @@
 	}
 
 	.card-date {
+		padding-left: 5px;
+		padding-right: 5px;
+		background-color: hsl(184, 40%, 48%);
+		border-radius: 8px;
+		color: var(--text-white);
 		font-family: var(--font-body);
 		font-size: 0.85rem;
 		font-weight: var(--weight-medium);
-		color: light-dark(var(--neutral-600), var(--neutral-300));
 	}
 
 	/* ---- Card body ---- */
