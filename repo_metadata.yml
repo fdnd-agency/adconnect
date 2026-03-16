@@ -5,3 +5,18 @@ years: [1, 2]
 main_link: 'https://adconnect.agency.fdnd.nl/'
 dev_link: 'https://adconnect.dev.fdnd.nl/'
 tech_stack: ['SvelteKit', 'Directus']
+team:
+  - name: 'Tjeerd'
+    github: 'Tjeerd-JW'
+  - name: 'Rowan'
+    github: 'scar055'
+  - name: 'Mohamed'
+    github: 'moelib'
+  - name: 'Chama'
+    github: 'Chewsy'
+  - name: 'Jasin'
+    github: '...'
+  - name: 'Jadon'
+    github: 'Jadonfdnd'
+  - name: 'Ké'
+    github: 'KeBiemen'
