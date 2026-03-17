@@ -7,6 +7,7 @@ import { fail } from '@sveltejs/kit'
  */
 export class ContentService {
 	static #directusBase = `${DIRECTUS_URL}/items`
+	static #directusFilesBase = `${DIRECTUS_URL}/files`
 
 	/** Registry mapping each content type to its Directus collection path and primary key field. */
 	static #collections = {
@@ -45,6 +46,32 @@ export class ContentService {
 	}
 
 	/**
+	 * Resolves a Directus folder id by folder name.
+	 *
+	 * @param {string} folderName - Folder display name in Directus.
+	 * @param {string} accessToken - Bearer token for authenticated requests.
+	 * @returns {Promise<string | null>} Folder id when found, otherwise null.
+	 */
+	static async #resolveFolderId(folderName, accessToken) {
+		try {
+			const url = new URL(`${DIRECTUS_URL}/folders`)
+			url.searchParams.set('filter[name][_eq]', folderName)
+			url.searchParams.set('limit', '1')
+
+			const res = await fetch(url, {
+				headers: { Authorization: `Bearer ${accessToken}` }
+			})
+			if (!res.ok) return null
+
+			const json = await res.json()
+			return json?.data?.[0]?.id ?? null
+		} catch (err) {
+			console.error(`Failed to resolve folder '${folderName}':`, err)
+			return null
+		}
+	}
+
+	/**
 	 * Fetches collections in parallel and returns them as Maps keyed by each collection's primary key.
 	 *
 	 * @param {string | null} contentType - A key from #collections to fetch a single type, or null to fetch all.
@@ -52,13 +79,9 @@ export class ContentService {
 	 * @returns {Promise<{data: Record<string, Map>, errors: Array}>} Object whose keys are content type names and values are Maps.
 	 */
 	static async fetchContent(contentType = null, accessToken = null) {
-		const entries = contentType
-			? [[contentType, this.#collections[contentType]]]
-			: Object.entries(this.#collections)
+		const entries = contentType ? [[contentType, this.#collections[contentType]]] : Object.entries(this.#collections)
 
-		const results = await Promise.all(
-			entries.map(([, cfg]) => this.#fetchCollection(cfg.path, accessToken))
-		)
+		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, accessToken)))
 
 		const errors = []
 		const maps = entries.map(([name, cfg], index) => {
@@ -70,11 +93,7 @@ export class ContentService {
 
 			// Normalize items so they always expose an `id` property used by admin UI.
 			// Some collections (e.g. `news`) use a different primary key field like `uuid`.
-			const normalized = items.map((item) =>
-				cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined
-					? { ...item, id: item[cfg.key] }
-					: item
-			)
+			const normalized = items.map((item) => (cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined ? { ...item, id: item[cfg.key] } : item))
 
 			return [name, new Map(normalized.map((item) => [item[cfg.key], item]))]
 		})
@@ -194,6 +213,85 @@ export class ContentService {
 		} catch (err) {
 			console.error('Failed to post content:', err)
 			return fail(500, { error: 'Aanmaken mislukt.' })
+		}
+	}
+
+	/**
+	 * Uploads an image file to Directus and stores it in the configured image folder.
+	 *
+	 * Flow:
+	 * 1) Validate auth + incoming file.
+	 * 2) Resolve the target Directus folder id from a folder name.
+	 * 3) Send multipart/form-data to Directus /files.
+	 * 4) Return the created file id so callers can store it on content items.
+	 *
+	 * Note: This method only handles file upload. If the caller creates an item
+	 * afterwards and that step fails, rollback (DELETE /files/{id}) should be
+	 * handled by the caller/action layer.
+	 *
+	 * @param {File} file - Image file from request.formData().
+	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
+	 * @param {{ folderName?: string, title?: string, filename?: string }} [options]
+	 * @returns {Promise<{success: true, id: string, file: object} | import('@sveltejs/kit').ActionFailure>}
+	 */
+	static async postImage(file, accessToken = null, options = {}) {
+		if (!accessToken) {
+			return fail(403, { error: 'Afbeelding uploaden mislukt: Unauthorized' })
+		}
+
+		if (!file || typeof file !== 'object' || file.size === 0) {
+			return fail(400, { error: 'Afbeelding uploaden mislukt: Geen bestand ontvangen.' })
+		}
+
+		if (file.type && !file.type.startsWith('image/')) {
+			return fail(400, { error: 'Afbeelding uploaden mislukt: Bestand is geen afbeelding.' })
+		}
+
+		// Resolve folder id once so uploads always end up in the expected Directus folder.
+		const folderName = options.folderName ?? 'images'
+		const folderId = await this.#resolveFolderId(folderName, accessToken)
+		if (!folderId) {
+			return fail(404, {
+				error: `Afbeelding uploaden mislukt: Map '${folderName}' niet gevonden in Directus.`
+			})
+		}
+
+		// Build multipart payload expected by Directus /files endpoint.
+		const formData = new FormData()
+		const fileName = options.filename ?? file.name ?? 'upload-image'
+		formData.append('file', file, fileName)
+		formData.append('folder', folderId)
+		if (options.title) {
+			formData.append('title', options.title)
+		}
+
+		try {
+			// Do not set Content-Type manually; fetch adds multipart boundaries automatically.
+			const res = await fetch(this.#directusFilesBase, {
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${accessToken}`
+				},
+				body: formData
+			})
+
+			if (!res.ok) {
+				return fail(res.status, { error: 'Afbeelding uploaden mislukt.' })
+			}
+
+			const json = await res.json()
+			const uploadedFile = json?.data
+			const fileId = uploadedFile?.id
+
+			// File id is required so callers can link the uploaded asset to content records.
+			if (!fileId) {
+				return fail(500, { error: 'Afbeelding uploaden mislukt: Geen bestand id ontvangen.' })
+			}
+
+			return { success: true, id: fileId, file: uploadedFile }
+		} catch (err) {
+			console.error('Failed to upload image:', err)
+			return fail(500, { error: 'Afbeelding uploaden mislukt.' })
 		}
 	}
 }
