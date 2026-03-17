@@ -172,12 +172,13 @@ export class ContentService {
 	 * Deletes the specified content and cleans up associated files.
 	 *
 	 * This method dynamically handles file cleanup based on the content type configuration:
-	 * 1. If the content type has fileFields defined in #collections, fetches the item
-	 * 2. For each file field, extracts the file ID and deletes it from Directus /files
-	 * 3. Finally deletes the content item itself
+	 * 1. If the content type has fileFields defined in #collections, it fetches only those fields
+	 * 2. Extracts all related file IDs from the item
+	 * 3. Deletes the content item itself
+	 * 4. Cleans up related files best-effort
 	 *
-	 * This works for any content type - just add fileFields array to the #collections registry.
-	 * File IDs can be strings or objects with {id, ...} structure.
+	 * This works for any content type - just add a fileFields array to the #collections registry.
+	 * File field values can be either plain string IDs or objects with an { id, ... } structure.
 	 *
 	 * @param {string} id - Id of the item to delete.
 	 * @param {string} contentType - A key from #collections identifying the collection to delete from.
@@ -194,10 +195,14 @@ export class ContentService {
 			return fail(400, { error: `Verwijderen mislukt: Onbekend content type '${contentType}'.` })
 		}
 
-		// If this content type has file relations, clean them up before deleting
-		if (config?.fileFields && config.fileFields.length > 0) {
+		// Capture file IDs first, then delete content, then cleanup files.
+		// This avoids ending up with content that still references deleted files when content deletion fails.
+		const fileIdsToDelete = []
+
+		if (Array.isArray(config.fileFields) && config.fileFields.length > 0) {
 			try {
-				const fetchRes = await fetch(`${this.#directusBase}/${config.path}/${id}`, {
+				const fields = config.fileFields.join(',')
+				const fetchRes = await fetch(`${this.#directusBase}/${config.path}/${id}?fields=${fields}`, {
 					headers: { Authorization: `Bearer ${accessToken}` }
 				})
 
@@ -205,24 +210,20 @@ export class ContentService {
 					const json = await fetchRes.json()
 					const item = json?.data
 
-					// Delete each file field associated with this content type
 					for (const fieldName of config.fileFields) {
 						const fieldValue = item?.[fieldName]
-						if (fieldValue) {
-							// Handle both string IDs and object {id, ...} structures
-							const fileId = typeof fieldValue === 'object' ? fieldValue.id : fieldValue
-							if (fileId) {
-								const deleteResult = await this.deleteFile(fileId, accessToken)
-								if (!deleteResult?.success) {
-									console.error(`[deleteContent] Failed to delete ${fieldName} (${fileId}).`)
-								}
-							}
+						if (!fieldValue) continue
+
+						const fileId = typeof fieldValue === 'object' ? fieldValue.id : fieldValue
+						if (fileId) {
+							fileIdsToDelete.push({ fieldName, fileId })
 						}
 					}
+				} else {
+					console.error(`[deleteContent] Failed to fetch file references for ${contentType} ${id}: ${fetchRes.status} ${fetchRes.statusText}`)
 				}
 			} catch (err) {
-				console.error(`[deleteContent] Failed to fetch or delete files for ${contentType} ${id}:`, err)
-				// Continue with content deletion even if file cleanup fails
+				console.error(`[deleteContent] Failed to fetch file references for ${contentType} ${id}:`, err)
 			}
 		}
 
@@ -234,44 +235,17 @@ export class ContentService {
 
 		if (!res.ok) {
 			return fail(res.status, { error: 'Verwijderen mislukt.' })
-		} else {
-			return { success: true }
 		}
-	}
 
-	/**
-	 * Creates new content with the specified fields.
-	 *
-	 * @param {Object} data - Object containing all fields for the new content item.
-	 * @param {string} contentType - A key from #collections identifying the collection to create in.
-	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
-	 * @returns {Promise<{success: true, id: string} | import('@sveltejs/kit').ActionFailure>}
-	 */
-	static async postContent(data, contentType, accessToken = null) {
-		if (!accessToken) {
-			return fail(403, { error: 'Aanmaken mislukt: Unauthorized' })
-		}
-		try {
-			const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${accessToken}`
-				},
-				body: JSON.stringify(data)
-			})
-
-			if (!res.ok) {
-				return fail(res.status, { error: 'Aanmaken mislukt.' })
+		// Content is deleted successfully; now cleanup associated files best-effort.
+		for (const { fieldName, fileId } of fileIdsToDelete) {
+			const deleteResult = await this.deleteFile(fileId, accessToken)
+			if (!deleteResult?.success) {
+				console.error(`[deleteContent] Failed to delete ${fieldName} (${fileId}).`)
 			}
-			const json = await res.json()
-			const createdItem = json.data
-			const itemId = createdItem?.[this.#collections[contentType].key]
-			return { success: true, id: itemId }
-		} catch (err) {
-			console.error('Failed to post content:', err)
-			return fail(500, { error: 'Aanmaken mislukt.' })
 		}
+
+		return { success: true }
 	}
 
 	/**
