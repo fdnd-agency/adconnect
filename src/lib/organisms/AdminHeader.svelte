@@ -1,6 +1,6 @@
 <script>
 	import dots from '$lib/assets/dots.svg'
-	const { title, directusBase, contentType, breadcrumb } = $props()
+	const { title, directusBase, contentType, breadcrumb, addHref } = $props()
 </script>
 
 <section class="page-header">
@@ -15,8 +15,8 @@
 	<div class="title-row">
 		<h1>{title}</h1>
 		<a
-			href="{directusBase}/{contentType}/+"
-			target="_blank"
+			href={addHref ?? `${directusBase}/${contentType}/+`}
+			target={addHref ? undefined : '_blank'}
 			class="add-btn"
 			aria-label="{title} toevoegen">+</a
 		>

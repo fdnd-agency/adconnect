@@ -1,10 +1,12 @@
 <script>
 	import { enhance } from '$app/forms'
-	import dots from '$lib/assets/dots.svg'
+	import { DIRECTUS_URL } from '$lib/constants.js'
+	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
 	import Error from '$lib/atoms/Error.svelte'
 
 	const { data, form } = $props()
 	const categories = $derived(data?.categories ?? [])
+	const directusBase = `${DIRECTUS_URL}/admin/content`
 
 	let isSubmitting = $state(false)
 </script>
@@ -13,16 +15,13 @@
 	<title>Document toevoegen | ADConnect Admin</title>
 </svelte:head>
 
-<section class="page-header">
-	<img
-		src={dots}
-		alt=""
-		class="header-dots"
-		width="80"
-		height="60"
-	/>
-	<h1>Documenten</h1>
-</section>
+<AdminHeader
+	title="Documenten"
+	{directusBase}
+	contentType="adconnect_documents"
+	breadcrumb="Documenten › Formulier"
+	addHref="/admin/documents/form"
+/>
 
 {#if form?.error}
 	<Error message={form.error} />
@@ -143,18 +142,6 @@
 </form>
 
 <style>
-	.page-header {
-		margin-bottom: 1em;
-	}
-
-	.header-dots {
-		margin-bottom: 0.5em;
-	}
-
-	h1 {
-		margin: 0;
-	}
-
 	.success-message {
 		font-family: var(--font-body);
 		font-size: 0.95rem;
