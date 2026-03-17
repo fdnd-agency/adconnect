@@ -3,7 +3,8 @@
 	import dots from '$lib/assets/dots.svg'
 	import Error from '$lib/atoms/Error.svelte'
 
-	const { form } = $props()
+	const { data, form } = $props()
+	const categories = $derived(data?.categories ?? [])
 
 	let isSubmitting = $state(false)
 </script>
@@ -25,6 +26,10 @@
 
 {#if form?.error}
 	<Error message={form.error} />
+{/if}
+
+{#if data?.loadError}
+	<Error message={data.loadError} />
 {/if}
 
 {#if form?.success && form?.message}
@@ -84,6 +89,20 @@
 			type="date"
 			required
 		/>
+	</div>
+
+	<div class="field-group field-group-half">
+		<label for="category">Categorie</label>
+		<select
+			id="category"
+			name="category"
+			required
+		>
+			<option value="">Kies een categorie</option>
+			{#each categories as category (category.id)}
+				<option value={category.id}>{category.title}</option>
+			{/each}
+		</select>
 	</div>
 
 	<div class="actions">
@@ -154,6 +173,17 @@
 	}
 
 	input {
+		height: 48px;
+		border-radius: 12px;
+		border: 1.5px solid var(--primary-orange);
+		padding: 0 0.9em;
+		font-family: var(--font-body);
+		font-size: 1rem;
+		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
+		color: light-dark(var(--text-darkblue), var(--text-white));
+	}
+
+	select {
 		height: 48px;
 		border-radius: 12px;
 		border: 1.5px solid var(--primary-orange);

@@ -12,6 +12,7 @@ export class ContentService {
 	/** Registry mapping each content type to its Directus collection path and primary key field. */
 	static #collections = {
 		documents: { path: 'adconnect_documents', key: 'id' },
+		categories: { path: 'adconnect_categories', key: 'id' },
 		themes: { path: 'adconnect_themes', key: 'id' },
 		events: { path: 'adconnect_events', key: 'id' },
 		cooperations: { path: 'adconnect_cooperation', key: 'id' },
