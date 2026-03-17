@@ -2,6 +2,8 @@ import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
+const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het document.'
+const GENERIC_PUBLISH_WARNING = 'Document opgeslagen als concept, maar publiceren is mislukt.'
 
 function slugify(value) {
 	return value
@@ -14,15 +16,18 @@ function slugify(value) {
 
 async function rollbackUploadedFiles(fileIds, accessToken) {
 	for (const fileId of fileIds) {
+		if (!fileId) continue
+
 		const result = await ContentService.deleteFile(fileId, accessToken)
 		if (!result?.success) {
-			console.error(`Rollback failed for file ${fileId}`)
+			console.error(`[documents/form] Rollback failed for file ${fileId}`)
 		}
 	}
 }
 
 export async function load({ cookies }) {
 	const { data: content, errors } = await ContentService.fetchContent('categories', cookies.get('access_token'))
+
 	const categories = content.categories ? [...content.categories.values()] : []
 	categories.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
 
@@ -35,6 +40,8 @@ export async function load({ cookies }) {
 export const actions = {
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
+		const submitAction = String(data.get('submitAction') ?? 'save').trim()
+		const shouldPublish = submitAction === 'publish'
 		const title = String(data.get('title') ?? '').trim()
 		const description = String(data.get('description') ?? '').trim()
 		const date = String(data.get('date') ?? '').trim()
@@ -44,7 +51,7 @@ export const actions = {
 		const token = cookies.get('access_token')
 
 		if (!token) {
-			return fail(403, { error: 'Aanmaken mislukt: Unauthorized' })
+			return fail(403, { error: GENERIC_CREATE_ERROR })
 		}
 
 		if (!title) {
@@ -63,54 +70,99 @@ export const actions = {
 			return fail(400, { error: 'Kies een categorie.' })
 		}
 
-		if (!image || typeof image !== 'object' || image.size === 0) {
+		if (!(image instanceof File) || image.size === 0) {
 			return fail(400, { error: 'Upload een afbeelding.' })
 		}
 
-		if (!sourceFile || typeof sourceFile !== 'object' || sourceFile.size === 0) {
+		if (!(sourceFile instanceof File) || sourceFile.size === 0) {
 			return fail(400, { error: 'Upload een bronbestand.' })
 		}
 
 		const uploadedFileIds = []
+		let createResult = null
+		let documentCreated = false
 
-		const imageUpload = await ContentService.postImage(image, token, {
-			folderName: FILE_LIBRARY_FOLDER
-		})
-		if (!imageUpload?.success) {
-			return imageUpload
-		}
-		uploadedFileIds.push(imageUpload.id)
+		try {
+			const imageUpload = await ContentService.postImage(image, token, {
+				folderName: FILE_LIBRARY_FOLDER
+			})
 
-		const sourceUpload = await ContentService.postFile(sourceFile, token, {
-			folderName: FILE_LIBRARY_FOLDER
-		})
-		if (!sourceUpload?.success) {
-			await rollbackUploadedFiles(uploadedFileIds, token)
-			return sourceUpload
-		}
-		uploadedFileIds.push(sourceUpload.id)
+			if (!imageUpload?.success) {
+				console.error('[documents/form] Image upload failed:', imageUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR })
+			}
+			uploadedFileIds.push(imageUpload.id)
 
-		const payload = {
-			title,
-			description,
-			date,
-			category,
-			hero_image: imageUpload.id,
-			source_file: sourceUpload.id,
-			slug: slugify(title),
-			status: 'draft'
-		}
+			const sourceUpload = await ContentService.postFile(sourceFile, token, {
+				folderName: FILE_LIBRARY_FOLDER
+			})
 
-		const createResult = await ContentService.postContent(payload, 'documents', token)
-		if (!createResult?.success) {
-			await rollbackUploadedFiles(uploadedFileIds, token)
-			return createResult
-		}
+			if (!sourceUpload?.success) {
+				console.error('[documents/form] Source file upload failed:', sourceUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR })
+			}
+			uploadedFileIds.push(sourceUpload.id)
 
-		return {
-			success: true,
-			message: 'Formulier succesvol opgeslagen.',
-			documentId: createResult.id
+			const payload = {
+				title,
+				description,
+				date,
+				category,
+				hero_image: imageUpload.id,
+				source_file: sourceUpload.id,
+				slug: slugify(title),
+				status: 'draft'
+			}
+
+			createResult = await ContentService.postContent(payload, 'documents', token)
+
+			if (!createResult?.success) {
+				console.error('[documents/form] Document create failed:', createResult)
+				return fail(500, { error: GENERIC_CREATE_ERROR })
+			}
+
+			documentCreated = true
+
+			if (shouldPublish) {
+				try {
+					const publishResult = await ContentService.publishContent(createResult.id, 'documents', token)
+
+					if (!publishResult?.success) {
+						console.error('[documents/form] Publish failed:', publishResult)
+						return {
+							success: true,
+							message: GENERIC_PUBLISH_WARNING,
+							documentId: createResult.id
+						}
+					}
+				} catch (err) {
+					console.error('[documents/form] Unexpected error during publish:', err)
+					return {
+						success: true,
+						message: GENERIC_PUBLISH_WARNING,
+						documentId: createResult.id
+					}
+				}
+
+				return {
+					success: true,
+					message: 'Document succesvol opgeslagen en gepubliceerd.',
+					documentId: createResult.id
+				}
+			}
+
+			return {
+				success: true,
+				message: 'Document succesvol opgeslagen als concept.',
+				documentId: createResult.id
+			}
+		} catch (err) {
+			console.error('[documents/form] Unexpected error during upload/create:', err)
+			return fail(500, { error: GENERIC_CREATE_ERROR })
+		} finally {
+			if (!documentCreated && uploadedFileIds.length > 0) {
+				await rollbackUploadedFiles(uploadedFileIds, token)
+			}
 		}
 	}
 }

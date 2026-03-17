@@ -122,6 +122,8 @@
 	<div class="actions">
 		<button
 			type="submit"
+			name="submitAction"
+			value="save"
 			class="button-outline-blue"
 			disabled={isSubmitting}
 		>
@@ -129,11 +131,13 @@
 		</button>
 		<button
 			type="submit"
+			name="submitAction"
+			value="publish"
 			class="button-outline-blue"
-			disabled
+			disabled={isSubmitting}
 			title="Publiceren"
 		>
-			Publiceer
+			{isSubmitting ? 'Publiceren...' : 'Publiceer'}
 		</button>
 	</div>
 </form>
