@@ -4,14 +4,19 @@ export const actions = {
 	default: async ({ request }) => {
 		const data = await request.formData()
 		const title = String(data.get('title') ?? '').trim()
+		const description = String(data.get('description') ?? '').trim()
 
 		if (!title) {
 			return fail(400, { error: 'Vul een titel in.' })
 		}
 
+		if (!description) {
+			return fail(400, { error: 'Vul een omschrijving in.' })
+		}
+
 		return {
 			success: true,
-			message: 'Titel is ontvangen. In de volgende stappen koppelen we de rest van het formulier.'
+			message: 'Document succesvol aangemaakt.'
 		}
 	}
 }
