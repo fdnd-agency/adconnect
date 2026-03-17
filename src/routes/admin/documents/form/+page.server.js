@@ -16,7 +16,7 @@ export const actions = {
 
 		return {
 			success: true,
-			message: 'Document succesvol aangemaakt.'
+			message: 'Formulier succesvol opgeslagen.'
 		}
 	}
 }
