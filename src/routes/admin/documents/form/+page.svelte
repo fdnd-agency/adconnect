@@ -34,6 +34,9 @@
 
 {#if form?.success && form?.message}
 	<p class="success-message">{form.message}</p>
+	{#if form?.documentId}
+		<p class="success-meta">Aangemaakt document-id: {form.documentId}</p>
+	{/if}
 {/if}
 
 <form
@@ -157,6 +160,13 @@
 		padding: 0.7em 1em;
 		margin: 0.75em 0 1em;
 		width: fit-content;
+	}
+
+	.success-meta {
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		margin: -0.5em 0 1em;
+		color: light-dark(var(--blue-800), var(--blue-150));
 	}
 
 	.document-form {

@@ -56,18 +56,36 @@ export class ContentService {
 	static async #resolveFolderId(folderName, accessToken) {
 		try {
 			const url = new URL(`${DIRECTUS_URL}/folders`)
+			url.searchParams.set('fields', 'id,name,parent')
 			url.searchParams.set('filter[name][_eq]', folderName)
 			url.searchParams.set('limit', '1')
 
 			const res = await fetch(url, {
-				headers: { Authorization: `Bearer ${accessToken}` }
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${accessToken}`
+				}
 			})
-			if (!res.ok) return null
+
+			if (!res.ok) {
+				const errorText = await res.text()
+				console.error('[resolveFolderId] Folder lookup failed:')
+				console.error('[resolveFolderId] Status:', res.status)
+				console.error('[resolveFolderId] Response body:', errorText)
+				return null
+			}
 
 			const json = await res.json()
-			return json?.data?.[0]?.id ?? null
+
+			const folder = json?.data?.[0] ?? null
+
+			if (!folder) {
+				return null
+			}
+
+			return folder.id
 		} catch (err) {
-			console.error(`Failed to resolve folder '${folderName}':`, err)
+			console.error(`[resolveFolderId] Failed to resolve folder '${folderName}':`, err)
 			return null
 		}
 	}
@@ -220,15 +238,7 @@ export class ContentService {
 	/**
 	 * Uploads an image file to Directus and stores it in the configured image folder.
 	 *
-	 * Flow:
-	 * 1) Validate auth + incoming file.
-	 * 2) Resolve the target Directus folder id from a folder name.
-	 * 3) Send multipart/form-data to Directus /files.
-	 * 4) Return the created file id so callers can store it on content items.
-	 *
-	 * Note: This method only handles file upload. If the caller creates an item
-	 * afterwards and that step fails, rollback (DELETE /files/{id}) should be
-	 * handled by the caller/action layer.
+	 * This method is a thin wrapper around `postFile` that adds image-only validation.
 	 *
 	 * @param {File} file - Image file from request.formData().
 	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
@@ -248,26 +258,49 @@ export class ContentService {
 			return fail(400, { error: 'Afbeelding uploaden mislukt: Bestand is geen afbeelding.' })
 		}
 
-		// Resolve folder id once so uploads always end up in the expected Directus folder.
-		const folderName = options.folderName ?? 'images'
-		const folderId = await this.#resolveFolderId(folderName, accessToken)
-		if (!folderId) {
-			return fail(404, {
-				error: `Afbeelding uploaden mislukt: Map '${folderName}' niet gevonden in Directus.`
-			})
+		return this.postFile(file, accessToken, options)
+	}
+
+	/**
+	 * Uploads a file to Directus /files.
+	 *
+	 * @param {File} file - File from request.formData().
+	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
+	 * @param {{ folderName?: string, title?: string, filename?: string }} [options]
+	 * @returns {Promise<{success: true, id: string, file: object} | import('@sveltejs/kit').ActionFailure>}
+	 */
+	static async postFile(file, accessToken = null, options = {}) {
+		if (!accessToken) {
+			return fail(403, { error: 'Bestand uploaden mislukt: Unauthorized' })
 		}
 
-		// Build multipart payload expected by Directus /files endpoint.
+		if (!(file instanceof File) || file.size === 0) {
+			return fail(400, { error: 'Bestand uploaden mislukt: Geen bestand ontvangen.' })
+		}
+
+		let folderId = null
+		if (options.folderName) {
+			folderId = await this.#resolveFolderId(options.folderName, accessToken)
+			if (!folderId) {
+				return fail(404, {
+					error: `Bestand uploaden mislukt: Map '${options.folderName}' niet gevonden in Directus.`
+				})
+			}
+		}
+
 		const formData = new FormData()
-		const fileName = options.filename ?? file.name ?? 'upload-image'
-		formData.append('file', file, fileName)
-		formData.append('folder', folderId)
+		const fileName = options.filename ?? file.name ?? 'upload-file'
+
+		// BELANGRIJK: metadata eerst, file als laatste
+		if (folderId) {
+			formData.append('folder', folderId)
+		}
 		if (options.title) {
 			formData.append('title', options.title)
 		}
+		formData.append('file', file, fileName)
 
 		try {
-			// Do not set Content-Type manually; fetch adds multipart boundaries automatically.
 			const res = await fetch(this.#directusFilesBase, {
 				method: 'POST',
 				headers: {
@@ -277,22 +310,52 @@ export class ContentService {
 			})
 
 			if (!res.ok) {
-				return fail(res.status, { error: 'Afbeelding uploaden mislukt.' })
+				const errorText = await res.text()
+				console.error('[postFile] Upload failed:')
+				console.error('[postFile] Response body:', errorText)
+				return fail(res.status, { error: 'Bestand uploaden mislukt.' })
 			}
 
 			const json = await res.json()
 			const uploadedFile = json?.data
 			const fileId = uploadedFile?.id
 
-			// File id is required so callers can link the uploaded asset to content records.
 			if (!fileId) {
-				return fail(500, { error: 'Afbeelding uploaden mislukt: Geen bestand id ontvangen.' })
+				return fail(500, { error: 'Bestand uploaden mislukt: Geen bestand id ontvangen.' })
 			}
 
 			return { success: true, id: fileId, file: uploadedFile }
 		} catch (err) {
-			console.error('Failed to upload image:', err)
-			return fail(500, { error: 'Afbeelding uploaden mislukt.' })
+			console.error('[postFile] Failed to upload file:', err)
+			return fail(500, { error: 'Bestand uploaden mislukt.' })
 		}
+	}
+
+	/**
+	 * Deletes a file from Directus /files by id.
+	 *
+	 * @param {string} id - Directus file id.
+	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
+	 * @returns {Promise<{success: true} | import('@sveltejs/kit').ActionFailure>}
+	 */
+	static async deleteFile(id, accessToken = null) {
+		if (!accessToken) {
+			return fail(403, { error: 'Bestand verwijderen mislukt: Unauthorized' })
+		}
+
+		if (!id) {
+			return fail(400, { error: 'Bestand verwijderen mislukt: Geen bestand id.' })
+		}
+
+		const res = await fetch(`${this.#directusFilesBase}/${id}`, {
+			method: 'DELETE',
+			headers: { Authorization: `Bearer ${accessToken}` }
+		})
+
+		if (!res.ok) {
+			return fail(res.status, { error: 'Bestand verwijderen mislukt.' })
+		}
+
+		return { success: true }
 	}
 }
