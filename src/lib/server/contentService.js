@@ -9,9 +9,9 @@ export class ContentService {
 	static #directusBase = `${DIRECTUS_URL}/items`
 	static #directusFilesBase = `${DIRECTUS_URL}/files`
 
-	/** Registry mapping each content type to its Directus collection path and primary key field. */
+	/** Registry mapping each content type to its Directus collection path, primary key field, and optional file relations. */
 	static #collections = {
-		documents: { path: 'adconnect_documents', key: 'id' },
+		documents: { path: 'adconnect_documents', key: 'id', fileFields: ['hero_image', 'source_file'] },
 		categories: { path: 'adconnect_categories', key: 'id' },
 		themes: { path: 'adconnect_themes', key: 'id' },
 		events: { path: 'adconnect_events', key: 'id' },
@@ -67,21 +67,13 @@ export class ContentService {
 				}
 			})
 
-			if (!res.ok) {
-				const errorText = await res.text()
-				console.error('[resolveFolderId] Folder lookup failed:')
-				console.error('[resolveFolderId] Status:', res.status)
-				console.error('[resolveFolderId] Response body:', errorText)
-				return null
-			}
+			if (!res.ok) return null
 
 			const json = await res.json()
 
 			const folder = json?.data?.[0] ?? null
 
-			if (!folder) {
-				return null
-			}
+			if (!folder) return null
 
 			return folder.id
 		} catch (err) {
@@ -177,7 +169,15 @@ export class ContentService {
 	}
 
 	/**
-	 * Deletes the specified content.
+	 * Deletes the specified content and cleans up associated files.
+	 *
+	 * This method dynamically handles file cleanup based on the content type configuration:
+	 * 1. If the content type has fileFields defined in #collections, fetches the item
+	 * 2. For each file field, extracts the file ID and deletes it from Directus /files
+	 * 3. Finally deletes the content item itself
+	 *
+	 * This works for any content type - just add fileFields array to the #collections registry.
+	 * File IDs can be strings or objects with {id, ...} structure.
 	 *
 	 * @param {string} id - Id of the item to delete.
 	 * @param {string} contentType - A key from #collections identifying the collection to delete from.
@@ -188,7 +188,46 @@ export class ContentService {
 		if (!accessToken) {
 			return fail(403, { error: 'Verwijderen mislukt: Unauthorized' })
 		}
-		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}/${id}`, {
+
+		const config = this.#collections[contentType]
+		if (!config) {
+			return fail(400, { error: `Verwijderen mislukt: Onbekend content type '${contentType}'.` })
+		}
+
+		// If this content type has file relations, clean them up before deleting
+		if (config?.fileFields && config.fileFields.length > 0) {
+			try {
+				const fetchRes = await fetch(`${this.#directusBase}/${config.path}/${id}`, {
+					headers: { Authorization: `Bearer ${accessToken}` }
+				})
+
+				if (fetchRes.ok) {
+					const json = await fetchRes.json()
+					const item = json?.data
+
+					// Delete each file field associated with this content type
+					for (const fieldName of config.fileFields) {
+						const fieldValue = item?.[fieldName]
+						if (fieldValue) {
+							// Handle both string IDs and object {id, ...} structures
+							const fileId = typeof fieldValue === 'object' ? fieldValue.id : fieldValue
+							if (fileId) {
+								const deleteResult = await this.deleteFile(fileId, accessToken)
+								if (!deleteResult?.success) {
+									console.error(`[deleteContent] Failed to delete ${fieldName} (${fileId}).`)
+								}
+							}
+						}
+					}
+				}
+			} catch (err) {
+				console.error(`[deleteContent] Failed to fetch or delete files for ${contentType} ${id}:`, err)
+				// Continue with content deletion even if file cleanup fails
+			}
+		}
+
+		// Delete the content item itself
+		const res = await fetch(`${this.#directusBase}/${config.path}/${id}`, {
 			method: 'DELETE',
 			headers: { Authorization: `Bearer ${accessToken}` }
 		})
@@ -264,16 +303,22 @@ export class ContentService {
 	/**
 	 * Uploads a file to Directus /files.
 	 *
+	 * This is the core file upload method used by both postImage and custom file uploads.
+	 * It handles:
+	 * - File validation (must be valid File object with size > 0)
+	 * - Folder resolution: converts folder name to folder ID using #resolveFolderId
+	 * - FormData construction: builds multipart form with metadata (folder, title) and file
+	 * - Directus /files endpoint: POSTs the FormData and extracts the returned file ID
+	 *
 	 * @param {File} file - File from request.formData().
 	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
-	 * @param {{ folderName?: string, title?: string, filename?: string }} [options]
+	 * @param {{ folderName?: string, title?: string, filename?: string }} [options].
 	 * @returns {Promise<{success: true, id: string, file: object} | import('@sveltejs/kit').ActionFailure>}
 	 */
 	static async postFile(file, accessToken = null, options = {}) {
 		if (!accessToken) {
 			return fail(403, { error: 'Bestand uploaden mislukt: Unauthorized' })
 		}
-
 		if (!(file instanceof File) || file.size === 0) {
 			return fail(400, { error: 'Bestand uploaden mislukt: Geen bestand ontvangen.' })
 		}
@@ -288,10 +333,11 @@ export class ContentService {
 			}
 		}
 
+		// Build FormData with metadata and file
 		const formData = new FormData()
 		const fileName = options.filename ?? file.name ?? 'upload-file'
 
-		// BELANGRIJK: metadata eerst, file als laatste
+		// Metadata first, file last (Directus expects this order)
 		if (folderId) {
 			formData.append('folder', folderId)
 		}
@@ -300,6 +346,7 @@ export class ContentService {
 		}
 		formData.append('file', file, fileName)
 
+		// POST FormData to Directus /files endpoint
 		try {
 			const res = await fetch(this.#directusFilesBase, {
 				method: 'POST',
@@ -309,13 +356,16 @@ export class ContentService {
 				body: formData
 			})
 
+			// Check response status
 			if (!res.ok) {
 				const errorText = await res.text()
 				console.error('[postFile] Upload failed:')
+				console.error('[postFile] Status:', res.status)
 				console.error('[postFile] Response body:', errorText)
 				return fail(res.status, { error: 'Bestand uploaden mislukt.' })
 			}
 
+			// Extract file ID from Directus response
 			const json = await res.json()
 			const uploadedFile = json?.data
 			const fileId = uploadedFile?.id
@@ -324,6 +374,7 @@ export class ContentService {
 				return fail(500, { error: 'Bestand uploaden mislukt: Geen bestand id ontvangen.' })
 			}
 
+			// Success: return file ID for storing in document relations
 			return { success: true, id: fileId, file: uploadedFile }
 		} catch (err) {
 			console.error('[postFile] Failed to upload file:', err)
