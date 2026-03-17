@@ -105,6 +105,17 @@
 		</select>
 	</div>
 
+	<div class="field-group">
+		<label for="source_file">Bronbestand</label>
+		<input
+			id="source_file"
+			name="source_file"
+			type="file"
+			accept=".pdf,.doc,.docx"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
@@ -117,7 +128,7 @@
 			type="submit"
 			class="button-outline-blue"
 			disabled
-			title="Publiceren koppelen we in een volgende stap"
+			title="Publiceren"
 		>
 			Publiceer
 		</button>

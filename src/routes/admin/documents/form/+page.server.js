@@ -19,6 +19,7 @@ export const actions = {
 		const description = String(data.get('description') ?? '').trim()
 		const date = String(data.get('date') ?? '').trim()
 		const category = String(data.get('category') ?? '').trim()
+		const sourceFile = data.get('source_file')
 
 		if (!title) {
 			return fail(400, { error: 'Vul een titel in.' })
@@ -34,6 +35,10 @@ export const actions = {
 
 		if (!category) {
 			return fail(400, { error: 'Kies een categorie.' })
+		}
+
+		if (!sourceFile || typeof sourceFile !== 'object' || sourceFile.size === 0) {
+			return fail(400, { error: 'Upload een bronbestand.' })
 		}
 
 		return {
