@@ -13,11 +13,11 @@ export class ContentService {
 	static #collections = {
 		documents: { path: 'adconnect_documents', key: 'id', fileFields: ['hero_image', 'source_file'] },
 		categories: { path: 'adconnect_categories', key: 'id' },
-		themes: { path: 'adconnect_themes', key: 'id' },
-		events: { path: 'adconnect_events', key: 'id' },
+		themes: { path: 'adconnect_themes', key: 'id', fileFields: ['hero'] },
+		events: { path: 'adconnect_events', key: 'id', fileFields: ['hero'] },
 		cooperations: { path: 'adconnect_cooperation', key: 'id' },
-		news: { path: 'adconnect_news', key: 'uuid' },
-		nominations: { path: 'adconnect_nominations', key: 'id' },
+		news: { path: 'adconnect_news', key: 'uuid', fileFields: ['hero'] },
+		nominations: { path: 'adconnect_nominations', key: 'id', fileFields: ['profile_picture'] },
 		faqs: { path: 'adconnect_faqs', key: 'id' }
 	}
 
@@ -56,7 +56,7 @@ export class ContentService {
 	static async #resolveFolderId(folderName, accessToken) {
 		try {
 			const url = new URL(`${DIRECTUS_URL}/folders`)
-			url.searchParams.set('fields', 'id,name,parent')
+			url.searchParams.set('fields', 'id')
 			url.searchParams.set('filter[name][_eq]', folderName)
 			url.searchParams.set('limit', '1')
 
@@ -68,13 +68,9 @@ export class ContentService {
 			})
 
 			if (!res.ok) return null
-
 			const json = await res.json()
-
 			const folder = json?.data?.[0] ?? null
-
 			if (!folder) return null
-
 			return folder.id
 		} catch (err) {
 			console.error(`[resolveFolderId] Failed to resolve folder '${folderName}':`, err)
@@ -273,6 +269,7 @@ export class ContentService {
 			if (!res.ok) {
 				return fail(res.status, { error: 'Aanmaken mislukt.' })
 			}
+
 			const json = await res.json()
 			const createdItem = json.data
 			const itemId = createdItem?.[this.#collections[contentType].key]
