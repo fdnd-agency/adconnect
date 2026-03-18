@@ -2,7 +2,7 @@ import { ContentService } from '$lib/server/contentService'
 
 export async function load({ cookies }) {
 	// Retrieves documents from Directus API through the ContentService.
-	const { data: content, errors } = await ContentService.fetchContent('documents', cookies.get('access_token'))
+	const { data: content, errors } = await ContentService.fetchContent('documents', null, cookies.get('access_token'))
 
 	return {
 		documents: content.documents,

@@ -27,10 +27,10 @@ export class ContentService {
 	 * @param {string | null} accessToken - Bearer token for authenticated requests (drafts).
 	 * @returns {Promise<{items: Array, error: Error|null}>} Array of items, or an empty array and Error on failure.
 	 */
-	static async #fetchCollection(path, accessToken = null) {
+	static async #fetchCollection(path, id = null, accessToken = null) {
 		try {
 			const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : {}
-			const res = await fetch(`${this.#directusBase}/${path}`, { headers })
+			const res = await fetch(`${this.#directusBase}/${path}/${id}`, { headers })
 			const json = await res.json()
 			if (!json.data) {
 				const error = new Error(`No data returned for ${path}: ${JSON.stringify(json)}`)
@@ -51,14 +51,10 @@ export class ContentService {
 	 * @param {string | null} accessToken - Pass the access_token cookie value to fetch drafts as an authenticated user.
 	 * @returns {Promise<{data: Record<string, Map>, errors: Array}>} Object whose keys are content type names and values are Maps.
 	 */
-	static async fetchContent(contentType = null, accessToken = null) {
-		const entries = contentType
-			? [[contentType, this.#collections[contentType]]]
-			: Object.entries(this.#collections)
+	static async fetchContent(contentType = null, id = null, accessToken = null) {
+		const entries = contentType ? [[contentType, this.#collections[contentType]]] : Object.entries(this.#collections)
 
-		const results = await Promise.all(
-			entries.map(([, cfg]) => this.#fetchCollection(cfg.path, accessToken))
-		)
+		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, id, accessToken)))
 
 		const errors = []
 		const maps = entries.map(([name, cfg], index) => {
@@ -70,11 +66,7 @@ export class ContentService {
 
 			// Normalize items so they always expose an `id` property used by admin UI.
 			// Some collections (e.g. `news`) use a different primary key field like `uuid`.
-			const normalized = items.map((item) =>
-				cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined
-					? { ...item, id: item[cfg.key] }
-					: item
-			)
+			const normalized = items.map((item) => (cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined ? { ...item, id: item[cfg.key] } : item))
 
 			return [name, new Map(normalized.map((item) => [item[cfg.key], item]))]
 		})
