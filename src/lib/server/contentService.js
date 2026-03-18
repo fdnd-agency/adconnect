@@ -21,6 +21,13 @@ export class ContentService {
 		faqs: { path: 'adconnect_faqs', key: 'id' }
 	}
 
+	/* Private helper to get collection config by content type key. */
+	static #getConfig(contentType) {
+		const config = this.#collections[contentType]
+		if (!config) throw new Error(`Onbekend content type: '${contentType}'`)
+		return config
+	}
+
 	/**
 	 * Fetches a single Directus collection and returns its items.
 	 * Optionally includes an Authorization header to retrieve draft content.
@@ -61,7 +68,6 @@ export class ContentService {
 			url.searchParams.set('limit', '1')
 
 			const res = await fetch(url, {
-				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${accessToken}`
 				}
@@ -86,7 +92,7 @@ export class ContentService {
 	 * @returns {Promise<{data: Record<string, Map>, errors: Array}>} Object whose keys are content type names and values are Maps.
 	 */
 	static async fetchContent(contentType = null, accessToken = null) {
-		const entries = contentType ? [[contentType, this.#collections[contentType]]] : Object.entries(this.#collections)
+		const entries = contentType ? [[contentType, this.#getConfig(contentType)]] : Object.entries(this.#collections)
 
 		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, accessToken)))
 
@@ -120,7 +126,8 @@ export class ContentService {
 		if (!accessToken) {
 			return fail(403, { error: 'Publiceren mislukt: Unauthorized' })
 		}
-		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}/${id}`, {
+		const config = this.#getConfig(contentType)
+		const res = await fetch(`${this.#directusBase}/${config.path}/${id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -148,7 +155,9 @@ export class ContentService {
 		if (!accessToken) {
 			return fail(403, { error: 'Depubliceren mislukt: Unauthorized' })
 		}
-		const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}/${id}`, {
+
+		const config = this.#getConfig(contentType)
+		const res = await fetch(`${this.#directusBase}/${config.path}/${id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -186,10 +195,7 @@ export class ContentService {
 			return fail(403, { error: 'Verwijderen mislukt: Unauthorized' })
 		}
 
-		const config = this.#collections[contentType]
-		if (!config) {
-			return fail(400, { error: `Verwijderen mislukt: Onbekend content type '${contentType}'.` })
-		}
+		const config = this.#getConfig(contentType)
 
 		// Capture file IDs first, then delete content, then cleanup files.
 		// This avoids ending up with content that still references deleted files when content deletion fails.
@@ -256,8 +262,10 @@ export class ContentService {
 		if (!accessToken) {
 			return fail(403, { error: 'Aanmaken mislukt: Unauthorized' })
 		}
+
+		const config = this.#getConfig(contentType)
 		try {
-			const res = await fetch(`${this.#directusBase}/${this.#collections[contentType].path}`, {
+			const res = await fetch(`${this.#directusBase}/${config.path}`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -272,7 +280,7 @@ export class ContentService {
 
 			const json = await res.json()
 			const createdItem = json.data
-			const itemId = createdItem?.[this.#collections[contentType].key]
+			const itemId = createdItem?.[config.key]
 			return { success: true, id: itemId }
 		} catch (err) {
 			console.error('Failed to post content:', err)
