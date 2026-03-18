@@ -30,9 +30,10 @@ export class ContentService {
 	static async #fetchCollection(path, id = null, accessToken = null) {
 		try {
 			const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : {}
-			const res = await fetch(`${this.#directusBase}/${path}/${id}`, { headers })
+			const endpoint = id ? `${this.#directusBase}/${path}/${id}` : `${this.#directusBase}/${path}`
+			const res = await fetch(endpoint, { headers })
 			const json = await res.json()
-			if (!json.data) {
+			if (!res.ok || json.data === undefined) {
 				const error = new Error(`No data returned for ${path}: ${JSON.stringify(json)}`)
 				console.error(error)
 				return { items: [], error }
@@ -59,6 +60,7 @@ export class ContentService {
 		const errors = []
 		const maps = entries.map(([name, cfg], index) => {
 			const { items = [], error } = results[index] ?? {}
+			const itemList = Array.isArray(items) ? items : items ? [items] : []
 
 			if (error) {
 				errors.push({ collection: name, message: error.message ?? String(error) })
@@ -66,7 +68,7 @@ export class ContentService {
 
 			// Normalize items so they always expose an `id` property used by admin UI.
 			// Some collections (e.g. `news`) use a different primary key field like `uuid`.
-			const normalized = items.map((item) => (cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined ? { ...item, id: item[cfg.key] } : item))
+			const normalized = itemList.map((item) => (cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined ? { ...item, id: item[cfg.key] } : item))
 
 			return [name, new Map(normalized.map((item) => [item[cfg.key], item]))]
 		})
