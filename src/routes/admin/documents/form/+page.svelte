@@ -158,13 +158,6 @@
 		width: fit-content;
 	}
 
-	.success-meta {
-		font-family: var(--font-body);
-		font-size: 0.9rem;
-		margin: -0.5em 0 1em;
-		color: light-dark(var(--blue-800), var(--blue-150));
-	}
-
 	.document-form {
 		display: flex;
 		flex-direction: column;

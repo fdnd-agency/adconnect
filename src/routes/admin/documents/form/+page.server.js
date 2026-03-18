@@ -5,6 +5,7 @@ const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het document.'
 const GENERIC_PUBLISH_WARNING = 'Document opgeslagen als concept, maar publiceren is mislukt.'
 
+// Creates a URL-safe slug from a title string.
 function slugify(value) {
 	return value
 		.toLowerCase()
@@ -14,6 +15,7 @@ function slugify(value) {
 		.replace(/-+/g, '-')
 }
 
+// Deletes uploaded files when document creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
 	for (const fileId of fileIds) {
 		if (!fileId) continue
@@ -25,6 +27,7 @@ async function rollbackUploadedFiles(fileIds, accessToken) {
 	}
 }
 
+// Loads and alphabetically sorts document categories for the form.
 export async function load({ cookies }) {
 	const { data: content, errors } = await ContentService.fetchContent('categories', cookies.get('access_token'))
 
@@ -38,6 +41,8 @@ export async function load({ cookies }) {
 }
 
 export const actions = {
+	// Handles form submission: validates input, uploads files, creates a document,
+	// and optionally publishes it.
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
 		const submitAction = String(data.get('submitAction') ?? 'save').trim()
