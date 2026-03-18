@@ -5,7 +5,7 @@ export async function load({ params, cookies }) {
 
 	return {
 		type: params.type,
-		data: content,
+		content: content,
 		loadError: errors.length ? `Er is een probleem opgetreden bij het ophalen van de ${params.type} preview.` : null
 	}
 }
