@@ -83,8 +83,10 @@ export const actions = {
 		let documentCreated = false
 
 		try {
-			const imageUpload = await ContentService.postImage(image, token, {
-				folderName: FILE_LIBRARY_FOLDER
+			const imageUpload = await ContentService.postFile(image, token, {
+				folderName: FILE_LIBRARY_FOLDER,
+				allowedMimePrefixes: ['image/'],
+				invalidTypeError: 'Afbeelding uploaden mislukt: Bestand is geen afbeelding.'
 			})
 
 			if (!imageUpload?.success) {

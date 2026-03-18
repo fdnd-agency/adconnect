@@ -284,35 +284,9 @@ export class ContentService {
 	}
 
 	/**
-	 * Uploads an image file to Directus and stores it in the configured image folder.
-	 *
-	 * This method is a thin wrapper around `postFile` that adds image-only validation.
-	 *
-	 * @param {File} file - Image file from request.formData().
-	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
-	 * @param {{ folderName?: string, title?: string, filename?: string }} [options]
-	 * @returns {Promise<{success: true, id: string, file: object} | import('@sveltejs/kit').ActionFailure>}
-	 */
-	static async postImage(file, accessToken = null, options = {}) {
-		if (!accessToken) {
-			return fail(403, { error: 'Afbeelding uploaden mislukt: Unauthorized' })
-		}
-
-		if (!file || typeof file !== 'object' || file.size === 0) {
-			return fail(400, { error: 'Afbeelding uploaden mislukt: Geen bestand ontvangen.' })
-		}
-
-		if (file.type && !file.type.startsWith('image/')) {
-			return fail(400, { error: 'Afbeelding uploaden mislukt: Bestand is geen afbeelding.' })
-		}
-
-		return this.postFile(file, accessToken, options)
-	}
-
-	/**
 	 * Uploads a file to Directus /files.
 	 *
-	 * This is the core file upload method used by both postImage and custom file uploads.
+	 * This is the core file upload method for all file uploads.
 	 * It handles:
 	 * - File validation (must be valid File object with size > 0)
 	 * - Folder resolution: converts folder name to folder ID using #resolveFolderId
@@ -321,7 +295,13 @@ export class ContentService {
 	 *
 	 * @param {File} file - File from request.formData().
 	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
-	 * @param {{ folderName?: string, title?: string, filename?: string }} [options].
+	 * @param {{
+	 *  folderName?: string,
+	 *  title?: string,
+	 *  filename?: string,
+	 *  allowedMimePrefixes?: string[],
+	 *  invalidTypeError?: string
+	 * }} [options]
 	 * @returns {Promise<{success: true, id: string, file: object} | import('@sveltejs/kit').ActionFailure>}
 	 */
 	static async postFile(file, accessToken = null, options = {}) {
@@ -332,6 +312,23 @@ export class ContentService {
 			return fail(400, { error: 'Bestand uploaden mislukt: Geen bestand ontvangen.' })
 		}
 
+		// Guard: controleer het bestandstype
+		// allowedMimePrefixes is een array van toegestane MIME-type prefixen, bijvoorbeeld:
+		//   ['image/']              → staat alle afbeeldingen toe (image/png, image/jpeg, etc.)
+		//   ['application/pdf']    → staat alleen PDF toe
+		// Als allowedMimePrefixes niet is meegegeven, wordt deze check overgeslagen en zijn alle bestandstypes toegestaan.
+		if (Array.isArray(options.allowedMimePrefixes) && options.allowedMimePrefixes.length > 0) {
+			// .some() loopt door de array en geeft true terug zodra één prefix overeenkomt.
+			// Elk MIME-type heeft de structuur 'categorie/specifictype', bv. 'image/png'.
+			// Met startsWith() checken we of het bestandstype begint met de opgegeven prefix.
+			const isAllowed = options.allowedMimePrefixes.some((prefix) => typeof prefix === 'string' && file.type.startsWith(prefix))
+			if (!isAllowed) {
+				return fail(400, {
+					error: options.invalidTypeError ?? 'Bestand uploaden mislukt: Ongeldig bestandstype.'
+				})
+			}
+		}
+		// Als er een mapnaam is meegegeven, zoeken we eerst het bijbehorende ID op.
 		let folderId = null
 		if (options.folderName) {
 			folderId = await this.#resolveFolderId(options.folderName, accessToken)
@@ -342,20 +339,20 @@ export class ContentService {
 			}
 		}
 
-		// Build FormData with metadata and file
+		// Bouw een FormData object op volgens de Directus specificaties.
 		const formData = new FormData()
-		const fileName = options.filename ?? file.name ?? 'upload-file'
+		const fileName = options.filename ?? file.name
 
-		// Metadata first, file last (Directus expects this order)
 		if (folderId) {
 			formData.append('folder', folderId)
 		}
 		if (options.title) {
 			formData.append('title', options.title)
 		}
+
+		// Voeg het bestand als laatste toe (Directus verwacht deze volgorde)
 		formData.append('file', file, fileName)
 
-		// POST FormData to Directus /files endpoint
 		try {
 			const res = await fetch(this.#directusFilesBase, {
 				method: 'POST',
@@ -365,7 +362,6 @@ export class ContentService {
 				body: formData
 			})
 
-			// Check response status
 			if (!res.ok) {
 				const errorText = await res.text()
 				console.error('[postFile] Upload failed:')
@@ -374,7 +370,8 @@ export class ContentService {
 				return fail(res.status, { error: 'Bestand uploaden mislukt.' })
 			}
 
-			// Extract file ID from Directus response
+			// Haal het ID van het geüploade bestand op uit de Directus response.
+			// Dit ID wordt daarna opgeslagen in het document
 			const json = await res.json()
 			const uploadedFile = json?.data
 			const fileId = uploadedFile?.id
@@ -383,7 +380,6 @@ export class ContentService {
 				return fail(500, { error: 'Bestand uploaden mislukt: Geen bestand id ontvangen.' })
 			}
 
-			// Success: return file ID for storing in document relations
 			return { success: true, id: fileId, file: uploadedFile }
 		} catch (err) {
 			console.error('[postFile] Failed to upload file:', err)
