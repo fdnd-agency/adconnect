@@ -2,7 +2,7 @@ import { ContentService } from '$lib/server/contentService'
 
 export async function load({ cookies }) {
 	// Retrieves themes from Directus API through the ContentService.
-	const { data: content, errors } = await ContentService.fetchContent('themes', null, null, null, false, cookies.get('access_token'))
+	const { data: content, errors } = await ContentService.fetchContent('themes', null, null, null, true, cookies.get('access_token'))
 
 	return {
 		themes: content.themes,

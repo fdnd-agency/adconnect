@@ -68,10 +68,10 @@ export class ContentService {
 	 * @param {string | null} id - A key from #collections to fetch a single type, or null to fetch all.
 	 * @param {string | null} fields -
 	 * @param {string | null} filters -
-	 * @param {boolean} asMap -
-	 * @returns {Promise<{data: Record<string, Map>, errors: Array}>} Object whose keys are content type names and values are Maps.
+	 * @param {boolean} asMap - When true returns Map values per collection, otherwise returns Arrays.
+	 * @returns {Promise<{data: Record<string, Map | Array>, errors: Array}>} Object whose keys are content type names and values are Maps or Arrays.
 	 */
-	static async fetchContent(contentType = null, id = null, fields = null, filters = null, _asMap = false, accessToken = null) {
+	static async fetchContent(contentType = null, id = null, fields = null, filters = null, asMap = false, accessToken = null) {
 		const entries = contentType ? [[contentType, this.#collections[contentType]]] : Object.entries(this.#collections)
 
 		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, id, fields, filters, accessToken)))
@@ -91,7 +91,8 @@ export class ContentService {
 			// Some collections (e.g. `news`) use a different primary key field like `uuid`.
 			const normalized = itemList.map((item) => (cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined ? { ...item, id: item[cfg.key] } : item))
 
-			dataObj[name] = new Map(normalized.map((item) => [item[cfg.key], item]))
+			const collectionMap = new Map(normalized.map((item) => [item[cfg.key], item]))
+			dataObj[name] = asMap ? collectionMap : Array.from(collectionMap.values())
 		})
 
 		return { data: dataObj, errors }

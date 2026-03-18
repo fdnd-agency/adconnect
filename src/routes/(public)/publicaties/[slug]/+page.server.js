@@ -1,19 +1,22 @@
-import { DIRECTUS_URL } from '$lib/server/directus.js'
+import { ContentService } from '$lib/server/contentService.js'
+import { error } from '@sveltejs/kit'
 
 export async function load({ params }) {
 	const { slug } = params
 
 	// Data from Directus API
-	const baseUrl = `${DIRECTUS_URL}/items/`
-	const documentEndpoint = 'adconnect_documents'
-	const fields = 'fields=title,id,description,slug,hero_image,source_file.*,date'
-	const filter = `?filter[slug][_eq]=${slug}`
+	const fields = 'title,id,description,slug,hero_image,source_file.*,date'
+	const filter = { slug: { _eq: slug } }
 
-	// Convert data to json
-	const documentResponse = await fetch(`${baseUrl}${documentEndpoint}${filter}&${fields}`)
-	const documentData = await documentResponse.json()
+	// Fetch through ContentService and extract the matching document from the returned Map.
+	const response = await ContentService.fetchContent('documents', null, fields, filter, false)
+	const document = Array.from(response.data.documents?.values?.() ?? [])[0]
+
+	if (!document) {
+		throw error(404, 'Publicatie niet gevonden')
+	}
 
 	return {
-		document: documentData.data[0]
+		document
 	}
 }
