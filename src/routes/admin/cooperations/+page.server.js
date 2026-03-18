@@ -2,7 +2,7 @@ import { ContentService } from '$lib/server/contentService'
 
 export async function load({ cookies }) {
 	// Retrieves cooperations from Directus API through the ContentService.
-	const { data: content, errors } = await ContentService.fetchContent('cooperations', null, cookies.get('access_token'))
+	const { data: content, errors } = await ContentService.fetchContent('cooperations', null, null, null, false, cookies.get('access_token'))
 
 	return {
 		cooperations: content.cooperations,

@@ -1,10 +1,8 @@
-import { DIRECTUS_URL } from '$lib/server/directus.js'
+import { ContentService } from '$lib/server/contentService.js'
 
 export async function load({ url }) {
 	// Data from Directus API
-	const baseUrl = `${DIRECTUS_URL}/items/`
-	const documentsEndpoint = 'adconnect_documents'
-	const fields = '?fields=title,id,description,slug,hero_image,source_file,category.*,date'
+	const fields = 'title,id,description,slug,hero_image,source_file,category.*,date'
 
 	// Get the category from string
 	const category = url.searchParams.get('category')
@@ -15,28 +13,24 @@ export async function load({ url }) {
 		// Check if the category isn't 'alle-publicaties'
 		if (category === 'alle-publicaties' || category === '') {
 			// No filter added
-			filter = ''
+			filter = null
 		} else {
-			// Choose category, then add parameter 'category=..' in url
-			filter = `&filter[category][title][_icontains]=${category}`
+			// Choose category using Directus filter object syntax.
+			filter = { category: { title: { _icontains: category } } }
 		}
 	} else {
 		// No category parameter in url
-		filter = ''
+		filter = null
 	}
 
-	// Convert document data (with filter) to json
-	const filterUrl = baseUrl + documentsEndpoint + fields + filter
-	const documentsResponse = await fetch(filterUrl)
-	const documentsData = await documentsResponse.json()
+	const documentsResponse = await ContentService.fetchContent('documents', null, fields, filter, false)
 
 	// Convert category data to json
-	const categoriesResponse = await fetch(`${baseUrl}adconnect_categories`)
-	const categoriesData = await categoriesResponse.json()
+	const categoriesResponse = await ContentService.fetchContent('categories', null, null, null, false)
 
 	return {
-		documents: documentsData.data,
-		categories: categoriesData.data,
+		documents: Array.from(documentsResponse.data.documents?.values?.() ?? []),
+		categories: Array.from(categoriesResponse.data.categories?.values?.() ?? []),
 		selectedCategory: category || 'alle-publicaties'
 	}
 }

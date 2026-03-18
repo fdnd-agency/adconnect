@@ -1,20 +1,16 @@
-import { DIRECTUS_URL } from '$lib/server/directus'
+import { ContentService } from '$lib/server/contentService'
 
 export async function load() {
-	// Data from Directus API
-	const baseUrl = `${DIRECTUS_URL}/items/`
-	const fields = '?fields=title,description,date_updated,uuid,hero'
-	const cooperationEndpoint = 'adconnect_cooperation'
-	const fieldsCooperation = '?fields=id,url,name,logo'
+	// Requested fields for the data from Directus API
+	const newsFields = 'title,description,date_updated,uuid,hero'
+	const cooperationFields = 'id,url,name,logo'
 
-	// Convert data to json
-	const newsResponse = await fetch(`${baseUrl}adconnect_news${fields}`)
-	const newsData = await newsResponse.json()
-	const cooperationResponse = await fetch(baseUrl + cooperationEndpoint + fieldsCooperation)
-	const cooperationData = await cooperationResponse.json()
+	// Fetch the content data via the ContentService.
+	const newsResponse = await ContentService.fetchContent('news', null, newsFields, null, false)
+	const cooperationResponse = await ContentService.fetchContent('cooperations', null, cooperationFields, null, false)
 
 	return {
-		news: newsData.data,
-		cooperation: cooperationData.data
+		news: Array.from(newsResponse.data.news.values()),
+		cooperation: Array.from(cooperationResponse.data.cooperations.values())
 	}
 }

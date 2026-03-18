@@ -1,7 +1,7 @@
 import { ContentService } from '$lib/server/contentService'
 
 export async function load({ params, cookies }) {
-	const { data: content, errors } = await ContentService.fetchContent(params.type, params.id, cookies.get('access_token'))
+	const { data: content, errors } = await ContentService.fetchContent(params.type, params.id, null, null, false, cookies.get('access_token'))
 
 	return {
 		type: params.type,

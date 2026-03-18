@@ -1,16 +1,15 @@
 import { error } from '@sveltejs/kit'
-import { DIRECTUS_URL } from '$lib/server/directus.js'
+import { ContentService } from '$lib/server/contentService.js'
 
-export async function load({ fetch }) {
-	const res = await fetch(`${DIRECTUS_URL}/items/adconnect_nominations`)
+export async function load() {
+	const nominationsResponse = await ContentService.fetchContent('nominations', null, null, null, false)
+	const nominations = Array.from(nominationsResponse.data.nominations?.values?.() ?? [])
 
-	const json = await res.json()
-
-	if (!json.data || json.data.length === 0) {
+	if (nominations.length === 0) {
 		throw error(404, 'Talent en Nominaties niet gevonden')
 	}
 
 	return {
-		nomination: json.data
+		nominations
 	}
 }

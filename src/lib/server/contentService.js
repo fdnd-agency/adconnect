@@ -1,5 +1,7 @@
+import { RESEND_API_KEY } from '$env/static/private'
 import { DIRECTUS_URL } from '$lib/server/directus.js'
 import { fail } from '@sveltejs/kit'
+import { Resend } from 'resend'
 
 /**
  * Centralizes fetching of all Directus collections.
@@ -7,6 +9,8 @@ import { fail } from '@sveltejs/kit'
  */
 export class ContentService {
 	static #directusBase = `${DIRECTUS_URL}/items`
+
+	static #resend = new Resend(RESEND_API_KEY)
 
 	/** Registry mapping each content type to its Directus collection path and primary key field. */
 	static #collections = {
@@ -16,7 +20,8 @@ export class ContentService {
 		cooperations: { path: 'adconnect_cooperation', key: 'id' },
 		news: { path: 'adconnect_news', key: 'uuid' },
 		nominations: { path: 'adconnect_nominations', key: 'id' },
-		faqs: { path: 'adconnect_faqs', key: 'id' }
+		faqs: { path: 'adconnect_faqs', key: 'id' },
+		categories: { path: 'adconnect_categories', key: 'id' }
 	}
 
 	/**
@@ -27,11 +32,21 @@ export class ContentService {
 	 * @param {string | null} accessToken - Bearer token for authenticated requests (drafts).
 	 * @returns {Promise<{items: Array, error: Error|null}>} Array of items, or an empty array and Error on failure.
 	 */
-	static async #fetchCollection(path, id = null, accessToken = null) {
+	static async #fetchCollection(path, id = null, fields = null, filters = null, accessToken = null) {
 		try {
 			const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : {}
-			const endpoint = id ? `${this.#directusBase}/${path}/${id}` : `${this.#directusBase}/${path}`
-			const res = await fetch(endpoint, { headers })
+
+			let url
+			if (id) {
+				url = new URL(`${this.#directusBase}/${path}/${id}`)
+			} else {
+				url = new URL(`${this.#directusBase}/${path}`)
+			}
+
+			if (fields) url.searchParams.set('fields', fields)
+			if (filters) url.searchParams.set('filter', JSON.stringify(filters))
+
+			const res = await fetch(url, { headers })
 			const json = await res.json()
 			if (!res.ok || json.data === undefined) {
 				const error = new Error(`No data returned for ${path}: ${JSON.stringify(json)}`)
@@ -50,15 +65,21 @@ export class ContentService {
 	 *
 	 * @param {string | null} contentType - A key from #collections to fetch a single type, or null to fetch all.
 	 * @param {string | null} accessToken - Pass the access_token cookie value to fetch drafts as an authenticated user.
+	 * @param {string | null} id - A key from #collections to fetch a single type, or null to fetch all.
+	 * @param {string | null} fields -
+	 * @param {string | null} filters -
+	 * @param {boolean} asMap -
 	 * @returns {Promise<{data: Record<string, Map>, errors: Array}>} Object whose keys are content type names and values are Maps.
 	 */
-	static async fetchContent(contentType = null, id = null, accessToken = null) {
+	static async fetchContent(contentType = null, id = null, fields = null, filters = null, _asMap = false, accessToken = null) {
 		const entries = contentType ? [[contentType, this.#collections[contentType]]] : Object.entries(this.#collections)
 
-		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, id, accessToken)))
+		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, id, fields, filters, accessToken)))
 
 		const errors = []
-		const maps = entries.map(([name, cfg], index) => {
+		const dataObj = {}
+
+		entries.forEach(([name, cfg], index) => {
 			const { items = [], error } = results[index] ?? {}
 			const itemList = Array.isArray(items) ? items : items ? [items] : []
 
@@ -70,10 +91,10 @@ export class ContentService {
 			// Some collections (e.g. `news`) use a different primary key field like `uuid`.
 			const normalized = itemList.map((item) => (cfg.key !== 'id' && item[cfg.key] !== undefined && item.id === undefined ? { ...item, id: item[cfg.key] } : item))
 
-			return [name, new Map(normalized.map((item) => [item[cfg.key], item]))]
+			dataObj[name] = new Map(normalized.map((item) => [item[cfg.key], item]))
 		})
 
-		return { data: Object.fromEntries(maps), errors }
+		return { data: dataObj, errors }
 	}
 
 	/**
@@ -189,5 +210,30 @@ export class ContentService {
 			console.error('Failed to post content:', err)
 			return fail(500, { error: 'Aanmaken mislukt.' })
 		}
+	}
+
+	static async postContact(name, email, message) {
+		const contactAPI = `${this.#directusBase}/adconnect_contact`
+
+		// Send the email using Resend
+		await this.#resend.emails.send({
+			from: 'Overlegplatform Ad <onboarding@resend.dev>',
+			to: 'amschalker@gmail.com',
+			subject: 'Nieuwe inzending contactformulier',
+			text: `Naam: ${name}\nEmail: ${email}\nBericht: ${message}`
+		})
+
+		// Post data to API Directus
+		await fetch(contactAPI, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json;charset=UTF-8'
+			},
+			body: JSON.stringify({
+				name,
+				email,
+				message
+			})
+		})
 	}
 }

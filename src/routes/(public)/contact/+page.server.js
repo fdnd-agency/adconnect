@@ -1,13 +1,5 @@
-import { Resend } from 'resend'
-import { RESEND_API_KEY } from '$env/static/private'
 import { fail } from '@sveltejs/kit'
-import { DIRECTUS_URL } from '$lib/server/directus.js'
-
-// Connecting the API KEY to the variable resend
-const resend = new Resend(RESEND_API_KEY)
-
-// API link with contact data is retrieved
-const contactAPI = `${DIRECTUS_URL}/items/adconnect_contact`
+import { ContentService } from '$lib/server/contentService.js'
 
 // Email validation regex
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -32,31 +24,10 @@ export const actions = {
 		}
 
 		try {
-			// Send the email using Resend
-			await resend.emails.send({
-				from: 'Overlegplatform Ad <onboarding@resend.dev>',
-				to: 'amschalker@gmail.com',
-				subject: 'Nieuwe inzending contactformulier',
-				text: `Naam: ${name}\nEmail: ${email}\nBericht: ${message}`
-			})
-
-			// Post data to API Directus
-			await fetch(contactAPI, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json;charset=UTF-8'
-				},
-				body: JSON.stringify({
-					name,
-					email,
-					message
-				})
-			})
-
+			await ContentService.postContact(name, email, message)
 			return { success: true }
-
-			// If something goes wrong tell the form it failed
 		} catch (error) {
+			// If something goes wrong tell the form it failed
 			console.error('Resend error:', error)
 			return fail(500, { error: 'Het verzenden is mislukt.' })
 		}

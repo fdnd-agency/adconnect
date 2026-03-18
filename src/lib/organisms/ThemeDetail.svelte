@@ -5,9 +5,10 @@
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
 	export let data
+	export let themes = []
 
 	const theme = data[0]
-	const themes = data
+	const visibleThemes = themes.length ? themes : data
 </script>
 
 <svelte:head>
@@ -50,7 +51,7 @@
 <section class="other-themes">
 	<h2>Bekijk ook andere thema's</h2>
 	<section class="themes">
-		<ThemeCard themes={themes.slice(0, 3)} />
+		<ThemeCard themes={visibleThemes.slice(0, 3)} />
 	</section>
 </section>
 

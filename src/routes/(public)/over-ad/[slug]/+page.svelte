@@ -4,4 +4,7 @@
 	const { data } = $props()
 </script>
 
-<ThemeDetail {data} />
+<ThemeDetail
+	data={data.theme}
+	themes={data.themes}
+/>
