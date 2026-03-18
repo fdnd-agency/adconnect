@@ -1,7 +1,7 @@
 <script>
 	import DocumentCard from '$lib/molecules/DocumentCard.svelte'
 
-	import { NavPros, Hero } from '$lib'
+	import { Hero } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -11,8 +11,6 @@
 <svelte:head>
 	<title>Documenten | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
 	title={data.document.title}

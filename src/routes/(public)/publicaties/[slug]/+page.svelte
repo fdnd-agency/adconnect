@@ -1,5 +1,5 @@
 <script>
-	import PublicationDetails from '$lib/organisms/PublicationDetails.svelte'
+	import PublicationDetails from '$lib/organisms/PublicationDetail.svelte'
 
 	const { data } = $props()
 </script>

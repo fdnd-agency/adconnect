@@ -3,7 +3,7 @@
 	import { doorstroom, overleggen, awards, dots, placeholder, overad } from '$lib'
 
 	// Import components
-	import { BenefitsCard, NavPros, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
+	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
 
 	const { data } = $props()
 
@@ -14,8 +14,6 @@
 <svelte:head>
 	<title>Over Ad's | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
 	title="Over Associate Degree's"
@@ -38,10 +36,7 @@
 <section class="about-ad-hero">
 	<section class="intro">
 		<h2>Waarom kiezen voor Associate Degree's?</h2>
-		<p>
-			Associate Degrees combineren praktijk en theorie in een korte, intensieve opleiding. Ze bereiden studenten effectief voor op actuele beroepen en geven een stevige basis voor verdere
-			studie.
-		</p>
+		<p>Associate Degrees combineren praktijk en theorie in een korte, intensieve opleiding. Ze bereiden studenten effectief voor op actuele beroepen en geven een stevige basis voor verdere studie.</p>
 	</section>
 
 	<section class="benefits">

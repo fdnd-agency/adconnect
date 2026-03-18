@@ -1,6 +1,6 @@
 <script>
 	// Import components
-	import { NavPros, ThemeCard, Hero, Divider } from '$lib'
+	import { ThemeCard, Hero, Divider } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -14,8 +14,6 @@
 <svelte:head>
 	<title>{theme.title} | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
 	title={theme.title}

@@ -7,7 +7,7 @@
 	import { publicatie } from '$lib'
 
 	// Import components
-	import { NavPros, Hero } from '$lib'
+	import { Hero } from '$lib'
 
 	// Haal data op uit page.server.js via props
 	const { data } = $props()
@@ -36,8 +36,6 @@
 <svelte:head>
 	<title>Documenten | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
 	title="Publicaties"

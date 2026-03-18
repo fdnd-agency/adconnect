@@ -2,7 +2,7 @@
 	import favicon from '$lib/assets/favicon-adc.svg'
 	import logodark from '$lib/assets/logo-dark.svg'
 
-	import { Footer, TopNav, icondown, logowhite } from '$lib'
+	import { Footer, NavPros, TopNav, icondown, logowhite } from '$lib'
 
 	const { children } = $props()
 </script>
@@ -15,6 +15,8 @@
 <header class="general-header">
 	<TopNav />
 </header>
+
+<NavPros />
 
 <main>
 	{@render children?.()}

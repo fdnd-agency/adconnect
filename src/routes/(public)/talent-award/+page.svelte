@@ -5,7 +5,7 @@
 
 	const { data } = $props()
 
-	import { NavPros, Hero, Divider, DividerText } from '$lib'
+	import { Hero, Divider, DividerText } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -15,8 +15,6 @@
 <svelte:head>
 	<title>Talent Award| Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
 	title="Ad Talent Award"
@@ -46,8 +44,8 @@
 	/>
 	<h2>Wat is Ad Talent award?</h2>
 	<p>
-		De Ad Talent Award is een jaarlijkse onderscheiding die door het Overlegplatform Associate degrees wordt uitgereikt. Elke aangesloten hogeschool kan één student nomineren als “Ad Talent” en
-		van alle genomineerden worden er twee landelijk uitgeroepen tot Ad-ambassadeur. Deze erkenning vindt plaats tijdens de jaarlijkse Ad-dag.
+		De Ad Talent Award is een jaarlijkse onderscheiding die door het Overlegplatform Associate degrees wordt uitgereikt. Elke aangesloten hogeschool kan één student nomineren als “Ad Talent” en van
+		alle genomineerden worden er twee landelijk uitgeroepen tot Ad-ambassadeur. Deze erkenning vindt plaats tijdens de jaarlijkse Ad-dag.
 	</p>
 </section>
 
@@ -62,9 +60,9 @@
 		/>
 		<h2>Wat maakt iemand tot een Ad Talent?</h2>
 		<p>
-			Een Ad Talent is een student die uitblinkt in zijn of haar Associate degree-opleiding. Dit kan blijken uit academische prestaties, leiderschap, betrokkenheid bij de gemeenschap, innovatie
-			of andere opmerkelijke bijdragen aan de hogeschool en de bredere samenleving. Ad Talenten worden erkend voor hun inzet, passie en potentieel om een positieve impact te maken in hun
-			vakgebied en daarbuiten.
+			Een Ad Talent is een student die uitblinkt in zijn of haar Associate degree-opleiding. Dit kan blijken uit academische prestaties, leiderschap, betrokkenheid bij de gemeenschap, innovatie of
+			andere opmerkelijke bijdragen aan de hogeschool en de bredere samenleving. Ad Talenten worden erkend voor hun inzet, passie en potentieel om een positieve impact te maken in hun vakgebied en
+			daarbuiten.
 		</p>
 	</article>
 
@@ -78,9 +76,9 @@
 		/>
 		<h2>Waarom de Ad Talent Award?</h2>
 		<p>
-			De Ad Talent Award is opgericht om de uitmuntendheid en het potentieel van Associate degree-studenten te erkennen en te vieren. Door deze onderscheiding willen we niet alleen de prestaties
-			van individuele studenten benadrukken, maar ook het belang van Ad-onderwijs in Nederland onderstrepen. De award dient als inspiratie voor andere studenten en draagt bij aan het versterken
-			van de reputatie van Associate degrees als waardevolle en impactvolle opleidingsvorm.
+			De Ad Talent Award is opgericht om de uitmuntendheid en het potentieel van Associate degree-studenten te erkennen en te vieren. Door deze onderscheiding willen we niet alleen de prestaties van
+			individuele studenten benadrukken, maar ook het belang van Ad-onderwijs in Nederland onderstrepen. De award dient als inspiratie voor andere studenten en draagt bij aan het versterken van de
+			reputatie van Associate degrees als waardevolle en impactvolle opleidingsvorm.
 		</p>
 	</article>
 
@@ -94,9 +92,9 @@
 		/>
 		<h2>Hoe gaat de verkiezing in zijn werk?</h2>
 		<p>
-			Elke hogeschool die is aangesloten bij het Overlegplatform Associate degrees kan één student nomineren voor de Ad Talent Award. Een onafhankelijke jury, bestaande uit vertegenwoordigers
-			van het onderwijsveld en het bedrijfsleven, beoordeelt de nominaties op basis van vooraf vastgestelde criteria. De beoordeling omvat academische prestaties, leiderschap, maatschappelijke
-			betrokkenheid en andere relevante factoren. Na een grondige evaluatie worden twee winnaars geselecteerd en tijdens de jaarlijkse Ad-dag bekendgemaakt als de landelijke Ad-ambassadeurs.
+			Elke hogeschool die is aangesloten bij het Overlegplatform Associate degrees kan één student nomineren voor de Ad Talent Award. Een onafhankelijke jury, bestaande uit vertegenwoordigers van het
+			onderwijsveld en het bedrijfsleven, beoordeelt de nominaties op basis van vooraf vastgestelde criteria. De beoordeling omvat academische prestaties, leiderschap, maatschappelijke betrokkenheid
+			en andere relevante factoren. Na een grondige evaluatie worden twee winnaars geselecteerd en tijdens de jaarlijkse Ad-dag bekendgemaakt als de landelijke Ad-ambassadeurs.
 		</p>
 	</article>
 </section>

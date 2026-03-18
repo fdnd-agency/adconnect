@@ -4,7 +4,7 @@
 	import { dots } from '$lib'
 	import { calendar } from '$lib'
 	/* Import components */
-	import { NavPros, Hero } from '$lib'
+	import { Hero } from '$lib'
 	import { formatDateNL } from '$lib/molecules/date'
 	// Haal data op uit page.server.js via props
 	const { data } = $props()
@@ -13,8 +13,6 @@
 <svelte:head>
 	<title>Nieuws | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
 	title="Nieuws"

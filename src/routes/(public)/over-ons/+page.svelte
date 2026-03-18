@@ -4,7 +4,7 @@
 	import logomobile from '$lib/assets/logomobile.svg'
 
 	// Import components
-	import { BenefitsCard, NavPros, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
+	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
 
 	const { data } = $props()
 
@@ -15,8 +15,6 @@
 <svelte:head>
 	<title>Over ons | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
 	title="Over ons"

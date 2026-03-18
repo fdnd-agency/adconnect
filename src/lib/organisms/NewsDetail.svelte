@@ -7,7 +7,7 @@
 	import { Nieuwshero } from '$lib'
 
 	// Import components
-	import { NavPros, Hero } from '$lib'
+	import { Hero } from '$lib'
 	// Haal data op uit page.server.js via props
 
 	export let data
@@ -17,9 +17,7 @@
 	<title>Nieuws | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<NavPros />
-
-{#each data.news as item (item.uuid)}
+{#each data.content as item (item.uuid)}
 	<Hero
 		title={item.title}
 		description={item.description}
@@ -38,7 +36,7 @@
 	</Hero>
 {/each}
 <section class="news-detail">
-	{#each data.news as item (item.uuid)}
+	{#each data.content as item (item.uuid)}
 		<article>
 			<h2>{item.title}</h2>
 			<p>{@html item.body}</p>
