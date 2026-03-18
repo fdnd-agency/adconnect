@@ -9,6 +9,10 @@
 	const directusBase = `${DIRECTUS_URL}/admin/content`
 
 	let isSubmitting = $state(false)
+
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}
 </script>
 
 <svelte:head>
@@ -33,9 +37,6 @@
 
 {#if form?.success && form?.message}
 	<p class="success-message">{form.message}</p>
-	{#if form?.documentId}
-		<p class="success-meta">Aangemaakt document-id: {form.documentId}</p>
-	{/if}
 {/if}
 
 <form
@@ -44,9 +45,13 @@
 	class="document-form"
 	use:enhance={() => {
 		isSubmitting = true
-		return async ({ update }) => {
+		return async ({ result, update }) => {
 			await update()
 			isSubmitting = false
+
+			if (result.type === 'success') {
+				scrollToTop()
+			}
 		}
 	}}
 >
