@@ -101,7 +101,9 @@ export const actions = {
 			uploadedFileIds.push(imageUpload.id)
 
 			const sourceUpload = await ContentService.postFile(sourceFile, token, {
-				folderName: FILE_LIBRARY_FOLDER
+				folderName: FILE_LIBRARY_FOLDER,
+				allowedMimePrefixes: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument'],
+				invalidTypeError: 'Bestand uploaden mislukt: Ongeldig bestandstype. Alleen PDF- en Word-documenten zijn toegestaan.'
 			})
 
 			if (!sourceUpload?.success) {
