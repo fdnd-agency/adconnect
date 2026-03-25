@@ -41,6 +41,7 @@
 	{directusBase}
 	contentType="adconnect_documents"
 	breadcrumb="Documenten"
+	addHref="/admin/documents/form"
 />
 
 <AdminToolbar
