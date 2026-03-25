@@ -71,9 +71,13 @@
 								href="{directusBase}/{contentType}/{doc.id}"
 								class="popup-btn btn-edit"
 								target="_blank"
-								rel="noopener noreferrer">Bewerken</a
+								rel="noopener noreferrer"
+								onclick={() => {
+									openPopup = null
+								}}
 							>
-
+								Bewerken
+							</a>
 							<form
 								method="POST"
 								action="?/publish"
@@ -151,6 +155,17 @@
 									class="popup-btn btn-delete">Verwijderen</button
 								>
 							</form>
+
+							<a
+								href="/preview/{contentType.replace('adconnect_', '')}/{doc.id}"
+								class="popup-btn btn-preview"
+								rel="noopener noreferrer"
+								onclick={() => {
+									openPopup = null
+								}}
+							>
+								Preview
+							</a>
 						</div>
 					{/if}
 				</div>
@@ -305,6 +320,11 @@
 	.popup-btn:hover {
 		opacity: 0.8;
 		transform: none;
+	}
+
+	.btn-preview {
+		background-color: #8b5cf6;
+		color: var(--text-white);
 	}
 
 	.btn-edit {

@@ -1,11 +1,11 @@
 <script>
-	import DocumentCard from '$lib/molecules/DocumentCard.svelte'
-
 	import { Hero } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
 	export let data
+
+	const sourceFileId = data?.document?.source_file?.id ?? data?.document?.source_file ?? null
 </script>
 
 <svelte:head>
@@ -27,17 +27,17 @@
 <div class="wrapper-detail">
 	<div class="detail">
 		<p>{data.document.description}</p>
-		{#if data.document.source_file}
+		{#if sourceFileId}
 			<div class="file">
 				<p>
 					Hieronder een preview van het document of bekijk <a
 						target="_blank"
-						href={`${DIRECTUS_URL}/assets/${data.document.source_file.id}`}>hier</a
+						href={`${DIRECTUS_URL}/assets/${sourceFileId}`}>hier</a
 					> het hele document
 				</p>
 				<iframe
 					title={data.document.title}
-					src={`${DIRECTUS_URL}/assets/${data.document.source_file.id}`}
+					src={`${DIRECTUS_URL}/assets/${sourceFileId}`}
 				></iframe>
 			</div>
 		{/if}
