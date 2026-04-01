@@ -1,17 +1,17 @@
 import { error } from '@sveltejs/kit'
 
-import { DIRECTUS_URL } from '$lib/server/directus.js'
+import { ContentService } from '$lib/server/contentService.js'
 
-export async function load({ params, fetch }) {
-	const res = await fetch(`${DIRECTUS_URL}/items/adconnect_news?filter[uuid][_eq]=${params.uuid}`)
+export async function load({ params }) {
+	const res = await ContentService.fetchContent('news', null, null, null, false)
+	const newsItems = Array.isArray(res.data.news) ? res.data.news : Array.from(res.data.news?.values?.() ?? [])
+	const item = newsItems.find((newsItem) => newsItem.uuid === params.uuid)
 
-	const json = await res.json()
-
-	if (!json.data || json.data.length === 0) {
+	if (!item) {
 		throw error(404, 'Nieuwsartikel niet gevonden')
 	}
 
 	return {
-		news: json.data
+		content: [item]
 	}
 }

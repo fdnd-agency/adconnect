@@ -89,7 +89,7 @@ describe('admin documents form load', () => {
 		const result = await load(event)
 
 		// Assert: load asks for categories with the provided token.
-		expect(ContentService.fetchContent).toHaveBeenCalledWith('categories', 'token-123')
+		expect(ContentService.fetchContent).toHaveBeenCalledWith('categories', null, null, null, false, 'token-123')
 		// Assert: successful fetch should not produce a load error.
 		expect(result.loadError).toBeNull()
 		// Assert: categories are returned in ascending title order.

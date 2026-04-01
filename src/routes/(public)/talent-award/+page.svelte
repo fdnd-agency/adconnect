@@ -5,7 +5,7 @@
 
 	const { data } = $props()
 
-	import { NavPros, Hero, Divider, DividerText } from '$lib'
+	import { Hero, Divider, DividerText } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -15,8 +15,6 @@
 <svelte:head>
 	<title>Talent Award| Overlegplatform Associate Degrees</title>
 </svelte:head>
-
-<NavPros />
 
 <Hero
 	title="Ad Talent Award"
@@ -106,7 +104,7 @@
 
 	<section class="previous-winners">
 		<ul>
-			{#each data.nomination.filter((item) => item.header?.toLowerCase() === 'winnaar' && item.profile_picture) as winner (winner.id)}
+			{#each data.nominations.filter((item) => item.header?.toLowerCase() === 'winnaar' && item.profile_picture) as winner (winner.id)}
 				<li>
 					<img
 						src={imageUrl(winner.profile_picture)}
@@ -145,7 +143,7 @@
 
 <section class="slider">
 	<ul class="slider-ul">
-		{#each data.nomination as item (item.id)}
+		{#each data.nominations as item (item.id)}
 			<li class="nomination">
 				<h3>{item.title}</h3>
 

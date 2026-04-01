@@ -29,7 +29,7 @@ async function rollbackUploadedFiles(fileIds, accessToken) {
 
 // Loads and alphabetically sorts document categories for the form.
 export async function load({ cookies }) {
-	const { data: content, errors } = await ContentService.fetchContent('categories', cookies.get('access_token'))
+	const { data: content, errors } = await ContentService.fetchContent('categories', null, null, null, false, cookies.get('access_token'))
 
 	const categories = content.categories ? [...content.categories.values()] : []
 	categories.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
