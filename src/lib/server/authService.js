@@ -31,15 +31,17 @@ export class AuthService {
 		return { success: true }
 	}
 
-	static async logout(refreshToken, cookies) {
+	static async logout(cookies) {
 		// Tell Directus to invalidate the refresh token
 		await fetch(`${DIRECTUS_URL}/auth/logout`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ refresh_token: refreshToken })
+			body: JSON.stringify({ refresh_token: cookies.get('refresh_token') })
 		}).catch((error) => {
 			console.error('Failed to log out from Directus:', error)
 		})
+
+		this.#cache.delete(cookies.get('access_token'))
 
 		cookies.delete('access_token', { path: '/' })
 		cookies.delete('refresh_token', { path: '/' })
@@ -85,14 +87,14 @@ export class AuthService {
 		cookies.set('access_token', data.access_token, {
 			path: '/',
 			httpOnly: true,
-			secure: true,
+			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'lax',
 			maxAge: 60 * 15
 		})
 		cookies.set('refresh_token', data.refresh_token, {
 			path: '/',
 			httpOnly: true,
-			secure: true,
+			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'lax',
 			maxAge: 60 * 60 * 24 * 7
 		})
