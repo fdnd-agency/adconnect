@@ -71,6 +71,17 @@
 		></textarea>
 	</div>
 
+	<div class="field-group">
+		<label for="image">Afbeelding</label>
+		<input
+			id="image"
+			name="image"
+			type="file"
+			accept="image/*"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
@@ -139,6 +150,23 @@
 
 	input::placeholder {
 		color: var(--neutral-600);
+	}
+
+	input[type='file'] {
+		height: auto;
+		padding: 0.6em 0.75em;
+	}
+
+	input[type='file']::file-selector-button {
+		font-family: var(--font-heading);
+		font-size: 0.9rem;
+		padding: 0.45em 0.9em;
+		margin-right: 0.7em;
+		border-radius: 10px;
+		border: var(--button-outline-border);
+		background: light-dark(var(--text-white), hsl(210, 30%, 16%));
+		color: var(--button-outline-text);
+		cursor: pointer;
 	}
 
 	textarea {

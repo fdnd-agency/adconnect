@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
 
+const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het nieuwsartikel.'
 const GENERIC_PUBLISH_WARNING = 'Nieuwsartikel opgeslagen als concept, maar publiceren is mislukt.'
 
@@ -23,6 +24,7 @@ export const actions = {
 		const shouldPublish = submitAction === 'publish'
 		const title = String(data.get('title') ?? '').trim()
 		const description = String(data.get('description') ?? '').trim()
+		const image = data.get('image')
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -37,6 +39,12 @@ export const actions = {
 			return fail(400, { error: 'Vul een omschrijving in.' })
 		}
 
+		if (!(image instanceof File) || image.size === 0) {
+			return fail(400, { error: 'Upload een afbeelding.' })
+		}
+
+		const uploadedFileIds = []
+
 		const payload = {
 			title,
 			description,
@@ -47,6 +55,20 @@ export const actions = {
 		let createResult = null
 
 		try {
+			const imageUpload = await ContentService.postFile(image, token, {
+				folderName: FILE_LIBRARY_FOLDER,
+				allowedMimePrefixes: ['image/'],
+				invalidTypeError: 'Afbeelding uploaden mislukt: Bestand is geen afbeelding.'
+			})
+
+			if (!imageUpload?.success) {
+				console.error('[news/form] Image upload failed:', imageUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR })
+			}
+			uploadedFileIds.push(imageUpload.id)
+
+			payload.hero = imageUpload.id
+
 			createResult = await ContentService.postContent(payload, 'news', token)
 
 			if (!createResult?.success) {
@@ -90,6 +112,15 @@ export const actions = {
 		} catch (err) {
 			console.error('[news/form] Unexpected error during create:', err)
 			return fail(500, { error: GENERIC_CREATE_ERROR })
+		} finally {
+			if (!createResult && uploadedFileIds.length > 0) {
+				for (const fileId of uploadedFileIds) {
+					const result = await ContentService.deleteFile(fileId, token)
+					if (!result?.success) {
+						console.error(`[news/form] Rollback failed for file ${fileId}`)
+					}
+				}
+			}
 		}
 	}
 }
