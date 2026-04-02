@@ -8,9 +8,31 @@
 	const directusBase = `${DIRECTUS_URL}/admin/content`
 
 	let isSubmitting = $state(false)
+	let tags = $state([])
+	let tagInput = $state('')
 
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}
+
+	function addTag() {
+		const value = tagInput.trim()
+		if (!value) return
+		if (!tags.includes(value)) {
+			tags = [...tags, value]
+		}
+		tagInput = ''
+	}
+
+	function removeTag(index) {
+		tags = tags.filter((_, i) => i !== index)
+	}
+
+	function onTagKeydown(event) {
+		if (event.key === 'Enter') {
+			event.preventDefault()
+			addTag()
+		}
 	}
 </script>
 
@@ -36,6 +58,7 @@
 
 <form
 	method="POST"
+	enctype="multipart/form-data"
 	class="news-form"
 	use:enhance={() => {
 		isSubmitting = true
@@ -106,14 +129,47 @@
 
 	<div class="field-group">
 		<label for="tags">Tags</label>
+		<div class="tags-input-wrap">
+			{#each tags as tag, index (tag)}
+				<span class="tag-chip">
+					{tag}
+					<button
+						type="button"
+						class="tag-remove"
+						onclick={() => removeTag(index)}
+						aria-label="Verwijder tag {tag}"
+					>
+						×
+					</button>
+				</span>
+			{/each}
+			<input
+				id="tags"
+				type="text"
+				autocomplete="off"
+				placeholder="Voer een tag in en druk Enter"
+				bind:value={tagInput}
+				onkeydown={onTagKeydown}
+			/>
+		</div>
 		<input
-			id="tags"
+			type="hidden"
 			name="tags"
-			type="text"
-			autocomplete="off"
-			placeholder="Voer tags in, gescheiden door komma's"
-			required
+			value={JSON.stringify(tags)}
 		/>
+		{#if tags.length === 0}
+			<p class="field-help">Voeg minimaal 1 tag toe met Enter.</p>
+		{/if}
+	</div>
+
+	<div class="field-group">
+		<label for="body">Body</label>
+		<textarea
+			id="body"
+			name="body"
+			placeholder="Voer de body in"
+			required
+		></textarea>
 	</div>
 
 	<div class="actions">
@@ -168,6 +224,13 @@
 		max-width: 280px;
 	}
 
+	.field-help {
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		color: var(--neutral-600);
+		margin: 0;
+	}
+
 	label {
 		font-family: var(--font-heading);
 		font-size: 1.15rem;
@@ -188,6 +251,52 @@
 
 	input::placeholder {
 		color: var(--neutral-600);
+	}
+
+	.tags-input-wrap {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		border-radius: 12px;
+		border: 1.5px solid var(--primary-orange);
+		padding: 0.5em;
+		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
+	}
+
+	.tags-input-wrap input {
+		border: none;
+		height: 36px;
+		padding: 0 0.35em;
+		min-width: 220px;
+		flex: 1 1 220px;
+		background: transparent;
+	}
+
+	.tags-input-wrap input:focus {
+		outline: none;
+	}
+
+	.tag-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35em;
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		padding: 0.25em 0.55em;
+		border-radius: 999px;
+		background: hsl(230, 65%, 64%);
+		color: var(--text-white);
+	}
+
+	.tag-remove {
+		border: none;
+		background: transparent;
+		color: inherit;
+		font-size: 1rem;
+		line-height: 1;
+		cursor: pointer;
+		padding: 0;
 	}
 
 	input[type='file'] {

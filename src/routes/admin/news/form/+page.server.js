@@ -5,18 +5,20 @@ const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het nieuwsartikel.'
 const GENERIC_PUBLISH_WARNING = 'Nieuwsartikel opgeslagen als concept, maar publiceren is mislukt.'
 
-// Creates a URL-safe slug from a title string.
-function slugify(value) {
-	return value
-		.toLowerCase()
-		.trim()
-		.replace(/[^a-z0-9\s-]/g, '')
-		.replace(/\s+/g, '-')
-		.replace(/-+/g, '-')
+// Deletes uploaded files when news creation fails.
+async function rollbackUploadedFiles(fileIds, accessToken) {
+	for (const fileId of fileIds) {
+		if (!fileId) continue
+
+		const result = await ContentService.deleteFile(fileId, accessToken)
+		if (!result?.success) {
+			console.error(`[news/form] Rollback failed for file ${fileId}`)
+		}
+	}
 }
 
 export const actions = {
-	// Handles form submission: validates input, creates a news article,
+	// Handles form submission: validates input, uploads files, creates a news article,
 	// and optionally publishes it.
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
@@ -27,7 +29,15 @@ export const actions = {
 		const image = data.get('image')
 		const date = String(data.get('date') ?? '').trim()
 		const author = String(data.get('author') ?? '').trim()
-		const tags = String(data.get('tags') ?? '').trim()
+		const tagsRaw = String(data.get('tags') ?? '').trim()
+		let tags = []
+		try {
+			const parsedTags = JSON.parse(tagsRaw)
+			tags = Array.isArray(parsedTags) ? parsedTags.map((tag) => String(tag).trim()).filter(Boolean) : []
+		} catch {
+			tags = []
+		}
+		const body = String(data.get('body') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -58,7 +68,12 @@ export const actions = {
 			return fail(400, { error: 'Vul tags in.' })
 		}
 
+		if (!body) {
+			return fail(400, { error: 'Vul de body in.' })
+		}
+
 		const uploadedFileIds = []
+		let newsCreated = false
 
 		const payload = {
 			title,
@@ -66,7 +81,7 @@ export const actions = {
 			date,
 			author,
 			tags,
-			slug: slugify(title),
+			body,
 			status: 'draft'
 		}
 
@@ -93,6 +108,8 @@ export const actions = {
 				console.error('[news/form] News create failed:', createResult)
 				return fail(500, { error: GENERIC_CREATE_ERROR })
 			}
+
+			newsCreated = true
 
 			if (shouldPublish) {
 				try {
@@ -131,13 +148,8 @@ export const actions = {
 			console.error('[news/form] Unexpected error during create:', err)
 			return fail(500, { error: GENERIC_CREATE_ERROR })
 		} finally {
-			if (!createResult && uploadedFileIds.length > 0) {
-				for (const fileId of uploadedFileIds) {
-					const result = await ContentService.deleteFile(fileId, token)
-					if (!result?.success) {
-						console.error(`[news/form] Rollback failed for file ${fileId}`)
-					}
-				}
+			if (!newsCreated && uploadedFileIds.length > 0) {
+				await rollbackUploadedFiles(uploadedFileIds, token)
 			}
 		}
 	}
