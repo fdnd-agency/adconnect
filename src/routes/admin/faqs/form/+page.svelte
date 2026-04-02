@@ -71,6 +71,18 @@
 		></textarea>
 	</div>
 
+	<div class="field-group toggle-group">
+		<label for="important">Belangrijk</label>
+		<label class="toggle-row" for="important">
+			<input
+				id="important"
+				name="important"
+				type="checkbox"
+			/>
+			<span>Markeer als belangrijk</span>
+		</label>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
@@ -155,6 +167,28 @@
 
 	textarea::placeholder {
 		color: var(--neutral-600);
+	}
+
+	.toggle-group {
+		gap: 0.55em;
+	}
+
+	.toggle-row {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.65em;
+		font-family: var(--font-body);
+		font-size: 1rem;
+		font-weight: var(--weight-regular);
+	}
+
+	.toggle-row input[type='checkbox'] {
+		width: 18px;
+		height: 18px;
+		accent-color: var(--primary-blue);
+		border-radius: 4px;
+		padding: 0;
+		margin: 0;
 	}
 
 	.actions {

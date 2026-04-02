@@ -13,6 +13,7 @@ export const actions = {
 		const shouldPublish = submitAction === 'publish'
 		const question = String(data.get('question') ?? '').trim()
 		const answer = String(data.get('answer') ?? '').trim()
+		const important = data.get('important') === 'on'
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -30,6 +31,7 @@ export const actions = {
 		const payload = {
 			question,
 			answer,
+			important,
 			status: 'draft'
 		}
 
