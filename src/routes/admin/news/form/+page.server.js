@@ -64,7 +64,7 @@ export const actions = {
 			return fail(400, { error: 'Vul een auteur in.' })
 		}
 
-		if (!tags) {
+		if (tags.length === 0) {
 			return fail(400, { error: 'Vul tags in.' })
 		}
 
