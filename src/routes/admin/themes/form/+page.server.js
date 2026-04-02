@@ -26,6 +26,7 @@ export const actions = {
 		const shouldPublish = submitAction === 'publish'
 		const title = String(data.get('title') ?? '').trim()
 		const description = String(data.get('description') ?? '').trim()
+		const date = String(data.get('date') ?? '').trim()
 		const image = data.get('image')
 		const token = cookies.get('access_token')
 
@@ -41,6 +42,10 @@ export const actions = {
 			return fail(400, { error: 'Vul een omschrijving in.' })
 		}
 
+		if (!date) {
+			return fail(400, { error: 'Vul een datum in.' })
+		}
+
 		if (!(image instanceof File) || image.size === 0) {
 			return fail(400, { error: 'Upload een afbeelding.' })
 		}
@@ -51,6 +56,7 @@ export const actions = {
 		const payload = {
 			title,
 			description,
+			date,
 			status: 'draft'
 		}
 
