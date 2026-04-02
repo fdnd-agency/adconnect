@@ -43,6 +43,7 @@
 	{directusBase}
 	contentType="adconnect_faqs"
 	breadcrumb="Faqs"
+	addHref="/admin/faqs/form"
 />
 
 <AdminToolbar
