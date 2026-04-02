@@ -12,6 +12,7 @@ export const actions = {
 		const submitAction = String(data.get('submitAction') ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
 		const question = String(data.get('question') ?? '').trim()
+		const answer = String(data.get('answer') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -22,8 +23,13 @@ export const actions = {
 			return fail(400, { error: 'Vul een vraag in.' })
 		}
 
+		if (!answer) {
+			return fail(400, { error: 'Vul een antwoord in.' })
+		}
+
 		const payload = {
 			question,
+			answer,
 			status: 'draft'
 		}
 
