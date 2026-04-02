@@ -92,6 +92,18 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="author">Auteur</label>
+		<input
+			id="author"
+			name="author"
+			type="text"
+			autocomplete="off"
+			placeholder="Voer een auteur in"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"

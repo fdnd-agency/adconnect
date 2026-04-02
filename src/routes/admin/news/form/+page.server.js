@@ -26,6 +26,7 @@ export const actions = {
 		const description = String(data.get('description') ?? '').trim()
 		const image = data.get('image')
 		const date = String(data.get('date') ?? '').trim()
+		const author = String(data.get('author') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -48,12 +49,17 @@ export const actions = {
 			return fail(400, { error: 'Vul een datum in.' })
 		}
 
+		if (!author) {
+			return fail(400, { error: 'Vul een auteur in.' })
+		}
+
 		const uploadedFileIds = []
 
 		const payload = {
 			title,
 			description,
 			date,
+			author,
 			slug: slugify(title),
 			status: 'draft'
 		}
