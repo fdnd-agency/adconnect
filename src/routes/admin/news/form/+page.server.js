@@ -27,6 +27,7 @@ export const actions = {
 		const image = data.get('image')
 		const date = String(data.get('date') ?? '').trim()
 		const author = String(data.get('author') ?? '').trim()
+		const tags = String(data.get('tags') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -53,6 +54,10 @@ export const actions = {
 			return fail(400, { error: 'Vul een auteur in.' })
 		}
 
+		if (!tags) {
+			return fail(400, { error: 'Vul tags in.' })
+		}
+
 		const uploadedFileIds = []
 
 		const payload = {
@@ -60,6 +65,7 @@ export const actions = {
 			description,
 			date,
 			author,
+			tags,
 			slug: slugify(title),
 			status: 'draft'
 		}

@@ -104,6 +104,18 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="tags">Tags</label>
+		<input
+			id="tags"
+			name="tags"
+			type="text"
+			autocomplete="off"
+			placeholder="Voer tags in, gescheiden door komma's"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
