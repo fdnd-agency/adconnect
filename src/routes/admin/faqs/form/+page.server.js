@@ -35,45 +35,50 @@ export const actions = {
 			status: 'draft'
 		}
 
-		const createResult = await ContentService.postContent(payload, 'faqs', token)
+		try {
+			const createResult = await ContentService.postContent(payload, 'faqs', token)
 
-		if (!createResult?.success) {
-			console.error('[faqs/form] Faq create failed:', createResult)
-			return fail(500, { error: GENERIC_CREATE_ERROR })
-		}
+			if (!createResult?.success) {
+				console.error('[faqs/form] Faq create failed:', createResult)
+				return fail(500, { error: GENERIC_CREATE_ERROR })
+			}
 
-		if (shouldPublish) {
-			try {
-				const publishResult = await ContentService.publishContent(createResult.id, 'faqs', token)
+			if (shouldPublish) {
+				try {
+					const publishResult = await ContentService.publishContent(createResult.id, 'faqs', token)
 
-				if (!publishResult?.success) {
-					console.error('[faqs/form] Publish failed:', publishResult)
+					if (!publishResult?.success) {
+						console.error('[faqs/form] Publish failed:', publishResult)
+						return {
+							success: true,
+							message: GENERIC_PUBLISH_WARNING,
+							faqId: createResult.id
+						}
+					}
+				} catch (err) {
+					console.error('[faqs/form] Unexpected error during publish:', err)
 					return {
 						success: true,
 						message: GENERIC_PUBLISH_WARNING,
 						faqId: createResult.id
 					}
 				}
-			} catch (err) {
-				console.error('[faqs/form] Unexpected error during publish:', err)
+
 				return {
 					success: true,
-					message: GENERIC_PUBLISH_WARNING,
+					message: 'Faq succesvol opgeslagen en gepubliceerd.',
 					faqId: createResult.id
 				}
 			}
 
 			return {
 				success: true,
-				message: 'Faq succesvol opgeslagen en gepubliceerd.',
+				message: 'Faq succesvol opgeslagen als concept.',
 				faqId: createResult.id
 			}
-		}
-
-		return {
-			success: true,
-			message: 'Faq succesvol opgeslagen als concept.',
-			faqId: createResult.id
+		} catch (err) {
+			console.error('[faqs/form] Unexpected error during create:', err)
+			return fail(500, { error: GENERIC_CREATE_ERROR })
 		}
 	}
 }

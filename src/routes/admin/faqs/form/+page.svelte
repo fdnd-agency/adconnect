@@ -73,7 +73,10 @@
 
 	<div class="field-group toggle-group">
 		<label for="important">Belangrijk</label>
-		<label class="toggle-row" for="important">
+		<label
+			class="toggle-row"
+			for="important"
+		>
 			<input
 				id="important"
 				name="important"
