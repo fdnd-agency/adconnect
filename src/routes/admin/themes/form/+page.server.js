@@ -1,8 +1,21 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
 
+const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het thema.'
 const GENERIC_PUBLISH_WARNING = 'Thema opgeslagen als concept, maar publiceren is mislukt.'
+
+// Deletes uploaded files when theme creation fails.
+async function rollbackUploadedFiles(fileIds, accessToken) {
+	for (const fileId of fileIds) {
+		if (!fileId) continue
+
+		const result = await ContentService.deleteFile(fileId, accessToken)
+		if (!result?.success) {
+			console.error(`[themes/form] Rollback failed for file ${fileId}`)
+		}
+	}
+}
 
 export const actions = {
 	// Handles form submission: validates input, creates a theme,
@@ -13,6 +26,7 @@ export const actions = {
 		const shouldPublish = submitAction === 'publish'
 		const title = String(data.get('title') ?? '').trim()
 		const description = String(data.get('description') ?? '').trim()
+		const image = data.get('image')
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -27,51 +41,85 @@ export const actions = {
 			return fail(400, { error: 'Vul een omschrijving in.' })
 		}
 
+		if (!(image instanceof File) || image.size === 0) {
+			return fail(400, { error: 'Upload een afbeelding.' })
+		}
+
+		const uploadedFileIds = []
+		let themeCreated = false
+
 		const payload = {
 			title,
 			description,
 			status: 'draft'
 		}
 
-		const createResult = await ContentService.postContent(payload, 'themes', token)
+		let createResult = null
 
-		if (!createResult?.success) {
-			console.error('[themes/form] Theme create failed:', createResult)
-			return fail(500, { error: GENERIC_CREATE_ERROR })
-		}
+		try {
+			const imageUpload = await ContentService.postFile(image, token, {
+				folderName: FILE_LIBRARY_FOLDER,
+				allowedMimePrefixes: ['image/'],
+				invalidTypeError: 'Afbeelding uploaden mislukt: Bestand is geen afbeelding.'
+			})
 
-		if (shouldPublish) {
-			try {
-				const publishResult = await ContentService.publishContent(createResult.id, 'themes', token)
+			if (!imageUpload?.success) {
+				console.error('[themes/form] Image upload failed:', imageUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR })
+			}
+			uploadedFileIds.push(imageUpload.id)
 
-				if (!publishResult?.success) {
-					console.error('[themes/form] Publish failed:', publishResult)
+			payload.hero = imageUpload.id
+
+			createResult = await ContentService.postContent(payload, 'themes', token)
+
+			if (!createResult?.success) {
+				console.error('[themes/form] Theme create failed:', createResult)
+				return fail(500, { error: GENERIC_CREATE_ERROR })
+			}
+
+			themeCreated = true
+
+			if (shouldPublish) {
+				try {
+					const publishResult = await ContentService.publishContent(createResult.id, 'themes', token)
+
+					if (!publishResult?.success) {
+						console.error('[themes/form] Publish failed:', publishResult)
+						return {
+							success: true,
+							message: GENERIC_PUBLISH_WARNING,
+							themeId: createResult.id
+						}
+					}
+				} catch (err) {
+					console.error('[themes/form] Unexpected error during publish:', err)
 					return {
 						success: true,
 						message: GENERIC_PUBLISH_WARNING,
 						themeId: createResult.id
 					}
 				}
-			} catch (err) {
-				console.error('[themes/form] Unexpected error during publish:', err)
+
 				return {
 					success: true,
-					message: GENERIC_PUBLISH_WARNING,
+					message: 'Thema succesvol opgeslagen en gepubliceerd.',
 					themeId: createResult.id
 				}
 			}
 
 			return {
 				success: true,
-				message: 'Thema succesvol opgeslagen en gepubliceerd.',
+				message: 'Thema succesvol opgeslagen als concept.',
 				themeId: createResult.id
 			}
-		}
-
-		return {
-			success: true,
-			message: 'Thema succesvol opgeslagen als concept.',
-			themeId: createResult.id
+		} catch (err) {
+			console.error('[themes/form] Unexpected error during create:', err)
+			return fail(500, { error: GENERIC_CREATE_ERROR })
+		} finally {
+			if (!themeCreated && uploadedFileIds.length > 0) {
+				await rollbackUploadedFiles(uploadedFileIds, token)
+			}
 		}
 	}
 }
