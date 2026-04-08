@@ -392,18 +392,8 @@ describe('admin nominations form actions.default', () => {
 			nominationId: 'nom-789'
 		})
 		expect(ContentService.postContent).toHaveBeenCalledTimes(2)
-		expect(ContentService.postContent).toHaveBeenNthCalledWith(
-			1,
-			expect.objectContaining({ slug: 'test' }),
-			'nominations',
-			'token-123'
-		)
-		expect(ContentService.postContent).toHaveBeenNthCalledWith(
-			2,
-			expect.objectContaining({ slug: 'test-4780' }),
-			'nominations',
-			'token-123'
-		)
+		expect(ContentService.postContent).toHaveBeenNthCalledWith(1, expect.objectContaining({ slug: 'test' }), 'nominations', 'token-123')
+		expect(ContentService.postContent).toHaveBeenNthCalledWith(2, expect.objectContaining({ slug: 'test-4780' }), 'nominations', 'token-123')
 
 		randomSpy.mockRestore()
 	})
