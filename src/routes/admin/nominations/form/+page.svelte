@@ -181,6 +181,18 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="alumnus">Alumnis</label>
+		<input
+			id="alumnus"
+			name="alumnus"
+			type="text"
+			autocomplete="off"
+			placeholder="Voer alumnis in"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
