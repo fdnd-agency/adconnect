@@ -17,6 +17,19 @@ async function rollbackUploadedFiles(fileIds, accessToken) {
 	}
 }
 
+// Loads existing nominations so admins can link them to events.
+export async function load({ cookies }) {
+	const { data: content, errors } = await ContentService.fetchContent('nominations', null, null, null, true, cookies.get('access_token'))
+
+	const nominations = content.nominations ? [...content.nominations.values()] : []
+	nominations.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
+
+	return {
+		nominations,
+		loadError: errors.length ? 'Nominaties konden niet worden geladen.' : null
+	}
+}
+
 export const actions = {
 	// Handles form submission: validates input, creates an event,
 	// and optionally publishes it.
@@ -29,6 +42,7 @@ export const actions = {
 		const date = String(data.get('date') ?? '').trim()
 		const excerpt = String(data.get('excerpt') ?? '').trim()
 		const body = String(data.get('body') ?? '').trim()
+		const nominationId = String(data.get('nomination_id') ?? '').trim()
 		const image = data.get('image')
 		const token = cookies.get('access_token')
 
@@ -56,6 +70,10 @@ export const actions = {
 			return fail(400, { error: 'Vul de body in.' })
 		}
 
+		if (!nominationId) {
+			return fail(400, { error: 'Kies een nominatie.' })
+		}
+
 		if (!(image instanceof File) || image.size === 0) {
 			return fail(400, { error: 'Upload een afbeelding.' })
 		}
@@ -69,6 +87,7 @@ export const actions = {
 			date,
 			excerpt,
 			body,
+			nomination_id: [nominationId],
 			status: 'draft'
 		}
 

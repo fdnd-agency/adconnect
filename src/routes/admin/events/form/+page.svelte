@@ -4,7 +4,8 @@
 	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
 	import Error from '$lib/atoms/Error.svelte'
 
-	const { form } = $props()
+	const { data, form } = $props()
+	const nominations = $derived(data?.nominations ?? [])
 	const directusBase = `${DIRECTUS_URL}/admin/content`
 
 	let isSubmitting = $state(false)
@@ -28,6 +29,10 @@
 
 {#if form?.error}
 	<Error message={form.error} />
+{/if}
+
+{#if data?.loadError}
+	<Error message={data.loadError} />
 {/if}
 
 {#if form?.success && form?.message}
@@ -113,6 +118,24 @@
 		></textarea>
 	</div>
 
+	<div class="field-group">
+		<p class="field-label">Nominatie</p>
+		{#if nominations.length === 0}
+			<p class="field-help">Geen bestaande nominaties gevonden om te koppelen.</p>
+		{:else}
+			<select
+				id="nomination_id"
+				name="nomination_id"
+				required
+			>
+				<option value="">Kies een nominatie</option>
+				{#each nominations as nomination (nomination.id)}
+					<option value={nomination.id}>{nomination.title ?? `Nominatie ${nomination.id}`}</option>
+				{/each}
+			</select>
+		{/if}
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
@@ -187,6 +210,17 @@
 		color: var(--neutral-600);
 	}
 
+	select {
+		height: 48px;
+		border-radius: 12px;
+		border: 1.5px solid var(--primary-orange);
+		padding: 0 0.9em;
+		font-family: var(--font-body);
+		font-size: 1rem;
+		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
+		color: light-dark(var(--text-darkblue), var(--text-white));
+	}
+
 	input[type='file'] {
 		height: auto;
 		padding: 0.6em 0.75em;
@@ -218,6 +252,21 @@
 
 	textarea::placeholder {
 		color: var(--neutral-600);
+	}
+
+	.field-help {
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		color: var(--neutral-600);
+		margin: 0;
+	}
+
+	.field-label {
+		font-family: var(--font-heading);
+		font-size: 1.15rem;
+		line-height: 1.2;
+		font-weight: var(--weight-semibold);
+		margin: 0;
 	}
 
 	.actions {
