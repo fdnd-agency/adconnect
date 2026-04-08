@@ -5,6 +5,16 @@ const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het event.'
 const GENERIC_PUBLISH_WARNING = 'Event opgeslagen als concept, maar publiceren is mislukt.'
 
+// Creates a URL-safe slug from a title string.
+function slugify(value) {
+	return value
+		.toLowerCase()
+		.trim()
+		.replace(/[^a-z0-9\s-]/g, '')
+		.replace(/\s+/g, '-')
+		.replace(/-+/g, '-')
+}
+
 // Deletes uploaded files when event creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
 	for (const fileId of fileIds) {
@@ -88,12 +98,15 @@ export const actions = {
 
 		const payload = {
 			title,
+			slug: slugify(title),
 			description,
 			date,
 			time_duration: timeDuration,
 			excerpt,
 			body,
-			nomination_id: [nominationId],
+			nomination_id: {
+				create: [{ adconnect_nominations_id: nominationId }]
+			},
 			status: 'draft'
 		}
 
@@ -116,7 +129,9 @@ export const actions = {
 
 			if (!createResult?.success) {
 				console.error('[events/form] Event create failed:', createResult)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				const status = Number(createResult?.status) || 500
+				const errorMessage = createResult?.data?.error ?? GENERIC_CREATE_ERROR
+				return fail(status, { error: errorMessage })
 			}
 
 			eventCreated = true
