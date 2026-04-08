@@ -137,6 +137,7 @@
 			<p class="field-label">Nominaties (optioneel)</p>
 			<a
 				href="/admin/nominations/form"
+				target="_blank"
 				class="add-link"
 			>
 				Nominatie toevoegen
@@ -302,7 +303,7 @@
 	.add-link {
 		font-family: var(--font-body);
 		font-size: 0.95rem;
-		color: var(--text-darkblue);
+		color: var(--reds-600);
 		text-decoration: underline;
 		text-underline-offset: 2px;
 	}
