@@ -76,7 +76,17 @@
 			<AdminItemCard
 				icon={item.icon}
 				label={item.label}
-				href={item.collection === 'adconnect_documents' ? '/admin/documents/form' : item.collection === 'adconnect_news' ? '/admin/news/form' : `${directusBase}/${item.collection}/+`}
+				href={item.collection === 'adconnect_documents'
+					? '/admin/documents/form'
+					: item.collection === 'adconnect_nominations'
+						? '/admin/nominations/form'
+						: item.collection === 'adconnect_themes'
+							? '/admin/themes/form'
+							: item.collection === 'adconnect_faqs'
+								? '/admin/faqs/form'
+                  : item.collection === 'adconnect_news'
+								  ? '/admin/news/form'
+								    : `${directusBase}/${item.collection}/+`}
 				iconHeight={item.iconHeight}
 			/>
 		{/each}
