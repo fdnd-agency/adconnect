@@ -40,6 +40,7 @@ export const actions = {
 		const title = String(data.get('title') ?? '').trim()
 		const description = String(data.get('description') ?? '').trim()
 		const date = String(data.get('date') ?? '').trim()
+		const timeDuration = String(data.get('time_duration') ?? '').trim()
 		const excerpt = String(data.get('excerpt') ?? '').trim()
 		const body = String(data.get('body') ?? '').trim()
 		const nominationId = String(data.get('nomination_id') ?? '').trim()
@@ -60,6 +61,10 @@ export const actions = {
 
 		if (!date) {
 			return fail(400, { error: 'Vul een datum in.' })
+		}
+
+		if (!timeDuration) {
+			return fail(400, { error: 'Vul een tijdsduur in.' })
 		}
 
 		if (!excerpt) {
@@ -85,6 +90,7 @@ export const actions = {
 			title,
 			description,
 			date,
+			time_duration: timeDuration,
 			excerpt,
 			body,
 			nomination_id: [nominationId],

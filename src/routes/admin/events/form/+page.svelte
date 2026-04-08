@@ -98,6 +98,18 @@
 		/>
 	</div>
 
+	<div class="field-group field-group-half">
+		<label for="time_duration">Tijdsduur</label>
+		<input
+			id="time_duration"
+			name="time_duration"
+			type="text"
+			autocomplete="off"
+			placeholder="Bijv. 19:00 - 21:00"
+			required
+		/>
+	</div>
+
 	<div class="field-group">
 		<label for="excerpt">Samenvatting</label>
 		<textarea
