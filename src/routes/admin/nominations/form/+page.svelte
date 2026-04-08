@@ -169,6 +169,18 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="education_variant">Onderwijsvariant</label>
+		<input
+			id="education_variant"
+			name="education_variant"
+			type="text"
+			autocomplete="off"
+			placeholder="Voer een onderwijsvariant in"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
