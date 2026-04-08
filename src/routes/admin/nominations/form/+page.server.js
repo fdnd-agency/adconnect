@@ -40,6 +40,7 @@ export const actions = {
 		const body = String(data.get('body') ?? '').trim()
 		const eventId = String(data.get('event_id') ?? '').trim()
 		const institution = String(data.get('institution') ?? '').trim()
+		const course = String(data.get('course') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -74,6 +75,10 @@ export const actions = {
 			return fail(400, { error: 'Vul een instelling in.' })
 		}
 
+		if (!course) {
+			return fail(400, { error: 'Vul een opleiding in.' })
+		}
+
 		const payload = {
 			title,
 			header,
@@ -84,6 +89,7 @@ export const actions = {
 				create: [{ adconnect_events_id: eventId }]
 			},
 			institution,
+			course,
 			slug: slugify(title),
 			status: 'draft'
 		}

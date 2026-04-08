@@ -145,6 +145,18 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="course">Opleiding</label>
+		<input
+			id="course"
+			name="course"
+			type="text"
+			autocomplete="off"
+			placeholder="Voer een opleiding in"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
