@@ -61,6 +61,18 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="header">Header</label>
+		<input
+			id="header"
+			name="header"
+			type="text"
+			autocomplete="off"
+			placeholder="Voer een header in"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
