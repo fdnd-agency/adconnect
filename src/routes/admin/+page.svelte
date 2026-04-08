@@ -86,9 +86,9 @@
 								? '/admin/faqs/form'
 								: item.collection === 'adconnect_news'
 									? '/admin/news/form'
-                     : item.collection === 'adconnect_collaborations'
-									    ? '/admin/cooperations/form'
-									      : `${directusBase}/${item.collection}/+`}
+									: item.collection === 'adconnect_collaborations'
+										? '/admin/cooperations/form'
+										: `${directusBase}/${item.collection}/+`}
 				iconHeight={item.iconHeight}
 			/>
 		{/each}
