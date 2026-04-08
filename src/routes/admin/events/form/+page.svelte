@@ -93,6 +93,16 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="excerpt">Samenvatting</label>
+		<textarea
+			id="excerpt"
+			name="excerpt"
+			placeholder="Voer een samenvatting in"
+			required
+		></textarea>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
