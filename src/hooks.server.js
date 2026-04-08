@@ -1,6 +1,12 @@
 import { AuthService } from '$lib/server/authService'
 
 export async function handle({ event, resolve }) {
+	if (process.env.E2E_TEST_MODE === '1') {
+		const sessionState = event.cookies.get('e2e_admin_session')
+		event.locals.user = sessionState === 'active' ? { data: { id: 'e2e-admin', role: 'administrator' } } : null
+		return resolve(event)
+	}
+
 	const accessToken = event.cookies.get('access_token')
 	const refreshToken = event.cookies.get('refresh_token')
 
