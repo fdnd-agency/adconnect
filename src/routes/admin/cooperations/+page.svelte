@@ -43,6 +43,7 @@
 	{directusBase}
 	contentType="adconnect_cooperations"
 	breadcrumb="Samenwerkingen"
+	addHref="/admin/cooperations/form"
 />
 
 <AdminToolbar
