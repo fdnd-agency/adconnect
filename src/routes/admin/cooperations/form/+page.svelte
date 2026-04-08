@@ -36,6 +36,7 @@
 
 <form
 	method="POST"
+	enctype="multipart/form-data"
 	class="cooperation-form"
 	use:enhance={() => {
 		isSubmitting = true
@@ -57,6 +58,17 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een naam in"
+			required
+		/>
+	</div>
+
+	<div class="field-group">
+		<label for="logo">Logo</label>
+		<input
+			id="logo"
+			name="logo"
+			type="file"
+			accept="image/*"
 			required
 		/>
 	</div>
@@ -129,6 +141,23 @@
 
 	input::placeholder {
 		color: var(--neutral-600);
+	}
+
+	input[type='file'] {
+		height: auto;
+		padding: 0.6em 0.75em;
+	}
+
+	input[type='file']::file-selector-button {
+		font-family: var(--font-heading);
+		font-size: 0.9rem;
+		padding: 0.45em 0.9em;
+		margin-right: 0.7em;
+		border-radius: 10px;
+		border: var(--button-outline-border);
+		background: light-dark(var(--text-white), hsl(210, 30%, 16%));
+		color: var(--button-outline-text);
+		cursor: pointer;
 	}
 
 	.actions {
