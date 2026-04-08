@@ -157,6 +157,18 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="previous_course">Vorige opleiding</label>
+		<input
+			id="previous_course"
+			name="previous_course"
+			type="text"
+			autocomplete="off"
+			placeholder="Voer de vorige opleiding in"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"

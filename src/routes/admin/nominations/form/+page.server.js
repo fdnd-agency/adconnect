@@ -41,6 +41,7 @@ export const actions = {
 		const eventId = String(data.get('event_id') ?? '').trim()
 		const institution = String(data.get('institution') ?? '').trim()
 		const course = String(data.get('course') ?? '').trim()
+		const previousCourse = String(data.get('previous_course') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -79,6 +80,10 @@ export const actions = {
 			return fail(400, { error: 'Vul een opleiding in.' })
 		}
 
+		if (!previousCourse) {
+			return fail(400, { error: 'Vul een vorige opleiding in.' })
+		}
+
 		const payload = {
 			title,
 			header,
@@ -90,6 +95,7 @@ export const actions = {
 			},
 			institution,
 			course,
+			previous_course: previousCourse,
 			slug: slugify(title),
 			status: 'draft'
 		}
