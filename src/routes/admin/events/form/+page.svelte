@@ -10,9 +10,7 @@
 
 	let isSubmitting = $state(false)
 	let selectedNominationIds = $state([])
-	const selectedNominationsText = $derived(
-		selectedNominationIds.length === 0 ? 'Kies nominaties' : `${selectedNominationIds.length} geselecteerd`
-	)
+	const selectedNominationsText = $derived(selectedNominationIds.length === 0 ? 'Kies nominaties' : `${selectedNominationIds.length} geselecteerd`)
 
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' })

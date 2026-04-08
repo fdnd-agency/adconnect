@@ -333,10 +333,7 @@ describe('admin events form actions.default', () => {
 				excerpt: 'Korte samenvatting',
 				body: 'Volledige body van het event.',
 				nomination_id: {
-					create: [
-						{ adconnect_nominations_id: 'nom-42' },
-						{ adconnect_nominations_id: 'nom-43' }
-					]
+					create: [{ adconnect_nominations_id: 'nom-42' }, { adconnect_nominations_id: 'nom-43' }]
 				},
 				status: 'draft',
 				hero: 'img-999'
