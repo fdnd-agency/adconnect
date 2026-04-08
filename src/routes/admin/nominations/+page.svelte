@@ -41,6 +41,7 @@
 	{directusBase}
 	contentType="adconnect_nominations"
 	breadcrumb="Nominaties"
+	addHref="/admin/nominations/form"
 />
 
 <AdminToolbar
