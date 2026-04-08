@@ -28,6 +28,7 @@ export const actions = {
 		const description = String(data.get('description') ?? '').trim()
 		const date = String(data.get('date') ?? '').trim()
 		const excerpt = String(data.get('excerpt') ?? '').trim()
+		const body = String(data.get('body') ?? '').trim()
 		const image = data.get('image')
 		const token = cookies.get('access_token')
 
@@ -51,6 +52,10 @@ export const actions = {
 			return fail(400, { error: 'Vul een samenvatting in.' })
 		}
 
+		if (!body) {
+			return fail(400, { error: 'Vul de body in.' })
+		}
+
 		if (!(image instanceof File) || image.size === 0) {
 			return fail(400, { error: 'Upload een afbeelding.' })
 		}
@@ -63,6 +68,7 @@ export const actions = {
 			description,
 			date,
 			excerpt,
+			body,
 			status: 'draft'
 		}
 
