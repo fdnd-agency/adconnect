@@ -12,6 +12,7 @@ export const actions = {
 		const submitAction = String(data.get('submitAction') ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
 		const title = String(data.get('title') ?? '').trim()
+		const description = String(data.get('description') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -22,8 +23,13 @@ export const actions = {
 			return fail(400, { error: 'Vul een titel in.' })
 		}
 
+		if (!description) {
+			return fail(400, { error: 'Vul een omschrijving in.' })
+		}
+
 		const payload = {
 			title,
+			description,
 			status: 'draft'
 		}
 

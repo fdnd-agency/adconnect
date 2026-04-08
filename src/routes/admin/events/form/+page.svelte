@@ -61,6 +61,16 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="description">Omschrijving</label>
+		<textarea
+			id="description"
+			name="description"
+			placeholder="Voer een korte omschrijving in"
+			required
+		></textarea>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
@@ -128,6 +138,22 @@
 	}
 
 	input::placeholder {
+		color: var(--neutral-600);
+	}
+
+	textarea {
+		min-height: 150px;
+		resize: vertical;
+		border-radius: 12px;
+		border: 1.5px solid var(--primary-orange);
+		padding: 0.75em 0.9em;
+		font-family: var(--font-body);
+		font-size: 1rem;
+		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
+		color: light-dark(var(--text-darkblue), var(--text-white));
+	}
+
+	textarea::placeholder {
 		color: var(--neutral-600);
 	}
 
