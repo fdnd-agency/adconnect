@@ -78,11 +78,13 @@
 				label={item.label}
 				href={item.collection === 'adconnect_documents'
 					? '/admin/documents/form'
-					: item.collection === 'adconnect_faqs'
-						? '/admin/faqs/form'
+					: item.collection === 'adconnect_nominations'
+						? '/admin/nominations/form'
 						: item.collection === 'adconnect_themes'
 							? '/admin/themes/form'
-							: `${directusBase}/${item.collection}/+`}
+							: item.collection === 'adconnect_faqs'
+								? '/admin/faqs/form'
+								: `${directusBase}/${item.collection}/+`}
 				iconHeight={item.iconHeight}
 			/>
 		{/each}
