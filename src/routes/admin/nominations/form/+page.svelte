@@ -4,7 +4,8 @@
 	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
 	import Error from '$lib/atoms/Error.svelte'
 
-	const { form } = $props()
+	const { data, form } = $props()
+	const events = $derived(data?.events ?? [])
 	const directusBase = `${DIRECTUS_URL}/admin/content`
 
 	let isSubmitting = $state(false)
@@ -28,6 +29,10 @@
 
 {#if form?.error}
 	<Error message={form.error} />
+{/if}
+
+{#if data?.loadError}
+	<Error message={data.loadError} />
 {/if}
 
 {#if form?.success && form?.message}
@@ -103,6 +108,31 @@
 		></textarea>
 	</div>
 
+	<div class="field-group">
+		<label for="event_id">Event</label>
+		{#if events.length === 0}
+			<p class="field-help">Geen events gevonden om te koppelen.</p>
+			<select
+				id="event_id"
+				name="event_id"
+				disabled
+			>
+				<option value="">Geen events beschikbaar</option>
+			</select>
+		{:else}
+			<select
+				id="event_id"
+				name="event_id"
+				required
+			>
+				<option value="">Kies een event</option>
+				{#each events as event (event.id)}
+					<option value={event.id}>{event.title ?? `Event ${event.id}`}</option>
+				{/each}
+			</select>
+		{/if}
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
@@ -158,6 +188,13 @@
 		font-weight: var(--weight-semibold);
 	}
 
+	.field-help {
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		color: var(--neutral-600);
+		margin: 0;
+	}
+
 	input {
 		height: 48px;
 		border-radius: 12px;
@@ -171,6 +208,17 @@
 
 	input::placeholder {
 		color: var(--neutral-600);
+	}
+
+	select {
+		height: 48px;
+		border-radius: 12px;
+		border: 1.5px solid var(--primary-orange);
+		padding: 0 0.9em;
+		font-family: var(--font-body);
+		font-size: 1rem;
+		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
+		color: light-dark(var(--text-darkblue), var(--text-white));
 	}
 
 	textarea {

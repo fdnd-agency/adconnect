@@ -14,6 +14,19 @@ function slugify(value) {
 		.replace(/-+/g, '-')
 }
 
+// Loads existing events so admins can link a nomination to one event.
+export async function load({ cookies }) {
+	const { data: content, errors } = await ContentService.fetchContent('events', null, null, null, true, cookies.get('access_token'))
+
+	const events = content.events ? [...content.events.values()] : []
+	events.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
+
+	return {
+		events,
+		loadError: errors.length ? 'Events konden niet worden geladen.' : null
+	}
+}
+
 export const actions = {
 	// Handles form submission for initial nominations form version.
 	default: async ({ request, cookies }) => {
@@ -25,6 +38,7 @@ export const actions = {
 		const date = String(data.get('date') ?? '').trim()
 		const excerpt = String(data.get('excerpt') ?? '').trim()
 		const body = String(data.get('body') ?? '').trim()
+		const eventId = String(data.get('event_id') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -51,12 +65,19 @@ export const actions = {
 			return fail(400, { error: 'Vul de body in.' })
 		}
 
+		if (!eventId) {
+			return fail(400, { error: 'Kies een event.' })
+		}
+
 		const payload = {
 			title,
 			header,
 			date,
 			excerpt,
 			body,
+			event_id: {
+				create: [{ adconnect_events_id: eventId }]
+			},
 			slug: slugify(title),
 			status: 'draft'
 		}
