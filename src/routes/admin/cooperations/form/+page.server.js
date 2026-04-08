@@ -4,6 +4,7 @@ import { fail } from '@sveltejs/kit'
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van de samenwerking.'
 const GENERIC_PUBLISH_WARNING = 'Samenwerking opgeslagen als concept, maar publiceren is mislukt.'
+const URL_REGEX = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
 
 // Deletes uploaded files when cooperation creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
@@ -24,6 +25,7 @@ export const actions = {
 		const submitAction = String(data.get('submitAction') ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
 		const name = String(data.get('name') ?? '').trim()
+		const url = String(data.get('url') ?? '').trim()
 		const logo = data.get('logo')
 		const token = cookies.get('access_token')
 
@@ -33,6 +35,14 @@ export const actions = {
 
 		if (!name) {
 			return fail(400, { error: 'Vul een naam in.' })
+		}
+
+		if (!url) {
+			return fail(400, { error: 'Vul een URL in.' })
+		}
+
+		if (!URL_REGEX.test(url)) {
+			return fail(400, { error: 'Vul een geldige URL in (http:// of https://).' })
 		}
 
 		if (!(logo instanceof File) || logo.size === 0) {
@@ -58,6 +68,7 @@ export const actions = {
 			const payload = {
 				name,
 				logo: logoUpload.id,
+				url,
 				status: 'draft'
 			}
 

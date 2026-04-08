@@ -73,6 +73,18 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="url">URL</label>
+		<input
+			id="url"
+			name="url"
+			type="url"
+			autocomplete="off"
+			placeholder="https://voorbeeld.nl"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
