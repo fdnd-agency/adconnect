@@ -133,6 +133,18 @@
 		{/if}
 	</div>
 
+	<div class="field-group">
+		<label for="institution">Instelling</label>
+		<input
+			id="institution"
+			name="institution"
+			type="text"
+			autocomplete="off"
+			placeholder="Voer een instelling in"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
