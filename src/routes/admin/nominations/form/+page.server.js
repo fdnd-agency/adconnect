@@ -22,6 +22,7 @@ export const actions = {
 		const shouldPublish = submitAction === 'publish'
 		const title = String(data.get('title') ?? '').trim()
 		const header = String(data.get('header') ?? '').trim()
+		const date = String(data.get('date') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -36,9 +37,14 @@ export const actions = {
 			return fail(400, { error: 'Vul een header in.' })
 		}
 
+		if (!date) {
+			return fail(400, { error: 'Vul een datum in.' })
+		}
+
 		const payload = {
 			title,
 			header,
+			date,
 			slug: slugify(title),
 			status: 'draft'
 		}

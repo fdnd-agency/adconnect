@@ -73,6 +73,16 @@
 		/>
 	</div>
 
+	<div class="field-group">
+		<label for="date">Datum</label>
+		<input
+			id="date"
+			name="date"
+			type="date"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
