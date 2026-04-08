@@ -53,7 +53,10 @@ export const actions = {
 		const timeDuration = String(data.get('time_duration') ?? '').trim()
 		const excerpt = String(data.get('excerpt') ?? '').trim()
 		const body = String(data.get('body') ?? '').trim()
-		const nominationId = String(data.get('nomination_id') ?? '').trim()
+		const nominationIds = data
+			.getAll('nomination_ids')
+			.map((value) => String(value ?? '').trim())
+			.filter(Boolean)
 		const image = data.get('image')
 		const token = cookies.get('access_token')
 
@@ -85,10 +88,6 @@ export const actions = {
 			return fail(400, { error: 'Vul de body in.' })
 		}
 
-		if (!nominationId) {
-			return fail(400, { error: 'Kies een nominatie.' })
-		}
-
 		if (!(image instanceof File) || image.size === 0) {
 			return fail(400, { error: 'Upload een afbeelding.' })
 		}
@@ -104,10 +103,15 @@ export const actions = {
 			time_duration: timeDuration,
 			excerpt,
 			body,
-			nomination_id: {
-				create: [{ adconnect_nominations_id: nominationId }]
-			},
 			status: 'draft'
+		}
+
+		if (nominationIds.length > 0) {
+			payload.nomination_id = {
+				create: nominationIds.map((nominationId) => ({
+					adconnect_nominations_id: nominationId
+				}))
+			}
 		}
 
 		try {

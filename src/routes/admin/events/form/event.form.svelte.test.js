@@ -15,6 +15,13 @@ vi.mock('$lib/server/contentService.js', () => ({
 function createFormData(fields = {}) {
 	const formData = new FormData()
 	for (const [key, value] of Object.entries(fields)) {
+		if (Array.isArray(value)) {
+			for (const item of value) {
+				formData.append(key, item)
+			}
+			continue
+		}
+
 		formData.append(key, value)
 	}
 	return formData
@@ -28,7 +35,7 @@ function createValidFormFields(overrides = {}) {
 		time_duration: '19:00 - 21:00',
 		excerpt: 'Korte samenvatting',
 		body: 'Volledige body van het event.',
-		nomination_id: 'nom-1',
+		nomination_ids: ['nom-1'],
 		image: new File(['image-bytes'], 'hero.png', { type: 'image/png' }),
 		submitAction: 'save',
 		...overrides
@@ -245,20 +252,6 @@ describe('admin events form actions.default', () => {
 		expectNoMutationCalls()
 	})
 
-	it('returns 400 when nomination_id is empty after trim', async () => {
-		// Arrange: start from valid baseline form data and override only nomination_id.
-		// Why: this isolates required nomination selection validation from unrelated fields.
-		const event = createActionEvent({ fields: { nomination_id: '   ' } })
-
-		// Act: execute the default action.
-		const result = await actions.default(event)
-
-		// Assert: action returns a 400 fail payload with nomination validation message.
-		expect(result).toMatchObject({ status: 400, data: { error: 'Kies een nominatie.' } })
-		// Assert: validation fails before any content mutation calls.
-		expectNoMutationCalls()
-	})
-
 	it('returns 400 when image file is zero-byte', async () => {
 		// Arrange: start from valid baseline form data and override only image.
 		// Why: zero-byte uploads should be rejected as invalid images.
@@ -321,7 +314,7 @@ describe('admin events form actions.default', () => {
 			fields: {
 				title: '  Mijn Event!! Titel  ',
 				time_duration: '20:00 - 22:00',
-				nomination_id: 'nom-42'
+				nomination_ids: ['nom-42', 'nom-43']
 			}
 		})
 		mockSuccessfulUploadAndCreate({ imageId: 'img-999' })
@@ -339,7 +332,39 @@ describe('admin events form actions.default', () => {
 				time_duration: '20:00 - 22:00',
 				excerpt: 'Korte samenvatting',
 				body: 'Volledige body van het event.',
-				nomination_id: ['nom-42'],
+				nomination_id: {
+					create: [
+						{ adconnect_nominations_id: 'nom-42' },
+						{ adconnect_nominations_id: 'nom-43' }
+					]
+				},
+				status: 'draft',
+				hero: 'img-999'
+			},
+			'events',
+			'token-123'
+		)
+	})
+
+	it('omits nomination relation when no nomination is selected', async () => {
+		// Arrange: provide valid form data with an empty checkbox selection list.
+		// Why: nomination linking is optional and event creation should still succeed.
+		const event = createActionEvent({ fields: { nomination_ids: [] } })
+		mockSuccessfulUploadAndCreate({ imageId: 'img-999' })
+
+		// Act: execute the default action.
+		await actions.default(event)
+
+		// Assert: payload excludes nomination relation when no checkbox is checked.
+		expect(ContentService.postContent).toHaveBeenCalledWith(
+			{
+				title: 'Mijn event',
+				slug: 'mijn-event',
+				description: 'Korte omschrijving',
+				date: '2026-04-01',
+				time_duration: '19:00 - 21:00',
+				excerpt: 'Korte samenvatting',
+				body: 'Volledige body van het event.',
 				status: 'draft',
 				hero: 'img-999'
 			},

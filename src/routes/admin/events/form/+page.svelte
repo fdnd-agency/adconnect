@@ -9,6 +9,10 @@
 	const directusBase = `${DIRECTUS_URL}/admin/content`
 
 	let isSubmitting = $state(false)
+	let selectedNominationIds = $state([])
+	const selectedNominationsText = $derived(
+		selectedNominationIds.length === 0 ? 'Kies nominaties' : `${selectedNominationIds.length} geselecteerd`
+	)
 
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -131,20 +135,39 @@
 	</div>
 
 	<div class="field-group">
-		<p class="field-label">Nominatie</p>
+		<div class="field-heading-row">
+			<p class="field-label">Nominaties (optioneel)</p>
+			<a
+				href="/admin/nominations/form"
+				class="add-link"
+			>
+				Nominatie toevoegen
+			</a>
+		</div>
 		{#if nominations.length === 0}
 			<p class="field-help">Geen bestaande nominaties gevonden om te koppelen.</p>
 		{:else}
-			<select
-				id="nomination_id"
-				name="nomination_id"
-				required
-			>
-				<option value="">Kies een nominatie</option>
-				{#each nominations as nomination (nomination.id)}
-					<option value={nomination.id}>{nomination.title ?? `Nominatie ${nomination.id}`}</option>
-				{/each}
-			</select>
+			<details class="checkbox-dropdown">
+				<summary>{selectedNominationsText}</summary>
+				<div class="checkbox-list">
+					{#each nominations as nomination (nomination.id)}
+						<label
+							class="checkbox-item"
+							for={`nomination-${nomination.id}`}
+						>
+							<input
+								id={`nomination-${nomination.id}`}
+								type="checkbox"
+								name="nomination_ids"
+								value={nomination.id}
+								bind:group={selectedNominationIds}
+							/>
+							<span>{nomination.title ?? `Nominatie ${nomination.id}`}</span>
+						</label>
+					{/each}
+				</div>
+			</details>
+			<p class="field-help">Je kunt meerdere nominaties aanvinken, of dit veld leeg laten.</p>
 		{/if}
 	</div>
 
@@ -207,7 +230,7 @@
 		font-weight: var(--weight-semibold);
 	}
 
-	input {
+	input:not([type='checkbox']) {
 		height: 48px;
 		border-radius: 12px;
 		border: 1.5px solid var(--primary-orange);
@@ -218,19 +241,8 @@
 		color: light-dark(var(--text-darkblue), var(--text-white));
 	}
 
-	input::placeholder {
+	input:not([type='checkbox'])::placeholder {
 		color: var(--neutral-600);
-	}
-
-	select {
-		height: 48px;
-		border-radius: 12px;
-		border: 1.5px solid var(--primary-orange);
-		padding: 0 0.9em;
-		font-family: var(--font-body);
-		font-size: 1rem;
-		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
-		color: light-dark(var(--text-darkblue), var(--text-white));
 	}
 
 	input[type='file'] {
@@ -279,6 +291,70 @@
 		line-height: 1.2;
 		font-weight: var(--weight-semibold);
 		margin: 0;
+	}
+
+	.field-heading-row {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1em;
+		flex-wrap: wrap;
+	}
+
+	.add-link {
+		font-family: var(--font-body);
+		font-size: 0.95rem;
+		color: var(--text-darkblue);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	.add-link:hover {
+		color: var(--primary-orange);
+	}
+
+	.checkbox-dropdown {
+		border: 1.5px solid var(--primary-orange);
+		border-radius: 12px;
+		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
+	}
+
+	.checkbox-dropdown summary {
+		list-style: none;
+		cursor: pointer;
+		padding: 0.75em 0.9em;
+		font-family: var(--font-body);
+		font-size: 1rem;
+		color: light-dark(var(--text-darkblue), var(--text-white));
+	}
+
+	.checkbox-dropdown summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.checkbox-list {
+		display: grid;
+		gap: 0.35em;
+		padding: 0 0.8em 0.8em;
+		max-height: 220px;
+		overflow-y: auto;
+	}
+
+	.checkbox-item {
+		display: flex;
+		align-items: center;
+		gap: 0.55em;
+		font-family: var(--font-body);
+		font-size: 0.97rem;
+		font-weight: var(--weight-regular);
+		line-height: 1.35;
+	}
+
+	.checkbox-item input {
+		width: 16px;
+		height: 16px;
+		margin: 0;
+		accent-color: var(--primary-orange);
 	}
 
 	.actions {
