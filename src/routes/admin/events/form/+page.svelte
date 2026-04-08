@@ -83,6 +83,16 @@
 		/>
 	</div>
 
+	<div class="field-group field-group-half">
+		<label for="date">Datum</label>
+		<input
+			id="date"
+			name="date"
+			type="date"
+			required
+		/>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"
@@ -129,6 +139,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.45em;
+	}
+
+	.field-group-half {
+		max-width: 280px;
 	}
 
 	label {
