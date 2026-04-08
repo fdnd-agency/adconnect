@@ -84,7 +84,9 @@
 							? '/admin/themes/form'
 							: item.collection === 'adconnect_faqs'
 								? '/admin/faqs/form'
-								: `${directusBase}/${item.collection}/+`}
+								: item.collection === 'adconnect_news'
+									? '/admin/news/form'
+									: `${directusBase}/${item.collection}/+`}
 				iconHeight={item.iconHeight}
 			/>
 		{/each}
