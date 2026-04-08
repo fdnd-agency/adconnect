@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
 
+const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van de nominatie.'
 const GENERIC_PUBLISH_WARNING = 'Nominatie opgeslagen als concept, maar publiceren is mislukt.'
 
@@ -12,6 +13,18 @@ function slugify(value) {
 		.replace(/[^a-z0-9\s-]/g, '')
 		.replace(/\s+/g, '-')
 		.replace(/-+/g, '-')
+}
+
+// Deletes uploaded files when nomination creation fails.
+async function rollbackUploadedFiles(fileIds, accessToken) {
+	for (const fileId of fileIds) {
+		if (!fileId) continue
+
+		const result = await ContentService.deleteFile(fileId, accessToken)
+		if (!result?.success) {
+			console.error(`[nominations/form] Rollback failed for file ${fileId}`)
+		}
+	}
 }
 
 // Loads existing events so admins can link a nomination to one event.
@@ -44,6 +57,7 @@ export const actions = {
 		const previousCourse = String(data.get('previous_course') ?? '').trim()
 		const educationVariant = String(data.get('education_variant') ?? '').trim()
 		const alumnus = String(data.get('alumnus') ?? '').trim()
+		const profilePicture = data.get('profile_picture')
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -94,25 +108,45 @@ export const actions = {
 			return fail(400, { error: 'Vul alumnis in.' })
 		}
 
-		const payload = {
-			title,
-			header,
-			date,
-			excerpt,
-			body,
-			event_id: {
-				create: [{ adconnect_events_id: eventId }]
-			},
-			institution,
-			course,
-			previous_course: previousCourse,
-			education_variant: educationVariant,
-			alumnus,
-			slug: slugify(title),
-			status: 'draft'
+		if (!(profilePicture instanceof File) || profilePicture.size === 0) {
+			return fail(400, { error: 'Upload een profielfoto.' })
 		}
 
+		const uploadedFileIds = []
+		let nominationCreated = false
+
 		try {
+			const profilePictureUpload = await ContentService.postFile(profilePicture, token, {
+				folderName: FILE_LIBRARY_FOLDER,
+				allowedMimePrefixes: ['image/'],
+				invalidTypeError: 'Afbeelding uploaden mislukt: Bestand is geen afbeelding.'
+			})
+
+			if (!profilePictureUpload?.success) {
+				console.error('[nominations/form] Profile picture upload failed:', profilePictureUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR })
+			}
+			uploadedFileIds.push(profilePictureUpload.id)
+
+			const payload = {
+				title,
+				header,
+				date,
+				excerpt,
+				body,
+				event_id: {
+					create: [{ adconnect_events_id: eventId }]
+				},
+				institution,
+				course,
+				previous_course: previousCourse,
+				education_variant: educationVariant,
+				alumnus,
+				profile_picture: profilePictureUpload.id,
+				slug: slugify(title),
+				status: 'draft'
+			}
+
 			const createResult = await ContentService.postContent(payload, 'nominations', token)
 
 			if (!createResult?.success) {
@@ -121,6 +155,8 @@ export const actions = {
 				const errorMessage = createResult?.data?.error ?? GENERIC_CREATE_ERROR
 				return fail(createStatus, { error: errorMessage })
 			}
+
+			nominationCreated = true
 
 			if (shouldPublish) {
 				try {
@@ -158,6 +194,10 @@ export const actions = {
 		} catch (err) {
 			console.error('[nominations/form] Unexpected error during create:', err)
 			return fail(500, { error: GENERIC_CREATE_ERROR })
+		} finally {
+			if (!nominationCreated && uploadedFileIds.length > 0) {
+				await rollbackUploadedFiles(uploadedFileIds, token)
+			}
 		}
 	}
 }
