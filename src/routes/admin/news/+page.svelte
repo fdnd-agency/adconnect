@@ -41,6 +41,7 @@
 	{directusBase}
 	contentType="adconnect_news"
 	breadcrumb="Nieuwsartikelen"
+	addHref="/admin/news/form"
 />
 
 <AdminToolbar

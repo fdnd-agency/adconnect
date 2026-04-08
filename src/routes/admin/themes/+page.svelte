@@ -41,6 +41,7 @@
 	{directusBase}
 	contentType="adconnect_themes"
 	breadcrumb="Thema's"
+	addHref="/admin/themes/form"
 />
 
 <AdminToolbar
