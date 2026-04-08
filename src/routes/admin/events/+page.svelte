@@ -41,6 +41,7 @@
 	{directusBase}
 	contentType="adconnect_events"
 	breadcrumb="Events"
+	addHref="/admin/events/form"
 />
 
 <AdminToolbar
