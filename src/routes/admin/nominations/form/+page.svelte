@@ -93,6 +93,16 @@
 		></textarea>
 	</div>
 
+	<div class="field-group">
+		<label for="body">Body</label>
+		<textarea
+			id="body"
+			name="body"
+			placeholder="Voer de body in"
+			required
+		></textarea>
+	</div>
+
 	<div class="actions">
 		<button
 			type="submit"

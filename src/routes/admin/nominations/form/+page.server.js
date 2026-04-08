@@ -24,6 +24,7 @@ export const actions = {
 		const header = String(data.get('header') ?? '').trim()
 		const date = String(data.get('date') ?? '').trim()
 		const excerpt = String(data.get('excerpt') ?? '').trim()
+		const body = String(data.get('body') ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
@@ -46,11 +47,16 @@ export const actions = {
 			return fail(400, { error: 'Vul een samenvatting in.' })
 		}
 
+		if (!body) {
+			return fail(400, { error: 'Vul de body in.' })
+		}
+
 		const payload = {
 			title,
 			header,
 			date,
 			excerpt,
+			body,
 			slug: slugify(title),
 			status: 'draft'
 		}
