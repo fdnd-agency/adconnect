@@ -364,6 +364,50 @@ describe('admin nominations form actions.default', () => {
 		)
 	})
 
+	it('retries with random slug suffix when slug already exists', async () => {
+		const event = createActionEvent({
+			fields: {
+				title: 'test'
+			}
+		})
+
+		const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.42)
+
+		ContentService.postFile.mockResolvedValue({ success: true, id: 'img-123' })
+		ContentService.postContent
+			.mockResolvedValueOnce({
+				success: false,
+				status: 400,
+				data: {
+					error: 'Aanmaken mislukt: Value "test" for field "slug" in collection "adconnect_nominations" has to be unique.'
+				}
+			})
+			.mockResolvedValueOnce({ success: true, id: 'nom-789' })
+
+		const result = await actions.default(event)
+
+		expect(result).toEqual({
+			success: true,
+			message: 'Nominatie succesvol opgeslagen als concept.',
+			nominationId: 'nom-789'
+		})
+		expect(ContentService.postContent).toHaveBeenCalledTimes(2)
+		expect(ContentService.postContent).toHaveBeenNthCalledWith(
+			1,
+			expect.objectContaining({ slug: 'test' }),
+			'nominations',
+			'token-123'
+		)
+		expect(ContentService.postContent).toHaveBeenNthCalledWith(
+			2,
+			expect.objectContaining({ slug: 'test-4780' }),
+			'nominations',
+			'token-123'
+		)
+
+		randomSpy.mockRestore()
+	})
+
 	it('publishes created nomination when submitAction is publish', async () => {
 		const event = createActionEvent({ fields: { submitAction: 'publish' } })
 		mockSuccessfulUploadAndCreate()

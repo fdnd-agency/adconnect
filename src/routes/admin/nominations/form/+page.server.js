@@ -15,6 +15,16 @@ function slugify(value) {
 		.replace(/-+/g, '-')
 }
 
+function isDuplicateSlugError(result) {
+	const message = String(result?.data?.error ?? '').toLowerCase()
+	return Number(result?.status) === 400 && message.includes('slug') && message.includes('unique')
+}
+
+function slugWithRandomSuffix(baseSlug) {
+	const randomSuffix = Math.floor(Math.random() * 9000) + 1000
+	return `${baseSlug}-${randomSuffix}`
+}
+
 // Deletes uploaded files when nomination creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
 	for (const fileId of fileIds) {
@@ -128,7 +138,8 @@ export const actions = {
 			}
 			uploadedFileIds.push(profilePictureUpload.id)
 
-			const payload = {
+			const baseSlug = slugify(title)
+			let payload = {
 				title,
 				header,
 				date,
@@ -143,11 +154,18 @@ export const actions = {
 				education_variant: educationVariant,
 				alumnus,
 				profile_picture: profilePictureUpload.id,
-				slug: slugify(title),
+				slug: baseSlug,
 				status: 'draft'
 			}
 
-			const createResult = await ContentService.postContent(payload, 'nominations', token)
+			let createResult = await ContentService.postContent(payload, 'nominations', token)
+
+			let retryCount = 0
+			while (!createResult?.success && isDuplicateSlugError(createResult) && retryCount < 3) {
+				retryCount += 1
+				payload = { ...payload, slug: slugWithRandomSuffix(baseSlug) }
+				createResult = await ContentService.postContent(payload, 'nominations', token)
+			}
 
 			if (!createResult?.success) {
 				console.error('[nominations/form] Nomination create failed:', createResult)
