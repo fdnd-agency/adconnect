@@ -1,19 +1,10 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
+import { Slugify } from '$lib/server/slugify.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het document.'
 const GENERIC_PUBLISH_WARNING = 'Document opgeslagen als concept, maar publiceren is mislukt.'
-
-// Creates a URL-safe slug from a title string.
-function slugify(value) {
-	return value
-		.toLowerCase()
-		.trim()
-		.replace(/[^a-z0-9\s-]/g, '')
-		.replace(/\s+/g, '-')
-		.replace(/-+/g, '-')
-}
 
 // Deletes uploaded files when document creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
@@ -112,22 +103,32 @@ export const actions = {
 			}
 			uploadedFileIds.push(sourceUpload.id)
 
-			const payload = {
+			const baseSlug = Slugify.slugify(title)
+			let payload = {
 				title,
 				description,
 				date,
 				category,
 				hero_image: imageUpload.id,
 				source_file: sourceUpload.id,
-				slug: slugify(title),
+				slug: baseSlug,
 				status: 'draft'
 			}
 
 			createResult = await ContentService.postContent(payload, 'documents', token)
 
+			let retryCount = 0
+			while (!createResult?.success && Slugify.isDuplicateSlugError(createResult) && retryCount < 3) {
+				retryCount += 1
+				payload = { ...payload, slug: Slugify.slugWithRandomSuffix(baseSlug) }
+				createResult = await ContentService.postContent(payload, 'documents', token)
+			}
+
 			if (!createResult?.success) {
 				console.error('[documents/form] Document create failed:', createResult)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				const createStatus = Number(createResult?.status) || 500
+				const errorMessage = createResult?.data?.error ?? GENERIC_CREATE_ERROR
+				return fail(createStatus, { error: errorMessage })
 			}
 
 			documentCreated = true

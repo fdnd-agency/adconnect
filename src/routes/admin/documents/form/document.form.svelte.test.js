@@ -356,6 +356,43 @@ describe('admin documents form actions.default', () => {
 		)
 	})
 
+	it('retries with random slug suffix when slug already exists', async () => {
+		// Arrange: create uses a duplicate slug first, then retries with random suffix.
+		const event = createActionEvent({
+			fields: {
+				title: 'test'
+			}
+		})
+
+		const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.42)
+
+		ContentService.postFile.mockResolvedValueOnce({ success: true, id: 'img-123' }).mockResolvedValueOnce({ success: true, id: 'src-456' })
+		ContentService.postContent
+			.mockResolvedValueOnce({
+				success: false,
+				status: 400,
+				data: {
+					error: 'Aanmaken mislukt: Value "test" for field "slug" in collection "adconnect_documents" has to be unique.'
+				}
+			})
+			.mockResolvedValueOnce({ success: true, id: 'doc-789' })
+
+		// Act: execute the default action.
+		const result = await actions.default(event)
+
+		// Assert: action retries once with a suffixed slug and succeeds.
+		expect(result).toEqual({
+			success: true,
+			message: 'Document succesvol opgeslagen als concept.',
+			documentId: 'doc-789'
+		})
+		expect(ContentService.postContent).toHaveBeenCalledTimes(2)
+		expect(ContentService.postContent).toHaveBeenNthCalledWith(1, expect.objectContaining({ slug: 'test' }), 'documents', 'token-123')
+		expect(ContentService.postContent).toHaveBeenNthCalledWith(2, expect.objectContaining({ slug: 'test-4780' }), 'documents', 'token-123')
+
+		randomSpy.mockRestore()
+	})
+
 	it('publishes created document when submitAction is publish', async () => {
 		// Arrange: provide valid form input and switch submit action to publish.
 		// Why: publish mode should perform create + publish and return publish success feedback.
