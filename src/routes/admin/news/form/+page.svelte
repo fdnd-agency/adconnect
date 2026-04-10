@@ -11,10 +11,17 @@
 	let tags = $state([])
 	let tagInput = $state('')
 
+	/**
+	 * Scrolls the window to the top Used after form submission to show success/error messages without the user having to scroll manually.
+	 */
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
 	}
 
+	/**
+	 * Adds the current tagInput value to the tags array if it's not empty and not already in the array, then clears the tagInput.
+	 * Called when the user presses Enter in the tag input field.
+	 */
 	function addTag() {
 		const value = tagInput.trim()
 		if (!value) return
@@ -24,10 +31,19 @@
 		tagInput = ''
 	}
 
+	/**
+	 * Removes a tag from the tags array based on its index. Called when the user clicks the remove button on a tag chip.
+	 * @param {number} index - The index of the tag to remove in the tags array.
+	 */
 	function removeTag(index) {
 		tags = tags.filter((_, i) => i !== index)
 	}
 
+	/**
+	 * Handles the keydown event on the tag input field.
+	 * If the Enter key is pressed, it prevents the default form submission behavior and calls the addTag function to add the current input as a tag.
+	 * @param {KeyboardEvent} event - The keydown event object from the tag input
+	 */
 	function onTagKeydown(event) {
 		if (event.key === 'Enter') {
 			event.preventDefault()
@@ -67,6 +83,8 @@
 			isSubmitting = false
 
 			if (result.type === 'success') {
+				tags = []
+				tagInput = ''
 				scrollToTop()
 			}
 		}
