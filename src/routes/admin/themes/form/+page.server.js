@@ -1,5 +1,6 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
+import { Slugify } from '$lib/server/slugify.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het thema.'
@@ -63,12 +64,14 @@ export const actions = {
 		const uploadedFileIds = []
 		let themeCreated = false
 
-		const payload = {
+		const baseSlug = Slugify.slugify(title)
+		let payload = {
 			title,
 			description,
 			date,
 			excerpt,
 			body,
+			slug: baseSlug,
 			status: 'draft'
 		}
 
@@ -87,13 +90,22 @@ export const actions = {
 			}
 			uploadedFileIds.push(imageUpload.id)
 
-			payload.hero = imageUpload.id
+			payload = { ...payload, hero: imageUpload.id }
 
 			createResult = await ContentService.postContent(payload, 'themes', token)
 
+			let retryCount = 0
+			while (!createResult?.success && Slugify.isDuplicateSlugError(createResult) && retryCount < 3) {
+				retryCount += 1
+				payload = { ...payload, slug: Slugify.slugWithRandomSuffix(baseSlug) }
+				createResult = await ContentService.postContent(payload, 'themes', token)
+			}
+
 			if (!createResult?.success) {
 				console.error('[themes/form] Theme create failed:', createResult)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				const createStatus = Number(createResult?.status) || 500
+				const errorMessage = createResult?.data?.error ?? GENERIC_CREATE_ERROR
+				return fail(createStatus, { error: errorMessage })
 			}
 
 			themeCreated = true

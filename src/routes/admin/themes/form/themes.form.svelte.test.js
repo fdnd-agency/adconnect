@@ -243,7 +243,7 @@ describe('admin themes form actions.default', () => {
 		})
 	})
 
-	it('sends expected payload to postContent including hero and draft status', async () => {
+	it('sends expected payload to postContent including hero, slug and draft status', async () => {
 		// Arrange: provide a title with spaces/symbols to validate trimming.
 		// Why: the persisted content contract depends on correct mapping and draft defaults.
 		const event = createActionEvent({
@@ -265,11 +265,49 @@ describe('admin themes form actions.default', () => {
 				excerpt: 'Korte samenvatting',
 				body: 'Volledige body van het thema.',
 				hero: 'img-123',
+				slug: 'mijn-thema-met-spaties',
 				status: 'draft'
 			},
 			'themes',
 			'token-123'
 		)
+	})
+
+	it('retries with random slug suffix when slug already exists', async () => {
+		// Arrange: initial create returns duplicate slug, second create succeeds.
+		const event = createActionEvent({
+			fields: {
+				title: 'test'
+			}
+		})
+
+		const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0.42)
+
+		ContentService.postFile.mockResolvedValue({ success: true, id: 'img-123' })
+		ContentService.postContent
+			.mockResolvedValueOnce({
+				success: false,
+				status: 400,
+				data: {
+					error: 'Aanmaken mislukt: Value "test" for field "slug" in collection "adconnect_themes" has to be unique.'
+				}
+			})
+			.mockResolvedValueOnce({ success: true, id: 'theme-789' })
+
+		// Act: execute the default action.
+		const result = await actions.default(event)
+
+		// Assert: action retries once with a suffixed slug and succeeds.
+		expect(result).toEqual({
+			success: true,
+			message: 'Thema succesvol opgeslagen als concept.',
+			themeId: 'theme-789'
+		})
+		expect(ContentService.postContent).toHaveBeenCalledTimes(2)
+		expect(ContentService.postContent).toHaveBeenNthCalledWith(1, expect.objectContaining({ slug: 'test' }), 'themes', 'token-123')
+		expect(ContentService.postContent).toHaveBeenNthCalledWith(2, expect.objectContaining({ slug: 'test-4780' }), 'themes', 'token-123')
+
+		randomSpy.mockRestore()
 	})
 
 	it('publishes created theme when submitAction is publish', async () => {
