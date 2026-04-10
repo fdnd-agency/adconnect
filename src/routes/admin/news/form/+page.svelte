@@ -10,6 +10,7 @@
 	let isSubmitting = $state(false)
 	let tags = $state([])
 	let tagInput = $state('')
+	let tagsInputElement = $state()
 
 	/**
 	 * Scrolls the window to the top Used after form submission to show success/error messages without the user having to scroll manually.
@@ -29,6 +30,7 @@
 			tags = [...tags, value]
 		}
 		tagInput = ''
+		syncTagsValidity()
 	}
 
 	/**
@@ -37,6 +39,7 @@
 	 */
 	function removeTag(index) {
 		tags = tags.filter((_, i) => i !== index)
+		syncTagsValidity()
 	}
 
 	/**
@@ -50,6 +53,20 @@
 			addTag()
 		}
 	}
+
+	/**
+	 * Checks the validity of the tags input by ensuring that at least one tag has been added.
+	 * If the tags array is empty, it sets a custom validity message on the tags input element
+	 */
+	function syncTagsValidity() {
+		if (!tagsInputElement) return
+		tagsInputElement.setCustomValidity(tags.length === 0 ? 'Voeg minimaal 1 tag toe met Enter.' : '')
+	}
+
+	$effect(() => {
+		tags
+		syncTagsValidity()
+	})
 </script>
 
 <svelte:head>
@@ -76,7 +93,14 @@
 	method="POST"
 	enctype="multipart/form-data"
 	class="news-form"
-	use:enhance={() => {
+	use:enhance={({ cancel }) => {
+		syncTagsValidity()
+		if (!tagsInputElement?.checkValidity()) {
+			tagsInputElement?.reportValidity()
+			cancel()
+			return
+		}
+
 		isSubmitting = true
 		return async ({ result, update }) => {
 			await update()
@@ -166,6 +190,7 @@
 				type="text"
 				autocomplete="off"
 				placeholder="Voer een tag in en druk Enter"
+				bind:this={tagsInputElement}
 				bind:value={tagInput}
 				onkeydown={onTagKeydown}
 			/>
