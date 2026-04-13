@@ -1,29 +1,10 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
+import { Slugify } from '$lib/server/slugify.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van de nominatie.'
 const GENERIC_PUBLISH_WARNING = 'Nominatie opgeslagen als concept, maar publiceren is mislukt.'
-
-// Creates a URL-safe slug from a title string.
-function slugify(value) {
-	return value
-		.toLowerCase()
-		.trim()
-		.replace(/[^a-z0-9\s-]/g, '')
-		.replace(/\s+/g, '-')
-		.replace(/-+/g, '-')
-}
-
-function isDuplicateSlugError(result) {
-	const message = String(result?.data?.error ?? '').toLowerCase()
-	return Number(result?.status) === 400 && message.includes('slug') && message.includes('unique')
-}
-
-function slugWithRandomSuffix(baseSlug) {
-	const randomSuffix = Math.floor(Math.random() * 9000) + 1000
-	return `${baseSlug}-${randomSuffix}`
-}
 
 // Deletes uploaded files when nomination creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
@@ -138,7 +119,7 @@ export const actions = {
 			}
 			uploadedFileIds.push(profilePictureUpload.id)
 
-			const baseSlug = slugify(title)
+			const baseSlug = Slugify.slugify(title)
 			let payload = {
 				title,
 				header,
@@ -161,9 +142,9 @@ export const actions = {
 			let createResult = await ContentService.postContent(payload, 'nominations', token)
 
 			let retryCount = 0
-			while (!createResult?.success && isDuplicateSlugError(createResult) && retryCount < 3) {
+			while (!createResult?.success && Slugify.isDuplicateSlugError(createResult) && retryCount < 3) {
 				retryCount += 1
-				payload = { ...payload, slug: slugWithRandomSuffix(baseSlug) }
+				payload = { ...payload, slug: Slugify.slugWithRandomSuffix(baseSlug) }
 				createResult = await ContentService.postContent(payload, 'nominations', token)
 			}
 

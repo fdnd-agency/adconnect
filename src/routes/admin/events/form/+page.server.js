@@ -1,19 +1,10 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
+import { Slugify } from '$lib/server/slugify.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het event.'
 const GENERIC_PUBLISH_WARNING = 'Event opgeslagen als concept, maar publiceren is mislukt.'
-
-// Creates a URL-safe slug from a title string.
-function slugify(value) {
-	return value
-		.toLowerCase()
-		.trim()
-		.replace(/[^a-z0-9\s-]/g, '')
-		.replace(/\s+/g, '-')
-		.replace(/-+/g, '-')
-}
 
 // Deletes uploaded files when event creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
@@ -95,9 +86,10 @@ export const actions = {
 		const uploadedFileIds = []
 		let eventCreated = false
 
-		const payload = {
+		const baseSlug = Slugify.slugify(title)
+		let payload = {
 			title,
-			slug: slugify(title),
+			slug: baseSlug,
 			description,
 			date,
 			time_duration: timeDuration,
@@ -127,9 +119,16 @@ export const actions = {
 			}
 			uploadedFileIds.push(imageUpload.id)
 
-			payload.hero = imageUpload.id
+			payload = { ...payload, hero: imageUpload.id }
 
-			const createResult = await ContentService.postContent(payload, 'events', token)
+			let createResult = await ContentService.postContent(payload, 'events', token)
+
+			let retryCount = 0
+			while (!createResult?.success && Slugify.isDuplicateSlugError(createResult) && retryCount < 3) {
+				retryCount += 1
+				payload = { ...payload, slug: Slugify.slugWithRandomSuffix(baseSlug) }
+				createResult = await ContentService.postContent(payload, 'events', token)
+			}
 
 			if (!createResult?.success) {
 				console.error('[events/form] Event create failed:', createResult)

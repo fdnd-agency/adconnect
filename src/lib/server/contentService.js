@@ -298,7 +298,16 @@ export class ContentService {
 			})
 
 			if (!res.ok) {
-				return fail(res.status, { error: 'Aanmaken mislukt.' })
+				let parsedError = null
+
+				try {
+					const errorJson = await res.json()
+					parsedError = errorJson?.errors?.[0]?.message ?? errorJson?.error?.message ?? errorJson?.message ?? null
+				} catch {
+					parsedError = null
+				}
+
+				return fail(res.status, { error: parsedError ?? `Aanmaken mislukt (${res.status}).` })
 			}
 
 			const json = await res.json()
