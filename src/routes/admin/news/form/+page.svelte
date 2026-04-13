@@ -10,11 +10,19 @@
 	let isSubmitting = $state(false)
 	let tags = $state([])
 	let tagInput = $state('')
+	let tagsInputElement = $state()
 
+	/**
+	 * Scrolls the window to the top Used after form submission to show success/error messages without the user having to scroll manually.
+	 */
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
 	}
 
+	/**
+	 * Adds the current tagInput value to the tags array if it's not empty and not already in the array, then clears the tagInput.
+	 * Called when the user presses Enter in the tag input field.
+	 */
 	function addTag() {
 		const value = tagInput.trim()
 		if (!value) return
@@ -22,18 +30,43 @@
 			tags = [...tags, value]
 		}
 		tagInput = ''
+		syncTagsValidity()
 	}
 
+	/**
+	 * Removes a tag from the tags array based on its index. Called when the user clicks the remove button on a tag chip.
+	 * @param {number} index - The index of the tag to remove in the tags array.
+	 */
 	function removeTag(index) {
 		tags = tags.filter((_, i) => i !== index)
+		syncTagsValidity()
 	}
 
+	/**
+	 * Handles the keydown event on the tag input field.
+	 * If the Enter key is pressed, it prevents the default form submission behavior and calls the addTag function to add the current input as a tag.
+	 * @param {KeyboardEvent} event - The keydown event object from the tag input
+	 */
 	function onTagKeydown(event) {
 		if (event.key === 'Enter') {
 			event.preventDefault()
 			addTag()
 		}
 	}
+
+	/**
+	 * Checks the validity of the tags input by ensuring that at least one tag has been added.
+	 * If the tags array is empty, it sets a custom validity message on the tags input element
+	 */
+	function syncTagsValidity() {
+		if (!tagsInputElement) return
+		tagsInputElement.setCustomValidity(tags.length === 0 ? 'Voeg minimaal 1 tag toe met Enter.' : '')
+	}
+
+	$effect(() => {
+		tags
+		syncTagsValidity()
+	})
 </script>
 
 <svelte:head>
@@ -60,13 +93,22 @@
 	method="POST"
 	enctype="multipart/form-data"
 	class="news-form"
-	use:enhance={() => {
+	use:enhance={({ cancel }) => {
+		syncTagsValidity()
+		if (!tagsInputElement?.checkValidity()) {
+			tagsInputElement?.reportValidity()
+			cancel()
+			return
+		}
+
 		isSubmitting = true
 		return async ({ result, update }) => {
 			await update()
 			isSubmitting = false
 
 			if (result.type === 'success') {
+				tags = []
+				tagInput = ''
 				scrollToTop()
 			}
 		}
@@ -148,6 +190,7 @@
 				type="text"
 				autocomplete="off"
 				placeholder="Voer een tag in en druk Enter"
+				bind:this={tagsInputElement}
 				bind:value={tagInput}
 				onkeydown={onTagKeydown}
 			/>
