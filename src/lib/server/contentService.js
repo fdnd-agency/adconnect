@@ -27,7 +27,7 @@ export class ContentService {
 
 	/* Private helper to get collection config by content type key. */
 	static #getConfig(contentType) {
-		const config = this.#collections[contentType]
+		const config = Object.hasOwn(this.#collections, contentType) ? this.#collections[contentType] : undefined
 		if (!config) throw new Error(`Onbekend content type: '${contentType}'`)
 		return config
 	}
