@@ -114,7 +114,27 @@ The `main` element appears twice in the DOM
 
 ## Performace
 
+
 ### Lighthouse
+> Incognito + mobile + network throttling 3G
+
+<img width="1137" height="1264" alt="image" src="https://github.com/user-attachments/assets/d4949eaf-ab87-4eed-9839-1a17669e2d3e" />  
+[Improve image delivery](https://developer.chrome.com/docs/performance/insights/image-delivery?utm_source=lighthouse&utm_medium=devtools)
+- Static images could be further optimized. Some are currently PNG or WebP, adding AVIF variants could further improve download performance and reduce image sizes (inside picture elements)
+- or use svelte enhanced img for static images
+
+[network dependency tree](https://developer.chrome.com/docs/performance/insights/network-dependency-tree?utm_source=lighthouse&utm_medium=devtools)
+- Maybe add preload to the font file
+
+Image elements do not have explicit width and height
+
+tested other throttling modes aswell:  
+> Incognito + mobile + network throttling slow 4G -> 98  
+> Incognito + mobile + network throttling fast 4G -> 98  
+> Incognito + mobile + no throttling fast 4G -> 99  
+
+issues are the same as network throttling 3G
+
 
 ### PageSpeed insights
 
