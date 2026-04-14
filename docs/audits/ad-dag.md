@@ -171,9 +171,25 @@ waterfall diagram
 ## Progressive enhanced
 
 ### Browser
+**edge v88**  
+background color uses light-dark [color-scheme](https://caniuse.com/wf-light-dark)  which is supported from edge 2024 versions and onward.  
+for this I recomend pseudo private custom properties as fallback
+<img width="2454" height="716" alt="image" src="https://github.com/user-attachments/assets/1b2f38f2-a37f-410c-9519-fe2c6d18d0b9" />
+
+same issues here:  
+- header
+  <img width="978" height="206" alt="image" src="https://github.com/user-attachments/assets/06b755aa-064b-4e31-8a24-ef21c944a6b0" />  
+- programma & workshop cards
+  <img width="1646" height="664" alt="image" src="https://github.com/user-attachments/assets/ac1c3fed-f109-45f9-b025-56cdfc908f89" />  
+- footer
+  <img width="1710" height="949" alt="image" src="https://github.com/user-attachments/assets/a2eb8ae3-d50e-47fc-83a8-46c472da861c" />
+
+**firefox 85**, **chrome 88**, **safari 15.6** and **opera 74** have the exact same issues
+
 
 ### Device
 
 ### PE improvements summary
+- fallbacks for `color-scheme: light dark;`
 
 
