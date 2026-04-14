@@ -126,6 +126,10 @@ background color missing for:
 - header + footer
 - hero section
 
+The grid for the cards in the filter section is no longer present. This is because it uses a container query, which was not supported in browsers 5 years ago.  
+However, the default version still looks good, so we can leave it like this:  
+<img width="1992" height="906" alt="image" src="https://github.com/user-attachments/assets/a0f7c3c1-f789-43c9-9bbb-2c732f49911c" />
+
 
 ### Device
 
