@@ -50,12 +50,33 @@ op 768px breed gaat de img boven `planning` buiten beeld, veroorzaakr horizontal
 ## Accessibility
 
 ### Lighthouse
+h2 voor `programma` & `workshops` hebben te weinig contrast:  
+<img width="599" height="870" alt="Screenshot 2026-04-14 094805" src="https://github.com/user-attachments/assets/b6afc59f-6f77-40a0-8795-66543ce8afc7" />  
+<img width="1974" height="754" alt="Screenshot 2026-04-14 095227" src="https://github.com/user-attachments/assets/72d24453-4dbb-499d-970d-3579d46c7a08" />  
+Als ik kijk naar de andere headings zie ik dat ze wit zijn, volgens mij moesten deze ook wit zijn op de dark mode.  
+Ik denk dat deze 2 vergeten waren toen de darkmode werk gemaakt.
+
 
 ### Keyboard
+tab index gaat van de `bekijk workshops` kaart, naar de scroll to top button en daarna naar de footer:  
+[2026-04-14 09-59-56.webm](https://github.com/user-attachments/assets/accfc8a3-de28-4f67-a692-d6330e27b02e)  
+het zou beter zijn als de scroll to top als laatste element is die tab focus krijgt
 
 ### Screen reader
+lang staat op en, maar de tekst is in nederlands  
+<img width="698" height="162" alt="image" src="https://github.com/user-attachments/assets/38fb6e68-e2b9-4dd1-aaed-591a7c71300e" />
+
+
+
+### HTML
+de main komt 2 keer voor in de DOM  
+<img width="696" height="407" alt="Screenshot 2026-04-14 095622" src="https://github.com/user-attachments/assets/6c34ad68-176c-4ca7-af83-02a2c6d23e8a" />
+
 
 ### Accessibility improvements summary
+- weinig conrast op h2 voor `programma` & `workshops`
+- tab index heeft verkeerde vologorde na de `bekijk workshops` link
+- HTML heeft 2 keer een main element
 
 ---
 
