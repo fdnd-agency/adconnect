@@ -16,7 +16,9 @@
 
 The header takes up a large portion of the screen:  
 <img width="712" height="349" alt="image" src="https://github.com/user-attachments/assets/f0dd53f0-f8fc-482f-adff-703306d44b17" />  
-You could make the header collapse or hide when scrolling down, and reappear when scrolling up
+You could make the header collapse or hide when scrolling down, and reappear when scrolling up  
+maybe move the "FAQ's", "over ons" and "contact" to the footer. this way the sticky header stakes a bit less space.  
+These are also topics users would expect to be in the footer.
 
 The `programma` section is unclear at 320px width.
 The text is difficult to read.  
@@ -99,6 +101,7 @@ The `main` element appears twice in the DOM
 
 
 ### Accessibility improvements summary
+- big sticky header, especially on mobile
 - Low contrast on the “Programma” & “Workshops” H2 headings
 - Tab order is incorrect after the “Bekijk workshops” link
 - The HTML contains two <main> elements
