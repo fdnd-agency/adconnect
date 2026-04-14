@@ -161,6 +161,9 @@ Webpage test
 waterfall diagram  
 <img width="1236" height="1288" alt="image" src="https://github.com/user-attachments/assets/7a4009e6-62f2-456b-acd8-adbd52ba343e" />
 
+optimizations  
+<img width="834" height="905" alt="image" src="https://github.com/user-attachments/assets/0b49fa16-7295-442f-a67e-30fe6a8f92b4" />
+
 
 ### Performace improvements summary
 - [Improve image delivery](https://developer.chrome.com/docs/performance/insights/image-delivery?utm_source=lighthouse&utm_medium=devtools) -> also only on static images
