@@ -137,10 +137,34 @@ issues are the same as network throttling 3G
 
 
 ### PageSpeed insights
+mobile  
+<img width="1554" height="1210" alt="image" src="https://github.com/user-attachments/assets/b8e25ba4-7ffa-4d17-b233-2166c72a50d4" />
+
+desktop  
+<img width="1531" height="1213" alt="image" src="https://github.com/user-attachments/assets/ef789aa2-86e8-423c-84ba-a45cd179ce33" />
+
+- Improve image delivery -> also only on static images
+- Network dependency tree -> also for the fonts
+- posible layout shift
+  <img width="1450" height="715" alt="image" src="https://github.com/user-attachments/assets/632470fd-3651-4f9e-bd0b-6e5dee119a89" />
+- this image has width but no height
+  <img width="1465" height="434" alt="image" src="https://github.com/user-attachments/assets/23cae9c1-a0ab-4c6a-94d1-a8d06be8b33b" />
+
 
 ### Waterfall test
 
+Webpage test  
+<img width="1869" height="266" alt="image" src="https://github.com/user-attachments/assets/15e5e3c8-381b-40f3-a8f6-b46797aec8e6" />
+
+waterfall diagram  
+<img width="1236" height="1288" alt="image" src="https://github.com/user-attachments/assets/7a4009e6-62f2-456b-acd8-adbd52ba343e" />
+
+
 ### Performace improvements summary
+- [Improve image delivery](https://developer.chrome.com/docs/performance/insights/image-delivery?utm_source=lighthouse&utm_medium=devtools) -> also only on static images
+- [Network dependency tree](https://developer.chrome.com/docs/performance/insights/network-dependency-tree?utm_source=lighthouse&utm_medium=devtools) -> for the font files
+- posible layout shift ( see image above )
+- an image has width but no height ( see image above )
 
 ---
 
