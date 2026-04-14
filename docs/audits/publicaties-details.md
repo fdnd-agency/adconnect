@@ -71,12 +71,32 @@ The screen reader also navigates through the PDF, but it reads additional elemen
 ## Performace
 
 ### Lighthouse
+Performance is also verry high on this page:  
+<img width="976" height="803" alt="image" src="https://github.com/user-attachments/assets/701d3ee7-61d6-4155-8145-f0d3712a740e" />
+
+the only differences i see this time is:  
+- [Document request latency](https://developer.chrome.com/docs/performance/insights/document-latency?utm_source=lighthouse&utm_medium=devtools)
+- [3rd parties](https://developer.chrome.com/docs/performance/insights/third-parties?utm_source=lighthouse&utm_medium=devtools)
+- [Page prevented back/forward cache restoration](https://developer.chrome.com/docs/lighthouse/performance/bf-cache/?utm_source=lighthouse&utm_medium=devtools)
+
+<img width="666" height="900" alt="image" src="https://github.com/user-attachments/assets/fbaf3652-2e2c-4eec-836f-c0c29d924829" />  
+<img width="903" height="511" alt="image" src="https://github.com/user-attachments/assets/1095bdd2-5942-4bcd-a781-91d3a7ccf72e" />  
+
 
 ### PageSpeed insights
+this test failed 2 times on edge and once on chrome,
+I'll try this test again another time
 
 ### Waterfall test
 
+<img width="1392" height="1355" alt="image" src="https://github.com/user-attachments/assets/00b35e44-c530-41ca-abb4-b9fdbe799ebc" />
+
+<img width="1397" height="884" alt="image" src="https://github.com/user-attachments/assets/3a1698d7-8dee-463d-b978-465ab89dc85c" />
+
+
 ### Performace improvements summary
+- improve server response time
+- the other points are the same as prevoius test ( ad-dag & publicaties pages )
 
 ---
 
