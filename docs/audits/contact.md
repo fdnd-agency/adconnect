@@ -14,8 +14,35 @@
 
 ## Responsive
 
+The 'contact gegevens'  card is a bit too small ( at 879px )  
+<img width="473" height="726" alt="image" src="https://github.com/user-attachments/assets/085ea98e-5e1f-4b55-840c-d4a63912acd9" />  
+
+centered text, which looks okay on big screens, but not on mobile:  
+<img width="608" height="532" alt="image" src="https://github.com/user-attachments/assets/f4bc5168-79cb-4016-b5bd-b491d14be4f2" />  
+It might be better to keep it right aligned
+
+like this:  
+<img width="2620" height="714" alt="image" src="https://github.com/user-attachments/assets/6460c82b-eff5-464f-b7d1-353c3bdaf10c" />  
+
+instead of this:  
+<img width="2664" height="959" alt="image" src="https://github.com/user-attachments/assets/1eaa10ea-39c2-4910-acb7-7657c507ed8b" />  
+this change will also keep this top part of the page consistent with the other pages  
+
+I just had an idea:  
+Maybe we could make the “Kom naar de Ad-dag” button the highlight color to draw more attention.  
+We could also try making it orange only on the homepage, and keep it blue on other pages to avoid distracting users too much.  
+<img width="2851" height="570" alt="image" src="https://github.com/user-attachments/assets/7e526461-d357-40bf-8fe3-0894d22b7460" />
+
+
+Margins and padding are inconsistent across all pages. It might be better to define custom properties for spacing and apply them during the refactoring phase.  
+Especially try to avoid negative margins  
+<img width="473" height="137" alt="image" src="https://github.com/user-attachments/assets/9457d131-9360-46bb-8074-a1e6edf9add5" />  
+
 
 ### Responsive improvements summary
+- at 879px 'contact gegevens' gets cut off
+- consider removing centerd text / definitly remove it from mobile versions
+- 2 ideas to improve the page, ( not really about responsiveness )
 
 ---
 
