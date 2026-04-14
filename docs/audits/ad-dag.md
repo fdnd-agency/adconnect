@@ -72,10 +72,8 @@ lang is `en`, but text is in dutch
 <img width="698" height="162" alt="image" src="https://github.com/user-attachments/assets/38fb6e68-e2b9-4dd1-aaed-591a7c71300e" />
 
 
-The breadcrumb is unclear for screen readers. It’s not obvious that the user is navigating a breadcrumb menu.  
-Additionally, “AD-dag” is announced twice by the screen reader in a row. Without visual context, the user cannot tell what the difference is between the two items  
+Maybe wrap every “ad-dag” text in a span with an aria-label set to “aa dee dag”, so it is announced more clearly by screen readers
 <img width="1176" height="243" alt="Schermafbeelding 2026-04-14 103411" src="https://github.com/user-attachments/assets/9c5b42c8-65d3-4386-88ae-06e02c6b5b5b" />
-> Maybe wrap every “ad-dag” text in a span with an aria-label set to “aa dee dag”, so it is announced more clearly by screen readers
 
 This logo is being read out as “logo” by the screen reader:  
 <img width="944" height="230" alt="Schermafbeelding 2026-04-14 103548" src="https://github.com/user-attachments/assets/ec2f8154-146a-4bdc-bde6-7550ab1ffe80" />  
@@ -106,7 +104,7 @@ The `main` element appears twice in the DOM
 - The HTML contains two <main> elements
 - Screen reader issues:
   - lang is set to en in the HTML
-  - The breadcrumb is not clearly announced as a breadcrumb navigation
+  - aria label for better announcing ad-dag
   - Logos in the “Programma” and “Workshops” sections are being read out
   - Times are read digit by digit
   - A decorative element is being announced when navigating with arrow keys
