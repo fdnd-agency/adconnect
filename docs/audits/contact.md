@@ -85,12 +85,39 @@ als ik de lang naar nl verander in inspecter dan worden bepaalde text wel in ned
 ## Performace
 
 ### Lighthouse
+> mobile + network throttling 3G
+
+The first page I found achieves a 100% performance score. I tested it three times, clearing the cache each time:  
+<img width="1160" height="950" alt="image" src="https://github.com/user-attachments/assets/66f49335-2550-4497-9d85-7ddbfc025c61" />
+
+the insights are also the same we have seen on other pages:  
+<img width="412" height="361" alt="image" src="https://github.com/user-attachments/assets/d5cb8b92-6d12-4400-9ac0-a72ba6e30d55" />
+
 
 ### PageSpeed insights
+This page almost has a perfect score on pagespeed test:  
+<img width="926" height="200" alt="image" src="https://github.com/user-attachments/assets/8be37193-b38f-4610-b9f2-f4cc6f37e364" />
 
-### Waterfall test
+The only thing missing is the [meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/). The other pages also only need this to achieve 100% SEO
+<img width="851" height="270" alt="image" src="https://github.com/user-attachments/assets/40e45c7a-8815-4c03-9065-531afce0aa30" />
+
+
+### [Waterfall test](https://portal.catchpoint.com/ui/Symphony/InstantTest/Webpage/946086/Details?t=sm)
+
+<img width="1560" height="1179" alt="image" src="https://github.com/user-attachments/assets/cfee3cee-28c2-4b18-8166-67598b552c7c" />  
+<img width="934" height="981" alt="image" src="https://github.com/user-attachments/assets/3b6e8ef9-5bff-42f4-b7bc-d8c5af1fb5f1" />  
+
+These are the same as other performance tests:  
+<img width="1567" height="365" alt="image" src="https://github.com/user-attachments/assets/5e9708ee-94f6-4c1c-8844-c385d4051849" />  
+<img width="1554" height="586" alt="image" src="https://github.com/user-attachments/assets/e61375ff-09f9-480e-a4da-56704b4620f7" />  
+
+This one i haven't seen before:  
+<img width="1584" height="365" alt="image" src="https://github.com/user-attachments/assets/f681fd59-557d-4857-9195-2161539f68c8" />
+
 
 ### Performace improvements summary
+- The same issues as previously tested sites
+- I haven’t seen the DOM size significantly increase compared to the initial delivery. I’ll need to look into what this is and how to improve or fix it.
 
 ---
 
