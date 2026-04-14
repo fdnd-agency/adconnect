@@ -59,13 +59,42 @@ Ik denk dat deze 2 vergeten waren toen de darkmode werk gemaakt.
 
 ### Keyboard
 tab index gaat van de `bekijk workshops` kaart, naar de scroll to top button en daarna naar de footer:  
+
 [2026-04-14 09-59-56.webm](https://github.com/user-attachments/assets/accfc8a3-de28-4f67-a692-d6330e27b02e)  
+
 het zou beter zijn als de scroll to top als laatste element is die tab focus krijgt
 
+In de footer kom je eerst op het logo die teruggaat naar de homepagina.  
+Het is beter om eerst door de hele footer te navigeren en als laatste de ‘back to home’-link en daarna de ‘scroll to top’-button te hebben.
+
 ### Screen reader
-lang staat op en, maar de tekst is in nederlands  
+lang staat op `en`, maar de tekst is in nederlands  
 <img width="698" height="162" alt="image" src="https://github.com/user-attachments/assets/38fb6e68-e2b9-4dd1-aaed-591a7c71300e" />
 
+
+breadcrumb is onduidelijk voor screen readers,  
+niet duidelijk dat je in een breadcrumb menu zit  
+en ook bij de screen reader hoor je 2 maal ad-dag achter elkaar, als je niet ziet wat gebeurt weet de gebruiker niet wat het verschil is.  
+<img width="1176" height="243" alt="Schermafbeelding 2026-04-14 103411" src="https://github.com/user-attachments/assets/9c5b42c8-65d3-4386-88ae-06e02c6b5b5b" />
+> mischien alle elke `ad-dag` tekst in een `span` plaatsen, met aria label `aa dee dag` zodat het beter uitgelezen wordt
+
+
+deze logo wordt als logo uit gelezen:  
+<img width="944" height="230" alt="Schermafbeelding 2026-04-14 103548" src="https://github.com/user-attachments/assets/ec2f8154-146a-4bdc-bde6-7550ab1ffe80" />  
+dit hoeft eigenlijk niet uitgelezen worden.
+
+
+de tijden worden cijfer voor cijfer uitgelezen:  
+<img width="813" height="261" alt="Schermafbeelding 2026-04-14 103621" src="https://github.com/user-attachments/assets/1e617dde-56c2-45e3-8f3c-709a3422baaa" />  
+deze worden volgens mij wel goed uitgelezen als ze in een `time` element staan
+
+
+Als je met pijltjes door de site gaat, kom je op dit lijntje, die uitgelezen wordt:  
+<img width="2352" height="179" alt="Schermafbeelding 2026-04-14 103709" src="https://github.com/user-attachments/assets/b59d28fa-edd2-415c-b891-43758d943d7e" />
+
+
+deze logo wordt 2 keer uitgelezen:  
+<img width="999" height="212" alt="Schermafbeelding 2026-04-14 103747" src="https://github.com/user-attachments/assets/efbcea58-9f20-4c80-bda0-8b66ede098f3" />
 
 
 ### HTML
@@ -77,6 +106,13 @@ de main komt 2 keer voor in de DOM
 - weinig conrast op h2 voor `programma` & `workshops`
 - tab index heeft verkeerde vologorde na de `bekijk workshops` link
 - HTML heeft 2 keer een main element
+- screen reader
+  - lang staat op `en` in html
+  - de breadcrumb is onduidelijk dat het een breadcrumb menu is
+  - bij `programma` & bij `workshops` zijn er logo's die uitgelezen worden
+  - tijden worden 1 voor 1 als cijvers uitgelezen
+  - sier element die uitgelezen wordt als je met pijljes door de site gaat
+  - back to home page logo/link wordt 2 keer achter elkaar uitgelezen
 
 ---
 
