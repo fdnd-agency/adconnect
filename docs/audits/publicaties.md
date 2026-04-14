@@ -9,6 +9,8 @@
   - [Summary](#Performace-improvements-summary)
 - [Progressive enhanced](#Progressive-enhanced)
   - [Summary](#PE-improvements-summary)
+ 
+***Tested in Firefox v149***
 
 ## Responsive
 
@@ -48,12 +50,42 @@ These cards could become longer, in order to display more description text
 ## Performace
 
 ### Lighthouse
+> mobile + network throttling regular 3G  
+<img width="1290" height="1328" alt="image" src="https://github.com/user-attachments/assets/f85b2fe0-96af-4732-83ee-01602eb8969f" />
+This matches performance lighthouse test on [ad-dag](https://github.com/fdnd-agency/adconnect/blob/dev/docs/audits/ad-dag.md#performace)
+( ad-dag was done in chrome, this one in firefox )
+
+<img width="661" height="395" alt="image" src="https://github.com/user-attachments/assets/ce7797dd-d43a-4e35-a6cd-f6d58907e99c" />
+
+[Network dependency tree](https://developer.chrome.com/docs/performance/insights/network-dependency-tree?utm_source=lighthouse&utm_medium=lr)  
+[Improve image delivery](https://developer.chrome.com/docs/performance/insights/image-delivery?utm_source=lighthouse&utm_medium=lr)  
+[Render blocking requests](https://developer.chrome.com/docs/performance/insights/render-blocking?utm_source=lighthouse&utm_medium=lr)  
+
+Improvements are also the same:
+- Static images could be further optimized (picture element)
+- preload to the font file
+
 
 ### PageSpeed insights
+Mobile:  
+<img width="1293" height="1102" alt="image" src="https://github.com/user-attachments/assets/398bfd1a-fd0a-48f3-918f-b83878e1a40a" />
 
-### Waterfall test
+Desktop:  
+<img width="1277" height="1101" alt="image" src="https://github.com/user-attachments/assets/e4d103a6-34c8-42e6-bf7f-65a17555c1c7" />
+
+The same insights here:  
+<img width="534" height="342" alt="image" src="https://github.com/user-attachments/assets/c0984695-92dd-4942-89bd-9f3b8845ece4" />
+
+
+### catchpoint - Waterfall test
+<img width="1285" height="1167" alt="image" src="https://github.com/user-attachments/assets/fa8c2017-01dd-4523-bb18-3526b9c8cc00" />
+
+<img width="1751" height="1064" alt="image" src="https://github.com/user-attachments/assets/4b3b6e90-dbe0-4025-9b71-bf4e5a28e9a3" />
+
+
 
 ### Performace improvements summary
+Test results match those of the [AD-dag page](https://github.com/fdnd-agency/adconnect/blob/dev/docs/audits/ad-dag.md). If the improvements there are implemented, these issues will also be resolved
 
 ---
 
