@@ -75,7 +75,9 @@ With the pagespeed insight website I tested the nieuws page and it was all compl
 <img width="1175" height="643" alt="image-delivery" src="https://github.com/user-attachments/assets/c6461d6b-8413-4102-9680-a1f42aabff47" />
 </br>
 ### Waterfall test
-
+<br>
+![export_04142026131123](https://github.com/user-attachments/assets/54cb856d-fb00-4639-bfe1-d71708b4216f)
+</br>
 ### Performace improvements summary
 Wrap images in a `picture` element and use `source` so the image is converted into avif so that image delivery will be optimized for the user. 
 ---
