@@ -9,6 +9,8 @@
   - [Summary](#Performace-improvements-summary)
 - [Progressive enhanced](#Progressive-enhanced)
   - [Summary](#PE-improvements-summary)
+ 
+***Tested in chrome v147***
 
 ## Responsive
 
