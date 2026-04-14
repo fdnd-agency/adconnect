@@ -71,6 +71,8 @@ The screen reader also navigates through the PDF, but it reads additional elemen
 ## Performace
 
 ### Lighthouse
+> mobile + network throttling 3G
+
 Performance is also verry high on this page:  
 <img width="976" height="803" alt="image" src="https://github.com/user-attachments/assets/701d3ee7-61d6-4155-8145-f0d3712a740e" />
 
