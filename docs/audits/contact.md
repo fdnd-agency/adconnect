@@ -48,13 +48,37 @@ Especially try to avoid negative margins
 
 ## Accessibility
 
+form only checks for empty fields and `@email.com`  
+
+[2026-04-14 18-34-32.webm](https://github.com/user-attachments/assets/c7bf69ef-071c-452a-a478-203e87a5c58b)  
+
+<img width="1721" height="816" alt="image" src="https://github.com/user-attachments/assets/4244bb58-7616-444b-aabf-8660a71f3475" />
+
+
+
 ### Lighthouse
+Lighthouse also gives a 100% accessibility score here
 
 ### Keyboard
+no issues with tab index, apart from [previously mentions one](https://github.com/fdnd-agency/adconnect/blob/dev/docs/audits/ad-dag.md#keyboard)
+
 
 ### Screen reader
 
+This reads: "banner landmark, banner landmark navigation landmark list with 3 items FAQ's link"  
+<img width="502" height="113" alt="image" src="https://github.com/user-attachments/assets/b1ce4f92-4816-4e61-95a7-53abafd74ff5" />  
+use aria label to shorten this
+
+the breadcrumb menu could also be shortened with aria labels:  
+<img width="348" height="158" alt="image" src="https://github.com/user-attachments/assets/8709ebf8-425e-4e44-b214-f18b4e28ea6c" />
+> main landmark breadcrumb navigation landmark home
+
+als ik de lang naar nl verander in inspecter dan worden bepaalde text wel in ned la=uitgelezen en sommige niet (NVDA en windows narrator)  
+
+
 ### Accessibility improvements summary
+- form doesn't check for valid input
+- shorten banner landmark with aria labels
 
 ---
 
