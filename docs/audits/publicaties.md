@@ -1,4 +1,4 @@
-# Page name
+# Publicaties
 [Link naar de pagina op de live dev-site](https://adconnect.dev.fdnd.nl/publicaties)
 
 - [Responsive](#Responsive)
@@ -37,13 +37,34 @@ These cards could become longer, in order to display more description text
 
 ## Accessibility
 
+Maybe give the selected filter a highlight color so it’s clearer which filter is currently active:  
+<img width="1146" height="214" alt="image" src="https://github.com/user-attachments/assets/d10b7379-f46d-476c-846c-ad87f0242876" />  
+<img width="1168" height="245" alt="image" src="https://github.com/user-attachments/assets/f9a0c9e9-ef75-4d7d-ae0e-ac1778e6deae" />  
+
+the filters scroll to top when clicked:  
+
+[2026-04-14 14-11-58.webm](https://github.com/user-attachments/assets/ed148ab9-9601-4ee1-8563-ef190d57ca20)
+
+
 ### Lighthouse
+lighthouse test show 100% for mobile as wel as desktop:  
+<img width="686" height="430" alt="image" src="https://github.com/user-attachments/assets/f6380f6c-2b2b-4203-b13e-f00a10db9b6d" />
+
 
 ### Keyboard
+tab index works great, a small improvement could be:  
+placing the outline on the whole card, and using [focus-within](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-within):  
+<img width="861" height="685" alt="image" src="https://github.com/user-attachments/assets/975f217a-bd79-4d37-b991-d46e0f4d0f38" />
 
 ### Screen reader
+- NVDA doesn't work on firefox
+- windows narrator: on firefox before every `p` element get read, screen reader announces: 'text'. only after the next arrow key klik does the text get read ( chrome doesn't have this )
+
 
 ### Accessibility improvements summary
+- give current active filter the highlight color
+- prevent scroll to top on filters
+- 2 issues with screen reader on firefox, not sure if we can fix those
 
 ---
 
