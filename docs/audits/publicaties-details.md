@@ -103,13 +103,22 @@ I'll try this test again another time
 ## Progressive enhanced
 
 ### Browser
-Edge 88, Firefox 85, Chrome 88, Opera 74 and Safari 15.6
-Same issue with the background color. Responsive behavior and tab order are working correctly.  
+Edge 88, Firefox 85, Chrome 88, Opera 74 and Safari 15.6  
+Same issue with the background color.  
 
+Firefox 85, Chrome 88 & Opera 74  
+after the logo, tab index skips the menu and goes to the link below  
+<img width="2000" height="201" alt="Schermafbeelding 2026-04-14 175554" src="https://github.com/user-attachments/assets/c6a54d25-e411-4b77-9acc-826561ed85de" />
+
+
+Firefox 85
+first time i did see the pdf inside the pdf viewer, but all tries after that i didn see it
 
 
 ### Device
 
 ### PE improvements summary
-
+- tab index isn't working th the menu's of firefox 85, chrome 88 and opera 74
+- firefox 85 sometimes doesn't load the pdf viewer
+- this page also has the same background color issue as the ad-dag & publlicaties pages
 
