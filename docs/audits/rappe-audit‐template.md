@@ -1,4 +1,5 @@
 # RAPPE audit - Template
+## Guidelines
 - Test in meerdere browsers
 - gebruik eigen gevonden tools als je die hebt.
   - bijvoorbeeld: AXE devtools, color contrast analyser, NVDA screereader, web developr extension
@@ -13,8 +14,17 @@ Doelgroep:
 Browser support voor de laaste 4 to 5 jaar
 > nog overleggen met Frontenders
 
+## Template
 ```md
 # Page name
+- [Responsive](#Responsive)
+  - [Summary](#Responsive-improvements-summary)
+- [Accessibility](#Accessibility)
+  - [Summary](#Accessibility-improvements-summary)
+- [Performace](#Performace)
+  - [Summary](#Performace-improvements-summary)
+- [Progressive enhanced](#Progressive-enhanced)
+  - [Summary](#PE-improvements-summary)
 
 ## Responsive
 
