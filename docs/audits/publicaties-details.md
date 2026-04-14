@@ -103,6 +103,10 @@ I'll try this test again another time
 ## Progressive enhanced
 
 ### Browser
+Edge 88, Firefox 85, Chrome 88, Opera 74 and Safari 15.6
+Same issue with the background color. Responsive behavior and tab order are working correctly.  
+
+
 
 ### Device
 
