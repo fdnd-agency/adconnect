@@ -83,7 +83,7 @@ Wrap images in a `picture` element and use `source` so the image is converted in
 ## Progressive enhanced
 
 ### Browser
-On the browser: Firefox, Google Chrome and Mircosoft edge the webpage looks the exact same to me. I could not see any changes in style. A subtask of this browser test is the usage of no stylesheets. I saw that when a browser doesn't use any styles from the stylesheet the standard image has no set value so it takes in a lot of the page if stylesheets are disabled.
+On the browser: Firefox, Google Chrome and Mircosoft edge the webpage looks the exact same to me. I could not see any changes in style. A subtask of this browser test is the usage of no stylesheets. I saw that when a browser doesn't use any styles from the stylesheet the standard image has no set value so it takes in a lot of the page if stylesheets are disabled. What should be done about this is set a width and a height for this image.
 <br>
 <img width="1752" height="806" alt="image-covering-page" src="https://github.com/user-attachments/assets/3127d60f-c6f0-4253-b611-7263e9753a36" />
 </br>
