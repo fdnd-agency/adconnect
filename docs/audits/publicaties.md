@@ -113,9 +113,23 @@ Test results match those of the [AD-dag page](https://github.com/fdnd-agency/adc
 ## Progressive enhanced
 
 ### Browser
+Firefox 85, Edge 88, Chrome 88, Opera 74 and Safari 15.6  
+Same background color issues as on the [AD-dag](https://github.com/fdnd-agency/adconnect/blob/dev/docs/audits/ad-dag.md#browser) page  
+
+safari 15.6
+The filter section does not hav tab focus:  
+
+[2026-04-14 14-52-36.webm](https://github.com/user-attachments/assets/44a9ad0c-854d-40a0-b0fc-87285fa197eb)
+
+
+background color missing for:
+- header + footer
+- hero section
+
 
 ### Device
 
 ### PE improvements summary
-
+- the same improvements as ad-dag page (fallback for color-scheme)
+- no tab focus in the filter section on safari 15.6
 
