@@ -52,8 +52,11 @@ form only checks for empty fields and `@email.com`
 
 [2026-04-14 18-34-32.webm](https://github.com/user-attachments/assets/c7bf69ef-071c-452a-a478-203e87a5c58b)  
 
-<img width="1721" height="816" alt="image" src="https://github.com/user-attachments/assets/4244bb58-7616-444b-aabf-8660a71f3475" />
+<img width="1721" height="816" alt="image" src="https://github.com/user-attachments/assets/4244bb58-7616-444b-aabf-8660a71f3475" />  
+<img width="1349" height="489" alt="image" src="https://github.com/user-attachments/assets/de8df2f1-3bab-47ce-a295-7af79ee2a478" />  
 
+enter is allowd as a question  
+<img width="1375" height="531" alt="image" src="https://github.com/user-attachments/assets/14e46b49-2c22-4fd8-996d-1219dda68927" />
 
 
 ### Lighthouse
@@ -124,6 +127,14 @@ This one i haven't seen before:
 ## Progressive enhanced
 
 ### Browser
+Edge 88, Firefox 85, Chrome 88, Opera 74 and Safari 15.6
+- all these browser have the same background color issue
+- the contact form doesn't have the correct colors but it is usable
+
+Firefox 85, Chrome 88 & Opera 74  
+the tab index goes through the menu on this pages  
+I tested the other site again, i think it might have been a browserstack problem
+
 
 ### Device
 
