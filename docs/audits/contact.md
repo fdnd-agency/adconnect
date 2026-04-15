@@ -82,6 +82,7 @@ als ik de lang naar nl verander in inspecter dan worden bepaalde text wel in ned
 
 ### Accessibility improvements summary
 - form doesn't check for valid input
+  - product owner could get spammed through this form
 - shorten banner landmark with aria labels
 
 ---
