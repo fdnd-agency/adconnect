@@ -22,6 +22,7 @@ this breadcrumb menu is not interactive
 
 the `nieuws` menu item doesnt match the page title `Nieuwsartikelen`  
 <img width="1073" height="726" alt="image" src="https://github.com/user-attachments/assets/691790c4-227f-4d40-83d0-6757ea3ce193" />  
+and the url is `/news`
 
 open menu has centered text  
 and the current page has underline going from corner to corner  
@@ -39,6 +40,7 @@ on the form pages the `+` button is still there
 instead of only having the `meer` button clickable we can make the whole card clickable  
 <img width="1137" height="506" alt="image" src="https://github.com/user-attachments/assets/d0bac697-1771-4c53-b81a-e7b12d758419" />  
 maybe change this to a dropdown menu instead of a pop up  
+
 
 ### UI/UX summary
 - there are quite a few elements that need to be improved especially for UX
@@ -60,6 +62,10 @@ on 320px, this needs a different layout
 
 on the login page maybe move the welcome back text outof the menu sidebar  
 <img width="2372" height="1291" alt="image" src="https://github.com/user-attachments/assets/52461065-235c-45b7-bd7e-5282dc7242a4" />
+
+Add a label/text outside of tyhe input fields to tell which field is password and email.  
+the placeholder text has low contrast making it hard to differentiate:  
+<img width="807" height="662" alt="image" src="https://github.com/user-attachments/assets/210f2efc-f1de-4edb-bcb2-955edef4d562" />
 
 
 ### Responsive improvements summary
@@ -171,6 +177,41 @@ Login page:
 ## Progressive enhanced
 
 ### Browser
+Edge 88, Firefox 85, Chrome 88, Opera 74 and Safari 15.6
+background color issue -> ad-dag page
+
+other pages only have this problem  
+<img width="767" height="119" alt="image" src="https://github.com/user-attachments/assets/8de7de7f-8180-45bc-8029-9682fcb7889a" />
+no border making the low contrast placeholder hard to see
+
+all browsers have a layout shift on the login page
+
+---
+
+safari 15.6, Edge 88, opera 74 & chrome 88
+dashboars layout is broken
+<img width="1916" height="1237" alt="image" src="https://github.com/user-attachments/assets/c1c76110-5ac8-4330-b63e-76eb92247b34" />  
+<img width="1608" height="1250" alt="image" src="https://github.com/user-attachments/assets/c33865fa-c67b-4362-8f69-9f4b86dfa7a7" />  
+
+because of the subgrid  
+<img width="442" height="186" alt="image" src="https://github.com/user-attachments/assets/e5f0a3a8-8a29-425b-a138-961f357bdf5d" />
+
+---
+
+Edge 88, Opera 74 & chrome 88  
+was stuck in loading screen, but i could still tab through the page  
+<img width="1822" height="1095" alt="image" src="https://github.com/user-attachments/assets/f107dd48-d8ac-4967-9866-4aae3c563183" />
+
+using the url I can go to other pages, but not by pressing the links inside the menu  
+<img width="1102" height="972" alt="image" src="https://github.com/user-attachments/assets/103875d5-c60a-4879-a46b-7779001f75c3" />
+
+> only safari does not have this problem
+---
+
+Firefox 85  
+supports subgrids, but no background color is also not wordking  
+<img width="2063" height="1176" alt="image" src="https://github.com/user-attachments/assets/9ea00fe1-797e-4dea-ba50-61f3d257b80c" />
+
 
 ### Device
 
