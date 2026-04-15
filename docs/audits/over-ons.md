@@ -19,28 +19,41 @@ In my accessability test I found that the carousel that is being used has unclea
 <img width="207" height="106" alt="over-ons-hva-carousel" src="https://github.com/user-attachments/assets/de07101e-6244-428c-930c-43ea139008d2" />
 </br>
 ### Lighthouse
+In order
 
 ### Keyboard
+In order
 
 ### Screen reader
+Language needs to be changed to NL isntead of EN
 
 ---
 
-## Performace
+## Performance
 
 ### Lighthouse
-
+In the lighthouse tests there are the same results as previous test. What is needed for mobile is that the images are placed inside of the picture element.
+<br>
+<img width="523" height="609" alt="Screenshot 2026-04-15 125456" src="https://github.com/user-attachments/assets/768ade19-64f9-4dad-8779-c4a6d0bc62e5" />
+<img width="493" height="601" alt="Screenshot 2026-04-15 125526" src="https://github.com/user-attachments/assets/d6a20743-2a06-4c73-8695-b3a9252b5648" />
+</br>
 ### PageSpeed insights
+Dor the desktop tests there was the full 100 score again, but due to the image not being delivered correctly, it is still around de 93 - 99 range. 
+<img width="556" height="152" alt="desktop-over-ons-test" src="https://github.com/user-attachments/assets/95195a8e-081a-4473-b64a-a56f8428eca6" />
+<img width="643" height="145" alt="mobile-test-over-ons" src="https://github.com/user-attachments/assets/e562b3b3-466f-4a1f-8208-19e9c4b3f63d" />
 
 ### Waterfall test
+<img width="1835" height="1680" alt="export_04152026130009" src="https://github.com/user-attachments/assets/ccf50f45-933f-4ca6-b4ed-8f8eadca8e72" />
 
 ---
 
 ## Progressive enhanced
 
 ### Browser
+to be tested
 
 ### Device
+to be tested
 
 ---
 
