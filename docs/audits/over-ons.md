@@ -51,6 +51,9 @@ Dor the desktop tests there was the full 100 score again, but due to the image n
 
 ### Browser
 to be tested
+<img width="1885" height="755" alt="Screenshot 2026-04-15 132001" src="https://github.com/user-attachments/assets/859338cc-8f94-494a-8aa9-f8e5aebcc863" />
+<img width="426" height="386" alt="Screenshot 2026-04-15 132012" src="https://github.com/user-attachments/assets/a93c70cb-acf9-4637-b149-e646ea1d5fac" />
+
 
 ### Device
 to be tested
