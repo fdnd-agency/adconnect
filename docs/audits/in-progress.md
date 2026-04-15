@@ -64,11 +64,24 @@ we could consider removing this alt and letting the text next to it explain ever
 
 ### Lighthouse
 
+layout shift  
+<img width="1036" height="877" alt="image" src="https://github.com/user-attachments/assets/9a5f50dd-ff0f-4bb7-85ec-58a7163ca6cb" />
+
+
 ### PageSpeed insights
 
+<img width="1707" height="1148" alt="image" src="https://github.com/user-attachments/assets/fd0e62b8-56d1-4a29-9af6-39fd9fca8f80" />
+
+<img width="686" height="436" alt="image" src="https://github.com/user-attachments/assets/fea88d29-044b-4385-999c-6aee509b0691" />
+
+
 ### Waterfall test
+> pixel 5a 4g
 
 ### Performace improvements summary
+- fetch priority high on image
+- improve image with picture element/ different image formats
+- Network dependency tree -> make font more easily dicoverable
 
 ---
 
