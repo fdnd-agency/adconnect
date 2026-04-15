@@ -50,8 +50,6 @@ hover over the li text has low contrast in light mode:
 in darkmode it is good  
 <img width="416" height="135" alt="image" src="https://github.com/user-attachments/assets/33e4875e-4b5e-48e4-a18d-2df26e2d303e" />
 
-skip link continues through the menu instead of going to the content
-
 ### Lighthouse
 <img width="799" height="429" alt="image" src="https://github.com/user-attachments/assets/5d773e20-a57b-492c-9d39-4016d3024279" />  
 ... ... ... 
@@ -68,7 +66,6 @@ we could consider removing this alt and letting the text next to it explain ever
 ### Accessibility improvements summary
 - li text doesnt change color on darkmode making it invisible
 - consider adding aria hidden to img
-- skip link werkt niet op deze pagina
 
 ---
 
