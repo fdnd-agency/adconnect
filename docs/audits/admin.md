@@ -58,6 +58,10 @@ between 320px and 1325px the font size is smaller than 16px
 on 320px, this needs a different layout  
 <img width="481" height="723" alt="image" src="https://github.com/user-attachments/assets/86f375fe-168c-4871-9dc1-6749e80e0ab2" />  
 
+on the login page maybe move the welcome back text outof the menu sidebar  
+<img width="2372" height="1291" alt="image" src="https://github.com/user-attachments/assets/52461065-235c-45b7-bd7e-5282dc7242a4" />
+
+
 ### Responsive improvements summary
 - the page is responsive but for smaller devices it must be improved
 
@@ -132,12 +136,35 @@ reading this button out everythime gets annoying, we shoulc consider removing it
 ## Performace
 
 ### Lighthouse
+Theme page: performance is pretty good  
+these being the only new issues,  
+<img width="1234" height="1024" alt="image" src="https://github.com/user-attachments/assets/ffd1f83a-a526-4468-acfb-1c906ce3fb01" />  
+<img width="620" height="273" alt="image" src="https://github.com/user-attachments/assets/e02b92c9-5993-49af-9e21-fcf4b2b4fc10" />
+
+dashboard page: save as the above one  
+<img width="1220" height="1025" alt="image" src="https://github.com/user-attachments/assets/06633ab0-1448-4267-a7a3-e907e0837133" />  
+<img width="1199" height="602" alt="image" src="https://github.com/user-attachments/assets/ef945ea3-be8a-4f4f-b239-c306300e2571" />
+
+
+issues we've seen before  
+<img width="461" height="353" alt="image" src="https://github.com/user-attachments/assets/9132f04c-8caa-4ef2-bc23-025bd7204b52" />
+
 
 ### PageSpeed insights
+you need to log in for the admin page, this tested the login page because of that  
+
+Login page: 
+<img width="1445" height="1271" alt="image" src="https://github.com/user-attachments/assets/70487567-359c-4d33-8dab-fb618e8cb7cb" />
+
 
 ### Waterfall test
+[login page catchpoint test](https://portal.catchpoint.com/ui/Symphony/InstantTest/Webpage/954380/Details?t=wf)
+
+<img width="1412" height="220" alt="image" src="https://github.com/user-attachments/assets/6efe888f-b07a-4060-a803-05a221feb949" />  
+<img width="1072" height="288" alt="image" src="https://github.com/user-attachments/assets/731a765e-086c-4842-81bc-37ae6cdcbcbb" />
 
 ### Performace improvements summary
+- could not use pagespeed and catchpoint test for the admin pages
 
 ---
 
