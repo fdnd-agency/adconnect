@@ -36,6 +36,11 @@ This hover doesnt'change cursor to pointer:
 <img width="407" height="392" alt="image" src="https://github.com/user-attachments/assets/a9a27660-1ba5-4ebf-a8ad-7289e6bace36" />
 > inside the auto carrousel
 
+Summary elements must have discernible: this one only has spans, to create a hamburger menu button:  
+<img width="1432" height="662" alt="image" src="https://github.com/user-attachments/assets/8237771d-b834-49f3-a628-0016ac6e400b" />  
+<img width="575" height="166" alt="image" src="https://github.com/user-attachments/assets/43175d89-9593-4e7b-8b36-ead35376d656" />
+
+
 ### Lighthouse
 > lighthouse testing in chrome, zen doesn't support it
 Accessibility scores 100 in both light and dark mode
@@ -78,13 +83,50 @@ the carrousel breaklayout when going through it with a screenreader and arrow ke
 ## Performace
 
 ### Lighthouse
-> lighthouse testing in chrome, zen doesn't support it
+> Brave + mobile + network throttling 3G  
+<img width="1190" height="960" alt="image" src="https://github.com/user-attachments/assets/538963e5-6276-463a-9420-179e78aa621f" />
+
+the insights are the same we have seen on the other pages:  
+<img width="1136" height="509" alt="image" src="https://github.com/user-attachments/assets/addbf3b2-43ce-42b3-afea-80da0d0877fa" />
 
 ### PageSpeed insights
+mobile:  
+<img width="1640" height="1349" alt="image" src="https://github.com/user-attachments/assets/c5b48bfd-8388-4c10-9e8d-9d5df6d39d64" />
 
-### Waterfall test
+Desktop:  
+<img width="1629" height="1274" alt="image" src="https://github.com/user-attachments/assets/be91c82d-79b0-4432-8236-e8dc130ce393" />
+
+Insights:  
+<img width="698" height="519" alt="image" src="https://github.com/user-attachments/assets/b6c8a14b-b184-44d6-b1e0-3f7f3ac85c1e" />
+
+desktop performance is verry good, iets only mobile that needs improving:  
+
+
+### [Waterfall test](https://portal.catchpoint.com/ui/Symphony/InstantTest/Webpage/952270/Details?t=sm)
+> tested on Iphone 12 4G  
+<img width="2302" height="1309" alt="image" src="https://github.com/user-attachments/assets/d703338f-bf53-4896-93ae-45395e20afa1" />
+
+slow first byte on moble 3G / 4G  
+<img width="1407" height="846" alt="image" src="https://github.com/user-attachments/assets/3f21170d-ae06-4653-996e-2e69be88002d" />
+
+This CSS file is important, we'll leave this be:  
+<img width="1430" height="1270" alt="image" src="https://github.com/user-attachments/assets/ed997a3d-3f62-43db-8cf2-151b171b2c12" />
+
+images within the viewport that are being lazily loaded  
+<img width="1452" height="738" alt="image" src="https://github.com/user-attachments/assets/323372f6-a9eb-4602-8573-9bc41cf26c02" />
+
+posible layout shift at: `/_app/immutable/assets/ad-talent-awards.Ddt_57AT.jpg`  
+<img width="1426" height="813" alt="image" src="https://github.com/user-attachments/assets/5028cd07-b6c4-4279-8ae1-58ae51e410f4" />
+
+Final HTML (DOM) size is significantly larger than initially delivered HTML -> ( again )
+<img width="1412" height="530" alt="image" src="https://github.com/user-attachments/assets/6a4a7433-210e-4022-848a-d09998d52fd3" />
+
 
 ### Performace improvements summary
+- slow first byte on moble 3G / 4G
+- images within the viewport that are being lazily loaded
+- Final HTML (DOM) size is significantly larger than initially delivered HTML -> ( again )
+- posible layout shift on an image
 
 ---
 
