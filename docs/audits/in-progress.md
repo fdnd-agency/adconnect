@@ -51,12 +51,12 @@ I found no problems with the tab index ( through the new part of the page )
 
 ### Screen reader
 the img says graphic 404 error:  
-<img width="728" height="748" alt="image" src="https://github.com/user-attachments/assets/b9d070f7-6c17-43cb-bb8d-572649135d53" />
+<img width="728" height="748" alt="image" src="https://github.com/user-attachments/assets/b9d070f7-6c17-43cb-bb8d-572649135d53" />  
 we could consider removing this alt and letting the text next to it explain everything
 
 ### Accessibility improvements summary
 - li text doesnt change color on darkmode making it invisible
-- 
+- consider adding aria hidden to img
 
 ---
 
