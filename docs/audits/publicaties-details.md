@@ -13,17 +13,31 @@ There are more detail pages, all of them have this layout)
  
 ***Tested in edge v147***
 
+
 ## Responsive
 
 On 320px, the previewer appears zoomed out.
-The user can zoom in and use the previewer, but it would be better if it filled the screen by default.  
+The user can zoom in and use the previewer, but it would be better if it filled the screen by default.
+
+<details>
+<summary>image</summary>
+
 <img width="320" height="980" alt="image" src="https://github.com/user-attachments/assets/9464d142-12ae-422d-9775-b87a50c6a994" />
+
+</details>
+
 > This is not always consistent, I believe the browser remembers the previous zoom level
 
-Instead of sending the user to another page, we could enlarge the previewer so it’s fully usable directly on the page
+Instead of sending the user to another page, we could enlarge the previewer so it's fully usable directly on the page
 
-Here we can give the previewer the full width of the page, instead of keeping is small:  
+Here we can give the previewer the full width of the page, instead of keeping is small:
+
+<details>
+<summary>image</summary>
+
 <img width="795" height="1324" alt="image" src="https://github.com/user-attachments/assets/016ab668-9da2-43c6-8fd9-c9a21745b6c2" />
+
+</details>
 
 ### Responsive improvements summary
 - make the pdf previewer bigger
@@ -35,10 +49,22 @@ Here we can give the previewer the full width of the page, instead of keeping is
 
 - When a link in the mobile menu is clicked, the user is taken to the next page but the menu remains open
 - When the mobile menu is open, after youre done tabbing throught the menu, you continue tabbing through the page
+
+<details>
+<summary>image</summary>
+
 <img width="388" height="1511" alt="image" src="https://github.com/user-attachments/assets/6d1f7def-c1be-41d3-8742-f2e7b8b93a9b" />
 
-On the “publicaties” page, you can currently only click the “meer info” link to go to the details page, this should be changed so the entire card is clickable:  
+</details>
+
+On the "publicaties" page, you can currently only click the "meer info" link to go to the details page, this should be changed so the entire card is clickable:
+
+<details>
+<summary>image</summary>
+
 <img width="359" height="606" alt="image" src="https://github.com/user-attachments/assets/8ca27d82-ee34-4e6d-b812-13be9bcad63b" />
+
+</details>
 
 
 When using the skip link, there are two tab stops from the breadcrumb menu that remain off-screen
@@ -55,8 +81,14 @@ The tab order goes through the links inside the PDF viewer:
 [2026-04-14 16-12-24.webm](https://github.com/user-attachments/assets/b8d74b4c-b80c-4ff0-9be1-e71cf9868924)
 
 ### Screen reader
-This image alt text contains the same text as the adjacent title (plus “graphic”), causing the user to hear the same information twice  
+This image alt text contains the same text as the adjacent title (plus "graphic"), causing the user to hear the same information twice
+
+<details>
+<summary>image</summary>
+
 <img width="2339" height="646" alt="image" src="https://github.com/user-attachments/assets/b98b326b-1334-4306-bf51-4e4937367433" />
+
+</details>
 
 The screen reader also navigates through the PDF, but it reads additional elements such as logo-related content and page numbers, which can be distracting
 
@@ -73,16 +105,33 @@ The screen reader also navigates through the PDF, but it reads additional elemen
 ### Lighthouse
 > mobile + network throttling 3G
 
-Performance is also verry high on this page:  
+Performance is also verry high on this page:
+
+<details>
+<summary>image</summary>
+
 <img width="976" height="803" alt="image" src="https://github.com/user-attachments/assets/701d3ee7-61d6-4155-8145-f0d3712a740e" />
+
+</details>
 
 the only differences i see this time is:  
 - [Document request latency](https://developer.chrome.com/docs/performance/insights/document-latency?utm_source=lighthouse&utm_medium=devtools)
 - [3rd parties](https://developer.chrome.com/docs/performance/insights/third-parties?utm_source=lighthouse&utm_medium=devtools)
 - [Page prevented back/forward cache restoration](https://developer.chrome.com/docs/lighthouse/performance/bf-cache/?utm_source=lighthouse&utm_medium=devtools)
 
-<img width="666" height="900" alt="image" src="https://github.com/user-attachments/assets/fbaf3652-2e2c-4eec-836f-c0c29d924829" />  
-<img width="903" height="511" alt="image" src="https://github.com/user-attachments/assets/1095bdd2-5942-4bcd-a781-91d3a7ccf72e" />  
+<details>
+<summary>image</summary>
+
+<img width="666" height="900" alt="image" src="https://github.com/user-attachments/assets/fbaf3652-2e2c-4eec-836f-c0c29d924829" />
+
+</details>
+
+<details>
+<summary>image</summary>
+
+<img width="903" height="511" alt="image" src="https://github.com/user-attachments/assets/1095bdd2-5942-4bcd-a781-91d3a7ccf72e" />
+
+</details>
 
 
 ### PageSpeed insights
@@ -91,9 +140,19 @@ I'll try this test again another time
 
 ### Waterfall test
 
+<details>
+<summary>image</summary>
+
 <img width="1392" height="1355" alt="image" src="https://github.com/user-attachments/assets/00b35e44-c530-41ca-abb4-b9fdbe799ebc" />
 
+</details>
+
+<details>
+<summary>image</summary>
+
 <img width="1397" height="884" alt="image" src="https://github.com/user-attachments/assets/3a1698d7-8dee-463d-b978-465ab89dc85c" />
+
+</details>
 
 
 ### Performace improvements summary
@@ -109,8 +168,14 @@ Edge 88, Firefox 85, Chrome 88, Opera 74 and Safari 15.6
 Same issue with the background color.  
 
 Firefox 85, Chrome 88 & Opera 74  
-after the logo, tab index skips the menu and goes to the link below  
+after the logo, tab index skips the menu and goes to the link below
+
+<details>
+<summary>image</summary>
+
 <img width="2000" height="201" alt="Schermafbeelding 2026-04-14 175554" src="https://github.com/user-attachments/assets/c6a54d25-e411-4b77-9acc-826561ed85de" />
+
+</details>
 
 
 Firefox 85
