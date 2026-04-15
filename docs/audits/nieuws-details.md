@@ -6,6 +6,7 @@ Like the pages before the button seems to cover the text. This is quite annoying
 <br>
 <img width="190" height="266" alt="button-covering-text" src="https://github.com/user-attachments/assets/df9267af-15a3-470b-b5b9-5baa42f15e7c" />
 </br>
+
 ---
 
 ## Accessibility
