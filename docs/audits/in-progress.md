@@ -24,12 +24,33 @@ The image alt text does not change; we could update it instead of keeping it the
 error 404 version doesnt have the skip link
 
 
+
 ## Responsive
-320px to 1220px the dots at the bottom look out of place  
-<img width="492" height="1057" alt="image" src="https://github.com/user-attachments/assets/05cee7eb-721c-472b-9231-1279e2ae634e" />  
-this is a list, the items havent got the right color for dark mode:  
-<img width="406" height="258" alt="image" src="https://github.com/user-attachments/assets/345aa55d-1d83-4cc0-bd80-70558c9f3cfe" />  
-<img width="589" height="407" alt="image" src="https://github.com/user-attachments/assets/e2793102-ff74-48b7-9555-aa4c07c77038" />  
+320px to 1220px the dots at the bottom look out of place
+
+<details>
+<summary>image</summary>
+
+<img width="492" height="1057" alt="image" src="https://github.com/user-attachments/assets/05cee7eb-721c-472b-9231-1279e2ae634e" />
+
+</details>
+
+this is a list, the items havent got the right color for dark mode:
+
+<details>
+<summary>image</summary>
+
+<img width="406" height="258" alt="image" src="https://github.com/user-attachments/assets/345aa55d-1d83-4cc0-bd80-70558c9f3cfe" />
+
+</details>
+
+<details>
+<summary>image</summary>
+
+<img width="589" height="407" alt="image" src="https://github.com/user-attachments/assets/e2793102-ff74-48b7-9555-aa4c07c77038" />
+
+</details>
+
 The layout can also be improved, its chaotic on small screens  
 the first item doesn't have a dot, making it feel off, every item after the first one has a dot on the left  
 it could be better to have 1 column then 2, maybe 3 and then everything on 1 row. ( giving all items the same width )  
@@ -42,25 +63,58 @@ instead of wrapping as soon as there is enough space.
 
 ## Accessibility
 
-the li text doesnt change color in dark mode making them invisible  
+the li text doesnt change color in dark mode making them invisible
+
+<details>
+<summary>image</summary>
+
 <img width="1123" height="368" alt="image" src="https://github.com/user-attachments/assets/62ea0e84-4d0b-48ef-9739-231727e0c3d0" />
 
-hover over the li text has low contrast in light mode:  
-<img width="339" height="100" alt="image" src="https://github.com/user-attachments/assets/94b25426-ffb8-44c9-ac9e-47f2bad3ae3f" />  
-in darkmode it is good  
+</details>
+
+hover over the li text has low contrast in light mode:
+
+<details>
+<summary>image</summary>
+
+<img width="339" height="100" alt="image" src="https://github.com/user-attachments/assets/94b25426-ffb8-44c9-ac9e-47f2bad3ae3f" />
+
+</details>
+
+in darkmode it is good
+
+<details>
+<summary>image</summary>
+
 <img width="416" height="135" alt="image" src="https://github.com/user-attachments/assets/33e4875e-4b5e-48e4-a18d-2df26e2d303e" />
 
+</details>
+
 ### Lighthouse
-<img width="799" height="429" alt="image" src="https://github.com/user-attachments/assets/5d773e20-a57b-492c-9d39-4016d3024279" />  
-... ... ... 
+
+<details>
+<summary>image</summary>
+
+<img width="799" height="429" alt="image" src="https://github.com/user-attachments/assets/5d773e20-a57b-492c-9d39-4016d3024279" />
+
+</details>
+
+... ... ...
 
 
 ### Keyboard
 I found no problems with the tab index ( through the new part of the page )  
 
 ### Screen reader
-the img says graphic 404 error:  
-<img width="728" height="748" alt="image" src="https://github.com/user-attachments/assets/b9d070f7-6c17-43cb-bb8d-572649135d53" />  
+the img says graphic 404 error:
+
+<details>
+<summary>image</summary>
+
+<img width="728" height="748" alt="image" src="https://github.com/user-attachments/assets/b9d070f7-6c17-43cb-bb8d-572649135d53" />
+
+</details>
+
 we could consider removing this alt and letting the text next to it explain everything
 
 ### Accessibility improvements summary
@@ -73,31 +127,71 @@ we could consider removing this alt and letting the text next to it explain ever
 
 ### Lighthouse
 
-layout shift  
+layout shift
+
+<details>
+<summary>image</summary>
+
 <img width="1036" height="877" alt="image" src="https://github.com/user-attachments/assets/9a5f50dd-ff0f-4bb7-85ec-58a7163ca6cb" />
+
+</details>
 
 
 ### PageSpeed insights
 
+<details>
+<summary>image</summary>
+
 <img width="1707" height="1148" alt="image" src="https://github.com/user-attachments/assets/fd0e62b8-56d1-4a29-9af6-39fd9fca8f80" />
 
+</details>
+
+<details>
+<summary>image</summary>
+
 <img width="686" height="436" alt="image" src="https://github.com/user-attachments/assets/fea88d29-044b-4385-999c-6aee509b0691" />
+
+</details>
 
 
 ### [Waterfall test](https://portal.catchpoint.com/ui/Symphony/InstantTest/Webpage/953078/Details?t=sm)
 > pixel 5a 4g
 
-<img width="2538" height="1224" alt="image" src="https://github.com/user-attachments/assets/3488d20c-d768-419a-aec3-6e0e4904fd7f" />  
+<details>
+<summary>image</summary>
+
+<img width="2538" height="1224" alt="image" src="https://github.com/user-attachments/assets/3488d20c-d768-419a-aec3-6e0e4904fd7f" />
+
+</details>
+
 Pixel 5a is a phone from August 26, 2021 which is probably why first byte was so slow
 
-viewport images are lazily loaded  
+viewport images are lazily loaded
+
+<details>
+<summary>image</summary>
+
 <img width="1203" height="290" alt="image" src="https://github.com/user-attachments/assets/3392dae0-6615-4a8e-8fe4-57c30e61ca9c" />
 
-Final HTML (DOM) size is significantly larger than initially delivered HTML  
+</details>
+
+Final HTML (DOM) size is significantly larger than initially delivered HTML
+
+<details>
+<summary>image</summary>
+
 <img width="1196" height="326" alt="image" src="https://github.com/user-attachments/assets/754ccfc1-5133-41c6-ad34-eb0b3c1c3f10" />
 
-layout shift  
+</details>
+
+layout shift
+
+<details>
+<summary>image</summary>
+
 <img width="1170" height="266" alt="image" src="https://github.com/user-attachments/assets/0aaad16e-94b4-47b5-99af-4f7e5b8ff1f1" />
+
+</details>
 
 the other issues on this page are about the header and footer which ive already adressed in content and talent award md files
 
@@ -120,5 +214,6 @@ no other issues ( not considering the above mentioned ones )
 
 ### PE improvements summary
 only background color issue
+
 
 
