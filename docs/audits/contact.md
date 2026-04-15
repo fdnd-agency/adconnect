@@ -58,6 +58,7 @@ form only checks for empty fields and `@email.com`
 enter is allowd as a question  
 <img width="1375" height="531" alt="image" src="https://github.com/user-attachments/assets/14e46b49-2c22-4fd8-996d-1219dda68927" />
 
+Another issue could be spam from these forms. We should consider implementing a rate limit per minute or within a specific time frame.
 
 ### Lighthouse
 Lighthouse also gives a 100% accessibility score here
