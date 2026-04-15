@@ -40,7 +40,8 @@ instead of only having the `meer` button clickable we can make the whole card cl
 <img width="1137" height="506" alt="image" src="https://github.com/user-attachments/assets/d0bac697-1771-4c53-b81a-e7b12d758419" />  
 maybe change this to a dropdown menu instead of a pop up  
 
-
+### UI/UX summary
+- there are quite a few elements that need to be improved especially for UX
 
 ## Responsive
 We can collapse the menu a bit earlier, this will leave more for the cards:  
@@ -57,9 +58,8 @@ between 320px and 1325px the font size is smaller than 16px
 on 320px, this needs a different layout  
 <img width="481" height="723" alt="image" src="https://github.com/user-attachments/assets/86f375fe-168c-4871-9dc1-6749e80e0ab2" />  
 
-
-
 ### Responsive improvements summary
+- the page is responsive but for smaller devices it must be improved
 
 ---
 
@@ -70,13 +70,14 @@ log out button isn't easy to find
 - or add it to the bottom part of the menu on the left side, voor mobile it already is insode the open menu screen
 <img width="601" height="243" alt="image" src="https://github.com/user-attachments/assets/7a7c6f89-eee1-4694-91c5-0acd731fc9d4" />
 
+the breadcrumb menu has low contrast  
+<img width="458" height="159" alt="image" src="https://github.com/user-attachments/assets/29b360f0-035f-42d6-ad43-9b1a53609b18" />  
+
 hover state of log out button  
 <img width="504" height="195" alt="image" src="https://github.com/user-attachments/assets/884c7c3c-8c65-4fbc-81b6-04dcbe876df1" />
 
 this button also has a bad hover state  
 <img width="626" height="105" alt="image" src="https://github.com/user-attachments/assets/88e8acb2-ce95-4b81-8a51-cde5aef4ae25" />
-
-
 
 these `+` buttons doesn't have enough feedforward to describe that the button will do  
 <img width="1792" height="596" alt="image" src="https://github.com/user-attachments/assets/45a9b528-cfcf-49e7-a5b6-85abae410f58" />  
@@ -86,8 +87,10 @@ the selected filter color can be changed to the highlight color
 <img width="1007" height="148" alt="image" src="https://github.com/user-attachments/assets/3b41d357-92f7-4162-8e13-b73af26cc38a" />  
 
 
-
 ### Lighthouse
+light house test has 96%, only issue being low contrast on breadcrumb menu  
+tested on every page inside the admin route  
+only dashboard did not have this issue, dashboard got 100%
 
 ### Keyboard
 These hover states are hard to notice  
@@ -96,8 +99,33 @@ These hover states are hard to notice
 
 
 ### Screen reader
+this is called log in link  
+<img width="541" height="235" alt="image" src="https://github.com/user-attachments/assets/ab24b861-5432-47e3-becf-fd6f3783a822" />
+
+this get read out as plus not saying which form will be opend  
+<img width="281" height="215" alt="image" src="https://github.com/user-attachments/assets/3778ab2d-8223-4553-8b31-d281bfde8bc4" />  
+in this section the user hears plus link multiple times
+
+only the `meer` button gets read out, not saying anything about what the user will get to interact with
+<img width="1181" height="335" alt="image" src="https://github.com/user-attachments/assets/ccc8a897-7d1a-40c6-8b34-cd623ffb7651" />
+
+these titles have a long read out text ( land mark issue again )  
+<img width="470" height="137" alt="image" src="https://github.com/user-attachments/assets/270c2e15-2c54-4d39-aa2c-3e4a989b9e50" />
+
+screenreader says `gepubliceerd` first and then the title  
+<img width="645" height="130" alt="image" src="https://github.com/user-attachments/assets/5453794a-5cba-4930-816e-b410c7ef6de2" />
+
+this one aswel:  
+<img width="629" height="130" alt="image" src="https://github.com/user-attachments/assets/13f6ec0e-2390-4d4e-a9e6-af52e0faf891" />  
+or we could also read out gepubliceerd to the end of the title in 1 go instead of waiting for the next arrow down click
+
+reading this button out everythime gets annoying, we shoulc consider removing it from pages that don't need it, when you are already on that page
+<img width="420" height="155" alt="image" src="https://github.com/user-attachments/assets/c41fe631-83ee-4ff7-a054-e6ac23ac0917" />
+
 
 ### Accessibility improvements summary
+- screenrader and keyboard works pretty good, but has some point to improve UX
+
 
 ---
 
