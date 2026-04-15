@@ -133,9 +133,27 @@ Final HTML (DOM) size is significantly larger than initially delivered HTML -> (
 ## Progressive enhanced
 
 ### Browser
+Edge 88, Firefox 85, Chrome 88, Opera 74 and Safari 15.6  
+The same background color issue, as ad-dag, etc  
+but this time all text remain readable ( excluding header and footer those are the same components on every page )
+
+Edge 88, Chrome 88, Opera 74 & Safari 15.6
+one of these articles have adifferent layout:  
+<img width="2257" height="920" alt="image" src="https://github.com/user-attachments/assets/213d8c17-fc28-4766-aa66-d71c3dc72c73" />  
+<img width="1339" height="1217" alt="image" src="https://github.com/user-attachments/assets/42dd0b3d-80f8-49c0-9ba7-89b529c0c683" />  
+In the one column layout this isn't an issue.  
+
+the problem is new CSS: `grid-template-rows: subgrid;`
+<img width="690" height="162" alt="image" src="https://github.com/user-attachments/assets/086200fa-573c-457c-86be-ca3ff11a3897" />
+
+Firefox 85  
+doesnt have this problem  
+<img width="468" height="168" alt="image" src="https://github.com/user-attachments/assets/e42a6bc5-4542-4b0d-8fd8-b5cc30a9cf28" />
+
 
 ### Device
 
 ### PE improvements summary
-
+- overall make links go to a work in progress page instead of the same page with `href="#"`
+- subgrid issue on edge 88, chrome 88, opera 74 and safari 15.6
 
