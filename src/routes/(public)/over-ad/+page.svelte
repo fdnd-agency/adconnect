@@ -29,6 +29,7 @@
 		slot="primary"
 		href="#benefit"
 		class="button-outline-white"
+		aria-label="Lees meer over Associate Degree's"
 		id="benefit">Lees meer →</a
 	>
 </Hero>
