@@ -98,7 +98,7 @@
 
 <ImageTextSection
 	image={awards}
-	alt=""
+	alt="2 vrouwen die genomineerden waren voor de Ad-talent Awards. beide met een abnormaal groote check van 250 euro en een trofee "
 	{dots}
 	title="Ad Talent Awards"
 	text="De Ad Talent Awards vieren de prestaties van studenten, docenten en opleidingen binnen het Associate Degree-onderwijs. De awards zetten talenten in het zonnetje die met hun inzet, creativiteit en innovatieve aanpak een positieve impact maken in het werkveld en de samenleving. Door deelname en nominaties worden best practices gedeeld en wordt de waarde van Ad-opleidingen zichtbaar voor een breed publiek."
