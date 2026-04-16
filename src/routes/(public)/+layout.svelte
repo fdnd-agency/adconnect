@@ -27,7 +27,7 @@
 	><img
 		src={icondown}
 		alt=""
-	/><span class="sr-only">Scroll naar beneden</span></a
+	/><span class="sr-only">Scroll naar boven</span></a
 >
 
 <Footer />
