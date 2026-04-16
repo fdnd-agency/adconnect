@@ -23,7 +23,7 @@
 	<Link
 		slot="secondary"
 		href="/ad-dag"
-		class="button-outline-white">Kom naar de Ad-dag →</Link
+		class="button-outline-white">Kom naar de Ad-dag</Link
 	>
 	<Link
 		slot="primary"
