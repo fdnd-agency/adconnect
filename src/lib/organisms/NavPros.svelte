@@ -5,7 +5,7 @@
 </script>
 
 
-<nav>
+<nav aria-label="Primair">
   <a class="logo" href="/" aria-label="Home – AdConnect logo">
     <picture>
       <source srcset={logowhite} media="(prefers-color-scheme: dark)" />

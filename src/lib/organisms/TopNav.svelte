@@ -2,7 +2,7 @@
 	import { page } from '$app/state'
 </script>
 
-<nav>
+<nav aria-label="Secundair">
 	<section class="nav-right">
 		<ul>
 			<li><a href="/#faq">FAQ's</a></li>
