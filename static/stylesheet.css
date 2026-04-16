@@ -160,7 +160,17 @@
 /* =============== GLOBAL STYLES =============== */
 
 main {
-  background-color: light-dark(var(--text-white), var(--blue-800));
+  background-color: var(--text-white);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--blue-800);
+  }
+}
+
+@supports (color-scheme: light-dark(red, blue)) {
+  main {
+    background-color: light-dark(var(--text-white), var(--blue-800));
+  }
 }
 /* Focus state */
 *:focus-visible {
