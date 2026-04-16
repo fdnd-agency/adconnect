@@ -57,6 +57,7 @@
 				class="feature-img"
 				src={imageSrc}
 				alt={imageAlt}
+				aria-hidden="true"
 			/>
 		{/if}
 	</div>

@@ -1,4 +1,4 @@
-<hr>
+<hr aria-hidden="true">
 
 <style>
     hr {
