@@ -14,9 +14,8 @@
 
 <header class="general-header">
 	<TopNav />
+	<NavPros />
 </header>
-
-<NavPros />
 
 <main>
 	{@render children?.()}
