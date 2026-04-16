@@ -84,7 +84,7 @@
 
 <ImageTextSection
 	image={overleggen}
-	alt="Ad-overleggen en Ad-profielen"
+	alt=""
 	{dots}
 	title="Landelijke Ad-overleggen en Ad-profielen"
 	text="Het Overlegplatform organiseert regelmatig landelijke overleggen waarin vertegenwoordigers van alle Ad-opleidingen samenkomen. Tijdens deze bijeenkomsten worden nieuwe Ad-profielen besproken, kwaliteitsrichtlijnen gedeeld en best practices uitgewisseld. Zo blijven opleidingen actueel en goed afgestemd op het werkveld."
@@ -98,7 +98,7 @@
 
 <ImageTextSection
 	image={awards}
-	alt="Ad-talent Awards genomineerden"
+	alt=""
 	{dots}
 	title="Ad Talent Awards"
 	text="De Ad Talent Awards vieren de prestaties van studenten, docenten en opleidingen binnen het Associate Degree-onderwijs. De awards zetten talenten in het zonnetje die met hun inzet, creativiteit en innovatieve aanpak een positieve impact maken in het werkveld en de samenleving. Door deelname en nominaties worden best practices gedeeld en wordt de waarde van Ad-opleidingen zichtbaar voor een breed publiek."
