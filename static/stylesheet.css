@@ -101,7 +101,7 @@
   /*PRIMARY COLORS */
   --primary-blue: hsl(var(--blue-hue), var(--blue-sat), 28%);
   --primary-orange: hsl(var(--orange-hue), var(--orange-sat), 55%);
-  --background: light-dark(hsl(0, 0%, 98%), hsl(210, 30%, 8%));
+  --background: hsl(0, 0%, 98%);
   --text-white: hsl(0, 0%, 100%);
   --text-darkblue: hsl(var(--blue-hue), var(--blue-sat), 5%);
 
@@ -150,17 +150,37 @@
   /* Outline Blue Button */
   --button-outline-bg: var(--text-white);
   --button-outline-text: light-dark(var(--primary-blue), var(--text-white));
-  --button-outline-border: 1.5px solid light-dark(var(--primary-blue), var(--primary-orange));
+  --button-outline-border: 1.5px solid var(--primary-blue);
   --button-outline-radius: 15px;
   --button-outline-padding: 1.1rem 1.8rem;
   --button-outline-font-size: 16px;
   --button-outline-font-family: var(--font-heading);
+
+  /* Older browsers that have access to darkmode */
+  @media (prefers-color-scheme: dark) {
+     --background: hsl(210, 30%, 8%);
+     --button-outline-border: var(--primary-orange);
+  }
+
+  /* Features that function on newer browsers */
+  @supports (color-scheme: light-dark(red, blue)) {
+    --background: light-dark(hsl(0, 0%, 98%), hsl(210, 30%, 8%));
+    --button-outline-border: 1.5px solid light-dark(var(--primary-blue), var(--primary-orange));
+  }
 }
 
 /* =============== GLOBAL STYLES =============== */
 
 main {
-  background-color: light-dark(var(--text-white), var(--blue-800));
+  background-color: var(--text-white);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--blue-800);
+  }
+
+  @supports (color-scheme: light-dark(red, blue)) {
+    background-color: light-dark(var(--text-white), var(--blue-800));
+  }
 }
 /* Focus state */
 *:focus-visible {
@@ -177,7 +197,16 @@ h5,
 h6 {
   font-family: var(--font-heading);
   font-weight: var(--heading-font-weight);
-  color: light-dark(var(--blue-800), var(--text-white));
+  color: var(--blue-800);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--text-white);
+  }
+
+  @supports (color-scheme: light-dark(red, blue)) {
+    color: light-dark(var(--blue-800), var(--text-white));
+  }
+
   text-wrap: balance;
 }
 
@@ -242,7 +271,16 @@ p {
 }
 
 .button-outline-blue {
-  background: light-dark(var(--text-white), hsl(210, 30%, 8%));
+  background: var(--text-white);
+  
+  @media (prefers-color-scheme: dark) {
+    background: hsl(210, 30%, 8%);
+  }
+  
+  @supports (color-scheme: light-dark(red, blue)) {
+    background: light-dark(var(--text-white), hsl(210, 30%, 8%));
+  }
+
   color: var(--button-outline-text);
   border: var(--button-outline-border);
   border-radius: var(--button-outline-radius);
