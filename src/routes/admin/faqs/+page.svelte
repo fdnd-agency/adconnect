@@ -19,6 +19,10 @@
 
 	const searchFields = ['question']
 
+	function faqEditHref(doc) {
+		return `/admin/faqs/form?id=${encodeURIComponent(doc.id)}`
+	}
+
 	const filtered = $derived(
 		faqs
 			.filter((doc) => {
@@ -60,6 +64,7 @@
 	{filtered}
 	{directusBase}
 	contentType="adconnect_faqs"
+	editHrefBuilder={faqEditHref}
 	labels={{
 		single: 'faq',
 		multiple: 'faqs',

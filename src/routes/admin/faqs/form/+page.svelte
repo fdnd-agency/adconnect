@@ -4,8 +4,17 @@
 	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
 	import Error from '$lib/atoms/Error.svelte'
 
-	const { form } = $props()
+	const { data, form } = $props()
 	const directusBase = `${DIRECTUS_URL}/admin/content`
+	const existingFaq = $derived(data?.faq ?? null)
+	const isEditMode = $derived(data?.isEditMode === true)
+	const currentFaqId = $derived(existingFaq?.id ?? '')
+	const initialQuestion = $derived(existingFaq?.question ?? '')
+	const initialAnswer = $derived(existingFaq?.answer ?? '')
+	const initialImportant = $derived(existingFaq?.important === true)
+	const questionValue = $derived(form?.question ?? initialQuestion)
+	const answerValue = $derived(form?.answer ?? initialAnswer)
+	const importantValue = $derived(form?.important ?? initialImportant)
 
 	let isSubmitting = $state(false)
 
@@ -15,16 +24,20 @@
 </script>
 
 <svelte:head>
-	<title>Faq toevoegen | ADConnect Admin</title>
+	<title>{isEditMode ? 'Faq bewerken' : 'Faq toevoegen'} | ADConnect Admin</title>
 </svelte:head>
 
 <AdminHeader
 	title="Faqs"
 	{directusBase}
 	contentType="adconnect_faqs"
-	breadcrumb="Faqs › Formulier"
+	breadcrumb={isEditMode ? 'Faqs › Bewerken' : 'Faqs › Formulier'}
 	addHref="/admin/faqs/form"
 />
+
+{#if data?.loadError}
+	<Error message={data.loadError} />
+{/if}
 
 {#if form?.error}
 	<Error message={form.error} />
@@ -40,7 +53,7 @@
 	use:enhance={() => {
 		isSubmitting = true
 		return async ({ result, update }) => {
-			await update()
+			await update({ reset: !isEditMode })
 			isSubmitting = false
 
 			if (result.type === 'success') {
@@ -49,6 +62,14 @@
 		}
 	}}
 >
+	{#if isEditMode && currentFaqId}
+		<input
+			type="hidden"
+			name="faqId"
+			value={currentFaqId}
+		/>
+	{/if}
+
 	<div class="field-group">
 		<label for="question">Vraag</label>
 		<input
@@ -57,6 +78,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een vraag in"
+			value={questionValue}
 			required
 		/>
 	</div>
@@ -67,8 +89,8 @@
 			id="answer"
 			name="answer"
 			placeholder="Voer een antwoord in"
-			required
-		></textarea>
+			required>{answerValue}</textarea
+		>
 	</div>
 
 	<div class="field-group toggle-group">
@@ -81,6 +103,7 @@
 				id="important"
 				name="important"
 				type="checkbox"
+				checked={importantValue}
 			/>
 			<span>Markeer als belangrijk</span>
 		</label>
