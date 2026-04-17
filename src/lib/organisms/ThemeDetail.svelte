@@ -23,6 +23,7 @@
 		class="hero-image"
 		src={`${DIRECTUS_URL}/assets/${theme.hero}`}
 		alt={theme.title}
+		aria-hidden="true"
 		fetchpriority="high"
 	/>
 </Hero>
