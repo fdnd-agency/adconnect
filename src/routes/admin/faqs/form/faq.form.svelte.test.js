@@ -1,10 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ContentService } from '$lib/server/contentService.js'
-import { actions } from './+page.server.js'
+import { actions, load } from './+page.server.js'
 
 vi.mock('$lib/server/contentService.js', () => ({
 	ContentService: {
+		fetchContent: vi.fn(),
 		postContent: vi.fn(),
+		updateContent: vi.fn(),
 		publishContent: vi.fn()
 	}
 }))
@@ -39,6 +41,7 @@ function createActionEvent({ fields = {}, accessToken = 'token-123' } = {}) {
 
 function expectNoMutationCalls() {
 	expect(ContentService.postContent).not.toHaveBeenCalled()
+	expect(ContentService.updateContent).not.toHaveBeenCalled()
 	expect(ContentService.publishContent).not.toHaveBeenCalled()
 }
 
@@ -106,6 +109,31 @@ describe('admin faqs form actions.default', () => {
 		expectNoMutationCalls()
 	})
 
+	it('returns submitted values on validation fail so form can keep user input', async () => {
+		// Arrange: provide empty question but a filled answer.
+		// Why: the server should return submitted values so textarea/input are preserved in UI.
+		const event = createActionEvent({
+			fields: {
+				question: '   ',
+				answer: 'Dit moet blijven staan.'
+			}
+		})
+
+		// Act: execute the default action.
+		const result = await actions.default(event)
+
+		// Assert: validation fail payload includes submitted values.
+		expect(result).toMatchObject({
+			status: 400,
+			data: {
+				error: 'Vul een vraag in.',
+				question: '   ',
+				answer: 'Dit moet blijven staan.',
+				important: false
+			}
+		})
+	})
+
 	it('saves faq as draft and returns success payload', async () => {
 		// Arrange: provide valid form input for the default save flow.
 		// Why: this is the primary path admins use to create draft faqs.
@@ -125,6 +153,8 @@ describe('admin faqs form actions.default', () => {
 		expect(ContentService.postContent).toHaveBeenCalledTimes(1)
 		// Assert: publish is not called in save mode.
 		expect(ContentService.publishContent).not.toHaveBeenCalled()
+		// Assert: update flow is not used without faqId.
+		expect(ContentService.updateContent).not.toHaveBeenCalled()
 	})
 
 	it('sends expected payload to postContent with important=false by default', async () => {
@@ -194,6 +224,92 @@ describe('admin faqs form actions.default', () => {
 		})
 		// Assert: publish is called with created id, faqs type, and token.
 		expect(ContentService.publishContent).toHaveBeenCalledWith('faq-789', 'faqs', 'token-123')
+		// Assert: update flow is not used without faqId.
+		expect(ContentService.updateContent).not.toHaveBeenCalled()
+	})
+
+	it('updates faq as draft when faqId is provided', async () => {
+		// Arrange: provide faqId to switch to edit mode.
+		// Why: in edit mode the action should call updateContent instead of postContent.
+		const event = createActionEvent({
+			fields: {
+				faqId: 'faq-321'
+			}
+		})
+		ContentService.updateContent.mockResolvedValue({ success: true, id: 'faq-321' })
+
+		// Act: execute the default action.
+		const result = await actions.default(event)
+
+		// Assert: update flow returns update success message.
+		expect(result).toEqual({
+			success: true,
+			message: 'Faq succesvol bijgewerkt als concept.',
+			faqId: 'faq-321'
+		})
+		// Assert: postContent is not called in edit mode.
+		expect(ContentService.postContent).not.toHaveBeenCalled()
+		// Assert: updateContent receives id, payload, type and token.
+		expect(ContentService.updateContent).toHaveBeenCalledWith(
+			'faq-321',
+			{
+				question: 'Wat is AD Connect?',
+				answer: 'AD Connect is een platform voor studenten en werkgevers.',
+				important: false,
+				status: 'draft'
+			},
+			'faqs',
+			'token-123'
+		)
+	})
+
+	it('publishes updated faq when submitAction is publish in edit mode', async () => {
+		// Arrange: provide faqId and publish submit action.
+		// Why: edit + publish should run update first and publish the same id.
+		const event = createActionEvent({
+			fields: {
+				faqId: 'faq-321',
+				submitAction: 'publish'
+			}
+		})
+		ContentService.updateContent.mockResolvedValue({ success: true, id: 'faq-321' })
+		ContentService.publishContent.mockResolvedValue({ success: true })
+
+		// Act: execute the default action.
+		const result = await actions.default(event)
+
+		// Assert: action returns edit publish success payload.
+		expect(result).toEqual({
+			success: true,
+			message: 'Faq succesvol bijgewerkt en gepubliceerd.',
+			faqId: 'faq-321'
+		})
+		// Assert: postContent is not called in edit mode.
+		expect(ContentService.postContent).not.toHaveBeenCalled()
+		// Assert: publish targets updated faq id.
+		expect(ContentService.publishContent).toHaveBeenCalledWith('faq-321', 'faqs', 'token-123')
+	})
+
+	it('returns 500 with update error when updateContent returns non-success in edit mode', async () => {
+		// Arrange: provide faqId to enter edit mode and mock update failure.
+		// Why: failed edit should return the dedicated update error message.
+		const event = createActionEvent({
+			fields: {
+				faqId: 'faq-321'
+			}
+		})
+		ContentService.updateContent.mockResolvedValue({ success: false })
+
+		// Act: execute the default action.
+		const result = await actions.default(event)
+
+		// Assert: action fails with generic update error.
+		expect(result).toMatchObject({
+			status: 500,
+			data: { error: 'Er is iets misgegaan bij het bijwerken van de faq.' }
+		})
+		// Assert: create flow is not called in edit mode.
+		expect(ContentService.postContent).not.toHaveBeenCalled()
 	})
 
 	it('returns warning success payload when publish returns non-success', async () => {
@@ -258,6 +374,33 @@ describe('admin faqs form actions.default', () => {
 		expect(ContentService.publishContent).not.toHaveBeenCalled()
 	})
 
+	it('returns submitted values on mutation fail so form can keep user input', async () => {
+		// Arrange: provide valid input but make create operation fail.
+		// Why: even on server failure, entered fields should be restored in the form.
+		const event = createActionEvent({
+			fields: {
+				question: 'Nieuwe vraag',
+				answer: 'Nieuwe antwoord',
+				important: 'on'
+			}
+		})
+		ContentService.postContent.mockResolvedValue({ success: false })
+
+		// Act: execute the default action.
+		const result = await actions.default(event)
+
+		// Assert: failure payload includes submitted values.
+		expect(result).toMatchObject({
+			status: 500,
+			data: {
+				error: 'Er is iets misgegaan bij het opslaan van de faq.',
+				question: 'Nieuwe vraag',
+				answer: 'Nieuwe antwoord',
+				important: true
+			}
+		})
+	})
+
 	it('catches unexpected errors during create and returns generic error', async () => {
 		// Arrange: provide valid input and mock unexpected error in postContent.
 		// Why: uncaught exceptions should be caught and returned as generic 500 error.
@@ -295,5 +438,80 @@ describe('admin faqs form actions.default', () => {
 		})
 		// Assert: publish is not called for unknown submit actions.
 		expect(ContentService.publishContent).not.toHaveBeenCalled()
+	})
+})
+
+describe('admin faqs form load', () => {
+	beforeEach(() => {
+		vi.clearAllMocks()
+	})
+
+	it('returns non-edit mode state when id query is missing', async () => {
+		// Arrange: load request without id query.
+		// Why: creating a new faq should render an empty create form.
+		const event = {
+			url: new URL('http://localhost/admin/faqs/form'),
+			cookies: { get: vi.fn().mockReturnValue('token-123') }
+		}
+
+		// Act: execute page load.
+		const result = await load(event)
+
+		// Assert: route stays in create mode and does not fetch an existing faq.
+		expect(result).toEqual({
+			faq: null,
+			isEditMode: false,
+			loadError: null
+		})
+		expect(ContentService.fetchContent).not.toHaveBeenCalled()
+	})
+
+	it('returns faq data in edit mode when id query is present', async () => {
+		// Arrange: load request with id query and successful faq fetch.
+		// Why: edit form must prefill fields with existing faq data.
+		const event = {
+			url: new URL('http://localhost/admin/faqs/form?id=faq-321'),
+			cookies: { get: vi.fn().mockReturnValue('token-123') }
+		}
+		ContentService.fetchContent.mockResolvedValue({
+			data: {
+				faqs: [{ id: 'faq-321', question: 'Vraag', answer: 'Antwoord', important: true }]
+			},
+			errors: []
+		})
+
+		// Act: execute page load.
+		const result = await load(event)
+
+		// Assert: route returns faq data and marks mode as edit.
+		expect(result).toEqual({
+			faq: { id: 'faq-321', question: 'Vraag', answer: 'Antwoord', important: true },
+			isEditMode: true,
+			loadError: null
+		})
+		expect(ContentService.fetchContent).toHaveBeenCalledWith('faqs', 'faq-321', null, null, false, 'token-123')
+	})
+
+	it('returns loadError when faq lookup fails in edit mode', async () => {
+		// Arrange: load request with id query and failed faq fetch.
+		// Why: invalid id or API failure should surface a clear load error.
+		const event = {
+			url: new URL('http://localhost/admin/faqs/form?id=faq-missing'),
+			cookies: { get: vi.fn().mockReturnValue('token-123') }
+		}
+		ContentService.fetchContent.mockResolvedValue({
+			data: { faqs: [] },
+			errors: [{ collection: 'faqs', message: 'Not found' }]
+		})
+
+		// Act: execute page load.
+		const result = await load(event)
+
+		// Assert: route stays in edit mode but returns a load error and no faq.
+		expect(result).toEqual({
+			faq: null,
+			isEditMode: true,
+			loadError: 'Er is een probleem opgetreden bij het ophalen van de faq.'
+		})
 	})
 })
