@@ -52,7 +52,6 @@
     width: 100%;
     background: var(--background);
     z-index: 99;
-    max-width: 1400px;
     box-sizing: border-box;
 
     position: fixed;
