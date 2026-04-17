@@ -62,7 +62,13 @@
 		padding: 0.6em 1.2em;
 		border-radius: var(--button-outline-radius);
 		border: var(--button-outline-border);
-		background: light-dark(var(--text-white), hsl(210, 30%, 8%));
+		background: var(--text-white);
+		@media (prefers-color-scheme: dark) {
+			background: hsl(210, 30%, 8%);
+		}
+		@supports (color-scheme: light-dark(red, blue)) {
+			background: light-dark(var(--text-white), hsl(210, 30%, 8%));
+		}
 		color: var(--button-outline-text);
 		cursor: pointer;
 		transition: ease-in-out 0.2s;
