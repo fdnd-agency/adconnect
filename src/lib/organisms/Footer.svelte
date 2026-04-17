@@ -116,7 +116,13 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		background-color: var(--primary-blue);
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		}
 		border-radius: 1em 1em 0 0;
 
 		h2 {
@@ -126,9 +132,15 @@
 	}
 
 	.wrapper {
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		background-color: var(--primary-blue);
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		}
 		margin: 0;
-		color: #fff;
+		color: hsl(360 0% 100%);
 		display: flex;
 		flex-direction: column;
 		gap: 1.5em;
