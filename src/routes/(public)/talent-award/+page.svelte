@@ -30,8 +30,9 @@
 		slot="primary"
 		href="#benefit"
 		class="button-outline-white"
-		id="benefit">Lees meer →</a
-	>
+		id="benefit"
+		>Lees meer <span aria-hidden="true">→</span> <span class="visually-hidden">over aadee talent award</span>
+	</a>
 </Hero>
 
 <section class="intro">
