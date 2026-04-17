@@ -48,11 +48,23 @@
 
   /* Background colors */
   .bg-blue {
-    background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+    background-color: var(--blue-100);
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(210, 30%, 8%);
+    }
+    @supports (color-scheme: light-dark(red, blue)) {
+      background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+    }
   }
 
   .bg-white {
-    background-color: light-dark(white, var(--blue-800));
+    background-color: hsl(360 0% 100%);
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--blue-800);
+    }
+    @supports (color-scheme: light-dark(red, blue)) {
+      background-color: light-dark(hsl(360 0% 100%), var(--blue-800));
+    }
   }
 
   .wrapper {
