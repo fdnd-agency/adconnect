@@ -40,6 +40,7 @@
 		class="logo"
 		src={logomobile}
 		alt="Logo"
+		aria-hidden="true"
 		width="50"
 		height="50"
 	/>
@@ -54,6 +55,7 @@
 	<article class="light">
 		<img
 			class="logo"
+			aria-hidden="true"
 			src={logomobile}
 			alt="Logo"
 			width="50"
@@ -70,6 +72,7 @@
 	<article class="dark">
 		<img
 			class="logo"
+			aria-hidden="true"
 			src={logodark}
 			alt="Logo"
 			width="50"
@@ -86,6 +89,7 @@
 	<article class="light">
 		<img
 			class="logo"
+			aria-hidden="true"
 			src={logomobile}
 			alt="Logo"
 			width="50"
@@ -126,6 +130,7 @@
 <section class="nominate">
 	<img
 		class="logo"
+		aria-hidden="true"
 		src={logomobile}
 		alt="Logo"
 		width="50"
