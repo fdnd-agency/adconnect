@@ -108,7 +108,13 @@
 
 <style>
 	.admin-header {
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: var(--blue-100);
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+		@supports (color-scheme: light-dark(red, blue)){
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		}
 		width: 100%;
 		position: sticky;
 		top: 0;
@@ -125,7 +131,6 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-start;
-			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 		}
 	}
 
@@ -186,7 +191,13 @@
 		width: 28px;
 		height: 3px;
 		margin: 6px 0;
-		background-color: light-dark(var(--blue-800), var(--text-white));
+		background-color: var(--blue-800);
+		@media (prefers-color-scheme: dark) {
+			background-color: var(--text-white);
+		}
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--blue-800), var(--text-white))
+		}
 		border-radius: 2px;
 		transform-origin: center;
 		transition: all 0.3s ease;
@@ -208,14 +219,14 @@
 		position: fixed;
 		inset: 0;
 		z-index: 999;
-		background-color: rgba(0, 0, 0, 0);
+		background-color: hsl(360 100% 0%);
 		opacity: 0;
 		pointer-events: none;
 		transition: opacity 0.3s ease;
 	}
 
 	.menu[open]::before {
-		background: rgba(0, 0, 0, 0.25);
+		background: hsla(0 0% 0% / 0.25);
 		opacity: 1;
 		pointer-events: auto;
 	}
@@ -237,7 +248,13 @@
 
 	.menu[open] .panel {
 		transform: translateX(0);
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: var(--blue-100);
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		}
 	}
 
 	.menu[open] summary {
@@ -280,7 +297,14 @@
 		padding: 1em;
 		border-radius: var(--button-blue-radius);
 		border: 2px solid currentColor;
-		color: light-dark(var(--blue-800), var(--text-white));
+		color: var(--blue-800);
+		@media (prefers-color-scheme: dark) {
+			color: var(--text-white);
+		}
+		@supports (color-scheme: light-dark(red, blue)) {
+			color: light-dark(var(--blue-800), var(--text-white));
+		}
+
 		@media (min-width: 1000px) {
 			margin-top: auto;
 			width: 100%;
