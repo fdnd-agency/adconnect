@@ -32,6 +32,7 @@
 		<img
 			src={`${DIRECTUS_URL}/assets/${item.hero}`}
 			alt={item.title}
+			aria-hidden="true"
 		/>
 	</Hero>
 {/each}
