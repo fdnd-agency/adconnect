@@ -290,8 +290,14 @@
 		padding: 0.5em;
 		border: var(--button-outline-border);
 		border-radius: var(--button-outline-radius);
-		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
-		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+		background: var(--text-white);
+		@media (prefers-color-scheme: dark) {
+			background: hsl(210, 30%, 12%);
+		}
+		@supports (color-scheme: light-dark()) {
+			background: light-dark(var(--text-white), hsl(210, 30%, 12%));
+		}
+		box-shadow: 0 4px 16px hsla(0 0% 0% / 0.15);
 		min-width: 150px;
 		z-index: 100;
 		display: flex;
@@ -323,7 +329,7 @@
 	}
 
 	.btn-preview {
-		background-color: #8b5cf6;
+		background-color: hsl(258 89.5% 66.3%);
 		color: var(--text-white);
 	}
 
