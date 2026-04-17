@@ -111,16 +111,16 @@
 		<ul>
 			{#each data.nominations.filter((item) => item.header?.toLowerCase() === 'winnaar' && item.profile_picture) as winner (winner.id)}
 				<li>
-					<img
-						src={imageUrl(winner.profile_picture)}
-						alt={winner.title}
-						height="200px"
-						width="200px"
-					/>
 					<section>
 						<h3>{winner.title}</h3>
 						<p>{winner.excerpt}</p>
 					</section>
+					<img
+						src={imageUrl(winner.profile_picture)}
+						alt="{winner.title} met krullend haar, glimlachend naar de camera"
+						height="200px"
+						width="200px"
+					/>
 				</li>
 			{/each}
 		</ul>
@@ -328,7 +328,7 @@
 
 		li {
 			display: flex;
-			flex-direction: column;
+			flex-direction: column-reverse;
 			gap: 2em;
 			align-items: flex-start;
 
@@ -339,7 +339,7 @@
 			}
 
 			@media (min-width: 768px) {
-				flex-direction: row;
+				flex-direction: row-reverse;
 				align-items: center;
 			}
 		}
