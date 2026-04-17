@@ -17,7 +17,7 @@
   <section class="cards">
     <article class="card">
       <div class="wrapper-text">
-        <img class="logo" src={logomobile} alt="Logo" />
+        <img class="logo" src={logomobile} alt="Logo" aria-hidden="true"/>
         <h2>Programma</h2>
       </div>
       <p>
@@ -33,7 +33,7 @@
 
     <article class="card">
       <div class="wrapper-text">
-        <img class="logo" src={logomobile} alt="Logo" />
+        <img class="logo" src={logomobile} alt="Logo" aria-hidden="true"/>
         <h2>Workshops</h2>
       </div>
       <p>
