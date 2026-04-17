@@ -89,7 +89,16 @@
     width: 28px;
     height: 3px;
     margin: 6px 0;
-    background: light-dark(var(--blue-800), var(--blue-150));
+    background: var(--blue-800);
+
+    @media (prefers-color-scheme: dark) {
+      background: var(--blue-150);
+    }
+
+    @supports (color-scheme: light-dark(red, blue)) {
+     background: ight-dark(var(--blue-800), var(--blue-150)); 
+    }
+
     border-radius: 2px;
     transform-origin: center;
     transition: all 0.3s ease;
@@ -110,14 +119,14 @@
     position: fixed;
     inset: 0;
     z-index: 999;
-    background: rgba(0, 0, 0, 0);
+    background: hsla(0 0% 0% / 0);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
 
   .menu[open]::before {
-    background: rgba(0, 0, 0, 0.25);
+    background: hsla(0 0% 0% / 0.25);
     opacity: 1;
     pointer-events: auto;
   }
@@ -169,7 +178,16 @@
   }
   .panel a {
     display: block;
-    color: light-dark(var(--blue-800), var(--blue-150));
+    color: var(--blue-800);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--blue-150);
+    }
+
+    @supports (color-scheme: light-dark(red, blue)) {
+      color: light-dark(var(--blue-800), var(--blue-150));
+    }
+
     font-weight: 500;
     font-size: 1.2rem;
     text-decoration: none;
@@ -220,7 +238,16 @@
     /* Hover animatie menu items */
     .menu-button {
       font-weight: var(--heading-font-weight);
-      color: light-dark(var(--blue-800), var(--blue-150));
+      color: var(--blue-800);
+
+      @media (prefers-color-scheme: dark) {
+        color: var(--blue-150);
+      }
+
+      @supports (color-scheme: light-dark(red, blue)) {
+        color: light-dark(var(--blue-800), var(--blue-150));
+      }
+
       padding: 0.5rem 1rem;
     }
   }
@@ -241,7 +268,16 @@
   /* Hover animatie menu items */
   .menu-button {
     font-weight: var(--heading-font-weight);
-    color: light-dark(var(--blue-800), var(--blue-150));
+    color: var(--blue-800);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--150);
+    }
+
+    @supports (color-scheme: light-dark(red, blue)) {
+      color: light-dark(var(--blue-800), var(--blue-150));
+    }
+
     padding: 0.5rem 1rem;
     position: relative;
 
