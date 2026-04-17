@@ -51,9 +51,9 @@ export const actions = {
 		const data = await request.formData()
 		const { submitAction: rawSubmitAction = 'save', faqId: rawFaqId = '', ...submittedFormState } = Object.fromEntries(data.entries())
 		const submitAction = String(rawSubmitAction).trim()
-		const shouldPublish = submitAction === 'publish'
 		const faqId = String(rawFaqId ?? '').trim()
 		const isEditMode = faqId.length > 0
+		const shouldPublish = !isEditMode && submitAction === 'publish'
 		const rawQuestion = String(submittedFormState.question ?? '')
 		const rawAnswer = String(submittedFormState.answer ?? '')
 		const question = rawQuestion.trim()
@@ -82,7 +82,7 @@ export const actions = {
 			question,
 			answer,
 			important,
-			status: 'draft'
+			...(isEditMode ? {} : { status: 'draft' })
 		}
 
 		try {
@@ -128,7 +128,7 @@ export const actions = {
 
 			return {
 				success: true,
-				message: isEditMode ? 'Faq succesvol bijgewerkt als concept.' : 'Faq succesvol opgeslagen als concept.',
+				message: isEditMode ? 'Faq succesvol bijgewerkt.' : 'Faq succesvol opgeslagen als concept.',
 				faqId: finalFaqId
 			}
 		} catch (err) {

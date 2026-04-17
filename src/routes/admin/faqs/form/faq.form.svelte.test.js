@@ -228,7 +228,7 @@ describe('admin faqs form actions.default', () => {
 		expect(ContentService.updateContent).not.toHaveBeenCalled()
 	})
 
-	it('updates faq as draft when faqId is provided', async () => {
+	it('updates faq and preserves existing status when faqId is provided', async () => {
 		// Arrange: provide faqId to switch to edit mode.
 		// Why: in edit mode the action should call updateContent instead of postContent.
 		const event = createActionEvent({
@@ -244,28 +244,27 @@ describe('admin faqs form actions.default', () => {
 		// Assert: update flow returns update success message.
 		expect(result).toEqual({
 			success: true,
-			message: 'Faq succesvol bijgewerkt als concept.',
+			message: 'Faq succesvol bijgewerkt.',
 			faqId: 'faq-321'
 		})
 		// Assert: postContent is not called in edit mode.
 		expect(ContentService.postContent).not.toHaveBeenCalled()
-		// Assert: updateContent receives id, payload, type and token.
+		// Assert: updateContent receives id, payload, type and token without forcing draft status.
 		expect(ContentService.updateContent).toHaveBeenCalledWith(
 			'faq-321',
 			{
 				question: 'Wat is AD Connect?',
 				answer: 'AD Connect is een platform voor studenten en werkgevers.',
-				important: false,
-				status: 'draft'
+				important: false
 			},
 			'faqs',
 			'token-123'
 		)
 	})
 
-	it('publishes updated faq when submitAction is publish in edit mode', async () => {
+	it('ignores publish submitAction in edit mode and only saves update', async () => {
 		// Arrange: provide faqId and publish submit action.
-		// Why: edit + publish should run update first and publish the same id.
+		// Why: in edit mode only save is allowed, so status should be preserved.
 		const event = createActionEvent({
 			fields: {
 				faqId: 'faq-321',
@@ -273,21 +272,20 @@ describe('admin faqs form actions.default', () => {
 			}
 		})
 		ContentService.updateContent.mockResolvedValue({ success: true, id: 'faq-321' })
-		ContentService.publishContent.mockResolvedValue({ success: true })
 
 		// Act: execute the default action.
 		const result = await actions.default(event)
 
-		// Assert: action returns edit publish success payload.
+		// Assert: action returns edit save success payload.
 		expect(result).toEqual({
 			success: true,
-			message: 'Faq succesvol bijgewerkt en gepubliceerd.',
+			message: 'Faq succesvol bijgewerkt.',
 			faqId: 'faq-321'
 		})
 		// Assert: postContent is not called in edit mode.
 		expect(ContentService.postContent).not.toHaveBeenCalled()
-		// Assert: publish targets updated faq id.
-		expect(ContentService.publishContent).toHaveBeenCalledWith('faq-321', 'faqs', 'token-123')
+		// Assert: publish is never triggered in edit mode.
+		expect(ContentService.publishContent).not.toHaveBeenCalled()
 	})
 
 	it('returns 500 with update error when updateContent returns non-success in edit mode', async () => {

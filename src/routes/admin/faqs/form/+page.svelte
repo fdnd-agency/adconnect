@@ -119,16 +119,18 @@
 		>
 			{isSubmitting ? 'Opslaan...' : 'Opslaan'}
 		</button>
-		<button
-			type="submit"
-			name="submitAction"
-			value="publish"
-			class="button-outline-blue"
-			disabled={isSubmitting}
-			title="Publiceren"
-		>
-			{isSubmitting ? 'Publiceren...' : 'Publiceer'}
-		</button>
+		{#if !isEditMode}
+			<button
+				type="submit"
+				name="submitAction"
+				value="publish"
+				class="button-outline-blue"
+				disabled={isSubmitting}
+				title="Publiceren"
+			>
+				{isSubmitting ? 'Publiceren...' : 'Publiceer'}
+			</button>
+		{/if}
 	</div>
 </form>
 
