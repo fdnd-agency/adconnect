@@ -103,3 +103,91 @@ describe('ContentService property-based tests', () => {
 		)
 	})
 })
+
+describe('ContentService.updateContent', () => {
+	beforeEach(() => {
+		vi.restoreAllMocks()
+	})
+
+	it('returns 400 when item id is missing', async () => {
+		globalThis.fetch = vi.fn()
+
+		const result = await ContentService.updateContent('', { title: 'Nieuwe titel' }, 'documents', 'access-token')
+
+		expect(result.status).toBe(400)
+		expect(result.data.error).toBe('Bijwerken mislukt: Geen item id.')
+		expect(globalThis.fetch).not.toHaveBeenCalled()
+	})
+
+	it('patches content and returns updated item id', async () => {
+		globalThis.fetch = vi.fn().mockResolvedValue({
+			ok: true,
+			json: async () => ({ data: { id: 'doc-1' } })
+		})
+
+		const result = await ContentService.updateContent('doc-1', { title: 'Nieuwe titel' }, 'documents', 'access-token')
+
+		expect(globalThis.fetch).toHaveBeenCalledWith(
+			expect.stringContaining('/items/adconnect_documents/doc-1'),
+			expect.objectContaining({
+				method: 'PATCH',
+				headers: expect.objectContaining({
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer access-token'
+				}),
+				body: JSON.stringify({ title: 'Nieuwe titel' })
+			})
+		)
+		expect(result).toEqual({ success: true, id: 'doc-1' })
+	})
+
+	it('falls back to input id when Directus response does not include primary key', async () => {
+		globalThis.fetch = vi.fn().mockResolvedValue({
+			ok: true,
+			json: async () => ({ data: {} })
+		})
+
+		const result = await ContentService.updateContent('news-uuid-1', { title: 'Nieuws' }, 'news', 'access-token')
+
+		expect(result).toEqual({ success: true, id: 'news-uuid-1' })
+	})
+
+	it('returns parsed Directus error message when update fails', async () => {
+		globalThis.fetch = vi.fn().mockResolvedValue({
+			ok: false,
+			status: 400,
+			json: async () => ({
+				errors: [{ message: 'Value for slug has to be unique.' }]
+			})
+		})
+
+		const result = await ContentService.updateContent('doc-1', { slug: 'test' }, 'documents', 'access-token')
+
+		expect(result.status).toBe(400)
+		expect(result.data.error).toBe('Value for slug has to be unique.')
+	})
+
+	it('returns fallback message when failed update response cannot be parsed as json', async () => {
+		globalThis.fetch = vi.fn().mockResolvedValue({
+			ok: false,
+			status: 502,
+			json: async () => {
+				throw new Error('Invalid JSON')
+			}
+		})
+
+		const result = await ContentService.updateContent('doc-1', { title: 'Nieuwe titel' }, 'documents', 'access-token')
+
+		expect(result.status).toBe(502)
+		expect(result.data.error).toBe('Bijwerken mislukt (502).')
+	})
+
+	it('returns 500 when update request throws unexpectedly', async () => {
+		globalThis.fetch = vi.fn().mockRejectedValue(new Error('Network down'))
+
+		const result = await ContentService.updateContent('doc-1', { title: 'Nieuwe titel' }, 'documents', 'access-token')
+
+		expect(result.status).toBe(500)
+		expect(result.data.error).toBe('Bijwerken mislukt.')
+	})
+})
