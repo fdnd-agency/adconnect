@@ -15,6 +15,7 @@
 		alt={article.title}
 		width="300"
 		height="210"
+		aria-hidden="true"
 	/>
 
 	<div>
@@ -22,8 +23,7 @@
 		<p class="truncate two">{article.description}</p>
 		<a
 			class="button-outline-blue"
-			href="/nieuws/{article.uuid}"
-			aria-label="Meer informatie over {article.title}">Meer informatie</a
+			href="/nieuws/{article.uuid}">Meer informatie <span class="visually-hidden">over {article.title}</span></a
 		>
 	</div>
 </article>

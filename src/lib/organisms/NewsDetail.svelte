@@ -27,11 +27,12 @@
 			href="/nieuws"
 			class="button-outline-white"
 		>
-			Terug
+			Terug <span class="visually-hidden">naar nieuws pagina</span>
 		</a>
 		<img
 			src={`${DIRECTUS_URL}/assets/${item.hero}`}
 			alt={item.title}
+			aria-hidden="true"
 		/>
 	</Hero>
 {/each}

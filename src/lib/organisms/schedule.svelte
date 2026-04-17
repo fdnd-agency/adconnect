@@ -17,23 +17,23 @@
   <section class="cards">
     <article class="card">
       <div class="wrapper-text">
-        <img class="logo" src={logomobile} alt="Logo" />
+        <img class="logo" src={logomobile} alt="Logo" aria-hidden="true"/>
         <h2>Programma</h2>
       </div>
       <p>
         Programma in het kort (concept):<br />
-        09.30 – 10.00 | Inloop met koffie/thee<br />
-        10.00 – 13.00 | Opening, keynote, gesprekken en Ad Talent Award<br />
-        13.00 – 13.45 | Lunch<br />
-        13.45 – 15.30 | Workshops en excursies<br />
-        15.30 – 17.00 | Borrel & ontmoeting<br /><br />
+        <time datetime="09:30">09:30</time> <span class="visually-hidden">tot</span> – <time datetime="10:00">10:00</time> | Inloop met koffie/thee<br />
+        <time datetime="10:00">10:00</time> <span class="visually-hidden">tot</span> – <time datetime="13:00">13:00</time> | Opening, keynote, gesprekken en Ad Talent Award<br />
+        <time datetime="13:00">13:00</time> <span class="visually-hidden">tot</span> – <time datetime="13:45">10:00</time> | Lunch<br />
+        <time datetime="13:45">13:45</time> <span class="visually-hidden">tot</span> – <time datetime="15:30">15:30</time> | Workshops en excursies<br />
+        <time datetime="15:30">15:30</time> <span class="visually-hidden">tot</span> – <time datetime="17:00">17:00</time> | Borrel & ontmoeting<br />
       </p>
       <a class="button-outline-blue" href="#">Bekijk Programma </a>
     </article>
 
     <article class="card">
       <div class="wrapper-text">
-        <img class="logo" src={logomobile} alt="Logo" />
+        <img class="logo" src={logomobile} alt="Logo" aria-hidden="true"/>
         <h2>Workshops</h2>
       </div>
       <p>
