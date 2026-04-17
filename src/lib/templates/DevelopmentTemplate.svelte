@@ -30,7 +30,7 @@
 
 	<img
 		src={bird}
-		alt="Een vogel in een pak met een brill die een boek vasthoud"
+		alt="Een vogel in een pak met een bril die een boek vasthoud"
 	/>
 </div>
 
