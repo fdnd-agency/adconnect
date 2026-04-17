@@ -6,7 +6,7 @@
 </script>
 
 <article>
-  <h2 class="truncate two">{news.title}</h2>
+  <h2 class="truncate.two">{news.title}</h2>
 
   <div class="card-info">
     <span>
@@ -20,7 +20,7 @@
     </span>
   </div>
 
-  <p class="truncate two">{news.description}</p>
+  <p class="truncate.two">{news.description}</p>
 
   <a class="button-outline-blue" href="/nieuws/{news.slug}"> Meer informatie </a>
 </article>
@@ -30,14 +30,14 @@
     display: flex;
     flex-direction: column;
     gap: 1.5em;
-    border: 1px solid #cccccc;
+    border: 1px solid hsl(0 0% 80%);
     border-radius: 1em;
     padding: 2em;
     transition: 0.2s ease-in-out;
   }
   article:hover {
-    border: 1px solid #00408d;
-    box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+    border: 1px solid hsl(213 100% 27.6%);
+    box-shadow: 0 3px 10px hsla(0 0% 55.3% / 0.2);
     translate: 0 -1%;
   }
   .card-info {

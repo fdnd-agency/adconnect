@@ -32,10 +32,18 @@
 
 <style>
   .wrapper-hero {
-    background-color: light-dark(var(--blue-100), var(--blue-800));
+    background-color: var(--blue-100);
     justify-content: center;
     display: flex;
     padding: 2.3em 0 0 0;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--blue-800);
+    }
+
+    @supports (color-scheme: light-dark()) {
+      background-color: light-dark(var(--blue-100), var(--blue-800));
+    }
   }
 
   .hero {
@@ -51,19 +59,40 @@
   }
 
   .hero-light {
-    background-color: light-dark(var(--blue-100), var(--blue-800));
+    background-color: var(--blue-100);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--blue-800);
+    }
+
+    @supports (color-scheme: light-dark()) {
+      background-color: light-dark(var(--blue-100), var(--blue-800));
+    }
 
     h1 {
-      color: light-dark(var(--blue-800), var(--text-white));
+      color: var(--blue-800);
+
+      @media (prefers-color-scheme: dark) {
+        color: var(--text-white);
+      }
     }
   }
+  
 
   .hero-dark {
-    background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+    background-color: var(--primary-blue);
     color: var(--text-white);
 
     h1 {
       color: var(--text-white);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(210, 30%, 8%);
+    }
+
+    @supports (color-scheme: light-dark()) {
+      background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
     }
   }
 

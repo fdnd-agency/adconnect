@@ -49,7 +49,13 @@
 
 <style>
   .schedule {
-    background-color: light-dark(var(--primary-blue), var(--blue-800));
+    background-color: var(--primary-blue);
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--blue-800);
+    }
+    @supports (color-scheme: light-dark(red, blue)){
+      background-color: light-dark(var(--primary-blue), var(--blue-800));
+    }
     color: var(--text-white);
     padding: 2em;
     margin: auto;
@@ -77,14 +83,20 @@
     margin-bottom: 2em;
 
     article {
-      border: 1px solid #cccccc;
+      border: 1px solid hsl(0 0% 80%);
       border-radius: 1em;
       padding: 2em;
       transition: 0.2s ease-in-out;
       display: flex;
       flex-direction: column;
       gap: 1em;
-      background-color: light-dark(var(--text-white), hsl(210, 30%, 8%));
+      background-color: var(--text-white);
+      @media (prefers-color-scheme: dark) {
+        background-color: hsl(210, 30%, 8%);
+      }
+      @supports (color-scheme: light-dark(red, blue)){
+        background-color: light-dark(var(--text-white), hsl(210, 30%, 8%));
+      }
       text-align: center;
       margin: 0 auto;
 
@@ -93,8 +105,8 @@
       }
 
       &:hover {
-        border: 1px solid #00408d;
-        box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+        border: 1px solid hsl(213 100% 27.6%);
+        box-shadow: 0 3px 10px hsla(0 0% 55.3% / 0.2);
         translate: 0 -1%;
         transition: 0.2s ease-in-out;
       }
@@ -111,7 +123,13 @@
     grid-row: span 4;
     border: 1px solid var(--text-white);
     background-color: var(--text-white);
-    color: light-dark(var(--primary-blue), var(--text-white));
+    color: var(--primary-blue);
+    @media (prefers-color-scheme: dark) {
+      color: var(--text-white);
+    }
+    @supports (color-scheme: light-dark(red, blue)){
+      color: light-dark(var(--primary-blue), var(--text-white));
+    }
     border-radius: 24px;
     padding: 2em;
 
