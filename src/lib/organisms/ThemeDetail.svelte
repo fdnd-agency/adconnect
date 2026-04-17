@@ -123,7 +123,13 @@
 		flex-direction: column;
 		gap: 1em;
 		padding: 2em;
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		background-color: var(--primary-blue);
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+		@supports (color-scheme: light-dark()) {
+			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		}
 		color: var(--text-white);
 		border-radius: 1em;
 
