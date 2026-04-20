@@ -260,7 +260,7 @@
 	.cards-ta article.light {
 		background-color: var(--blue-100);
 		border: 1.5px solid var(--primary-blue);
-		color: var(--text-white);
+		color: var(--blue-800);
 
 		@media (prefers-color-scheme: dark) {
 			background-color: hsl(210, 30%, 8%);
