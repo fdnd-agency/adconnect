@@ -9,6 +9,8 @@
 
 	const { themes } = data
 	const { cooperation } = data
+
+	// console.log(doorstroom)
 </script>
 
 <svelte:head>
@@ -19,12 +21,13 @@
 	title="Over Associate Degree's"
 	description="Associate Degrees zijn praktijkgerichte opleidingen van twee jaar die studenten voorbereiden op het werkveld en doorstroom naar een bachelor."
 >
-	<img
-		class="hero-image"
+	<enhanced:img
 		src={overad}
-		alt=""
+		alt="A description"
 		fetchpriority="high"
+		loading="eager"
 	/>
+
 	<a
 		slot="primary"
 		href="#benefit"
