@@ -252,9 +252,18 @@
 	}
 
 	.cards-ta article.light {
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: var(--blue-100);
 		border: 1.5px solid var(--primary-blue);
-		color: light-dark(var(--blue-800), var(--text-white));
+		color: var(--text-white);
+
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+			color: var(--text-white);
+		}
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+			color: light-dark(var(--blue-800), var(--text-white));
+		}
 	}
 
 	section {
@@ -314,11 +323,19 @@
 	}
 
 	.previous-winners {
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: var(--blue-100);
 		padding: 2rem;
 		border-radius: 15px;
 		width: 90%;
 		max-width: 1000px;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		}
 
 		li {
 			display: flex;
