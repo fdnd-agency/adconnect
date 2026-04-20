@@ -15,7 +15,16 @@
 		text-decoration: none;
 		font-weight: 600;
 		font-size: 1.2em;
-		color: light-dark(var(--blue-800), var(--text-white));
+		color: var(--blue-800);
+
+		@media (prefers-color-scheme: dark) {
+			color: var(--text-white);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			color: light-dark(var(--blue-800), var(--text-white));
+		}
+
 		padding: 0.5em 1em;
 		position: relative;
 	}
