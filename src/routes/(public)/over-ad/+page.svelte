@@ -117,11 +117,19 @@
 		gap: 3em;
 		align-self: center;
 		margin: auto;
-		background-color: light-dark(var(--text-white), var(--blue-800));
+		background-color: var(--text-white);
 
 		@media (min-width: 1024px) {
 			padding: 5em 5%;
 			gap: 4em;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			background-color: var(--blue-800);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--text-white), var(--blue-800));
 		}
 	}
 
@@ -151,18 +159,26 @@
 		flex-direction: column;
 		align-items: center;
 		width: 100%;
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: var(--blue-100);
 		padding: 0 0 3em 0;
 
 		@media (min-width: 768px) {
 			gap: 3em;
 			padding: 0 0 5em 0;
 		}
+
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		}
 	}
 
 	/* Themes section */
 	.themes {
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: var(--blue-100);
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -172,6 +188,14 @@
 
 		@media (min-width: 768px) {
 			padding: 0 0 5em 0;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 		}
 	}
 
