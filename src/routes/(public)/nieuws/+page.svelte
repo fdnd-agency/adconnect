@@ -125,9 +125,18 @@
 			border: 1px solid var(--neutral-700);
 			border-radius: 1em;
 			padding: 2em;
-			background: light-dark(var(--text-white), hsl(210, 30%, 8%));
+			background: var(--text-white);
 			transition: 0.2s ease-in-out;
 			height: 100%;
+
+			@media (prefers-color-scheme: dark) {
+				background: hsl(210, 30%, 8%);
+			}
+
+			@supports (color-scheme: light-dark(red, blue)) {
+				background: light-dark(var(--text-white), hsl(210, 30%, 8%));
+			}
+			
 			h2 {
 				max-width: 30ch;
 			}
@@ -154,7 +163,7 @@
 
 	article:hover {
 		border-color: var(--blue-900);
-		box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+		box-shadow: 0 3px 10px hsla(0 0% 55.3% / 0.2);
 		translate: 0 -1%;
 	}
 
