@@ -1,31 +1,39 @@
 import { ContentService } from '$lib/server/contentService.js'
+import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
 
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van de faq.'
 const GENERIC_PUBLISH_WARNING = 'Faq opgeslagen als concept, maar publiceren is mislukt.'
 
 export const actions = {
-	// Handles form submission: validates input, creates a faq,
-	// and optionally publishes it.
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
-		const submitAction = String(data.get('submitAction') ?? 'save').trim()
+		const { submitAction: rawSubmitAction = 'save', ...submittedFormState } = extractFormState(data, {
+			checkboxFields: ['important']
+		})
+		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
-		const question = String(data.get('question') ?? '').trim()
-		const answer = String(data.get('answer') ?? '').trim()
-		const important = data.get('important') === 'on'
+		const rawQuestion = String(submittedFormState.question ?? '')
+		const rawAnswer = String(submittedFormState.answer ?? '')
+		const question = rawQuestion.trim()
+		const answer = rawAnswer.trim()
+		const important = submittedFormState.important === true
 		const token = cookies.get('access_token')
 
+		submittedFormState.question = rawQuestion
+		submittedFormState.answer = rawAnswer
+		submittedFormState.important = important
+
 		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR })
+			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		}
 
 		if (!question) {
-			return fail(400, { error: 'Vul een vraag in.' })
+			return fail(400, { error: 'Vul een vraag in.', ...submittedFormState })
 		}
 
 		if (!answer) {
-			return fail(400, { error: 'Vul een antwoord in.' })
+			return fail(400, { error: 'Vul een antwoord in.', ...submittedFormState })
 		}
 
 		const payload = {
@@ -39,8 +47,8 @@ export const actions = {
 			const createResult = await ContentService.postContent(payload, 'faqs', token)
 
 			if (!createResult?.success) {
-				console.error('[faqs/form] Faq create failed:', createResult)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				console.error('[faqs/create] Faq create failed:', createResult)
+				return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 			}
 
 			if (shouldPublish) {
@@ -48,7 +56,7 @@ export const actions = {
 					const publishResult = await ContentService.publishContent(createResult.id, 'faqs', token)
 
 					if (!publishResult?.success) {
-						console.error('[faqs/form] Publish failed:', publishResult)
+						console.error('[faqs/create] Publish failed:', publishResult)
 						return {
 							success: true,
 							message: GENERIC_PUBLISH_WARNING,
@@ -56,7 +64,7 @@ export const actions = {
 						}
 					}
 				} catch (err) {
-					console.error('[faqs/form] Unexpected error during publish:', err)
+					console.error('[faqs/create] Unexpected error during publish:', err)
 					return {
 						success: true,
 						message: GENERIC_PUBLISH_WARNING,
@@ -77,8 +85,8 @@ export const actions = {
 				faqId: createResult.id
 			}
 		} catch (err) {
-			console.error('[faqs/form] Unexpected error during create:', err)
-			return fail(500, { error: GENERIC_CREATE_ERROR })
+			console.error('[faqs/create] Unexpected error during create:', err)
+			return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		}
 	}
 }
