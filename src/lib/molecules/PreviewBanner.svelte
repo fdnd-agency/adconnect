@@ -53,7 +53,7 @@
 
 		@media (prefers-color-scheme: dark) {
 			background: var(--blue-800);
-			border: var(--neutral-700);
+			border-color: var(--neutral-700);
 			color: var(--text-white);
 		}
 
@@ -94,7 +94,7 @@
 		box-shadow: 0 0 0 3px hsla(10 80% 55% / 0.27);
 
 		@supports (color-mix(in oklch, red 30%, blue 30%)) {
-			box-shadow: color-mix(in srgb, var(--primary-orange) 28%, transparent);
+			box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-orange) 28%, transparent);
 		}
 
 		animation: pulse 2s infinite;
@@ -153,12 +153,12 @@
 
 		@media (prefers-color-scheme: dark) {
 			color: var(--text-white);
-			border: var(--neutral-600);
+			border-color: var(--neutral-600);
 		}
 
 		@supports (color-scheme: light-dark(red, blue)) {
 			color: light-dark(var(--blue-800), var(--text-white));
-			border: light-dark(var(--blue-300), var(--neutral-600));
+			border-color: light-dark(var(--blue-300), var(--neutral-600));
 		}
 	}
 
