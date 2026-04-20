@@ -141,7 +141,7 @@
   /* Outline White Button */
   --button-blue-bg: var(--primary-blue);
   --button-blue-text: var(--text-white);
-  --button-blue-border: 1.5px solid var(--text-white);
+  --button-blue-border: 1.5px solid var(--primary-orange);
   --button-blue-radius: 15px;
   --button-blue-padding: 1.1rem 1.8rem;
   --button-blue-font-size: 16px;
@@ -159,7 +159,7 @@
   /* Older browsers that have access to darkmode */
   @media (prefers-color-scheme: dark) {
      --background: hsl(210, 30%, 8%);
-     --button-outline-border: var(--primary-orange);
+     --button-outline-border: 1.5px solid var(--primary-orange);
   }
 
   /* Features that function on newer browsers */
