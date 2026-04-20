@@ -20,7 +20,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-color: rgba(0, 0, 0, 0.45);
+		background-color: hsla(0 0% 0% / 0.45);
 	}
 
 	.loading-content {
@@ -28,7 +28,7 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 1em;
-		color: #fff;
+		color: hsl(0 0% 100%);
 		font-family: var(--font-heading, sans-serif);
 		font-size: 1.1rem;
 	}
