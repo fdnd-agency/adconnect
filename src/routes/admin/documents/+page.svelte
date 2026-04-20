@@ -17,6 +17,10 @@
 
 	const documents = $derived(data.documents ? [...data.documents.values()] : [])
 
+	function documentEditHref(doc) {
+		return `/admin/documents/${encodeURIComponent(doc.id)}/edit`
+	}
+
 	const filtered = $derived(
 		documents
 			.filter((doc) => {
@@ -41,7 +45,7 @@
 	{directusBase}
 	contentType="adconnect_documents"
 	breadcrumb="Documenten"
-	addHref="/admin/documents/form"
+	addHref="/admin/documents/create"
 />
 
 <AdminToolbar
@@ -58,6 +62,7 @@
 	{filtered}
 	{directusBase}
 	contentType="adconnect_documents"
+	editHrefBuilder={documentEditHref}
 	labels={{
 		single: 'document',
 		multiple: 'documenten'
