@@ -71,8 +71,16 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		background-color: var(--primary-blue);
 		border-radius: 1em 1em 0 0;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		}
 
 		h2 {
 			color: var(--text-white);
@@ -81,9 +89,9 @@
 	}
 
 	.wrapper {
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		background-color: var(--primary-blue);
 		margin: 0;
-		color: #fff;
+		color: hsl(0 0% 100%);
 		display: flex;
 		flex-direction: column;
 		gap: 1.5em;
@@ -92,6 +100,14 @@
 		width: 90%;
 		align-self: center;
 		padding: 2em 0;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		}
 
 		@media (min-width: 768px) {
 			display: grid;
@@ -109,7 +125,7 @@
 	}
 
 	a {
-		color: #fff;
+		color: hsl(0 0% 100%);
 		text-decoration: none;
 		display: block;
 		transition: 0.2s ease-in-out;
@@ -159,7 +175,7 @@
 
 	.divider {
 		height: 1px;
-		background-color: #fff;
+		background-color: hsl(0 0% 100%);
 		grid-column: 1 / -1;
 	}
 
