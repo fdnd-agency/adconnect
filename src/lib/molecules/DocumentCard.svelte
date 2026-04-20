@@ -21,14 +21,14 @@
         display: flex;
         flex-direction: column;
         gap: 1.5em;
-        border: 1px solid #CCCCCC;
+        border: 1px solid hsl(0 0% 80%);
         border-radius: 1em;
         padding: 2em;
         transition: .2s ease-in-out;
 
         &:hover {
-            border: 1px solid #00408D;
-            box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+            border: 1px solid hsl(213 100% 27.6%);
+            box-shadow: 0 3px 10px hsla(0 0% 55.3% / 0.2);
             translate: 0 -1%;
             transition: .2s ease-in-out;
         }
