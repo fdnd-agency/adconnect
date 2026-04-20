@@ -2,7 +2,7 @@
 	/** @type {{ data: { user: any } }} */
 	const { data } = $props()
 	import dots from '$lib/assets/dots.svg'
-	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question } from '$lib'
+	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question, LadoNetwork } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	import AdminUserMenu from '$lib/molecules/AdminUserMenu.svelte'
 	import AdminStatItem from '$lib/molecules/AdminStatItem.svelte'
@@ -17,7 +17,8 @@
 		{ label: 'Nominaties', count: data.nominationCount },
 		{ label: 'Nieuws', count: data.newsCount },
 		{ label: 'Samenwerkingen', count: data.cooperationCount },
-		{ label: "FAQ's", count: data.faqCount }
+		{ label: "FAQ's", count: data.faqCount },
+		{ label: "Lado's", count: data.ladoCount }
 	])
 
 	const items = [
@@ -27,7 +28,8 @@
 		{ icon: CupStar, label: 'Nominaties', collection: 'adconnect_nominations' },
 		{ icon: NewsPaper, label: 'Nieuws', collection: 'adconnect_news' },
 		{ icon: Collaborate, label: 'Samenwerkingen', collection: 'adconnect_collaborations', iconHeight: '50px' },
-		{ icon: Question, label: "FAQ's", collection: 'adconnect_faqs', iconHeight: '50px' }
+		{ icon: Question, label: "FAQ's", collection: 'adconnect_faqs', iconHeight: '50px' },
+		{ icon: LadoNetwork, label: "Lado's", collection: 'adconnect_lados', iconHeight: '50px' }
 	]
 </script>
 
@@ -90,7 +92,9 @@
 										? '/admin/cooperations/form'
 										: item.collection === 'adconnect_events'
 											? '/admin/events/form'
-											: `${directusBase}/${item.collection}/+`}
+											: item.collection === 'adconnect_lados'
+												? '/admin/lados/create'
+												: `${directusBase}/${item.collection}/+`}
 				iconHeight={item.iconHeight}
 			/>
 		{/each}

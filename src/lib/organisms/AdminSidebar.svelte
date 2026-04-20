@@ -14,7 +14,8 @@
 		{ href: '/admin/nominations', label: 'Nominaties', activePath: '/admin/nominations' },
 		{ href: '/admin/news', label: 'Nieuws', activePath: '/admin/news' },
 		{ href: '/admin/cooperations', label: 'Samenwerkingen', activePath: '/admin/cooperations' },
-		{ href: '/admin/faqs', label: "FAQ's", activePath: '/admin/faqs' }
+		{ href: '/admin/faqs', label: "FAQ's", activePath: '/admin/faqs' },
+		{ href: '/admin/lados', label: "Lado's", activePath: '/admin/lados' }
 	]
 
 	let menuElement = $state(null)
