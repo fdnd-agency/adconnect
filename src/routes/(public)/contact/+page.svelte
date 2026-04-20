@@ -174,12 +174,28 @@
 			padding: 5em 5%;
 			gap: 1.5em;
 		}
+
+		@media (prefers-color-scheme: dark) {
+			background-color: var(--blue-800);
+		}
+		
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--blue-100), var(--blue-800));
+		}
 	}
 
 	.breadcrumbs {
 		margin: 0 0 -1em 0;
 		:global(a) {
-			color: light-dark(var(--blue-800), var(--text-white));
+			color: var(--blue-800);
+
+			@media (prefers-color-scheme: dark) {
+				color: var(--text-white);
+			}
+
+			@supports (color-scheme: light-dark(red, blue)) {
+				color: light-dark(var(--blue-800), var(--text-white));
+			}
 		}
 	}
 
@@ -213,7 +229,7 @@
 
 	.wrapper-form {
 		width: 100%;
-		background-color: light-dark(var(--text-white), var(--primary-blue));
+		background-color: var(--text-white);
 		border: 1px solid var(--neutral-300);
 		border-radius: 1em;
 		padding: 1.5em;
@@ -222,6 +238,14 @@
 		align-items: left;
 		justify-content: center;
 		gap: 1em;
+
+		@media (prefers-color-scheme: dark) {
+			background-color: var(--primary-blue);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--text-white), var(--primary-blue));
+		}
 	}
 
 	@media (min-width: 768px) {
@@ -243,11 +267,19 @@
 		gap: 0.8em;
 
 		.strict {
-			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+			background-color: var(--blue-100);
 			padding: 0.5em 1em;
 			width: fit-content;
 			height: fit-content;
 			border-radius: 0.5em;
+
+			@media (prefers-color-scheme: dark) {
+				background-color: hsl(210 30% 8%);
+			}
+
+			@supports (color-scheme: light-dark(red, blue)) {
+				background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+			}
 		}
 
 		.orange {
@@ -278,7 +310,7 @@
 			font-size: var(--p-s-size);
 			color: var(--blue-800);
 			padding: 0.9em;
-			background-color: #f2f2f2;
+			background-color: hsl(0 0% 94.9%);
 			border: 1px solid var(--neutral-300);
 			border-radius: 0.5em;
 			margin: 0.5em 0 0 0;
