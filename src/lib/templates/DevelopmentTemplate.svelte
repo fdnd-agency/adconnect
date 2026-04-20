@@ -43,9 +43,11 @@
 		width: 90%;
 		max-width: 1400px;
 		padding: 3em 0;
+		padding-top: 9em;
 
 		@media (min-width: 768px) {
 			padding: 5em 0;
+			padding-top: 10em;
 			flex-direction: row-reverse;
 		}
 
@@ -93,6 +95,14 @@
 
 		a {
 			color: var(--blue-800);
+
+			@media (prefers-color-scheme: dark) {
+				color: var(--text-white);
+			}
+
+			@supports (color-scheme: light-dark(red, blue)) {
+				color: light-dark(var(--blue-800), var(--text-white))
+			}
 
 			&:hover {
 				color: var(--primary-orange);
