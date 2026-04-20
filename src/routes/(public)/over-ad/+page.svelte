@@ -23,7 +23,7 @@
 >
 	<enhanced:img
 		src={overad}
-		alt="A description"
+		alt=""
 		fetchpriority="high"
 		loading="eager"
 	/>
