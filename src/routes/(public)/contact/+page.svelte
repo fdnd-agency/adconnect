@@ -166,7 +166,7 @@
 <style>
 	.contact-hero {
 		box-sizing: border-box;
-		background-color: light-dark(var(--blue-100), var(--blue-800));
+		background-color: var(--blue-100);
 		width: 100%;
 		padding: 3em 5%;
 		display: flex;
@@ -293,13 +293,14 @@
 
 			@supports (color-scheme: light-dark(red, blue)) {
 				background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+			}
 			@media (min-width: 768px) {
 				order: -1;
 			}
-		}
 
-		.orange {
-			color: var(--primary-orange);
+			.orange {
+				color: var(--primary-orange);
+			}
 		}
 	}
 
@@ -343,12 +344,12 @@
 
 	input:invalid:not(:placeholder-shown),
 	textarea:invalid:not(:placeholder-shown) {
-		outline: 2px solid red;
+		outline: 2px solid hsl(0 100% 50%);
 	}
 
 	input:valid,
 	textarea:valid {
-		outline: 2px solid rgb(1, 213, 5);
+		outline: 2px solid hsl(121 99.1% 42%);
 	}
 
 	.contact-info {
