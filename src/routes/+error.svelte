@@ -104,6 +104,14 @@
 		a {
 			color: var(--blue-800);
 
+			@media (prefers-color-scheme: dark) {
+				color: var(--text-white);
+			}
+
+			@supports (color-scheme: light-dark(red, blue)) {
+				color: light-dark(var(--blue-800), var(--text-white))
+			}
+
 			&:hover {
 				color: var(--primary-orange);
 			}
