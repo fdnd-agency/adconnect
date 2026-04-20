@@ -12,11 +12,11 @@
 
 <style>
     .error {
-        color: red;
+        color: hsl(0 100% 50%);
         display: flex;
         align-items: baseline;
         gap: 1em;
-        background-color: #FFE4E4;
+        background-color: hsl(0 100% 94.7%);
         padding: .3em;
         border-radius: .5em;
     }
