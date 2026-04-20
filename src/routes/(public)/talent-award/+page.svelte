@@ -1,7 +1,7 @@
 <script>
 	import logomobile from '$lib/assets/logomobile.svg'
 	import logodark from '$lib/assets/logomobiledark.svg'
-	import Talent from '$lib/assets/ad-talent-awards.jpg'
+	import Talent from '$lib/assets/ad-talent-awards.jpg?enhanced'
 
 	const { data } = $props()
 
@@ -20,7 +20,7 @@
 	title="Ad Talent Award"
 	description="Jaarlijks reikt het Overlegplatform de Ad Talent Award uit aan twee Associate degree-talenten, die worden benoemd tot landelijke Ad-ambassadeurs. Alle aangesloten hogescholen kunnen een Ad-talent nomineren. De winnaars ontvangen de award tijdens de jaarlijkse Ad-dag en vertegenwoordigen het Ad-onderwijs in Nederland."
 >
-	<img
+	<enhanced:img
 		class="hero-image"
 		src={Talent}
 		alt=""
