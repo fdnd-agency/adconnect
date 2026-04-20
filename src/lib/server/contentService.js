@@ -320,6 +320,58 @@ export class ContentService {
 		}
 	}
 
+	/**
+	 * Updates existing content with the specified fields.
+	 *
+	 * @param {string} id - Id of the existing content item.
+	 * @param {Object} data - Object containing fields to update.
+	 * @param {string} contentType - A key from #collections identifying the collection to update in.
+	 * @param {string | null} accessToken - Pass the access_token cookie value to authenticate the request.
+	 * @returns {Promise<{success: true, id: string} | import('@sveltejs/kit').ActionFailure>}
+	 */
+	static async updateContent(id, data, contentType, accessToken = null) {
+		if (!accessToken) {
+			return fail(403, { error: 'Bijwerken mislukt: Unauthorized' })
+		}
+
+		if (!id) {
+			return fail(400, { error: 'Bijwerken mislukt: Geen item id.' })
+		}
+
+		const config = this.#getConfig(contentType)
+		try {
+			const res = await fetch(`${this.#directusBase}/${config.path}/${id}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${accessToken}`
+				},
+				body: JSON.stringify(data)
+			})
+
+			if (!res.ok) {
+				let parsedError = null
+
+				try {
+					const errorJson = await res.json()
+					parsedError = errorJson?.errors?.[0]?.message ?? errorJson?.error?.message ?? errorJson?.message ?? null
+				} catch {
+					parsedError = null
+				}
+
+				return fail(res.status, { error: parsedError ?? `Bijwerken mislukt (${res.status}).` })
+			}
+
+			const json = await res.json()
+			const updatedItem = json?.data
+			const itemId = updatedItem?.[config.key] ?? id
+			return { success: true, id: itemId }
+		} catch (err) {
+			console.error('Failed to update content:', err)
+			return fail(500, { error: 'Bijwerken mislukt.' })
+		}
+	}
+
 	static async postContact(name, email, message) {
 		const contactAPI = `${this.#directusBase}/adconnect_contact`
 

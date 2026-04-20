@@ -1,6 +1,5 @@
 <script>
 	import { DIRECTUS_URL } from '$lib/constants.js'
-	import { enhance } from '$app/forms'
 	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
 	import AdminToolbar from '$lib/organisms/AdminToolbar.svelte'
 	import Count from '$lib/atoms/Count.svelte'
@@ -18,6 +17,10 @@
 	const faqs = $derived(data.faqs ? [...data.faqs.values()] : [])
 
 	const searchFields = ['question']
+
+	function faqEditHref(doc) {
+		return `/admin/faqs/${encodeURIComponent(doc.id)}/edit`
+	}
 
 	const filtered = $derived(
 		faqs
@@ -43,7 +46,7 @@
 	{directusBase}
 	contentType="adconnect_faqs"
 	breadcrumb="Faqs"
-	addHref="/admin/faqs/form"
+	addHref="/admin/faqs/create"
 />
 
 <AdminToolbar
@@ -60,6 +63,7 @@
 	{filtered}
 	{directusBase}
 	contentType="adconnect_faqs"
+	editHrefBuilder={faqEditHref}
 	labels={{
 		single: 'faq',
 		multiple: 'faqs',

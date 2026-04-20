@@ -2,7 +2,13 @@
 	import { enhance } from '$app/forms'
 	import { loading } from '$lib/stores/loadingStore'
 
-	const { filtered, directusBase, contentType, labels = { single: 'item', multiple: 'items', title: 'title', gender: 'dit' } } = $props()
+	const {
+		filtered,
+		directusBase,
+		contentType,
+		labels = { single: 'item', multiple: 'items', title: 'title', gender: 'dit' },
+		editHrefBuilder = null
+	} = $props()
 
 	let openPopup = $state(null)
 
@@ -68,10 +74,10 @@
 					{#if openPopup === doc.id}
 						<div class="action-popup">
 							<a
-								href="{directusBase}/{contentType}/{doc.id}"
+								href={editHrefBuilder ? editHrefBuilder(doc) : `${directusBase}/${contentType}/${doc.id}`}
 								class="popup-btn btn-edit"
-								target="_blank"
-								rel="noopener noreferrer"
+								target={editHrefBuilder ? undefined : '_blank'}
+								rel={editHrefBuilder ? undefined : 'noopener noreferrer'}
 								onclick={() => {
 									openPopup = null
 								}}

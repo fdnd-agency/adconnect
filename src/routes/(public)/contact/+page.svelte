@@ -92,6 +92,8 @@
 					method="POST"
 					use:enhance={formSubmit}
 				>
+					<p class="strict">Velden met een '<span class="orange">*</span>' zijn verplicht</p>
+
 					<input
 						type="hidden"
 						name="access_key"
@@ -107,7 +109,9 @@
 						name="from_name"
 						value="Overlegplatform Ad"
 					/>
-					<label for="name"
+					<label
+						for="name"
+						class="name"
 						><p>Naam + Achternaam<span>*</span></p>
 						<input
 							type="text"
@@ -117,7 +121,9 @@
 							required
 						/>
 					</label>
-					<label for="email"
+					<label
+						for="email"
+						class="email"
 						><p>E-mailadres<span>*</span></p>
 						<input
 							type="email"
@@ -142,8 +148,6 @@
 						class="button-outline-white"
 						type="submit">Formulier verzenden</button
 					>
-
-					<p class="strict">Velden met een '<span class="orange">*</span>' zijn verplicht</p>
 
 					<!-- Error state -->
 					<ErrorState {status} />
@@ -256,8 +260,8 @@
 			gap: 1em;
 		}
 
-		.contact-form label:nth-child(6) {
-			grid-column: 1 / -1; /* full-width */
+		.contact-form label:nth-child(7) {
+			grid-column: 1 / -1;
 		}
 	}
 
@@ -266,8 +270,18 @@
 		flex-direction: column;
 		gap: 0.8em;
 
+		.name {
+			grid-column: 1/2;
+		}
+
+		.email {
+			grid-column: 2/3;
+		}
+
 		.strict {
-			background-color: var(--blue-100);
+			grid-row: 3;
+			grid-column: 2/3;
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 			padding: 0.5em 1em;
 			width: fit-content;
 			height: fit-content;
@@ -279,6 +293,8 @@
 
 			@supports (color-scheme: light-dark(red, blue)) {
 				background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+			@media (min-width: 768px) {
+				order: -1;
 			}
 		}
 

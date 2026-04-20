@@ -21,8 +21,9 @@
 		<a
 			class="button-outline-blue"
 			href={`/over-ad/${theme.slug}`}
-			aria-label="Meer informatie over {theme.title}">Meer informatie</a
-		>
+			>Meer informatie
+			<span class="visually-hidden">over {theme.title}</span>
+		</a>
 	</article>
 {/each}
 

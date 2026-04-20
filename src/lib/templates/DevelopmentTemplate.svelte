@@ -13,11 +13,6 @@
 	class="wrapper-error"
 	id="main"
 >
-	<img
-		src={bird}
-		alt="404 error"
-	/>
-
 	<section>
 		<h1>Deze pagina is in ontwikkeling</h1>
 		<p>De pagina die je probeert te bereiken is op dit moment in ontwikkeling. Navigeer naar een van onze werkende pagina's hieronder.</p>
@@ -32,12 +27,17 @@
 			<li><a href="/contact">Contact</a></li>
 		</ul>
 	</section>
+
+	<img
+		src={bird}
+		alt="Een vogel in een pak met een bril die een boek vasthoud"
+	/>
 </div>
 
 <style>
 	.wrapper-error {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		gap: 1em;
 		margin: auto;
 		width: 90%;
@@ -46,7 +46,7 @@
 
 		@media (min-width: 768px) {
 			padding: 5em 0;
-			flex-direction: row;
+			flex-direction: row-reverse;
 		}
 
 		img {

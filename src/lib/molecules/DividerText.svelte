@@ -3,9 +3,9 @@
 </script>
 
 <div class="divider-container">
-    <hr class="line" />
+    <hr class="line" aria-hidden="true"/>
     <p>{text}</p>
-    <hr class="line" />
+    <hr class="line" aria-hidden="true"/>
 </div>
 
 <style>

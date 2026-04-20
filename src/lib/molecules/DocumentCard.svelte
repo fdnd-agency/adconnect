@@ -4,6 +4,12 @@
 
     // Import images
     import { fallback, calendar, label } from '$lib'
+
+    // Limit description text for screenreaders
+    function truncateWords(text, limit = 20) {
+        // split text into words, return the first 20 words
+        return text.split(/\s+/).slice(0, limit).join(' ') + '…';
+    }
 </script>
 
 <article>
@@ -12,7 +18,7 @@
         <span><img src="{label}" alt=""><p>{document.category?.title ?? 'Geen categorie'}</p></span>
         <span><img src="{calendar}" alt=""><p>{document.date?.slice(0, 4) ?? 'Geen datum'}</p></span>
     </div>
-    <p class="truncate two">{document.description}</p>
+    <p class="truncate two">{truncateWords(document.description, 20)}</p>
     <a class="button-outline-blue" href="/publicaties/{document.slug}" aria-label="Meer informatie over {document.title}">Meer informatie</a>
 </article>
 

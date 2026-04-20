@@ -35,6 +35,8 @@
 				{#each data.latest3 as item (item.uuid)}
 					<li>
 						<article>
+							<h2>{item.title}</h2>
+
 							<section class="date">
 								<img
 									src={calendar}
@@ -43,7 +45,6 @@
 								<p>{formatDateNL(item.date)}</p>
 							</section>
 
-							<h2>{item.title}</h2>
 							<p>{item.description}</p>
 
 							<a
@@ -68,6 +69,8 @@
 			{#each data.latest9 as item (item.uuid)}
 				<li>
 					<article>
+						<h2>{item.title}</h2>
+
 						<section class="date">
 							<img
 								src={calendar}
@@ -76,7 +79,6 @@
 							<p>{formatDateNL(item.date)}</p>
 						</section>
 
-						<h2>{item.title}</h2>
 						<p>{item.description}</p>
 
 						<a
@@ -139,6 +141,7 @@
 			
 			h2 {
 				max-width: 30ch;
+				grid-row: 2;
 			}
 			p {
 				max-width: 60ch;

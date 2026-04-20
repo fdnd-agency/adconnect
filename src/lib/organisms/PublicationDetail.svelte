@@ -14,12 +14,12 @@
 
 <Hero
 	title={data.document.title}
-	description={`${data.document.description.split(' ').slice(0, 20).join(' ')}...`}
 >
 	<img
 		class="hero-image"
 		src={`${DIRECTUS_URL}/assets/${data.document.hero_image}?format=webp`}
 		alt={data.document.title}
+		aria-hidden="true"
 		fetchpriority="high"
 	/>
 </Hero>

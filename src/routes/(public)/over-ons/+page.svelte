@@ -24,6 +24,7 @@
 		class="hero-image"
 		src={doorstroom}
 		alt="Waarom AdConnect?"
+		aria-hidden="true"
 		fetchpriority="high"
 	/>
 </Hero>
@@ -33,6 +34,7 @@
 		class="logo"
 		src={logomobile}
 		alt="Ad Talent Award Logo"
+		aria-hidden="true"
 		width="50"
 		height="50"
 	/>
@@ -80,6 +82,7 @@
 		class="logo"
 		src={logomobile}
 		alt="Ad Talent Award Logo"
+		aria-hidden="true"
 		width="50"
 		height="50"
 	/>
