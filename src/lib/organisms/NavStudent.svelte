@@ -97,7 +97,7 @@ summary span {
   transition: opacity .3s ease;
 }
 
-.menu[open]::before { background: hsla(0 0% 0% 0.25%); opacity: 1; pointer-events: auto; }
+.menu[open]::before { background: hsla(0 0% 0% / 0.25); opacity: 1; pointer-events: auto; }
 
 .panel {
   display: flex;
