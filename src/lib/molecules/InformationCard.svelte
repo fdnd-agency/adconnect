@@ -25,7 +25,16 @@
 
 <style>
   .info-card {
-    background: light-dark(var(--background), var(--blue-800)); /* light panel */
+    background: var(--background);/* light panel */
+
+    @media (prefers-color-scheme: dark) {
+      background: var(--blue-800);
+    }
+
+    @supports (color-scheme: light-dark(red, blue)) {
+      background: light-dark(var(--background), var(--blue-800));
+    }
+
     border-radius: 20px;
     padding: 2rem;
     display: flex;
@@ -46,7 +55,15 @@
   }
 
   .info-card-desc {
-    color: light-dark(#0e3a40, var(--text-white));
+    color: hsl(187 64.1% 15.3%);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--text-white);
+    }
+
+    @supports (color-scheme: light-dark(red, blue)) {
+      color: light-dark(hsl(187 64.1% 15.3%), var(--text-white));
+    }
   }
 
   @media (min-width: 768px) {
