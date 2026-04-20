@@ -84,7 +84,6 @@
   }
 
   .hero-media {
-    width: 100%;
     display: flex;
 
     :global(img) {
@@ -105,8 +104,6 @@
     }
 
     .hero-media {
-      width: 50%;
-
       :global(img) {
         height: 25em;
       }
