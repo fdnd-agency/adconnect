@@ -83,7 +83,7 @@
 						: item.collection === 'adconnect_themes'
 							? '/admin/themes/form'
 							: item.collection === 'adconnect_faqs'
-								? '/admin/faqs/form'
+								? '/admin/faqs/create'
 								: item.collection === 'adconnect_news'
 									? '/admin/news/form'
 									: item.collection === 'adconnect_collaborations'
