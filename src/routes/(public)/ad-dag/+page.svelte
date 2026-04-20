@@ -130,7 +130,16 @@
 	.info-addag {
 		display: flex;
 		flex-direction: column;
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		background-color: var(--blue-100);
+
+		@media (prefers-color-scheme: dark) {
+			background-color: hsl(210, 30%, 8%);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+		}
+
 		gap: 2em;
 		padding: 3em 5%;
 		box-sizing: border-box;
