@@ -481,9 +481,13 @@
 		font-family: var(--font-body);
 		font-size: 0.95rem;
 		font-weight: var(--weight-medium);
-		color: var(--primary-blue);
+		color: light-dark(var(--primary-blue), var(--text-white));
 		text-decoration: underline;
 		text-underline-offset: 0.18em;
+	}
+
+	.add-link:hover {
+		color: light-dark(var(--primary-orange), var(--text-white));
 	}
 
 	.field-help {
