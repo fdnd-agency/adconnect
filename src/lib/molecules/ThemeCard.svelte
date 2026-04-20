@@ -28,19 +28,27 @@
 
 <style>
 	article {
-		border: 1px solid #cccccc;
+		border: 1px solid hsl(0 0% 80%);
 		border-radius: 1em;
 		padding: 2em;
 		transition: 0.2s ease-in-out;
 		display: flex;
 		flex-direction: column;
 		gap: 1em;
-		background-color: light-dark(var(--text-white), var(--blue-800));
 		flex: 1;
+		background-color: var(--text-white);
+
+		@media (prefers-color-scheme: dark) {
+			background-color: var(--blue-800);
+		}
+
+		@supports (color-scheme: light-dark(red, blue)) {
+			background-color: light-dark(var(--text-white), var(--blue-800));
+		}
 
 		&:hover {
-			border: 1px solid #00408d;
-			box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+			border: 1px solid hsl(213 100% 27.6%);
+			box-shadow: 0 3px 10px hsla(0 0% 55.3% / 0.2);
 			translate: 0 -1%;
 			transition: 0.2s ease-in-out;
 		}
