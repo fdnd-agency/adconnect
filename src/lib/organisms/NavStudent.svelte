@@ -91,13 +91,13 @@ summary span {
   position: fixed;
   inset: 0;
   z-index: 999;
-  background: rgba(0,0,0,0);
+  background: hsla(0 0% 0% / 0);
   opacity: 0;
   pointer-events: none;
   transition: opacity .3s ease;
 }
 
-.menu[open]::before { background: rgba(0,0,0,.25); opacity: 1; pointer-events: auto; }
+.menu[open]::before { background: hsla(0 0% 0% 0.25%); opacity: 1; pointer-events: auto; }
 
 .panel {
   display: flex;
