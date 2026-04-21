@@ -41,7 +41,7 @@
       background-color: var(--blue-800);
     }
 
-    @supports (color-scheme: light-dark()) {
+    @supports (color: light-dark(red, blue)) {
       background-color: light-dark(var(--blue-100), var(--blue-800));
     }
   }
@@ -65,7 +65,7 @@
       background-color: var(--blue-800);
     }
 
-    @supports (color-scheme: light-dark()) {
+    @supports (color: light-dark(red, blue)) {
       background-color: light-dark(var(--blue-100), var(--blue-800));
     }
 
@@ -95,7 +95,7 @@
       background-color: hsl(210, 30%, 8%);
     }
 
-    @supports (color-scheme: light-dark()) {
+    @supports (color: light-dark(red, blue)) {
       background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
     }
   }
