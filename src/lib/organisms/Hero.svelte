@@ -87,6 +87,10 @@
       color: var(--text-white);
     }
 
+    p {
+      color: var(--text-white);
+    }
+
     @media (prefers-color-scheme: dark) {
       background-color: hsl(210, 30%, 8%);
     }
