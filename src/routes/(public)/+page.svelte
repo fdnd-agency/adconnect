@@ -30,7 +30,7 @@
 		href="/over-ad"
 		class="button-outline-blue">Meer over Ad's</Link
 	>
-	<img
+	<enhanced:img
 		class="hero-image"
 		src={zaal}
 		alt=""
@@ -88,7 +88,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	bullets={['Praktijkgericht leren en direct vaardigheden toepassen', 'Korte studieduur van 2 jaar', 'Doorstromen naar een bacheloropleiding mogelijk']}
 	ctaText="Meer over Associate degrees"
 	ctaLink="/over-ad"
-	imageSrc="/images/award.jpg"
+	imageSrc="/images/award.jpg?enhanced"
 	imageAlt="Studenten bij AdTalent award"
 />
 

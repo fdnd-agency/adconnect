@@ -1,6 +1,6 @@
 <script>
 	import dots from '$lib/assets/dots.svg'
-	import imageSrc from '$lib/assets/doorstroom-ad-dag.webp'
+	import imageSrc from '$lib/assets/doorstroom-ad-dag.webp?enhanced'
 
 	export let title = ''
 	export let intro = ''
@@ -53,7 +53,7 @@
 
 	<div class="feature-media">
 		{#if imageSrc}
-			<img
+			<enhanced:img
 				class="feature-img"
 				src={imageSrc}
 				alt={imageAlt}

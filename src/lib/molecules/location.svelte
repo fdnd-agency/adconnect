@@ -11,7 +11,7 @@
   opnemen
 </p>
 
-<img class="location-img" src={locationImage} alt="" width="600" height="300" />
+<enhanced:img class="location-img" src={locationImage} alt="" width="600" height="300" />
 
 <style>
   p {

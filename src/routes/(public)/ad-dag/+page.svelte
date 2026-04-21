@@ -21,7 +21,7 @@
 	uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of
 	blijf op de hoogte "
 >
-	<img
+	<enhanced:img
 		class="hero-image"
 		src={Addag}
 		alt=""

@@ -28,7 +28,7 @@
 		</ul>
 	</section>
 
-	<img
+	<enhanced:img
 		src={bird}
 		alt="Een vogel in een pak met een bril die een boek vasthoud"
 	/>

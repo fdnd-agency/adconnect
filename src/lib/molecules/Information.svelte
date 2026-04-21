@@ -23,7 +23,7 @@
   </div>
 
   <div class="information-image">
-    <img src={overad} alt={imageAlt} aria-hidden="true" width="550" height="250"/>
+    <enhanced:img src={overad} alt={imageAlt} aria-hidden="true" width="550" height="250"/>
   </div>
 </section>
 
