@@ -43,7 +43,7 @@
 			background-color: var(--blue-800);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			background-color: light-dark(var(--text-white), var(--blue-800));
 		}
 

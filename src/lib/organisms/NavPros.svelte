@@ -87,7 +87,7 @@
       background: var(--blue-150);
     }
 
-    @supports (color-scheme: light-dark(red, blue)) {
+    @supports (color: light-dark(red, blue)) {
      background: ight-dark(var(--blue-800), var(--blue-150)); 
     }
 
@@ -176,7 +176,7 @@
       color: var(--blue-150);
     }
 
-    @supports (color-scheme: light-dark(red, blue)) {
+    @supports (color: light-dark(red, blue)) {
       color: light-dark(var(--blue-800), var(--blue-150));
     }
 
@@ -233,7 +233,7 @@
         color: var(--blue-150);
       }
 
-      @supports (color-scheme: light-dark(red, blue)) {
+      @supports (color: light-dark(red, blue)) {
         color: light-dark(var(--blue-800), var(--blue-150));
       }
 
@@ -263,7 +263,7 @@
       color: var(--150);
     }
 
-    @supports (color-scheme: light-dark(red, blue)) {
+    @supports (color: light-dark(red, blue)) {
       color: light-dark(var(--blue-800), var(--blue-150));
     }
 

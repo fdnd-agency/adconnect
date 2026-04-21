@@ -120,7 +120,7 @@
 		@media (prefers-color-scheme: dark) {
 			background-color: hsl(210, 30%, 8%);
 		}
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 		}
 		border-radius: 1em 1em 0 0;
@@ -136,7 +136,7 @@
 		@media (prefers-color-scheme: dark) {
 			background-color: hsl(210, 30%, 8%);
 		}
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 		}
 		margin: 0;

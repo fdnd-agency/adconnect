@@ -57,7 +57,7 @@
 			color: var(--text-white);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			background: light-dark(var(--blue-100), var(--blue-800));
 			border: 1px solid light-dark(var(--blue-200), var(--neutral-700));
 			color: light-dark(var(--blue-800), var(--text-white));
@@ -111,7 +111,7 @@
 			color: var(--neutral-200);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			color: light-dark(var(--neutral-700), var(--neutral-200));
 		}
 
@@ -125,7 +125,7 @@
 			color: var(--text-white);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			color: light-dark(var(--blue-800), var(--text-white));
 		}
 
@@ -156,7 +156,7 @@
 			border-color: var(--neutral-600);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			color: light-dark(var(--blue-800), var(--text-white));
 			border-color: light-dark(var(--blue-300), var(--neutral-600));
 		}
@@ -169,7 +169,7 @@
 			background-color: var(--neutral-800);
 		}
 
-		@supports (color-scheme: light-dark()) {
+		@supports (color: light-dark()) {
 			background-color: light-dark(var(--text-white), var(--neutral-800));
 		}
 		

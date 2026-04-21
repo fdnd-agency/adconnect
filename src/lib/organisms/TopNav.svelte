@@ -51,7 +51,7 @@
 			background-color: var(--blue-800);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			background-color: light-dark(var(--blue-150), var(--blue-800));
 		}
 	}
@@ -79,7 +79,7 @@
 				color: hsl(0 0% 100%);
 			}
 
-			@supports (color-scheme: light-dark(red, blue)) {
+			@supports (color: light-dark(red, blue)) {
 				color: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
 			}
 

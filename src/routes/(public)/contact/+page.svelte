@@ -183,7 +183,7 @@
 			background-color: var(--blue-800);
 		}
 		
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			background-color: light-dark(var(--blue-100), var(--blue-800));
 		}
 	}
@@ -197,7 +197,7 @@
 				color: var(--text-white);
 			}
 
-			@supports (color-scheme: light-dark(red, blue)) {
+			@supports (color: light-dark(red, blue)) {
 				color: light-dark(var(--blue-800), var(--text-white));
 			}
 		}
@@ -247,7 +247,7 @@
 			background-color: var(--primary-blue);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			background-color: light-dark(var(--text-white), var(--primary-blue));
 		}
 	}
@@ -291,7 +291,7 @@
 				background-color: hsl(210 30% 8%);
 			}
 
-			@supports (color-scheme: light-dark(red, blue)) {
+			@supports (color: light-dark(red, blue)) {
 				background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 			}
 			@media (min-width: 768px) {

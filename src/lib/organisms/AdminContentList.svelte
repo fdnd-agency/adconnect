@@ -300,7 +300,7 @@
 		@media (prefers-color-scheme: dark) {
 			background: hsl(210, 30%, 12%);
 		}
-		@supports (color-scheme: light-dark()) {
+		@supports (color: light-dark()) {
 			background: light-dark(var(--text-white), hsl(210, 30%, 12%));
 		}
 		box-shadow: 0 4px 16px hsla(0 0% 0% / 0.15);

@@ -31,7 +31,7 @@
       background: var(--blue-800);
     }
 
-    @supports (color-scheme: light-dark(red, blue)) {
+    @supports (color: light-dark(red, blue)) {
       background: light-dark(var(--background), var(--blue-800));
     }
 
@@ -61,7 +61,7 @@
       color: var(--text-white);
     }
 
-    @supports (color-scheme: light-dark(red, blue)) {
+    @supports (color: light-dark(red, blue)) {
       color: light-dark(hsl(187 64.1% 15.3%), var(--text-white));
     }
   }

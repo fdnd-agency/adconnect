@@ -53,7 +53,7 @@
     @media (prefers-color-scheme: dark) {
       background-color: var(--blue-800);
     }
-    @supports (color-scheme: light-dark(red, blue)){
+    @supports (color: light-dark(red, blue)){
       background-color: light-dark(var(--primary-blue), var(--blue-800));
     }
     color: var(--text-white);
@@ -94,7 +94,7 @@
       @media (prefers-color-scheme: dark) {
         background-color: hsl(210, 30%, 8%);
       }
-      @supports (color-scheme: light-dark(red, blue)){
+      @supports (color: light-dark(red, blue)){
         background-color: light-dark(var(--text-white), hsl(210, 30%, 8%));
       }
       text-align: center;
@@ -127,7 +127,7 @@
     @media (prefers-color-scheme: dark) {
       color: var(--text-white);
     }
-    @supports (color-scheme: light-dark(red, blue)){
+    @supports (color: light-dark(red, blue)){
       color: light-dark(var(--primary-blue), var(--text-white));
     }
     border-radius: 24px;

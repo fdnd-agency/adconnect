@@ -21,7 +21,7 @@
 			color: var(--text-white);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			color: light-dark(var(--blue-800), var(--text-white));
 		}
 

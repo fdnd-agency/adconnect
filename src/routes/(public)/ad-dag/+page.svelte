@@ -136,7 +136,7 @@
 			background-color: hsl(210, 30%, 8%);
 		}
 
-		@supports (color-scheme: light-dark(red, blue)) {
+		@supports (color: light-dark(red, blue)) {
 			background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 		}
 

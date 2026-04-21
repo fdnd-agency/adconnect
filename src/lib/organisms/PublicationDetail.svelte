@@ -137,7 +137,7 @@
 		@media (prefers-color-scheme: dark) {
 			background-color: hsl(210, 30%, 8%);
 		}
-		@supports (color-scheme: light-dark(red, blue)){
+		@supports (color: light-dark(red, blue)){
 			background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 		}
 		color: var(--text-white);
