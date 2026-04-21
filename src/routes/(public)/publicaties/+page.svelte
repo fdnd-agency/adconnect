@@ -41,7 +41,7 @@
 	title="Publicaties"
 	description="Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs."
 >
-	<img
+	<enhanced:img
 		class="hero-image"
 		src={publicatie}
 		alt=""

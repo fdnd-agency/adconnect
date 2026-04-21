@@ -42,6 +42,8 @@
 		src={addag3}
 		alt=""
 		width="450px"
+		height="340px"
+		loading=lazy
 	/>
 </section>
 
@@ -50,6 +52,7 @@
 		class="logo"
 		src={logomobile}
 		alt=""
+		loading=lazy
 	/>
 	<h2>Alles wat je wilt weten over de Ad-dag?</h2>
 
@@ -82,6 +85,7 @@
 		alt=""
 		width="600"
 		height="300"
+		loading=lazy
 	/>
 </section>
 <Schedule />
@@ -99,9 +103,14 @@
 		align-self: center;
 		margin: auto;
 
-		img {
-			width: 100%;
-			border-radius: 1em;
+		picture {
+			max-width: 580px;
+
+			img {
+				width: 100%;
+				border-radius: 1em;
+				object-fit: cover;
+			}
 		}
 
 		article {
