@@ -21,7 +21,7 @@
     margin: 2em auto;
   }
 
-  img {
+  .location-img {
     display: block;
     margin: auto;
     width: 90%;
@@ -30,7 +30,7 @@
   }
 
   @media (min-width: 768px) {
-    img {
+    .location-img {
       width: 60%;
     }
   }

@@ -9,7 +9,7 @@
             <h3>Bedankt, je formulier is verzonden!</h3>
             <p>Jouw formulier is succesvol naar ons verzonden. We nemen zo snel mogelijk contact op per mail.</p>
         </div>
-        <img src="{birdcheck}" alt="">
+        <enhanced:img src="{birdcheck}" alt=""/>
     </section>
 {/if}
 

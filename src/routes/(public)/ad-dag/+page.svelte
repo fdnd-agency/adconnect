@@ -1,8 +1,8 @@
 <script>
 	import logomobile from '$lib/assets/logomobile.svg'
-	import addag1 from '$lib/assets/addag-1.png'
-	import addag2 from '$lib/assets/addag-2.png'
-	import addag3 from '$lib/assets/addag-3.webp'
+	import addag1 from '$lib/assets/addag-1.png?enhanced'
+	import addag2 from '$lib/assets/addag-2.png?enhanced'
+	import addag3 from '$lib/assets/addag-3.webp?enhanced'
 
 	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule } from '$lib'
 </script>
@@ -38,7 +38,7 @@
 			en aan organisaties. Het is tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt concrete ideeën mee om morgen toe te passen.
 		</p>
 	</article>
-	<img
+	<enhanced:img
 		src={addag3}
 		alt=""
 		width="450px"
@@ -76,7 +76,7 @@
 		/>
 	</MultipleFaq>
 
-	<img
+	<enhanced:img
 		class="addag-2"
 		src={addag2}
 		alt=""

@@ -3,7 +3,7 @@
 	export let article
 
 	// Import afbeeldingen
-	import fallback from '$lib/assets/news-fallback.jpg'
+	import fallback from '$lib/assets/news-fallback.jpg?enhanced'
 	import calendar from '$lib/assets/icon-calendar.svg'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'

@@ -9,8 +9,6 @@
 
 	const { themes } = data
 	const { cooperation } = data
-
-	// console.log(doorstroom)
 </script>
 
 <svelte:head>
