@@ -9,7 +9,7 @@
   export let placeholder = ''
 </script>
 
-<div class="wrapper-hero {$page.url.pathname === '/' ? 'hero-light' : 'hero-dark'}">
+<div class="wrapper-hero hero-light">
   <article class="hero" id="main">
     <section class="hero-content">
       <!-- Breadcrumbs -->
@@ -66,7 +66,7 @@
     }
 
     @supports (color: light-dark(red, blue)) {
-      background-color: light-dark(var(--blue-100), var(--blue-800));
+      background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
     }
 
     h1 {
@@ -75,28 +75,6 @@
       @media (prefers-color-scheme: dark) {
         color: var(--text-white);
       }
-    }
-  }
-  
-
-  .hero-dark {
-    background-color: var(--primary-blue);
-    color: var(--text-white);
-
-    h1 {
-      color: var(--text-white);
-    }
-
-    p {
-      color: var(--text-white);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--blue-800);
-    }
-
-    @supports (color: light-dark(red, blue)) {
-      background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
     }
   }
 
