@@ -3,19 +3,33 @@
 
 	const { form, cooperation = null, showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireLogo = true } = $props()
 
-	const initialName = $derived(cooperation?.name ?? '')
-	const initialUrl = $derived(cooperation?.url ?? '')
 	const currentLogoId = $derived(typeof cooperation?.logo === 'object' ? (cooperation?.logo?.id ?? '') : (cooperation?.logo ?? ''))
 
-	const nameValue = $derived(form?.name ?? initialName)
-	const urlValue = $derived(form?.url ?? initialUrl)
+	let name = $state('')
+	let url = $state('')
+
+	$effect(() => {
+		name = String(form?.name ?? cooperation?.name ?? '')
+		url = String(form?.url ?? cooperation?.url ?? '')
+	})
+
+	async function handleSuccess(result) {
+		if (resetOnSuccess) {
+			name = ''
+			url = ''
+		}
+
+		if (typeof onSuccess === 'function') {
+			await onSuccess(result)
+		}
+	}
 </script>
 
 <Form
 	{form}
 	{showPublishButton}
 	{resetOnSuccess}
-	{onSuccess}
+	onSuccess={handleSuccess}
 	hasFileFields={true}
 	formClass="cooperation-form"
 >
@@ -35,7 +49,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een naam in"
-			value={nameValue}
+			bind:value={name}
 			required
 		/>
 	</div>
@@ -59,7 +73,7 @@
 			type="url"
 			autocomplete="off"
 			placeholder="https://voorbeeld.nl"
-			value={urlValue}
+			bind:value={url}
 			required
 		/>
 	</div>
