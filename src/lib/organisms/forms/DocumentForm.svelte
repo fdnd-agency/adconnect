@@ -3,25 +3,40 @@
 
 	const { form, document = null, categories = [], showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireFiles = true } = $props()
 
-	const initialTitle = $derived(document?.title ?? '')
-	const initialDescription = $derived(document?.description ?? '')
-	const initialDate = $derived(typeof document?.date === 'string' ? document.date.slice(0, 10) : '')
-	const initialCategory = $derived(typeof document?.category === 'object' ? (document?.category?.id ?? '') : (document?.category ?? ''))
+	let title = $state('')
+	let description = $state('')
+	let date = $state('')
+	let category = $state('')
 
 	const currentHeroImageId = $derived(typeof document?.hero_image === 'object' ? (document?.hero_image?.id ?? '') : (document?.hero_image ?? ''))
 	const currentSourceFileId = $derived(typeof document?.source_file === 'object' ? (document?.source_file?.id ?? '') : (document?.source_file ?? ''))
 
-	const titleValue = $derived(form?.title ?? initialTitle)
-	const descriptionValue = $derived(form?.description ?? initialDescription)
-	const dateValue = $derived(form?.date ?? initialDate)
-	const categoryValue = $derived(form?.category ?? initialCategory)
+	$effect(() => {
+		title = String(form?.title ?? document?.title ?? '')
+		description = String(form?.description ?? document?.description ?? '')
+		date = String(form?.date ?? (typeof document?.date === 'string' ? document.date.slice(0, 10) : '') ?? '')
+		category = String(form?.category ?? (typeof document?.category === 'object' ? (document?.category?.id ?? '') : (document?.category ?? '')) ?? '')
+	})
+
+	async function handleSuccess(result) {
+		if (resetOnSuccess) {
+			title = ''
+			description = ''
+			date = ''
+			category = ''
+		}
+
+		if (typeof onSuccess === 'function') {
+			await onSuccess(result)
+		}
+	}
 </script>
 
 <Form
 	{form}
 	{showPublishButton}
 	{resetOnSuccess}
-	{onSuccess}
+	onSuccess={handleSuccess}
 	hasFileFields={true}
 	formClass="document-form"
 >
@@ -49,7 +64,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een titel in"
-			value={titleValue}
+			bind:value={title}
 			required
 		/>
 	</div>
@@ -60,8 +75,9 @@
 			id="description"
 			name="description"
 			placeholder="Voer een korte omschrijving in"
-			required>{descriptionValue}</textarea
-		>
+			required
+			bind:value={description}
+		></textarea>
 	</div>
 
 	<div class="field-group">
@@ -81,7 +97,7 @@
 			id="date"
 			name="date"
 			type="date"
-			value={dateValue}
+			bind:value={date}
 			required
 		/>
 	</div>
@@ -91,12 +107,12 @@
 		<select
 			id="category"
 			name="category"
-			value={categoryValue}
+			bind:value={category}
 			required
 		>
 			<option value="">Kies een categorie</option>
-			{#each categories as category (category.id)}
-				<option value={category.id}>{category.title}</option>
+			{#each categories as cat (cat.id)}
+				<option value={String(cat.id)}>{cat.title}</option>
 			{/each}
 		</select>
 	</div>
