@@ -15,7 +15,8 @@
 		srcset={`${DIRECTUS_URL}/assets/${article.hero}`}
 		width="300"
 		height="210"
-		borderRadius="0.5em"
+		border-radius="0.5em"
+		border="10px solid red"
 	/>
 
 	<div>
