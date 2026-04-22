@@ -28,144 +28,146 @@
   font-display: swap;
 }
 
-:root {
-  color-scheme: light dark;
+@layer state {
+  :root {
+    color-scheme: light dark;
 
-  /* =============== TYPOGRAPHY =============== */
+    /* =============== TYPOGRAPHY =============== */
 
-  /* Font families (CSS variables) */
-  --font-body: "Archivo", sans-serif;
-  --font-heading: "ClashDisplay", sans-serif;
+    /* Font families (CSS variables) */
+    --font-body: "Archivo", sans-serif;
+    --font-heading: "ClashDisplay", sans-serif;
 
-  /* Font-weight*/
-  --heading-font-weight: 600;
-  --button-font-weight: 400;
-  --ad-dag-font-weight: 500;
-  --text-font-weight: 300;
+    /* Font-weight*/
+    --heading-font-weight: 600;
+    --button-font-weight: 400;
+    --ad-dag-font-weight: 500;
+    --text-font-weight: 300;
 
-  /* Headings*/
-  --h1-size: clamp(1.875rem, 1.602rem + 1.1494vw, 2.5rem);
-  --h1-line-height: 1.2;
-  --h1-max-width: 60ch;
+    /* Headings*/
+    --h1-size: clamp(1.875rem, 1.602rem + 1.1494vw, 2.5rem);
+    --h1-line-height: 1.2;
+    --h1-max-width: 60ch;
 
-  --h2-size: clamp(1.5625rem, 1.3714rem + 0.8046vw, 2rem);
-  --h2-line-height: 1.3;
-  --h2-max-width: 65ch;
+    --h2-size: clamp(1.5625rem, 1.3714rem + 0.8046vw, 2rem);
+    --h2-line-height: 1.3;
+    --h2-max-width: 65ch;
 
-  --h3-size: clamp(1.375rem, 1.2658rem + 0.4598vw, 1.625rem);
-  --h3-line-height: 1.3;
-  --h3-max-width: 65ch;
+    --h3-size: clamp(1.375rem, 1.2658rem + 0.4598vw, 1.625rem);
+    --h3-line-height: 1.3;
+    --h3-max-width: 65ch;
 
-  --h4-size: 23px;
-  --h4-line-height: 1.4;
-  --h4-max-width: 70ch;
+    --h4-size: 23px;
+    --h4-line-height: 1.4;
+    --h4-max-width: 70ch;
 
-  --h5-size: 20px;
-  --h5-line-height: 1.4;
-  --h5-max-width: 70ch;
+    --h5-size: 20px;
+    --h5-line-height: 1.4;
+    --h5-max-width: 70ch;
 
-  /* Paragraphs */
-  --p-l-size: 19px;
-  --p-l-line-height: 1.6;
-  --p-l-max-width: 70ch;
+    /* Paragraphs */
+    --p-l-size: 19px;
+    --p-l-line-height: 1.6;
+    --p-l-max-width: 70ch;
 
-  --p-m-size: 18px;
-  --p-m-line-height: 1.7;
-  --p-m-max-width: 70ch;
+    --p-m-size: 18px;
+    --p-m-line-height: 1.7;
+    --p-m-max-width: 70ch;
 
-  --p-s-size: 17px;
-  --p-s-line-height: 1.8;
-  --p-s-max-width: 70ch;
+    --p-s-size: 17px;
+    --p-s-line-height: 1.8;
+    --p-s-max-width: 70ch;
 
-  --p-xs-size: 16px;
-  --p-xs-line-height: 1.8;
-  --p-xs-max-width: 70ch;
+    --p-xs-size: 16px;
+    --p-xs-line-height: 1.8;
+    --p-xs-max-width: 70ch;
 
-  --weight-light: 300;
-  --weight-regular: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
 
-  /* =============== COLOR =============== */
+    /* =============== COLOR =============== */
 
-  /* Base HSL system */
-  --blue-hue: 213;
-  --blue-sat: 100%;
+    /* Base HSL system */
+    --blue-hue: 213;
+    --blue-sat: 100%;
 
-  --orange-hue: 10;
-  --orange-sat: 80%;
+    --orange-hue: 10;
+    --orange-sat: 80%;
 
-  --neutral-hue: 213;
-  --neutral-sat: 10%;
+    --neutral-hue: 213;
+    --neutral-sat: 10%;
 
-  /*PRIMARY COLORS */
-  --primary-blue: hsl(var(--blue-hue), var(--blue-sat), 28%);
-  --primary-orange: hsl(var(--orange-hue), var(--orange-sat), 55%);
-  --background: hsl(0, 0%, 98%);
-  --text-white: hsl(0, 0%, 100%);
-  --text-darkblue: hsl(var(--blue-hue), var(--blue-sat), 5%);
+    /*PRIMARY COLORS */
+    --primary-blue: hsl(var(--blue-hue), var(--blue-sat), 28%);
+    --primary-orange: hsl(var(--orange-hue), var(--orange-sat), 55%);
+    --background: hsl(0, 0%, 98%);
+    --text-white: hsl(0, 0%, 100%);
+    --text-darkblue: hsl(var(--blue-hue), var(--blue-sat), 5%);
 
-  /*ACCENT COLORS*/
-  /* darker */
-  --blue-900: hsl(var(--blue-hue), var(--blue-sat), 8%);
-  --blue-800: hsl(var(--blue-hue), var(--blue-sat), 13%);
+    /*ACCENT COLORS*/
+    /* darker */
+    --blue-900: hsl(var(--blue-hue), var(--blue-sat), 8%);
+    --blue-800: hsl(var(--blue-hue), var(--blue-sat), 13%);
 
-  /* lighter */
-  --blue-600: hsl(var(--blue-hue), var(--blue-sat), 38%);
-  --blue-500: hsl(var(--blue-hue), var(--blue-sat), 48%);
-  --blue-400: hsl(var(--blue-hue), var(--blue-sat), 58%);
-  --blue-300: hsl(var(--blue-hue), var(--blue-sat), 68%);
-  --blue-200: hsl(var(--blue-hue), var(--blue-sat), 78%);
-  --blue-150: hsl(var(--blue-hue), var(--blue-sat), 90%);
-  --blue-100: hsl(var(--blue-hue), var(--blue-sat), 95%);
+    /* lighter */
+    --blue-600: hsl(var(--blue-hue), var(--blue-sat), 38%);
+    --blue-500: hsl(var(--blue-hue), var(--blue-sat), 48%);
+    --blue-400: hsl(var(--blue-hue), var(--blue-sat), 58%);
+    --blue-300: hsl(var(--blue-hue), var(--blue-sat), 68%);
+    --blue-200: hsl(var(--blue-hue), var(--blue-sat), 78%);
+    --blue-150: hsl(var(--blue-hue), var(--blue-sat), 90%);
+    --blue-100: hsl(var(--blue-hue), var(--blue-sat), 95%);
 
-  /* darker */
-  --orange-900: hsl(var(--orange-hue), var(--orange-sat), 45%);
+    /* darker */
+    --orange-900: hsl(var(--orange-hue), var(--orange-sat), 45%);
 
-  /* lighter */
-  --orange-500: hsl(var(--orange-hue), var(--orange-sat), 65%);
-  --orange-300: hsl(var(--orange-hue), var(--orange-sat), 75%);
-  --orange-100: hsl(var(--orange-hue), var(--orange-sat), 85%);
+    /* lighter */
+    --orange-500: hsl(var(--orange-hue), var(--orange-sat), 65%);
+    --orange-300: hsl(var(--orange-hue), var(--orange-sat), 75%);
+    --orange-100: hsl(var(--orange-hue), var(--orange-sat), 85%);
 
-  /*NEUTRAL COLORS*/
-  --neutral-900: hsl(var(--neutral-hue), var(--neutral-sat), 9%);
-  --neutral-800: hsl(var(--neutral-hue), var(--neutral-sat), 12%);
-  --neutral-700: hsl(var(--neutral-hue), var(--neutral-sat), 18%);
-  --neutral-600: hsl(var(--neutral-hue), var(--neutral-sat), 33%);
-  --neutral-500: hsl(var(--neutral-hue), var(--neutral-sat), 35%);
-  --neutral-300: hsl(var(--neutral-hue), var(--neutral-sat), 69%);
-  --neutral-200: hsl(var(--neutral-hue), var(--neutral-sat), 84%);
+    /*NEUTRAL COLORS*/
+    --neutral-900: hsl(var(--neutral-hue), var(--neutral-sat), 9%);
+    --neutral-800: hsl(var(--neutral-hue), var(--neutral-sat), 12%);
+    --neutral-700: hsl(var(--neutral-hue), var(--neutral-sat), 18%);
+    --neutral-600: hsl(var(--neutral-hue), var(--neutral-sat), 33%);
+    --neutral-500: hsl(var(--neutral-hue), var(--neutral-sat), 35%);
+    --neutral-300: hsl(var(--neutral-hue), var(--neutral-sat), 69%);
+    --neutral-200: hsl(var(--neutral-hue), var(--neutral-sat), 84%);
 
-  /* =============== BUTTONS =============== */
+    /* =============== BUTTONS =============== */
 
-  /* Outline White Button */
-  --button-blue-bg: var(--primary-blue);
-  --button-blue-text: var(--text-white);
-  --button-blue-border: 1.5px solid var(--text-white);
-  --button-blue-radius: 15px;
-  --button-blue-padding: 1.1rem 1.8rem;
-  --button-blue-font-size: 16px;
-  --button-blue-font-family: var(--font-heading);
+    /* Outline White Button */
+    --button-blue-bg: var(--primary-blue);
+    --button-blue-text: var(--text-white);
+    --button-blue-border: 1.5px solid var(--text-white);
+    --button-blue-radius: 15px;
+    --button-blue-padding: 1.1rem 1.8rem;
+    --button-blue-font-size: 16px;
+    --button-blue-font-family: var(--font-heading);
 
-  /* Outline Blue Button */
-  --button-outline-bg: var(--text-white);
-  --button-outline-text: light-dark(var(--primary-blue), var(--text-white));
-  --button-outline-border: 1.5px solid var(--primary-blue);
-  --button-outline-radius: 15px;
-  --button-outline-padding: 1.1rem 1.8rem;
-  --button-outline-font-size: 16px;
-  --button-outline-font-family: var(--font-heading);
+    /* Outline Blue Button */
+    --button-outline-bg: var(--text-white);
+    --button-outline-text: light-dark(var(--primary-blue), var(--text-white));
+    --button-outline-border: 1.5px solid var(--primary-blue);
+    --button-outline-radius: 15px;
+    --button-outline-padding: 1.1rem 1.8rem;
+    --button-outline-font-size: 16px;
+    --button-outline-font-family: var(--font-heading);
 
-  /* Older browsers that have access to darkmode */
-  @media (prefers-color-scheme: dark) {
-     --background: hsl(210, 30%, 8%);
-     --button-outline-border: 1.5px solid var(--primary-orange);
-  }
+    /* Older browsers that have access to darkmode */
+    @media (prefers-color-scheme: dark) {
+      --background: hsl(210, 30%, 8%);
+      --button-outline-border: 1.5px solid var(--primary-orange);
+    }
 
-  /* Features that function on newer browsers */
-  @supports (color: light-dark(red, blue)) {
-    --background: light-dark(hsl(0, 0%, 98%), hsl(210, 30%, 8%));
-    --button-outline-border: 1.5px solid light-dark(var(--primary-blue), var(--primary-orange));
+    /* Features that function on newer browsers */
+    @supports (color: light-dark(red, blue)) {
+      --background: light-dark(hsl(0, 0%, 98%), hsl(210, 30%, 8%));
+      --button-outline-border: 1.5px solid light-dark(var(--primary-blue), var(--primary-orange));
+    }
   }
 }
 
