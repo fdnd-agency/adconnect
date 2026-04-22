@@ -17,6 +17,10 @@
 
 	const news = $derived(data.news ? [...data.news.values()] : [])
 
+	function newsEditHref(article) {
+		return `/admin/news/${encodeURIComponent(article.id)}/edit`
+	}
+
 	const filtered = $derived(
 		news
 			.filter((doc) => {
@@ -41,7 +45,7 @@
 	{directusBase}
 	contentType="adconnect_news"
 	breadcrumb="Nieuwsartikelen"
-	addHref="/admin/news/form"
+	addHref="/admin/news/create"
 />
 
 <AdminToolbar
@@ -58,6 +62,7 @@
 	{filtered}
 	{directusBase}
 	contentType="adconnect_news"
+	editHrefBuilder={newsEditHref}
 	labels={{
 		single: 'nieuwsartikel',
 		multiple: 'nieuwsartikelen'
