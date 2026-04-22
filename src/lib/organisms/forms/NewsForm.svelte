@@ -3,6 +3,11 @@
 
 	const { form, article = null, showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireImage = true } = $props()
 
+	/**
+	 * Parses the tags value from the form data, ensuring it is an array of trimmed strings.
+	 * Handles both array and JSON string formats, and returns an empty array for invalid or empty input.
+	 * @param rawValue
+	 */
 	function parseTagsValue(rawValue) {
 		if (Array.isArray(rawValue)) {
 			return rawValue.map((tag) => String(tag).trim()).filter(Boolean)
@@ -61,6 +66,10 @@
 		}
 	}
 
+	/**
+     * Sets the custom validity of the tags input element based on whether there are any tags present.
+      If there are no tags, it sets a custom validity message prompting the user to add at least one tag.
+     */
 	function syncTagsValidity() {
 		if (!tagsInputElement) return
 		tagsInputElement.setCustomValidity(tags.length === 0 ? 'Voeg minimaal 1 tag toe met Enter.' : '')
