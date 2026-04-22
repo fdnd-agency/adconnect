@@ -1,7 +1,7 @@
 <script>
 	import Form from '$lib/organisms/forms/Form.svelte'
 
-	const { form, event = null, nominations = [], showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireImage = true } = $props()
+	const { form, event = null, nominations = [], selectedNominationIds: initialSelectedNominationIds = [], showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireImage = true } = $props()
 
 	function normalizeNominationIds(rawValue) {
 		if (Array.isArray(rawValue)) {
@@ -49,7 +49,6 @@
 	const initialTimeDuration = $derived(event?.time_duration ?? '')
 	const initialExcerpt = $derived(event?.excerpt ?? '')
 	const initialBody = $derived(event?.body ?? '')
-	const initialNominationIds = $derived(extractNominationIdsFromEvent(event?.nomination_id))
 	const currentHeroId = $derived(typeof event?.hero === 'object' ? (event?.hero?.id ?? '') : (event?.hero ?? ''))
 
 	const titleValue = $derived(form?.title ?? initialTitle)
@@ -60,7 +59,7 @@
 	const bodyValue = $derived(form?.body ?? initialBody)
 	const hasSubmittedNominationState = $derived(form != null && typeof form === 'object' && 'nomination_ids' in form)
 	const submittedNominationIds = $derived(normalizeNominationIds(form?.nomination_ids))
-	const nominationSeedIds = $derived(hasSubmittedNominationState ? submittedNominationIds : initialNominationIds)
+	const nominationSeedIds = $derived(hasSubmittedNominationState ? submittedNominationIds : normalizeNominationIds(initialSelectedNominationIds))
 
 	let selectedNominationIds = $state([])
 	let lastNominationSeedKey = $state('')
@@ -208,7 +207,7 @@
 								id={`nomination-${nomination.id}`}
 								type="checkbox"
 								name="nomination_ids"
-								value={nomination.id}
+								value={String(nomination.id)}
 								bind:group={selectedNominationIds}
 							/>
 							<span>{nomination.title ?? `Nominatie ${nomination.id}`}</span>
