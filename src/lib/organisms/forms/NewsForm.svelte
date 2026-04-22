@@ -3,11 +3,6 @@
 
 	const { form, article = null, showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireImage = true } = $props()
 
-	/**
-	 * Parses the tags value from the form data, ensuring it is an array of trimmed strings.
-	 * Handles both array and JSON string formats, and returns an empty array for invalid or empty input.
-	 * @param rawValue
-	 */
 	function parseTagsValue(rawValue) {
 		if (Array.isArray(rawValue)) {
 			return rawValue.map((tag) => String(tag).trim()).filter(Boolean)
@@ -25,24 +20,30 @@
 		}
 	}
 
-	const initialTitle = $derived(article?.title ?? '')
-	const initialDescription = $derived(article?.description ?? '')
-	const initialDate = $derived(typeof article?.date === 'string' ? article.date.slice(0, 10) : '')
-	const initialAuthor = $derived(article?.author ?? '')
-	const initialBody = $derived(article?.body ?? '')
-	const initialTags = $derived(parseTagsValue(article?.tags))
 	const currentHeroId = $derived(typeof article?.hero === 'object' ? (article?.hero?.id ?? '') : (article?.hero ?? ''))
 
-	const titleValue = $derived(form?.title ?? initialTitle)
-	const descriptionValue = $derived(form?.description ?? initialDescription)
-	const dateValue = $derived(form?.date ?? initialDate)
-	const authorValue = $derived(form?.author ?? initialAuthor)
-	const bodyValue = $derived(form?.body ?? initialBody)
-
+	let title = $state('')
+	let description = $state('')
+	let date = $state('')
+	let author = $state('')
+	let body = $state('')
 	let tags = $state([])
-	let tagsInitialized = $state(false)
 	let tagInput = $state('')
 	let tagsInputElement = $state()
+
+	$effect(() => {
+		title = String(form?.title ?? article?.title ?? '')
+		description = String(form?.description ?? article?.description ?? '')
+		date = String(form?.date ?? (typeof article?.date === 'string' ? article.date.slice(0, 10) : '') ?? '')
+		author = String(form?.author ?? article?.author ?? '')
+		body = String(form?.body ?? article?.body ?? '')
+		tags = parseTagsValue(form?.tags ?? article?.tags)
+	})
+
+	$effect(() => {
+		tags
+		syncTagsValidity()
+	})
 
 	function addTag() {
 		const value = tagInput.trim()
@@ -66,10 +67,6 @@
 		}
 	}
 
-	/**
-     * Sets the custom validity of the tags input element based on whether there are any tags present.
-      If there are no tags, it sets a custom validity message prompting the user to add at least one tag.
-     */
 	function syncTagsValidity() {
 		if (!tagsInputElement) return
 		tagsInputElement.setCustomValidity(tags.length === 0 ? 'Voeg minimaal 1 tag toe met Enter.' : '')
@@ -77,6 +74,11 @@
 
 	async function handleSuccess(result) {
 		if (resetOnSuccess) {
+			title = ''
+			description = ''
+			date = ''
+			author = ''
+			body = ''
 			tags = []
 			tagInput = ''
 			syncTagsValidity()
@@ -86,16 +88,6 @@
 			await onSuccess(result)
 		}
 	}
-
-	$effect(() => {
-		if (!tagsInitialized) {
-			tags = parseTagsValue(form?.tags ?? initialTags)
-			tagsInitialized = true
-		}
-
-		tags
-		syncTagsValidity()
-	})
 </script>
 
 <Form
@@ -122,7 +114,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een titel in"
-			value={titleValue}
+			bind:value={title}
 			required
 		/>
 	</div>
@@ -133,8 +125,9 @@
 			id="description"
 			name="description"
 			placeholder="Voer een korte omschrijving in"
-			required>{descriptionValue}</textarea
-		>
+			required
+			bind:value={description}
+		></textarea>
 	</div>
 
 	<div class="field-group">
@@ -154,7 +147,7 @@
 			id="date"
 			name="date"
 			type="date"
-			value={dateValue}
+			bind:value={date}
 			required
 		/>
 	</div>
@@ -167,7 +160,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een auteur in"
-			value={authorValue}
+			bind:value={author}
 			required
 		/>
 	</div>
@@ -214,8 +207,9 @@
 			id="body"
 			name="body"
 			placeholder="Voer de body in"
-			required>{bodyValue}</textarea
-		>
+			required
+			bind:value={body}
+		></textarea>
 	</div>
 </Form>
 
