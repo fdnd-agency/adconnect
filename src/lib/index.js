@@ -4,6 +4,7 @@ export { default as Link } from './atoms/Link.svelte'
 export { default as AdminNavLink } from './atoms/AdminNavLink.svelte'
 export { default as Count } from './atoms/Count.svelte'
 export { default as Error } from './atoms/Error.svelte'
+export { default as PictureImg } from './atoms/PictureImg.svelte'
 
 // Molecules
 export { default as SingleFaq } from './molecules/SingleFaq.svelte'

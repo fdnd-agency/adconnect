@@ -7,15 +7,15 @@
 	import calendar from '$lib/assets/icon-calendar.svg'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
+	import { PictureImg } from '$lib'
 </script>
 
 <article>
-	<img
-		src={`${DIRECTUS_URL}/assets/${article.hero}`}
-		alt={article.title}
+	<PictureImg
+		srcset={`${DIRECTUS_URL}/assets/${article.hero}`}
 		width="300"
 		height="210"
-		aria-hidden="true"
+		borderRadius="0.5em"
 	/>
 
 	<div>
@@ -43,7 +43,7 @@
 		}
 	}
 
-	article > img:first-of-type {
+	.img-container {
 		width: 100%;
 		border-radius: 0.5em;
 		object-fit: cover;
