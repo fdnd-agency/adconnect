@@ -163,7 +163,7 @@
   }
 
   /* Features that function on newer browsers */
-  @supports (color-scheme: light-dark(red, blue)) {
+  @supports (color: light-dark(red, blue)) {
     --background: light-dark(hsl(0, 0%, 98%), hsl(210, 30%, 8%));
     --button-outline-border: 1.5px solid light-dark(var(--primary-blue), var(--primary-orange));
   }
@@ -178,7 +178,7 @@ main {
     background-color: var(--blue-800);
   }
 
-  @supports (color-scheme: light-dark(red, blue)) {
+  @supports (color: light-dark(red, blue)) {
     background-color: light-dark(var(--text-white), var(--blue-800));
   }
 }
@@ -203,7 +203,7 @@ h6 {
     color: var(--text-white);
   }
 
-  @supports (color-scheme: light-dark(red, blue)) {
+  @supports (color: light-dark(red, blue)) {
     color: light-dark(var(--blue-800), var(--text-white));
   }
 
@@ -277,7 +277,7 @@ p {
     background: hsl(210, 30%, 8%);
   }
   
-  @supports (color-scheme: light-dark(red, blue)) {
+  @supports (color: light-dark(red, blue)) {
     background: light-dark(var(--text-white), hsl(210, 30%, 8%));
   }
 
