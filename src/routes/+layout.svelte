@@ -6,7 +6,7 @@
 
 <svelte:head>
   <link rel="icon" href={favicon} />
-  <link rel="stylesheet" href="/stylesheet.css"/>
+  <link rel="preload" as="style" href="/stylesheet.css" type="text/css"/>
 
   <!-- Fonts being loaded in -->
   <link rel="preload" as="font" href="/fonts/Archivo.woff2" type="font/woff2" crossorigin="anonymous"/>
