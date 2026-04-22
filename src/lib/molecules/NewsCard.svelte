@@ -12,7 +12,7 @@
 
 <article>
 	<PictureImg
-		srcset={`${DIRECTUS_URL}/assets/${article.hero}`}
+		src={`${DIRECTUS_URL}/assets/${article.hero}`}
 		width="300"
 		height="210"
 		border-radius="0.5em"

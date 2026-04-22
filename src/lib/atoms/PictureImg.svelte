@@ -1,6 +1,6 @@
 <script lang="ts">
 	type LoadingType = 'lazy' | 'eager' | undefined
-	let { srcset = undefined, width = undefined, height = undefined, alt = undefined, loading = 'lazy' as LoadingType, ...props } = $props()
+	let { src = undefined, width = undefined, height = undefined, alt = undefined, loading = 'lazy' as LoadingType, ...props } = $props()
 
 	let attributes = []
 	Object.entries(props).map(([key, value]) => {
@@ -9,18 +9,18 @@
 	let style = attributes.join(' ')
 </script>
 
-{#if srcset}
+{#if src}
 	<picture>
 		<source
 			type="image/avif"
-			{srcset}
+			srcset={`${src}?format=avif`}
 		/>
 		<source
 			type="image/webp"
-			{srcset}
+			srcset={`${src}?format=webp`}
 		/>
 		<img
-			src={srcset}
+			{src}
 			{width}
 			{height}
 			{alt}
