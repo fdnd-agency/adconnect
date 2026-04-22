@@ -1,4 +1,5 @@
 import { ContentService } from '$lib/server/contentService.js'
+import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
 import { Slugify } from '$lib/server/slugify.js'
 
@@ -13,7 +14,7 @@ async function rollbackUploadedFiles(fileIds, accessToken) {
 
 		const result = await ContentService.deleteFile(fileId, accessToken)
 		if (!result?.success) {
-			console.error(`[themes/form] Rollback failed for file ${fileId}`)
+			console.error(`[themes/create] Rollback failed for file ${fileId}`)
 		}
 	}
 }
@@ -23,42 +24,45 @@ export const actions = {
 	// and optionally publishes it.
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
-		const submitAction = String(data.get('submitAction') ?? 'save').trim()
+		const { submitAction: rawSubmitAction = 'save', ...submittedFormState } = extractFormState(data, {})
+		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
-		const title = String(data.get('title') ?? '').trim()
-		const description = String(data.get('description') ?? '').trim()
-		const date = String(data.get('date') ?? '').trim()
-		const excerpt = String(data.get('excerpt') ?? '').trim()
-		const body = String(data.get('body') ?? '').trim()
 		const image = data.get('image')
+		delete submittedFormState.image
+
+		const title = String(submittedFormState.title ?? '').trim()
+		const description = String(submittedFormState.description ?? '').trim()
+		const date = String(submittedFormState.date ?? '').trim()
+		const excerpt = String(submittedFormState.excerpt ?? '').trim()
+		const body = String(submittedFormState.body ?? '').trim()
 		const token = cookies.get('access_token')
 
 		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR })
+			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		}
 
 		if (!title) {
-			return fail(400, { error: 'Vul een titel in.' })
+			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
 		}
 
 		if (!description) {
-			return fail(400, { error: 'Vul een omschrijving in.' })
+			return fail(400, { error: 'Vul een omschrijving in.', ...submittedFormState })
 		}
 
 		if (!date) {
-			return fail(400, { error: 'Vul een datum in.' })
+			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
 		}
 
 		if (!excerpt) {
-			return fail(400, { error: 'Vul een samenvatting in.' })
+			return fail(400, { error: 'Vul een samenvatting in.', ...submittedFormState })
 		}
 
 		if (!body) {
-			return fail(400, { error: 'Vul de body in.' })
+			return fail(400, { error: 'Vul de body in.', ...submittedFormState })
 		}
 
 		if (!(image instanceof File) || image.size === 0) {
-			return fail(400, { error: 'Upload een afbeelding.' })
+			return fail(400, { error: 'Upload een afbeelding.', ...submittedFormState })
 		}
 
 		const uploadedFileIds = []
@@ -85,8 +89,8 @@ export const actions = {
 			})
 
 			if (!imageUpload?.success) {
-				console.error('[themes/form] Image upload failed:', imageUpload)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				console.error('[themes/create] Image upload failed:', imageUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 			}
 			uploadedFileIds.push(imageUpload.id)
 
@@ -102,10 +106,10 @@ export const actions = {
 			}
 
 			if (!createResult?.success) {
-				console.error('[themes/form] Theme create failed:', createResult)
+				console.error('[themes/create] Theme create failed:', createResult)
 				const createStatus = Number(createResult?.status) || 500
 				const errorMessage = createResult?.data?.error ?? GENERIC_CREATE_ERROR
-				return fail(createStatus, { error: errorMessage })
+				return fail(createStatus, { error: errorMessage, ...submittedFormState })
 			}
 
 			themeCreated = true
@@ -115,7 +119,7 @@ export const actions = {
 					const publishResult = await ContentService.publishContent(createResult.id, 'themes', token)
 
 					if (!publishResult?.success) {
-						console.error('[themes/form] Publish failed:', publishResult)
+						console.error('[themes/create] Publish failed:', publishResult)
 						return {
 							success: true,
 							message: GENERIC_PUBLISH_WARNING,
@@ -123,7 +127,7 @@ export const actions = {
 						}
 					}
 				} catch (err) {
-					console.error('[themes/form] Unexpected error during publish:', err)
+					console.error('[themes/create] Unexpected error during publish:', err)
 					return {
 						success: true,
 						message: GENERIC_PUBLISH_WARNING,
@@ -144,8 +148,8 @@ export const actions = {
 				themeId: createResult.id
 			}
 		} catch (err) {
-			console.error('[themes/form] Unexpected error during create:', err)
-			return fail(500, { error: GENERIC_CREATE_ERROR })
+			console.error('[themes/create] Unexpected error during create:', err)
+			return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		} finally {
 			if (!themeCreated && uploadedFileIds.length > 0) {
 				await rollbackUploadedFiles(uploadedFileIds, token)

@@ -42,6 +42,14 @@
 	hasFileFields={true}
 	formClass="theme-form"
 >
+	{#if currentHeroId}
+		<input
+			type="hidden"
+			name="currentHeroId"
+			value={currentHeroId}
+		/>
+	{/if}
+
 	<div class="field-group">
 		<label for="title">Titel</label>
 		<input
@@ -68,9 +76,6 @@
 
 	<div class="field-group">
 		<label for="image">Afbeelding</label>
-		{#if currentHeroId}
-			<p class="current-file">Huidige afbeelding blijft behouden tenzij je een nieuwe upload.</p>
-		{/if}
 		<input
 			id="image"
 			name="image"
@@ -78,13 +83,6 @@
 			accept="image/*"
 			required={requireImage}
 		/>
-		{#if currentHeroId}
-			<input
-				type="hidden"
-				name="currentHeroId"
-				value={currentHeroId}
-			/>
-		{/if}
 	</div>
 
 	<div class="field-group field-group-half">
@@ -132,13 +130,6 @@
 		max-width: 280px;
 	}
 
-	.current-file {
-		font-family: var(--font-body);
-		font-size: 0.9rem;
-		color: var(--neutral-600);
-		margin: 0;
-	}
-
 	label {
 		font-family: var(--font-heading);
 		font-size: 1.15rem;
@@ -155,10 +146,6 @@
 		font-size: 1rem;
 		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
 		color: light-dark(var(--text-darkblue), var(--text-white));
-	}
-
-	input::placeholder {
-		color: var(--neutral-600);
 	}
 
 	input[type='file'] {
@@ -190,6 +177,7 @@
 		color: light-dark(var(--text-darkblue), var(--text-white));
 	}
 
+	input::placeholder,
 	textarea::placeholder {
 		color: var(--neutral-600);
 	}
