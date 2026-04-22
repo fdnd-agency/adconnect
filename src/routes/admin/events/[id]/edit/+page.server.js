@@ -28,6 +28,11 @@ async function cleanupReplacedFiles(fileIds, accessToken) {
 	}
 }
 
+/**
+ * Extracts nomination links from the raw event data, handling various possible formats and ensuring valid nomination IDs are returned.
+ * @param {*} rawNominationLinks - The raw nomination links data from the event, which can be in various formats.
+ * @returns {Array} An array of objects containing junctionId, nominationId, and nominationTitle for each valid nomination link.
+ */
 function extractNominationLinks(rawNominationLinks) {
 	if (!Array.isArray(rawNominationLinks)) return []
 
@@ -51,16 +56,23 @@ function extractNominationLinks(rawNominationLinks) {
 		.filter((link) => Boolean(link.nominationId || link.nominationTitle))
 }
 
+/**
+ * Resolves the selected nomination IDs from the raw nomination links and the available nominations.
+ * @param {*} rawNominationLinks - The raw nomination links data from the event.
+ * @param {*} nominations - The available nominations to match against.
+ * @returns {Array} An array of selected nomination IDs.
+ */
 function resolveSelectedNominationIds(rawNominationLinks, nominations) {
-	const nominationById = new Map(
-		nominations
-			.map((nomination) => [String(nomination?.id ?? '').trim(), String(nomination?.id ?? '').trim()])
-			.filter(([key, value]) => Boolean(key) && Boolean(value))
-	)
+	const nominationById = new Map(nominations.map((nomination) => [String(nomination?.id ?? '').trim(), String(nomination?.id ?? '').trim()]).filter(([key, value]) => Boolean(key) && Boolean(value)))
 
 	const nominationByTitle = new Map(
 		nominations
-			.map((nomination) => [String(nomination?.title ?? '').trim().toLowerCase(), String(nomination?.id ?? '').trim()])
+			.map((nomination) => [
+				String(nomination?.title ?? '')
+					.trim()
+					.toLowerCase(),
+				String(nomination?.id ?? '').trim()
+			])
 			.filter(([key, value]) => Boolean(key) && Boolean(value))
 	)
 
@@ -88,6 +100,12 @@ function resolveSelectedNominationIds(rawNominationLinks, nominations) {
 	return selectedIds
 }
 
+/**
+ * Extracts the hero ID from the event item, with an optional fallback.
+ * @param {*} eventItem - The event item containing the hero data.
+ * @param {*} fallback - The fallback value to use if the hero ID is not found.
+ * @returns {string} The extracted hero ID or the fallback value.
+ */
 function extractHeroId(eventItem, fallback) {
 	const fallbackId = String(fallback ?? '').trim()
 	if (fallbackId) return fallbackId
@@ -121,7 +139,7 @@ export async function load({ params, cookies }) {
 
 	const [nominationsRes, eventRes] = await Promise.all([
 		ContentService.fetchContent('nominations', null, null, null, true, token),
-		ContentService.fetchContent('events', eventId, null, null, false, token)
+		ContentService.fetchContent('events', eventId, '*,nomination_id.id,nomination_id.adconnect_nominations_id.id,nomination_id.adconnect_nominations_id.title', null, false, token)
 	])
 
 	const nominations = nominationsRes.data.nominations ? [...nominationsRes.data.nominations.values()] : []
@@ -148,7 +166,13 @@ export async function load({ params, cookies }) {
 export const actions = {
 	default: async ({ params, request, cookies }) => {
 		const data = await request.formData()
-		const { submitAction: rawSubmitAction = 'save', image, currentHeroId = '', nomination_ids: nominationIds = [], ...submittedFormState } = extractFormState(data, {
+		const {
+			submitAction: rawSubmitAction = 'save',
+			image,
+			currentHeroId = '',
+			nomination_ids: nominationIds = [],
+			...submittedFormState
+		} = extractFormState(data, {
 			arrayFields: ['nomination_ids']
 		})
 
@@ -203,7 +227,14 @@ export const actions = {
 			return fail(400, { error: 'Vul de body in.', ...submittedFormState })
 		}
 
-		const existingEventRes = await ContentService.fetchContent('events', eventId, null, null, false, token)
+		const existingEventRes = await ContentService.fetchContent(
+			'events',
+			eventId,
+			'*,nomination_id.id,nomination_id.adconnect_nominations_id.id,nomination_id.adconnect_nominations_id.title',
+			null,
+			false,
+			token
+		)
 		const existingEvent = Array.isArray(existingEventRes.data.events) ? (existingEventRes.data.events[0] ?? null) : null
 		if (existingEventRes.errors.length > 0 || !existingEvent) {
 			return fail(500, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })

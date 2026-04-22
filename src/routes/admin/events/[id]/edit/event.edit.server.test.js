@@ -219,3 +219,295 @@ describe('admin events edit actions.default', () => {
 		expect(ContentService.deleteFile).toHaveBeenCalledWith('img-new', 'token-123')
 	})
 })
+
+describe('admin events edit load nomination resolution', () => {
+	beforeEach(() => {
+		vi.clearAllMocks()
+	})
+
+	it('requests nested nomination fields when loading the event', async () => {
+		// Arrange
+		const event = {
+			params: { id: 'evt-321' },
+			cookies: { get: vi.fn().mockReturnValue('token-123') }
+		}
+		ContentService.fetchContent.mockResolvedValueOnce({ data: { nominations: new Map() }, errors: [] }).mockResolvedValueOnce({ data: { events: [{ id: 'evt-321', nomination_id: [] }] }, errors: [] })
+
+		// Act
+		await load(event)
+
+		// Assert
+		expect(ContentService.fetchContent).toHaveBeenNthCalledWith(
+			2,
+			'events',
+			'evt-321',
+			'*,nomination_id.id,nomination_id.adconnect_nominations_id.id,nomination_id.adconnect_nominations_id.title',
+			null,
+			false,
+			'token-123'
+		)
+	})
+
+	it('resolves selected nomination ids from nested junction objects', async () => {
+		// Arrange
+		const event = {
+			params: { id: 'evt-321' },
+			cookies: { get: vi.fn().mockReturnValue('token-123') }
+		}
+		ContentService.fetchContent
+			.mockResolvedValueOnce({
+				data: {
+					nominations: new Map([
+						['nom-1', { id: 'nom-1', title: 'Nominatie A' }],
+						['nom-2', { id: 'nom-2', title: 'Nominatie B' }],
+						['nom-3', { id: 'nom-3', title: 'Nominatie C' }]
+					])
+				},
+				errors: []
+			})
+			.mockResolvedValueOnce({
+				data: {
+					events: [
+						{
+							id: 'evt-321',
+							nomination_id: [
+								{ id: 'link-1', adconnect_nominations_id: { id: 'nom-1', title: 'Nominatie A' } },
+								{ id: 'link-2', adconnect_nominations_id: { id: 'nom-3', title: 'Nominatie C' } }
+							]
+						}
+					]
+				},
+				errors: []
+			})
+
+		// Act
+		const result = await load(event)
+
+		// Assert
+		expect(result.selectedNominationIds).toEqual(['nom-1', 'nom-3'])
+	})
+
+	it('falls back to matching by title when nomination id is missing', async () => {
+		// Arrange
+		const event = {
+			params: { id: 'evt-321' },
+			cookies: { get: vi.fn().mockReturnValue('token-123') }
+		}
+		ContentService.fetchContent
+			.mockResolvedValueOnce({
+				data: {
+					nominations: new Map([['nom-1', { id: 'nom-1', title: 'Nominatie A' }]])
+				},
+				errors: []
+			})
+			.mockResolvedValueOnce({
+				data: {
+					events: [
+						{
+							id: 'evt-321',
+							nomination_id: [{ id: 'link-1', adconnect_nominations_id: { id: '', title: 'Nominatie A' } }]
+						}
+					]
+				},
+				errors: []
+			})
+
+		// Act
+		const result = await load(event)
+
+		// Assert
+		expect(result.selectedNominationIds).toEqual(['nom-1'])
+	})
+
+	it('returns an empty selection when junction data does not match any nomination', async () => {
+		// Arrange
+		const event = {
+			params: { id: 'evt-321' },
+			cookies: { get: vi.fn().mockReturnValue('token-123') }
+		}
+		ContentService.fetchContent
+			.mockResolvedValueOnce({
+				data: {
+					nominations: new Map([['nom-1', { id: 'nom-1', title: 'Nominatie A' }]])
+				},
+				errors: []
+			})
+			.mockResolvedValueOnce({
+				data: {
+					events: [
+						{
+							id: 'evt-321',
+							nomination_id: [{ id: 'link-1', adconnect_nominations_id: { id: 'nom-999', title: 'Onbekend' } }]
+						}
+					]
+				},
+				errors: []
+			})
+
+		// Act
+		const result = await load(event)
+
+		// Assert
+		expect(result.selectedNominationIds).toEqual([])
+	})
+
+	it('returns an empty selection when the event has no nomination links', async () => {
+		// Arrange
+		const event = {
+			params: { id: 'evt-321' },
+			cookies: { get: vi.fn().mockReturnValue('token-123') }
+		}
+		ContentService.fetchContent
+			.mockResolvedValueOnce({
+				data: { nominations: new Map([['nom-1', { id: 'nom-1', title: 'Nominatie A' }]]) },
+				errors: []
+			})
+			.mockResolvedValueOnce({
+				data: { events: [{ id: 'evt-321', nomination_id: [] }] },
+				errors: []
+			})
+
+		// Act
+		const result = await load(event)
+
+		// Assert
+		expect(result.selectedNominationIds).toEqual([])
+	})
+})
+
+describe('admin events edit actions nomination junction handling', () => {
+	beforeEach(() => {
+		vi.clearAllMocks()
+	})
+
+	it('creates junction rows for newly selected nominations', async () => {
+		// Arrange
+		const event = createActionEvent({ fields: { nomination_ids: ['nom-1', 'nom-2'] } })
+		ContentService.fetchContent.mockResolvedValue({
+			data: {
+				events: [
+					{
+						id: 'evt-321',
+						hero: 'img-old',
+						nomination_id: [{ id: 'link-1', adconnect_nominations_id: { id: 'nom-1', title: 'Nominatie A' } }]
+					}
+				]
+			},
+			errors: []
+		})
+		ContentService.updateContent.mockResolvedValue({ success: true, id: 'evt-321' })
+
+		// Act
+		await actions.default(event)
+
+		// Assert
+		expect(ContentService.updateContent).toHaveBeenCalledWith(
+			'evt-321',
+			expect.objectContaining({
+				nomination_id: {
+					create: [{ adconnect_nominations_id: 'nom-2' }]
+				}
+			}),
+			'events',
+			'token-123'
+		)
+	})
+
+	it('deletes junction rows for deselected nominations', async () => {
+		// Arrange
+		const event = createActionEvent({ fields: { nomination_ids: ['nom-1'] } })
+		ContentService.fetchContent.mockResolvedValue({
+			data: {
+				events: [
+					{
+						id: 'evt-321',
+						hero: 'img-old',
+						nomination_id: [
+							{ id: 'link-1', adconnect_nominations_id: { id: 'nom-1', title: 'Nominatie A' } },
+							{ id: 'link-2', adconnect_nominations_id: { id: 'nom-2', title: 'Nominatie B' } }
+						]
+					}
+				]
+			},
+			errors: []
+		})
+		ContentService.updateContent.mockResolvedValue({ success: true, id: 'evt-321' })
+
+		// Act
+		await actions.default(event)
+
+		// Assert
+		expect(ContentService.updateContent).toHaveBeenCalledWith(
+			'evt-321',
+			expect.objectContaining({
+				nomination_id: {
+					delete: ['link-2']
+				}
+			}),
+			'events',
+			'token-123'
+		)
+	})
+
+	it('omits nomination_id from payload when selection is unchanged', async () => {
+		// Arrange
+		const event = createActionEvent({ fields: { nomination_ids: ['nom-1'] } })
+		ContentService.fetchContent.mockResolvedValue({
+			data: {
+				events: [
+					{
+						id: 'evt-321',
+						hero: 'img-old',
+						nomination_id: [{ id: 'link-1', adconnect_nominations_id: { id: 'nom-1', title: 'Nominatie A' } }]
+					}
+				]
+			},
+			errors: []
+		})
+		ContentService.updateContent.mockResolvedValue({ success: true, id: 'evt-321' })
+
+		// Act
+		await actions.default(event)
+
+		// Assert
+		const payload = ContentService.updateContent.mock.calls[0][1]
+		expect(payload).not.toHaveProperty('nomination_id')
+	})
+
+	it('both creates and deletes junction rows when selection partially overlaps', async () => {
+		// Arrange
+		const event = createActionEvent({ fields: { nomination_ids: ['nom-2', 'nom-3'] } })
+		ContentService.fetchContent.mockResolvedValue({
+			data: {
+				events: [
+					{
+						id: 'evt-321',
+						hero: 'img-old',
+						nomination_id: [
+							{ id: 'link-1', adconnect_nominations_id: { id: 'nom-1', title: 'Nominatie A' } },
+							{ id: 'link-2', adconnect_nominations_id: { id: 'nom-2', title: 'Nominatie B' } }
+						]
+					}
+				]
+			},
+			errors: []
+		})
+		ContentService.updateContent.mockResolvedValue({ success: true, id: 'evt-321' })
+
+		// Act
+		await actions.default(event)
+
+		// Assert
+		expect(ContentService.updateContent).toHaveBeenCalledWith(
+			'evt-321',
+			expect.objectContaining({
+				nomination_id: {
+					create: [{ adconnect_nominations_id: 'nom-3' }],
+					delete: ['link-1']
+				}
+			}),
+			'events',
+			'token-123'
+		)
+	})
+})

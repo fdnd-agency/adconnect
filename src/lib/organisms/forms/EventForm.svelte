@@ -1,7 +1,16 @@
 <script>
 	import Form from '$lib/organisms/forms/Form.svelte'
 
-	const { form, event = null, nominations = [], selectedNominationIds: initialSelectedNominationIds = [], showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireImage = true } = $props()
+	const {
+		form,
+		event = null,
+		nominations = [],
+		selectedNominationIds: initialSelectedNominationIds = [],
+		showPublishButton = false,
+		resetOnSuccess = true,
+		onSuccess = null,
+		requireImage = true
+	} = $props()
 
 	function normalizeNominationIds(rawValue) {
 		if (Array.isArray(rawValue)) {
@@ -43,31 +52,48 @@
 			.filter(Boolean)
 	}
 
-	const initialTitle = $derived(event?.title ?? '')
-	const initialDescription = $derived(event?.description ?? '')
-	const initialDate = $derived(typeof event?.date === 'string' ? event.date.slice(0, 10) : '')
-	const initialTimeDuration = $derived(event?.time_duration ?? '')
-	const initialExcerpt = $derived(event?.excerpt ?? '')
-	const initialBody = $derived(event?.body ?? '')
 	const currentHeroId = $derived(typeof event?.hero === 'object' ? (event?.hero?.id ?? '') : (event?.hero ?? ''))
 
-	const titleValue = $derived(form?.title ?? initialTitle)
-	const descriptionValue = $derived(form?.description ?? initialDescription)
-	const dateValue = $derived(form?.date ?? initialDate)
-	const timeDurationValue = $derived(form?.time_duration ?? initialTimeDuration)
-	const excerptValue = $derived(form?.excerpt ?? initialExcerpt)
-	const bodyValue = $derived(form?.body ?? initialBody)
-	const hasSubmittedNominationState = $derived(form != null && typeof form === 'object' && 'nomination_ids' in form)
-	const submittedNominationIds = $derived(normalizeNominationIds(form?.nomination_ids))
-	const nominationSeedIds = $derived(hasSubmittedNominationState ? submittedNominationIds : normalizeNominationIds(initialSelectedNominationIds))
-
+	let title = $state('')
+	let description = $state('')
+	let date = $state('')
+	let timeDuration = $state('')
+	let excerpt = $state('')
+	let body = $state('')
 	let selectedNominationIds = $state([])
-	let lastNominationSeedKey = $state('')
+
+	let titleSource = $state('')
+	let descriptionSource = $state('')
+	let dateSource = $state('')
+	let timeDurationSource = $state('')
+	let excerptSource = $state('')
+	let bodySource = $state('')
+	let selectedNominationIdsSource = $state('')
 
 	const selectedNominationsText = $derived(selectedNominationIds.length === 0 ? 'Kies nominaties' : `${selectedNominationIds.length} geselecteerd`)
 
+	function isNominationSelected(nominationId) {
+		return selectedNominationIds.includes(String(nominationId))
+	}
+
+	function toggleNominationSelection(nominationId) {
+		const normalizedId = String(nominationId)
+		if (selectedNominationIds.includes(normalizedId)) {
+			selectedNominationIds = selectedNominationIds.filter((id) => id !== normalizedId)
+			return
+		}
+
+		selectedNominationIds = [...selectedNominationIds, normalizedId]
+	}
+
 	async function handleSuccess(result) {
 		if (resetOnSuccess) {
+			title = ''
+			description = ''
+			date = ''
+			timeDuration = ''
+			excerpt = ''
+			body = ''
 			selectedNominationIds = []
 		}
 
@@ -77,12 +103,51 @@
 	}
 
 	$effect(() => {
-		const normalizedSeed = normalizeNominationIds(nominationSeedIds)
-		const nextSeedKey = normalizedSeed.join('|')
+		const nextTitle = String(form?.title ?? event?.title ?? '')
+		if (nextTitle !== titleSource) {
+			titleSource = nextTitle
+			title = nextTitle
+		}
 
-		if (nextSeedKey !== lastNominationSeedKey) {
-			selectedNominationIds = [...normalizedSeed]
-			lastNominationSeedKey = nextSeedKey
+		const nextDescription = String(form?.description ?? event?.description ?? '')
+		if (nextDescription !== descriptionSource) {
+			descriptionSource = nextDescription
+			description = nextDescription
+		}
+
+		const nextDate = String(form?.date ?? (typeof event?.date === 'string' ? event.date.slice(0, 10) : ''))
+		if (nextDate !== dateSource) {
+			dateSource = nextDate
+			date = nextDate
+		}
+
+		const nextTimeDuration = String(form?.time_duration ?? event?.time_duration ?? '')
+		if (nextTimeDuration !== timeDurationSource) {
+			timeDurationSource = nextTimeDuration
+			timeDuration = nextTimeDuration
+		}
+
+		const nextExcerpt = String(form?.excerpt ?? event?.excerpt ?? '')
+		if (nextExcerpt !== excerptSource) {
+			excerptSource = nextExcerpt
+			excerpt = nextExcerpt
+		}
+
+		const nextBody = String(form?.body ?? event?.body ?? '')
+		if (nextBody !== bodySource) {
+			bodySource = nextBody
+			body = nextBody
+		}
+
+		const hasSubmittedNominationState = form !== null && typeof form === 'object' && 'nomination_ids' in form
+		const nextNominationSource = hasSubmittedNominationState
+			? `form|${JSON.stringify(form?.nomination_ids ?? [])}`
+			: `event|${JSON.stringify(initialSelectedNominationIds.length > 0 ? initialSelectedNominationIds : extractNominationIdsFromEvent(event?.nomination_id))}`
+
+		if (nextNominationSource !== selectedNominationIdsSource) {
+			selectedNominationIdsSource = nextNominationSource
+			const fallbackNominationIds = initialSelectedNominationIds.length > 0 ? initialSelectedNominationIds : extractNominationIdsFromEvent(event?.nomination_id)
+			selectedNominationIds = normalizeNominationIds(hasSubmittedNominationState ? form?.nomination_ids : fallbackNominationIds)
 		}
 	})
 </script>
@@ -111,7 +176,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een titel in"
-			value={titleValue}
+			bind:value={title}
 			required
 		/>
 	</div>
@@ -122,8 +187,9 @@
 			id="description"
 			name="description"
 			placeholder="Voer een korte omschrijving in"
-			required>{descriptionValue}</textarea
-		>
+			bind:value={description}
+			required
+		></textarea>
 	</div>
 
 	<div class="field-group">
@@ -143,7 +209,7 @@
 			id="date"
 			name="date"
 			type="date"
-			value={dateValue}
+			bind:value={date}
 			required
 		/>
 	</div>
@@ -156,7 +222,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Bijv. 19:00 - 21:00"
-			value={timeDurationValue}
+			bind:value={timeDuration}
 			required
 		/>
 	</div>
@@ -167,8 +233,9 @@
 			id="excerpt"
 			name="excerpt"
 			placeholder="Voer een samenvatting in"
-			required>{excerptValue}</textarea
-		>
+			bind:value={excerpt}
+			required
+		></textarea>
 	</div>
 
 	<div class="field-group">
@@ -177,8 +244,9 @@
 			id="body"
 			name="body"
 			placeholder="Voer de body in"
-			required>{bodyValue}</textarea
-		>
+			bind:value={body}
+			required
+		></textarea>
 	</div>
 
 	<div class="field-group">
@@ -206,15 +274,21 @@
 							<input
 								id={`nomination-${nomination.id}`}
 								type="checkbox"
-								name="nomination_ids"
-								value={String(nomination.id)}
-								bind:group={selectedNominationIds}
+								checked={isNominationSelected(nomination.id)}
+								onchange={() => toggleNominationSelection(nomination.id)}
 							/>
 							<span>{nomination.title ?? `Nominatie ${nomination.id}`}</span>
 						</label>
 					{/each}
 				</div>
 			</details>
+			{#each selectedNominationIds as nominationId (nominationId)}
+				<input
+					type="hidden"
+					name="nomination_ids"
+					value={nominationId}
+				/>
+			{/each}
 			<p class="field-help">Je kunt meerdere nominaties aanvinken, of dit veld leeg laten.</p>
 		{/if}
 	</div>
