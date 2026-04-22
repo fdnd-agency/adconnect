@@ -50,10 +50,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    background: var(--background-color);
-    /* @media (prefers-color-scheme: dark) {
+    background: var(--background);
+    @media (prefers-color-scheme: dark) {
       background: var(--blue-800);
-    } */
+    }
     z-index: 99;
     box-sizing: border-box;
 
@@ -176,7 +176,7 @@
     color: var(--blue-800);
 
     @media (prefers-color-scheme: dark) {
-      color: var(--blue-150);
+      color: var(--blue-800);
     }
 
     @supports (color: light-dark(red, blue)) {
