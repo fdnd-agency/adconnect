@@ -21,11 +21,7 @@ async function rollbackUploadedFiles(fileIds, accessToken) {
 export const actions = {
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
-		const {
-			submitAction: rawSubmitAction = 'save',
-			logo,
-			...submittedFormState
-		} = extractFormState(data)
+		const { submitAction: rawSubmitAction = 'save', logo, ...submittedFormState } = extractFormState(data)
 
 		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
