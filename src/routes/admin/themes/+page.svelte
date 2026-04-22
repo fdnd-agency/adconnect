@@ -17,6 +17,10 @@
 
 	const themes = $derived(data.themes ? [...data.themes.values()] : [])
 
+	function themeEditHref(doc) {
+		return `/admin/themes/${encodeURIComponent(doc.id)}/edit`
+	}
+
 	const filtered = $derived(
 		themes
 			.filter((doc) => {
@@ -41,7 +45,7 @@
 	{directusBase}
 	contentType="adconnect_themes"
 	breadcrumb="Thema's"
-	addHref="/admin/themes/form"
+	addHref="/admin/themes/create"
 />
 
 <AdminToolbar
@@ -58,6 +62,7 @@
 	{filtered}
 	{directusBase}
 	contentType="adconnect_themes"
+	editHrefBuilder={themeEditHref}
 	labels={{
 		single: 'thema',
 		multiple: `thema's`

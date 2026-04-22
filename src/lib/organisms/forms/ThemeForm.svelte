@@ -1,55 +1,55 @@
 <script>
-	import { enhance } from '$app/forms'
-	import { DIRECTUS_URL } from '$lib/constants.js'
-	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
-	import Error from '$lib/atoms/Error.svelte'
+	import Form from '$lib/organisms/forms/Form.svelte'
 
-	const { form } = $props()
-	const directusBase = `${DIRECTUS_URL}/admin/content`
+	const { form, theme = null, showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireImage = false } = $props()
 
-	let isSubmitting = $state(false)
+	let title = $state('')
+	let description = $state('')
+	let date = $state('')
+	let excerpt = $state('')
+	let body = $state('')
 
-	function scrollToTop() {
-		window.scrollTo({ top: 0, behavior: 'smooth' })
+	const currentHeroId = $derived(typeof theme?.hero === 'object' ? (theme?.hero?.id ?? '') : (theme?.hero ?? ''))
+
+	$effect(() => {
+		title = String(form?.title ?? theme?.title ?? '')
+		description = String(form?.description ?? theme?.description ?? '')
+		date = String(form?.date ?? (typeof theme?.date === 'string' ? theme.date.slice(0, 10) : '') ?? '')
+		excerpt = String(form?.excerpt ?? theme?.excerpt ?? '')
+		body = String(form?.body ?? theme?.body ?? '')
+	})
+
+	async function handleSuccess(result) {
+		if (resetOnSuccess) {
+			title = ''
+			description = ''
+			date = ''
+			excerpt = ''
+			body = ''
+		}
+
+		if (typeof onSuccess === 'function') {
+			await onSuccess(result)
+		}
 	}
 </script>
 
-<svelte:head>
-	<title>Thema toevoegen | ADConnect Admin</title>
-</svelte:head>
-
-<AdminHeader
-	title="Thema's"
-	{directusBase}
-	contentType="adconnect_themes"
-	breadcrumb="Thema's › Formulier"
-	addHref="/admin/themes/form"
-/>
-
-{#if form?.error}
-	<Error message={form.error} />
-{/if}
-
-{#if form?.success && form?.message}
-	<p class="success-message">{form.message}</p>
-{/if}
-
-<form
-	method="POST"
-	enctype="multipart/form-data"
-	class="theme-form"
-	use:enhance={() => {
-		isSubmitting = true
-		return async ({ result, update }) => {
-			await update()
-			isSubmitting = false
-
-			if (result.type === 'success') {
-				scrollToTop()
-			}
-		}
-	}}
+<Form
+	{form}
+	{showPublishButton}
+	{resetOnSuccess}
+	onSuccess={handleSuccess}
+	hasFileFields={true}
+	formClass="theme-form"
 >
+	{#if currentHeroId}
+		<input
+			type="hidden"
+			name="currentHeroId"
+			value={currentHeroId}
+		/>
+	{/if}
+
 	<div class="field-group">
 		<label for="title">Titel</label>
 		<input
@@ -58,6 +58,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een titel in"
+			bind:value={title}
 			required
 		/>
 	</div>
@@ -68,6 +69,7 @@
 			id="description"
 			name="description"
 			placeholder="Voer een korte omschrijving in"
+			bind:value={description}
 			required
 		></textarea>
 	</div>
@@ -79,7 +81,7 @@
 			name="image"
 			type="file"
 			accept="image/*"
-			required
+			required={requireImage}
 		/>
 	</div>
 
@@ -89,6 +91,7 @@
 			id="date"
 			name="date"
 			type="date"
+			bind:value={date}
 			required
 		/>
 	</div>
@@ -99,6 +102,7 @@
 			id="excerpt"
 			name="excerpt"
 			placeholder="Voer een samenvatting in"
+			bind:value={excerpt}
 			required
 		></textarea>
 	</div>
@@ -109,52 +113,13 @@
 			id="body"
 			name="body"
 			placeholder="Voer de body in"
+			bind:value={body}
 			required
 		></textarea>
 	</div>
-
-	<div class="actions">
-		<button
-			type="submit"
-			name="submitAction"
-			value="save"
-			class="button-outline-blue"
-			disabled={isSubmitting}
-		>
-			{isSubmitting ? 'Opslaan...' : 'Opslaan'}
-		</button>
-		<button
-			type="submit"
-			name="submitAction"
-			value="publish"
-			class="button-outline-blue"
-			disabled={isSubmitting}
-			title="Publiceren"
-		>
-			{isSubmitting ? 'Publiceren...' : 'Publiceer'}
-		</button>
-	</div>
-</form>
+</Form>
 
 <style>
-	.success-message {
-		font-family: var(--font-body);
-		font-size: 0.95rem;
-		background-color: hsl(140, 45%, 18%);
-		color: var(--text-white);
-		border-radius: 10px;
-		padding: 0.7em 1em;
-		margin: 0.75em 0 1em;
-		width: fit-content;
-	}
-
-	.theme-form {
-		display: flex;
-		flex-direction: column;
-		gap: 1.25em;
-		max-width: 820px;
-	}
-
 	.field-group {
 		display: flex;
 		flex-direction: column;
@@ -181,10 +146,6 @@
 		font-size: 1rem;
 		background: light-dark(var(--text-white), hsl(210, 30%, 12%));
 		color: light-dark(var(--text-darkblue), var(--text-white));
-	}
-
-	input::placeholder {
-		color: var(--neutral-600);
 	}
 
 	input[type='file'] {
@@ -216,26 +177,8 @@
 		color: light-dark(var(--text-darkblue), var(--text-white));
 	}
 
+	input::placeholder,
 	textarea::placeholder {
 		color: var(--neutral-600);
-	}
-
-	.actions {
-		display: flex;
-		justify-content: flex-end;
-		gap: 0.75em;
-		margin-top: 0.5em;
-	}
-
-	button[disabled] {
-		opacity: 0.65;
-		cursor: not-allowed;
-	}
-
-	@media (max-width: 800px) {
-		.actions {
-			justify-content: flex-start;
-			flex-wrap: wrap;
-		}
 	}
 </style>
