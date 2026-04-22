@@ -66,7 +66,7 @@
     }
 
     @supports (color: light-dark(red, blue)) {
-      background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+      background-color: light-dark(var(--blue-100), var(--blue-800));
     }
 
     h1 {

@@ -52,7 +52,7 @@
     width: 100%;
     background: var(--background);
     @media (prefers-color-scheme: dark) {
-      background: var(--blue-800);
+      background: hsl(210, 30%, 8%);
     }
     z-index: 99;
     box-sizing: border-box;
