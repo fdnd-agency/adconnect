@@ -20,6 +20,16 @@
 
         p {
             width: 100%;
+
+            color: var(--blue-800);
+
+            @media (prefers-color-scheme: dark) {
+                color: var(--text-white);
+            }
+
+            @supports (color: light-dark(red, blue)) {
+                color: light-dark(var(--blue-800), var(--text-white));
+            }
         }
 
         @media (min-width: 768px) {
