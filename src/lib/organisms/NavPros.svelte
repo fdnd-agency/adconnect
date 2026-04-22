@@ -88,7 +88,7 @@
     }
 
     @supports (color: light-dark(red, blue)) {
-     background: ight-dark(var(--blue-800), var(--blue-150)); 
+     background: light-dark(var(--blue-800), var(--blue-150)); 
     }
 
     border-radius: 2px;
@@ -260,7 +260,7 @@
     color: var(--blue-800);
 
     @media (prefers-color-scheme: dark) {
-      color: var(--150);
+      color: var(--blue-150);
     }
 
     @supports (color: light-dark(red, blue)) {
