@@ -19,7 +19,7 @@ export class ContentService {
 		categories: { path: 'adconnect_categories', key: 'id' },
 		themes: { path: 'adconnect_themes', key: 'id', fileFields: ['hero'] },
 		events: { path: 'adconnect_events', key: 'id', fileFields: ['hero'] },
-		cooperations: { path: 'adconnect_cooperation', key: 'id' },
+		cooperations: { path: 'adconnect_cooperation', key: 'id', fileFields: ['logo'] },
 		news: { path: 'adconnect_news', key: 'uuid', fileFields: ['hero'] },
 		nominations: { path: 'adconnect_nominations', key: 'id', fileFields: ['profile_picture'] },
 		faqs: { path: 'adconnect_faqs', key: 'id' }
