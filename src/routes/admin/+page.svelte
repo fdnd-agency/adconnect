@@ -77,7 +77,7 @@
 				icon={item.icon}
 				label={item.label}
 				href={item.collection === 'adconnect_documents'
-					? '/admin/documents/form'
+					? '/admin/documents/create'
 					: item.collection === 'adconnect_nominations'
 						? '/admin/nominations/form'
 						: item.collection === 'adconnect_themes'
