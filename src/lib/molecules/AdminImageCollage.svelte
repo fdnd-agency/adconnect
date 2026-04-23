@@ -65,7 +65,6 @@
             </picture>
         </figure>
     </label>
-
 </section>
 
 <input type="submit" value="voeg toe">
@@ -81,12 +80,18 @@
     }
 
     input[name="imageExisting"] {
-        appearance: none;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
     }
 
     input[name="imageExisting"]:checked ~ figure {
-        border: 5px dotted var(--primary-orange);
-        width: fit-content;
+        border: 3px dashed var(--primary-orange);
+        padding: 3px;
     }
 
     input[type="submit"] {
