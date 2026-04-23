@@ -103,8 +103,6 @@
 
         height: 5em;
         width: 12em;
-
-        align-self: center;
     }
 
     input[type="submit"]:hover {
