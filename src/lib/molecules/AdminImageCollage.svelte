@@ -106,7 +106,7 @@
     }
 
     input[type="submit"]:hover {
-        border: 2px solid var(--orange-900);
-        background-color:  var(--orange-900);
+        border: var(--button-blue-border);
+        background-color:  var(--button-blue-bg);
     }
 </style>
