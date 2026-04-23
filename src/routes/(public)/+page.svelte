@@ -33,7 +33,8 @@
 	<PictureImg
 		src={zaal}
 		fetchpriority="high"
-		enhance="true"
+		loading="eager"
+		enhance=true
 	/>
 </Hero>
 

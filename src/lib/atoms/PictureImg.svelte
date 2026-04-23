@@ -3,6 +3,8 @@
 	type FetchType = 'high' | 'low' | 'auto'
 	let { enhance = false, src = undefined, width = undefined, height = undefined, alt = undefined, fetchpriority = 'auto' as FetchType, loading = 'lazy' as LoadingType, ...props } = $props()
 
+	let hidden = alt === undefined ? true : undefined
+
 	let attributes = []
 	Object.entries(props).map(([key, value]) => {
 		attributes.push(`${key}: ${value};`)
@@ -17,6 +19,7 @@
 		{loading}
 		{style}
 		{fetchpriority}
+		aria-hidden={hidden}
 	/>
 {:else if src}
 	<picture>
@@ -36,6 +39,7 @@
 			{loading}
 			{style}
 			{fetchpriority}
+			aria-hidden={hidden}
 		/>
 	</picture>
 {/if}
