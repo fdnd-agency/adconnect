@@ -22,7 +22,10 @@ export class ContentService {
 		cooperations: { path: 'adconnect_cooperation', key: 'id' },
 		news: { path: 'adconnect_news', key: 'uuid', fileFields: ['hero'] },
 		nominations: { path: 'adconnect_nominations', key: 'id', fileFields: ['profile_picture'] },
-		faqs: { path: 'adconnect_faqs', key: 'id' }
+		faqs: { path: 'adconnect_faqs', key: 'id' },
+		lados: { path: 'adconnect_lados', key: 'id' },
+		courses: { path: 'adconnect_courses', key: 'id' },
+		sectoralAdvisoryBoards: { path: 'adconnect_sectoral_advisory_boards', key: 'id' }
 	}
 
 	/* Private helper to get collection config by content type key. */
@@ -58,7 +61,9 @@ export class ContentService {
 			const json = await res.json()
 			if (!res.ok || json.data === undefined) {
 				const error = new Error(`No data returned for ${path}: ${JSON.stringify(json)}`)
-				console.error(error)
+				if (res.status !== 403) {
+					console.error(error)
+				}
 				return { items: [], error }
 			}
 			return { items: json.data, error: null }

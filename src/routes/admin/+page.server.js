@@ -18,6 +18,8 @@ export async function load({ cookies }) {
 		nominations: [...content.nominations.values()],
 		nominationCount: content.nominations.size,
 		faqs: [...content.faqs.values()],
-		faqCount: content.faqs.size
+		faqCount: content.faqs.size,
+		lados: [...content.lados.values()],
+		ladoCount: content.lados.size
 	}
 }

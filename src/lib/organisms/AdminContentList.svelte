@@ -2,13 +2,7 @@
 	import { enhance } from '$app/forms'
 	import { loading } from '$lib/stores/loadingStore'
 
-	const {
-		filtered,
-		directusBase,
-		contentType,
-		labels = { single: 'item', multiple: 'items', title: 'title', gender: 'dit' },
-		editHrefBuilder = null
-	} = $props()
+	const { filtered, directusBase, contentType, labels = { single: 'item', multiple: 'items', title: 'title', gender: 'dit' }, editHrefBuilder = null } = $props()
 
 	let openPopup = $state(null)
 
@@ -31,7 +25,9 @@
 	}
 
 	function handleClickOutside(e) {
-		if (openPopup !== null && !e.target.closest('.popup-anchor')) {
+		if (openPopup === null) return
+		if (!(e.target instanceof Element)) return
+		if (!e.target.closest('.popup-anchor')) {
 			openPopup = null
 		}
 	}
@@ -71,109 +67,110 @@
 						}}>Meer</button
 					>
 
-					{#if openPopup === doc.id}
-						<div class="action-popup">
-							<a
-								href={editHrefBuilder ? editHrefBuilder(doc) : `${directusBase}/${contentType}/${doc.id}`}
-								class="popup-btn btn-edit"
-								target={editHrefBuilder ? undefined : '_blank'}
-								rel={editHrefBuilder ? undefined : 'noopener noreferrer'}
-								onclick={() => {
+					<div
+						class="action-popup"
+						hidden={openPopup !== doc.id}
+					>
+						<a
+							href={editHrefBuilder ? editHrefBuilder(doc) : `${directusBase}/${contentType}/${doc.id}`}
+							class="popup-btn btn-edit"
+							target={editHrefBuilder ? undefined : '_blank'}
+							rel={editHrefBuilder ? undefined : 'noopener noreferrer'}
+							onclick={() => {
+								openPopup = null
+							}}
+						>
+							Bewerken
+						</a>
+						<form
+							method="POST"
+							action="?/publish"
+							use:enhance={() => {
+								if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil publiceren?`)) {
+									return () => {}
+								}
+								loading.set(true)
+								return async ({ update }) => {
+									await update()
+									loading.set(false)
 									openPopup = null
-								}}
+								}
+							}}
+						>
+							<input
+								type="hidden"
+								name="id"
+								value={doc.id}
+							/>
+							<button
+								type="submit"
+								class="popup-btn btn-publish">Publiceren</button
 							>
-								Bewerken
-							</a>
-							<form
-								method="POST"
-								action="?/publish"
-								use:enhance={() => {
-									if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil publiceren?`)) {
-										return () => {}
-									}
-									loading.set(true)
-									return async ({ update }) => {
-										await update()
-										loading.set(false)
-										openPopup = null
-									}
-								}}
-							>
-								<input
-									type="hidden"
-									name="id"
-									value={doc.id}
-								/>
-								<button
-									type="submit"
-									class="popup-btn btn-publish">Publiceren</button
-								>
-							</form>
+						</form>
 
-							<form
-								method="POST"
-								action="?/depublish"
-								use:enhance={() => {
-									if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil depubliceren?`)) {
-										return () => {}
-									}
-									loading.set(true)
-									return async ({ update }) => {
-										await update()
-										loading.set(false)
-										openPopup = null
-									}
-								}}
-							>
-								<input
-									type="hidden"
-									name="id"
-									value={doc.id}
-								/>
-								<button
-									type="submit"
-									class="popup-btn btn-depublish">Depubliceren</button
-								>
-							</form>
-
-							<form
-								method="POST"
-								action="?/delete"
-								use:enhance={() => {
-									if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil verwijderen?`)) {
-										return () => {}
-									}
-									loading.set(true)
-									return async ({ update }) => {
-										await update()
-										loading.set(false)
-										openPopup = null
-									}
-								}}
-							>
-								<input
-									type="hidden"
-									name="id"
-									value={doc.id}
-								/>
-								<button
-									type="submit"
-									class="popup-btn btn-delete">Verwijderen</button
-								>
-							</form>
-
-							<a
-								href="/preview/{contentType.replace('adconnect_', '')}/{doc.id}"
-								class="popup-btn btn-preview"
-								rel="noopener noreferrer"
-								onclick={() => {
+						<form
+							method="POST"
+							action="?/depublish"
+							use:enhance={() => {
+								if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil depubliceren?`)) {
+									return () => {}
+								}
+								loading.set(true)
+								return async ({ update }) => {
+									await update()
+									loading.set(false)
 									openPopup = null
-								}}
+								}
+							}}
+						>
+							<input
+								type="hidden"
+								name="id"
+								value={doc.id}
+							/>
+							<button
+								type="submit"
+								class="popup-btn btn-depublish">Depubliceren</button
 							>
-								Preview
-							</a>
-						</div>
-					{/if}
+						</form>
+
+						<form
+							method="POST"
+							action="?/delete"
+							use:enhance={() => {
+								if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil verwijderen?`)) {
+									return () => {}
+								}
+								loading.set(true)
+								return async ({ update }) => {
+									await update()
+									loading.set(false)
+									openPopup = null
+								}
+							}}
+						>
+							<input
+								type="hidden"
+								name="id"
+								value={doc.id}
+							/>
+							<button
+								type="submit"
+								class="popup-btn btn-delete">Verwijderen</button
+							>
+						</form>
+
+						<a
+							href="/preview/{contentType.replace('adconnect_', '')}/{doc.id}"
+							class="popup-btn btn-preview"
+							rel="noopener noreferrer"
+							onclick={() => {
+								openPopup = null
+							}}
+						>
+							Preview
+						</a>
+					</div>
 				</div>
 			</div>
 		</li>
@@ -303,6 +300,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.35em;
+	}
+
+	.action-popup[hidden] {
+		display: none !important;
 	}
 
 	.action-popup form {
