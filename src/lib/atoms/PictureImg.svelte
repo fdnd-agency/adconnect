@@ -1,6 +1,7 @@
 <script lang="ts">
 	type LoadingType = 'lazy' | 'eager' | undefined
-	let { src = undefined, width = undefined, height = undefined, alt = undefined, loading = 'lazy' as LoadingType, ...props } = $props()
+	type FetchType = 'high' | 'low' | 'auto'
+	let { enhance = false, src = undefined, width = undefined, height = undefined, alt = undefined, fetchpriority = 'auto' as FetchType, loading = 'lazy' as LoadingType, ...props } = $props()
 
 	let attributes = []
 	Object.entries(props).map(([key, value]) => {
@@ -9,7 +10,15 @@
 	let style = attributes.join(' ')
 </script>
 
-{#if src}
+{#if src && enhance}
+	<enhanced:img
+		{src}
+		{alt}
+		{loading}
+		{style}
+		{fetchpriority}
+	/>
+{:else if src}
 	<picture>
 		<source
 			type="image/avif"
@@ -26,6 +35,7 @@
 			{alt}
 			{loading}
 			{style}
+			{fetchpriority}
 		/>
 	</picture>
 {/if}

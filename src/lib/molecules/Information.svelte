@@ -2,7 +2,7 @@
   import dots from '$lib/assets/dots.svg'
   import imageSrc from '$lib/assets/doorstroom-ad-dag.webp?enhanced'
 
-  import { overad } from '$lib'
+  import { overad, PictureImg } from '$lib'
 
   export let title = ''
   export let description = ''
@@ -23,7 +23,8 @@
   </div>
 
   <div class="information-image">
-    <enhanced:img src={overad} alt={imageAlt} aria-hidden="true" width="550" height="250"/>
+    <!-- <enhanced:img src={overad} alt={imageAlt} aria-hidden="true" width="550" height="250"/> -->
+    <PictureImg src={overad} />
   </div>
 </section>
 
