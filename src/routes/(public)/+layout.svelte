@@ -23,7 +23,7 @@
 
 <a
 	class="scroll"
-	href="#"
+	href="/"
 	><img
 		src={icondown}
 		alt=""
