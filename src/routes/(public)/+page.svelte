@@ -34,7 +34,7 @@
 		src={zaal}
 		fetchpriority="high"
 		loading="eager"
-		enhance=true
+		isEnhanced=true
 	/>
 </Hero>
 

@@ -1,7 +1,17 @@
 <script lang="ts">
 	type LoadingType = 'lazy' | 'eager' | undefined
 	type FetchType = 'high' | 'low' | 'auto'
-	let { enhance = false, src = undefined, width = undefined, height = undefined, alt = undefined, fetchpriority = 'auto' as FetchType, loading = 'lazy' as LoadingType, ...props } = $props()
+	let {
+		isEnhanced = false,
+		isIcon = false,
+		src = undefined,
+		width = undefined,
+		height = undefined,
+		alt = undefined,
+		fetchpriority = 'auto' as FetchType,
+		loading = 'lazy' as LoadingType,
+		...props
+	} = $props()
 
 	let hidden = alt === undefined ? true : undefined
 
@@ -12,8 +22,8 @@
 	let style = attributes.join(' ')
 </script>
 
-{#if src && enhance}
-	<enhanced:img
+{#if src && isEnhanced}
+	<enhanced:img class="enhanced-img"
 		{src}
 		{alt}
 		{loading}
@@ -21,8 +31,15 @@
 		{fetchpriority}
 		aria-hidden={hidden}
 	/>
+{:else if src && isIcon}
+	<img class="icon"
+		{src}
+		{alt}
+		{width}
+		{height}
+	/>
 {:else if src}
-	<picture>
+	<picture class="picture-img">
 		<source
 			type="image/avif"
 			srcset={`${src}?format=avif`}
@@ -45,13 +62,12 @@
 {/if}
 
 <style>
-	picture,
-	img {
+	.picture-img img {
 		display: block;
 		width: 100%;
 	}
 
-	img {
+	.picture-img img, .enhanced-img {
 		object-fit: cover;
 	}
 </style>

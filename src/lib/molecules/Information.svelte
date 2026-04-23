@@ -13,7 +13,7 @@
 
 <section class="information">
   <div class="information-content">
-    <img src={dots} alt="" class="information-dots" width="80" height="60" />
+    <PictureImg src={dots} isIcon="true" width="80" height="60"  />
     <h2 class="information-title">{title}</h2>
     <p class="information-description">{description}</p>
 
@@ -23,7 +23,7 @@
   </div>
 
   <div class="information-image">
-    <PictureImg enhance=true src={overad} alt={imageAlt} width="550" height="250" border-radius="33px 33px 0 0" />
+    <PictureImg isEnhanced=true src={overad} alt={imageAlt} width="550" height="250" border-radius="33px 33px 0 0" />
   </div>
 </section>
 
