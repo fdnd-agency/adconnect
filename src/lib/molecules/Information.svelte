@@ -23,7 +23,7 @@
   </div>
 
   <div class="information-image">
-    <PictureImg enhance=true src={overad} alt={imageAlt} width="550" height="250" />
+    <PictureImg enhance=true src={overad} alt={imageAlt} width="550" height="250" border-radius="33px 33px 0 0" />
   </div>
 </section>
 

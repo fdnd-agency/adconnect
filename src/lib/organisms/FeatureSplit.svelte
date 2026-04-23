@@ -1,6 +1,7 @@
 <script>
 	import dots from '$lib/assets/dots.svg'
 	import imageSrc from '$lib/assets/doorstroom-ad-dag.webp?enhanced'
+	import { PictureImg } from '$lib'
 
 	export let title = ''
 	export let intro = ''
@@ -53,12 +54,7 @@
 
 	<div class="feature-media">
 		{#if imageSrc}
-			<enhanced:img
-				class="feature-img"
-				src={imageSrc}
-				alt={imageAlt}
-				aria-hidden="true"
-			/>
+			<PictureImg enhance=true src={imageSrc} alt={imageAlt} border-radius="33px" />
 		{/if}
 	</div>
 </section>
