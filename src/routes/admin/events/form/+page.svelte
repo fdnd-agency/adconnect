@@ -136,7 +136,7 @@
 		<div class="field-heading-row">
 			<p class="field-label">Nominaties (optioneel)</p>
 			<a
-				href="/admin/nominations/form"
+				href="/admin/nominations/create"
 				target="_blank"
 				class="add-link"
 			>

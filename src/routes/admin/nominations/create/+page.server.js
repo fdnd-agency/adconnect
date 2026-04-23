@@ -1,4 +1,5 @@
 import { ContentService } from '$lib/server/contentService.js'
+import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
 import { Slugify } from '$lib/server/slugify.js'
 
@@ -13,7 +14,7 @@ async function rollbackUploadedFiles(fileIds, accessToken) {
 
 		const result = await ContentService.deleteFile(fileId, accessToken)
 		if (!result?.success) {
-			console.error(`[nominations/form] Rollback failed for file ${fileId}`)
+			console.error(`[nominations/create] Rollback failed for file ${fileId}`)
 		}
 	}
 }
@@ -32,75 +33,78 @@ export async function load({ cookies }) {
 }
 
 export const actions = {
-	// Handles form submission for initial nominations form version.
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
-		const submitAction = String(data.get('submitAction') ?? 'save').trim()
+		const { submitAction: rawSubmitAction = 'save', ...submittedFormState } = extractFormState(data, {})
+		// Drop the File object so the form component can safely re-render using this state.
+		delete submittedFormState.profile_picture
+
+		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
-		const title = String(data.get('title') ?? '').trim()
-		const header = String(data.get('header') ?? '').trim()
-		const date = String(data.get('date') ?? '').trim()
-		const excerpt = String(data.get('excerpt') ?? '').trim()
-		const body = String(data.get('body') ?? '').trim()
-		const eventId = String(data.get('event_id') ?? '').trim()
-		const institution = String(data.get('institution') ?? '').trim()
-		const course = String(data.get('course') ?? '').trim()
-		const previousCourse = String(data.get('previous_course') ?? '').trim()
-		const educationVariant = String(data.get('education_variant') ?? '').trim()
-		const alumnus = String(data.get('alumnus') ?? '').trim()
+		const title = String(submittedFormState.title ?? '').trim()
+		const header = String(submittedFormState.header ?? '').trim()
+		const date = String(submittedFormState.date ?? '').trim()
+		const excerpt = String(submittedFormState.excerpt ?? '').trim()
+		const body = String(submittedFormState.body ?? '').trim()
+		const eventId = String(submittedFormState.event_id ?? '').trim()
+		const institution = String(submittedFormState.institution ?? '').trim()
+		const course = String(submittedFormState.course ?? '').trim()
+		const previousCourse = String(submittedFormState.previous_course ?? '').trim()
+		const educationVariant = String(submittedFormState.education_variant ?? '').trim()
+		const alumnus = String(submittedFormState.alumnus ?? '').trim()
 		const profilePicture = data.get('profile_picture')
 		const token = cookies.get('access_token')
 
 		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR })
+			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		}
 
 		if (!title) {
-			return fail(400, { error: 'Vul een titel in.' })
+			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
 		}
 
 		if (!header) {
-			return fail(400, { error: 'Vul een header in.' })
+			return fail(400, { error: 'Vul een header in.', ...submittedFormState })
 		}
 
 		if (!date) {
-			return fail(400, { error: 'Vul een datum in.' })
+			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
 		}
 
 		if (!excerpt) {
-			return fail(400, { error: 'Vul een samenvatting in.' })
+			return fail(400, { error: 'Vul een samenvatting in.', ...submittedFormState })
 		}
 
 		if (!body) {
-			return fail(400, { error: 'Vul de body in.' })
+			return fail(400, { error: 'Vul de body in.', ...submittedFormState })
 		}
 
 		if (!eventId) {
-			return fail(400, { error: 'Kies een event.' })
+			return fail(400, { error: 'Kies een event.', ...submittedFormState })
 		}
 
 		if (!institution) {
-			return fail(400, { error: 'Vul een instelling in.' })
+			return fail(400, { error: 'Vul een instelling in.', ...submittedFormState })
 		}
 
 		if (!course) {
-			return fail(400, { error: 'Vul een opleiding in.' })
+			return fail(400, { error: 'Vul een opleiding in.', ...submittedFormState })
 		}
 
 		if (!previousCourse) {
-			return fail(400, { error: 'Vul een vorige opleiding in.' })
+			return fail(400, { error: 'Vul een vorige opleiding in.', ...submittedFormState })
 		}
 
 		if (!educationVariant) {
-			return fail(400, { error: 'Vul een onderwijsvariant in.' })
+			return fail(400, { error: 'Vul een onderwijsvariant in.', ...submittedFormState })
 		}
 
 		if (!alumnus) {
-			return fail(400, { error: 'Vul alumnis in.' })
+			return fail(400, { error: 'Vul alumnis in.', ...submittedFormState })
 		}
 
 		if (!(profilePicture instanceof File) || profilePicture.size === 0) {
-			return fail(400, { error: 'Upload een profielfoto.' })
+			return fail(400, { error: 'Upload een profielfoto.', ...submittedFormState })
 		}
 
 		const uploadedFileIds = []
@@ -114,8 +118,8 @@ export const actions = {
 			})
 
 			if (!profilePictureUpload?.success) {
-				console.error('[nominations/form] Profile picture upload failed:', profilePictureUpload)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				console.error('[nominations/create] Profile picture upload failed:', profilePictureUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 			}
 			uploadedFileIds.push(profilePictureUpload.id)
 
@@ -149,10 +153,10 @@ export const actions = {
 			}
 
 			if (!createResult?.success) {
-				console.error('[nominations/form] Nomination create failed:', createResult)
+				console.error('[nominations/create] Nomination create failed:', createResult)
 				const createStatus = Number(createResult?.status) || 500
 				const errorMessage = createResult?.data?.error ?? GENERIC_CREATE_ERROR
-				return fail(createStatus, { error: errorMessage })
+				return fail(createStatus, { error: errorMessage, ...submittedFormState })
 			}
 
 			nominationCreated = true
@@ -162,7 +166,7 @@ export const actions = {
 					const publishResult = await ContentService.publishContent(createResult.id, 'nominations', token)
 
 					if (!publishResult?.success) {
-						console.error('[nominations/form] Publish failed:', publishResult)
+						console.error('[nominations/create] Publish failed:', publishResult)
 						return {
 							success: true,
 							message: GENERIC_PUBLISH_WARNING,
@@ -170,7 +174,7 @@ export const actions = {
 						}
 					}
 				} catch (err) {
-					console.error('[nominations/form] Unexpected error during publish:', err)
+					console.error('[nominations/create] Unexpected error during publish:', err)
 					return {
 						success: true,
 						message: GENERIC_PUBLISH_WARNING,
@@ -191,8 +195,8 @@ export const actions = {
 				nominationId: createResult.id
 			}
 		} catch (err) {
-			console.error('[nominations/form] Unexpected error during create:', err)
-			return fail(500, { error: GENERIC_CREATE_ERROR })
+			console.error('[nominations/create] Unexpected error during create:', err)
+			return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		} finally {
 			if (!nominationCreated && uploadedFileIds.length > 0) {
 				await rollbackUploadedFiles(uploadedFileIds, token)

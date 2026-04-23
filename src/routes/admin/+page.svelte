@@ -79,7 +79,7 @@
 				href={item.collection === 'adconnect_documents'
 					? '/admin/documents/form'
 					: item.collection === 'adconnect_nominations'
-						? '/admin/nominations/form'
+						? '/admin/nominations/create'
 						: item.collection === 'adconnect_themes'
 							? '/admin/themes/form'
 							: item.collection === 'adconnect_faqs'
