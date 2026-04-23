@@ -3,6 +3,7 @@
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
 	import Error from '$lib/atoms/Error.svelte'
+	import Collage from '$lib/molecules/AdminImageCollage.svelte'
 
 	const { data, form } = $props()
 	const categories = $derived(data?.categories ?? [])
@@ -122,6 +123,8 @@
 			required
 		/>
 	</div>
+
+	<Collage/>
 
 	<div class="actions">
 		<button
