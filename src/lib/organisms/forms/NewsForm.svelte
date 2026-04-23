@@ -1,28 +1,50 @@
 <script>
-	import { enhance } from '$app/forms'
-	import { DIRECTUS_URL } from '$lib/constants.js'
-	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
-	import Error from '$lib/atoms/Error.svelte'
+	import Form from '$lib/organisms/forms/Form.svelte'
 
-	const { form } = $props()
-	const directusBase = `${DIRECTUS_URL}/admin/content`
+	const { form, article = null, showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireImage = true } = $props()
 
-	let isSubmitting = $state(false)
+	function parseTagsValue(rawValue) {
+		if (Array.isArray(rawValue)) {
+			return rawValue.map((tag) => String(tag).trim()).filter(Boolean)
+		}
+
+		const raw = String(rawValue ?? '').trim()
+		if (!raw) return []
+
+		try {
+			const parsed = JSON.parse(raw)
+			if (!Array.isArray(parsed)) return []
+			return parsed.map((tag) => String(tag).trim()).filter(Boolean)
+		} catch {
+			return []
+		}
+	}
+
+	const currentHeroId = $derived(typeof article?.hero === 'object' ? (article?.hero?.id ?? '') : (article?.hero ?? ''))
+
+	let title = $state('')
+	let description = $state('')
+	let date = $state('')
+	let author = $state('')
+	let body = $state('')
 	let tags = $state([])
 	let tagInput = $state('')
 	let tagsInputElement = $state()
 
-	/**
-	 * Scrolls the window to the top Used after form submission to show success/error messages without the user having to scroll manually.
-	 */
-	function scrollToTop() {
-		window.scrollTo({ top: 0, behavior: 'smooth' })
-	}
+	$effect(() => {
+		title = String(form?.title ?? article?.title ?? '')
+		description = String(form?.description ?? article?.description ?? '')
+		date = String(form?.date ?? (typeof article?.date === 'string' ? article.date.slice(0, 10) : '') ?? '')
+		author = String(form?.author ?? article?.author ?? '')
+		body = String(form?.body ?? article?.body ?? '')
+		tags = parseTagsValue(form?.tags ?? article?.tags)
+	})
 
-	/**
-	 * Adds the current tagInput value to the tags array if it's not empty and not already in the array, then clears the tagInput.
-	 * Called when the user presses Enter in the tag input field.
-	 */
+	$effect(() => {
+		tags
+		syncTagsValidity()
+	})
+
 	function addTag() {
 		const value = tagInput.trim()
 		if (!value) return
@@ -33,20 +55,11 @@
 		syncTagsValidity()
 	}
 
-	/**
-	 * Removes a tag from the tags array based on its index. Called when the user clicks the remove button on a tag chip.
-	 * @param {number} index - The index of the tag to remove in the tags array.
-	 */
 	function removeTag(index) {
 		tags = tags.filter((_, i) => i !== index)
 		syncTagsValidity()
 	}
 
-	/**
-	 * Handles the keydown event on the tag input field.
-	 * If the Enter key is pressed, it prevents the default form submission behavior and calls the addTag function to add the current input as a tag.
-	 * @param {KeyboardEvent} event - The keydown event object from the tag input
-	 */
 	function onTagKeydown(event) {
 		if (event.key === 'Enter') {
 			event.preventDefault()
@@ -54,66 +67,45 @@
 		}
 	}
 
-	/**
-	 * Checks the validity of the tags input by ensuring that at least one tag has been added.
-	 * If the tags array is empty, it sets a custom validity message on the tags input element
-	 */
 	function syncTagsValidity() {
 		if (!tagsInputElement) return
 		tagsInputElement.setCustomValidity(tags.length === 0 ? 'Voeg minimaal 1 tag toe met Enter.' : '')
 	}
 
-	$effect(() => {
-		tags
-		syncTagsValidity()
-	})
+	async function handleSuccess(result) {
+		if (resetOnSuccess) {
+			title = ''
+			description = ''
+			date = ''
+			author = ''
+			body = ''
+			tags = []
+			tagInput = ''
+			syncTagsValidity()
+		}
+
+		if (typeof onSuccess === 'function') {
+			await onSuccess(result)
+		}
+	}
 </script>
 
-<svelte:head>
-	<title>Nieuwsartikel toevoegen | ADConnect Admin</title>
-</svelte:head>
-
-<AdminHeader
-	title="Nieuwsartikelen"
-	{directusBase}
-	contentType="adconnect_news"
-	breadcrumb="Nieuwsartikelen › Formulier"
-	addHref="/admin/news/form"
-/>
-
-{#if form?.error}
-	<Error message={form.error} />
-{/if}
-
-{#if form?.success && form?.message}
-	<p class="success-message">{form.message}</p>
-{/if}
-
-<form
-	method="POST"
-	enctype="multipart/form-data"
-	class="news-form"
-	use:enhance={({ cancel }) => {
-		syncTagsValidity()
-		if (!tagsInputElement?.checkValidity()) {
-			tagsInputElement?.reportValidity()
-			cancel()
-			return
-		}
-
-		isSubmitting = true
-		return async ({ result, update }) => {
-			await update()
-			isSubmitting = false
-
-			if (result.type === 'success') {
-				tags = []
-				tagInput = ''
-				scrollToTop()
-			}
-		}
-	}}
+<Form
+	{form}
+	{showPublishButton}
+	{resetOnSuccess}
+	onSuccess={handleSuccess}
+	hasFileFields={true}
+	formClass="news-form"
 >
+	{#if currentHeroId}
+		<input
+			type="hidden"
+			name="currentHeroId"
+			value={currentHeroId}
+		/>
+	{/if}
+
 	<div class="field-group">
 		<label for="title">Titel</label>
 		<input
@@ -122,6 +114,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een titel in"
+			bind:value={title}
 			required
 		/>
 	</div>
@@ -133,6 +126,7 @@
 			name="description"
 			placeholder="Voer een korte omschrijving in"
 			required
+			bind:value={description}
 		></textarea>
 	</div>
 
@@ -143,7 +137,7 @@
 			name="image"
 			type="file"
 			accept="image/*"
-			required
+			required={requireImage}
 		/>
 	</div>
 
@@ -153,6 +147,7 @@
 			id="date"
 			name="date"
 			type="date"
+			bind:value={date}
 			required
 		/>
 	</div>
@@ -165,6 +160,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een auteur in"
+			bind:value={author}
 			required
 		/>
 	</div>
@@ -181,7 +177,7 @@
 						onclick={() => removeTag(index)}
 						aria-label="Verwijder tag {tag}"
 					>
-						×
+						x
 					</button>
 				</span>
 			{/each}
@@ -212,51 +208,12 @@
 			name="body"
 			placeholder="Voer de body in"
 			required
+			bind:value={body}
 		></textarea>
 	</div>
-
-	<div class="actions">
-		<button
-			type="submit"
-			name="submitAction"
-			value="save"
-			class="button-outline-blue"
-			disabled={isSubmitting}
-		>
-			{isSubmitting ? 'Opslaan...' : 'Opslaan'}
-		</button>
-		<button
-			type="submit"
-			name="submitAction"
-			value="publish"
-			class="button-outline-blue"
-			disabled={isSubmitting}
-			title="Publiceren"
-		>
-			{isSubmitting ? 'Publiceren...' : 'Publiceer'}
-		</button>
-	</div>
-</form>
+</Form>
 
 <style>
-	.success-message {
-		font-family: var(--font-body);
-		font-size: 0.95rem;
-		background-color: hsl(140, 45%, 18%);
-		color: var(--text-white);
-		border-radius: 10px;
-		padding: 0.7em 1em;
-		margin: 0.75em 0 1em;
-		width: fit-content;
-	}
-
-	.news-form {
-		display: flex;
-		flex-direction: column;
-		gap: 1.25em;
-		max-width: 820px;
-	}
-
 	.field-group {
 		display: flex;
 		flex-direction: column;
@@ -373,24 +330,5 @@
 
 	textarea::placeholder {
 		color: var(--neutral-600);
-	}
-
-	.actions {
-		display: flex;
-		justify-content: flex-end;
-		gap: 0.75em;
-		margin-top: 0.5em;
-	}
-
-	button[disabled] {
-		opacity: 0.65;
-		cursor: not-allowed;
-	}
-
-	@media (max-width: 800px) {
-		.actions {
-			justify-content: flex-start;
-			flex-wrap: wrap;
-		}
 	}
 </style>
