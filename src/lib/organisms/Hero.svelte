@@ -84,10 +84,10 @@
   }
 
   .hero-media {
-    width: 100%;
     display: flex;
 
     :global(img) {
+      display: block;
       border-radius: 1em 1em 0 0;
       height: 20em;
       width: 100%;
@@ -105,8 +105,6 @@
     }
 
     .hero-media {
-      width: 50%;
-
       :global(img) {
         height: 25em;
       }

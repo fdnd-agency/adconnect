@@ -1,6 +1,6 @@
 <script>
   import DividerText from '$lib/molecules/DividerText.svelte'
-  import Testwinner from '$lib/assets/test-winner.png'
+  import Testwinner from '$lib/assets/test-winner.png?enhanced'
 </script>
 
 <section>
@@ -9,12 +9,12 @@
   <section class="previous-winners">
     <section class="slider">
       <ul>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href=""> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
-        <li><a href="#"> <img src={Testwinner} alt=''/> </a></li>
+        <li><a href="#"> <enhanced:img src={Testwinner} alt=''/> </a></li>
+        <li><a href="#"> <enhanced:img src={Testwinner} alt=''/> </a></li>
+        <li><a href=""> <enhanced:img src={Testwinner} alt=''/> </a></li>
+        <li><a href="#"> <enhanced:img src={Testwinner} alt=''/> </a></li>
+        <li><a href="#"> <enhanced:img src={Testwinner} alt=''/> </a></li>
+        <li><a href="#"> <enhanced:img src={Testwinner} alt=''/> </a></li>
       </ul>
     </section>
 

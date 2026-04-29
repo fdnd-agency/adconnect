@@ -1,6 +1,7 @@
 <script>
 	import dots from '$lib/assets/dots.svg'
-	import imageSrc from '$lib/assets/doorstroom-ad-dag.webp'
+	import imageSrc from '$lib/assets/doorstroom-ad-dag.webp?enhanced'
+	import { PictureImg } from '$lib'
 
 	export let title = ''
 	export let intro = ''
@@ -13,10 +14,9 @@
 
 <section class="feature">
 	<div class="feature-content">
-		<img
+		<PictureImg
 			src={dots}
-			alt=""
-			class="feature-dots"
+			isIcon="true"
 			width="80"
 			height="60"
 		/>
@@ -31,9 +31,9 @@
 			<ul class="feature-list">
 				{#each bullets as item, i (i)}
 					<li class="feature-list-item">
-						<img
+						<PictureImg
 							src="/check-circle.svg"
-							alt=""
+							isIcon="true"
 							width="17"
 							height="17"
 						/>
@@ -53,11 +53,11 @@
 
 	<div class="feature-media">
 		{#if imageSrc}
-			<img
-				class="feature-img"
+			<PictureImg
+				isEnhanced="true"
 				src={imageSrc}
 				alt={imageAlt}
-				aria-hidden="true"
+				border-radius="33px"
 			/>
 		{/if}
 	</div>

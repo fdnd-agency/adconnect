@@ -3,19 +3,19 @@
 	export let article
 
 	// Import afbeeldingen
-	import fallback from '$lib/assets/news-fallback.jpg'
+	import fallback from '$lib/assets/news-fallback.jpg?enhanced'
 	import calendar from '$lib/assets/icon-calendar.svg'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
+	import { PictureImg } from '$lib'
 </script>
 
 <article>
-	<img
+	<PictureImg
 		src={`${DIRECTUS_URL}/assets/${article.hero}`}
-		alt={article.title}
 		width="300"
 		height="210"
-		aria-hidden="true"
+		border-radius="0.5em"
 	/>
 
 	<div>
@@ -43,7 +43,7 @@
 		}
 	}
 
-	article > img:first-of-type {
+	.img-container {
 		width: 100%;
 		border-radius: 0.5em;
 		object-fit: cover;

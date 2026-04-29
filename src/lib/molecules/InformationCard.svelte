@@ -1,6 +1,8 @@
 <script>
   // Allows a default icon, but you can override per card
   import defaultDots from '$lib/assets/dots.svg'
+	import { PictureImg } from '$lib'
+
 
   export let title = ''
   export let description = ''
@@ -11,7 +13,7 @@
 
 <article class="info-card">
   <section class="info-card-head">
-    <img src={iconSrc} alt="" class="info-card-icon" />
+    <PictureImg isIcon=true src={iconSrc} width="51" />
     <h3 class="info-card-title">{title}</h3>
   </section>
 
@@ -37,12 +39,6 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-  }
-
-  .info-card-icon {
-    width: 51px;
-    height: auto;
-    display: block;
   }
 
   .info-card-desc {

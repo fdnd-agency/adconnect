@@ -20,13 +20,14 @@
 	title="Over ons"
 	description="Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen aanbieden of dit willen gaan doen, kunnen deelnemen aan het platform."
 >
-	<img
+	<enhanced:img
 		class="hero-image"
 		src={doorstroom}
 		alt="Waarom AdConnect?"
 		aria-hidden="true"
 		fetchpriority="high"
 	/>
+	
 </Hero>
 
 <section class="intro">

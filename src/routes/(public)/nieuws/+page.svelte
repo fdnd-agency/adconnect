@@ -18,7 +18,7 @@
 	title="Nieuws"
 	description="Op deze pagina vind je updates en korte verslagen van georganiseerde evenementen."
 >
-	<img
+	<enhanced:img
 		class="hero-image"
 		src={Nieuwshero}
 		alt=""

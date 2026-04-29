@@ -21,7 +21,7 @@
   <div class="wrapper">
     <div class="img-wrapper">
       <img class="circle" src={lightcircle} alt="" />
-      <img class="visual" src={image} {alt} loading="lazy" width="350" height="450" />
+      <enhanced:img class="visual" src={image} alt={alt} loading="lazy" />
     </div>
 
     <div class="content">

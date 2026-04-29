@@ -2,7 +2,7 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link, PictureImg } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -30,13 +30,11 @@
 		href="/over-ad"
 		class="button-outline-blue">Meer over Ad's</Link
 	>
-	<img
-		class="hero-image"
+	<PictureImg
 		src={zaal}
-		alt=""
 		fetchpriority="high"
-		width="300"
-		height="210"
+		loading="eager"
+		isEnhanced=true
 	/>
 </Hero>
 
@@ -88,7 +86,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	bullets={['Praktijkgericht leren en direct vaardigheden toepassen', 'Korte studieduur van 2 jaar', 'Doorstromen naar een bacheloropleiding mogelijk']}
 	ctaText="Meer over Associate degrees"
 	ctaLink="/over-ad"
-	imageSrc="/images/award.jpg"
+	imageSrc="/images/award.jpg?enhanced"
 	imageAlt="Studenten bij AdTalent award"
 />
 

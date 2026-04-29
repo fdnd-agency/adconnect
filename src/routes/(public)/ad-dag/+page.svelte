@@ -1,8 +1,8 @@
 <script>
 	import logomobile from '$lib/assets/logomobile.svg'
-	import addag1 from '$lib/assets/addag-1.png'
-	import addag2 from '$lib/assets/addag-2.png'
-	import addag3 from '$lib/assets/addag-3.webp'
+	import addag1 from '$lib/assets/addag-1.png?enhanced'
+	import addag2 from '$lib/assets/addag-2.png?enhanced'
+	import addag3 from '$lib/assets/addag-3.webp?enhanced'
 
 	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule } from '$lib'
 </script>
@@ -21,7 +21,7 @@
 	uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of
 	blijf op de hoogte "
 >
-	<img
+	<enhanced:img
 		class="hero-image"
 		src={Addag}
 		alt=""
@@ -38,10 +38,12 @@
 			en aan organisaties. Het is tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt concrete ideeën mee om morgen toe te passen.
 		</p>
 	</article>
-	<img
+	<enhanced:img
 		src={addag3}
 		alt=""
 		width="450px"
+		height="340px"
+		loading=lazy
 	/>
 </section>
 
@@ -50,6 +52,7 @@
 		class="logo"
 		src={logomobile}
 		alt=""
+		loading=lazy
 	/>
 	<h2>Alles wat je wilt weten over de Ad-dag?</h2>
 
@@ -76,12 +79,13 @@
 		/>
 	</MultipleFaq>
 
-	<img
+	<enhanced:img
 		class="addag-2"
 		src={addag2}
 		alt=""
 		width="600"
 		height="300"
+		loading=lazy
 	/>
 </section>
 <Schedule />
@@ -99,9 +103,14 @@
 		align-self: center;
 		margin: auto;
 
-		img {
-			width: 100%;
-			border-radius: 1em;
+		picture {
+			max-width: 580px;
+
+			img {
+				width: 100%;
+				border-radius: 1em;
+				object-fit: cover;
+			}
 		}
 
 		article {

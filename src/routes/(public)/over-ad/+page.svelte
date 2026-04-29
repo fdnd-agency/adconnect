@@ -19,12 +19,13 @@
 	title="Over Associate Degree's"
 	description="Associate Degrees zijn praktijkgerichte opleidingen van twee jaar die studenten voorbereiden op het werkveld en doorstroom naar een bachelor."
 >
-	<img
-		class="hero-image"
+	<enhanced:img
 		src={overad}
 		alt=""
 		fetchpriority="high"
+		loading="eager"
 	/>
+
 	<a
 		slot="primary"
 		href="#benefit"
