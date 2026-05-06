@@ -148,7 +148,7 @@ Testing
 Code
 - FDND conventions are followed, Check for [coventions](https://docs.fdnd.nl/conventies.html) relevent to your code
 - Remove commented-out code
-  - We should be able to read and understand your code no need for detailed explanations, that is meant for /docs
+  - We should be able to read and understand your code without detailed explanations, those belong in the /docs
 - Prevent repeated code (DRY principle)
 
 Pull requests
