@@ -122,9 +122,10 @@ It ensures that the story is clear, feasible, and valuable, so the team doesn’
 ### DoR's:
 
 - User story written clearly with format "As a.... I want to.... So that...." and approved by Product Owner.
+- Know the scope. Know what you will be working on in this user-story so you'l lalso know what NOT to work on.
 - Acceptance criteria defined (what “done” looks like).
-- Sources or research material available.
-- Poker planned.
+- Sources or research material available. 
+- Give a weight/value to the user story. Use poker planning with the Modified Fibonacchi set of values.
 - Story estimated and added to sprint backlog.
 
 ## DoD:
