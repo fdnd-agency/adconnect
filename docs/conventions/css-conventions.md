@@ -215,3 +215,10 @@ Container queries cross component boundaries.
     ```
   </details>
 
+
+### Rules implementing media query user preferences
+
+- Always start with default CSS and add media queries as overrides.
+- Keep it simple and semantic with clear names like `@media (prefers-color-scheme: dark)`.
+- Use only what is relevant for UX.
+- Group related rules together such as all `prefers-reduced-motion` styles.
