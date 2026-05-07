@@ -43,6 +43,7 @@
 
 - Always tag each other for a review.
 - Use the PR-template.
+- [Pull request conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/pull-request-conventions.md)
 
 ### Issues & project board
 
@@ -51,25 +52,9 @@
 - **To do**: what still needs to be done.
 - **In progress**: when you're working on it.
 - **Done**: when a review has been given and it's on main.
-- Check the project board during standup.
-
-## Naming Branch
-
-Branches should be created directly from the feature issue using the “Create New Branch” button.
-The branch name must include the branch number and a clear issue name.
-
-<img width="336" height="149" alt="Scherm­afbeelding 2026-01-12 om 15 35 26" src="https://github.com/user-attachments/assets/46fc7692-f7bd-403e-977f-319f0e39b678" />
-
-## PR Template
-
-### What has changed?
-
-- Link to issues (use a `#`)
-- Explain what changes you've made
-- Explain on which items/code you want to receive feedback
+- Check the project board during standups
 
 ### Visuals
-
 - Screenshots/Screenrecord
 
 ## Our Git Flow
@@ -85,34 +70,19 @@ We follow the code conventions of FDND agency. Below the most important conventi
 
 ### Code conventions
 
-- Follow consistent naming
-- Follow best practices for HTML-structure and semantics.
-- Use CSS-nesting, pseudo-private custom properties and use a dynamic colour palette.
-- Use template literals, object destructuring and choose wisely between const, let en var.
-- Label commits clearly (fix:, docs:, style: etc)
-- Follow guidelines for data, routes, component-structure and CSS within SvelteKit-projects.
-- Atomic: each commit does one thing (one bugfix, one feature, one refactor, one test addition).
+- [Atomic design](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/atomic-design-conventions.md)
+- [Conventional commits](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/conventional-commits.md)
+- [Css conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/css-conventions.md)
+- [HTML conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/html-conventions.md)
+- [Javascript conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/javascript-coventions.md)
+- [Naming conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/naming-conventions.md)
+- [Sveltekit conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/sveltekit-conventions.md)
 
 ### Design conventions
 
 - Make user-friendly and accessible designs.
 - Work together in design systems and validate designs in both Figma and the browser.
 - Use variables, styles en organize your Figma-files effectively.
-
-## Rules implementing container queries
-
-- Use container queries only when component resizing is needed.
-- Add an extra (div) wrapper only if it has a clear structural purpose (for example grouping/separating elements).
-- Give containers clear and consistent names.
-- Apply `@container` to the nearest logical parent of the component.
-- Mention new or changed container query usage in your pull request.
-
-## Rules implementing media query user preferences
-
-- Always start with default CSS and add media queries as overrides.
-- Keep it simple and semantic with clear names like `@media (prefers-color-scheme: dark)`.
-- Use only what is relevant for UX.
-- Group related rules together such as all `prefers-reduced-motion` styles.
 
 ## Definitions of Ready
 
@@ -150,17 +120,6 @@ Code
 - Remove commented-out code
   - We should be able to read and understand your code without detailed explanations, those belong in the /docs
 - Prevent repeated code (DRY principle)
-
-Pull requests
-- Close sub-issues when finished
-- Move the user story to the review column
-- Write a detailed pull request
-  - ask for feedback on specific parts
-  - Explain the changes
-- Include all information needed for the review in the pull request
-  - A reviewer should not have to find/search for information, files or designs
-- Verify that you are merging into the correct branch (dev)
-- Archive closed branches
 
 > These checks are meant for all situations, it is posible to skip 1 or more of the checks.  
 please provide valid reasons oth the reviewers might asks you to perform them or ask why the test is missing
