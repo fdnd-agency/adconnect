@@ -4,6 +4,13 @@
 - Review your own PR first
 - Provide context and guidance
 
+Naming Branch:  
+Branches should be created directly from the feature issue using the “Create New Branch” button.
+The branch name must include the branch number and a clear issue name.
+
+<img width="336" height="149" alt="Scherm­afbeelding 2026-01-12 om 15 35 26" src="https://github.com/user-attachments/assets/46fc7692-f7bd-403e-977f-319f0e39b678" />
+
+
 ---
 
 <details>
