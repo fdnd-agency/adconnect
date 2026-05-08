@@ -210,7 +210,9 @@ The JavaScript logic already exists, keeping your code DRY, consistent, and maki
 ---
 
 **templates**
-- we dont apply templates in our codebase
+- Layout containers that combine multiple organisms
+- CSS focuses only on layout
+- Examples: DashboardLayout, BlogPostLayout, card component layout
 
 ---
 
