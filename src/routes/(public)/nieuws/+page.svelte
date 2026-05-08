@@ -1,13 +1,44 @@
 <script>
 	import { Nieuwshero } from '$lib'
+
 	/* Import images */
 	import { dots } from '$lib'
 	import { calendar } from '$lib'
+
 	/* Import components */
 	import { Hero } from '$lib'
 	import { formatDateNL } from '$lib/molecules/date'
+
 	// Haal data op uit page.server.js via props
 	const { data } = $props()
+
+	/* Pagination */
+	let currentPage = $state(1)
+
+	const itemsPerPage = 9
+
+	const totalPages = $derived(
+		Math.ceil(data.news.length / itemsPerPage)
+	)
+
+	const paginatedNews = $derived(
+		data.news.slice(
+			(currentPage - 1) * itemsPerPage,
+			currentPage * itemsPerPage
+		)
+	)
+
+	function nextPage() {
+		if (currentPage < totalPages) {
+			currentPage += 1
+		}
+	}
+
+	function previousPage() {
+		if (currentPage > 1) {
+			currentPage -= 1
+		}
+	}
 </script>
 
 <svelte:head>
@@ -51,8 +82,11 @@
 								class="button-outline-blue"
 								href={`/nieuws/${item.uuid}`}
 							>
-								Meer informatie <span class="sr-only"> over {item.title}</span></a
-							>
+								Meer informatie
+								<span class="sr-only">
+									over {item.title}
+								</span>
+							</a>
 						</article>
 					</li>
 				{/each}
@@ -60,13 +94,17 @@
 		</section>
 	</section>
 </section>
+
 <section class="news">
 	<h2>Alle nieuws</h2>
-	<p>Aantal artikelen: {data.news.length}</p>
+
+	<p>
+		Aantal artikelen: {data.news.length}
+	</p>
 
 	<section class="news-container">
 		<ul>
-			{#each data.latest9 as item (item.uuid)}
+			{#each paginatedNews as item (item.uuid)}
 				<li>
 					<article>
 						<h2>{item.title}</h2>
@@ -85,12 +123,45 @@
 							class="button-outline-blue"
 							href={`/nieuws/${item.uuid}`}
 						>
-							Meer informatie <span class="sr-only"> over {item.title}</span>
+							Meer informatie
+							<span class="sr-only">
+								over {item.title}
+							</span>
 						</a>
 					</article>
 				</li>
 			{/each}
 		</ul>
+
+		<div
+			style="
+				display:flex;
+				justify-content:center;
+				align-items:center;
+				gap:1rem;
+				margin-top:2rem;
+			"
+		>
+			<button
+				class="button-outline-blue"
+				on:click={previousPage}
+				disabled={currentPage === 1}
+			>
+				←
+			</button>
+
+			<p>
+				Pagina {currentPage} van {totalPages}
+			</p>
+
+			<button
+				class="button-outline-blue"
+				on:click={nextPage}
+				disabled={currentPage === totalPages}
+			>
+				→
+			</button>
+		</div>
 	</section>
 </section>
 
@@ -120,6 +191,7 @@
 		h2 {
 			font-size: 25px;
 		}
+
 		article {
 			display: grid;
 			grid-template-rows: auto auto 1fr auto;
@@ -130,14 +202,17 @@
 			background: light-dark(var(--text-white), hsl(210, 30%, 8%));
 			transition: 0.2s ease-in-out;
 			height: 100%;
+
 			h2 {
 				max-width: 30ch;
 				grid-row: 2;
 			}
+
 			p {
 				max-width: 60ch;
 				line-height: 1.6;
 			}
+
 			a {
 				align-self: start;
 				margin-top: auto;
