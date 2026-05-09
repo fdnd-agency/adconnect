@@ -66,9 +66,10 @@ We follow the Git Flow of [FDND agency](https://docs.fdnd.nl/conventies.html#bra
 ## FDND conventions
 
 We follow the code conventions of FDND agency. Below the most important conventions.
-[See FDND website](https://docs.fdnd.nl/conventies.html)
+[See FDND website](https://docs.fdnd.nl/conventies.html)  
+For conventions that developers work with more frequently, we provided clearer explanations along with code examples, ensuring that everyone on the team follows the same approach and coding style.
 
-### Code conventions
+### Code conventions with examples
 
 - [Atomic design](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/atomic-design-conventions.md)
 - [Conventional commits](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/conventional-commits.md)
