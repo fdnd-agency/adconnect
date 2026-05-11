@@ -87,7 +87,7 @@
 								: item.collection === 'adconnect_news'
 									? '/admin/news/create'
 									: item.collection === 'adconnect_collaborations'
-										? '/admin/cooperations/form'
+										? '/admin/cooperations/create'
 										: item.collection === 'adconnect_events'
 											? '/admin/events/form'
 											: `${directusBase}/${item.collection}/+`}

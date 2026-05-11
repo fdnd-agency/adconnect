@@ -1,4 +1,5 @@
 import { ContentService } from '$lib/server/contentService.js'
+import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
@@ -6,47 +7,49 @@ const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van de samenw
 const GENERIC_PUBLISH_WARNING = 'Samenwerking opgeslagen als concept, maar publiceren is mislukt.'
 const URL_REGEX = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
 
-// Deletes uploaded files when cooperation creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
 	for (const fileId of fileIds) {
 		if (!fileId) continue
 
 		const result = await ContentService.deleteFile(fileId, accessToken)
 		if (!result?.success) {
-			console.error(`[cooperations/form] Rollback failed for file ${fileId}`)
+			console.error(`[cooperations/create] Rollback failed for file ${fileId}`)
 		}
 	}
 }
 
 export const actions = {
-	// Handles form submission for initial cooperations form version.
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
-		const submitAction = String(data.get('submitAction') ?? 'save').trim()
+		const { submitAction: rawSubmitAction = 'save', logo, ...submittedFormState } = extractFormState(data)
+
+		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
-		const name = String(data.get('name') ?? '').trim()
-		const url = String(data.get('url') ?? '').trim()
-		const logo = data.get('logo')
+		const name = String(submittedFormState.name ?? '').trim()
+		const url = String(submittedFormState.url ?? '').trim()
 		const token = cookies.get('access_token')
 
+		submittedFormState.name = String(submittedFormState.name ?? '')
+		submittedFormState.url = String(submittedFormState.url ?? '')
+
 		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR })
+			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		}
 
 		if (!name) {
-			return fail(400, { error: 'Vul een naam in.' })
+			return fail(400, { error: 'Vul een naam in.', ...submittedFormState })
 		}
 
 		if (!url) {
-			return fail(400, { error: 'Vul een URL in.' })
+			return fail(400, { error: 'Vul een URL in.', ...submittedFormState })
 		}
 
 		if (!URL_REGEX.test(url)) {
-			return fail(400, { error: 'Vul een geldige URL in (http:// of https://).' })
+			return fail(400, { error: 'Vul een geldige URL in (http:// of https://).', ...submittedFormState })
 		}
 
 		if (!(logo instanceof File) || logo.size === 0) {
-			return fail(400, { error: 'Upload een logo.' })
+			return fail(400, { error: 'Upload een logo.', ...submittedFormState })
 		}
 
 		const uploadedFileIds = []
@@ -60,8 +63,8 @@ export const actions = {
 			})
 
 			if (!logoUpload?.success) {
-				console.error('[cooperations/form] Logo upload failed:', logoUpload)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				console.error('[cooperations/create] Logo upload failed:', logoUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 			}
 			uploadedFileIds.push(logoUpload.id)
 
@@ -75,10 +78,10 @@ export const actions = {
 			const createResult = await ContentService.postContent(payload, 'cooperations', token)
 
 			if (!createResult?.success) {
-				console.error('[cooperations/form] Cooperation create failed:', createResult)
+				console.error('[cooperations/create] Cooperation create failed:', createResult)
 				const createStatus = Number(createResult?.status) || 500
 				const errorMessage = createResult?.data?.error ?? GENERIC_CREATE_ERROR
-				return fail(createStatus, { error: errorMessage })
+				return fail(createStatus, { error: errorMessage, ...submittedFormState })
 			}
 
 			cooperationCreated = true
@@ -88,7 +91,7 @@ export const actions = {
 					const publishResult = await ContentService.publishContent(createResult.id, 'cooperations', token)
 
 					if (!publishResult?.success) {
-						console.error('[cooperations/form] Publish failed:', publishResult)
+						console.error('[cooperations/create] Publish failed:', publishResult)
 						return {
 							success: true,
 							message: GENERIC_PUBLISH_WARNING,
@@ -96,7 +99,7 @@ export const actions = {
 						}
 					}
 				} catch (err) {
-					console.error('[cooperations/form] Unexpected error during publish:', err)
+					console.error('[cooperations/create] Unexpected error during publish:', err)
 					return {
 						success: true,
 						message: GENERIC_PUBLISH_WARNING,
@@ -117,8 +120,8 @@ export const actions = {
 				cooperationId: createResult.id
 			}
 		} catch (err) {
-			console.error('[cooperations/form] Unexpected error during create:', err)
-			return fail(500, { error: GENERIC_CREATE_ERROR })
+			console.error('[cooperations/create] Unexpected error during create:', err)
+			return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		} finally {
 			if (!cooperationCreated && uploadedFileIds.length > 0) {
 				await rollbackUploadedFiles(uploadedFileIds, token)
