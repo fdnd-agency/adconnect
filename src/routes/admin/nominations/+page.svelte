@@ -26,6 +26,10 @@
 			})
 			.filter((doc) => doc.title?.toLowerCase().includes(search.toLowerCase()))
 	)
+
+	function nominationEditHref(doc) {
+		return '/admin/nominations/' + encodeURIComponent(doc.id) + '/edit'
+	}
 </script>
 
 <svelte:head>
@@ -41,7 +45,7 @@
 	{directusBase}
 	contentType="adconnect_nominations"
 	breadcrumb="Nominaties"
-	addHref="/admin/nominations/form"
+	addHref="/admin/nominations/create"
 />
 
 <AdminToolbar
@@ -58,6 +62,7 @@
 	{filtered}
 	{directusBase}
 	contentType="adconnect_nominations"
+	editHrefBuilder={nominationEditHref}
 	labels={{
 		single: 'nominatie',
 		multiple: 'nominaties',

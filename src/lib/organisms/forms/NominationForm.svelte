@@ -1,60 +1,103 @@
 <script>
-	import { enhance } from '$app/forms'
-	import { DIRECTUS_URL } from '$lib/constants.js'
-	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
-	import Error from '$lib/atoms/Error.svelte'
+	import Form from '$lib/organisms/forms/Form.svelte'
 
-	const { data, form } = $props()
-	const events = $derived(data?.events ?? [])
-	const directusBase = `${DIRECTUS_URL}/admin/content`
+	const { form, nomination = null, events = [], showPublishButton = false, resetOnSuccess = true, onSuccess = null, requireProfilePicture = true } = $props()
 
-	let isSubmitting = $state(false)
+	function extractEventIdFromNomination(rawEventLinks) {
+		if (!Array.isArray(rawEventLinks)) return ''
 
-	function scrollToTop() {
-		window.scrollTo({ top: 0, behavior: 'smooth' })
+		for (const link of rawEventLinks) {
+			if (link === null || link === undefined) continue
+
+			if (typeof link === 'string' || typeof link === 'number') {
+				const value = String(link).trim()
+				if (value) return value
+				continue
+			}
+
+			if (typeof link !== 'object') continue
+
+			const relatedEvent = link.adconnect_events_id
+			if (typeof relatedEvent === 'object' && relatedEvent !== null) {
+				const value = String(relatedEvent.id ?? '').trim()
+				if (value) return value
+				continue
+			}
+
+			if (relatedEvent !== null && relatedEvent !== undefined) {
+				const value = String(relatedEvent).trim()
+				if (value) return value
+			}
+		}
+
+		return ''
+	}
+
+	let title = $state('')
+	let header = $state('')
+	let date = $state('')
+	let excerpt = $state('')
+	let body = $state('')
+	let institution = $state('')
+	let course = $state('')
+	let previousCourse = $state('')
+	let educationVariant = $state('')
+	let alumnus = $state('')
+	let eventId = $state('')
+
+	const currentProfilePictureId = $derived(typeof nomination?.profile_picture === 'object' ? (nomination?.profile_picture?.id ?? '') : (nomination?.profile_picture ?? ''))
+
+	$effect(() => {
+		title = String(form?.title ?? nomination?.title ?? '')
+		header = String(form?.header ?? nomination?.header ?? '')
+		date = String(form?.date ?? (typeof nomination?.date === 'string' ? nomination.date.slice(0, 10) : '') ?? '')
+		excerpt = String(form?.excerpt ?? nomination?.excerpt ?? '')
+		body = String(form?.body ?? nomination?.body ?? '')
+		institution = String(form?.institution ?? nomination?.institution ?? '')
+		course = String(form?.course ?? nomination?.course ?? '')
+		previousCourse = String(form?.previous_course ?? nomination?.previous_course ?? '')
+		educationVariant = String(form?.education_variant ?? nomination?.education_variant ?? '')
+		alumnus = String(form?.alumnus ?? nomination?.alumnus ?? '')
+		eventId = String(form?.event_id ?? extractEventIdFromNomination(nomination?.event_id) ?? '')
+	})
+
+	async function handleSuccess(result) {
+		if (resetOnSuccess) {
+			title = ''
+			header = ''
+			date = ''
+			excerpt = ''
+			body = ''
+			institution = ''
+			course = ''
+			previousCourse = ''
+			educationVariant = ''
+			alumnus = ''
+			eventId = ''
+		}
+
+		if (typeof onSuccess === 'function') {
+			await onSuccess(result)
+		}
 	}
 </script>
 
-<svelte:head>
-	<title>Nominatie toevoegen | ADConnect Admin</title>
-</svelte:head>
-
-<AdminHeader
-	title="Nominaties"
-	{directusBase}
-	contentType="adconnect_nominations"
-	breadcrumb="Nominaties › Formulier"
-	addHref="/admin/nominations/form"
-/>
-
-{#if form?.error}
-	<Error message={form.error} />
-{/if}
-
-{#if data?.loadError}
-	<Error message={data.loadError} />
-{/if}
-
-{#if form?.success && form?.message}
-	<p class="success-message">{form.message}</p>
-{/if}
-
-<form
-	method="POST"
-	enctype="multipart/form-data"
-	class="nomination-form"
-	use:enhance={() => {
-		isSubmitting = true
-		return async ({ result, update }) => {
-			await update()
-			isSubmitting = false
-
-			if (result.type === 'success') {
-				scrollToTop()
-			}
-		}
-	}}
+<Form
+	{form}
+	{showPublishButton}
+	{resetOnSuccess}
+	onSuccess={handleSuccess}
+	hasFileFields={true}
+	formClass="nomination-form"
 >
+	{#if currentProfilePictureId}
+		<input
+			type="hidden"
+			name="currentProfilePictureId"
+			value={currentProfilePictureId}
+		/>
+	{/if}
+
 	<div class="field-group">
 		<label for="title">Titel</label>
 		<input
@@ -63,6 +106,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een titel in"
+			bind:value={title}
 			required
 		/>
 	</div>
@@ -75,6 +119,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een header in"
+			bind:value={header}
 			required
 		/>
 	</div>
@@ -85,6 +130,7 @@
 			id="date"
 			name="date"
 			type="date"
+			bind:value={date}
 			required
 		/>
 	</div>
@@ -95,6 +141,7 @@
 			id="excerpt"
 			name="excerpt"
 			placeholder="Voer een samenvatting in"
+			bind:value={excerpt}
 			required
 		></textarea>
 	</div>
@@ -105,6 +152,7 @@
 			id="body"
 			name="body"
 			placeholder="Voer de body in"
+			bind:value={body}
 			required
 		></textarea>
 	</div>
@@ -124,11 +172,12 @@
 			<select
 				id="event_id"
 				name="event_id"
+				bind:value={eventId}
 				required
 			>
 				<option value="">Kies een event</option>
-				{#each events as event (event.id)}
-					<option value={event.id}>{event.title ?? `Event ${event.id}`}</option>
+				{#each events as eventItem (eventItem.id)}
+					<option value={String(eventItem.id)}>{eventItem.title ?? `Event ${eventItem.id}`}</option>
 				{/each}
 			</select>
 		{/if}
@@ -142,6 +191,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een instelling in"
+			bind:value={institution}
 			required
 		/>
 	</div>
@@ -154,6 +204,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een opleiding in"
+			bind:value={course}
 			required
 		/>
 	</div>
@@ -166,6 +217,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer de vorige opleiding in"
+			bind:value={previousCourse}
 			required
 		/>
 	</div>
@@ -178,6 +230,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer een onderwijsvariant in"
+			bind:value={educationVariant}
 			required
 		/>
 	</div>
@@ -190,6 +243,7 @@
 			type="text"
 			autocomplete="off"
 			placeholder="Voer alumnis in"
+			bind:value={alumnus}
 			required
 		/>
 	</div>
@@ -201,52 +255,12 @@
 			name="profile_picture"
 			type="file"
 			accept="image/*"
-			required
+			required={requireProfilePicture}
 		/>
 	</div>
-
-	<div class="actions">
-		<button
-			type="submit"
-			name="submitAction"
-			value="save"
-			class="button-outline-blue"
-			disabled={isSubmitting}
-		>
-			{isSubmitting ? 'Opslaan...' : 'Opslaan'}
-		</button>
-		<button
-			type="submit"
-			name="submitAction"
-			value="publish"
-			class="button-outline-blue"
-			disabled={isSubmitting}
-			title="Publiceren"
-		>
-			{isSubmitting ? 'Publiceren...' : 'Publiceer'}
-		</button>
-	</div>
-</form>
+</Form>
 
 <style>
-	.success-message {
-		font-family: var(--font-body);
-		font-size: 0.95rem;
-		background-color: hsl(140, 45%, 18%);
-		color: var(--text-white);
-		border-radius: 10px;
-		padding: 0.7em 1em;
-		margin: 0.75em 0 1em;
-		width: fit-content;
-	}
-
-	.nomination-form {
-		display: flex;
-		flex-direction: column;
-		gap: 1.25em;
-		max-width: 820px;
-	}
-
 	.field-group {
 		display: flex;
 		flex-direction: column;
@@ -324,24 +338,5 @@
 
 	textarea::placeholder {
 		color: var(--neutral-600);
-	}
-
-	.actions {
-		display: flex;
-		justify-content: flex-end;
-		gap: 0.75em;
-		margin-top: 0.5em;
-	}
-
-	button[disabled] {
-		opacity: 0.65;
-		cursor: not-allowed;
-	}
-
-	@media (max-width: 800px) {
-		.actions {
-			justify-content: flex-start;
-			flex-wrap: wrap;
-		}
 	}
 </style>
