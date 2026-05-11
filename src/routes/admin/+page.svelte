@@ -77,7 +77,7 @@
 				icon={item.icon}
 				label={item.label}
 				href={item.collection === 'adconnect_documents'
-					? '/admin/documents/form'
+					? '/admin/documents/create'
 					: item.collection === 'adconnect_nominations'
 						? '/admin/nominations/create'
 						: item.collection === 'adconnect_themes'
@@ -85,11 +85,11 @@
 							: item.collection === 'adconnect_faqs'
 								? '/admin/faqs/create'
 								: item.collection === 'adconnect_news'
-									? '/admin/news/form'
+									? '/admin/news/create'
 									: item.collection === 'adconnect_collaborations'
-										? '/admin/cooperations/form'
+										? '/admin/cooperations/create'
 										: item.collection === 'adconnect_events'
-											? '/admin/events/form'
+											? '/admin/events/create'
 											: `${directusBase}/${item.collection}/+`}
 				iconHeight={item.iconHeight}
 			/>
