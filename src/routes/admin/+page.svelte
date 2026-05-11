@@ -89,7 +89,7 @@
 									: item.collection === 'adconnect_collaborations'
 										? '/admin/cooperations/create'
 										: item.collection === 'adconnect_events'
-											? '/admin/events/form'
+											? '/admin/events/create'
 											: `${directusBase}/${item.collection}/+`}
 				iconHeight={item.iconHeight}
 			/>
