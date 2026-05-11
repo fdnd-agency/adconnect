@@ -212,7 +212,9 @@ describe('admin lados form actions.default', () => {
 				national_ad_profile: 'Nationaal profiel',
 				lado_status: 'Actief',
 				sectoral_advisory_board: 456,
-				status: 'draft'
+				status: 'draft',
+				courseIds: ['123'],
+				shouldPublish: false
 			},
 			'lados',
 			'token-123'

@@ -150,7 +150,8 @@ describe('admin lados edit actions.default', () => {
 				contact_persons: ['Persoon 1'],
 				national_ad_profile: 'Nationaal profiel',
 				lado_status: 'Actief',
-				sectoral_advisory_board: 456
+				sectoral_advisory_board: 456,
+				courseIds: ['222', '333']
 			},
 			'lados',
 			'token-123'

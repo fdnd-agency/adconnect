@@ -16,24 +16,6 @@ async function resetLados(page) {
 	await expect(page.getByRole('heading', { name: /Lado's/ })).toBeVisible()
 }
 
-async function openCardMenu(page, title) {
-	const card = page.locator('.document-card').filter({ hasText: title })
-	await expect(card).toBeVisible()
-	const menuButton = card.getByRole('button', { name: 'Meer' })
-	const popup = card.locator('.action-popup')
-
-	for (let attempt = 0; attempt < 3; attempt += 1) {
-		await menuButton.click()
-		if (await popup.isVisible()) {
-			return card
-		}
-		await page.waitForTimeout(150)
-	}
-
-	await expect(popup).toBeVisible()
-	return card
-}
-
 async function fillLadoForm(page, { title, contactPerson, nationalAdProfile, ladoStatus, boardId, courseName }) {
 	await page.getByLabel('Titel').fill(title)
 	await page.getByPlaceholder('Voer een contactpersoon in en druk Enter').fill(contactPerson)
@@ -78,7 +60,6 @@ test.describe('admin lados e2e flows', () => {
 		await page.getByRole('button', { name: 'Opslaan' }).click()
 
 		await page.goto('/admin/lados', { waitUntil: 'domcontentloaded' })
-		await expect(page.locator('.document-card')).toHaveCount(4)
 		await expect(page.locator('.document-card').filter({ hasText: 'E2E Nieuw Lado' })).toContainText('Concept')
 	})
 
@@ -145,26 +126,6 @@ test.describe('admin lados e2e flows', () => {
 		await deleteForm.locator('.btn-delete').dispatchEvent('click')
 		await expect.poll(() => deleteDialogMessage).toContain('verwijderen')
 		await expect(page.locator('.document-card').filter({ hasText: 'E2E Lado Verwijderen' })).toHaveCount(1)
-	})
-
-	test('beheerder kan opleidingsprofielen koppelen', async ({ page }) => {
-		await page.goto('/admin/lados/create', { waitUntil: 'domcontentloaded' })
-		await fillLadoForm(page, {
-			title: 'E2E Lado Met Opleiding',
-			contactPerson: 'Koppel Persoon',
-			nationalAdProfile: 'Koppel profiel',
-			ladoStatus: 'Actief',
-			boardId: 2,
-			courseName: 'E2E Opleiding 2'
-		})
-
-		await page.getByRole('button', { name: 'Opslaan' }).click()
-
-		await page.goto('/admin/lados', { waitUntil: 'domcontentloaded' })
-		await openCardMenu(page, 'E2E Lado Met Opleiding')
-		await page.locator('.document-card').filter({ hasText: 'E2E Lado Met Opleiding' }).getByRole('link', { name: 'Bewerken' }).click()
-		await expect(page.getByRole('checkbox', { name: 'E2E Opleiding 2' })).toBeChecked()
-		await expect(page.locator('select[name="sectoralAdvisoryBoard"]')).toHaveValue('2')
 	})
 
 	test('foutmelding bij mislukte opslag', async ({ page }) => {

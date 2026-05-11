@@ -1,10 +1,5 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
-import { depublishE2ELado, getE2ECourses, getE2ELadoById, getE2ESectoralAdvisoryBoards, publishE2ELado, setE2ECourseLinks, updateE2ELado } from '$lib/server/e2eLadosStore.js'
-
-function isE2EMode() {
-	return process.env.E2E_TEST_MODE === '1'
-}
 
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van de Lado.'
 const GENERIC_LOAD_ERROR = 'Er is een probleem opgetreden bij het ophalen van de Lado.'
@@ -20,36 +15,6 @@ function getLinkedCourseIds(courses, ladoId) {
 
 export async function load({ params, cookies }) {
 	const ladoId = String(params.id ?? '').trim()
-
-	if (isE2EMode()) {
-		const lado = getE2ELadoById(ladoId)
-		if (!lado) {
-			return {
-				lado: null,
-				courses: [],
-				selectedCourseIds: [],
-				sectoralAdvisoryBoardId: '',
-				sectoralAdvisoryBoards: [],
-				loadError: GENERIC_LOAD_ERROR
-			}
-		}
-
-		const courses = getE2ECourses()
-			.slice()
-			.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
-		const sectoralAdvisoryBoards = getE2ESectoralAdvisoryBoards()
-			.slice()
-			.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
-		return {
-			lado,
-			courses,
-			selectedCourseIds: getLinkedCourseIds(courses, ladoId),
-			sectoralAdvisoryBoardId: String(lado?.sectoral_advisory_board ?? ''),
-			sectoralAdvisoryBoards,
-			loadError: null
-		}
-	}
-
 	if (!ladoId) {
 		return {
 			lado: null,
@@ -62,16 +27,6 @@ export async function load({ params, cookies }) {
 	}
 
 	const token = cookies.get('access_token')
-	if (!token) {
-		return {
-			lado: null,
-			courses: [],
-			selectedCourseIds: [],
-			sectoralAdvisoryBoardId: '',
-			sectoralAdvisoryBoards: [],
-			loadError: GENERIC_LOAD_ERROR
-		}
-	}
 
 	const [{ data: ladoContent, errors: ladoErrors = [] }, { data: coursesContent, errors: coursesErrors = [] }, { data: boardsContent, errors: boardsErrors = [] }] = await Promise.all([
 		ContentService.fetchContent('lados', ladoId, null, null, false, token),
@@ -111,59 +66,6 @@ export async function load({ params, cookies }) {
 
 export const actions = {
 	default: async ({ params, request, cookies }) => {
-		if (isE2EMode()) {
-			const data = await request.formData()
-			const submitAction = String(data.get('submitAction') ?? 'save').trim()
-			const shouldPublish = submitAction === 'publish'
-			const ladoId = String(params.id ?? '').trim()
-			const title = String(data.get('title') ?? '').trim()
-			const nationalAdProfile = String(data.get('nationalAdProfile') ?? '').trim()
-			const ladoStatus = String(data.get('ladoStatus') ?? '').trim()
-			const courseIds = data
-				.getAll('courses')
-				.map((id) => String(id ?? '').trim())
-				.filter(Boolean)
-			const sectoralAdvisoryBoard = String(data.get('sectoralAdvisoryBoard') ?? '').trim()
-			const contactPersonsRaw = String(data.get('contactPersons') ?? '').trim()
-			let contactPersons = []
-
-			try {
-				const parsedPersons = JSON.parse(contactPersonsRaw)
-				contactPersons = Array.isArray(parsedPersons) ? parsedPersons.map((contactPerson) => String(contactPerson).trim()).filter(Boolean) : []
-			} catch {
-				contactPersons = []
-			}
-
-			if (!ladoId) return fail(400, { error: GENERIC_UPDATE_ERROR, title, contactPersons, nationalAdProfile, ladoStatus, sectoralAdvisoryBoard, courses: courseIds })
-			if (!title) return fail(400, { error: 'Vul een naam in.', title, contactPersons, nationalAdProfile, ladoStatus, sectoralAdvisoryBoard, courses: courseIds })
-			if (contactPersons.length === 0) return fail(400, { error: 'Vul een contactpersoon in.', title, contactPersons, nationalAdProfile, ladoStatus, sectoralAdvisoryBoard, courses: courseIds })
-			if (!nationalAdProfile) return fail(400, { error: 'Vul een nationaal ad-profiel in.', title, contactPersons, nationalAdProfile, ladoStatus, sectoralAdvisoryBoard, courses: courseIds })
-			if (!ladoStatus) return fail(400, { error: 'Vul een lado status in.', title, contactPersons, nationalAdProfile, ladoStatus, sectoralAdvisoryBoard, courses: courseIds })
-			if (!courseIds.length) return fail(400, { error: 'Kies minimaal één opleiding.', title, contactPersons, nationalAdProfile, ladoStatus, sectoralAdvisoryBoard, courses: courseIds })
-			if (!sectoralAdvisoryBoard) return fail(400, { error: 'Kies een sectoraal adviescollege.', title, contactPersons, nationalAdProfile, ladoStatus, sectoralAdvisoryBoard, courses: courseIds })
-
-			const lado = updateE2ELado(ladoId, {
-				title,
-				contactPersons,
-				nationalAdProfile,
-				ladoStatus,
-				sectoralAdvisoryBoard: Number(sectoralAdvisoryBoard)
-			})
-
-			if (!lado) {
-				return fail(404, { error: GENERIC_UPDATE_ERROR, title, contactPersons, nationalAdProfile, ladoStatus, sectoralAdvisoryBoard, courses: courseIds })
-			}
-
-			setE2ECourseLinks(courseIds, ladoId)
-
-			if (shouldPublish) {
-				publishE2ELado(ladoId)
-				return { success: true, message: 'Lado succesvol bijgewerkt en gepubliceerd.', ladoId }
-			}
-
-			return { success: true, message: 'Lado succesvol bijgewerkt.', ladoId }
-		}
-
 		const data = await request.formData()
 		const submitAction = String(data.get('submitAction') ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
@@ -197,7 +99,7 @@ export const actions = {
 
 		submittedFormState.contactPersons = contactPersons
 
-		if (!token) {
+		if (!token && process.env.E2E_TEST_MODE !== '1') {
 			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
 		}
 
@@ -245,7 +147,8 @@ export const actions = {
 				contact_persons: contactPersons,
 				national_ad_profile: nationalAdProfile,
 				lado_status: ladoStatus,
-				sectoral_advisory_board: sectoralAdvisoryBoardId
+				sectoral_advisory_board: sectoralAdvisoryBoardId,
+				courseIds
 			}
 
 			const updateResult = await ContentService.updateContent(ladoId, payload, 'lados', token)
@@ -257,6 +160,8 @@ export const actions = {
 				return fail(updateStatus, { error: errorMessage, ...submittedFormState })
 			}
 
+			// If course linking needed, the mock updateContent handles it when in E2E mode.
+			// For the real service we already performed course sync below.
 			const { data: coursesContent } = await ContentService.fetchContent('courses', null, null, null, false, token)
 			const allCourses = Array.isArray(coursesContent.courses) ? coursesContent.courses : []
 			const currentCourseIds = getLinkedCourseIds(allCourses, ladoId)
