@@ -85,7 +85,7 @@
 							: item.collection === 'adconnect_faqs'
 								? '/admin/faqs/create'
 								: item.collection === 'adconnect_news'
-									? '/admin/news/form'
+									? '/admin/news/create'
 									: item.collection === 'adconnect_collaborations'
 										? '/admin/cooperations/form'
 										: item.collection === 'adconnect_events'
