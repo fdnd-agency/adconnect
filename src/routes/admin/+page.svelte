@@ -81,7 +81,7 @@
 					: item.collection === 'adconnect_nominations'
 						? '/admin/nominations/form'
 						: item.collection === 'adconnect_themes'
-							? '/admin/themes/form'
+							? '/admin/themes/create'
 							: item.collection === 'adconnect_faqs'
 								? '/admin/faqs/create'
 								: item.collection === 'adconnect_news'
