@@ -1,4 +1,5 @@
 import { ContentService } from '$lib/server/contentService.js'
+import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
 import { Slugify } from '$lib/server/slugify.js'
 
@@ -6,19 +7,17 @@ const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het document.'
 const GENERIC_PUBLISH_WARNING = 'Document opgeslagen als concept, maar publiceren is mislukt.'
 
-// Deletes uploaded files when document creation fails.
 async function rollbackUploadedFiles(fileIds, accessToken) {
 	for (const fileId of fileIds) {
 		if (!fileId) continue
 
 		const result = await ContentService.deleteFile(fileId, accessToken)
 		if (!result?.success) {
-			console.error(`[documents/form] Rollback failed for file ${fileId}`)
+			console.error(`[documents/create] Rollback failed for file ${fileId}`)
 		}
 	}
 }
 
-// Loads and alphabetically sorts document categories for the form.
 export async function load({ cookies }) {
 	const { data: content, errors } = await ContentService.fetchContent('categories', null, null, null, false, cookies.get('access_token'))
 
@@ -32,50 +31,52 @@ export async function load({ cookies }) {
 }
 
 export const actions = {
-	// Handles form submission: validates input, uploads files, creates a document,
-	// and optionally publishes it.
 	default: async ({ request, cookies }) => {
 		const data = await request.formData()
-		const submitAction = String(data.get('submitAction') ?? 'save').trim()
+		const { submitAction: rawSubmitAction = 'save', image, source_file: sourceFile, ...submittedFormState } = extractFormState(data)
+
+		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
-		const title = String(data.get('title') ?? '').trim()
-		const description = String(data.get('description') ?? '').trim()
-		const date = String(data.get('date') ?? '').trim()
-		const category = String(data.get('category') ?? '').trim()
-		const image = data.get('image')
-		const sourceFile = data.get('source_file')
+		const title = String(submittedFormState.title ?? '').trim()
+		const description = String(submittedFormState.description ?? '').trim()
+		const date = String(submittedFormState.date ?? '').trim()
+		const category = String(submittedFormState.category ?? '').trim()
 		const token = cookies.get('access_token')
 
+		submittedFormState.title = String(submittedFormState.title ?? '')
+		submittedFormState.description = String(submittedFormState.description ?? '')
+		submittedFormState.date = String(submittedFormState.date ?? '')
+		submittedFormState.category = String(submittedFormState.category ?? '')
+
 		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR })
+			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		}
 
 		if (!title) {
-			return fail(400, { error: 'Vul een titel in.' })
+			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
 		}
 
 		if (!description) {
-			return fail(400, { error: 'Vul een omschrijving in.' })
+			return fail(400, { error: 'Vul een omschrijving in.', ...submittedFormState })
 		}
 
 		if (!date) {
-			return fail(400, { error: 'Vul een datum in.' })
+			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
 		}
 
 		if (!category) {
-			return fail(400, { error: 'Kies een categorie.' })
+			return fail(400, { error: 'Kies een categorie.', ...submittedFormState })
 		}
 
 		if (!(image instanceof File) || image.size === 0) {
-			return fail(400, { error: 'Upload een afbeelding.' })
+			return fail(400, { error: 'Upload een afbeelding.', ...submittedFormState })
 		}
 
 		if (!(sourceFile instanceof File) || sourceFile.size === 0) {
-			return fail(400, { error: 'Upload een bronbestand.' })
+			return fail(400, { error: 'Upload een bronbestand.', ...submittedFormState })
 		}
 
 		const uploadedFileIds = []
-		let createResult = null
 		let documentCreated = false
 
 		try {
@@ -86,8 +87,8 @@ export const actions = {
 			})
 
 			if (!imageUpload?.success) {
-				console.error('[documents/form] Image upload failed:', imageUpload)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				console.error('[documents/create] Image upload failed:', imageUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 			}
 			uploadedFileIds.push(imageUpload.id)
 
@@ -98,8 +99,8 @@ export const actions = {
 			})
 
 			if (!sourceUpload?.success) {
-				console.error('[documents/form] Source file upload failed:', sourceUpload)
-				return fail(500, { error: GENERIC_CREATE_ERROR })
+				console.error('[documents/create] Source file upload failed:', sourceUpload)
+				return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 			}
 			uploadedFileIds.push(sourceUpload.id)
 
@@ -115,8 +116,7 @@ export const actions = {
 				status: 'draft'
 			}
 
-			createResult = await ContentService.postContent(payload, 'documents', token)
-
+			let createResult = await ContentService.postContent(payload, 'documents', token)
 			let retryCount = 0
 			while (!createResult?.success && Slugify.isDuplicateSlugError(createResult) && retryCount < 3) {
 				retryCount += 1
@@ -125,10 +125,10 @@ export const actions = {
 			}
 
 			if (!createResult?.success) {
-				console.error('[documents/form] Document create failed:', createResult)
+				console.error('[documents/create] Document create failed:', createResult)
 				const createStatus = Number(createResult?.status) || 500
 				const errorMessage = createResult?.data?.error ?? GENERIC_CREATE_ERROR
-				return fail(createStatus, { error: errorMessage })
+				return fail(createStatus, { error: errorMessage, ...submittedFormState })
 			}
 
 			documentCreated = true
@@ -138,7 +138,7 @@ export const actions = {
 					const publishResult = await ContentService.publishContent(createResult.id, 'documents', token)
 
 					if (!publishResult?.success) {
-						console.error('[documents/form] Publish failed:', publishResult)
+						console.error('[documents/create] Publish failed:', publishResult)
 						return {
 							success: true,
 							message: GENERIC_PUBLISH_WARNING,
@@ -146,7 +146,7 @@ export const actions = {
 						}
 					}
 				} catch (err) {
-					console.error('[documents/form] Unexpected error during publish:', err)
+					console.error('[documents/create] Unexpected error during publish:', err)
 					return {
 						success: true,
 						message: GENERIC_PUBLISH_WARNING,
@@ -167,8 +167,8 @@ export const actions = {
 				documentId: createResult.id
 			}
 		} catch (err) {
-			console.error('[documents/form] Unexpected error during upload/create:', err)
-			return fail(500, { error: GENERIC_CREATE_ERROR })
+			console.error('[documents/create] Unexpected error during upload/create:', err)
+			return fail(500, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
 		} finally {
 			if (!documentCreated && uploadedFileIds.length > 0) {
 				await rollbackUploadedFiles(uploadedFileIds, token)
