@@ -18,5 +18,7 @@ export async function handle({ event, resolve }) {
 		event.locals.user = await AuthService.refreshSession(event.cookies, refreshToken)
 	}
 
+	event.locals.gateAuthenticated = event.cookies.get('gate_authenticated') === 'true'
+
 	return resolve(event)
 }
