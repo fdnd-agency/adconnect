@@ -21,16 +21,18 @@
 	{@render children?.()}
 </main>
 
+<Footer />
+
 <a
 	class="scroll"
 	href="#"
+	data-sveltekit-replacestate 
 	><img
 		src={icondown}
 		alt=""
 	/><span class="sr-only">Scroll naar boven</span></a
 >
 
-<Footer />
 
 <style>
 	:root {
