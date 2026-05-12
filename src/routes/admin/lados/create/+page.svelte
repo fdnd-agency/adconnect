@@ -2,7 +2,7 @@
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
 	import Error from '$lib/atoms/Error.svelte'
-	import LadosForm from '$lib/organisms/forms/LadosForm.svelte'
+	import { LadosForm } from '$lib'
 
 	const { data, form } = $props()
 	const directusBase = `${DIRECTUS_URL}/admin/content`

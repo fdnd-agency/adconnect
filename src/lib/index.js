@@ -47,6 +47,11 @@ export { default as AdminToolbar } from './organisms/AdminToolbar.svelte'
 export { default as NewsDetail } from './organisms/NewsDetail.svelte'
 export { default as PublicationDetail } from './organisms/PublicationDetail.svelte'
 export { default as ThemeDetail } from './organisms/ThemeDetail.svelte'
+export { default as Form } from './organisms/forms/Form.svelte'
+export { default as FaqForm } from './organisms/forms/FaqForm.svelte'
+export { default as LadosForm } from './organisms/forms/LadosForm.svelte'
+export { default as CourseForm } from './organisms/forms/CourseForm.svelte'
+export { default as SectoralAdvisoryBoardForm } from './organisms/forms/SectoralAdvisoryBoardForm.svelte'
 
 // Templates
 export { default as Development } from './templates/DevelopmentTemplate.svelte'

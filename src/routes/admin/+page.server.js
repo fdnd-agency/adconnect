@@ -20,6 +20,10 @@ export async function load({ cookies }) {
 		faqs: [...content.faqs.values()],
 		faqCount: content.faqs.size,
 		lados: [...content.lados.values()],
-		ladoCount: content.lados.size
+		ladoCount: content.lados.size,
+		courses: [...content.courses.values()],
+		courseCount: content.courses.size,
+		sectoralAdvisoryBoards: [...content.sectoralAdvisoryBoards.values()],
+		sectoralAdvisoryBoardCount: content.sectoralAdvisoryBoards.size
 	}
 }

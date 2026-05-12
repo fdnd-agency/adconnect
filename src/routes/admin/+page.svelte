@@ -18,7 +18,9 @@
 		{ label: 'Nieuws', count: data.newsCount },
 		{ label: 'Samenwerkingen', count: data.cooperationCount },
 		{ label: "FAQ's", count: data.faqCount },
-		{ label: "Lado's", count: data.ladoCount }
+		{ label: "Lado's", count: data.ladoCount },
+		{ label: 'Opleidingen', count: data.courseCount },
+		{ label: 'Sectorale adviescolleges', count: data.sectoralAdvisoryBoardCount }
 	])
 
 	const items = [
@@ -29,7 +31,9 @@
 		{ icon: NewsPaper, label: 'Nieuws', collection: 'adconnect_news' },
 		{ icon: Collaborate, label: 'Samenwerkingen', collection: 'adconnect_collaborations', iconHeight: '50px' },
 		{ icon: Question, label: "FAQ's", collection: 'adconnect_faqs', iconHeight: '50px' },
-		{ icon: LadoNetwork, label: "Lado's", collection: 'adconnect_lados', iconHeight: '50px' }
+		{ icon: LadoNetwork, label: "Lado's", collection: 'adconnect_lados', iconHeight: '50px' },
+		{ icon: GraduationHat, label: 'Opleidingen', collection: 'adconnect_courses' },
+		{ icon: LadoNetwork, label: 'Sectorale adviescolleges', collection: 'adconnect_sectoral_advisory_boards' }
 	]
 </script>
 
@@ -94,7 +98,11 @@
 											? '/admin/events/form'
 											: item.collection === 'adconnect_lados'
 												? '/admin/lados/create'
-												: `${directusBase}/${item.collection}/+`}
+												: item.collection === 'adconnect_courses'
+													? '/admin/courses/create'
+													: item.collection === 'adconnect_sectoral_advisory_boards'
+														? '/admin/sectoral-advisory-boards/create'
+														: `${directusBase}/${item.collection}/+`}
 				iconHeight={item.iconHeight}
 			/>
 		{/each}

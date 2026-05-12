@@ -2,8 +2,9 @@
 	const {
 		filter,
 		search,
-		onFilterChange,
-		onSearchChange,
+		onFilterChange = () => {},
+		onSearchChange = () => {},
+		showFilter = true,
 		labels = {
 			all: 'Alle items',
 			draft: 'Concept',
@@ -13,23 +14,25 @@
 </script>
 
 <section class="toolbar">
-	<div class="filter-buttons">
-		<button
-			class="filter-btn"
-			class:active={filter === 'all'}
-			onclick={() => onFilterChange('all')}>{labels.all}</button
-		>
-		<button
-			class="filter-btn"
-			class:active={filter === 'draft'}
-			onclick={() => onFilterChange('draft')}>{labels.draft}</button
-		>
-		<button
-			class="filter-btn"
-			class:active={filter === 'published'}
-			onclick={() => onFilterChange('published')}>{labels.published}</button
-		>
-	</div>
+	{#if showFilter}
+		<div class="filter-buttons">
+			<button
+				class="filter-btn"
+				class:active={filter === 'all'}
+				onclick={() => onFilterChange('all')}>{labels.all}</button
+			>
+			<button
+				class="filter-btn"
+				class:active={filter === 'draft'}
+				onclick={() => onFilterChange('draft')}>{labels.draft}</button
+			>
+			<button
+				class="filter-btn"
+				class:active={filter === 'published'}
+				onclick={() => onFilterChange('published')}>{labels.published}</button
+			>
+		</div>
+	{/if}
 
 	<div class="search-bar">
 		<input

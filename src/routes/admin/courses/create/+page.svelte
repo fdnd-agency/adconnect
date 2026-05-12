@@ -1,26 +1,26 @@
 <script>
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	import AdminHeader from '$lib/organisms/AdminHeader.svelte'
-	import { FaqForm } from '$lib'
+	import { CourseForm } from '$lib'
 
 	const { form } = $props()
 	const directusBase = `${DIRECTUS_URL}/admin/content`
 </script>
 
 <svelte:head>
-	<title>Faq toevoegen | ADConnect Admin</title>
+	<title>Opleiding toevoegen | ADConnect Admin</title>
 </svelte:head>
 
 <AdminHeader
-	title="Faqs"
+	title="Opleidingen"
 	{directusBase}
-	contentType="adconnect_faqs"
-	breadcrumb="Faqs › Formulier"
-	addHref="/admin/faqs/create"
+	contentType="adconnect_courses"
+	breadcrumb="Opleidingen › Formulier"
+	addHref="/admin/courses/create"
 />
 
-<FaqForm
+<CourseForm
 	{form}
-	showPublishButton={true}
+	showPublishButton={false}
 	resetOnSuccess={true}
 />

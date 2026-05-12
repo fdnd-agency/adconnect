@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms'
 	import { loading } from '$lib/stores/loadingStore'
 
-	const { filtered, directusBase, contentType, labels = { single: 'item', multiple: 'items', title: 'title', gender: 'dit' }, editHrefBuilder = null } = $props()
+	const { filtered, directusBase, contentType, labels = { single: 'item', multiple: 'items', title: 'title', gender: 'dit' }, editHrefBuilder = null, showStatus = true } = $props()
 
 	let openPopup = $state(null)
 
@@ -39,17 +39,21 @@
 	{#each filtered as doc (doc.id)}
 		<li
 			class="document-card"
-			class:draft={doc.status === 'draft'}
-			class:published={doc.status === 'published'}
+			class:draft={showStatus && doc.status === 'draft'}
+			class:published={showStatus && doc.status === 'published'}
 		>
 			<div class="card-header">
-				<span
-					class="status-badge"
-					class:badge-draft={doc.status === 'draft'}
-					class:badge-published={doc.status === 'published'}
-				>
-					{doc.status === 'draft' ? 'Concept' : 'Gepubliceerd'}
-				</span>
+				{#if showStatus}
+					<span
+						class="status-badge"
+						class:badge-draft={doc.status === 'draft'}
+						class:badge-published={doc.status === 'published'}
+					>
+						{doc.status === 'draft' ? 'Concept' : 'Gepubliceerd'}
+					</span>
+				{:else}
+					<span class="status-badge status-badge-placeholder">Status</span>
+				{/if}
 				{#if doc.date_created}
 					<span class="card-date">{formatDate(doc.date_created)}</span>
 				{/if}
@@ -82,57 +86,59 @@
 						>
 							Bewerken
 						</a>
-						<form
-							method="POST"
-							action="?/publish"
-							use:enhance={() => {
-								if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil publiceren?`)) {
-									return () => {}
-								}
-								loading.set(true)
-								return async ({ update }) => {
-									await update()
-									loading.set(false)
-									openPopup = null
-								}
-							}}
-						>
-							<input
-								type="hidden"
-								name="id"
-								value={doc.id}
-							/>
-							<button
-								type="submit"
-								class="popup-btn btn-publish">Publiceren</button
+						{#if showStatus}
+							<form
+								method="POST"
+								action="?/publish"
+								use:enhance={() => {
+									if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil publiceren?`)) {
+										return () => {}
+									}
+									loading.set(true)
+									return async ({ update }) => {
+										await update()
+										loading.set(false)
+										openPopup = null
+									}
+								}}
 							>
-						</form>
+								<input
+									type="hidden"
+									name="id"
+									value={doc.id}
+								/>
+								<button
+									type="submit"
+									class="popup-btn btn-publish">Publiceren</button
+								>
+							</form>
 
-						<form
-							method="POST"
-							action="?/depublish"
-							use:enhance={() => {
-								if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil depubliceren?`)) {
-									return () => {}
-								}
-								loading.set(true)
-								return async ({ update }) => {
-									await update()
-									loading.set(false)
-									openPopup = null
-								}
-							}}
-						>
-							<input
-								type="hidden"
-								name="id"
-								value={doc.id}
-							/>
-							<button
-								type="submit"
-								class="popup-btn btn-depublish">Depubliceren</button
+							<form
+								method="POST"
+								action="?/depublish"
+								use:enhance={() => {
+									if (!confirm(`Weet je zeker dat je ${labels.gender ?? 'dit'} ${labels.single} wil depubliceren?`)) {
+										return () => {}
+									}
+									loading.set(true)
+									return async ({ update }) => {
+										await update()
+										loading.set(false)
+										openPopup = null
+									}
+								}}
 							>
-						</form>
+								<input
+									type="hidden"
+									name="id"
+									value={doc.id}
+								/>
+								<button
+									type="submit"
+									class="popup-btn btn-depublish">Depubliceren</button
+								>
+							</form>
+						{/if}
 
 						<form
 							method="POST"
@@ -225,6 +231,10 @@
 		padding: 0.3em 0.9em;
 		border-radius: 8px;
 		color: var(--text-white);
+	}
+
+	.status-badge-placeholder {
+		visibility: hidden;
 	}
 
 	.badge-draft {
