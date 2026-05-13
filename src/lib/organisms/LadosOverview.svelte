@@ -11,7 +11,7 @@
 	<div class="inner-wrapper">
 		<div class="heading-group">
 			<h2>Overzicht LAdO's</h2>
-			<p>Informatie en wijzigingen: Maritiem Muris, contactpersoon LAdO's.</p>
+			<p>Informatie en wijzigingen: Mariëtte Muris, contactpersoon LAdO's.</p>
 		</div>
 
 		{#if lados.length}
