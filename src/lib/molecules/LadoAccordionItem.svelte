@@ -49,14 +49,16 @@
 								<span class="course-title">{course.title ?? `Opleiding ${course.id}`}</span>
 								{#if course.cooperations?.length}
 									<span class="cooperation-row">
-										<span>Opleidingen</span>
+										<span>Hogescholen</span>
 										<span class="cooperation-list">
-											{#each course.cooperations as cooperation, index (cooperation.id)}
+											{#each course.cooperations as cooperation (cooperation.id)}
 												{#if cooperation.url}
-													<a href={cooperation.url}>{cooperation.name}</a>
+													<a
+														class="cooperation-item"
+														href={cooperation.url}>{cooperation.name}</a
+													>
 												{:else}
-													<span>{cooperation.name}</span>
-												{/if}{#if index < course.cooperations.length - 1},
+													<span class="cooperation-item">{cooperation.name}</span>
 												{/if}
 											{/each}
 										</span>
@@ -214,7 +216,14 @@
 	}
 
 	.cooperation-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35em 0.5em;
 		overflow-wrap: anywhere;
+	}
+
+	.cooperation-item {
+		line-height: 1.25;
 	}
 
 	a {
