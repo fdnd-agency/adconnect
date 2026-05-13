@@ -19,8 +19,8 @@
 	let selectedCourseIdsSource = $state('')
 	let selectedSectoralAdvisoryBoardSource = $state('')
 
-	const courseAddHref = $derived(directusBase ? `${directusBase}/adconnect_courses/+` : '')
-	const sectoralAdvisoryBoardAddHref = $derived(directusBase ? `${directusBase}/adconnect_sectoral_advisory_boards/+` : '')
+	const courseAddHref = '/admin/courses/create'
+	const sectoralAdvisoryBoardAddHref = '/admin/sectoral-advisory-boards/create'
 	const normalizedCourseSearch = $derived(courseSearch.trim().toLowerCase())
 	const filteredCourses = $derived(normalizedCourseSearch ? courses.filter((course) => (course.title ?? `Opleiding ${course.id}`).toLowerCase().includes(normalizedCourseSearch)) : courses)
 
@@ -432,6 +432,9 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: 0.65em;
+		max-height: 320px;
+		overflow-y: auto;
+		padding-right: 0.2em;
 	}
 
 	.course-option {
@@ -494,7 +497,7 @@
 		margin: 0;
 		font-family: var(--font-body);
 		font-size: 0.9rem;
-		color: var(--neutral-700);
+		color: light-dark(var(--neutral-700), var(--neutral-200));
 	}
 
 	.tags-input-wrap {

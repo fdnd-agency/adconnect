@@ -15,7 +15,9 @@
 		{ href: '/admin/news', label: 'Nieuws', activePath: '/admin/news' },
 		{ href: '/admin/cooperations', label: 'Samenwerkingen', activePath: '/admin/cooperations' },
 		{ href: '/admin/faqs', label: "FAQ's", activePath: '/admin/faqs' },
-		{ href: '/admin/lados', label: "Lado's", activePath: '/admin/lados' }
+		{ href: '/admin/lados', label: "Lado's", activePath: '/admin/lados' },
+		{ href: '/admin/courses', label: 'Opleidingen', activePath: '/admin/courses' },
+		{ href: '/admin/sectoral-advisory-boards', label: 'Sectorale adviescolleges', activePath: '/admin/sectoral-advisory-boards' }
 	]
 
 	let menuElement = $state(null)
@@ -296,6 +298,8 @@
 		align-items: center;
 		margin: 0;
 		padding: 0;
+		max-height: 80vh;
+		overflow-y: auto;
 
 		@media (min-width: 1000px) {
 			display: flex;

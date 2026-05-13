@@ -12,19 +12,19 @@
 
 	let search = $state('')
 
-	const courses = $derived(data.courses ? [...data.courses.values()] : [])
+	const sectoralAdvisoryBoards = $derived(data.sectoralAdvisoryBoards ? [...data.sectoralAdvisoryBoards.values()] : [])
 
 	const searchFields = ['title']
 
-	function courseEditHref(doc) {
-		return `/admin/courses/${encodeURIComponent(doc.id)}/edit`
+	function boardEditHref(doc) {
+		return `/admin/sectoral-advisory-boards/${encodeURIComponent(doc.id)}/edit`
 	}
 
-	const filtered = $derived(courses.filter((doc) => searchFields.some((field) => doc[field]?.toLowerCase().includes(search.toLowerCase()))))
+	const filtered = $derived(sectoralAdvisoryBoards.filter((doc) => searchFields.some((field) => doc[field]?.toLowerCase().includes(search.toLowerCase()))))
 </script>
 
 <svelte:head>
-	<title>Opleidingen | ADConnect Admin</title>
+	<title>Sectorale adviescolleges | ADConnect Admin</title>
 </svelte:head>
 
 {#if data.loadError}
@@ -32,11 +32,11 @@
 {/if}
 
 <AdminHeader
-	title="Opleidingen"
+	title="Sectorale adviescolleges"
 	{directusBase}
-	contentType="adconnect_courses"
-	breadcrumb="Opleidingen"
-	addHref="/admin/courses/create"
+	contentType="adconnect_sectoral_advisory_boards"
+	breadcrumb="Sectorale adviescolleges"
+	addHref="/admin/sectoral-advisory-boards/create"
 />
 
 <AdminToolbar
@@ -50,13 +50,13 @@
 <AdminContentList
 	{filtered}
 	{directusBase}
-	contentType="adconnect_courses"
-	editHrefBuilder={courseEditHref}
+	contentType="adconnect_sectoral_advisory_boards"
+	editHrefBuilder={boardEditHref}
 	showStatus={false}
 	labels={{
-		single: 'opleiding',
-		multiple: 'opleidingen',
+		single: 'sectoraal adviescollege',
+		multiple: 'sectorale adviescolleges',
 		title: 'title',
-		gender: 'deze'
+		gender: 'dit'
 	}}
 />

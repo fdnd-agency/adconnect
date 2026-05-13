@@ -7,6 +7,7 @@ export class E2EContentStrategy extends DirectusContentStrategy {
 	#createE2EState() {
 		return {
 			nextLadoNumber: 4,
+			nextSectoralAdvisoryBoardNumber: 4,
 			lados: new Map([
 				[
 					'e2e-lado-1',
@@ -51,9 +52,9 @@ export class E2EContentStrategy extends DirectusContentStrategy {
 				[3, { id: 3, title: 'E2E Opleiding 3', lado: 'e2e-lado-2' }]
 			]),
 			sectoralAdvisoryBoards: new Map([
-				[1, { id: 1, title: 'E2E Adviescollege 1' }],
-				[2, { id: 2, title: 'E2E Adviescollege 2' }],
-				[3, { id: 3, title: 'E2E Adviescollege 3' }]
+				[1, { id: 1, title: 'E2E Adviescollege 1', status: 'draft' }],
+				[2, { id: 2, title: 'E2E Adviescollege 2', status: 'published' }],
+				[3, { id: 3, title: 'E2E Adviescollege 3', status: 'draft' }]
 			])
 		}
 	}
@@ -153,6 +154,17 @@ export class E2EContentStrategy extends DirectusContentStrategy {
 			return { data: { courses: asMap ? collectionMap : courses }, errors: [] }
 		}
 
+		if (contentType === 'sectoralAdvisoryBoards' && id !== null) {
+			const state = this.#getE2EState()
+			const numericId = Number(id)
+			const board = state.sectoralAdvisoryBoards.get(numericId) ?? null
+			if (!board) {
+				return { data: { sectoralAdvisoryBoards: [] }, errors: [{ collection: 'sectoralAdvisoryBoards', message: 'Not found' }] }
+			}
+			const collectionMap = new Map([[numericId, board]])
+			return { data: { sectoralAdvisoryBoards: asMap ? collectionMap : [board] }, errors: [] }
+		}
+
 		if (contentType === 'sectoralAdvisoryBoards' && id === null) {
 			const boards = Array.from(this.#getE2EState().sectoralAdvisoryBoards.values())
 			const collectionMap = new Map(boards.map((item) => [item.id, item]))
@@ -171,6 +183,15 @@ export class E2EContentStrategy extends DirectusContentStrategy {
 			return { success: true }
 		}
 
+		if (contentType === 'sectoralAdvisoryBoards') {
+			const state = this.#getE2EState()
+			const numericId = Number(id)
+			const existing = state.sectoralAdvisoryBoards.get(numericId)
+			if (!existing) return fail(404, { error: 'Publiceren mislukt.' })
+			state.sectoralAdvisoryBoards.set(numericId, { ...existing, status: 'published' })
+			return { success: true }
+		}
+
 		return super.publishContent(id, contentType, accessToken)
 	}
 
@@ -180,6 +201,15 @@ export class E2EContentStrategy extends DirectusContentStrategy {
 			const existing = state.lados.get(String(id))
 			if (!existing) return fail(404, { error: 'Depubliceren mislukt.' })
 			state.lados.set(String(id), { ...existing, status: 'draft' })
+			return { success: true }
+		}
+
+		if (contentType === 'sectoralAdvisoryBoards') {
+			const state = this.#getE2EState()
+			const numericId = Number(id)
+			const existing = state.sectoralAdvisoryBoards.get(numericId)
+			if (!existing) return fail(404, { error: 'Depubliceren mislukt.' })
+			state.sectoralAdvisoryBoards.set(numericId, { ...existing, status: 'draft' })
 			return { success: true }
 		}
 
@@ -195,6 +225,21 @@ export class E2EContentStrategy extends DirectusContentStrategy {
 			for (const [courseId, course] of state.courses.entries()) {
 				if (String(course.lado ?? '') === String(id)) {
 					state.courses.set(courseId, { ...course, lado: null })
+				}
+			}
+
+			return { success: true }
+		}
+
+		if (contentType === 'sectoralAdvisoryBoards') {
+			const state = this.#getE2EState()
+			const numericId = Number(id)
+			const existed = state.sectoralAdvisoryBoards.delete(numericId)
+			if (!existed) return fail(404, { error: 'Verwijderen mislukt.' })
+
+			for (const [ladoId, lado] of state.lados.entries()) {
+				if (Number(lado.sectoral_advisory_board) === numericId) {
+					state.lados.set(ladoId, { ...lado, sectoral_advisory_board: null })
 				}
 			}
 
@@ -229,6 +274,21 @@ export class E2EContentStrategy extends DirectusContentStrategy {
 			return { success: true, id }
 		}
 
+		if (contentType === 'sectoralAdvisoryBoards') {
+			const state = this.#getE2EState()
+			const id = state.nextSectoralAdvisoryBoardNumber
+			state.nextSectoralAdvisoryBoardNumber += 1
+
+			const created = {
+				id,
+				title: data?.title ?? '',
+				status: data?.status ?? 'draft'
+			}
+
+			state.sectoralAdvisoryBoards.set(id, created)
+			return { success: true, id }
+		}
+
 		return super.postContent(data, contentType, accessToken)
 	}
 
@@ -255,12 +315,43 @@ export class E2EContentStrategy extends DirectusContentStrategy {
 			return { success: true, id: String(id) }
 		}
 
+		if (contentType === 'sectoralAdvisoryBoards') {
+			const state = this.#getE2EState()
+			const numericId = Number(id)
+			const existing = state.sectoralAdvisoryBoards.get(numericId)
+			if (!existing) return fail(404, { error: 'Bijwerken mislukt.' })
+			const updated = { ...existing }
+			const hasTitle = Object.prototype.hasOwnProperty.call(data ?? {}, 'title')
+			const hasStatus = Object.prototype.hasOwnProperty.call(data ?? {}, 'status')
+
+			if (hasTitle) {
+				updated.title = data?.title ?? ''
+			}
+			if (hasStatus) {
+				updated.status = data?.status ?? updated.status
+			}
+
+			state.sectoralAdvisoryBoards.set(numericId, updated)
+			return { success: true, id: numericId }
+		}
+
 		if (contentType === 'courses') {
 			const state = this.#getE2EState()
 			const numericId = Number(id)
 			const existing = state.courses.get(numericId)
 			if (!existing) return fail(404, { error: 'Bijwerken mislukt.' })
-			state.courses.set(numericId, { ...existing, lado: data?.lado ?? null })
+			const updated = { ...existing }
+			const hasLado = Object.prototype.hasOwnProperty.call(data ?? {}, 'lado')
+			const hasTitle = Object.prototype.hasOwnProperty.call(data ?? {}, 'title')
+
+			if (hasLado) {
+				updated.lado = data?.lado ?? null
+			}
+			if (hasTitle) {
+				updated.title = data?.title ?? ''
+			}
+
+			state.courses.set(numericId, updated)
 			return { success: true, id: numericId }
 		}
 
