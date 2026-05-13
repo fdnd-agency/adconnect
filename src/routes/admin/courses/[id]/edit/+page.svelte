@@ -27,6 +27,8 @@
 <CourseForm
 	{form}
 	course={data?.course}
+	cooperations={data?.cooperations ?? []}
+	selectedCooperationIds={data?.selectedCooperationIds ?? []}
 	showPublishButton={false}
 	resetOnSuccess={false}
 />
