@@ -55,6 +55,7 @@
 		<a
 			href="?category=alle-publicaties"
 			class="button-outline-blue {selectedCategory === 'alle-publicaties' ? 'active' : ''}"
+			data-sveltekit-noscroll
 		>
 			Alle publicaties</a
 		>
@@ -62,8 +63,10 @@
 		{#each categories as categorie (categorie.id)}
 			<a
 				href={`?category=${categorie.title.toLowerCase()}`}
-				class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}">{categorie.title}</a
-			>
+				data-sveltekit-noscroll
+				class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}">{categorie.title}
+				
+			</a>
 		{/each}
 	</div>
 </div>

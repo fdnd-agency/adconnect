@@ -43,6 +43,7 @@
 
 - Always tag each other for a review.
 - Use the PR-template.
+- [Pull request conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/pull-request-conventions.md)
 
 ### Issues & project board
 
@@ -51,25 +52,9 @@
 - **To do**: what still needs to be done.
 - **In progress**: when you're working on it.
 - **Done**: when a review has been given and it's on main.
-- Check the project board during standup.
-
-## Naming Branch
-
-Branches should be created directly from the feature issue using the “Create New Branch” button.
-The branch name must include the branch number and a clear issue name.
-
-<img width="336" height="149" alt="Scherm­afbeelding 2026-01-12 om 15 35 26" src="https://github.com/user-attachments/assets/46fc7692-f7bd-403e-977f-319f0e39b678" />
-
-## PR Template
-
-### What has changed?
-
-- Link to issues (use a `#`)
-- Explain what changes you've made
-- Explain on which items/code you want to receive feedback
+- Check the project board during standups
 
 ### Visuals
-
 - Screenshots/Screenrecord
 
 ## Our Git Flow
@@ -81,17 +66,18 @@ We follow the Git Flow of [FDND agency](https://docs.fdnd.nl/conventies.html#bra
 ## FDND conventions
 
 We follow the code conventions of FDND agency. Below the most important conventions.
-[See FDND website](https://docs.fdnd.nl/conventies.html)
+[See FDND website](https://docs.fdnd.nl/conventies.html)  
+For conventions that developers work with more frequently, we provided clearer explanations along with code examples, ensuring that everyone on the team follows the same approach and coding style.
 
-### Code conventions
+### Code conventions with examples
 
-- Follow consistent naming
-- Follow best practices for HTML-structure and semantics.
-- Use CSS-nesting, pseudo-private custom properties and use a dynamic colour palette.
-- Use template literals, object destructuring and choose wisely between const, let en var.
-- Label commits clearly (fix:, docs:, style: etc)
-- Follow guidelines for data, routes, component-structure and CSS within SvelteKit-projects.
-- Atomic: each commit does one thing (one bugfix, one feature, one refactor, one test addition).
+- [Atomic design](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/atomic-design-conventions.md)
+- [Conventional commits](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/conventional-commits.md)
+- [Css conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/css-conventions.md)
+- [HTML conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/html-conventions.md)
+- [Javascript conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/javascript-coventions.md)
+- [Naming conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/naming-conventions.md)
+- [Sveltekit conventions](https://github.com/fdnd-agency/adconnect/blob/dev/docs/conventions/sveltekit-conventions.md)
 
 ### Design conventions
 
@@ -99,43 +85,42 @@ We follow the code conventions of FDND agency. Below the most important conventi
 - Work together in design systems and validate designs in both Figma and the browser.
 - Use variables, styles en organize your Figma-files effectively.
 
-## Rules implementing container queries
-
-- Use container queries only when component resizing is needed.
-- Add an extra (div) wrapper only if it has a clear structural purpose (for example grouping/separating elements).
-- Give containers clear and consistent names.
-- Apply `@container` to the nearest logical parent of the component.
-- Mention new or changed container query usage in your pull request.
-
-## Rules implementing media query user preferences
-
-- Always start with default CSS and add media queries as overrides.
-- Keep it simple and semantic with clear names like `@media (prefers-color-scheme: dark)`.
-- Use only what is relevant for UX.
-- Group related rules together such as all `prefers-reduced-motion` styles.
-
-## DoR:
+## Definitions of Ready
 
 A Definition of Ready (DoR) is a set of criteria that a user story must meet before the team can start working on it in a sprint.
 It ensures that the story is clear, feasible, and valuable, so the team doesn’t waste time figuring things out mid-sprint.
 
-### DoR's:
+### Definitions of Ready - checklist
 
 - User story written clearly with format "As a.... I want to.... So that...." and approved by Product Owner.
+- Know the scope. Know what you will be working on in this user-story so you'l lalso know what NOT to work on.
 - Acceptance criteria defined (what “done” looks like).
-- Sources or research material available.
-- Poker planned.
+- Sources or research material available. 
+- Give a weight/value to the user story. Use poker planning with the Modified Fibonacchi set of values.
 - Story estimated and added to sprint backlog.
 
-## DoD:
+## Definitions of Done
 
 A Definition of Done (DoD) is a shared checklist of criteria that a product increment must meet before it is considered complete, releasable, and ready for customers.
 
-### DoD's:
+### Definitions of Done - checklist
+When you create a pull request, perform the following tests and checks to ensure your code meets the FDND code conventions and works in all situations. Fix any merge conflicts before requesting a review, and make sure your own code won’t break the dev branch.
 
-- Acceptance Criteria
-- Accessibility (A11y)
-- Tested
-- Reviewed
-- PR Merged
-- Adherence to code conventions
+Testing
+- HTML validator
+- Browser testing (Browserstack)
+- Lighthouse Performance test
+- Device testing
+- User testing
+- Responsiveness checks
+- Lighthouse Accessibility test
+- Manual Accessibility testing ([a11y checklist](https://www.a11yproject.com/checklist/))
+
+Code
+- FDND conventions are followed, Check for [coventions](https://docs.fdnd.nl/conventies.html) relevent to your code
+- Remove commented-out code
+  - We should be able to read and understand your code without detailed explanations, those belong in the /docs
+- Prevent repeated code (DRY principle)
+
+> These checks are meant for all situations, it is posible to skip 1 or more of the checks.  
+please provide valid reasons oth the reviewers might asks you to perform them or ask why the test is missing

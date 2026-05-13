@@ -19,6 +19,10 @@
 
 	const searchFields = ['name']
 
+	function cooperationEditHref(cooperation) {
+		return `/admin/cooperations/${encodeURIComponent(cooperation.id)}/edit`
+	}
+
 	const filtered = $derived(
 		cooperations
 			.filter((doc) => {
@@ -43,7 +47,7 @@
 	{directusBase}
 	contentType="adconnect_cooperations"
 	breadcrumb="Samenwerkingen"
-	addHref="/admin/cooperations/form"
+	addHref="/admin/cooperations/create"
 />
 
 <AdminToolbar
@@ -60,6 +64,7 @@
 	{filtered}
 	{directusBase}
 	contentType="adconnect_cooperations"
+	editHrefBuilder={cooperationEditHref}
 	labels={{
 		single: 'samenwerking',
 		multiple: 'samenwerkingen',

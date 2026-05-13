@@ -17,6 +17,10 @@
 
 	const events = $derived(data.events ? [...data.events.values()] : [])
 
+	function eventEditHref(eventItem) {
+		return `/admin/events/${encodeURIComponent(eventItem.id)}/edit`
+	}
+
 	const filtered = $derived(
 		events
 			.filter((doc) => {
@@ -41,7 +45,7 @@
 	{directusBase}
 	contentType="adconnect_events"
 	breadcrumb="Events"
-	addHref="/admin/events/form"
+	addHref="/admin/events/create"
 />
 
 <AdminToolbar
@@ -58,6 +62,7 @@
 	{filtered}
 	{directusBase}
 	contentType="adconnect_events"
+	editHrefBuilder={eventEditHref}
 	labels={{
 		single: 'event',
 		multiple: 'events'
