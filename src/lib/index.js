@@ -25,6 +25,8 @@ export { default as AdminStatItem } from './molecules/AdminStatItem.svelte'
 export { default as AdminItemCard } from './molecules/AdminItemCard.svelte'
 export { default as AdminUserMenu } from './molecules/AdminUserMenu.svelte'
 export { default as PreviewBanner } from './molecules/PreviewBanner.svelte'
+export { default as LadoInfoCard } from './molecules/LadoInfoCard.svelte'
+export { default as LadoAccordionItem } from './molecules/LadoAccordionItem.svelte'
 
 // Organisms
 export { default as MultipleFaq } from './organisms/MultipleFaq.svelte'
@@ -53,6 +55,7 @@ export { default as LadosForm } from './organisms/forms/LadosForm.svelte'
 export { default as CourseForm } from './organisms/forms/CourseForm.svelte'
 export { default as SectoralAdvisoryBoardForm } from './organisms/forms/SectoralAdvisoryBoardForm.svelte'
 export { default as PasswordGate } from './organisms/PasswordGate.svelte'
+export { default as LadosOverview } from './organisms/LadosOverview.svelte'
 
 // Templates
 export { default as Development } from './templates/DevelopmentTemplate.svelte'
