@@ -34,9 +34,7 @@ function hasErrors(...responses) {
 function getCourseCooperations(course) {
 	if (!Array.isArray(course.cooperations)) return []
 
-	return course.cooperations
-		.map((cooperation) => cooperation?.adconnect_cooperation_id)
-		.filter((cooperation) => cooperation?.id && cooperation?.name)
+	return course.cooperations.map((cooperation) => cooperation?.adconnect_cooperation_id).filter((cooperation) => cooperation?.id && cooperation?.name)
 }
 
 export async function load() {
