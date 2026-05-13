@@ -49,7 +49,7 @@
 								<span class="course-title">{course.title ?? `Opleiding ${course.id}`}</span>
 								{#if course.cooperations?.length}
 									<span class="cooperation-row">
-										<span>Samenwerking</span>
+										<span>Opleidingen</span>
 										<span class="cooperation-list">
 											{#each course.cooperations as cooperation, index (cooperation.id)}
 												{#if cooperation.url}
