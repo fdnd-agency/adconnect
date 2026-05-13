@@ -52,6 +52,7 @@ export { default as FaqForm } from './organisms/forms/FaqForm.svelte'
 export { default as LadosForm } from './organisms/forms/LadosForm.svelte'
 export { default as CourseForm } from './organisms/forms/CourseForm.svelte'
 export { default as SectoralAdvisoryBoardForm } from './organisms/forms/SectoralAdvisoryBoardForm.svelte'
+export { default as PasswordGate } from './organisms/PasswordGate.svelte'
 
 // Templates
 export { default as Development } from './templates/DevelopmentTemplate.svelte'

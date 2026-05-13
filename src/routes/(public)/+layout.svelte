@@ -2,37 +2,40 @@
 	import favicon from '$lib/assets/favicon-adc.svg'
 	import logodark from '$lib/assets/logo-dark.svg'
 
-	import { Footer, NavPros, TopNav, icondown, logowhite } from '$lib'
+	import { Footer, NavPros, TopNav, icondown, logowhite, PasswordGate } from '$lib'
 
-	const { children } = $props()
+	const { data, children } = $props()
 </script>
 
-<a
-	href="#main"
-	class="skip-link">Ga naar inhoud</a
->
+{#if !data.isAuthenticated}
+	<PasswordGate error={data.gateError} />
+{:else}
+	<a
+		href="#main"
+		class="skip-link">Ga naar inhoud</a
+	>
 
-<header class="general-header">
-	<TopNav />
-	<NavPros />
-</header>
+	<header class="general-header">
+		<TopNav />
+		<NavPros />
+	</header>
 
-<main>
-	{@render children?.()}
-</main>
+	<main>
+		{@render children?.()}
+	</main>
 
-<Footer />
+	<Footer />
 
-<a
-	class="scroll"
-	href="#"
-	data-sveltekit-replacestate 
-	><img
-		src={icondown}
-		alt=""
-	/><span class="sr-only">Scroll naar boven</span></a
->
-
+	<a
+		class="scroll"
+		href="#"
+		data-sveltekit-replacestate
+		><img
+			src={icondown}
+			alt=""
+		/><span class="sr-only">Scroll naar boven</span></a
+	>
+{/if}
 
 <style>
 	:root {
