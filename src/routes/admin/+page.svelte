@@ -91,7 +91,7 @@
 									: item.collection === 'adconnect_collaborations'
 										? '/admin/cooperations/create'
 										: item.collection === 'adconnect_events'
-											? '/admin/events/form'
+											? '/admin/events/create'
 											: item.collection === 'adconnect_lados'
 												? '/admin/lados/create'
 												: `${directusBase}/${item.collection}/+`}
