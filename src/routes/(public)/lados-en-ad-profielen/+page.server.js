@@ -1,8 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 
 const LADO_FIELDS = 'id,title,national_ad_profile,lado_status,contact_persons,status,sectoral_advisory_board'
-const COURSE_FIELDS = 'id,title,lado,cooperations'
-const COOPERATION_FIELDS = 'id,name,url'
+const COURSE_FIELDS = 'id,title,lado,cooperations.adconnect_cooperation_id.id,cooperations.adconnect_cooperation_id.name,cooperations.adconnect_cooperation_id.url'
 const SECTORAL_ADVISORY_BOARD_FIELDS = 'id,title'
 const PUBLISHED_FILTER = { status: { _eq: 'published' } }
 const LOAD_ERROR = `Er is een probleem opgetreden bij het ophalen van de LAdO's.`
@@ -32,6 +31,12 @@ function hasErrors(...responses) {
 	return responses.some((response) => response.errors.length > 0)
 }
 
+function getCourseCooperations(course) {
+	if (!Array.isArray(course.cooperations)) return []
+
+	return course.cooperations.map((cooperation) => cooperation?.adconnect_cooperation_id).filter((cooperation) => cooperation?.id && cooperation?.name)
+}
+
 export async function load() {
 	const ladosResponse = await ContentService.fetchContent('lados', null, LADO_FIELDS, PUBLISHED_FILTER, false)
 	const ladoItems = ladosResponse.data.lados ?? []
@@ -40,22 +45,14 @@ export async function load() {
 
 	const coursesResponse = ladoIds.length ? await ContentService.fetchContent('courses', null, COURSE_FIELDS, { lado: { _in: ladoIds } }, false) : emptyCollection('courses')
 	const courses = coursesResponse.data.courses ?? []
-	const cooperationIds = getUniqueIds(courses, (course) => course.cooperations)
-
-	const cooperationsResponse = cooperationIds.length
-		? await ContentService.fetchContent('cooperations', null, COOPERATION_FIELDS, { id: { _in: cooperationIds } }, false)
-		: emptyCollection('cooperations')
 	const sectoralAdvisoryBoardsResponse = sectoralAdvisoryBoardIds.length
 		? await ContentService.fetchContent('sectoralAdvisoryBoards', null, SECTORAL_ADVISORY_BOARD_FIELDS, { id: { _in: sectoralAdvisoryBoardIds } }, false)
 		: emptyCollection('sectoralAdvisoryBoards')
 
-	const cooperations = cooperationsResponse.data.cooperations ?? []
 	const sectoralAdvisoryBoards = sectoralAdvisoryBoardsResponse.data.sectoralAdvisoryBoards ?? []
 	const coursesWithCooperation = courses.map((course) => ({
 		...course,
-		cooperations: getRelationIds(course.cooperations)
-			.map((cooperationId) => cooperations.find((cooperation) => String(cooperation.id) === String(cooperationId)))
-			.filter(Boolean)
+		cooperations: getCourseCooperations(course)
 	}))
 
 	const lados = ladoItems
@@ -68,6 +65,6 @@ export async function load() {
 
 	return {
 		lados,
-		loadError: hasErrors(ladosResponse, coursesResponse, cooperationsResponse, sectoralAdvisoryBoardsResponse) ? LOAD_ERROR : null
+		loadError: hasErrors(ladosResponse, coursesResponse, sectoralAdvisoryBoardsResponse) ? LOAD_ERROR : null
 	}
 }

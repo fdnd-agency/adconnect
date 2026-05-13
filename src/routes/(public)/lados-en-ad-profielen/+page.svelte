@@ -21,8 +21,7 @@
 		},
 		{
 			title: 'Onderlinge uitwisseling en afstemming over onderwijsuitvoering',
-			description: 'In de ontwikkeling en doorontwikkeling van Ad-opleidingen valt veel van elkaar te leren, bijvoorbeeld over niveau, toetsing, praktijkleren en digitaal onderwijsmateriaal.',
-			open: true
+			description: 'In de ontwikkeling en doorontwikkeling van Ad-opleidingen valt veel van elkaar te leren, bijvoorbeeld over niveau, toetsing, praktijkleren en digitaal onderwijsmateriaal.'
 		}
 	]
 </script>
