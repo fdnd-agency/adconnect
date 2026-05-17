@@ -24,4 +24,4 @@ Consistant naming:
 | decline-button   | Inconsistent order                         | button-decline   |
 | button_previous  | Uses underscore instead of kebab-case      | button-previous  |
 | --color-red      | Correct custom property naming             | --color-red      |
-| --blue           | Inconsistent with previous naming pattern  | --primary-blue   |
+| --blue           | Inconsistent with previous naming pattern  | --color-blue   |
