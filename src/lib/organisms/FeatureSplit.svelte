@@ -1,6 +1,8 @@
 <script>
+	import { RPicture } from '$lib'
+
 	import dots from '$lib/assets/dots.svg'
-	import imageSrc from '$lib/assets/doorstroom-ad-dag.webp'
+	import imageSrc from '$lib/assets/doorstroom-ad-dag.webp?enhanced'
 
 	export let title = ''
 	export let intro = ''
@@ -53,8 +55,8 @@
 
 	<div class="feature-media">
 		{#if imageSrc}
-			<img
-				class="feature-img"
+			<RPicture
+				isEnhanced
 				src={imageSrc}
 				alt={imageAlt}
 				aria-hidden="true"
@@ -119,15 +121,9 @@
 
 		.feature-media {
 			display: block;
-			padding: 2rem;
 			width: 50%;
-		}
-
-		.feature-img {
-			max-height: 455px;
-			width: 100%;
+			overflow: hidden;
 			border-radius: 33px;
-			object-fit: cover;
 		}
 	}
 </style>

@@ -2,7 +2,7 @@
   import dots from '$lib/assets/dots.svg'
   import imageSrc from '$lib/assets/doorstroom-ad-dag.webp'
 
-  import { overad } from '$lib'
+  import { overad, RPicture } from '$lib'
 
   export let title = ''
   export let description = ''
@@ -23,7 +23,7 @@
   </div>
 
   <div class="information-image">
-    <img src={overad} alt={imageAlt} aria-hidden="true" width="550" height="250"/>
+    <RPicture isEnhanced src={overad} alt={imageAlt} aria-hidden="true" width="550" height="250"/>
   </div>
 </section>
 
@@ -50,14 +50,9 @@
 
   .information-image {
     width: 100%;
-  }
-
-  .information-image img {
-    width: 100%;
     border-radius: 33px 33px 0 0;
-    object-fit: cover;
-    object-position: bottom;
-    height: 20em;
+    height: 30em;
+    overflow: hidden;
   }
 
   @media (min-width: 768px) {
@@ -71,10 +66,6 @@
 
     .information-image {
       width: 80%;
-
-      img {
-        height: 30em;
-      }
     }
   }
 

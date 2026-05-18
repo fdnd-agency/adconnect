@@ -2,7 +2,7 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link, RPicture } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -30,7 +30,8 @@
 		href="/over-ad"
 		class="button-outline-blue">Meer over Ad's</Link
 	>
-	<img
+	<RPicture
+		isEnhanced
 		class="hero-image"
 		src={zaal}
 		alt=""
