@@ -2,10 +2,7 @@
 	const { href, children, screenReaderText, ...props } = $props()
 </script>
 
-<a
-	{href}
-	{...props}
->
+<a {href} {...props}>
 	{@render children?.()}
 
 	{#if screenReaderText}
@@ -15,50 +12,47 @@
 
 <style>
 	.button-outline-white {
-		--_bg: var(--button-blue-bg);
-		--_color: var(--button-blue-text);
-		--_border: var(--button-blue-border);
+		--_button-background: var(--button-blue-bg);
+		--_button-text: var(--button-blue-text);
+		--_button-border: var(--button-blue-border);
+		--_button-background-hover: var(--text-white);
+		--_button-text-hover: var(--primary-blue);
+		--_button-border-hover: var(--button-outline-border);
 
-		background: var(--_bg);
-		color: var(--_color);
-		border: var(--_border);
 		border-radius: var(--button-blue-radius);
 		padding: var(--button-blue-padding);
 		font-size: var(--button-blue-font-size);
-		font-weight: var(--button-font-weight);
 		font-family: var(--button-blue-font-family);
-		cursor: pointer;
-		width: fit-content;
-		transition: ease-in-out 0.2s;
-
-		&:hover {
-			--_bg: var(--text-white);
-			--_color: var(--primary-blue);
-			--_border: var(--button-outline-border);
-		}
 	}
 
 	.button-outline-blue {
-		--_bg: light-dark(var(--text-white), hsl(210, 30%, 8%));
-		--_color: var(--button-outline-text);
-		--_border: var(--button-outline-border);
+		--_button-background: light-dark(var(--text-white), hsl(210, 30%, 8%));
+		--_button-text: var(--button-outline-text);
+		--_button-border: var(--button-outline-border);
+		--_button-background-hover: var(--primary-blue);
+		--_button-text-hover: var(--text-white);
+		--_button-border-hover: var(--button-blue-border);
 
-		background: var(--_bg);
-		color: var(--_color);
-		border: var(--_border);
 		border-radius: var(--button-outline-radius);
 		padding: var(--button-outline-padding);
 		font-size: var(--button-outline-font-size);
-		font-weight: var(--button-font-weight);
 		font-family: var(--button-outline-font-family);
+	}
+
+	.button-outline-white,
+	.button-outline-blue {
+		background: var(--_button-background);
+		color: var(--_button-text);
+		border: var(--_button-border);
+		font-weight: var(--button-font-weight);
 		cursor: pointer;
 		width: fit-content;
 		transition: ease-in-out 0.2s;
 
 		&:hover {
-			--_bg: var(--primary-blue);
-			--_color: var(--text-white);
-			--_border: var(--button-blue-border);
+			--_button-background: var(--_button-background-hover);
+			--_button-text: var(--_button-text-hover);
+			--_button-border: var(--_button-border-hover);
 		}
 	}
 
@@ -72,13 +66,6 @@
 
 	.menu-button {
 		--_underline-width: 0;
-
-		&.primary {
-			white-space: nowrap;
-			font-weight: var(--heading-font-weight);
-			color: light-dark(var(--blue-800), var(--blue-150));
-			padding: 0.5rem 1rem;
-		}
 
 		position: relative;
 		border-radius: 10px;
@@ -97,12 +84,16 @@
 			transition: width 0.3s ease;
 		}
 
-		&:hover {
-			--_underline-width: 100%;
-		}
-
+		&:hover,
 		&.active {
 			--_underline-width: 100%;
 		}
+	}
+
+	.menu-button.primary {
+		white-space: nowrap;
+		font-weight: var(--heading-font-weight);
+		color: light-dark(var(--blue-800), var(--blue-150));
+		padding: 0.5rem 1rem;
 	}
 </style>
