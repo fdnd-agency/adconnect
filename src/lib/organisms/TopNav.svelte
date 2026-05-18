@@ -7,16 +7,16 @@
 <nav aria-label="Secundair">
 	<section class="nav-right">
 		<ul>
-			<li><RLink href="/#faq" class="menu-button">FAQ's</RLink></li>
+			<li><RLink href="/#faq" class="nav-link">FAQ's</RLink></li>
 			<li>
 				<RLink
-					class="menu-button {page.url.pathname === '/over-ons' ? 'active' : ''}"
+					class="nav-link {page.url.pathname === '/over-ons' ? 'active' : ''}"
 					href="/over-ons">Over ons</RLink
 				>
 			</li>
 			<li>
 				<RLink
-					class="menu-button {page.url.pathname === '/contact' ? 'active' : ''}"
+					class="nav-link {page.url.pathname === '/contact' ? 'active' : ''}"
 					href="/contact">Contact</RLink
 				>
 			</li>

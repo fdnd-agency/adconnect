@@ -32,52 +32,52 @@
 			<span></span>
 		</summary>
 		<ul class="panel">
-			<li><RLink href="/" class="nav-link">Home</RLink></li>
-			<li><RLink href="/over-ad" class="nav-link">Over Ad's</RLink></li>
-			<li><RLink href="/lados-en-ad-profielen" class="nav-link">LAdO's en Ad-profielen</RLink></li>
-			<li><RLink href="/publicaties" class="nav-link">Publicaties</RLink></li>
-			<li><RLink href="/talent-award" class="nav-link">Talent Award</RLink></li>
-			<li><RLink href="/nieuws" class="nav-link">Nieuws</RLink></li>
-			<li><RLink href="/ad-dag" class="nav-link">Ad-dag</RLink></li>
-			<li><RLink href="over-ons" class="nav-link">Over ons</RLink></li>
-			<li><RLink href="/contact" class="nav-link">Contact</RLink></li>
+			<li><RLink href="/" class="nav-link hamburger">Home</RLink></li>
+			<li><RLink href="/over-ad" class="nav-link hamburger">Over Ad's</RLink></li>
+			<li><RLink href="/lados-en-ad-profielen" class="nav-link hamburger">LAdO's en Ad-profielen</RLink></li>
+			<li><RLink href="/publicaties" class="nav-link hamburger">Publicaties</RLink></li>
+			<li><RLink href="/talent-award" class="nav-link hamburger">Talent Award</RLink></li>
+			<li><RLink href="/nieuws" class="nav-link hamburger">Nieuws</RLink></li>
+			<li><RLink href="/ad-dag" class="nav-link hamburger">Ad-dag</RLink></li>
+			<li><RLink href="over-ons" class="nav-link hamburger">Over ons</RLink></li>
+			<li><RLink href="/contact" class="nav-link hamburger">Contact</RLink></li>
 		</ul>
 	</details>
 
 	<ul class="desktop-nav">
 		<li>
 			<RLink
-				class="primary {$page.url.pathname === '/' ? 'menu-button active' : 'menu-button'}"
+				class="desktop {$page.url.pathname === '/' ? 'nav-link active' : 'nav-link'}"
 				href="/">Home</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class="primary {$page.url.pathname === '/over-ad' ? 'menu-button active' : 'menu-button'}"
+				class="desktop {$page.url.pathname === '/over-ad' ? 'nav-link active' : 'nav-link'}"
 				href="/over-ad">Over Ad's</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class="primary {$page.url.pathname === '/lados-en-ad-profielen' ? 'menu-button active' : 'menu-button'}"
+				class="desktop {$page.url.pathname === '/lados-en-ad-profielen' ? 'nav-link active' : 'nav-link'}"
 				href="/lados-en-ad-profielen">LAdO's en Ad-profielen</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class="primary {$page.url.pathname === '/publicaties' ? 'menu-button active' : 'menu-button'}"
+				class="desktop {$page.url.pathname === '/publicaties' ? 'nav-link active' : 'nav-link'}"
 				href="/publicaties">Publicaties</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class="primary {$page.url.pathname === '/talent-award' ? 'menu-button active' : 'menu-button'}"
+				class="desktop {$page.url.pathname === '/talent-award' ? 'nav-link active' : 'nav-link'}"
 				href="/talent-award">Talent Award</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class="primary {$page.url.pathname === '/nieuws' ? 'menu-button active' : 'menu-button'}"
+				class="desktop {$page.url.pathname === '/nieuws' ? 'nav-link active' : 'nav-link'}"
 				href="/nieuws">Nieuws</RLink
 			>
 		</li>
