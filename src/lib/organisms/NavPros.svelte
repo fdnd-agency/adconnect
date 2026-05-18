@@ -47,37 +47,37 @@
 	<ul class="desktop-nav">
 		<li>
 			<RLink
-				class={$page.url.pathname === '/' ? 'menu-button active' : 'menu-button'}
+				class="primary {$page.url.pathname === '/' ? 'menu-button active' : 'menu-button'}"
 				href="/">Home</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class={$page.url.pathname === '/over-ad' ? 'menu-button active' : 'menu-button'}
+				class="primary {$page.url.pathname === '/over-ad' ? 'menu-button active' : 'menu-button'}"
 				href="/over-ad">Over Ad's</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class={$page.url.pathname === '/lados-en-ad-profielen' ? 'menu-button active' : 'menu-button'}
+				class="primary {$page.url.pathname === '/lados-en-ad-profielen' ? 'menu-button active' : 'menu-button'}"
 				href="/lados-en-ad-profielen">LAdO's en Ad-profielen</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class={$page.url.pathname === '/publicaties' ? 'menu-button active' : 'menu-button'}
+				class="primary {$page.url.pathname === '/publicaties' ? 'menu-button active' : 'menu-button'}"
 				href="/publicaties">Publicaties</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class={$page.url.pathname === '/talent-award' ? 'menu-button active' : 'menu-button'}
+				class="primary {$page.url.pathname === '/talent-award' ? 'menu-button active' : 'menu-button'}"
 				href="/talent-award">Talent Award</RLink
 			>
 		</li>
 		<li>
 			<RLink
-				class={$page.url.pathname === '/nieuws' ? 'menu-button active' : 'menu-button'}
+				class="primary {$page.url.pathname === '/nieuws' ? 'menu-button active' : 'menu-button'}"
 				href="/nieuws">Nieuws</RLink
 			>
 		</li>
