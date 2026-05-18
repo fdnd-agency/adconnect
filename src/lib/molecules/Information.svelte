@@ -2,7 +2,7 @@
   import dots from '$lib/assets/dots.svg'
   import imageSrc from '$lib/assets/doorstroom-ad-dag.webp'
 
-  import { overad } from '$lib'
+  import { overad, RLink } from '$lib'
 
   export let title = ''
   export let description = ''
@@ -17,9 +17,9 @@
     <h2 class="information-title">{title}</h2>
     <p class="information-description">{description}</p>
 
-    <a href={buttonLink} class="button-outline-white">
+    <RLink href={buttonLink} class="button-outline-white">
       {buttonText}
-    </a>
+    </RLink>
   </div>
 
   <div class="information-image">

@@ -2,7 +2,7 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -20,15 +20,15 @@
 	title="Het landelijke platform voor Associate degrees"
 	description="Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken."
 >
-	<Link
+	<RLink
 		slot="secondary"
 		href="/ad-dag"
-		class="button-outline-white">Kom naar de Ad-dag</Link
+		class="button-outline-white">Kom naar de Ad-dag</RLink
 	>
-	<Link
+	<RLink
 		slot="primary"
 		href="/over-ad"
-		class="button-outline-blue">Meer over Ad's</Link
+		class="button-outline-blue">Meer over Ad's</RLink
 	>
 	<img
 		class="hero-image"

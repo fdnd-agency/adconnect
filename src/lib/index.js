@@ -98,3 +98,8 @@ export { default as Collaborate } from './assets/collaborate.svg'
 export { default as Events } from './assets/events.svg'
 export { default as Question } from './assets/faq.svg'
 export { default as LadoNetwork } from './assets/lado-network.svg'
+
+
+// refactored
+// atoms
+export { default as RLink } from './refactored/atoms/Link.svelte'

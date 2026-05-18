@@ -1,21 +1,23 @@
 <script>
 	import { page } from '$app/state'
+	import { RLink } from '$lib'
+
 </script>
 
 <nav aria-label="Secundair">
 	<section class="nav-right">
 		<ul>
-			<li><a href="/#faq">FAQ's</a></li>
+			<li><RLink href="/#faq">FAQ's</RLink></li>
 			<li>
-				<a
-					class={page.url.pathname === '/over-ons' ? 'active' : 'menu-button'}
-					href="/over-ons">Over ons</a
+				<RLink
+					class={page.url.pathname === '/over-ons' ? 'active' : ''}
+					href="/over-ons">Over ons</RLink
 				>
 			</li>
 			<li>
-				<a
-					class={page.url.pathname === '/contact' ? 'active' : 'menu-button'}
-					href="/contact">Contact</a
+				<RLink
+					class={page.url.pathname === '/contact' ? 'active' : ''}
+					href="/contact">Contact</RLink
 				>
 			</li>
 		</ul>
@@ -59,32 +61,5 @@
 		display: flex;
 		gap: 2rem;
 		justify-content: flex-end;
-
-		a {
-			position: relative;
-			text-decoration: none;
-			color: light-dark(#000, #fff);
-			border-radius: 10px;
-			transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-
-			&::after {
-				content: '';
-				position: absolute;
-				left: 0;
-				bottom: -2px;
-				width: 0;
-				height: 2px;
-				background: currentColor;
-				transition: width 0.3s ease;
-			}
-
-			&:hover::after {
-				width: 100%;
-			}
-
-			&.active::after {
-				width: 100%;
-			}
-		}
 	}
 </style>

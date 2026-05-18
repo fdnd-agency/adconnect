@@ -6,6 +6,7 @@
 	import fallback from '$lib/assets/news-fallback.jpg'
 	import calendar from '$lib/assets/icon-calendar.svg'
 
+	import { RLink } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 </script>
 
@@ -21,9 +22,10 @@
 	<div>
 		<h2 class="truncate single">{article.title}</h2>
 		<p class="truncate two">{article.description}</p>
-		<a
+		<RLink
 			class="button-outline-blue"
-			href="/nieuws/{article.uuid}">Meer informatie <span class="visually-hidden">over {article.title}</span></a
+			href="/nieuws/{article.uuid}"
+			screenReaderText="over {article.title}">Meer informatie</RLink
 		>
 	</div>
 </article>

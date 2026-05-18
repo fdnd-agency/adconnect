@@ -1,5 +1,5 @@
 <script>
-	import { logo, logowhite } from '$lib'
+	import { logo, logowhite, RLink } from '$lib'
 
 	import { page } from '$app/stores'
 </script>
@@ -32,59 +32,59 @@
 			<span></span>
 		</summary>
 		<ul class="panel">
-			<li><a href="/">Home</a></li>
-			<li><a href="/over-ad">Over Ad's</a></li>
-			<li><a href="/lados-en-ad-profielen">LAdO's en Ad-profielen</a></li>
-			<li><a href="/publicaties">Publicaties</a></li>
-			<li><a href="/talent-award">Talent Award</a></li>
-			<li><a href="/nieuws">Nieuws</a></li>
-			<li><a href="/ad-dag">Ad-dag</a></li>
-			<li><a href="over-ons">Over ons</a></li>
-			<li><a href="/contact">Contact</a></li>
+			<li><RLink href="/" class="nav-link">Home</RLink></li>
+			<li><RLink href="/over-ad" class="nav-link">Over Ad's</RLink></li>
+			<li><RLink href="/lados-en-ad-profielen" class="nav-link">LAdO's en Ad-profielen</RLink></li>
+			<li><RLink href="/publicaties" class="nav-link">Publicaties</RLink></li>
+			<li><RLink href="/talent-award" class="nav-link">Talent Award</RLink></li>
+			<li><RLink href="/nieuws" class="nav-link">Nieuws</RLink></li>
+			<li><RLink href="/ad-dag" class="nav-link">Ad-dag</RLink></li>
+			<li><RLink href="over-ons" class="nav-link">Over ons</RLink></li>
+			<li><RLink href="/contact" class="nav-link">Contact</RLink></li>
 		</ul>
 	</details>
 
 	<ul class="desktop-nav">
 		<li>
-			<a
+			<RLink
 				class={$page.url.pathname === '/' ? 'menu-button active' : 'menu-button'}
-				href="/">Home</a
+				href="/">Home</RLink
 			>
 		</li>
 		<li>
-			<a
+			<RLink
 				class={$page.url.pathname === '/over-ad' ? 'menu-button active' : 'menu-button'}
-				href="/over-ad">Over Ad's</a
+				href="/over-ad">Over Ad's</RLink
 			>
 		</li>
 		<li>
-			<a
+			<RLink
 				class={$page.url.pathname === '/lados-en-ad-profielen' ? 'menu-button active' : 'menu-button'}
-				href="/lados-en-ad-profielen">LAdO's en Ad-profielen</a
+				href="/lados-en-ad-profielen">LAdO's en Ad-profielen</RLink
 			>
 		</li>
 		<li>
-			<a
+			<RLink
 				class={$page.url.pathname === '/publicaties' ? 'menu-button active' : 'menu-button'}
-				href="/publicaties">Publicaties</a
+				href="/publicaties">Publicaties</RLink
 			>
 		</li>
 		<li>
-			<a
+			<RLink
 				class={$page.url.pathname === '/talent-award' ? 'menu-button active' : 'menu-button'}
-				href="/talent-award">Talent Award</a
+				href="/talent-award">Talent Award</RLink
 			>
 		</li>
 		<li>
-			<a
+			<RLink
 				class={$page.url.pathname === '/nieuws' ? 'menu-button active' : 'menu-button'}
-				href="/nieuws">Nieuws</a
+				href="/nieuws">Nieuws</RLink
 			>
 		</li>
 		<li>
-			<a
+			<RLink
 				class="button-outline-white"
-				href="/ad-dag">Kom naar Ad-dag</a
+				href="/ad-dag">Kom naar Ad-dag</RLink
 			>
 		</li>
 	</ul>
@@ -207,14 +207,6 @@
 	.menu[open] summary span:nth-child(3) {
 		transform: translateY(-9px) rotate(-45deg);
 	}
-	.panel a {
-		display: block;
-		color: light-dark(var(--blue-800), var(--blue-150));
-		font-weight: 500;
-		font-size: 1.2rem;
-		text-decoration: none;
-		padding: 0.5rem 1rem;
-	}
 
 	:global(body:has(.menu[open])) {
 		overflow: hidden;
@@ -250,20 +242,9 @@
 			list-style: none;
 		}
 
-		.desktop-nav a {
+		.desktop-nav li:nth-of-type(7) {
 			white-space: nowrap;
 		}
-
-		/* Hover animatie menu items */
-		.menu-button {
-			font-weight: var(--heading-font-weight);
-			color: light-dark(var(--blue-800), var(--blue-150));
-			padding: 0.5rem 1rem;
-		}
-	}
-
-	.menu-button:hover::after {
-		width: 100%;
 	}
 
 	/* Accessibility */
@@ -273,44 +254,5 @@
 		summary span {
 			transition: none !important;
 		}
-	}
-
-	/* Hover animatie menu items */
-	.menu-button {
-		font-weight: var(--heading-font-weight);
-		color: light-dark(var(--blue-800), var(--blue-150));
-		padding: 0.5rem 1rem;
-		position: relative;
-
-		&::after {
-			content: '';
-			position: absolute;
-			left: 0;
-			bottom: -2px;
-			height: 2px;
-			width: 0%;
-			background: currentColor;
-			transition: 0.3s ease;
-		}
-	}
-
-	.menu-button:hover::after {
-		width: 100%;
-	}
-
-	a {
-		position: relative;
-	}
-
-	a.active::after {
-		content: '';
-		position: absolute;
-		left: 0;
-		bottom: -2px;
-		width: 100%;
-		height: 2px;
-		background: currentColor;
-		transform: scaleX(1);
-		transition: 0.3s ease;
 	}
 </style>
