@@ -11,29 +11,30 @@
 	import { RLink } from '$lib'
 </script>
 
-<article class="info-card">
-	<section class="info-card-head">
-		<img
-			src={iconSrc}
-			alt=""
-			class="info-card-icon"
-		/>
-		<h3 class="info-card-title">{title}</h3>
-	</section>
+<RLink
+	href={buttonLink}
+>
+	<article class="info-card">
+		<section class="info-card-head">
+			<img
+				src={iconSrc}
+				alt=""
+				class="info-card-icon"
+			/>
+			<h3 class="info-card-title">{title}</h3>
+		</section>
 
-	<p class="info-card-desc">{description}</p>
+		<p class="info-card-desc">{description}</p>
 
-	<RLink
-		href={buttonLink}
-		class="button-outline-blue"
-	>
-		{buttonText}
-		<span
-			class="info-card-cta-arrow"
-			aria-hidden="true">→</span
-		>
-	</RLink>
-</article>
+		<p class="button-outline-blue">
+			{buttonText}
+			<span
+				class="info-card-cta-arrow"
+				aria-hidden="true">→</span
+			>
+		</p>
+	</article>
+</RLink>
 
 <style>
 	.info-card {

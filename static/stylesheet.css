@@ -233,6 +233,52 @@ a {
 	}
 }
 
+/* Buttons */
+.button-outline-white {
+	--_button-background: var(--button-blue-bg);
+	--_button-text: var(--button-blue-text);
+	--_button-border: var(--button-blue-border);
+	--_button-background-hover: var(--text-white);
+	--_button-text-hover: var(--primary-blue);
+	--_button-border-hover: var(--button-outline-border);
+
+	border-radius: var(--button-blue-radius);
+	padding: var(--button-blue-padding);
+	font-size: var(--button-blue-font-size);
+	font-family: var(--button-blue-font-family);
+}
+
+.button-outline-blue {
+	--_button-background: light-dark(var(--text-white), hsl(210, 30%, 8%));
+	--_button-text: var(--button-outline-text);
+	--_button-border: var(--button-outline-border);
+	--_button-background-hover: var(--primary-blue);
+	--_button-text-hover: var(--text-white);
+	--_button-border-hover: var(--button-blue-border);
+
+	border-radius: var(--button-outline-radius);
+	padding: var(--button-outline-padding);
+	font-size: var(--button-outline-font-size);
+	font-family: var(--button-outline-font-family);
+}
+
+.button-outline-white,
+.button-outline-blue {
+	background: var(--_button-background);
+	color: var(--_button-text);
+	border: var(--_button-border);
+	font-weight: var(--button-font-weight);
+	cursor: pointer;
+	width: fit-content;
+	transition: ease-in-out 0.2s;
+
+	&:hover, a:hover & {
+		--_button-background: var(--_button-background-hover);
+		--_button-text: var(--_button-text-hover);
+		--_button-border: var(--_button-border-hover);
+	}
+}
+
 .visually-hidden {
 	clip: rect(0 0 0 0);
 	clip-path: inset(50%);
