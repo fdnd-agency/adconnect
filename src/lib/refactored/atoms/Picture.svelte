@@ -19,6 +19,10 @@
 			type="image/avif"
 			srcset={`${src}?format=avif`}
 		/>
+		<source
+			type="image/jpeg"
+			srcset={`${src}?format=jpeg`}
+		/>
 		<img
 			{src}
 			{width}

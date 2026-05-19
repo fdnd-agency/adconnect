@@ -37,6 +37,7 @@
 		src={zaal}
 		alt="Een grote zaal vol mensen die op stoelen zitten en luisteren naar een spreker."
 		fetchpriority="high"
+		loading="eager"
 		width="300"
 		height="210"
 	/>
