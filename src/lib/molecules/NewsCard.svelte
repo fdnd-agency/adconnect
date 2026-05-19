@@ -15,10 +15,8 @@
 	<div>
 		<RPicture
 			src={`${DIRECTUS_URL}/assets/${article.hero}`}
-			alt={article.title}
 			width="300"
 			height="210"
-			aria-hidden="true"
 		/>
 	</div>
 

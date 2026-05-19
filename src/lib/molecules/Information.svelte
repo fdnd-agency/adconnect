@@ -23,7 +23,7 @@
   </div>
 
   <div class="information-image">
-    <RPicture isEnhanced src={overad} alt={imageAlt} aria-hidden="true" width="550" height="250"/>
+    <RPicture isEnhanced src={overad} alt={imageAlt} width="550" height="250"/>
   </div>
 </section>
 
@@ -49,7 +49,6 @@
   }
 
   .information-image {
-    width: 100%;
     border-radius: 33px 33px 0 0;
     height: 30em;
     overflow: hidden;

@@ -31,10 +31,11 @@
 		class="button-outline-blue">Meer over Ad's</Link
 	>
 	<RPicture
+		slot="media"
 		isEnhanced
 		class="hero-image"
 		src={zaal}
-		alt=""
+		alt="Een grote zaal vol mensen die op stoelen zitten en luisteren naar een spreker."
 		fetchpriority="high"
 		width="300"
 		height="210"
@@ -48,7 +49,7 @@
 	description="Associate degrees zijn tweejarige hbo-opleidingen die sterk praktijkgericht zijn en direct aansluiten op de arbeidsmarkt. Ze combineren werken en leren en zijn bedoeld voor studenten die zich willen ontwikkelen op hbo-niveau, zonder direct een vierjarige bachelor te volgen. De opleidingen worden samen met het werkveld vormgegeven en spelen in op actuele beroepsvragen. Hierdoor doe je relevante kennis en vaardigheden op die je meteen kunt toepassen in de praktijk. Een Associate degree biedt daarnaast flexibiliteit: je behaalt een zelfstandig diploma en kunt, als je dat wilt, doorstromen naar een bacheloropleiding."
 	buttonText="Meer info over Ad's"
 	buttonLink="#"
-	imageAlt="Studenten ontvangen award"
+	imageAlt="Een zaal met tafels in een cirkel, waar studenten luisteren naar hun docent die een presentatie geeft."
 />
 
 <InformationCards
@@ -90,7 +91,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	ctaText="Meer over Associate degrees"
 	ctaLink="/over-ad"
 	imageSrc="/images/award.jpg"
-	imageAlt="Studenten bij AdTalent award"
+	imageAlt="Studenten bij de Ad Talent Award die naast elkaar staan, allemaal met een certificaat in hun handen"
 />
 
 <section
@@ -124,28 +125,6 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 </section>
 
 <style>
-	.hero-image {
-		display: block;
-		width: 100%;
-		max-height: 416px;
-		object-fit: cover;
-		border-radius: 30px 30px 0 0;
-	}
-
-	@media (min-width: 768px) {
-		.hero-image {
-			border-radius: 24px;
-			max-width: 604px;
-			margin-left: auto;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.hero-image {
-			max-width: 640px;
-		}
-	}
-
 	.logo-section {
 		display: flex;
 		gap: 2em;
