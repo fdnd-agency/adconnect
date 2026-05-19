@@ -13,6 +13,7 @@
 
 <RLink
 	href={buttonLink}
+	class="flex-container"
 >
 	<article class="info-card">
 		<section class="info-card-head">

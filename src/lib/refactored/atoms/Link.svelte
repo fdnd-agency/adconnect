@@ -58,4 +58,8 @@
 			--_underline-width: 100%;
 		}
 	}
+
+    .flex-container {
+        display: flex;
+    }
 </style>
