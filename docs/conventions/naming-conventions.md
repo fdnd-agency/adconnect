@@ -5,7 +5,9 @@
 - Be consistent in naming
 - Avoid abbreviations, always write out the full name
 - In HTML & CSS use `kebab-case`
+  - Follow BEM (Block, Element, Modifier) for CSS class naming
 - In JavaScript, use `camelCase`
+
 
 Examples
 Meaningfull names:
