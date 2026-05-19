@@ -6,7 +6,6 @@
 
 {#if src && isEnhanced}
 	<enhanced:img
-		class="enhanced-img"
 		{src}
 		{alt}
 		{loading}
