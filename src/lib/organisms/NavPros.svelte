@@ -242,7 +242,7 @@
 			list-style: none;
 		}
 
-		.desktop-nav li:nth-of-type(7) {
+		.desktop-nav li {
 			white-space: nowrap;
 		}
 	}
