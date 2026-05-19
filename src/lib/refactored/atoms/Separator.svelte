@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { dividerText } = $props()
+	let { dividerText }: { dividerText: string } = $props()
 </script>
 
 <section>
@@ -21,7 +21,8 @@
 		margin: 2em auto;
 	}
 
-	hr, span {
+	hr,
+	span {
 		flex: 1;
 		border: none;
 		height: 1px;
