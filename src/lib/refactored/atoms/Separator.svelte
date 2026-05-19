@@ -6,7 +6,7 @@
 	<hr />
 	{#if dividerText}
 		<p>{dividerText}</p>
-		<hr />
+		<span></span>
 	{/if}
 </section>
 
@@ -21,7 +21,7 @@
 		margin: 2em auto;
 	}
 
-	hr {
+	hr, span {
 		flex: 1;
 		border: none;
 		height: 1px;
