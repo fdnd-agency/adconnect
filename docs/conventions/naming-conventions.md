@@ -8,6 +8,18 @@
   - Follow BEM (Block, Element, Modifier) for CSS class naming
 - In JavaScript, use `camelCase`
 
+  ---
+
+### BEM Naming Convention
+BEM stands for Block, Element, Modifier, a CSS naming system that keeps your code organized and predictable.
+Structure:
+- Block: Main component (nav)
+- Element: Part of a block (nav-list, nav-item)
+- Modifier: Variation or state (nav-item-active)
+
+Important: In this project, use only single hyphens (-) for all separations, not double underscores (__)
+
+---
 
 Examples
 Meaningfull names:
