@@ -78,9 +78,9 @@ Structure:
 ```
 
 
-#### BEM, ipv `--` een nested een extra class
+#### SMACSS
 ```svelte
-<!-- BEM methodology -->
+<!-- SMACSS methodology -->
 <style>
 	/* BLOCK: Main component */
 	.newsletter {
@@ -103,7 +103,7 @@ Structure:
 		background-color: var(--_background);
 		color: var(--_text);
 
-		/* MODIFIER: Variation of the newsletter__button element */
+		/* MODIFIER (nested): Variation of the newsletter__button element */
 		&.decline {
 			--_border: 1px solid red;
 			--_background: lightcyan;
@@ -113,16 +113,16 @@ Structure:
 				--_text: black;
 			}
 		}
+	}
 
-		/* MODIFIER: Variation of the newsletter__button element */
-		&.accept {
-			--_border: 1px solid green;
-			--_background: lightcyan;
-			--_text: green;
-			&:hover {
-				--_background: green;
-				--_text: black;
-			}
+	/* MODIFIER (new class): Variation of the newsletter__button element */
+	.accept {
+		--_border: 1px solid green;
+		--_background: lightcyan;
+		--_text: green;
+		&:hover {
+			--_background: green;
+			--_text: black;
 		}
 	}
 </style>
