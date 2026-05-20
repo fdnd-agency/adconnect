@@ -1,7 +1,19 @@
 <script>
 	import Form from '$lib/organisms/forms/Form.svelte'
 
-	const { form, lado = null, courses = [], sectoralAdvisoryBoards = [], sectoralAdvisoryBoardId = '', directusBase = '', showPublishButton = false, resetOnSuccess = true, onSuccess = null } = $props()
+	const {
+		form,
+		lado = null,
+		lados = [],
+		parentId = '',
+		courses = [],
+		sectoralAdvisoryBoards = [],
+		sectoralAdvisoryBoardId = '',
+		directusBase = '',
+		showPublishButton = false,
+		resetOnSuccess = true,
+		onSuccess = null
+	} = $props()
 
 	let title = $state('')
 	let nationalAdProfile = $state('')
@@ -10,6 +22,7 @@
 	let tagInput = $state('')
 	let tagsInputElement = $state()
 	let selectedCourseIds = $state([])
+	let selectedParent = $state('')
 	let selectedSectoralAdvisoryBoard = $state('')
 	let courseSearch = $state('')
 	let titleSource = $state('')
@@ -17,10 +30,12 @@
 	let ladoStatusSource = $state('')
 	let contactPersonsSource = $state('')
 	let selectedCourseIdsSource = $state('')
+	let selectedParentSource = $state('')
 	let selectedSectoralAdvisoryBoardSource = $state('')
 
 	const courseAddHref = '/admin/courses/create'
 	const sectoralAdvisoryBoardAddHref = '/admin/sectoral-advisory-boards/create'
+	const availableParentLados = $derived(lados.filter((currentLado) => String(currentLado?.id ?? '') !== String(lado?.id ?? '')))
 	const normalizedCourseSearch = $derived(courseSearch.trim().toLowerCase())
 	const filteredCourses = $derived(normalizedCourseSearch ? courses.filter((course) => (course.title ?? `Opleiding ${course.id}`).toLowerCase().includes(normalizedCourseSearch)) : courses)
 
@@ -93,6 +108,7 @@
 			tags = []
 			tagInput = ''
 			selectedCourseIds = []
+			selectedParent = ''
 			courseSearch = ''
 		}
 
@@ -146,6 +162,13 @@
 
 		const ladoId = String(lado?.id ?? '')
 		selectedCourseIds = ladoId ? courses.filter((course) => String(course?.lado?.id ?? course?.lado ?? '') === ladoId).map((course) => String(course.id)) : []
+	})
+
+	$effect(() => {
+		const nextSource = String(form?.parent ?? parentId ?? lado?.parent?.id ?? lado?.parent ?? '')
+		if (nextSource === selectedParentSource) return
+		selectedParentSource = nextSource
+		selectedParent = nextSource
 	})
 
 	$effect(() => {
@@ -236,6 +259,34 @@
 			bind:value={ladoStatus}
 			required
 		/>
+	</div>
+
+	<div class="field-group">
+		<div class="field-heading-row">
+			<p class="field-label">Parent</p>
+		</div>
+		{#if availableParentLados.length === 0}
+			<p class="field-help">Geen lado's gevonden om als parent te selecteren.</p>
+			<select
+				id="parent"
+				name="parent"
+				disabled
+			>
+				<option value="">Geen parent-lado's beschikbaar</option>
+			</select>
+		{:else}
+			<select
+				id="parent"
+				name="parent"
+				bind:value={selectedParent}
+			>
+				<option value="">Geen parent</option>
+				{#each availableParentLados as parentLado (parentLado.id)}
+					<option value={String(parentLado.id)}>{parentLado.title ?? `Lado ${parentLado.id}`}</option>
+				{/each}
+			</select>
+		{/if}
+		<p class="field-help">Optioneel: koppel deze lado aan een bestaande parent-lado.</p>
 	</div>
 
 	<div class="field-group">
