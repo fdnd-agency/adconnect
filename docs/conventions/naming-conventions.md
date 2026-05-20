@@ -8,7 +8,7 @@
   - Follow BEM (Block, Element, Modifier) for CSS class naming
 - In JavaScript, use `camelCase`
 
-  ---
+---
 
 ### BEM Naming Convention
 BEM which stands for Block, Element, Modifier.  
@@ -75,10 +75,7 @@ Structure:
 
 <section class="newsletter">
 	<h2 class="newsletter__heading">Newsletter</h2>
-	<input
-		type="email"
-		class="newsletter__input"
-	/>
+	<input type="email" class="newsletter__input"/>
 	<button class="newsletter__button newsletter__button--decline">Unsubscribe</button>
 	<button class="newsletter__button newsletter__button--accept">Subscribe</button>
 </section>
@@ -87,21 +84,30 @@ Structure:
 
 ---
 
-Examples
-Meaningfull names:
-| Name                 | What it describes                                      | ... |
-|----------------------|--------------------------------------------------------|------------------------------------------|
-| focusTrap            | JavaScript function that traps keyboard tab focus      |      |
-| nav-list             | List structure inside navigation element                       | nav > ul                                 |
-| nav-item             | Individual navigation item                             | nav > ul > li                            |
-| skip-link            | Hidden link that allows skipping to main content       |                              |
-| fetchDocumentDetails()      | JavaScript function that fetches all document data    |                |
+### Examples
+### Inconsistent vs Consistent Naming
 
-Consistant naming:
-| Incorrect Name   | Issue                                      | Correct Name     |
-|------------------|--------------------------------------------|------------------|
-| button-submit    | Correct and consistent naming              |     |
-| decline-button   | Inconsistent order                         | button-decline   |
-| button_previous  | Uses underscore instead of kebab-case      | button-previous  |
-| --color-red      | Correct custom property naming             |       |
-| --blue           | Inconsistent with previous naming pattern  | --color-blue   |
+| Incorrect Name | Issue | Correct Name | BEM Format |
+|-------------------|-------|-----------------|------------|
+| `.button_submit` | Uses underscore instead of kebab-case | `.button--submit` | Block--Modifier |
+| `.decline-button` | Inconsistent word order | `.button--decline` | Block--Modifier |
+| `.newsletter_input` | Uses underscore, not BEM | `.newsletter__input` | Block__Element |
+| `.submit_btn` | Abbreviation used | `.button--submit` | Block--Modifier |
+| `.card_header` | Uses underscore, should use double underscore | `.card__header` | Block__Element |
+| `.active-nav` | Inconsistent with state naming | `.navigation.is-active` | Block + State |
+| `.form__input--focus` | Uses `--` for state (wrong) | `.form__input.is-focused` | Block__Element + State |
+| `.btnSubmit` | camelCase in CSS (should be kebab-case) | `.button--submit` | Block--Modifier |
+| `.nav-link` | Missing block context | `.navigation__link` | Block__Element |
+
+### Context Examples
+
+| Scenario | Bad | Good | difference |
+|----------|--------|---------|--------|
+| CSS class for button | `.btn` | `.button` | Block |
+| JS function name | `get-user-data` | `getUserData()` | camelCase |
+| CSS custom property | `--primary` | `--color-primary` | Descriptive |
+| Button inside card | `.card-button` | `.card__button` | Block__Element |
+| Disabled state | `.button-disabled` | `.button.is-disabled` | Block + State |
+| Navigation item active | `.nav_item_active` | `.navigation__item.is-active` | Block__Element + State |
+| Form input email type | `.inp-email` | `.form__input--email` | Block__Element--Modifier |
+| Modal close button | `.modal_closeBtn` | `.modal__close-button` | Block__Element |
