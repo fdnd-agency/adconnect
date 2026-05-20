@@ -59,7 +59,12 @@
 		}
 	}
 
-    .flex-container {
-        display: flex;
-    }
+	.clickable-container::before {
+		/* add position relative to the container of the link component */
+		content: '';
+		display: block;
+		position: absolute;
+		inset: 0;
+		z-index: 10;
+	}
 </style>
