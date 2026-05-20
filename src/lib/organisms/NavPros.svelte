@@ -1,29 +1,12 @@
 <script>
 	import { logo, logowhite } from '$lib'
+	import { Logo } from '$lib'
 
 	import { page } from '$app/stores'
 </script>
 
 <nav aria-label="Primair">
-	<a
-		class="logo"
-		href="/"
-		aria-label="Home – AdConnect logo"
-	>
-		<picture>
-			<source
-				srcset={logowhite}
-				media="(prefers-color-scheme: dark)"
-			/>
-			<img
-				src={logo}
-				alt=""
-				loading="lazy"
-				width="200"
-				height="150"
-			/>
-		</picture>
-	</a>
+	<Logo />
 
 	<details class="menu">
 		<summary>
@@ -93,7 +76,8 @@
 <style>
 	/* MOBILE*/
 	nav {
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 		position: relative;
 		align-items: center;
 		justify-content: space-between;
@@ -105,10 +89,6 @@
 		position: fixed;
 		top: 2.8em;
 		padding: 1em 5%;
-
-		.logo img {
-			height: 50px;
-		}
 	}
 
 	summary {
@@ -139,6 +119,7 @@
 		display: block;
 		position: relative;
 		z-index: 0;
+		margin-left: auto;
 	}
 	.menu:hover summary span {
 		width: 32px;
@@ -228,15 +209,6 @@
 	@media (min-width: 1160px) {
 		nav {
 			padding: 1em 5%;
-		}
-
-		.logo {
-			display: block;
-			height: 50px;
-		}
-
-		.logo img {
-			width: 12em;
 		}
 
 		.menu {
