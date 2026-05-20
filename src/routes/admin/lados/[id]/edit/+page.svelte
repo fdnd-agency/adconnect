@@ -27,6 +27,8 @@
 <LadosForm
 	{form}
 	lado={data?.lado}
+	lados={data?.lados ?? []}
+	parentId={data?.parentId ?? ''}
 	courses={data?.courses ?? []}
 	sectoralAdvisoryBoards={data?.sectoralAdvisoryBoards ?? []}
 	sectoralAdvisoryBoardId={data?.sectoralAdvisoryBoardId ?? ''}
