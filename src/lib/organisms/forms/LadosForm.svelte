@@ -24,6 +24,7 @@
 	let selectedCourseIds = $state([])
 	let selectedParent = $state('')
 	let selectedSectoralAdvisoryBoard = $state('')
+	let parentSearch = $state('')
 	let courseSearch = $state('')
 	let titleSource = $state('')
 	let nationalAdProfileSource = $state('')
@@ -36,6 +37,10 @@
 	const courseAddHref = '/admin/courses/create'
 	const sectoralAdvisoryBoardAddHref = '/admin/sectoral-advisory-boards/create'
 	const availableParentLados = $derived(lados.filter((currentLado) => String(currentLado?.id ?? '') !== String(lado?.id ?? '')))
+	const normalizedParentSearch = $derived(parentSearch.trim().toLowerCase())
+	const filteredParentLados = $derived(
+		normalizedParentSearch ? availableParentLados.filter((parentLado) => (parentLado.title ?? `Hoofd-lado ${parentLado.id}`).toLowerCase().includes(normalizedParentSearch)) : availableParentLados
+	)
 	const normalizedCourseSearch = $derived(courseSearch.trim().toLowerCase())
 	const filteredCourses = $derived(normalizedCourseSearch ? courses.filter((course) => (course.title ?? `Opleiding ${course.id}`).toLowerCase().includes(normalizedCourseSearch)) : courses)
 
@@ -61,6 +66,15 @@
 		}
 
 		selectedCourseIds = [...selectedCourseIds, normalizedId]
+	}
+
+	function isParentSelected(parentLadoId) {
+		return selectedParent === String(parentLadoId)
+	}
+
+	function toggleParentSelection(parentLadoId) {
+		const normalizedId = String(parentLadoId)
+		selectedParent = selectedParent === normalizedId ? '' : normalizedId
 	}
 
 	function addTag() {
@@ -109,6 +123,7 @@
 			tagInput = ''
 			selectedCourseIds = []
 			selectedParent = ''
+			parentSearch = ''
 			courseSearch = ''
 		}
 
@@ -264,30 +279,60 @@
 	<div class="field-group">
 		<div class="field-heading-row">
 			<label
-				for="parent"
+				for="parentSearch"
 				class="field-label">Hoofd-lado</label
 			>
 		</div>
 		{#if availableParentLados.length === 0}
 			<p class="field-help">Geen lado's gevonden om als hoofd-lado te selecteren.</p>
-			<select
-				id="parent"
-				name="parent"
-				disabled
-			>
-				<option value="">Geen hoofd-lado's beschikbaar</option>
-			</select>
+			<div class="courses-picker courses-picker-disabled">
+				<p class="field-help">Geen hoofd-lado's beschikbaar</p>
+			</div>
 		{:else}
-			<select
-				id="parent"
-				name="parent"
-				bind:value={selectedParent}
-			>
-				<option value="">Geen hoofd-lado beschikbaar</option>
-				{#each availableParentLados as parentLado (parentLado.id)}
-					<option value={String(parentLado.id)}>{parentLado.title ?? `Hoofd-lado ${parentLado.id}`}</option>
-				{/each}
-			</select>
+			<div class="courses-picker">
+				<div class="courses-toolbar">
+					<input
+						id="parentSearch"
+						type="text"
+						class="course-search"
+						placeholder="Zoek hoofd-lado"
+						autocomplete="off"
+						bind:value={parentSearch}
+					/>
+					<p class="courses-count">{selectedParent ? '1 geselecteerd' : '0 geselecteerd'}</p>
+				</div>
+
+				<div
+					class="courses-list"
+					role="listbox"
+					aria-multiselectable="false"
+					aria-label="Selecteer hoofd-lado"
+				>
+					{#if filteredParentLados.length === 0}
+						<p class="field-help courses-empty">Geen hoofd-lado's gevonden voor deze zoekterm.</p>
+					{:else}
+						{#each filteredParentLados as parentLado (parentLado.id)}
+							<label
+								class="course-option"
+								class:course-option-selected={isParentSelected(parentLado.id)}
+							>
+								<input
+									type="checkbox"
+									checked={isParentSelected(parentLado.id)}
+									onchange={() => toggleParentSelection(parentLado.id)}
+								/>
+								<span>{parentLado.title ?? `Hoofd-lado ${parentLado.id}`}</span>
+							</label>
+						{/each}
+					{/if}
+				</div>
+
+				<input
+					type="hidden"
+					name="parent"
+					value={selectedParent}
+				/>
+			</div>
 		{/if}
 		<p class="field-help">Optioneel: koppel deze lado aan een bestaande hoofd-lado.</p>
 	</div>
