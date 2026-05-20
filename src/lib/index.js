@@ -98,3 +98,7 @@ export { default as Collaborate } from './assets/collaborate.svg'
 export { default as Events } from './assets/events.svg'
 export { default as Question } from './assets/faq.svg'
 export { default as LadoNetwork } from './assets/lado-network.svg'
+
+
+// SVG icons
+export { default as Logo } from './icons/Logo.svelte'
