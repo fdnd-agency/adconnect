@@ -39,59 +39,85 @@ Example:
 ```svelte
 <!-- SMACSS methodology -->
 <style>
-	/* BLOCK: Main component */
+	/* BASE */
+	button {
+		cursor: pointer;
+		font-family: inherit;
+	}
+
+	input {
+		font-family: inherit;
+	}
+
+	/* LAYOUT */
+	.l-newsletter {
+		display: flex;
+		flex-direction: column;
+		padding: 0.5em;
+	}
+
+	/* MODULE: Newsletter block */
 	.newsletter {
 		background-color: orange;
 	}
 
-	/* ELEMENT: Part of the newsletter block */
+	/* ELEMENTS */
 	.newsletter__heading {
 		color: blue;
 	}
 
-	/* ELEMENT: Part of the newsletter block */
 	.newsletter__input {
 		background-color: white;
+		margin-bottom: 10px;
 	}
 
-	/* ELEMENT: Part of the newsletter block */
 	.newsletter__button {
 		border: var(--_border);
 		background-color: var(--_background);
 		color: var(--_text);
+		margin-bottom: 10px;
+	}
 
-		/* MODIFIER (nested): Variation of the newsletter__button element */
-		&.decline {
-			--_border: 1px solid red;
-			--_background: lightcyan;
-			--_text: red;
-			&:hover {
-				--_background: red;
-				--_text: black;
-			}
+	/* MODIFIERS */
+	.newsletter__button--decline {
+		--_border: 1px solid red;
+		--_background: lightcyan;
+		--_text: red;
+
+		&:hover {
+			--_background: red;
+			--_text: black;
 		}
 	}
 
-	/* MODIFIER (new class): Variation of the newsletter__button element */
-	.accept {
+	.newsletter__button--accept {
 		--_border: 1px solid green;
 		--_background: lightcyan;
 		--_text: green;
+
 		&:hover {
 			--_background: green;
 			--_text: black;
 		}
 	}
+
+	/* STATE */
+	.newsletter__button.is-disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
 </style>
 
-<section class="newsletter">
+<section class="newsletter l-newsletter">
 	<h2 class="newsletter__heading">Newsletter</h2>
 	<input
 		type="email"
 		class="newsletter__input"
+		placeholder="Enter your email"
 	/>
-	<button class="newsletter__button decline">Unsubscribe</button>
-	<button class="newsletter__button accept">Subscribe</button>
+	<button class="newsletter__button newsletter__button--decline">Unsubscribe</button>
+	<button class="newsletter__button newsletter__button--decline is-disabled">extra button</button>
+	<button class="newsletter__button newsletter__button--accept">Subscribe</button>
 </section>
 ```
 
