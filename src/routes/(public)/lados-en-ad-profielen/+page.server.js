@@ -1,6 +1,6 @@
 import { ContentService } from '$lib/server/contentService.js'
 
-const LADO_FIELDS = 'id,title,national_ad_profile,lado_status,contact_persons,status,sectoral_advisory_board'
+const LADO_FIELDS = 'id,title,national_ad_profile,lado_status,contact_persons,status,parent,sectoral_advisory_board'
 const COURSE_FIELDS = 'id,title,lado,cooperations.adconnect_cooperation_id.id,cooperations.adconnect_cooperation_id.name,cooperations.adconnect_cooperation_id.url'
 const SECTORAL_ADVISORY_BOARD_FIELDS = 'id,title'
 const PUBLISHED_FILTER = { status: { _eq: 'published' } }
@@ -54,10 +54,12 @@ export async function load() {
 		...course,
 		cooperations: getCourseCooperations(course)
 	}))
+	const ladoById = new Map(ladoItems.map((lado) => [String(lado.id), lado]))
 
 	const lados = ladoItems
 		.map((lado) => ({
 			...lado,
+			parent: ladoById.get(String(getRelationId(lado.parent))) ?? lado.parent,
 			sectoral_advisory_board: sectoralAdvisoryBoards.find((board) => String(board.id) === String(getRelationId(lado.sectoral_advisory_board))) ?? lado.sectoral_advisory_board,
 			courses: coursesWithCooperation.filter((course) => String(getRelationId(course.lado)) === String(lado.id))
 		}))

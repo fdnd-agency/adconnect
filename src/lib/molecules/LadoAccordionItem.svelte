@@ -1,15 +1,27 @@
 <script>
 	export let lado = {}
+	export let subclusters = []
+	export let parent = null
+	export let isSubcluster = false
 
 	const contactPersons = Array.isArray(lado.contact_persons) ? lado.contact_persons : []
 	const courses = Array.isArray(lado.courses) ? lado.courses : []
 	const sectoralAdvisoryBoard = typeof lado.sectoral_advisory_board === 'object' ? lado.sectoral_advisory_board : null
+	const parentLado = parent ?? (typeof lado.parent === 'object' ? lado.parent : null)
 </script>
 
-<article>
+<article
+	id={`lado-${lado.id}`}
+	class:is-subcluster={isSubcluster}
+>
 	<details>
 		<summary>
-			<span>{lado.title}</span>
+			<span class="title-wrap">
+				<span>{lado.title}</span>
+				{#if !isSubcluster && subclusters.length > 0}
+					<span class="subcluster-badge">{subclusters.length} subclusters</span>
+				{/if}
+			</span>
 			<span
 				class="toggle"
 				aria-hidden="true"
@@ -17,6 +29,13 @@
 		</summary>
 
 		<div class="content">
+			{#if isSubcluster && parentLado?.id}
+				<p class="parent-reference">
+					<strong>Parent</strong>
+					<a href={`#lado-${parentLado.id}`}>{parentLado.title ?? `Lado ${parentLado.id}`}</a>
+				</p>
+			{/if}
+
 			{#if lado.national_ad_profile}
 				<p><strong>Landelijk Ad-profiel</strong>{lado.national_ad_profile}</p>
 			{/if}
@@ -69,6 +88,19 @@
 					</ul>
 				</section>
 			{/if}
+
+			{#if !isSubcluster && subclusters.length > 0}
+				<section aria-label="Subclusters">
+					<strong>Subclusters ({subclusters.length})</strong>
+					<ul class="subcluster-links">
+						{#each subclusters as subcluster (subcluster.id)}
+							<li>
+								<a href={`#lado-${subcluster.id}`}>{subcluster.title ?? `Lado ${subcluster.id}`}</a>
+							</li>
+						{/each}
+					</ul>
+				</section>
+			{/if}
 		</div>
 	</details>
 </article>
@@ -86,6 +118,10 @@
 		border: 1px solid var(--_border);
 		border-radius: 0.45em;
 		color: var(--_text);
+	}
+
+	article.is-subcluster {
+		border-left: 4px solid var(--primary-blue);
 	}
 
 	details {
@@ -107,6 +143,26 @@
 
 	summary::-webkit-details-marker {
 		display: none;
+	}
+
+	.title-wrap {
+		display: inline-flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5em;
+	}
+
+	.subcluster-badge {
+		display: inline-flex;
+		align-items: center;
+		border-radius: 999px;
+		padding: 0.2em 0.65em;
+		background: var(--primary-blue);
+		color: var(--text-white);
+		font-family: var(--font-body);
+		font-size: 0.78rem;
+		font-weight: var(--weight-semibold);
+		line-height: 1.2;
 	}
 
 	.toggle {
@@ -153,6 +209,13 @@
 	section {
 		display: grid;
 		gap: 0.35em;
+	}
+
+	.parent-reference {
+		align-items: start;
+		padding: 0.6em 0.75em;
+		border-radius: 0.45em;
+		background: var(--_chip-background);
 	}
 
 	strong {
@@ -224,6 +287,16 @@
 
 	.cooperation-item {
 		line-height: 1.25;
+	}
+
+	.subcluster-links {
+		display: grid;
+		gap: 0.35em;
+	}
+
+	.subcluster-links a {
+		font-family: var(--font-body);
+		font-size: 0.95rem;
 	}
 
 	a {
