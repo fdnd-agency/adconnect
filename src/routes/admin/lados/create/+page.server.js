@@ -46,7 +46,8 @@ export const actions = {
 		const title = String(data.get('title') ?? '').trim()
 		const nationalAdProfile = String(data.get('nationalAdProfile') ?? '').trim()
 		const ladoStatus = String(data.get('ladoStatus') ?? '').trim()
-		const parentId = String(data.get('parent') ?? '').trim() || null
+		const parent = String(data.get('parent') ?? '').trim()
+		const parentId = parent ? Number(parent) : null
 		const courseIds = data
 			.getAll('courses')
 			.map((id) => String(id ?? '').trim())
@@ -60,6 +61,7 @@ export const actions = {
 			contactPersons,
 			nationalAdProfile,
 			ladoStatus,
+			parent,
 			sectoralAdvisoryBoard,
 			courses: courseIds
 		}
@@ -108,6 +110,10 @@ export const actions = {
 		const sectoralAdvisoryBoardId = Number(sectoralAdvisoryBoard)
 		if (!Number.isInteger(sectoralAdvisoryBoardId) || sectoralAdvisoryBoardId <= 0) {
 			return fail(400, { error: 'Kies een geldig sectoraal adviescollege.', ...submittedFormState })
+		}
+
+		if (parent && (!Number.isInteger(parentId) || parentId <= 0)) {
+			return fail(400, { error: 'Kies een geldige parent-lado.', ...submittedFormState })
 		}
 
 		try {
