@@ -95,7 +95,66 @@ Example:
 </section>
 ```
 
+#### BEM
+```svelte
+<!-- BEM methodology -->
+<style>
+	/* BLOCK: Newsletter block */
+	.newsletter {
+		background-color: orange;
+	}
 
+	/* ELEMENT: heading inside of newsletter */
+	.newsletter__heading {
+		color: blue;
+	}
+
+	/* ELEMENT: input inside of newsletter */
+	.newsletter__input {
+		background-color: white;
+	}
+
+	/* ELEMENT: button inside of newsletter */
+	.newsletter__button {
+		border: var(--_border);
+		background-color: var(--_background);
+		color: var(--_text);
+	}
+
+	/* MODIFIERS for buttons inside of newsletter*/
+	.newsletter__button--decline {
+		--_border: 1px solid red;
+		--_background: lightcyan;
+		--_text: red;
+
+		&:hover {
+			--_background: red;
+			--_text: black;
+		}
+	}
+
+	.newsletter__button--accept {
+		--_border: 1px solid green;
+		--_background: lightcyan;
+		--_text: green;
+
+		&:hover {
+			--_background: green;
+			--_text: black;
+		}
+	}
+</style>
+
+<section class="newsletter">
+	<h2 class="newsletter__heading">Newsletter</h2>
+	<input
+		type="email"
+		class="newsletter__input"
+	/>
+	<button class="newsletter__button newsletter__button--decline">Unsubscribe</button>
+	<button class="newsletter__button newsletter__button--accept">Subscribe</button>
+</section>
+```
 
 
 ---
