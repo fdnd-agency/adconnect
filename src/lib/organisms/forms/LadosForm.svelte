@@ -263,16 +263,19 @@
 
 	<div class="field-group">
 		<div class="field-heading-row">
-			<p class="field-label">Parent</p>
+			<label
+				for="parent"
+				class="field-label">Hoofd-lado</label
+			>
 		</div>
 		{#if availableParentLados.length === 0}
-			<p class="field-help">Geen lado's gevonden om als parent te selecteren.</p>
+			<p class="field-help">Geen lado's gevonden om als hoofd-lado te selecteren.</p>
 			<select
 				id="parent"
 				name="parent"
 				disabled
 			>
-				<option value="">Geen parent-lado's beschikbaar</option>
+				<option value="">Geen hoofd-lado's beschikbaar</option>
 			</select>
 		{:else}
 			<select
@@ -280,18 +283,21 @@
 				name="parent"
 				bind:value={selectedParent}
 			>
-				<option value="">Geen parent</option>
+				<option value="">Geen hoofd-lado beschikbaar</option>
 				{#each availableParentLados as parentLado (parentLado.id)}
-					<option value={String(parentLado.id)}>{parentLado.title ?? `Lado ${parentLado.id}`}</option>
+					<option value={String(parentLado.id)}>{parentLado.title ?? `Hoofd-lado ${parentLado.id}`}</option>
 				{/each}
 			</select>
 		{/if}
-		<p class="field-help">Optioneel: koppel deze lado aan een bestaande parent-lado.</p>
+		<p class="field-help">Optioneel: koppel deze lado aan een bestaande hoofd-lado.</p>
 	</div>
 
 	<div class="field-group">
 		<div class="field-heading-row">
-			<p class="field-label">Sectoraal adviescollege</p>
+			<label
+				for="sectoralAdvisoryBoard"
+				class="field-label">Sectoraal adviescollege</label
+			>
 			<a
 				href={sectoralAdvisoryBoardAddHref}
 				target="_blank"
