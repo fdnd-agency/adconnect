@@ -1,10 +1,15 @@
 <script>
+	import { page } from '$app/state'
+
 	const { href, children, screenReaderText, ...props } = $props()
+
+	let isCurrent = $derived(page.url.pathname === href)
 </script>
 
 <a
 	{href}
 	{...props}
+	aria-current={isCurrent ? 'page' : undefined}
 >
 	{@render children?.()}
 
