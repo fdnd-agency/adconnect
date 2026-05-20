@@ -10,73 +10,30 @@
 
   ---
 
-### BEM Naming Convention
-BEM stands for Block, Element, Modifier, a CSS naming system that keeps your code organized and predictable.
+### SMACSS Naming Convention
+> SMACSS = Scalable and Modular Architecture for CSS
+
+SMACSS uses mostly the same naming convention as BEM, which stands for Block, Element, Modifier.  
+This is a CSS naming system that keeps your code organized and predictable.  
 Structure:
-- Block: Main component (nav)
-- Element: Part of a block (nav-list, nav-item)
-- Modifier: Variation or state (nav-item-active)
+- Block: Main component
+- Element: Part of a block
+- Modifier: Variation or state
 
-#### BEM
+BEM combines everything into multiple classes on a single element.  
+Example:
 ```svelte
-<!-- BEM methodology -->
-<style>
-	/* BLOCK: Main component */
-	.newsletter {
-		background-color: orange;
-	}
-
-	/* ELEMENT: Part of the newsletter block */
-	.newsletter__heading {
-		color: blue;
-	}
-
-	/* ELEMENT: Part of the newsletter block */
-	.newsletter__input {
-		background-color: white;
-	}
-
-	/* ELEMENT: Part of the newsletter block */
-	.newsletter__button {
-		border: var(--_border);
-		background-color: var(--_background);
-		color: var(--_text);
-	}
-
-	/* MODIFIER: Variation of the newsletter__button element */
-	.newsletter__button--decline {
-		--_border: 1px solid red;
-		--_background: lightcyan;
-		--_text: red;
-		&:hover {
-			--_background: red;
-			--_text: black;
-		}
-	}
-
-	/* MODIFIER: Variation of the newsletter__button element */
-	.newsletter__button--accept {
-		--_border: 1px solid green;
-		--_background: lightcyan;
-		--_text: green;
-		&:hover {
-			--_background: green;
-			--_text: black;
-		}
-	}
-</style>
-
-<section class="newsletter">
-	<h2 class="newsletter__heading">Newsletter</h2>
-	<input
-		type="email"
-		class="newsletter__input"
-	/>
 	<button class="newsletter__button newsletter__button--decline">Unsubscribe</button>
 	<button class="newsletter__button newsletter__button--accept">Subscribe</button>
-</section>
 ```
+This uses a class for the element (button) and a class for the modifier (decline and accept variations).
 
+SMACSS follows similar naming but separates the modifier into a different class, which makes the classes on an element easier to read. Additionally, you can reuse modifier classes across different elements. This also allows you to nest modifiers if they are only needed for a specific element.  
+Example:
+```svelte
+	<button class="newsletter__button decline">Unsubscribe</button>
+	<button class="newsletter__button accept">Subscribe</button>
+```
 
 #### SMACSS
 ```svelte
