@@ -48,8 +48,8 @@
 <style>
 	svg {
 		--_color-stroke: var(--button-blue-bg);
-		--_icon-width: 53;
-		--_icon-height: 52;
+		--_icon-width: 90;
+		--_icon-height: 60;
 
 		@media (prefers-color-scheme: dark) {
 			--_color-stroke: #e75234;
