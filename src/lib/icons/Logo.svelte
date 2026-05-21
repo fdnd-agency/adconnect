@@ -1,4 +1,8 @@
-<a href="/" class="logo-container" aria-label="Home – AdConnect logo">
+<a
+	href="/"
+	class="logo-container"
+	aria-label="Home – AdConnect logo"
+>
 	<svg
 		class="desktop"
 		width="var(--_desktop-width)"

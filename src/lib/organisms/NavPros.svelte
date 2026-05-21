@@ -1,12 +1,12 @@
 <script>
 	import { logo, logowhite } from '$lib'
-	import { Logo } from '$lib'
+	import { IconLogo } from '$lib'
 
 	import { page } from '$app/stores'
 </script>
 
 <nav aria-label="Primair">
-	<Logo />
+	<IconLogo />
 
 	<details class="menu">
 		<summary>
