@@ -22,7 +22,7 @@ export { default as IconNetwork } from './Network.svelte'
 // Background
 export { default as IconBackgroundCircle } from './BackgroundCircle.svelte'
 
-// Random
+// State icons
 export { default as IconWarning } from './IconWarning.svelte'
 export { default as IconLoading } from './Loading.svelte'
 export { default as IconLocation } from './Location.svelte'
