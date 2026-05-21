@@ -1,6 +1,6 @@
 <svg
-	width="56"
-	height="57"
+	width="var(--_icon-width)"
+	height="var(--_icon-height)"
 	viewBox="0 0 56 57"
 	fill="none"
 >
@@ -16,28 +16,28 @@
 		cy="24.5"
 		r="4"
 		stroke="var(--_color-stroke)"
-        fill="var(--_color-stroke)"
+		fill="var(--_color-stroke)"
 	/>
 	<circle
 		cx="28"
 		cy="14.5"
 		r="3"
 		stroke="var(--_color-stroke)"
-        fill="var(--_color-stroke)"
+		fill="var(--_color-stroke)"
 	/>
 	<circle
 		cx="19"
 		cy="33.5"
 		r="3"
 		stroke="var(--_color-stroke)"
-        fill="var(--_color-stroke)"
+		fill="var(--_color-stroke)"
 	/>
 	<circle
 		cx="37"
 		cy="33.5"
 		r="3"
 		stroke="var(--_color-stroke)"
-        fill="var(--_color-stroke)"
+		fill="var(--_color-stroke)"
 	/>
 	<path
 		d="M28 20.5V17.5"
