@@ -1,6 +1,6 @@
 <script>
 	import { logo, logowhite } from '$lib'
-	import { IconLogo } from '$lib'
+	import { IconLogo } from '$lib/icons'
 
 	import { page } from '$app/stores'
 </script>

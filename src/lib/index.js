@@ -98,12 +98,3 @@ export { default as Collaborate } from './assets/collaborate.svg'
 export { default as Events } from './assets/events.svg'
 export { default as Question } from './assets/faq.svg'
 export { default as LadoNetwork } from './assets/lado-network.svg'
-
-
-// SVG icons
-export { default as IconLogo } from './icons/Logo.svelte'
-export { default as IconCalendar } from './icons/Calendar.svelte'
-export { default as IconChevronDown } from './icons/ChevronDown.svelte'
-export { default as IconDots } from './icons/Dots.svelte'
-export { default as IconChecked } from './icons/Checked.svelte'
-export { default as IconLabel } from './icons/Label.svelte'
