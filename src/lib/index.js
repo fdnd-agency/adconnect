@@ -103,3 +103,4 @@ export { default as LadoNetwork } from './assets/lado-network.svg'
 // SVG icons
 export { default as IconLogo } from './icons/Logo.svelte'
 export { default as IconCalendar } from './icons/Calendar.svelte'
+export { default as IconChevronDown } from './icons/ChevronDown.svelte'
