@@ -1,21 +1,17 @@
-<script>
-	export let text = ''
+<script lang="ts">
+	let { dividerText }: { dividerText: string } = $props()
 </script>
 
-<div class="divider-container">
-	<hr
-		class="line"
-		aria-hidden="true"
-	/>
-	<p>{text}</p>
-	<hr
-		class="line"
-		aria-hidden="true"
-	/>
-</div>
+<section>
+	<hr />
+	{#if dividerText}
+		<p>{dividerText}</p>
+		<span></span>
+	{/if}
+</section>
 
 <style>
-	.divider-container {
+	section {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -25,10 +21,15 @@
 		margin: 2em auto;
 	}
 
-	hr {
+	hr,
+	span {
 		flex: 1;
 		border: none;
 		height: 1px;
 		border-top: 1px solid var(--neutral-300);
+	}
+
+	p {
+		white-space: nowrap;
 	}
 </style>

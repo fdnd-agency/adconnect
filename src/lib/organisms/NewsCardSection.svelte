@@ -1,6 +1,6 @@
 <script>
 	// Import component
-	import { DividerText, NewsCard } from '$lib'
+	import { DividerText, NewsCard, Rseparator } from '$lib'
 
 	// Retrieve news data
 	export let news
@@ -8,7 +8,7 @@
 
 <!-- Cards section -->
 <div class="container">
-	<DividerText text="Het laatste nieuws" />
+	<Rseparator dividerText="Het laatste nieuws" />
 	<ul>
 		{#each news as article (article.uuid)}
 			<li><NewsCard {article} /></li>
