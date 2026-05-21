@@ -1,10 +1,10 @@
 <a
 	href="/"
-	class="logo-container"
+	class="logo"
 	aria-label="Home – AdConnect logo"
 >
 	<svg
-		class="desktop"
+		class="logo__svg logo__svg--desktop"
 		width="var(--_desktop-width)"
 		height="var(--_desktop-height)"
 		viewBox="0 0 201 57"
@@ -74,7 +74,7 @@
 	</svg>
 
 	<svg
-		class="mobile"
+		class="logo__svg logo__svg--mobile"
 		width="var(--_mobile-width)"
 		height="var(--_mobile-height)"
 		viewBox="0 0 67 46"
@@ -92,10 +92,13 @@
 </a>
 
 <style>
-	svg {
+	.logo {
+		container: logo-container / inline-size;
+	}
+
+	.logo__svg {
 		--_desktop-width: 200;
 		--_desktop-height: 57;
-		--_desktop-fill: red;
 		--_logo-balls: #00408d;
 
 		--_mobile-width: 67;
@@ -106,20 +109,16 @@
 		}
 	}
 
-	.logo-container {
-		container: logo-container / inline-size;
-	}
-
-	.desktop {
+	.logo__svg--desktop {
 		display: none;
 	}
 
 	@container logo-container (min-width: 220px) {
-		.desktop {
+		.logo__svg--desktop {
 			display: block;
 		}
 
-		.mobile {
+		.logo__svg--mobile {
 			display: none;
 		}
 	}
