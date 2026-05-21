@@ -5,7 +5,7 @@
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from '$lib'
 
 	// Import images
-	import { zaal, IconChecked } from '$lib'
+	import { zaal, IconLabel } from '$lib'
 
 	const { data } = $props()
 	const { news } = data
@@ -40,7 +40,7 @@
 	/>
 </Hero>
 
-<IconChecked />
+<IconLabel />
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
