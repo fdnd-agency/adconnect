@@ -2,7 +2,7 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator, RFaqList } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator, RFaqSection } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -82,7 +82,6 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	<Rseparator />
 </section>
 
-
 <FeatureSplit
 	title="Waarom kiezen voor een Associate degree?"
 	intro="Een Associate degree combineert praktijkgericht onderwijs met doorstroommogelijkheden, zodat je snel ervaring opdoet én een diploma haalt."
@@ -93,7 +92,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	imageAlt="Studenten bij AdTalent award"
 />
 
-<section
+<!-- <section
 	class="faq-section"
 	id="faq"
 >
@@ -121,9 +120,9 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 			answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
 		/>
 	</MultipleFaq>
-</section>
+</section> -->
 
-<RFaqList />
+<RFaqSection />
 
 <style>
 	.hero-image {
@@ -161,7 +160,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 		}
 	}
 
-	.faq-section {
+	/* .faq-section {
 		display: flex;
 		flex-direction: column;
 		gap: 2em;
@@ -180,5 +179,5 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 
 	#faq {
 		scroll-margin-top: 150px;
-	}
+	} */
 </style>
