@@ -25,8 +25,8 @@
 
 <style>
 	svg {
-		--_color-ball-one: #00408d;
-		--_color-ball-two: #e75234;
+		--_color-ball-one: hsl(213, 100%, 28%);
+		--_color-ball-two: hsl(10, 79%, 55%);
 	}
 
 	.heading-two {

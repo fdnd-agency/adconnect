@@ -99,13 +99,13 @@
 	.logo__svg {
 		--_desktop-width: 200;
 		--_desktop-height: 57;
-		--_logo-balls: #00408d;
+		--_logo-balls: hsl(213, 100%, 28%);
 
 		--_mobile-width: 67;
 		--_mobile-height: 46;
 
 		@media (prefers-color-scheme: dark) {
-			--_logo-balls: white;
+			--_logo-balls: hsl(0, 0%, 100%);
 		}
 	}
 
