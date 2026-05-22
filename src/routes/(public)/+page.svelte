@@ -2,10 +2,11 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
+	import { IconLoading } from '$lib/icons'
 
 	const { data } = $props()
 	const { news } = data
@@ -39,6 +40,8 @@
 		height="210"
 	/>
 </Hero>
+
+<IconLoading />
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
@@ -77,10 +80,11 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 />
 
 <section class="logo-section">
-	<DividerText text="Partijen waarmee wij samenwerken" />
+	<Rseparator dividerText="Partijen waarmee wij samenwerken" />
 	<LogoSection {cooperation} />
-	<Divider />
+	<Rseparator />
 </section>
+
 
 <FeatureSplit
 	title="Waarom kiezen voor een Associate degree?"
