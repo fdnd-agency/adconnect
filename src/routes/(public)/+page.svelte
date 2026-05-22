@@ -2,11 +2,10 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator, RFaqList } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
-	import { IconLoading } from '$lib/icons'
 
 	const { data } = $props()
 	const { news } = data
@@ -40,8 +39,6 @@
 		height="210"
 	/>
 </Hero>
-
-<IconLoading />
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
@@ -125,6 +122,8 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 		/>
 	</MultipleFaq>
 </section>
+
+<RFaqList />
 
 <style>
 	.hero-image {
