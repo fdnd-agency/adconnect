@@ -9,6 +9,8 @@
 	export let ctaText = ''
 	export let ctaLink = '#'
 	export let imageAlt = ''
+
+	import { RLink } from '$lib'
 </script>
 
 <section class="feature">
@@ -44,9 +46,9 @@
 		{/if}
 
 		{#if ctaText}
-			<a
+			<RLink
 				href={ctaLink}
-				class="button-outline-white">{ctaText}</a
+				class="button-outline-white">{ctaText}</RLink
 			>
 		{/if}
 	</div>
