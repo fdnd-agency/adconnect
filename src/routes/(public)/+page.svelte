@@ -6,6 +6,7 @@
 
 	// Import images
 	import { zaal } from '$lib'
+	import { IconLoading } from '$lib/icons'
 
 	const { data } = $props()
 	const { news } = data
@@ -39,6 +40,8 @@
 		height="210"
 	/>
 </Hero>
+
+<IconLoading />
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
