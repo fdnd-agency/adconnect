@@ -92,7 +92,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	imageAlt="Studenten bij AdTalent award"
 />
 
-<RFaqSection />
+<RFaqSection title="Veelgestelde vragen" />
 
 <style>
 	.hero-image {

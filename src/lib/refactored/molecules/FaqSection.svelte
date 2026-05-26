@@ -1,7 +1,7 @@
 <script>
-	const { question, answer } = $props()
-
 	import { IconChevronDown, IconBackgroundCircle, IconDots } from '$lib/icons'
+
+	const { title } = $props()
 
 	// TODO: FAQ that needs to be added to directus
 	const faqData = {
@@ -31,7 +31,7 @@
 
 <section class="faq">
 	<div class="faq__title">
-		<h2>Veelgestelde vragen</h2>
+		<h2>{title}</h2>
 		<IconDots variant="heading-two" />
 	</div>
 
@@ -40,10 +40,10 @@
 			class="faq-item adaptive"
 			open={i === 0 ? true : undefined}
 		>
-			<summary class="faq-item__trigger"
-				>{faq.question}
-				<div class="faq-item__icon"><IconChevronDown /></div></summary
-			>
+			<summary class="faq-item__trigger">
+				{faq.question}
+				<div class="faq-item__icon"><IconChevronDown /></div>
+			</summary>
 			<p class="faq-item__content">{faq.answer}</p>
 		</details>
 	{/each}
@@ -60,7 +60,7 @@
 		gap: 1em;
 		box-sizing: border-box;
 		position: relative;
-		padding: clamp(1em, 5vw, 5em);
+		padding: 2em clamp(1em, 5vw, 5em);
 	}
 
 	.faq__title {
