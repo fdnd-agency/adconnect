@@ -18,9 +18,6 @@ export const actions = {
 		const email = formData.get('email')
 		const message = formData.get('message')
 
-		// check if form data is received
-		console.log('Form data received:', { name, email, message })
-
 		// Check if there is an correct email
 		if (!regex.test(email)) {
 			return fail(400, { error: 'Ongeldig e-mailadres.' })

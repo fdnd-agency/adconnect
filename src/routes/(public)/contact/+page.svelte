@@ -4,7 +4,7 @@
 	import { enhance } from '$app/forms'
 
 	// Import components Atomic Design
-	import { Breadcrumb, ErrorState, SuccesState, LoadingState, RContactForm } from '$lib'
+	import { Breadcrumb, RContactForm } from '$lib'
 
 	// Import images Atomic Design
 	import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from '$lib'
@@ -116,10 +116,6 @@
 			gap: 2em;
 			max-width: 1400px;
 		}
-	}
-
-	.contact-form {
-		width: 100%;
 	}
 
 	.contact-info {

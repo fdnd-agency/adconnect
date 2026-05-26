@@ -5,7 +5,6 @@
 	// Variable to check the status of the form
 	let status = $state('')
 
-	// Function when form is submitting
 	function formSubmit() {
 		status = 'submitting'
 
