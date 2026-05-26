@@ -129,25 +129,4 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 			padding: 0 0 5em 0;
 		}
 	}
-
-	/* .faq-section {
-		display: flex;
-		flex-direction: column;
-		gap: 2em;
-		padding: 3em 5%;
-		box-sizing: border-box;
-		position: relative;
-
-		@media (min-width: 768px) {
-			padding: 2em 5em 5em 5em;
-		}
-	}
-
-	.faq-section h2 {
-		text-align: center;
-	}
-
-	#faq {
-		scroll-margin-top: 150px;
-	} */
 </style>
