@@ -2,7 +2,7 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator, RFaqSection } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator, RFaqSection, RArticleHero } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -10,6 +10,8 @@
 	const { data } = $props()
 	const { news } = data
 	const { cooperation } = data
+
+	const description = 'Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.'
 </script>
 
 <svelte:head>
