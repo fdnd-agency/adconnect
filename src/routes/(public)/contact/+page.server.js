@@ -7,7 +7,7 @@ const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 // Form submitting
 export const actions = {
 	// The default function that is going to run
-	default: async ({ request }) => {
+	contactSubmit: async ({ request }) => {
 		// 'request' contains all the form field data
 
 		// Retrieves the form field data from the 'request'
@@ -17,6 +17,9 @@ export const actions = {
 		const name = formData.get('name')
 		const email = formData.get('email')
 		const message = formData.get('message')
+
+		// check if form data is received
+		console.log('Form data received:', { name, email, message })
 
 		// Check if there is an correct email
 		if (!regex.test(email)) {

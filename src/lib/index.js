@@ -108,3 +108,4 @@ export { default as RLink } from './refactored/atoms/Link.svelte'
 export { default as Rseparator } from './refactored/atoms/Separator.svelte'
 
 export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte'
+export { default as RContactForm } from './refactored/molecules/ContactForm.svelte'
