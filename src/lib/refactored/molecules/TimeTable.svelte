@@ -1,8 +1,4 @@
 <script>
-	import {} from '$lib/icons'
-
-	const {} = $props()
-
 	// TODO: schedule data that needs to be added to directus
 	const scheduleData = {
 		schedule: [

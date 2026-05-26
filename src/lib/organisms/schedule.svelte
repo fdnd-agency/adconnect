@@ -32,14 +32,6 @@
 
 			<RTimeTable />
 
-			<!-- <p>
-				Programma in het kort (concept):<br />
-				<time datetime="09:30">09:30</time> <span class="visually-hidden">tot</span> – <time datetime="10:00">10:00</time> | Inloop met koffie/thee<br />
-				<time datetime="10:00">10:00</time> <span class="visually-hidden">tot</span> – <time datetime="13:00">13:00</time> | Opening, keynote, gesprekken en Ad Talent Award<br />
-				<time datetime="13:00">13:00</time> <span class="visually-hidden">tot</span> – <time datetime="13:45">10:00</time> | Lunch<br />
-				<time datetime="13:45">13:45</time> <span class="visually-hidden">tot</span> – <time datetime="15:30">15:30</time> | Workshops en excursies<br />
-				<time datetime="15:30">15:30</time> <span class="visually-hidden">tot</span> – <time datetime="17:00">17:00</time> | Borrel & ontmoeting<br />
-			</p> -->
 			<a
 				class="button-outline-blue"
 				href="#"
