@@ -35,72 +35,48 @@
 
 	{#each faqData.faqs as faq, i}
 		<details
-			class="accordion adaptive"
+			class="faq-item adaptive"
 			open={i === 0 ? true : undefined}
 		>
-			<summary class="accordion__trigger"
+			<summary class="faq-item__trigger"
 				>{faq.question}
-				<div class="accordion__icon"><IconChevronDown /></div></summary
+				<div class="faq-item__icon"><IconChevronDown /></div></summary
 			>
-			<p class="accordion__content">{faq.answer}</p>
+			<p class="faq-item__content">{faq.answer}</p>
 		</details>
 	{/each}
 
-	<div class="aaaaaaa">
+	<div class="background-circle">
 		<IconBackgroundCircle />
 	</div>
 </section>
 
 <style>
-	.aaaaaaa {
-		position: absolute;
-		width: 400px;
-		height: 400px;
-		left: -10%;
-		bottom: -10%;
-		z-index: 0;
-
-		@media (min-width: 768px) {
-			width: 25em;
-			left: 10%;
-			bottom: 2%;
-			position: absolute;
-			z-index: 0;
-		}
-	}
-
 	.faq {
 		display: flex;
 		flex-direction: column;
 		gap: 1em;
 		box-sizing: border-box;
 		position: relative;
-		padding: 5em;
+		padding: clamp(1em, 5vw, 5em);
 
 		h2 {
 			text-align: center;
 		}
 	}
 
-	.accordion {
+	.faq-item {
 		border: 1px solid var(--neutral-300);
 		border-radius: 0.5em;
 		padding: 1em;
 		position: relative;
 		z-index: 1;
 		background-color: var(--text-white);
-
-		p {
-			width: 100%;
-		}
-
-		@media (min-width: 768px) {
-			width: 55vw;
-			align-self: center;
-		}
+		width: clamp(16.5em, 80vw, 50em);
+		align-self: center;
 	}
 
-	.accordion__trigger {
+	.faq-item__trigger {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -127,7 +103,7 @@
 		display: none;
 	}
 
-	.accordion__icon {
+	.faq-item__icon {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -139,8 +115,25 @@
 		transition: transform 0.3s;
 	}
 
-	details[open] .accordion__icon {
+	details[open] .faq-item__icon {
 		transform: rotate(180deg);
+	}
+
+	.background-circle {
+		position: absolute;
+		width: 400px;
+		height: 400px;
+		left: -10%;
+		bottom: -10%;
+		z-index: 0;
+
+		@media (min-width: 768px) {
+			width: 25em;
+			left: 10%;
+			bottom: 2%;
+			position: absolute;
+			z-index: 0;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -148,26 +141,26 @@
 			transition: none;
 		}
 
-		.accordion__icon {
+		.faq-item__icon {
 			transition: none;
 		}
 	}
 
 	@media (prefers-contrast: more) {
-		.accordion {
+		.faq-item {
 			outline: 2px solid var(--primary-blue);
 		}
 	}
 
 	@media (prefers-color-scheme: dark) {
-		.accordion.adaptive {
+		.faq-item.adaptive {
 			background-color: var(--primary-blue);
 			color: var(--text-white);
 		}
 	}
 
 	@media (inverted-colors: inverted) {
-		.accordion {
+		.faq-item {
 			background-color: var(--primary-orange);
 			color: var(--text-white);
 		}
