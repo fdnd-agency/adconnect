@@ -31,10 +31,10 @@
 	}
 </script>
 
-<ul>
+<ul class="schedule__list">
 	Programma in het kort (concept):
 	{#each scheduleData.schedule as item}
-		<li>
+		<li class="schedule__item">
 			<time datetime={item.startTime}>{item.startTime}</time>
 			<span class="visually-hidden">tot</span>
 			–
@@ -45,7 +45,7 @@
 </ul>
 
 <style>
-	ul {
+	.schedule__list {
 		display: flex;
 		flex-direction: column;
 		text-align: start;
@@ -57,7 +57,7 @@
 		font-size: var(--p-s-size);
 		line-height: 1.8;
 
-        li {
+        .schedule__item {
             width: 100%;
             border-bottom: 1px solid var(--orange-500);
         }
