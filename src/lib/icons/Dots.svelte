@@ -30,12 +30,12 @@
 	}
 
 	.heading-two {
-		--_icon-width: 80;
-		--_icon-height: 60;
+		--_icon-width: 80px;
+		--_icon-height: 60px;
 	}
 
 	.heading-three {
-		--_icon-width: 51;
-		--_icon-height: 32;
+		--_icon-width: 51px;
+		--_icon-height: 32px;
 	}
 </style>

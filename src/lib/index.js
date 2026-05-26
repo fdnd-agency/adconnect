@@ -106,3 +106,5 @@ export { default as LadoNetwork } from './assets/lado-network.svg'
 // atoms
 export { default as RLink } from './refactored/atoms/Link.svelte'
 export { default as Rseparator } from './refactored/atoms/Separator.svelte'
+
+export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte'

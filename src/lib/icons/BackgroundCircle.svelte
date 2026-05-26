@@ -16,5 +16,6 @@
 		--_color-fill: hsl(218, 42%, 71%);
 		--_icon-width: 469;
 		--_icon-height: 469;
+		width: 100%;
 	}
 </style>
