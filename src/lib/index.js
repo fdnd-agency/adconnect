@@ -106,3 +106,6 @@ export { default as LadoNetwork } from './assets/lado-network.svg'
 // atoms
 export { default as RLink } from './refactored/atoms/Link.svelte'
 export { default as Rseparator } from './refactored/atoms/Separator.svelte'
+
+// molecules
+export { default as RTimeTable } from './refactored/molecules/TimeTable.svelte'
