@@ -1,8 +1,7 @@
 <script>
 	const { question, answer } = $props()
 
-	import { IconChevronDown, IconBackgroundCircle } from '$lib/icons'
-	import Faq from '$lib/icons/Faq.svelte'
+	import { IconChevronDown, IconBackgroundCircle, IconDots } from '$lib/icons'
 
 	// TODO: FAQ that needs to be added to directus
 	const faqData = {
@@ -31,7 +30,10 @@
 </script>
 
 <section class="faq">
-	<h2>Veelgestelde vragen</h2>
+	<div class="faq__title">
+		<h2>Veelgestelde vragen</h2>
+		<IconDots variant="heading-two" />
+	</div>
 
 	{#each faqData.faqs as faq, i}
 		<details
@@ -46,7 +48,7 @@
 		</details>
 	{/each}
 
-	<div class="background-circle">
+	<div class="faq__background-circle">
 		<IconBackgroundCircle />
 	</div>
 </section>
@@ -59,10 +61,14 @@
 		box-sizing: border-box;
 		position: relative;
 		padding: clamp(1em, 5vw, 5em);
+	}
 
-		h2 {
-			text-align: center;
-		}
+	.faq__title {
+		display: flex;
+		flex-direction: column-reverse;
+		gap: 1em;
+		align-items: center;
+		margin-bottom: 2em;
 	}
 
 	.faq-item {
@@ -119,7 +125,7 @@
 		transform: rotate(180deg);
 	}
 
-	.background-circle {
+	.faq__background-circle {
 		position: absolute;
 		width: 400px;
 		height: 400px;
