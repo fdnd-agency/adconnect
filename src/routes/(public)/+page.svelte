@@ -2,7 +2,7 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link, RPicture } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator, RFaqSection, RPicture } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -20,15 +20,15 @@
 	title="Het landelijke platform voor Associate degrees"
 	description="Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken."
 >
-	<Link
+	<RLink
 		slot="secondary"
 		href="/ad-dag"
-		class="button-outline-white">Kom naar de Ad-dag</Link
+		class="button-outline-white">Kom naar de Ad-dag</RLink
 	>
-	<Link
+	<RLink
 		slot="primary"
 		href="/over-ad"
-		class="button-outline-blue">Meer over Ad's</Link
+		class="button-outline-blue">Meer over Ad's</RLink
 	>
 	<RPicture
 		slot="media"
@@ -79,9 +79,9 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 />
 
 <section class="logo-section">
-	<DividerText text="Partijen waarmee wij samenwerken" />
+	<Rseparator dividerText="Partijen waarmee wij samenwerken" />
 	<LogoSection {cooperation} />
-	<Divider />
+	<Rseparator />
 </section>
 
 <FeatureSplit
@@ -94,35 +94,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	imageAlt="Studenten bij de Ad Talent Award die naast elkaar staan, allemaal met een certificaat in hun handen"
 />
 
-<section
-	class="faq-section"
-	id="faq"
->
-	<h2>Veelgestelde vragen</h2>
-
-	<MultipleFaq>
-		<SingleFaq
-			open={true}
-			question="Wat is een Associate degree?"
-			answer="Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding."
-		/>
-
-		<SingleFaq
-			question="Hoe lang duurt een Associate degree?"
-			answer="Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring."
-		/>
-
-		<SingleFaq
-			question="Wat is het verschil tussen een Associate degree en een Bachelor?"
-			answer="Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld."
-		/>
-
-		<SingleFaq
-			question="Welke voordelen heeft het behalen van een Associate degree?"
-			answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
-		/>
-	</MultipleFaq>
-</section>
+<RFaqSection title="Veelgestelde vragen" />
 
 <style>
 	.logo-section {
@@ -136,26 +108,5 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 			gap: 3em;
 			padding: 0 0 5em 0;
 		}
-	}
-
-	.faq-section {
-		display: flex;
-		flex-direction: column;
-		gap: 2em;
-		padding: 3em 5%;
-		box-sizing: border-box;
-		position: relative;
-
-		@media (min-width: 768px) {
-			padding: 2em 5em 5em 5em;
-		}
-	}
-
-	.faq-section h2 {
-		text-align: center;
-	}
-
-	#faq {
-		scroll-margin-top: 150px;
 	}
 </style>
