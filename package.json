@@ -21,7 +21,7 @@
 		"@eslint/js": "^9.39.2",
 		"@playwright/test": "^1.58.2",
 		"@sveltejs/adapter-auto": "^7.0.0",
-		"@sveltejs/kit": "^2.22.0",
+		"@sveltejs/kit": "^2.60.1",
 		"@sveltejs/vite-plugin-svelte": "^6.2.4",
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/svelte": "^5.3.1",
@@ -42,6 +42,7 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-auto": "^6.1.0",
+		"@sveltejs/enhanced-img": "^0.10.4",
 		"resend": "^6.9.1"
 	}
 }

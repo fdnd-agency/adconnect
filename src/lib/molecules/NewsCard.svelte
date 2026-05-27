@@ -6,18 +6,19 @@
 	import fallback from '$lib/assets/news-fallback.jpg'
 	import calendar from '$lib/assets/icon-calendar.svg'
 
-	import { RLink } from '$lib'
+	import { RLink, RPicture } from '$lib'
+
 	import { DIRECTUS_URL } from '$lib/constants.js'
 </script>
 
 <article>
-	<img
-		src={`${DIRECTUS_URL}/assets/${article.hero}`}
-		alt={article.title}
-		width="300"
-		height="210"
-		aria-hidden="true"
-	/>
+	<div>
+		<RPicture
+			src={`${DIRECTUS_URL}/assets/${article.hero}`}
+			width="300"
+			height="210"
+		/>
+	</div>
 
 	<div>
 		<h2 class="truncate single">{article.title}</h2>
@@ -45,13 +46,12 @@
 		}
 	}
 
-	article > img:first-of-type {
-		width: 100%;
+	article > div:first-of-type {
 		border-radius: 0.5em;
-		object-fit: cover;
+		overflow: hidden;
 	}
 
-	div {
+	div:nth-of-type(2) {
 		padding: 1em;
 		gap: 1em;
 		display: flex;
