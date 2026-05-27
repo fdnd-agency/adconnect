@@ -7,7 +7,7 @@ const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 // Form submitting
 export const actions = {
 	// The default function that is going to run
-	default: async ({ request }) => {
+	contactSubmit: async ({ request }) => {
 		// 'request' contains all the form field data
 
 		// Retrieves the form field data from the 'request'
