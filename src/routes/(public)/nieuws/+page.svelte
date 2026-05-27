@@ -77,29 +77,7 @@
 		<ul>
 			{#each paginatedNews as item (item.uuid)}
 				<li>
-					<article>
-						<h2>{item.title}</h2>
-
-						<section class="date">
-							<img
-								src={calendar}
-								alt=""
-							/>
-							<p>{formatDateNL(item.date)}</p>
-						</section>
-
-						<p>{item.description}</p>
-
-						<a
-							class="button-outline-blue"
-							href={`/nieuws/${item.uuid}`}
-						>
-							Meer informatie
-							<span class="sr-only">
-								over {item.title}
-							</span>
-						</a>
-					</article>
+					<RCardNews {item} />
 				</li>
 			{/each}
 		</ul>
