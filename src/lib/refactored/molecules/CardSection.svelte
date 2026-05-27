@@ -4,9 +4,9 @@
 	const { title, description, link, children } = $props()
 </script>
 
-<article>
-	<h2>{title}</h2>
-	<p>{description}</p>
+<article class="section-header">
+	<h2 class="section-header__title">{title}</h2>
+	<p class="section-header__description">{description}</p>
 
 	<IconDots variant="heading-two" />
 
@@ -19,18 +19,18 @@
 </article>
 
 <style>
-	article {
+	.section-header {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1em;
 		width: 100%;
 		max-width: 75ch;
 
-		h2 {
+		.section-header__title {
 			grid-row: 2;
 		}
 
-		p {
+		.section-header__description {
 			grid-row: 3;
 		}
 	}
