@@ -47,6 +47,7 @@ export { default as AdminContentList } from './organisms/AdminContentList.svelte
 export { default as AdminHeader } from './organisms/AdminHeader.svelte'
 export { default as AdminToolbar } from './organisms/AdminToolbar.svelte'
 export { default as NewsDetail } from './organisms/NewsDetail.svelte'
+export { default as NominationDetail } from './organisms/NominationDetail.svelte'
 export { default as PublicationDetail } from './organisms/PublicationDetail.svelte'
 export { default as ThemeDetail } from './organisms/ThemeDetail.svelte'
 export { default as Form } from './organisms/forms/Form.svelte'
