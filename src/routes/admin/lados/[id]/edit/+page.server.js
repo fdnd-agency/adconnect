@@ -18,8 +18,10 @@ export async function load({ params, cookies }) {
 	if (!ladoId) {
 		return {
 			lado: null,
+			lados: [],
 			courses: [],
 			selectedCourseIds: [],
+			parentId: '',
 			sectoralAdvisoryBoardId: '',
 			sectoralAdvisoryBoards: [],
 			loadError: GENERIC_LOAD_ERROR
@@ -28,36 +30,49 @@ export async function load({ params, cookies }) {
 
 	const token = cookies.get('access_token')
 
-	const [{ data: ladoContent, errors: ladoErrors = [] }, { data: coursesContent, errors: coursesErrors = [] }, { data: boardsContent, errors: boardsErrors = [] }] = await Promise.all([
+	const [
+		{ data: ladoContent, errors: ladoErrors = [] },
+		{ data: ladosContent, errors: ladosErrors = [] },
+		{ data: coursesContent, errors: coursesErrors = [] },
+		{ data: boardsContent, errors: boardsErrors = [] }
+	] = await Promise.all([
 		ContentService.fetchContent('lados', ladoId, null, null, false, token),
+		ContentService.fetchContent('lados', null, null, null, false, token),
 		ContentService.fetchContent('courses', null, null, null, false, token),
 		ContentService.fetchContent('sectoralAdvisoryBoards', null, null, null, false, token)
 	])
 
 	const lado = Array.isArray(ladoContent.lados) ? (ladoContent.lados[0] ?? null) : null
+	const lados = Array.isArray(ladosContent.lados) ? [...ladosContent.lados] : ladosContent.lados ? [...ladosContent.lados.values()] : []
+	lados.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
 	const courses = Array.isArray(coursesContent.courses) ? [...coursesContent.courses] : []
 	courses.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
 
 	const sectoralAdvisoryBoards = Array.isArray(boardsContent.sectoralAdvisoryBoards) ? [...boardsContent.sectoralAdvisoryBoards] : []
 	sectoralAdvisoryBoards.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
 
-	if (ladoErrors.length > 0 || coursesErrors.length > 0 || boardsErrors.length > 0 || !lado) {
+	if (ladoErrors.length > 0 || ladosErrors.length > 0 || coursesErrors.length > 0 || boardsErrors.length > 0 || !lado) {
 		return {
 			lado: null,
+			lados: [],
 			courses: [],
 			selectedCourseIds: [],
+			parentId: '',
 			sectoralAdvisoryBoardId: '',
 			sectoralAdvisoryBoards: [],
 			loadError: GENERIC_LOAD_ERROR
 		}
 	}
 
+	const parentId = String(lado?.parent?.id ?? lado?.parent ?? '')
 	const sectoralAdvisoryBoardId = String(lado?.sectoral_advisory_board?.id ?? lado?.sectoral_advisory_board ?? '')
 
 	return {
 		lado,
+		lados,
 		courses,
 		selectedCourseIds: getLinkedCourseIds(courses, ladoId),
+		parentId,
 		sectoralAdvisoryBoardId,
 		sectoralAdvisoryBoards,
 		loadError: null
@@ -73,6 +88,7 @@ export const actions = {
 		const title = String(data.get('title') ?? '').trim()
 		const nationalAdProfile = String(data.get('nationalAdProfile') ?? '').trim()
 		const ladoStatus = String(data.get('ladoStatus') ?? '').trim()
+		const parent = String(data.get('parent') ?? '').trim()
 		const courseIds = data
 			.getAll('courses')
 			.map((id) => String(id ?? '').trim())
@@ -86,6 +102,7 @@ export const actions = {
 			contactPersons,
 			nationalAdProfile,
 			ladoStatus,
+			parent,
 			sectoralAdvisoryBoard,
 			courses: courseIds
 		}
@@ -141,12 +158,22 @@ export const actions = {
 			return fail(400, { error: 'Kies een geldig sectoraal adviescollege.', ...submittedFormState })
 		}
 
+		const parentId = parent ? Number(parent) : null
+		if (parent && (!Number.isInteger(parentId) || parentId <= 0)) {
+			return fail(400, { error: 'Kies een geldige parent-lado.', ...submittedFormState })
+		}
+
+		if (parentId !== null && String(parentId) === ladoId) {
+			return fail(400, { error: 'Een lado kan niet zijn eigen parent zijn.', ...submittedFormState })
+		}
+
 		try {
 			const payload = {
 				title,
 				contact_persons: contactPersons,
 				national_ad_profile: nationalAdProfile,
 				lado_status: ladoStatus,
+				parent: parentId,
 				sectoral_advisory_board: sectoralAdvisoryBoardId,
 				courseIds
 			}

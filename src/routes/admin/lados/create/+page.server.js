@@ -18,6 +18,11 @@ export async function load({ cookies }) {
 		cookies.get('access_token')
 	)
 
+	const { data: ladosContent } = await ContentService.fetchContent('lados', null, null, null, true, cookies.get('access_token'))
+
+	const lados = ladosContent.lados ? [...ladosContent.lados.values()] : []
+	lados.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
+
 	const courses = coursesContent.courses ? [...coursesContent.courses.values()] : []
 	courses.sort((a, b) => (a?.title ?? '').localeCompare(b?.title ?? '', 'nl'))
 
@@ -27,6 +32,7 @@ export async function load({ cookies }) {
 	return {
 		courses,
 		sectoralAdvisoryBoards,
+		lados,
 		loadError: coursesErrors.length ? 'Opleidingen konden niet worden geladen.' : sectoralAdvisoryBoardErrors.length ? 'Sectoraal adviescolleges konden niet worden geladen.' : null
 	}
 }
@@ -40,6 +46,8 @@ export const actions = {
 		const title = String(data.get('title') ?? '').trim()
 		const nationalAdProfile = String(data.get('nationalAdProfile') ?? '').trim()
 		const ladoStatus = String(data.get('ladoStatus') ?? '').trim()
+		const parent = String(data.get('parent') ?? '').trim()
+		const parentId = parent ? Number(parent) : null
 		const courseIds = data
 			.getAll('courses')
 			.map((id) => String(id ?? '').trim())
@@ -53,6 +61,7 @@ export const actions = {
 			contactPersons,
 			nationalAdProfile,
 			ladoStatus,
+			parent,
 			sectoralAdvisoryBoard,
 			courses: courseIds
 		}
@@ -103,6 +112,10 @@ export const actions = {
 			return fail(400, { error: 'Kies een geldig sectoraal adviescollege.', ...submittedFormState })
 		}
 
+		if (parent && (!Number.isInteger(parentId) || parentId <= 0)) {
+			return fail(400, { error: 'Kies een geldige parent-lado.', ...submittedFormState })
+		}
+
 		try {
 			const payload = {
 				title,
@@ -110,6 +123,7 @@ export const actions = {
 				national_ad_profile: nationalAdProfile,
 				lado_status: ladoStatus,
 				sectoral_advisory_board: sectoralAdvisoryBoardId,
+				parent: parentId,
 				status: 'draft',
 				courseIds,
 				shouldPublish

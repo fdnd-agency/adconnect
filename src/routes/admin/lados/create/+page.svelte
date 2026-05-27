@@ -26,6 +26,7 @@
 
 <LadosForm
 	{form}
+	lados={data?.lados ?? []}
 	courses={data?.courses ?? []}
 	sectoralAdvisoryBoards={data?.sectoralAdvisoryBoards ?? []}
 	{directusBase}

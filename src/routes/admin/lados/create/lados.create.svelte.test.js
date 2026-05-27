@@ -29,6 +29,7 @@ function createValidFormFields(overrides = {}) {
 		contactPersons: JSON.stringify(['Persoon 1']),
 		nationalAdProfile: 'Nationaal profiel',
 		ladoStatus: 'Actief',
+		parent: '',
 		courses: '123',
 		sectoralAdvisoryBoard: '456',
 		submitAction: 'save',
@@ -63,7 +64,7 @@ describe('admin lados form load', () => {
 		vi.clearAllMocks()
 	})
 
-	it('returns sorted course and sectoral advisory board options', async () => {
+	it('returns sorted course, parent lado and sectoral advisory board options', async () => {
 		ContentService.fetchContent
 			.mockResolvedValueOnce({
 				data: {
@@ -83,6 +84,15 @@ describe('admin lados form load', () => {
 				},
 				errors: []
 			})
+			.mockResolvedValueOnce({
+				data: {
+					lados: new Map([
+						['lado-b', { id: 'lado-b', title: 'Zorg en Welzijn' }],
+						['lado-a', { id: 'lado-a', title: 'Business' }]
+					])
+				},
+				errors: []
+			})
 
 		const result = await load({
 			cookies: {
@@ -91,6 +101,10 @@ describe('admin lados form load', () => {
 		})
 
 		expect(result).toMatchObject({
+			lados: [
+				{ id: 'lado-a', title: 'Business' },
+				{ id: 'lado-b', title: 'Zorg en Welzijn' }
+			],
 			courses: [
 				{ id: 'course-a', title: 'Administratie' },
 				{ id: 'course-b', title: 'Zorg' }
@@ -193,6 +207,18 @@ describe('admin lados form actions.default', () => {
 		expectNoMutationCalls()
 	})
 
+	it('returns 400 when parent lado is invalid', async () => {
+		const event = createActionEvent({ fields: { parent: 'abc' } })
+
+		const result = await actions.default(event)
+
+		expect(result).toMatchObject({
+			status: 400,
+			data: { error: 'Kies een geldige parent-lado.' }
+		})
+		expectNoMutationCalls()
+	})
+
 	it('saves lado as draft and returns success payload', async () => {
 		const event = createActionEvent()
 		mockSuccessfulCreate()
@@ -212,6 +238,7 @@ describe('admin lados form actions.default', () => {
 				national_ad_profile: 'Nationaal profiel',
 				lado_status: 'Actief',
 				sectoral_advisory_board: 456,
+				parent: null,
 				status: 'draft',
 				courseIds: ['123'],
 				shouldPublish: false
@@ -222,6 +249,21 @@ describe('admin lados form actions.default', () => {
 		expect(ContentService.updateContent).toHaveBeenCalledTimes(1)
 		expect(ContentService.updateContent).toHaveBeenCalledWith(123, { lado: 'lado-789' }, 'courses', 'token-123')
 		expect(ContentService.publishContent).not.toHaveBeenCalled()
+	})
+
+	it('saves lado with selected parent id', async () => {
+		const event = createActionEvent({ fields: { parent: '88' } })
+		mockSuccessfulCreate()
+
+		await actions.default(event)
+
+		expect(ContentService.postContent).toHaveBeenCalledWith(
+			expect.objectContaining({
+				parent: 88
+			}),
+			'lados',
+			'token-123'
+		)
 	})
 
 	it('links multiple courses to lado', async () => {

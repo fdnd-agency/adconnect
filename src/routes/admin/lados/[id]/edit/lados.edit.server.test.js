@@ -33,6 +33,7 @@ function createActionEvent({ fields = {}, accessToken = 'token-123', id = 'lado-
 					contactPersons: JSON.stringify(['Persoon 1']),
 					nationalAdProfile: 'Nationaal profiel',
 					ladoStatus: 'Actief',
+					parent: '',
 					courses: ['222', '333'],
 					sectoralAdvisoryBoard: '456',
 					submitAction: 'save',
@@ -55,7 +56,26 @@ describe('admin lados edit load', () => {
 		ContentService.fetchContent
 			.mockResolvedValueOnce({
 				data: {
-					lados: [{ id: 'lado-789', title: 'Bedrijf X', contact_persons: ['Persoon 1'], national_ad_profile: 'Nationaal profiel', lado_status: 'Actief', sectoral_advisory_board: 456 }]
+					lados: [
+						{
+							id: 'lado-789',
+							title: 'Bedrijf X',
+							contact_persons: ['Persoon 1'],
+							national_ad_profile: 'Nationaal profiel',
+							lado_status: 'Actief',
+							parent: 12,
+							sectoral_advisory_board: 456
+						}
+					]
+				},
+				errors: []
+			})
+			.mockResolvedValueOnce({
+				data: {
+					lados: [
+						{ id: 'lado-12', title: 'Business' },
+						{ id: 'lado-22', title: 'Zorg' }
+					]
 				},
 				errors: []
 			})
@@ -90,11 +110,17 @@ describe('admin lados edit load', () => {
 				id: 'lado-789',
 				title: 'Bedrijf X'
 			},
+			lados: [
+				{ id: 'lado-12', title: 'Business' },
+				{ id: 'lado-22', title: 'Zorg' }
+			],
 			courses: [
 				{ id: 'course-a', title: 'Administratie', lado: 'other-lado' },
 				{ id: 'course-b', title: 'Zorg', lado: 'lado-789' }
 			],
 			selectedCourseIds: ['course-b'],
+			parentId: '12',
+			sectoralAdvisoryBoardId: '456',
 			sectoralAdvisoryBoards: [
 				{ id: 'board-a', title: 'Economie' },
 				{ id: 'board-b', title: 'Techniek' }
@@ -150,6 +176,7 @@ describe('admin lados edit actions.default', () => {
 				contact_persons: ['Persoon 1'],
 				national_ad_profile: 'Nationaal profiel',
 				lado_status: 'Actief',
+				parent: null,
 				sectoral_advisory_board: 456,
 				courseIds: ['222', '333']
 			},
@@ -158,5 +185,43 @@ describe('admin lados edit actions.default', () => {
 		)
 		expect(ContentService.updateContent).toHaveBeenNthCalledWith(2, 333, { lado: 'lado-789' }, 'courses', 'token-123')
 		expect(ContentService.updateContent).toHaveBeenNthCalledWith(3, '111', { lado: null }, 'courses', 'token-123')
+	})
+
+	it('updates lado with selected parent id', async () => {
+		const event = createActionEvent({ fields: { parent: '42' } })
+		ContentService.updateContent.mockResolvedValueOnce({ success: true, id: 'lado-789' })
+		ContentService.fetchContent.mockResolvedValueOnce({
+			data: {
+				courses: [
+					{ id: 222, title: 'Opleiding 2', lado: 'lado-789' },
+					{ id: 333, title: 'Opleiding 3', lado: 'lado-789' }
+				]
+			},
+			errors: []
+		})
+
+		await actions.default(event)
+
+		expect(ContentService.updateContent).toHaveBeenNthCalledWith(
+			1,
+			'lado-789',
+			expect.objectContaining({
+				parent: 42
+			}),
+			'lados',
+			'token-123'
+		)
+	})
+
+	it('returns 400 when parent equals current lado id', async () => {
+		const event = createActionEvent({ id: '789', fields: { parent: '789' } })
+
+		const result = await actions.default(event)
+
+		expect(result).toMatchObject({
+			status: 400,
+			data: { error: 'Een lado kan niet zijn eigen parent zijn.' }
+		})
+		expect(ContentService.updateContent).not.toHaveBeenCalled()
 	})
 })

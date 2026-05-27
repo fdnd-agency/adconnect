@@ -1,7 +1,19 @@
 <script>
 	import Form from '$lib/organisms/forms/Form.svelte'
 
-	const { form, lado = null, courses = [], sectoralAdvisoryBoards = [], sectoralAdvisoryBoardId = '', directusBase = '', showPublishButton = false, resetOnSuccess = true, onSuccess = null } = $props()
+	const {
+		form,
+		lado = null,
+		lados = [],
+		parentId = '',
+		courses = [],
+		sectoralAdvisoryBoards = [],
+		sectoralAdvisoryBoardId = '',
+		directusBase = '',
+		showPublishButton = false,
+		resetOnSuccess = true,
+		onSuccess = null
+	} = $props()
 
 	let title = $state('')
 	let nationalAdProfile = $state('')
@@ -10,17 +22,25 @@
 	let tagInput = $state('')
 	let tagsInputElement = $state()
 	let selectedCourseIds = $state([])
+	let selectedParent = $state('')
 	let selectedSectoralAdvisoryBoard = $state('')
+	let parentSearch = $state('')
 	let courseSearch = $state('')
 	let titleSource = $state('')
 	let nationalAdProfileSource = $state('')
 	let ladoStatusSource = $state('')
 	let contactPersonsSource = $state('')
 	let selectedCourseIdsSource = $state('')
+	let selectedParentSource = $state('')
 	let selectedSectoralAdvisoryBoardSource = $state('')
 
 	const courseAddHref = '/admin/courses/create'
 	const sectoralAdvisoryBoardAddHref = '/admin/sectoral-advisory-boards/create'
+	const availableParentLados = $derived(lados.filter((currentLado) => String(currentLado?.id ?? '') !== String(lado?.id ?? '')))
+	const normalizedParentSearch = $derived(parentSearch.trim().toLowerCase())
+	const filteredParentLados = $derived(
+		normalizedParentSearch ? availableParentLados.filter((parentLado) => (parentLado.title ?? `Hoofd-lado ${parentLado.id}`).toLowerCase().includes(normalizedParentSearch)) : availableParentLados
+	)
 	const normalizedCourseSearch = $derived(courseSearch.trim().toLowerCase())
 	const filteredCourses = $derived(normalizedCourseSearch ? courses.filter((course) => (course.title ?? `Opleiding ${course.id}`).toLowerCase().includes(normalizedCourseSearch)) : courses)
 
@@ -46,6 +66,15 @@
 		}
 
 		selectedCourseIds = [...selectedCourseIds, normalizedId]
+	}
+
+	function isParentSelected(parentLadoId) {
+		return selectedParent === String(parentLadoId)
+	}
+
+	function toggleParentSelection(parentLadoId) {
+		const normalizedId = String(parentLadoId)
+		selectedParent = selectedParent === normalizedId ? '' : normalizedId
 	}
 
 	function addTag() {
@@ -93,6 +122,8 @@
 			tags = []
 			tagInput = ''
 			selectedCourseIds = []
+			selectedParent = ''
+			parentSearch = ''
 			courseSearch = ''
 		}
 
@@ -146,6 +177,13 @@
 
 		const ladoId = String(lado?.id ?? '')
 		selectedCourseIds = ladoId ? courses.filter((course) => String(course?.lado?.id ?? course?.lado ?? '') === ladoId).map((course) => String(course.id)) : []
+	})
+
+	$effect(() => {
+		const nextSource = String(form?.parent ?? parentId ?? lado?.parent?.id ?? lado?.parent ?? '')
+		if (nextSource === selectedParentSource) return
+		selectedParentSource = nextSource
+		selectedParent = nextSource
 	})
 
 	$effect(() => {
@@ -240,7 +278,71 @@
 
 	<div class="field-group">
 		<div class="field-heading-row">
-			<p class="field-label">Sectoraal adviescollege</p>
+			<label
+				for="parentSearch"
+				class="field-label">Hoofd-lado</label
+			>
+		</div>
+		{#if availableParentLados.length === 0}
+			<p class="field-help">Geen lado's gevonden om als hoofd-lado te selecteren.</p>
+			<div class="courses-picker courses-picker-disabled">
+				<p class="field-help">Geen hoofd-lado's beschikbaar</p>
+			</div>
+		{:else}
+			<div class="courses-picker">
+				<div class="courses-toolbar">
+					<input
+						id="parentSearch"
+						type="text"
+						class="course-search"
+						placeholder="Zoek hoofd-lado"
+						autocomplete="off"
+						bind:value={parentSearch}
+					/>
+					<p class="courses-count">{selectedParent ? '1 geselecteerd' : '0 geselecteerd'}</p>
+				</div>
+
+				<div
+					class="courses-list"
+					role="listbox"
+					aria-multiselectable="false"
+					aria-label="Selecteer hoofd-lado"
+				>
+					{#if filteredParentLados.length === 0}
+						<p class="field-help courses-empty">Geen hoofd-lado's gevonden voor deze zoekterm.</p>
+					{:else}
+						{#each filteredParentLados as parentLado (parentLado.id)}
+							<label
+								class="course-option"
+								class:course-option-selected={isParentSelected(parentLado.id)}
+							>
+								<input
+									type="checkbox"
+									checked={isParentSelected(parentLado.id)}
+									onchange={() => toggleParentSelection(parentLado.id)}
+								/>
+								<span>{parentLado.title ?? `Hoofd-lado ${parentLado.id}`}</span>
+							</label>
+						{/each}
+					{/if}
+				</div>
+
+				<input
+					type="hidden"
+					name="parent"
+					value={selectedParent}
+				/>
+			</div>
+		{/if}
+		<p class="field-help">Optioneel: koppel deze lado aan een bestaande hoofd-lado.</p>
+	</div>
+
+	<div class="field-group">
+		<div class="field-heading-row">
+			<label
+				for="sectoralAdvisoryBoard"
+				class="field-label">Sectoraal adviescollege</label
+			>
 			<a
 				href={sectoralAdvisoryBoardAddHref}
 				target="_blank"
