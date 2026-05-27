@@ -1,20 +1,20 @@
 <script>
 	import { RLink } from '$lib'
-	import { IconDots, IconCalendar, IconLabel } from '$lib/icons'
+	import { IconCalendar } from '$lib/icons'
 	const { item, children } = $props()
 
 	import { formatDateNL } from '$lib/molecules/date'
 </script>
 
-<article>
-	<h2>{item.title}</h2>
+<article class="news-card">
+	<h2 class="news-card__title">{item.title}</h2>
 
-	<section class="date">
+	<section class="news-card__date">
 		<IconCalendar />
-		<p>{formatDateNL(item.date)}</p>
+		<p class="news-card__date-text">{formatDateNL(item.date)}</p>
 	</section>
 
-	<p>{item.description}</p>
+	<p class="news-card__description">{item.description}</p>
 
 	<RLink
 		href={`/nieuws/${item.uuid}`}
@@ -29,10 +29,7 @@
 </article>
 
 <style>
-	h2 {
-		font-size: 25px;
-	}
-	article {
+	.news-card {
 		display: grid;
 		grid-template-rows: auto auto 1fr auto;
 		gap: 1.25em;
@@ -44,32 +41,28 @@
 		height: 100%;
 		position: relative;
 
-		h2 {
+		&:hover {
+			border-color: var(--blue-900);
+			box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+			translate: 0 -1%;
+		}
+
+		.news-card__title {
+			font-size: 25px;
 			max-width: 30ch;
 			grid-row: 2;
 		}
 
-		p {
+		.news-card__date {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			gap: 0.75em;
+		}
+
+		.news-card__description {
 			max-width: 60ch;
 			line-height: 1.6;
 		}
-	}
-
-	p {
-		max-width: 60ch;
-		line-height: 1.6;
-	}
-
-	.date {
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		gap: 0.75em;
-	}
-
-	article:hover {
-		border-color: var(--blue-900);
-		box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
-		translate: 0 -1%;
 	}
 </style>
