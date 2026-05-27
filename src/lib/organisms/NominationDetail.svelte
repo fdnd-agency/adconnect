@@ -160,17 +160,22 @@
 
 	.hero-meta dt {
 		margin: 0;
-		font-size: 0.75rem;
+		font-family: var(--font-body);
+		font-size: 0.8rem;
 		text-transform: uppercase;
 		letter-spacing: 0.12em;
 		color: var(--blue-200);
 		min-width: 9.5rem;
+		font-weight: var(--weight-medium);
 	}
 
 	.hero-meta dd {
 		margin: 0;
 		color: var(--text-white);
-		font-size: 1rem;
+		font-family: var(--font-body);
+		font-size: var(--p-xs-size);
+		line-height: var(--p-xs-line-height);
+		font-weight: var(--weight-regular);
 	}
 
 	.hero-actions {
