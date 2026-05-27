@@ -2,7 +2,8 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator, RFaqSection, RArticleHero } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RArticleHero, RArticleSection } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -11,7 +12,8 @@
 	const { news } = data
 	const { cooperation } = data
 
-	const description = 'Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.'
+	const description =
+		'Associate degrees zijn tweejarige hbo-opleidingen die sterk praktijkgericht zijn en direct aansluiten op de arbeidsmarkt. Ze combineren werken en leren en zijn bedoeld voor studenten die zich willen ontwikkelen op hbo-niveau, zonder direct een vierjarige bachelor te volgen. De opleidingen worden samen met het werkveld vormgegeven en spelen in op actuele beroepsvragen. Hierdoor doe je relevante kennis en vaardigheden op die je meteen kunt toepassen in de praktijk. Een Associate degree biedt daarnaast flexibiliteit: je behaalt een zelfstandig diploma en kunt, als je dat wilt, doorstromen naar een bacheloropleiding.'
 </script>
 
 <svelte:head>
@@ -41,6 +43,12 @@
 		height="210"
 	/>
 </Hero>
+
+<RArticleSection
+	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
+	{description}
+	link={{ label: "Meer over Ad's", href: "/over-ad" }}
+/>
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 

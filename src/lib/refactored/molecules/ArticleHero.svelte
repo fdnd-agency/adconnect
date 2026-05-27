@@ -1,6 +1,5 @@
 <script>
 	import { Breadcrumb } from '$lib'
-	import { IconDots, IconCalendar, IconLabel } from '$lib/icons'
 	const { title, description, children } = $props()
 </script>
 
