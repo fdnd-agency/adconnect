@@ -1,10 +1,7 @@
 <script>
 	import { RLink } from '$lib'
-	import { IconDots, IconCalendar, IconLabel } from '$lib/icons'
-	const { title, description, link, children, document } = $props()
-
-	// Export prop
-	// export let document
+	import { IconCalendar, IconLabel } from '$lib/icons'
+	const { document } = $props()
 
 	// Import images
 	import { fallback, calendar, label } from '$lib'
@@ -16,23 +13,24 @@
 	}
 </script>
 
-<article>
-	<h3 class="truncate two">{document.title}</h3>
+<article class="publication-card">
+	<h3 class="publication-card__title truncate truncate--two">{document.title}</h3>
 
-	<div class="card-info">
-		<span
-			><IconLabel />
-			<p>{document.category?.title ?? 'Geen categorie'}</p></span
-		>
-		<span
-			><IconCalendar />
-			<p>{document.date?.slice(0, 4) ?? 'Geen datum'}</p></span
-		>
+	<div class="publication-card__info">
+		<span class="publication-card__meta">
+			<IconLabel />
+			<p class="publication-card__meta-text">{document.category?.title ?? 'Geen categorie'}</p>
+		</span>
+
+		<span class="publication-card__meta">
+			<IconCalendar />
+			<p class="publication-card__meta-text">{document.date?.slice(0, 4) ?? 'Geen datum'}</p>
+		</span>
 	</div>
 
-	<p class="truncate two">{truncateWords(document.description, 20)}</p>
+	<p class="publication-card__description truncate truncate--two">{truncateWords(document.description, 20)}</p>
 
-	<div class="link">
+	<div class="publication-card__link">
 		<RLink
 			href="/publicaties/{document.slug}"
 			class="button-outline-blue clickable-container"
@@ -40,14 +38,16 @@
 			Meer informatie
 			<span
 				class="visually-hidden"
-				aria-hidden="true">over {document.title}</span
+				aria-hidden="true"
 			>
+				over {document.title}
+			</span>
 		</RLink>
 	</div>
 </article>
 
 <style>
-	article {
+	.publication-card {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5em;
@@ -63,18 +63,22 @@
 			translate: 0 -1%;
 			transition: 0.2s ease-in-out;
 		}
-	}
 
-	.card-info {
-		gap: 1em;
-		display: flex;
-		flex-direction: row;
+		.publication-card__info {
+			display: flex;
+			flex-direction: row;
+			gap: 1em;
+		}
 
-		span {
+		.publication-card__meta {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			gap: 0.5em;
+		}
+
+		.publication-card__link {
+			margin: 1em 0;
 		}
 	}
 
@@ -87,13 +91,13 @@
 	}
 
 	/* Truncate one sentence */
-	.truncate.single {
+	.truncate--single {
 		white-space: nowrap;
 		-webkit-line-clamp: 1;
 	}
 
 	/* Truncate two sentences */
-	.truncate.two {
+	.truncate--two {
 		-webkit-line-clamp: 2;
 	}
 </style>
