@@ -55,6 +55,7 @@
 		border-radius: 1em;
 		padding: 2em;
 		transition: 0.2s ease-in-out;
+		position: relative;
 
 		&:hover {
 			border: 1px solid #00408d;
