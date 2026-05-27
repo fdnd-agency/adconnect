@@ -3,7 +3,7 @@
 
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
-	import { RLink, Rseparator, RFaqSection, RArticleHero, RArticleSection } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RCardHero, RCardSection, RCardInfo } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -44,13 +44,27 @@
 	/>
 </Hero>
 
-<RArticleSection
+<RCardHero
 	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
 	{description}
-	link={{ label: "Meer over Ad's", href: "/over-ad" }}
-/>
+>
+	<RLink
+		href="/over-ad"
+		class="button-outline-blue same-width">Meer over Ad's</RLink
+	>
+	<RLink
+		href="/ad-dag"
+		class="button-outline-white same-width">Kom naar de Ad-dag</RLink
+	>
+</RCardHero>
 
 <NewsCardSection news={data.news.slice(0, 3)} />
+
+<RCardSection
+	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
+	{description}
+	link={{ label: "Meer over Ad's", href: '/over-ad' }}
+/>
 
 <Information
 	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
@@ -85,6 +99,20 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 		}
 	]}
 />
+
+<RCardInfo
+	title="Doorstroom Ad"
+	description="Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma."
+	link={{ label: "Meer over doorstroom Ad's", href: '/over-ad' }}
+	infoCard
+/>
+
+<!-- <RCardInfo
+	title="Doorstroom Ad"
+	description="Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma."
+	link={{ label: "Meer over doorstroom Ad's", href: '/over-ad' }}
+	publicaties
+/> -->
 
 <section class="logo-section">
 	<Rseparator dividerText="Partijen waarmee wij samenwerken" />

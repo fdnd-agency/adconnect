@@ -1,6 +1,6 @@
 <script>
-	import { Breadcrumb, RLink } from '$lib'
-	import { IconDots, IconCalendar, IconLabel } from '$lib/icons'
+	import { RLink } from '$lib'
+	import { IconDots } from '$lib/icons'
 	const { title, description, link, children } = $props()
 </script>
 

@@ -110,6 +110,7 @@ export { default as Rseparator } from './refactored/atoms/Separator.svelte'
 
 // molecules
 export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte'
-export { default as RArticleHero } from './refactored/molecules/ArticleHero.svelte'
-export { default as RArticleSection } from './refactored/molecules/ArticleSection.svelte'
+export { default as RCardHero } from './refactored/molecules/CardHero.svelte'
+export { default as RCardSection } from './refactored/molecules/CardSection.svelte'
+export { default as RCardInfo } from './refactored/molecules/CardInfo.svelte'
 
