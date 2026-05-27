@@ -22,10 +22,8 @@
         <slot name="secondary" />
       </div>
     </section>
-    <img class="hero-image" src={image || placeholder} {alt} />
     <section class="hero-media">
       <slot name="media" />
-      <slot />
     </section>
   </article>
 </div>

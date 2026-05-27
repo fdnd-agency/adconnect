@@ -2,11 +2,10 @@
 	import placeholder from '$lib/assets/placeholder-hero.webp'
 
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator } from '$lib'
+	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, RLink, Rseparator, RFaqSection, RPicture } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
-	import { IconLoading } from '$lib/icons'
 
 	const { data } = $props()
 	const { news } = data
@@ -31,17 +30,17 @@
 		href="/over-ad"
 		class="button-outline-blue">Meer over Ad's</RLink
 	>
-	<img
-		class="hero-image"
+	<RPicture
+		slot="media"
+		isEnhanced
 		src={zaal}
-		alt=""
+		alt="Een grote zaal vol mensen die op stoelen zitten en luisteren naar een spreker."
 		fetchpriority="high"
+		loading="eager"
 		width="300"
 		height="210"
 	/>
 </Hero>
-
-<IconLoading />
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
@@ -50,7 +49,7 @@
 	description="Associate degrees zijn tweejarige hbo-opleidingen die sterk praktijkgericht zijn en direct aansluiten op de arbeidsmarkt. Ze combineren werken en leren en zijn bedoeld voor studenten die zich willen ontwikkelen op hbo-niveau, zonder direct een vierjarige bachelor te volgen. De opleidingen worden samen met het werkveld vormgegeven en spelen in op actuele beroepsvragen. Hierdoor doe je relevante kennis en vaardigheden op die je meteen kunt toepassen in de praktijk. Een Associate degree biedt daarnaast flexibiliteit: je behaalt een zelfstandig diploma en kunt, als je dat wilt, doorstromen naar een bacheloropleiding."
 	buttonText="Meer info over Ad's"
 	buttonLink="#"
-	imageAlt="Studenten ontvangen award"
+	imageAlt="Een zaal met tafels in een cirkel, waar studenten luisteren naar hun docent die een presentatie geeft."
 />
 
 <InformationCards
@@ -85,7 +84,6 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	<Rseparator />
 </section>
 
-
 <FeatureSplit
 	title="Waarom kiezen voor een Associate degree?"
 	intro="Een Associate degree combineert praktijkgericht onderwijs met doorstroommogelijkheden, zodat je snel ervaring opdoet én een diploma haalt."
@@ -93,62 +91,12 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	ctaText="Meer over Associate degrees"
 	ctaLink="/over-ad"
 	imageSrc="/images/award.jpg"
-	imageAlt="Studenten bij AdTalent award"
+	imageAlt="Studenten bij de Ad Talent Award die naast elkaar staan, allemaal met een certificaat in hun handen"
 />
 
-<section
-	class="faq-section"
-	id="faq"
->
-	<h2>Veelgestelde vragen</h2>
-
-	<MultipleFaq>
-		<SingleFaq
-			open={true}
-			question="Wat is een Associate degree?"
-			answer="Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding."
-		/>
-
-		<SingleFaq
-			question="Hoe lang duurt een Associate degree?"
-			answer="Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring."
-		/>
-
-		<SingleFaq
-			question="Wat is het verschil tussen een Associate degree en een Bachelor?"
-			answer="Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld."
-		/>
-
-		<SingleFaq
-			question="Welke voordelen heeft het behalen van een Associate degree?"
-			answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
-		/>
-	</MultipleFaq>
-</section>
+<RFaqSection title="Veelgestelde vragen" />
 
 <style>
-	.hero-image {
-		display: block;
-		width: 100%;
-		max-height: 416px;
-		object-fit: cover;
-		border-radius: 30px 30px 0 0;
-	}
-
-	@media (min-width: 768px) {
-		.hero-image {
-			border-radius: 24px;
-			max-width: 604px;
-			margin-left: auto;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.hero-image {
-			max-width: 640px;
-		}
-	}
-
 	.logo-section {
 		display: flex;
 		gap: 2em;
@@ -160,26 +108,5 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 			gap: 3em;
 			padding: 0 0 5em 0;
 		}
-	}
-
-	.faq-section {
-		display: flex;
-		flex-direction: column;
-		gap: 2em;
-		padding: 3em 5%;
-		box-sizing: border-box;
-		position: relative;
-
-		@media (min-width: 768px) {
-			padding: 2em 5em 5em 5em;
-		}
-	}
-
-	.faq-section h2 {
-		text-align: center;
-	}
-
-	#faq {
-		scroll-margin-top: 150px;
 	}
 </style>
