@@ -7,7 +7,7 @@
 	import { publicatie } from '$lib'
 
 	// Import components
-	import { Hero } from '$lib'
+	import { Hero, RCardPublicaties } from '$lib'
 
 	// Haal data op uit page.server.js via props
 	const { data } = $props()
@@ -64,8 +64,8 @@
 			<a
 				href={`?category=${categorie.title.toLowerCase()}`}
 				data-sveltekit-noscroll
-				class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}">{categorie.title}
-				
+				class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}"
+				>{categorie.title}
 			</a>
 		{/each}
 	</div>
@@ -79,7 +79,7 @@
 	<div class="documents-container">
 		<ul>
 			{#each documents as document (document.id)}
-				<li><DocumentCard {document} /></li>
+				<li><RCardPublicaties {document} /></li>
 			{/each}
 		</ul>
 	</div>

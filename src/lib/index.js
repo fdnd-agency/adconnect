@@ -113,4 +113,5 @@ export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte
 export { default as RCardHero } from './refactored/molecules/CardHero.svelte'
 export { default as RCardSection } from './refactored/molecules/CardSection.svelte'
 export { default as RCardInfo } from './refactored/molecules/CardInfo.svelte'
+export { default as RCardPublicaties } from './refactored/molecules/CardPublicaties.svelte'
 
