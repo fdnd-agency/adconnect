@@ -49,13 +49,10 @@
 	/>
 </Hero>
 
-<RFilterButtons {categories} {selectedCategory}/>
+<RFilterButtons {categories} {selectedCategory} {documents}/>
 
 <div class="section-documents">
-	<div class="filter-info">
-		<p>Categorie: {selectedCategory}</p>
-		<p>Aantal artikelen: {documents.length}</p>
-	</div>
+
 	<div class="documents-container">
 		<ul>
 			{#each documents as document (document.id)}
@@ -77,11 +74,6 @@
 		@media (min-width: 768px) {
 			padding: 5em 0;
 			max-width: 1400px;
-		}
-
-		.filter-info {
-			display: flex;
-			gap: 1.5em;
 		}
 	}
 
