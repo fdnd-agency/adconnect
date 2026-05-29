@@ -85,7 +85,6 @@
 <FeatureSplit
 	title={homePage.why_heading}
 	intro={homePage.why_body}
-	bullets={['Praktijkgericht leren en direct vaardigheden toepassen', 'Korte studieduur van 2 jaar', 'Doorstromen naar een bacheloropleiding mogelijk']}
 	ctaText={homePage.why_button_text}
 	ctaLink={homePage.why_button_url}
 	imageSrc="/images/award.jpg"
