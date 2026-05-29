@@ -9,28 +9,21 @@
 	// Import components
 	import { Hero, RFilterButtons } from '$lib'
 
-	// Haal data op uit page.server.js via props
 	const { data } = $props()
-	let documents = $state(data.documents)
-	let categories = $state(data.categories)
-	let selectedCategory = $state(data.selectedCategory)
 
-	// Effect om de state te synchroniseren als props veranderen
-	$effect(() => {
-		documents = data.documents
-		categories = data.categories
-		selectedCategory = data.selectedCategory
-	})
+	const documents = $derived(data.documents)
+	const selectedCategory = $derived(data.selectedCategory)
+	const categories = $derived(data.categories)
 
 	// Update selectedCategory en URL bij wijziging
-	function handleChange(event) {
-		const { value } = event.target
-		selectedCategory = value
+	// function handleChange(event) {
+	// 	const { value } = event.target
+	// 	selectedCategory = value
 
-		const url = new URL($page.url)
-		url.searchParams.set('category', value)
-		goto(url.toString(), { replaceState: true })
-	}
+	// 	const url = new URL($page.url)
+	// 	url.searchParams.set('category', value)
+	// 	goto(url.toString(), { replaceState: true })
+	// }
 </script>
 
 <svelte:head>
