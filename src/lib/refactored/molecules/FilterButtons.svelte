@@ -5,8 +5,6 @@
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
 
 	onMount(() => {
-		document.querySelector('#submit')?.classList.add('visually-hidden')
-
 		document.querySelector('.category-filter__list')?.addEventListener('change', (e) => {
 			const target = e.target as HTMLInputElement
 
@@ -68,7 +66,19 @@
 	</div>
 </section>
 
+<noscript>
+	<style>
+		#submit {
+			display: block !important;
+		}
+	</style>
+</noscript>
+
 <style>
+	#submit {
+		display: none;
+	}
+
 	.filter-section {
 		display: flex;
 		flex-direction: column;
