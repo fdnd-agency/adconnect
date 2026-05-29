@@ -1,16 +1,12 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
-
 	const { categories, selectedCategory, documents } = $props()
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
 
-	onMount(() => {
-		document.querySelector('.category-filter__list')?.addEventListener('change', (e) => {
-			const target = e.target as HTMLInputElement
+	function filterClick(e: Event) {
+		const target = e.target as HTMLInputElement
 
-			target.form?.requestSubmit()
-		})
-	})
+		target.form?.requestSubmit()
+	}
 </script>
 
 {#snippet categoryRadio(categorie)}
@@ -21,6 +17,7 @@
 			name="category"
 			value={categorie.value}
 			checked={normalized === categorie.value}
+			onclick={filterClick}
 		/>
 		<span>{categorie.label}</span>
 	</label>
@@ -66,9 +63,11 @@
 	</div>
 </section>
 
+<!-- Only when JavaScript is disabled, use different styling for the button -->
 <noscript>
 	<style>
 		#submit {
+			/* Without !important you can't override the previous styling */
 			display: block !important;
 		}
 	</style>
