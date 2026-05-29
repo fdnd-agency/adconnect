@@ -7,7 +7,7 @@
 </script>
 
 <article class="news-card">
-	<h2 class="news-card__title">{item.title}</h2>
+	<h3 class="news-card__title">{item.title}</h3>
 
 	<section class="news-card__date">
 		<IconCalendar />
