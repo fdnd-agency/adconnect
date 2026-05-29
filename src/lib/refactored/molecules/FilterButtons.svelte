@@ -4,55 +4,60 @@
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
 </script>
 
-{#snippet categoryButton(categorie)}
-	<button
-		type="submit"
-		name="category"
-		value={categorie.value}
-		class="button-outline-blue category-filter__button"
-		aria-current={normalized === categorie.value ? 'true' : undefined}
-	>
-		{categorie.label}
-	</button>
+{#snippet categoryRadio(categorie)}
+	<label class="button-outline-blue category-filter__button">
+		<input
+			class="visually-hidden"
+			type="radio"
+			name="category"
+			value={categorie.value}
+			checked={normalized === categorie.value}
+		/>
+		<span>{categorie.label}</span>
+	</label>
 {/snippet}
 
-<section>
+<section class="filter-section">
 	<form
 		class="category-filter"
 		method="GET"
 		data-sveltekit-noscroll
 	>
-		<legend
-			id="filter-label"
-			class="category-filter__label"
-		>
-			Filter op categorie:
-		</legend>
+		<fieldset class="category-filter__group">
+			<legend class="category-filter__label">Filter op categorie:</legend>
 
-		<ul
-			class="category-filter__list"
-			aria-labelledby="filter-label"
-		>
-			<li class="category-filter__item">
-				{@render categoryButton({ value: 'alle-publicaties', label: 'Alle publicaties' })}
-			</li>
-
-			{#each categories as categorie (categorie.id)}
+			<ul class="category-filter__list">
 				<li class="category-filter__item">
-					{@render categoryButton({ value: categorie.title.toLowerCase(), label: categorie.title })}
+					{@render categoryRadio({ value: 'alle-publicaties', label: 'Alle publicaties' })}
 				</li>
-			{/each}
-		</ul>
+
+				{#each categories as categorie (categorie.id)}
+					<li class="category-filter__item">
+						{@render categoryRadio({ value: categorie.title.toLowerCase(), label: categorie.title })}
+					</li>
+				{/each}
+			</ul>
+
+			<button
+				type="submit"
+				class="button-outline-blue category-filter__submit"
+			>
+				Toepassen
+			</button>
+		</fieldset>
 	</form>
 
-	<div class="filter-info">
+	<div
+		class="filter-info"
+		aria-live="polite"
+	>
 		<p class="filter-info__category">Categorie: {selectedCategory}</p>
 		<p class="filter-info__count">Aantal artikelen: {documents.length}</p>
 	</div>
 </section>
 
 <style>
-	section {
+	.filter-section {
 		display: flex;
 		flex-direction: column;
 	}
@@ -62,16 +67,17 @@
 		flex-direction: column;
 		flex-wrap: wrap;
 		gap: 1em;
-		width: 90%;
 		padding: 3em 0 0 0;
-		margin: auto;
 
-		/* @media (min-width: 768px) {
-			padding: 5em 0 0 0;
-			max-width: 1400px;
-		} */
+		.category-filter__group {
+			border: none;
+			display: flex;
+			flex-direction: column;
+			gap: 1em;
+		}
 
 		.category-filter__label {
+			margin-bottom: 1em;
 			font-family: var(--font-body);
 		}
 
@@ -88,15 +94,18 @@
 				font-family: var(--font-body);
 			}
 		}
+
+		.category-filter__button {
+			display: block;
+
+			&:has(input:checked) {
+				background-color: var(--primary-blue);
+			}
+		}
 	}
 
 	.filter-info {
 		display: flex;
 		gap: 1.5em;
-		/* margin: 1em 0 0 12em; */
-	}
-
-	.category-filter__button[aria-current='true'] {
-		background-color: var(--primary-blue);
 	}
 </style>
