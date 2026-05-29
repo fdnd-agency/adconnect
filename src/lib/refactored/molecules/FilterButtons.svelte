@@ -9,17 +9,17 @@
 	}
 </script>
 
-{#snippet categoryRadio(categorie)}
+{#snippet categoryRadio(category)}
 	<label class="button-outline-blue category-filter__button">
 		<input
 			class="visually-hidden"
 			type="radio"
 			name="category"
-			value={categorie.value}
-			checked={normalized === categorie.value}
+			value={category.value}
+			checked={normalized === category.value}
 			onclick={filterClick}
 		/>
-		<span>{categorie.label}</span>
+		<span>{category.label}</span>
 	</label>
 {/snippet}
 
@@ -37,9 +37,9 @@
 					{@render categoryRadio({ value: 'alle-publicaties', label: 'Alle publicaties' })}
 				</li>
 
-				{#each categories as categorie (categorie.id)}
+				{#each categories as category (category.id)}
 					<li class="category-filter__item">
-						{@render categoryRadio({ value: categorie.title.toLowerCase(), label: categorie.title })}
+						{@render categoryRadio({ value: category.title.toLowerCase(), label: category.title })}
 					</li>
 				{/each}
 			</ul>
@@ -74,10 +74,6 @@
 </noscript>
 
 <style>
-	#submit {
-		display: none;
-	}
-
 	.filter-section {
 		display: flex;
 		flex-direction: column;
@@ -123,6 +119,10 @@
 				background-color: var(--primary-blue);
 			}
 		}
+	}
+
+	#submit {
+		display: none;
 	}
 
 	.filter-info {
