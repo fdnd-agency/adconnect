@@ -15,15 +15,6 @@
 	const selectedCategory = $derived(data.selectedCategory)
 	const categories = $derived(data.categories)
 
-	// Update selectedCategory en URL bij wijziging
-	// function handleChange(event) {
-	// 	const { value } = event.target
-	// 	selectedCategory = value
-
-	// 	const url = new URL($page.url)
-	// 	url.searchParams.set('category', value)
-	// 	goto(url.toString(), { replaceState: true })
-	// }
 </script>
 
 <svelte:head>

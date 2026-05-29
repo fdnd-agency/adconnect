@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import { page } from '$app/state'
 
 	const { categories, selectedCategory, documents } = $props()
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
