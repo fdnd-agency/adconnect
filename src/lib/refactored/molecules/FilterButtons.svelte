@@ -1,7 +1,19 @@
-<script>
-	const { categories, selectedCategory, documents } = $props()
+<script lang="ts">
+	import { onMount } from 'svelte'
+	import { page } from '$app/state'
 
+	const { categories, selectedCategory, documents } = $props()
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
+
+	onMount(() => {
+		document.querySelector('#submit')?.classList.add('visually-hidden')
+
+		document.querySelector('.category-filter__list')?.addEventListener('change', (e) => {
+			const target = e.target as HTMLInputElement
+
+			target.form?.requestSubmit()
+		})
+	})
 </script>
 
 {#snippet categoryRadio(categorie)}
@@ -39,10 +51,11 @@
 			</ul>
 
 			<button
+				id="submit"
 				type="submit"
 				class="button-outline-blue category-filter__submit"
 			>
-				Toepassen
+				Submit
 			</button>
 		</fieldset>
 	</form>
