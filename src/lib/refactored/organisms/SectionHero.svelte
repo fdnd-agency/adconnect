@@ -60,7 +60,7 @@
 	.hero-media {
 		width: 100%;
 		max-width: 640px;
-		/* height: 400px; */
+		max-height: 400px;
 		border-radius: 1em 1em 0 0;
 		overflow: hidden;
 	}

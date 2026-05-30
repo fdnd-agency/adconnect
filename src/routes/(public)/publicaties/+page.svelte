@@ -7,7 +7,7 @@
 	import { publicatie } from '$lib'
 
 	// Import components
-	import { Hero, RCardPublicaties } from '$lib'
+	import { Hero, RCardPublicaties, RSectionHero } from '$lib'
 
 	// Haal data op uit page.server.js via props
 	const { data } = $props()
@@ -37,7 +37,7 @@
 	<title>Documenten | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
+<!-- <Hero
 	title="Publicaties"
 	description="Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs."
 >
@@ -47,7 +47,21 @@
 		alt=""
 		fetchpriority="high"
 	/>
-</Hero>
+</Hero> -->
+
+<RSectionHero
+	sectionInfo={{
+		title: 'Publicaties',
+		description: 'Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs.'
+	}}
+	picture={{
+		isEnhanced: false,
+		src: publicatie,
+		alt: '',
+		fetchpriority: 'high'
+	}}
+	backgroundColor='black'
+/>
 
 <div class="filter-buttons">
 	<p>Filter op categorie:</p>
