@@ -1,7 +1,11 @@
 <script>
 	import PublicationDetails from '$lib/organisms/PublicationDetail.svelte'
 
+	import { RTextSection } from '$lib';
+
 	const { data } = $props()
 </script>
 
-<PublicationDetails {data} />
+<!-- <PublicationDetails {data} /> -->
+
+<RTextSection {data}/>
