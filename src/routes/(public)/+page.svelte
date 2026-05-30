@@ -3,7 +3,7 @@
 
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
-	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo, RSectionHero } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -12,15 +12,18 @@
 	const { news } = data
 	const { cooperation } = data
 
-	const description =
-		'Associate degrees zijn tweejarige hbo-opleidingen die sterk praktijkgericht zijn en direct aansluiten op de arbeidsmarkt. Ze combineren werken en leren en zijn bedoeld voor studenten die zich willen ontwikkelen op hbo-niveau, zonder direct een vierjarige bachelor te volgen. De opleidingen worden samen met het werkveld vormgegeven en spelen in op actuele beroepsvragen. Hierdoor doe je relevante kennis en vaardigheden op die je meteen kunt toepassen in de praktijk. Een Associate degree biedt daarnaast flexibiliteit: je behaalt een zelfstandig diploma en kunt, als je dat wilt, doorstromen naar een bacheloropleiding.'
+	const section = {
+		title: 'Het landelijke platform voor Associate degrees',
+		description:
+			'Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs.'
+	}
 </script>
 
 <svelte:head>
 	<title>Home | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
+<!-- <Hero
 	title="Het landelijke platform voor Associate degrees"
 	description="Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken."
 >
@@ -44,27 +47,28 @@
 		width="300"
 		height="210"
 	/>
-</Hero>
+</Hero> -->
 
-<RCardHero
-	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
-	{description}
->
-	<RLink
-		href="/over-ad"
-		class="button-outline-blue same-width">Meer over Ad's</RLink
-	>
-	<RLink
-		href="/ad-dag"
-		class="button-outline-white same-width">Kom naar de Ad-dag</RLink
-	>
-</RCardHero>
+<RSectionHero
+	sectionInfo={section}
+	primaryLink={{ label: "Meer over Ad's", href: '/over-ad' }}
+	secondaryLink={{ label: 'Kom naar de Ad-dag', href: '/ad-dag' }}
+	picture={{
+		isEnhanced: true,
+		src: zaal,
+		alt: 'Een grote zaal vol mensen die op stoelen zitten en luisteren naar een spreker.',
+		width: '300',
+		height: '210',
+		fetchpriority: 'high',
+		loading: 'eager'
+	}}
+/>
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
 <RCardSection
 	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
-	{description}
+	description={section.description}
 	link={{ label: "Meer over Ad's", href: '/over-ad' }}
 />
 
