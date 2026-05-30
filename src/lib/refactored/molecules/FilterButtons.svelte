@@ -88,10 +88,6 @@
 	.filter-section {
 		display: flex;
 		flex-direction: column;
-
-		&:focus-within {
-			background-color: red;
-		}
 	}
 
 	.category-filter {
