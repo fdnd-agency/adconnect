@@ -39,7 +39,7 @@
 	primaryLink={{ label: 'Lees meer', href: '#over-lados' }}
 	secondaryLink={{ label: 'Bekijk overzicht', href: '#overzicht-lados' }}
 	picture={{
-		isEnhanced: false,
+		isEnhanced: true,
 		src: overleggen,
 		alt: 'Mensen tijdens een landelijk overleg over Associate degree-opleidingen',
 		fetchpriority: 'high'

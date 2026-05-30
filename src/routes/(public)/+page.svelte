@@ -14,8 +14,7 @@
 
 	const section = {
 		title: 'Het landelijke platform voor Associate degrees',
-		description:
-			'Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.'
+		description: 'Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.'
 	}
 </script>
 

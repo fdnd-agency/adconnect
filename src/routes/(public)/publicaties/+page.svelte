@@ -43,7 +43,7 @@
 		description: 'Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs.'
 	}}
 	picture={{
-		isEnhanced: false,
+		isEnhanced: true,
 		src: publicatie,
 		alt: '',
 		fetchpriority: 'high'

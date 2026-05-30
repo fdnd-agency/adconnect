@@ -1,7 +1,9 @@
 <script>
 	import logomobile from '$lib/assets/logomobile.svg'
 	import logodark from '$lib/assets/logomobiledark.svg'
-	import Talent from '$lib/assets/ad-talent-awards.jpg'
+
+	// Import images
+	import { Talent } from '$lib'
 
 	const { data } = $props()
 
@@ -19,16 +21,17 @@
 <RSectionHero
 	sectionInfo={{
 		title: 'Ad Talent Award',
-		description: 'Jaarlijks reikt het Overlegplatform de Ad Talent Award uit aan twee Associate degree-talenten, die worden benoemd tot landelijke Ad-ambassadeurs. Alle aangesloten hogescholen kunnen een Ad-talent nomineren. De winnaars ontvangen de award tijdens de jaarlijkse Ad-dag en vertegenwoordigen het Ad-onderwijs in Nederland.'
+		description:
+			'Jaarlijks reikt het Overlegplatform de Ad Talent Award uit aan twee Associate degree-talenten, die worden benoemd tot landelijke Ad-ambassadeurs. Alle aangesloten hogescholen kunnen een Ad-talent nomineren. De winnaars ontvangen de award tijdens de jaarlijkse Ad-dag en vertegenwoordigen het Ad-onderwijs in Nederland.'
 	}}
 	primaryLink={{ label: 'Lees meer →', href: '#benefit' }}
 	picture={{
-		isEnhanced: false,
+		isEnhanced: true,
 		src: Talent,
 		alt: '',
 		fetchpriority: 'high'
 	}}
-	backgroundColor='black'
+	backgroundColor="black"
 />
 
 <section class="intro">

@@ -43,7 +43,7 @@
 		description: 'Op deze pagina vind je updates en korte verslagen van georganiseerde evenementen.'
 	}}
 	picture={{
-		isEnhanced: false,
+		isEnhanced: true,
 		src: Nieuwshero,
 		alt: '',
 		fetchpriority: 'high'
