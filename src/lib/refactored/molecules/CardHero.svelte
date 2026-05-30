@@ -18,6 +18,10 @@
 </div>
 
 <style>
+	div {
+		margin-bottom: 2em;
+	}
+
 	.page-header {
 		display: flex;
 		flex-direction: column;

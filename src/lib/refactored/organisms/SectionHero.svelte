@@ -53,7 +53,7 @@
 		}
 	}
 
-	.background-black {
+	.black {
 		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 	}
 
