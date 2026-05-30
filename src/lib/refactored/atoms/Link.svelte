@@ -72,4 +72,10 @@
 		inset: 0;
 		z-index: 10;
 	}
+
+	.same-width {
+		width: 100%;
+		max-width: 14em;
+		text-align: center;
+	}
 </style>

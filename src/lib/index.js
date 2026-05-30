@@ -108,8 +108,15 @@ export { default as RPicture } from './refactored/atoms/Picture.svelte'
 export { default as RLink } from './refactored/atoms/Link.svelte'
 export { default as Rseparator } from './refactored/atoms/Separator.svelte'
 
+
 // molecules
 export { default as RTimeTable } from './refactored/molecules/TimeTable.svelte'
+export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte'
+export { default as RCardHero } from './refactored/molecules/CardHero.svelte'
+export { default as RCardSection } from './refactored/molecules/CardSection.svelte'
+export { default as RCardInfo } from './refactored/molecules/CardInfo.svelte'
+export { default as RCardPublicaties } from './refactored/molecules/CardPublicaties.svelte'
+export { default as RCardNews } from './refactored/molecules/CardNews.svelte'
 export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte'
 export { default as RContactForm } from './refactored/molecules/ContactForm.svelte'
 export { default as RFilterButtons } from './refactored/molecules/FilterButtons.svelte'

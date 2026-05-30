@@ -7,7 +7,7 @@
 	import { publicatie } from '$lib'
 
 	// Import components
-	import { Hero, RFilterButtons } from '$lib'
+	import { Hero, RFilterButtons, RCardPublicaties } from '$lib'
 
 	const { data } = $props()
 
@@ -40,7 +40,7 @@
 	<div class="documents-container">
 		<ul>
 			{#each documents as document (document.id)}
-				<li><DocumentCard {document} /></li>
+				<li><RCardPublicaties {document} /></li>
 			{/each}
 		</ul>
 	</div>

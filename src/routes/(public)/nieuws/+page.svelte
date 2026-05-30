@@ -1,5 +1,5 @@
 <script>
-	import { Nieuwshero } from '$lib'
+	import { Nieuwshero, RCardNews } from '$lib'
 
 	/* Import images */
 	import { dots } from '$lib'
@@ -17,16 +17,9 @@
 
 	const itemsPerPage = 9
 
-	const totalPages = $derived(
-		Math.ceil(data.news.length / itemsPerPage)
-	)
+	const totalPages = $derived(Math.ceil(data.news.length / itemsPerPage))
 
-	const paginatedNews = $derived(
-		data.news.slice(
-			(currentPage - 1) * itemsPerPage,
-			currentPage * itemsPerPage
-		)
-	)
+	const paginatedNews = $derived(data.news.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage))
 
 	function nextPage() {
 		if (currentPage < totalPages) {
@@ -65,29 +58,7 @@
 			<ul>
 				{#each data.latest3 as item (item.uuid)}
 					<li>
-						<article>
-							<h2>{item.title}</h2>
-
-							<section class="date">
-								<img
-									src={calendar}
-									alt=""
-								/>
-								<p>{formatDateNL(item.date)}</p>
-							</section>
-
-							<p>{item.description}</p>
-
-							<a
-								class="button-outline-blue"
-								href={`/nieuws/${item.uuid}`}
-							>
-								Meer informatie
-								<span class="sr-only">
-									over {item.title}
-								</span>
-							</a>
-						</article>
+						<RCardNews {item} />
 					</li>
 				{/each}
 			</ul>
@@ -106,29 +77,7 @@
 		<ul>
 			{#each paginatedNews as item (item.uuid)}
 				<li>
-					<article>
-						<h2>{item.title}</h2>
-
-						<section class="date">
-							<img
-								src={calendar}
-								alt=""
-							/>
-							<p>{formatDateNL(item.date)}</p>
-						</section>
-
-						<p>{item.description}</p>
-
-						<a
-							class="button-outline-blue"
-							href={`/nieuws/${item.uuid}`}
-						>
-							Meer informatie
-							<span class="sr-only">
-								over {item.title}
-							</span>
-						</a>
-					</article>
+					<RCardNews {item} />
 				</li>
 			{/each}
 		</ul>
@@ -187,69 +136,6 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.5em;
-
-		h2 {
-			font-size: 25px;
-		}
-
-		article {
-			display: grid;
-			grid-template-rows: auto auto 1fr auto;
-			gap: 1.25em;
-			border: 1px solid var(--neutral-700);
-			border-radius: 1em;
-			padding: 2em;
-			background: light-dark(var(--text-white), hsl(210, 30%, 8%));
-			transition: 0.2s ease-in-out;
-			height: 100%;
-
-			h2 {
-				max-width: 30ch;
-				grid-row: 2;
-			}
-
-			p {
-				max-width: 60ch;
-				line-height: 1.6;
-			}
-
-			a {
-				align-self: start;
-				margin-top: auto;
-			}
-		}
-
-		p {
-			max-width: 60ch;
-			line-height: 1.6;
-		}
-
-		a {
-			align-self: start;
-			margin-top: auto;
-		}
-	}
-
-	article:hover {
-		border-color: var(--blue-900);
-		box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
-		translate: 0 -1%;
-	}
-
-	.date {
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		gap: 0.75em;
-	}
-
-	.sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
 	}
 
 	@container news-container (min-width: 768px) {
@@ -261,10 +147,6 @@
 	@container news-container (min-width: 1024px) {
 		ul {
 			grid-template-columns: repeat(3, 1fr);
-		}
-
-		article {
-			padding: 2.5em;
 		}
 	}
 </style>
