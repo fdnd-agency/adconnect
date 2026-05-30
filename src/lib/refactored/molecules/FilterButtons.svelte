@@ -1,12 +1,22 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation'
+
 	const { categories, selectedCategory, documents } = $props()
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
 
+	let lastValue = $state<string | null>(null)
+
 	function filterClick(e: Event) {
 		const target = e.target as HTMLInputElement
-
+		lastValue = target.value
 		target.form?.requestSubmit()
 	}
+
+	afterNavigate(() => {
+		if (!lastValue) return
+		document.querySelector<HTMLInputElement>(`input[value="${lastValue}"]`)?.focus()
+		lastValue = null
+	})
 </script>
 
 {#snippet categoryRadio(category)}
@@ -18,6 +28,7 @@
 			value={category.value}
 			checked={normalized === category.value}
 			onclick={filterClick}
+			autofocus={normalized === category.value}
 		/>
 		<span>{category.label}</span>
 	</label>
@@ -77,6 +88,10 @@
 	.filter-section {
 		display: flex;
 		flex-direction: column;
+
+		&:focus-within {
+			background-color: red;
+		}
 	}
 
 	.category-filter {
@@ -85,6 +100,7 @@
 		flex-wrap: wrap;
 		gap: 1em;
 		padding: 3em 0 0 0;
+		margin-bottom: 1em;
 
 		.category-filter__group {
 			border: none;
