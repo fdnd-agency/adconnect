@@ -48,6 +48,8 @@
 
 	article > div:first-of-type {
 		border-radius: 0.5em;
+		height: 210px;
+		object-fit: contain;
 		overflow: hidden;
 	}
 

@@ -4,6 +4,7 @@
 
 	// Import components
 	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
+	import { RSectionHero } from '$lib'
 
 	const { data } = $props()
 
@@ -15,24 +16,21 @@
 	<title>Over Ad's | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title="Over Associate Degree's"
-	description="Associate Degrees zijn praktijkgerichte opleidingen van twee jaar die studenten voorbereiden op het werkveld en doorstroom naar een bachelor."
->
-	<img
-		class="hero-image"
-		src={overad}
-		alt=""
-		fetchpriority="high"
-	/>
-	<a
-		slot="primary"
-		href="#benefit"
-		class="button-outline-white"
-		aria-label="Lees meer over Associate Degree's"
-		id="benefit">Lees meer →</a
-	>
-</Hero>
+
+<RSectionHero
+	sectionInfo={{
+		title: "Over Associate Degree's",
+		description: 'Associate Degrees zijn praktijkgerichte opleidingen van twee jaar die studenten voorbereiden op het werkveld en doorstroom naar een bachelor.'
+	}}
+	primaryLink={{ label: 'Lees meer →', href: '#benefit' }}
+	picture={{
+		isEnhanced: true,
+		src: overad,
+		alt: '',
+		fetchpriority: 'high'
+	}}
+	backgroundColor="background-black"
+/>
 
 <section class="about-ad-hero">
 	<section class="intro">
