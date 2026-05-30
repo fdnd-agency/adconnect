@@ -5,7 +5,7 @@
 </script>
 
 {#if src && isEnhanced}
-	<enhanced:img
+	<enhanced:img class="aa"
 		{src}
 		{alt}
 		{loading}
@@ -40,6 +40,7 @@
 		object-fit: cover;
 		display: block;
 		width: 100%;
+		height: auto;
 	}
 
 	picture img {

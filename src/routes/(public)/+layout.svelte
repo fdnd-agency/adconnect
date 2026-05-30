@@ -50,6 +50,8 @@
 
 	main {
 		margin: 7.9em 0 0 0;
+		padding: 0 5%;
+
 	}
 
 	/* Skiplink */

@@ -19,9 +19,10 @@
 	.page-header {
 		display: flex;
 		flex-direction: column;
+		/* align-self: end; */
 		gap: 1em;
 		width: 100%;
-		max-width: 65ch;
+		max-width: 75ch;
 	}
 
 	.page-header__buttons {

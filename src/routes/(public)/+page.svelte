@@ -15,7 +15,7 @@
 	const section = {
 		title: 'Het landelijke platform voor Associate degrees',
 		description:
-			'Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs.'
+			'Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.'
 	}
 </script>
 
