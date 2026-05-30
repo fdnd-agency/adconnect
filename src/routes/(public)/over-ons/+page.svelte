@@ -28,7 +28,6 @@
 		alt: 'Waarom AdConnect?',
 		fetchpriority: 'high'
 	}}
-	backgroundColor="black"
 />
 
 <section class="intro">

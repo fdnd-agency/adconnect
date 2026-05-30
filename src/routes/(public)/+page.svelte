@@ -35,6 +35,7 @@
 		fetchpriority: 'high',
 		loading: 'eager'
 	}}
+	backgroundColor="blue"
 />
 
 <NewsCardSection news={data.news.slice(0, 3)} />

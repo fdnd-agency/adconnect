@@ -29,7 +29,6 @@
 		alt: '',
 		fetchpriority: 'high'
 	}}
-	backgroundColor="background-black"
 />
 
 <section class="about-ad-hero">

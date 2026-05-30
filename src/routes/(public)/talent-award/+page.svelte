@@ -31,7 +31,6 @@
 		alt: '',
 		fetchpriority: 'high'
 	}}
-	backgroundColor="black"
 />
 
 <section class="intro">

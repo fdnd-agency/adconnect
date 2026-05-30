@@ -11,13 +11,13 @@
 		{#if primaryLink}
 			<RLink
 				href={primaryLink.href}
-				class="button-outline-blue">{primaryLink.label}</RLink
+				class="button-outline-white">{primaryLink.label}</RLink
 			>{/if}
 
 		{#if secondaryLink}
 			<RLink
 				href={secondaryLink.href}
-				class="button-outline-white">{secondaryLink.label}</RLink
+				class="button-outline-blue">{secondaryLink.label}</RLink
 			>{/if}
 	</RCardHero>
 
@@ -44,6 +44,7 @@
 		gap: 2em;
 		padding: 3em 5% 0;
 		width: 100%;
+		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 
 		@media (min-width: 1024px) {
 			flex-direction: row;
@@ -53,8 +54,8 @@
 		}
 	}
 
-	.black {
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+	.blue {
+		background-color: light-dark(var(--text-white), var(--blue-800));
 	}
 
 	.hero-media {

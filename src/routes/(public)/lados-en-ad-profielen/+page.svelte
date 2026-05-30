@@ -44,7 +44,6 @@
 		alt: 'Mensen tijdens een landelijk overleg over Associate degree-opleidingen',
 		fetchpriority: 'high'
 	}}
-	backgroundColor='black'
 />
 
 <section

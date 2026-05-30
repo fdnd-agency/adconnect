@@ -48,7 +48,6 @@
 		alt: '',
 		fetchpriority: 'high'
 	}}
-	backgroundColor='black'
 />
 
 <div class="filter-buttons">

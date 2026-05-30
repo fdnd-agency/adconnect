@@ -48,7 +48,6 @@
 		alt: '',
 		fetchpriority: 'high'
 	}}
-	backgroundColor="black"
 />
 
 <section class="news">
