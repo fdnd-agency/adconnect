@@ -42,6 +42,8 @@
 		justify-self: center;
 		gap: 2em;
 		padding-top: 3em;
+		margin: 0 5%;
+
 
 		@media (min-width: 1024px) {
 			flex-direction: row;

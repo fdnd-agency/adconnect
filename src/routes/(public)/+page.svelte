@@ -23,32 +23,6 @@
 	<title>Home | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<!-- <Hero
-	title="Het landelijke platform voor Associate degrees"
-	description="Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken."
->
-	<RLink
-		slot="secondary"
-		href="/ad-dag"
-		class="button-outline-white">Kom naar de Ad-dag</RLink
-	>
-	<RLink
-		slot="primary"
-		href="/over-ad"
-		class="button-outline-blue">Meer over Ad's</RLink
-	>
-	<RPicture
-		slot="media"
-		isEnhanced
-		src={zaal}
-		alt="Een grote zaal vol mensen die op stoelen zitten en luisteren naar een spreker."
-		fetchpriority="high"
-		loading="eager"
-		width="300"
-		height="210"
-	/>
-</Hero> -->
-
 <RSectionHero
 	sectionInfo={section}
 	primaryLink={{ label: "Meer over Ad's", href: '/over-ad' }}
