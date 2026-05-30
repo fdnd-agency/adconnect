@@ -5,7 +5,7 @@
 
 	const { data } = $props()
 
-	import { Hero, Divider, DividerText } from '$lib'
+	import { Hero, Divider, DividerText, RSectionHero } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -16,24 +16,20 @@
 	<title>Talent Award| Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title="Ad Talent Award"
-	description="Jaarlijks reikt het Overlegplatform de Ad Talent Award uit aan twee Associate degree-talenten, die worden benoemd tot landelijke Ad-ambassadeurs. Alle aangesloten hogescholen kunnen een Ad-talent nomineren. De winnaars ontvangen de award tijdens de jaarlijkse Ad-dag en vertegenwoordigen het Ad-onderwijs in Nederland."
->
-	<img
-		class="hero-image"
-		src={Talent}
-		alt=""
-		fetchpriority="high"
-	/>
-	<a
-		slot="primary"
-		href="#benefit"
-		class="button-outline-white"
-		id="benefit"
-		>Lees meer <span aria-hidden="true">→</span> <span class="visually-hidden">over aadee talent award</span>
-	</a>
-</Hero>
+<RSectionHero
+	sectionInfo={{
+		title: 'Ad Talent Award',
+		description: 'Jaarlijks reikt het Overlegplatform de Ad Talent Award uit aan twee Associate degree-talenten, die worden benoemd tot landelijke Ad-ambassadeurs. Alle aangesloten hogescholen kunnen een Ad-talent nomineren. De winnaars ontvangen de award tijdens de jaarlijkse Ad-dag en vertegenwoordigen het Ad-onderwijs in Nederland.'
+	}}
+	primaryLink={{ label: 'Lees meer →', href: '#benefit' }}
+	picture={{
+		isEnhanced: false,
+		src: Talent,
+		alt: '',
+		fetchpriority: 'high'
+	}}
+	backgroundColor='black'
+/>
 
 <section class="intro">
 	<img

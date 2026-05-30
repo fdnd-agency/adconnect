@@ -2,11 +2,10 @@
 	import { Nieuwshero, RCardNews } from '$lib'
 
 	/* Import images */
-	import { dots } from '$lib'
-	import { calendar } from '$lib'
+	import { dots, calendar } from '$lib'
 
 	/* Import components */
-	import { Hero } from '$lib'
+	import { RSectionHero } from '$lib'
 	import { formatDateNL } from '$lib/molecules/date'
 
 	// Haal data op uit page.server.js via props
@@ -38,17 +37,19 @@
 	<title>Nieuws | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title="Nieuws"
-	description="Op deze pagina vind je updates en korte verslagen van georganiseerde evenementen."
->
-	<img
-		class="hero-image"
-		src={Nieuwshero}
-		alt=""
-		fetchpriority="high"
-	/>
-</Hero>
+<RSectionHero
+	sectionInfo={{
+		title: 'Nieuws',
+		description: 'Op deze pagina vind je updates en korte verslagen van georganiseerde evenementen.'
+	}}
+	picture={{
+		isEnhanced: false,
+		src: Nieuwshero,
+		alt: '',
+		fetchpriority: 'high'
+	}}
+	backgroundColor="black"
+/>
 
 <section class="news">
 	<section class="latest-news">
