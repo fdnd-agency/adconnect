@@ -109,11 +109,11 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	infoCard
 />
 
-<section class="logo-section">
-	<Rseparator dividerText="Partijen waarmee wij samenwerken" />
-	<RCarousel logos carouselItems={cooperation} />
-	<Rseparator />
-</section>
+<RCarousel
+	logos
+	carouselItems={cooperation}
+	dividerText="Partijen waarmee wij samenwerken"
+/>
 
 <FeatureSplit
 	title="Waarom kiezen voor een Associate degree?"
@@ -126,18 +126,3 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 />
 
 <RFaqSection title="Veelgestelde vragen" />
-
-<style>
-	.logo-section {
-		display: flex;
-		gap: 2em;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		padding: 0 0 3em 0;
-		@media (min-width: 768px) {
-			gap: 3em;
-			padding: 0 0 5em 0;
-		}
-	}
-</style>

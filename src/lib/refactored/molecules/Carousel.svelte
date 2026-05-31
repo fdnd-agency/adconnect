@@ -1,7 +1,7 @@
 <script>
-	import { RLink, RPicture } from '$lib'
+	import { RLink, RPicture, Rseparator } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
-	const { carouselItems, logos, nominations } = $props()
+	const { carouselItems, logos, nominations, dividerText, backgroundBlack } = $props()
 	const imageUrl = (id) => `${DIRECTUS_URL}/assets/${id}`
 </script>
 
@@ -41,19 +41,46 @@
 	</li>
 {/snippet}
 
-<div class="carousel">
-	<ul class="carousel__track">
-		{#each carouselItems as item (item.id)}
-			{#if logos}
-				{@render logoItem(item)}
-			{:else if nominations}
-				{@render nominationItem(item)}
-			{/if}
-		{/each}
-	</ul>
-</div>
+<section
+	class="logo-section"
+	class:background-black={backgroundBlack}
+>
+	<Rseparator {dividerText} />
+
+	<div class="carousel">
+		<ul class="carousel__track">
+			{#each carouselItems as item (item.id)}
+				{#if logos}
+					{@render logoItem(item)}
+				{:else if nominations}
+					{@render nominationItem(item)}
+				{/if}
+			{/each}
+		</ul>
+	</div>
+
+	<Rseparator />
+</section>
 
 <style>
+	.background-black {
+		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+	}
+
+	.logo-section {
+		display: flex;
+		gap: 2em;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		padding: 0 0 3em 0;
+
+		@media (min-width: 768px) {
+			gap: 3em;
+			padding: 0 0 5em 0;
+		}
+	}
+
 	.carousel {
 		width: 90%;
 		max-width: 1400px;

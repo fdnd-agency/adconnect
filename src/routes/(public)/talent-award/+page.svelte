@@ -143,11 +143,10 @@
 	</p>
 </section>
 
-<Rseparator dividerText="Voorgaande nominaties" />
-
 <RCarousel
 	nominations
 	carouselItems={data.nominations}
+	dividerText="Voorgaande nominaties"
 />
 
 <style>

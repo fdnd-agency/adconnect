@@ -69,11 +69,12 @@
 	imagePosition="left"
 />
 
-<section class="logo-section">
-	<Rseparator dividerText="Partijen waarmee wij samenwerken" />
-	<RCarousel logos carouselItems={cooperation} />
-	<Rseparator />
-</section>
+<RCarousel
+	logos
+	carouselItems={cooperation}
+	dividerText="Partijen waarmee wij samenwerken"
+	backgroundBlack
+/>
 
 <section class="themes">
 	<h2>Thema's binnen Associate degrees</h2>
@@ -142,22 +143,6 @@
 	@media (min-width: 1024px) {
 		.benefits {
 			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	/* Logo section */
-	.logo-section {
-		display: flex;
-		gap: 2em;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
-		padding: 0 0 3em 0;
-
-		@media (min-width: 768px) {
-			gap: 3em;
-			padding: 0 0 5em 0;
 		}
 	}
 

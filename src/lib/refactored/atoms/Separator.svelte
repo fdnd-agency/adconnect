@@ -18,7 +18,6 @@
 		gap: 1rem;
 		width: 90%;
 		max-width: 1400px;
-		margin: 3em auto;
 	}
 
 	hr,
