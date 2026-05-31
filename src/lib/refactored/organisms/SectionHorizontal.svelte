@@ -5,9 +5,9 @@
 </script>
 
 <section
-	class="container"
-	class:mirrored
-	class:backgroundBlack
+	class="media-section"
+	class:media-section--mirrored={mirrored}
+	class:media-section--background-black={backgroundBlack}
 >
 	<RCardSection
 		title={sectionInfo.title}
@@ -16,8 +16,8 @@
 	/>
 
 	{#if picture}
-		<div class="background-img">
-			<section class="hero-media">
+		<div class="media-section__media-wrapper">
+			<section class="media-section__media">
 				<RPicture
 					isEnhanced={picture.isEnhanced}
 					src={picture.src}
@@ -33,15 +33,18 @@
 </section>
 
 <style>
-	.container {
+	.media-section {
+		--_background: transparent;
+
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		gap: 2em;
 		padding: 3em 5% 0;
 		width: 100%;
 		overflow: hidden;
-		justify-content: center;
+		background-color: var(--_background);
 
 		@media (min-width: 1024px) {
 			flex-direction: row;
@@ -55,40 +58,39 @@
 		}
 	}
 
-	.mirrored {
+	.media-section--mirrored {
 		@media (min-width: 1024px) {
 			flex-direction: row-reverse;
 		}
 	}
 
-	.backgroundBlack {
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+	.media-section--background-black {
+		--_background: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 	}
 
-	.hero-media {
+	.media-section__media-wrapper {
+		position: relative;
+
+		&::after {
+			content: '';
+			position: absolute;
+			z-index: 1;
+			top: 16em;
+			left: -5em;
+			width: 220px;
+			height: 220px;
+			border-radius: 50%;
+			background-color: hsl(217deg 16.74% 84.58% / 15%);
+		}
+	}
+
+	.media-section__media {
+		position: relative;
+		z-index: 10;
 		width: 100%;
 		max-width: 640px;
 		max-height: 400px;
 		border-radius: 1em;
 		overflow: hidden;
-		z-index: 10;
-		position: relative;
-	}
-
-	.background-img {
-		position: relative;
-	}
-
-	.background-img::after {
-		content: '';
-		position: absolute;
-		z-index: 1;
-
-		height: 220px;
-		width: 220px;
-		border-radius: 50%;
-		background-color: hsl(217deg 16.74% 84.58% / 15%);
-		top: 16em;
-		left: -5em;
 	}
 </style>

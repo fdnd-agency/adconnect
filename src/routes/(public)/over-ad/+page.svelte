@@ -54,13 +54,13 @@
 	</section>
 </section>
 
-
 <RSectionHorizontal
 	mirrored
 	backgroundBlack
 	sectionInfo={{
 		title: 'Doorstroom Ad-bachelor',
-		description: 'Met een Ad-diploma kun je rechtstreeks doorstromen naar een bacheloropleiding. Het programma is zo opgebouwd dat de kennis en vaardigheden aansluiten op de vervolgopleiding en de beroepspraktijk, zodat studenten soepel verder kunnen bouwen aan hun carrière.'
+		description:
+			'Met een Ad-diploma kun je rechtstreeks doorstromen naar een bacheloropleiding. Het programma is zo opgebouwd dat de kennis en vaardigheden aansluiten op de vervolgopleiding en de beroepspraktijk, zodat studenten soepel verder kunnen bouwen aan hun carrière.'
 	}}
 	primaryLink={{ label: 'Kom naar de Ad-dag', href: '/ad-dag' }}
 	picture={{
@@ -82,7 +82,6 @@
 		<ThemeCard {themes} />
 	</section>
 </section>
-
 
 <RSectionHorizontal
 	sectionInfo={{

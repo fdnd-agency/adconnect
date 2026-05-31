@@ -46,7 +46,6 @@
 		margin: 0;
 		padding: 0;
 		scroll-behavior: smooth;
-		/* border: 1px solid red; */
 	}
 
 	main {
