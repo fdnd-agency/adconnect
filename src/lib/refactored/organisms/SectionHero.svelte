@@ -3,7 +3,7 @@
 	const { sectionInfo, primaryLink, secondaryLink, picture, backgroundColor } = $props()
 </script>
 
-<section class="container {backgroundColor}">
+<section class={`hero ${backgroundColor ? `hero--${backgroundColor}` : ''}`}>
 	<RCardHero
 		title={sectionInfo.title}
 		description={sectionInfo.description}
@@ -12,17 +12,19 @@
 			<RLink
 				href={primaryLink.href}
 				class="button-outline-white">{primaryLink.label}</RLink
-			>{/if}
+			>
+		{/if}
 
 		{#if secondaryLink}
 			<RLink
 				href={secondaryLink.href}
 				class="button-outline-blue">{secondaryLink.label}</RLink
-			>{/if}
+			>
+		{/if}
 	</RCardHero>
 
 	{#if picture}
-		<section class="hero-media">
+		<section class="hero__media">
 			<RPicture
 				isEnhanced={picture.isEnhanced}
 				src={picture.src}
@@ -37,14 +39,16 @@
 </section>
 
 <style>
-	.container {
+	.hero {
+		--_background: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 2em;
 		padding: 3em 5% 0;
 		width: 100%;
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		background-color: var(--_background);
 
 		@media (min-width: 1024px) {
 			flex-direction: row;
@@ -54,11 +58,11 @@
 		}
 	}
 
-	.blue {
-		background-color: light-dark(var(--text-white), var(--blue-800));
+	.hero--blue {
+		--_background: light-dark(var(--text-white), var(--blue-800));
 	}
 
-	.hero-media {
+	.hero__media {
 		width: 100%;
 		max-width: 640px;
 		max-height: 400px;
