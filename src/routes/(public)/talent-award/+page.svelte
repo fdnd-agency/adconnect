@@ -5,7 +5,7 @@
 
 	const { data } = $props()
 
-	import { Hero, Divider, DividerText } from '$lib'
+	import { RCarousel, Hero, Divider, DividerText } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 

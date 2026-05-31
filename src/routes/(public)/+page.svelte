@@ -3,7 +3,7 @@
 
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
-	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo, RCarousel } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
@@ -109,17 +109,10 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	infoCard
 />
 
-<!-- <RCardInfo
-	title="Doorstroom Ad"
-	description="Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma."
-	link={{ label: "Meer over doorstroom Ad's", href: '/over-ad' }}
-	publicaties
-/> -->
-
 <section class="logo-section">
-	<Rseparator dividerText="Partijen waarmee wij samenwerken" />
-	<LogoSection {cooperation} />
-	<Rseparator />
+	<DividerText text="Partijen waarmee wij samenwerken" />
+	<RCarousel carouselItems={cooperation} />
+	<Divider />
 </section>
 
 <FeatureSplit

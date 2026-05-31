@@ -3,7 +3,7 @@
 	import { doorstroom, overleggen, awards, dots, placeholder, overad } from '$lib'
 
 	// Import components
-	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
+	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, RCarousel, Hero } from '$lib'
 
 	const { data } = $props()
 
@@ -71,7 +71,7 @@
 
 <section class="logo-section">
 	<DividerText text="Partijen waarmee wij samenwerken" />
-	<LogoSection {cooperation} />
+	<RCarousel carouselItems={cooperation} />
 	<Divider />
 </section>
 
