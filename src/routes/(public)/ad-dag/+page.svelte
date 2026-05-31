@@ -4,7 +4,7 @@
 	// Import images
 	import { addag1, addag2, addag3 } from '$lib'
 
-	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule, RSectionHero, RPicture, RSectionHorizontal } from '$lib'
+	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule, RSectionHero, RPicture, RSectionPage } from '$lib'
 </script>
 
 <svelte:head>
@@ -25,7 +25,7 @@
 	}}
 />
 
-<RSectionHorizontal
+<RSectionPage
 	sectionInfo={{
 		title: 'Wat is de landelijke Ad-dag?',
 		description:

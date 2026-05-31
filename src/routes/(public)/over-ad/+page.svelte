@@ -4,7 +4,7 @@
 
 	// Import components
 	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
-	import { RSectionHero, RSectionHorizontal } from '$lib'
+	import { RSectionHero, RSectionPage } from '$lib'
 
 	const { data } = $props()
 
@@ -54,7 +54,7 @@
 	</section>
 </section>
 
-<RSectionHorizontal
+<RSectionPage
 	mirrored
 	backgroundBlack
 	sectionInfo={{
@@ -83,7 +83,7 @@
 	</section>
 </section>
 
-<RSectionHorizontal
+<RSectionPage
 	sectionInfo={{
 		title: 'Landelijke Ad-overleggen en Ad-profielen',
 		description:
@@ -99,7 +99,7 @@
 
 <Divider />
 
-<RSectionHorizontal
+<RSectionPage
 	mirrored
 	sectionInfo={{
 		title: 'Ad Talent Awards',

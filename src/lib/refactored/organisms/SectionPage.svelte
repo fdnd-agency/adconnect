@@ -1,13 +1,14 @@
 <script>
 	import { RCardSection, RLink, RPicture } from '$lib'
 	import { IconBackgroundCircle } from '$lib/icons'
-	const { sectionInfo, primaryLink, picture, mirrored, backgroundBlack } = $props()
+	const { sectionInfo, primaryLink, picture, mirrored, backgroundBlack, vertical } = $props()
 </script>
 
 <section
 	class="media-section"
 	class:media-section--mirrored={mirrored}
 	class:media-section--background-black={backgroundBlack}
+	class:media-section--vertical={vertical}
 >
 	<RCardSection
 		title={sectionInfo.title}
@@ -66,6 +67,17 @@
 
 	.media-section--background-black {
 		--_background: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+	}
+
+	.media-section--vertical {
+		flex-direction: column;
+		align-items: center;
+		padding: 5em 2em;
+
+		.media-section__media {
+			width: 100%;
+			max-width: 1000px;
+		}
 	}
 
 	.media-section__media-wrapper {

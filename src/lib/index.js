@@ -125,4 +125,4 @@ export { default as RContactForm } from './refactored/molecules/ContactForm.svel
 
 // organisms
 export { default as RSectionHero } from './refactored/organisms/SectionHero.svelte'
-export { default as RSectionHorizontal } from './refactored/organisms/SectionHorizontal.svelte'
+export { default as RSectionPage } from './refactored/organisms/SectionPage.svelte'
