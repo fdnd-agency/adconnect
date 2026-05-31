@@ -71,11 +71,9 @@
 
 	.media-section--vertical {
 		flex-direction: column;
-		align-items: center;
 		padding: 5em 2em;
 
 		.media-section__media {
-			width: 100%;
 			max-width: 1000px;
 		}
 	}
