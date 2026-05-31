@@ -1,10 +1,10 @@
 <script>
 	import { RCardSection, RLink, RPicture } from '$lib'
 	import { IconBackgroundCircle } from '$lib/icons'
-	const { sectionInfo, primaryLink, picture } = $props()
+	const { sectionInfo, primaryLink, picture, mirrored } = $props()
 </script>
 
-<section class="container">
+<section class="container" class:mirrored>
 	<RCardSection
 		title={sectionInfo.title}
 		description={sectionInfo.description}
@@ -48,6 +48,12 @@
 		@media (min-width: 1375px) {
 			gap: 5em;
 			padding: 5em 0;
+		}
+	}
+
+	.mirrored {
+		@media (min-width: 1024px) {
+			flex-direction: row-reverse;
 		}
 	}
 
