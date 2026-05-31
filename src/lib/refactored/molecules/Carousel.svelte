@@ -26,7 +26,7 @@
 
 {#snippet nominationItem(item)}
 	<li class="carousel__item nomination">
-		<h3 class="nomination__title">{item.title}</h3>
+		<p class="nomination__name">{item.title}</p>
 
 		{#if item.profile_picture}
 			<div class="nomination__photo">
@@ -131,9 +131,13 @@
 		margin-bottom: 3rem;
 	}
 
-	.nomination__title {
+	.nomination__name {
 		min-width: 200px;
 		text-wrap: nowrap;
+		font-size: var(--h3-size);
+		line-height: var(--h3-line-height);
+		max-width: var(--h3-max-width);
+		font-weight: var(--heading-font-weight);
 	}
 
 	.nomination__photo {
