@@ -4,7 +4,7 @@
 
 	// Import components
 	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
-	import { RSectionHero } from '$lib'
+	import { RSectionHero, RSectionHorizontal } from '$lib'
 
 	const { data } = $props()
 
@@ -15,7 +15,6 @@
 <svelte:head>
 	<title>Over Ad's | Overlegplatform Associate Degrees</title>
 </svelte:head>
-
 
 <RSectionHero
 	sectionInfo={{
@@ -79,7 +78,7 @@
 	</section>
 </section>
 
-<ImageTextSection
+<!-- <ImageTextSection
 	image={overleggen}
 	alt=""
 	{dots}
@@ -89,6 +88,20 @@
 	linkText="Meer weten? Neem contact op"
 	imagePosition="right"
 	background="white"
+/> -->
+
+<RSectionHorizontal
+	sectionInfo={{
+		title: 'Landelijke Ad-overleggen en Ad-profielen',
+		description:
+			'Het Overlegplatform organiseert regelmatig landelijke overleggen waarin vertegenwoordigers van alle Ad-opleidingen samenkomen. Tijdens deze bijeenkomsten worden nieuwe Ad-profielen besproken, kwaliteitsrichtlijnen gedeeld en best practices uitgewisseld. Zo blijven opleidingen actueel en goed afgestemd op het werkveld.'
+	}}
+	primaryLink={{ label: 'Meer weten? Neem contact op', href: '/contact' }}
+	picture={{
+		isEnhanced: true,
+		src: overleggen,
+		alt: ''
+	}}
 />
 
 <Divider />
