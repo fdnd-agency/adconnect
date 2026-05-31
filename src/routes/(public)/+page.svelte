@@ -111,7 +111,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 
 <section class="logo-section">
 	<DividerText text="Partijen waarmee wij samenwerken" />
-	<RCarousel carouselItems={cooperation} />
+	<RCarousel logos carouselItems={cooperation} />
 	<Divider />
 </section>
 

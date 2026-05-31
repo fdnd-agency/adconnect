@@ -1,7 +1,8 @@
 <script>
 	import { RLink, RPicture } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
-	const { carouselItems } = $props()
+	const { carouselItems, logos, nominations } = $props()
+	const imageUrl = (id) => `${DIRECTUS_URL}/assets/${id}`
 </script>
 
 {#snippet logoItem(logo)}
@@ -23,10 +24,30 @@
 	</li>
 {/snippet}
 
+{#snippet nominationItem(item)}
+	<li class="nomination">
+		<h3>{item.title}</h3>
+
+		{#if item.profile_picture}
+			<RPicture
+				src={imageUrl(item.profile_picture.id ?? item.profile_picture)}
+				alt={item.title}
+				width="350"
+				height="65"
+				style="object-fit: contain;"
+			/>
+		{/if}
+	</li>
+{/snippet}
+
 <div class="carousel">
 	<ul class="carousel__track">
-		{#each carouselItems as logo (logo.id)}
-			{@render logoItem(logo)}
+		{#each carouselItems as item (item.id)}
+			{#if logos}
+				{@render logoItem(item)}
+			{:else if nominations}
+				{@render nominationItem(item)}
+			{/if}
 		{/each}
 	</ul>
 </div>

@@ -127,6 +127,7 @@
 	</section>
 </section>
 
+
 <section class="nominate">
 	<img
 		class="logo"
@@ -164,6 +165,8 @@
 		{/each}
 	</ul>
 </section>
+
+<RCarousel nominations carouselItems={data.nominations} />
 
 <style>
 	.intro,
