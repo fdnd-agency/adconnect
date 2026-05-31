@@ -26,10 +26,10 @@
 
 {#snippet nominationItem(item)}
 	<li class="carousel__item nomination">
-		<h3>{item.title}</h3>
+		<h3 class="nomination__title">{item.title}</h3>
 
 		{#if item.profile_picture}
-			<div class="profile-photo">
+			<div class="nomination__photo">
 				<RPicture
 					src={imageUrl(item.profile_picture.id ?? item.profile_picture)}
 					alt={item.title}
@@ -43,7 +43,7 @@
 
 <section
 	class="logo-section"
-	class:background-black={backgroundBlack}
+	class:logo-section--background-black={backgroundBlack}
 >
 	<Rseparator {dividerText} />
 
@@ -63,22 +63,25 @@
 </section>
 
 <style>
-	.background-black {
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
-	}
-
 	.logo-section {
+		--_background: transparent;
+
 		display: flex;
-		gap: 2em;
 		flex-direction: column;
 		align-items: center;
+		gap: 2em;
 		width: 100%;
 		padding: 0 0 3em 0;
+		background-color: var(--_background);
 
 		@media (min-width: 768px) {
 			gap: 3em;
 			padding: 0 0 5em 0;
 		}
+	}
+
+	.logo-section--background-black {
+		--_background: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 	}
 
 	.carousel {
@@ -128,25 +131,28 @@
 		margin-bottom: 3rem;
 	}
 
-	.nomination h3 {
+	.nomination__title {
 		min-width: 200px;
 		text-wrap: nowrap;
 	}
 
-	.profile-photo {
+	.nomination__photo {
+		--_opacity: 0;
+		--_translate-y: 10px;
+
 		position: absolute;
 		bottom: 100%;
 		left: 50%;
-		transform: translateX(-50%) translateY(10px);
 		width: 150px;
-		opacity: 0;
+		opacity: var(--_opacity);
+		transform: translateX(-50%) translateY(var(--_translate-y));
 		pointer-events: none;
 		transition: 0.2s ease;
 	}
 
-	.nomination:hover .profile-photo {
-		opacity: 1;
-		transform: translateX(-50%) translateY(0);
+	.nomination:hover .nomination__photo {
+		--_opacity: 1;
+		--_translate-y: 0;
 	}
 
 	@media (prefers-color-scheme: dark) {
