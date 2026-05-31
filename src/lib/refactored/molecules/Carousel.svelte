@@ -25,17 +25,18 @@
 {/snippet}
 
 {#snippet nominationItem(item)}
-	<li class="nomination">
+	<li class="carousel__item nomination">
 		<h3>{item.title}</h3>
 
 		{#if item.profile_picture}
-			<RPicture
-				src={imageUrl(item.profile_picture.id ?? item.profile_picture)}
-				alt={item.title}
-				width="350"
-				height="65"
-				style="object-fit: contain;"
-			/>
+			<div class="profile-photo">
+				<RPicture
+					src={imageUrl(item.profile_picture.id ?? item.profile_picture)}
+					alt={item.title}
+					width="150"
+					height="150"
+				/>
+			</div>
 		{/if}
 	</li>
 {/snippet}
@@ -56,7 +57,8 @@
 	.carousel {
 		width: 90%;
 		max-width: 1400px;
-		overflow: hidden;
+		overflow-x: clip;
+		overflow-y: visible;
 	}
 
 	.carousel__track {
@@ -69,6 +71,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		cursor: pointer;
 
 		@media (min-width: 768px) {
 			flex: 0 0 25%;
@@ -91,6 +94,32 @@
 			--_filter: grayscale(0%) brightness(1);
 			--_opacity: 1;
 		}
+	}
+
+	.nomination {
+		position: relative;
+		margin-bottom: 3rem;
+	}
+
+	.nomination h3 {
+		min-width: 200px;
+		text-wrap: nowrap;
+	}
+
+	.profile-photo {
+		position: absolute;
+		bottom: 100%;
+		left: 50%;
+		transform: translateX(-50%) translateY(10px);
+		width: 150px;
+		opacity: 0;
+		pointer-events: none;
+		transition: 0.2s ease;
+	}
+
+	.nomination:hover .profile-photo {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
 	}
 
 	@media (prefers-color-scheme: dark) {
