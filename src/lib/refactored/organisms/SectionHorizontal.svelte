@@ -1,10 +1,14 @@
 <script>
 	import { RCardSection, RLink, RPicture } from '$lib'
 	import { IconBackgroundCircle } from '$lib/icons'
-	const { sectionInfo, primaryLink, picture, mirrored } = $props()
+	const { sectionInfo, primaryLink, picture, mirrored, backgroundBlack } = $props()
 </script>
 
-<section class="container" class:mirrored>
+<section
+	class="container"
+	class:mirrored
+	class:backgroundBlack
+>
 	<RCardSection
 		title={sectionInfo.title}
 		description={sectionInfo.description}
@@ -57,11 +61,15 @@
 		}
 	}
 
+	.backgroundBlack {
+		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+	}
+
 	.hero-media {
 		width: 100%;
 		max-width: 640px;
 		max-height: 400px;
-		border-radius: 1em 1em 0 0;
+		border-radius: 1em;
 		overflow: hidden;
 		z-index: 10;
 		position: relative;

@@ -54,15 +54,20 @@
 	</section>
 </section>
 
-<ImageTextSection
-	image={doorstroom}
-	alt="Doorstroom Ad-bachelor"
-	{dots}
-	title="Doorstroom Ad-bachelor"
-	text="Met een Ad-diploma kun je rechtstreeks doorstromen naar een bacheloropleiding. Het programma is zo opgebouwd dat de kennis en vaardigheden aansluiten op de vervolgopleiding en de beroepspraktijk, zodat studenten soepel verder kunnen bouwen aan hun carrière."
-	link="/ad-dag"
-	linkText="Kom naar de Ad-dag"
-	imagePosition="left"
+
+<RSectionHorizontal
+	mirrored
+	backgroundBlack
+	sectionInfo={{
+		title: 'Doorstroom Ad-bachelor',
+		description: 'Met een Ad-diploma kun je rechtstreeks doorstromen naar een bacheloropleiding. Het programma is zo opgebouwd dat de kennis en vaardigheden aansluiten op de vervolgopleiding en de beroepspraktijk, zodat studenten soepel verder kunnen bouwen aan hun carrière.'
+	}}
+	primaryLink={{ label: 'Kom naar de Ad-dag', href: '/ad-dag' }}
+	picture={{
+		isEnhanced: true,
+		src: doorstroom,
+		alt: 'Doorstroom Ad-bachelor'
+	}}
 />
 
 <section class="logo-section">
@@ -78,17 +83,6 @@
 	</section>
 </section>
 
-<!-- <ImageTextSection
-	image={overleggen}
-	alt=""
-	{dots}
-	title="Landelijke Ad-overleggen en Ad-profielen"
-	text="Het Overlegplatform organiseert regelmatig landelijke overleggen waarin vertegenwoordigers van alle Ad-opleidingen samenkomen. Tijdens deze bijeenkomsten worden nieuwe Ad-profielen besproken, kwaliteitsrichtlijnen gedeeld en best practices uitgewisseld. Zo blijven opleidingen actueel en goed afgestemd op het werkveld."
-	link="/contact"
-	linkText="Meer weten? Neem contact op"
-	imagePosition="right"
-	background="white"
-/> -->
 
 <RSectionHorizontal
 	sectionInfo={{

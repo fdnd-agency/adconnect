@@ -1,9 +1,9 @@
 <script>
 	import { RCardHero, RLink, RPicture } from '$lib'
-	const { sectionInfo, primaryLink, secondaryLink, picture, backgroundColor } = $props()
+	const { sectionInfo, primaryLink, secondaryLink, picture, backgroundBlue } = $props()
 </script>
 
-<section class="container {backgroundColor}">
+<section class="container" class:backgroundBlue>
 	<RCardHero
 		title={sectionInfo.title}
 		description={sectionInfo.description}
@@ -54,7 +54,7 @@
 		}
 	}
 
-	.blue {
+	.backgroundBlue {
 		background-color: light-dark(var(--text-white), var(--blue-800));
 	}
 
