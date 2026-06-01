@@ -3,7 +3,8 @@
 	import { doorstroom, overleggen, awards, dots, placeholder, overad } from '$lib'
 
 	// Import components
-	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, RCarousel, Hero, Rseparator } from '$lib'
+	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
+	import { RSectionHero, RSectionPage, RCarousel, Rseparator } from '$lib'
 
 	const { data } = $props()
 
@@ -15,24 +16,19 @@
 	<title>Over Ad's | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title="Over Associate Degree's"
-	description="Associate Degrees zijn praktijkgerichte opleidingen van twee jaar die studenten voorbereiden op het werkveld en doorstroom naar een bachelor."
->
-	<img
-		class="hero-image"
-		src={overad}
-		alt=""
-		fetchpriority="high"
-	/>
-	<a
-		slot="primary"
-		href="#benefit"
-		class="button-outline-white"
-		aria-label="Lees meer over Associate Degree's"
-		id="benefit">Lees meer →</a
-	>
-</Hero>
+<RSectionHero
+	sectionInfo={{
+		title: "Over Associate Degree's",
+		description: 'Associate Degrees zijn praktijkgerichte opleidingen van twee jaar die studenten voorbereiden op het werkveld en doorstroom naar een bachelor.'
+	}}
+	primaryLink={{ label: 'Lees meer →', href: '#benefit' }}
+	picture={{
+		isEnhanced: true,
+		src: overad,
+		alt: '',
+		fetchpriority: 'high'
+	}}
+/>
 
 <section class="about-ad-hero">
 	<section class="intro">
@@ -58,15 +54,20 @@
 	</section>
 </section>
 
-<ImageTextSection
-	image={doorstroom}
-	alt="Doorstroom Ad-bachelor"
-	{dots}
-	title="Doorstroom Ad-bachelor"
-	text="Met een Ad-diploma kun je rechtstreeks doorstromen naar een bacheloropleiding. Het programma is zo opgebouwd dat de kennis en vaardigheden aansluiten op de vervolgopleiding en de beroepspraktijk, zodat studenten soepel verder kunnen bouwen aan hun carrière."
-	link="/ad-dag"
-	linkText="Kom naar de Ad-dag"
-	imagePosition="left"
+<RSectionPage
+	mirrored
+	backgroundBlack
+	sectionInfo={{
+		title: 'Doorstroom Ad-bachelor',
+		description:
+			'Met een Ad-diploma kun je rechtstreeks doorstromen naar een bacheloropleiding. Het programma is zo opgebouwd dat de kennis en vaardigheden aansluiten op de vervolgopleiding en de beroepspraktijk, zodat studenten soepel verder kunnen bouwen aan hun carrière.'
+	}}
+	primaryLink={{ label: 'Kom naar de Ad-dag', href: '/ad-dag' }}
+	picture={{
+		isEnhanced: true,
+		src: doorstroom,
+		alt: 'Doorstroom Ad-bachelor'
+	}}
 />
 
 <RCarousel
@@ -83,30 +84,35 @@
 	</section>
 </section>
 
-<ImageTextSection
-	image={overleggen}
-	alt=""
-	{dots}
-	title="Landelijke Ad-overleggen en Ad-profielen"
-	text="Het Overlegplatform organiseert regelmatig landelijke overleggen waarin vertegenwoordigers van alle Ad-opleidingen samenkomen. Tijdens deze bijeenkomsten worden nieuwe Ad-profielen besproken, kwaliteitsrichtlijnen gedeeld en best practices uitgewisseld. Zo blijven opleidingen actueel en goed afgestemd op het werkveld."
-	link="/contact"
-	linkText="Meer weten? Neem contact op"
-	imagePosition="right"
-	background="white"
+<RSectionPage
+	sectionInfo={{
+		title: 'Landelijke Ad-overleggen en Ad-profielen',
+		description:
+			'Het Overlegplatform organiseert regelmatig landelijke overleggen waarin vertegenwoordigers van alle Ad-opleidingen samenkomen. Tijdens deze bijeenkomsten worden nieuwe Ad-profielen besproken, kwaliteitsrichtlijnen gedeeld en best practices uitgewisseld. Zo blijven opleidingen actueel en goed afgestemd op het werkveld.'
+	}}
+	primaryLink={{ label: 'Meer weten? Neem contact op', href: '/contact' }}
+	picture={{
+		isEnhanced: true,
+		src: overleggen,
+		alt: ''
+	}}
 />
 
 <Divider />
 
-<ImageTextSection
-	image={awards}
-	alt="2 vrouwen die genomineerden waren voor de Ad-talent Awards. beide met een abnormaal groote check van 250 euro en een trofee "
-	{dots}
-	title="Ad Talent Awards"
-	text="De Ad Talent Awards vieren de prestaties van studenten, docenten en opleidingen binnen het Associate Degree-onderwijs. De awards zetten talenten in het zonnetje die met hun inzet, creativiteit en innovatieve aanpak een positieve impact maken in het werkveld en de samenleving. Door deelname en nominaties worden best practices gedeeld en wordt de waarde van Ad-opleidingen zichtbaar voor een breed publiek."
-	link="/talent-award"
-	linkText="Meer over Ad talent Awards"
-	imagePosition="left"
-	background="white"
+<RSectionPage
+	mirrored
+	sectionInfo={{
+		title: 'Ad Talent Awards',
+		description:
+			'De Ad Talent Awards vieren de prestaties van studenten, docenten en opleidingen binnen het Associate Degree-onderwijs. De awards zetten talenten in het zonnetje die met hun inzet, creativiteit en innovatieve aanpak een positieve impact maken in het werkveld en de samenleving. Door deelname en nominaties worden best practices gedeeld en wordt de waarde van Ad-opleidingen zichtbaar voor een breed publiek.'
+	}}
+	primaryLink={{ label: 'Meer over Ad talent Awards', href: '/talent-award' }}
+	picture={{
+		isEnhanced: true,
+		src: awards,
+		alt: '2 vrouwen die genomineerd waren voor de Ad Talent Awards, beiden met een abnormaal grote cheque van 250 euro en een trofee.'
+	}}
 />
 
 <style>

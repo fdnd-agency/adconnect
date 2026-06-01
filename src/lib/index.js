@@ -63,19 +63,24 @@ export { default as Development } from './templates/DevelopmentTemplate.svelte'
 // Pages
 
 // Images
-export { default as doorstroom } from './assets/doorstroom-ad-dag.webp'
-export { default as overleggen } from './assets/overleggen.jpg'
-export { default as awards } from './assets/ad-talent-awards.jpg'
-export { default as placeholder } from './assets/placeholder-hero.webp'
-export { default as bird } from './assets/mascot-ad.png'
-export { default as fallback } from './assets/news-fallback.jpg'
-export { default as birdcheck } from './assets/bird-send-succesful.jpg'
+export { default as doorstroom } from './assets/doorstroom-ad-dag.webp?enhanced'
+export { default as overleggen } from './assets/overleggen.jpg?enhanced'
+export { default as awards } from './assets/ad-talent-awards.jpg?enhanced'
+export { default as placeholder } from './assets/placeholder-hero.webp?enhanced'
+export { default as bird } from './assets/mascot-ad.png?enhanced'
+export { default as fallback } from './assets/news-fallback.jpg?enhanced'
+export { default as birdcheck } from './assets/bird-send-succesful.jpg?enhanced'
 export { default as overad } from './assets/over-ad-hero.webp?enhanced'
-export { default as publicatie } from './assets/publicatie-hero.jpeg'
+export { default as publicatie } from './assets/publicatie-hero.jpeg?enhanced'
 export { default as zaal } from './assets/zaal-ad-dag.jpg?enhanced'
-export { default as locationImage } from './assets/location.jpg'
-export { default as Addag } from './assets/addag.webp'
-export { default as Nieuwshero } from './assets/heronews.webp'
+export { default as locationImage } from './assets/location.jpg?enhanced'
+export { default as Addag } from './assets/addag.webp?enhanced'
+export { default as Nieuwshero } from './assets/heronews.webp?enhanced'
+export { default as Talent } from './assets/ad-talent-awards.jpg?enhanced'
+
+export { default as addag1 } from './assets/addag-1.png?enhanced'
+export { default as addag2 } from './assets/addag-2.png?enhanced'
+export { default as addag3 } from './assets/addag-3.webp?enhanced'
 
 // these images can be removed after refactoring is done
 export { default as darkcircle } from './assets/dark-circle.svg'
@@ -101,13 +106,11 @@ export { default as Events } from './assets/events.svg'
 export { default as Question } from './assets/faq.svg'
 export { default as LadoNetwork } from './assets/lado-network.svg'
 
-
 // refactored
 // atoms
 export { default as RPicture } from './refactored/atoms/Picture.svelte'
 export { default as RLink } from './refactored/atoms/Link.svelte'
 export { default as Rseparator } from './refactored/atoms/Separator.svelte'
-
 
 // molecules
 export { default as RTimeTable } from './refactored/molecules/TimeTable.svelte'
@@ -120,3 +123,7 @@ export { default as RCardNews } from './refactored/molecules/CardNews.svelte'
 export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte'
 export { default as RContactForm } from './refactored/molecules/ContactForm.svelte'
 export { default as RCarousel } from './refactored/molecules/Carousel.svelte'
+
+// organisms
+export { default as RSectionHero } from './refactored/organisms/SectionHero.svelte'
+export { default as RSectionPage } from './refactored/organisms/SectionPage.svelte'
