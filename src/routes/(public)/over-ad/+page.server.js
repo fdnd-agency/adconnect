@@ -33,7 +33,7 @@ export async function load({ url: _url }) {
 	const themesFields = 'id,title,description,hero,slug'
 	const cooperationFields = 'id,url,name,logo'
 
-	const [aboutAdPageResponse, themesResponse, cooperationResponse] = await Promise.all([
+	const [aboutAdPageResponse, themesResponse, cooperationsResponse] = await Promise.all([
 		ContentService.fetchContent('pageAboutAd', null, aboutAdPageFields, null, false),
 		ContentService.fetchContent('themes', null, themesFields, null, false),
 		ContentService.fetchContent('cooperations', null, cooperationFields, null, false)
@@ -44,6 +44,6 @@ export async function load({ url: _url }) {
 	return {
 		aboutAdPage: aboutAdPageItem ?? {},
 		themes: Array.from(themesResponse.data.themes?.values?.() ?? []),
-		cooperation: Array.from(cooperationResponse.data.cooperations?.values?.() ?? [])
+		cooperations: Array.from(cooperationsResponse.data.cooperations?.values?.() ?? [])
 	}
 }

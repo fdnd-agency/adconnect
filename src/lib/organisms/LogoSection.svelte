@@ -4,8 +4,8 @@
 </script>
 
 <div class="carousel">
-	<ul>
-		{#each cooperations as cooperation (cooperation.id)}
+	<ul style={`--logo-count: ${cooperations?.length ?? 0}`}>
+		{#each [...(cooperations ?? []), ...(cooperations ?? [])] as cooperation, index (`${cooperation.id}-${index}`)}
 			<li>
 				<a
 					target="_blank"
@@ -39,17 +39,17 @@
 
 	ul {
 		display: flex;
-		animation: scroll 10s linear infinite;
+		gap: 2rem;
+		width: max-content;
+		animation: scroll calc(max(var(--logo-count, 1), 1) * 4s) linear infinite;
 	}
 
 	li {
-		flex: 0 0 33.3%;
+		flex: 0 0 auto;
+		width: clamp(140px, 20vw, 220px);
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		@media (min-width: 768px) {
-			flex: 0 0 25%;
-		}
 	}
 
 	img {
@@ -84,7 +84,7 @@
 		}
 
 		100% {
-			transform: translateX(-25%);
+			transform: translateX(-50%);
 		}
 	}
 </style>
