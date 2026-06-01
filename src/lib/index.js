@@ -124,8 +124,10 @@ export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte
 export { default as RContactForm } from './refactored/molecules/ContactForm.svelte'
 export { default as RCarousel } from './refactored/molecules/Carousel.svelte'
 export { default as RTextSection } from './refactored/molecules/TextSection.svelte'
-export { default as RDetailsSection } from './refactored/organisms/DetailsSection.svelte'
+export { default as RTalentWinner } from './refactored/molecules/TalentWinner.svelte'
 
 // organisms
 export { default as RSectionHero } from './refactored/organisms/SectionHero.svelte'
 export { default as RSectionPage } from './refactored/organisms/SectionPage.svelte'
+export { default as RDetailsSection } from './refactored/organisms/DetailsSection.svelte'
+export { default as RTalentAwardSection } from './refactored/organisms/TalentAwardSection.svelte'
