@@ -1,21 +1,20 @@
 <script>
 	import { RFilterButtons, RCardPublicaties } from '$lib'
-	// import { IconDots } from '$lib/icons'
 
 	const { documents, categories, selectedCategory } = $props()
 </script>
 
-<RFilterButtons
-	{categories}
-	{selectedCategory}
-	{documents}
-/>
-
 <div class="section-documents">
-	<div class="documents-container">
-		<ul>
+	<RFilterButtons
+		{categories}
+		{selectedCategory}
+		{documents}
+	/>
+
+	<div class="section-documents__container">
+		<ul class="section-documents__list">
 			{#each documents as document (document.id)}
-				<li><RCardPublicaties {document} /></li>
+				<li class="section-documents__item"><RCardPublicaties {document} /></li>
 			{/each}
 		</ul>
 	</div>
@@ -27,38 +26,30 @@
 		flex-direction: column;
 		gap: 1em;
 		width: 90%;
-		padding: 3em 0;
 		margin: auto;
+		padding: 3em 0;
 
 		@media (min-width: 768px) {
-			padding: 5em 0;
 			max-width: 1400px;
+			padding: 5em 0;
 		}
 	}
 
-	.documents-container {
-		container-type: inline-size;
-		container-name: docs-container;
+	.section-documents__container {
+		container: documents / inline-size;
 	}
 
-	ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
+	.section-documents__list {
 		display: flex;
 		flex-direction: column;
 		gap: 1em;
-	}
+		margin: 0;
+		padding: 0;
+		list-style: none;
 
-	ul li {
-		list-style-type: none;
-	}
-
-	@container docs-container (min-width: 720px) {
-		ul {
+		@container documents (min-width: 720px) {
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));
-			gap: 1em;
 		}
 	}
 </style>
