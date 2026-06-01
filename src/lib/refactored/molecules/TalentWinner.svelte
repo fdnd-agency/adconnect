@@ -40,13 +40,12 @@
 			display: flex;
 			flex-direction: column-reverse;
 			gap: 2em;
-			align-items: flex-start;
+			align-items: start;
 
 			section {
                 display: grid;
                 gap: 1.5rem;
-                margin-bottom: 2rem;
-                margin-top: 1rem;
+                margin: 1rem 0rem 2rem 0rem
 			}
 
 			@media (min-width: 768px) {
