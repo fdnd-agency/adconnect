@@ -7,7 +7,7 @@
 
 	const { data } = $props()
 
-	import { Hero, Divider, DividerText } from '$lib'
+	import { Hero } from '$lib'
 	import { RCarousel, RSectionHero, Rseparator, RTalentAwardSection } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
@@ -103,86 +103,10 @@
 	</article>
 </section>
 
-<section>
-	<DividerText text="Voorgaande talent award winnaars" />
-
-	<section class="previous-winners">
-		<ul>
-			{#each data.nominations.filter((item) => item.header?.toLowerCase() === 'winnaar' && item.profile_picture) as winner (winner.id)}
-				<li>
-					<section>
-						<h3>{winner.title}</h3>
-						<p>{winner.excerpt}</p>
-					</section>
-					<img
-						src={imageUrl(winner.profile_picture)}
-						alt="{winner.title} met krullend haar, glimlachend naar de camera"
-						height="200px"
-						width="200px"
-					/>
-				</li>
-			{/each}
-		</ul>
-	</section>
-</section>
-
-<section class="nominate">
-	<img
-		class="logo"
-		aria-hidden="true"
-		src={logomobile}
-		alt="Logo"
-		width="50"
-		height="50"
-	/>
-	<h2>Voorgaande nominaties</h2>
-	<p>
-		Ontdek de talentvolle studenten die zijn genomineerd voor de AD Talent Award. Jaarlijks dragen hogescholen Associate degree-studenten voor die uitblinken in de praktijk, waarna een jury de
-		uiteindelijke winnaars kiest.
-	</p>
-</section>
-
 <RTalentAwardSection { data }/>
 
-<RCarousel
-	nominations
-	carouselItems={data.nominations}
-	dividerText="Voorgaande nominaties"
-/>
 
 <style>
-	.intro,
-	.nominate {
-		text-align: left;
-		margin: 0 auto;
-		padding: 2rem;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		max-width: min(900px, 92vw);
-
-		.logo {
-			display: block;
-			margin: 1rem auto;
-		}
-
-		h2 {
-			text-align: center;
-			margin-bottom: 1em;
-		}
-
-		p {
-			max-width: 500px;
-			margin: 0 auto;
-			text-align: left;
-		}
-	}
-
-	.nominate {
-		align-items: center;
-		gap: 1em;
-	}
-
 	.cards-ta {
 		container-type: inline-size;
 		container-name: cards;
