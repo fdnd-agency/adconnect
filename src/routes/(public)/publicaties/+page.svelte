@@ -11,9 +11,10 @@
 
 	// Haal data op uit page.server.js via props
 	const { data } = $props()
-	let documents = $state(data.documents)
-	let categories = $state(data.categories)
-	let selectedCategory = $state(data.selectedCategory)
+	let documents = $derived(data.documents)
+	let categories = $derived(data.categories)
+	let selectedCategory = $derived(data.selectedCategory)
+	const publicationsPage = $derived(data.publicationsPage ?? {})
 
 	// Effect om de state te synchroniseren als props veranderen
 	$effect(() => {
@@ -38,8 +39,8 @@
 </svelte:head>
 
 <Hero
-	title="Publicaties"
-	description="Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs."
+	title={publicationsPage.hero_heading}
+	description={publicationsPage.hero_body}
 >
 	<img
 		class="hero-image"
@@ -64,8 +65,8 @@
 			<a
 				href={`?category=${categorie.title.toLowerCase()}`}
 				data-sveltekit-noscroll
-				class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}">{categorie.title}
-				
+				class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}"
+				>{categorie.title}
 			</a>
 		{/each}
 	</div>
