@@ -3,6 +3,24 @@ import { ContentService } from '$lib/server/contentService.js'
 const LADO_FIELDS = 'id,title,national_ad_profile,lado_status,contact_persons,status,parent,sectoral_advisory_board'
 const COURSE_FIELDS = 'id,title,lado,cooperations.adconnect_cooperation_id.id,cooperations.adconnect_cooperation_id.name,cooperations.adconnect_cooperation_id.url'
 const SECTORAL_ADVISORY_BOARD_FIELDS = 'id,title'
+const LADO_PAGE_FIELDS = [
+	'id',
+	'hero_heading',
+	'hero_body',
+	'hero_primary_button_text',
+	'hero_primary_button_url',
+	'hero_secondary_button_text',
+	'hero_secondary_button_url',
+	'lado_section_heading',
+	'lado_card_1_title',
+	'lado_card_1_body',
+	'lado_card_2_title',
+	'lado_card_2_body',
+	'lado_card_3_title',
+	'lado_card_3_body',
+	'lado_card_4_title',
+	'lado_card_4_body'
+].join(',')
 const PUBLISHED_FILTER = { status: { _eq: 'published' } }
 const LOAD_ERROR = `Er is een probleem opgetreden bij het ophalen van de LAdO's.`
 
@@ -38,7 +56,12 @@ function getCourseCooperations(course) {
 }
 
 export async function load() {
-	const ladosResponse = await ContentService.fetchContent('lados', null, LADO_FIELDS, PUBLISHED_FILTER, false)
+	const [ladoPageResponse, ladosResponse] = await Promise.all([
+		ContentService.fetchContent('pageLado', null, LADO_PAGE_FIELDS, null, false),
+		ContentService.fetchContent('lados', null, LADO_FIELDS, PUBLISHED_FILTER, false)
+	])
+
+	const ladoPageItem = ladoPageResponse.data.pageLado?.[0]
 	const ladoItems = ladosResponse.data.lados ?? []
 	const ladoIds = getUniqueIds(ladoItems, (lado) => lado.id)
 	const sectoralAdvisoryBoardIds = getUniqueIds(ladoItems, (lado) => getRelationId(lado.sectoral_advisory_board))
@@ -66,6 +89,7 @@ export async function load() {
 		.sort((a, b) => (a.title ?? '').localeCompare(b.title ?? '', 'nl', { numeric: true }))
 
 	return {
+		ladoPage: ladoPageItem ?? {},
 		lados,
 		loadError: hasErrors(ladosResponse, coursesResponse, sectoralAdvisoryBoardsResponse) ? LOAD_ERROR : null
 	}
