@@ -11,22 +11,16 @@
 
 	// Haal data op uit page.server.js via props
 	const { data } = $props()
+	const newsPage = $derived(data.newsPage ?? {})
 
 	/* Pagination */
 	let currentPage = $state(1)
 
 	const itemsPerPage = 9
 
-	const totalPages = $derived(
-		Math.ceil(data.news.length / itemsPerPage)
-	)
+	const totalPages = $derived(Math.ceil(data.news.length / itemsPerPage))
 
-	const paginatedNews = $derived(
-		data.news.slice(
-			(currentPage - 1) * itemsPerPage,
-			currentPage * itemsPerPage
-		)
-	)
+	const paginatedNews = $derived(data.news.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage))
 
 	function nextPage() {
 		if (currentPage < totalPages) {
@@ -46,8 +40,8 @@
 </svelte:head>
 
 <Hero
-	title="Nieuws"
-	description="Op deze pagina vind je updates en korte verslagen van georganiseerde evenementen."
+	title={newsPage.hero_heading}
+	description={newsPage.hero_body}
 >
 	<img
 		class="hero-image"
