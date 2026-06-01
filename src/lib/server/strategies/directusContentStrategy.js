@@ -18,7 +18,8 @@ const COLLECTIONS = {
 	lados: { path: 'adconnect_lados', key: 'id' },
 	courses: { path: 'adconnect_courses', key: 'id' },
 	sectoralAdvisoryBoards: { path: 'adconnect_sectoral_advisory_boards', key: 'id' },
-	pageHome: { path: 'adconnect_page_home', key: 'id' }
+	pageHome: { path: 'adconnect_page_home', key: 'id' },
+	pageAboutAd: { path: 'adconnect_page_about_ad', key: 'id' }
 }
 
 function getConfig(contentType) {
