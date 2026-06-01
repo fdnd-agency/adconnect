@@ -6,9 +6,3 @@
 
 <Hero/>
 <TextSection/>
-
-<style>
-    .wrapper-detail {
-        container: detail / inline-size;
-    }
-</style>
