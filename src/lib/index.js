@@ -129,3 +129,4 @@ export { default as RDetailsSection } from './refactored/organisms/DetailsSectio
 // organisms
 export { default as RSectionHero } from './refactored/organisms/SectionHero.svelte'
 export { default as RSectionPage } from './refactored/organisms/SectionPage.svelte'
+export { default as RSectionPlanning } from './refactored/organisms/SectionPlanning.svelte'
