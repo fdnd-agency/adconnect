@@ -24,7 +24,9 @@
 		<h2 class="feature-title">{title}</h2>
 
 		{#if intro}
-			<p class="feature-intro">{intro}</p>
+			: <div class="feature-intro">
+				{@html intro}
+			</div>
 		{/if}
 
 		{#if bullets?.length}
@@ -87,6 +89,53 @@
 		p {
 			text-align: left;
 		}
+	}
+
+	.feature-intro {
+		font-family: var(--font-body);
+		font-size: var(--p-s-size);
+		font-weight: var(--text-font-weight);
+		line-height: var(--p-s-line-height);
+		max-width: var(--p-s-max-width);
+		text-align: left;
+	}
+
+	.feature-intro :global(p) {
+		font: inherit;
+		max-width: inherit;
+		margin: 0 0 1rem;
+	}
+
+	.feature-intro :global(ul),
+	.feature-intro :global(ol) {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin: 1rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.feature-intro :global(li) {
+		font: inherit;
+		position: relative;
+		padding-left: 1.75rem;
+	}
+
+	.feature-intro :global(li p) {
+		margin: 0;
+	}
+
+	.feature-intro :global(li::before) {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.35rem;
+		width: 17px;
+		height: 17px;
+		background-image: url('/check-circle.svg');
+		background-size: contain;
+		background-repeat: no-repeat;
 	}
 
 	.feature-list {
