@@ -8,10 +8,10 @@ export async function load({ url: _url }) {
 	// Convert themes data to json
 	const themesResponse = await ContentService.fetchContent('themes', null, themesFields, null, false)
 	// Convert cooperation data to json
-	const cooperationResponse = await ContentService.fetchContent('cooperations', null, cooperationFields, null, false)
+	const cooperationsResponse = await ContentService.fetchContent('cooperations', null, cooperationFields, null, false)
 
 	return {
 		themes: Array.from(themesResponse.data.themes?.values?.() ?? []),
-		cooperation: Array.from(cooperationResponse.data.cooperations?.values?.() ?? [])
+		cooperations: Array.from(cooperationsResponse.data.cooperations?.values?.() ?? [])
 	}
 }

@@ -5,10 +5,10 @@
 	// Import components
 	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
 
-	const { data } = $props()
-
-	const { themes } = data
-	const { cooperation } = data
+	const props = $props()
+	const data = $derived(props.data)
+	const themes = $derived(data.themes)
+	const cooperations = $derived(data.cooperations)
 </script>
 
 <svelte:head>
@@ -71,7 +71,7 @@
 
 <section class="logo-section">
 	<DividerText text="Partijen waarmee wij samenwerken" />
-	<LogoSection {cooperation} />
+	<LogoSection {cooperations} />
 	<Divider />
 </section>
 
