@@ -128,7 +128,6 @@
 
 	.nomination {
 		position: relative;
-		margin-bottom: 3rem;
 	}
 
 	.nomination__name {
