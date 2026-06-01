@@ -1,27 +1,27 @@
 <script>
-	export let cooperation
+	export let cooperations
 	import { DIRECTUS_URL } from '$lib/constants.js'
 </script>
 
 <div class="carousel">
-	<ul>
-		{#each cooperation as logo (logo.id)}
+	<ul style={`--logo-count: ${cooperations?.length ?? 0}`}>
+		{#each [...(cooperations ?? []), ...(cooperations ?? [])] as cooperation, index (`${cooperation.id}-${index}`)}
 			<li>
 				<a
 					target="_blank"
-					href={logo.url}
+					href={cooperation.url}
 				>
 					<img
 						width="200"
 						height="100"
-						src={`${DIRECTUS_URL}/assets/${logo.logo}?width=800`}
+						src={`${DIRECTUS_URL}/assets/${cooperation.logo}?width=800`}
 						srcset="
-                        {DIRECTUS_URL}/assets/{logo.logo}?width=200 200w,
-                        {DIRECTUS_URL}/assets/{logo.logo}?width=400 400w,
-                        {DIRECTUS_URL}/assets/{logo.logo}?width=800 800w
+                        {DIRECTUS_URL}/assets/{cooperation.logo}?width=200 200w,
+                        {DIRECTUS_URL}/assets/{cooperation.logo}?width=400 400w,
+                        {DIRECTUS_URL}/assets/{cooperation.logo}?width=800 800w
                     "
 						sizes="(max-width: 600px) 200px, 247px"
-						alt={logo.name}
+						alt={cooperation.name}
 						style="max-width: 100%; height: auto;"
 					/>
 				</a>
@@ -39,17 +39,17 @@
 
 	ul {
 		display: flex;
-		animation: scroll 10s linear infinite;
+		gap: 2rem;
+		width: max-content;
+		animation: scroll calc(max(var(--logo-count, 1), 1) * 4s) linear infinite;
 	}
 
 	li {
-		flex: 0 0 33.3%;
+		flex: 0 0 auto;
+		width: clamp(140px, 20vw, 220px);
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		@media (min-width: 768px) {
-			flex: 0 0 25%;
-		}
 	}
 
 	img {
@@ -84,7 +84,7 @@
 		}
 
 		100% {
-			transform: translateX(-25%);
+			transform: translateX(-50%);
 		}
 	}
 </style>

@@ -7,7 +7,7 @@
 
 	const { data } = $props()
 	const news = $derived(data.news ?? [])
-	const cooperation = $derived(data.cooperation ?? [])
+	const cooperations = $derived(data.cooperations ?? [])
 	const homePage = $derived(data.homePage ?? {})
 
 	const informationCards = $derived([
@@ -78,7 +78,7 @@
 
 <section class="logo-section">
 	<DividerText text="Partijen waarmee wij samenwerken" />
-	<LogoSection {cooperation} />
+	<LogoSection {cooperations} />
 	<Divider />
 </section>
 

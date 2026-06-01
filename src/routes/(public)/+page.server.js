@@ -38,7 +38,7 @@ export async function load() {
 	const cooperationFields = 'id,url,name,logo'
 
 	// Fetch the content data via the ContentService.
-	const [homePageResponse, newsResponse, cooperationResponse] = await Promise.all([
+	const [homePageResponse, newsResponse, cooperationsResponse] = await Promise.all([
 		ContentService.fetchContent('pageHome', null, homePageFields, null, false),
 		ContentService.fetchContent('news', null, newsFields, null, false),
 		ContentService.fetchContent('cooperations', null, cooperationFields, null, false)
@@ -49,6 +49,6 @@ export async function load() {
 	return {
 		homePage: homePageItem ?? {},
 		news: Array.from(newsResponse.data.news.values()),
-		cooperation: Array.from(cooperationResponse.data.cooperations.values())
+		cooperations: Array.from(cooperationsResponse.data.cooperations.values())
 	}
 }
