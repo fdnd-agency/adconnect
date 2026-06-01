@@ -4,7 +4,7 @@
 	// Import images
 	import { addag1, addag2, addag3 } from '$lib'
 
-	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule, RSectionHero, RPicture } from '$lib'
+	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule, RSectionHero, RPicture, RSectionPage } from '$lib'
 </script>
 
 <svelte:head>
@@ -25,27 +25,21 @@
 	}}
 />
 
-<section class="intro">
-	<article>
-		<h2>Wat is de landelijke Ad-dag?</h2>
-		<p>
-			De Landelijke Ad-dag is het jaarlijkse moment waarop Associate degree (Ad)-onderwijs centraal staat. Studenten, docenten, coördinatoren, beleidsmakers en het werkveld komen samen om kennis te
-			delen, inspiratie op te doen en elkaar te ontmoeten. Verwacht een mix van plenaire sessies, panelgesprekken, workshops en praktijkvoorbeelden waarin je ziet wat niveau 5 toevoegt aan het hbo en
-			aan organisaties. Het is tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt concrete ideeën mee om morgen toe te passen.
-		</p>
-	</article>
-
-	<div class="addag3">
-		<RPicture
-			isEnhanced
-			src={addag3}
-			alt="..."
-			width="450"
-			fetchpriority="high"
-			loading="eager"
-		/>
-	</div>
-</section>
+<RSectionPage
+	sectionInfo={{
+		title: 'Wat is de landelijke Ad-dag?',
+		description:
+			'De Landelijke Ad-dag is het jaarlijkse moment waarop Associate degree (Ad)-onderwijs centraal staat. Studenten, docenten, coördinatoren, beleidsmakers en het werkveld komen samen om kennis te delen, inspiratie op te doen en elkaar te ontmoeten. Verwacht een mix van plenaire sessies, panelgesprekken, workshops en praktijkvoorbeelden waarin je ziet wat niveau 5 toevoegt aan het hbo en aan organisaties. Het is tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt concrete ideeën mee om morgen toe te passen.'
+	}}
+	picture={{
+		isEnhanced: true,
+		src: addag3,
+		alt: '...',
+		width: '450',
+		fetchpriority: 'high',
+		loading: 'eager'
+	}}
+/>
 
 <section class="info-addag">
 	<img

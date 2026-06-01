@@ -3,10 +3,10 @@
 
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
-	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo, RSectionHero } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo, RSectionHero, RSectionPage } from '$lib'
 
 	// Import images
-	import { zaal } from '$lib'
+	import { zaal, overad } from '$lib'
 
 	const { data } = $props()
 	const { news } = data
@@ -35,23 +35,24 @@
 		fetchpriority: 'high',
 		loading: 'eager'
 	}}
-	backgroundColor="blue"
+	backgroundBlue
 />
 
 <NewsCardSection news={data.news.slice(0, 3)} />
 
-<RCardSection
-	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
-	description={section.description}
-	link={{ label: "Meer over Ad's", href: '/over-ad' }}
-/>
-
-<Information
-	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
-	description="Associate degrees zijn tweejarige hbo-opleidingen die sterk praktijkgericht zijn en direct aansluiten op de arbeidsmarkt. Ze combineren werken en leren en zijn bedoeld voor studenten die zich willen ontwikkelen op hbo-niveau, zonder direct een vierjarige bachelor te volgen. De opleidingen worden samen met het werkveld vormgegeven en spelen in op actuele beroepsvragen. Hierdoor doe je relevante kennis en vaardigheden op die je meteen kunt toepassen in de praktijk. Een Associate degree biedt daarnaast flexibiliteit: je behaalt een zelfstandig diploma en kunt, als je dat wilt, doorstromen naar een bacheloropleiding."
-	buttonText="Meer info over Ad's"
-	buttonLink="#"
-	imageAlt="Een zaal met tafels in een cirkel, waar studenten luisteren naar hun docent die een presentatie geeft."
+<RSectionPage
+	vertical
+	sectionInfo={{
+		title: 'Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?',
+		description:
+			'Associate degrees zijn tweejarige hbo-opleidingen die sterk praktijkgericht zijn en direct aansluiten op de arbeidsmarkt. Ze combineren werken en leren en zijn bedoeld voor studenten die zich willen ontwikkelen op hbo-niveau, zonder direct een vierjarige bachelor te volgen. De opleidingen worden samen met het werkveld vormgegeven en spelen in op actuele beroepsvragen. Hierdoor doe je relevante kennis en vaardigheden op die je meteen kunt toepassen in de praktijk. Een Associate degree biedt daarnaast flexibiliteit: je behaalt een zelfstandig diploma en kunt, als je dat wilt, doorstromen naar een bacheloropleiding.'
+	}}
+	primaryLink={{ label: "Meer info over Ad's", href: '#' }}
+	picture={{
+		isEnhanced: true,
+		src: overad,
+		alt: 'Een zaal met tafels in een cirkel, waar studenten luisteren naar hun docent die een presentatie geeft.'
+	}}
 />
 
 <InformationCards
@@ -86,13 +87,6 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	link={{ label: "Meer over doorstroom Ad's", href: '/over-ad' }}
 	infoCard
 />
-
-<!-- <RCardInfo
-	title="Doorstroom Ad"
-	description="Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma."
-	link={{ label: "Meer over doorstroom Ad's", href: '/over-ad' }}
-	publicaties
-/> -->
 
 <section class="logo-section">
 	<Rseparator dividerText="Partijen waarmee wij samenwerken" />
