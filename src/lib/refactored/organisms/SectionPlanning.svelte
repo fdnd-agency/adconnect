@@ -1,8 +1,8 @@
 <script>
-	import { RCardSection, RTimeTable } from '$lib'
+	import { RCardSection, RTimeTable, RLink } from '$lib'
 	import { IconDots } from '$lib/icons'
 
-	const { sectionInfo, programInfo, workshopInfo } = $props()
+	const { sectionInfo, cardsData } = $props()
 </script>
 
 <section>
@@ -12,35 +12,28 @@
 	/>
 
 	<section class="cards">
-		<article class="card">
-			<div class="wrapper-text">
-				<IconDots variant="heading-three" />
-				<h3>Programma</h3>
-			</div>
+		{#each cardsData as card (card.id)}
+			<article class="card">
+				<div class="wrapper-text">
+					<IconDots variant="heading-three" />
+					<h3>{card.title}</h3>
+				</div>
 
-			<RTimeTable scheduleData={programInfo.schedule} />
+				{#if card.description}
+					<p>
+						{card.description}
+					</p>
+				{:else if card.schedule}
+					<RTimeTable scheduleData={card.schedule} />
+				{/if}
 
-			<a
-				class="button-outline-blue"
-				href={programInfo.link.href}
-				>{programInfo.link.label}
-			</a>
-		</article>
-
-		<article class="card">
-			<div class="wrapper-text">
-				<IconDots variant="heading-three" />
-				<h3>Workshops</h3>
-			</div>
-			<p>
-				{workshopInfo.description}
-			</p>
-			<a
-				class="button-outline-blue"
-				href={workshopInfo.link.href}
-				>{workshopInfo.link.label}
-			</a>
-		</article>
+				<RLink
+					class="button-outline-blue"
+					href={card.link.href}
+					>{card.link.label}
+				</RLink>
+			</article>
+		{/each}
 	</section>
 </section>
 
