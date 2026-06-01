@@ -24,12 +24,6 @@
 		padding: 2em 5%;
 		max-width: 1400px;
 		margin: auto;
-
-		:global(.divider-container) {
-			margin: 0;
-			width: 100%;
-			padding: 0 0 2em 0;
-		}
 	}
 
 	ul {

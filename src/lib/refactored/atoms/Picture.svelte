@@ -40,6 +40,7 @@
 		object-fit: cover;
 		display: block;
 		width: 100%;
+		height: auto;
 	}
 
 	picture img {
