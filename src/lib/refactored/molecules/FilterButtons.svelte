@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation'
 
-	const { categories, selectedCategory, documents } = $props()
+	const { filterCategories, selectedCategory, documents } = $props()
+
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
 
 	let lastValue = $state<string | null>(null)
@@ -48,7 +49,7 @@
 					{@render categoryRadio({ value: 'alle-publicaties', label: 'Alle publicaties' })}
 				</li>
 
-				{#each categories as category (category.id)}
+				{#each filterCategories as category (category.id)}
 					<li class="category-filter__item">
 						{@render categoryRadio({ value: category.title.toLowerCase(), label: category.title })}
 					</li>
@@ -95,7 +96,6 @@
 		flex-direction: column;
 		flex-wrap: wrap;
 		gap: 1em;
-		padding: 3em 0 0 0;
 		margin-bottom: 1em;
 
 		.category-filter__group {

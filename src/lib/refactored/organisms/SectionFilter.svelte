@@ -1,19 +1,19 @@
 <script>
 	import { RFilterButtons, RCardPublicaties } from '$lib'
 
-	const { documents, categories, selectedCategory } = $props()
+	const { filterResults, filterCategories, selectedCategory } = $props()
 </script>
 
 <div class="section-documents">
 	<RFilterButtons
-		{categories}
-		{selectedCategory}
-		{documents}
+		{filterCategories}
+		selectedCategory={selectedCategory}
+		documents={filterResults}
 	/>
 
 	<div class="section-documents__container">
 		<ul class="section-documents__list">
-			{#each documents as document (document.id)}
+			{#each filterResults as document (document.id)}
 				<li class="section-documents__item"><RCardPublicaties {document} /></li>
 			{/each}
 		</ul>
@@ -24,7 +24,7 @@
 	.section-documents {
 		display: flex;
 		flex-direction: column;
-		gap: 1em;
+		gap: 5em;
 		width: 90%;
 		margin: auto;
 		padding: 3em 0;

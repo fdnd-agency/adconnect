@@ -35,4 +35,4 @@
 	}}
 />
 
-<RSectionFilter {documents} {categories} {selectedCategory}/>
+<RSectionFilter filterResults={documents} filterCategories={categories} {selectedCategory}/>
