@@ -54,12 +54,11 @@
 
 		@media (min-width: 1024px) {
 			grid-template-columns: repeat(2, 1fr);
-			gap: 5em;
 		}
 	}
 
 	.card {
-		--_border-color: #cccccc;
+		--_border-color: hsl(0, 0%, 80%);
 
 		display: flex;
 		flex-direction: column;
