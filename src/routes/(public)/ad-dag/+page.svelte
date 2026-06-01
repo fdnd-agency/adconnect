@@ -1,48 +1,50 @@
 <script>
 	import logomobile from '$lib/assets/logomobile.svg'
-	import addag1 from '$lib/assets/addag-1.png'
-	import addag2 from '$lib/assets/addag-2.png'
-	import addag3 from '$lib/assets/addag-3.webp'
 
-	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule } from '$lib'
+	// Import images
+	import { addag1, addag2, addag3 } from '$lib'
+
+	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule, RSectionHero, RPicture } from '$lib'
 </script>
 
 <svelte:head>
 	<title>Ad dag | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-
-<Hero
-	title="Ad Dag "
-	description="De landelijks Ad-dag 2025 is hét moment waarop studenten,
-	docenten en professionals uit het Ad-onderwijs samenkomen.Ontdek, leer en
-	inspireer elkaar tijdens een dag vol sprekers, workshops en ontmoetingen.
-	Ervaar hoe de Ad-professional als veranderaar impact maakt en vier samen de
-	uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of
-	blijf op de hoogte "
->
-	<img
-		class="hero-image"
-		src={Addag}
-		alt=""
-		fetchpriority="high"
-	/>
-</Hero>
+<RSectionHero
+	sectionInfo={{
+		title: 'Ad Dag',
+		description:
+			'De landelijke Ad-dag 2025 is hét moment waarop studenten, docenten en professionals uit het Ad-onderwijs samenkomen. Ontdek, leer en inspireer elkaar tijdens een dag vol sprekers, workshops en ontmoetingen. Ervaar hoe de Ad-professional als veranderaar impact maakt en vier samen de uitreiking van de Ad Talent Awards. Meld je aan voor de komende Ad-dag of blijf op de hoogte.'
+	}}
+	picture={{
+		isEnhanced: true,
+		src: Addag,
+		alt: '',
+		fetchpriority: 'high'
+	}}
+/>
 
 <section class="intro">
 	<article>
 		<h2>Wat is de landelijke Ad-dag?</h2>
 		<p>
 			De Landelijke Ad-dag is het jaarlijkse moment waarop Associate degree (Ad)-onderwijs centraal staat. Studenten, docenten, coördinatoren, beleidsmakers en het werkveld komen samen om kennis te
-			delen, inspiratie op te doen en elkaar te ontmoeten. Verwacht een mix van plenaire sessies, panelgesprekken, workshops en praktijkvoorbeelden waarin je ziet wat niveau 5 toevoegt aan het hbo
-			en aan organisaties. Het is tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt concrete ideeën mee om morgen toe te passen.
+			delen, inspiratie op te doen en elkaar te ontmoeten. Verwacht een mix van plenaire sessies, panelgesprekken, workshops en praktijkvoorbeelden waarin je ziet wat niveau 5 toevoegt aan het hbo en
+			aan organisaties. Het is tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt concrete ideeën mee om morgen toe te passen.
 		</p>
 	</article>
-	<img
-		src={addag3}
-		alt=""
-		width="450px"
-	/>
+
+	<div class="addag3">
+		<RPicture
+			isEnhanced
+			src={addag3}
+			alt="..."
+			width="450"
+			fetchpriority="high"
+			loading="eager"
+		/>
+	</div>
 </section>
 
 <section class="info-addag">
@@ -76,17 +78,20 @@
 		/>
 	</MultipleFaq>
 
-	<img
-		class="addag-2"
-		src={addag2}
-		alt=""
-		width="600"
-		height="300"
-	/>
+	<div class="addag2">
+		<RPicture
+			isEnhanced
+			src={addag2}
+			alt="..."
+			width="600"
+			height="300"
+			fetchpriority="high"
+			loading="eager"
+		/>
+	</div>
 </section>
 <Schedule />
 <Location />
-
 
 <style>
 	.intro {
@@ -111,6 +116,12 @@
 				margin-top: 1em;
 			}
 		}
+	}
+
+	.addag3 {
+		overflow: hidden;
+		border-radius: 1em;
+		max-width: 600px;
 	}
 
 	@media (min-width: 768px) {
@@ -150,7 +161,7 @@
 		}
 	}
 
-	.addag-2 {
+	.addag2 {
 		margin-top: 5em;
 		align-self: center;
 		object-fit: cover;
@@ -159,7 +170,7 @@
 	}
 
 	@media (min-width: 768px) {
-		.addag-2 {
+		.addag2 {
 			height: 400px;
 			width: 1000px;
 		}

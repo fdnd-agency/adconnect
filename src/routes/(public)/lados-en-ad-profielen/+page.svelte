@@ -1,5 +1,6 @@
 <script>
 	import { Hero, LadoInfoCard, LadosOverview, overleggen } from '$lib'
+	import { RSectionHero } from '$lib'
 
 	const { data } = $props()
 
@@ -30,27 +31,20 @@
 	<title>LAdO's en Ad-profielen | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title="Landelijke Ad-overleggen en Ad-profielen"
-	description="Het Overlegplatform Associate degrees ondersteunt het belang van Ad-opleidingen om zich samen te positioneren en te profileren in het Nederlandse onderwijslandschap."
->
-	<a
-		slot="primary"
-		href="#over-lados"
-		class="button-outline-white">Lees meer</a
-	>
-	<a
-		slot="secondary"
-		href="#overzicht-lados"
-		class="button-outline-white">Bekijk overzicht</a
-	>
-	<img
-		class="hero-image"
-		src={overleggen}
-		alt="Mensen tijdens een landelijk overleg over Associate degree-opleidingen"
-		fetchpriority="high"
-	/>
-</Hero>
+<RSectionHero
+	sectionInfo={{
+		title: 'Landelijke Ad-overleggen en Ad-profielen',
+		description: 'Het Overlegplatform Associate degrees ondersteunt het belang van Ad-opleidingen om zich samen te positioneren en te profileren in het Nederlandse onderwijslandschap.'
+	}}
+	primaryLink={{ label: 'Lees meer', href: '#over-lados' }}
+	secondaryLink={{ label: 'Bekijk overzicht', href: '#overzicht-lados' }}
+	picture={{
+		isEnhanced: true,
+		src: overleggen,
+		alt: 'Mensen tijdens een landelijk overleg over Associate degree-opleidingen',
+		fetchpriority: 'high'
+	}}
+/>
 
 <section
 	class="lado-info"

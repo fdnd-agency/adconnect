@@ -1,6 +1,6 @@
 <script>
 	// Import images
-	import { doorstroom, overleggen, awards, dots, placeholder, overad } from '$lib'
+	import { doorstroom, overleggen, awards, dots, placeholder, overad, RSectionHero } from '$lib'
 	import logomobile from '$lib/assets/logomobile.svg'
 
 	// Import components
@@ -16,18 +16,19 @@
 	<title>Over ons | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title="Over ons"
-	description="Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen aanbieden of dit willen gaan doen, kunnen deelnemen aan het platform."
->
-	<img
-		class="hero-image"
-		src={doorstroom}
-		alt="Waarom AdConnect?"
-		aria-hidden="true"
-		fetchpriority="high"
-	/>
-</Hero>
+<RSectionHero
+	sectionInfo={{
+		title: 'Over ons',
+		description:
+			'Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen aanbieden of dit willen gaan doen, kunnen deelnemen aan het platform.'
+	}}
+	picture={{
+		isEnhanced: true,
+		src: doorstroom,
+		alt: 'Waarom AdConnect?',
+		fetchpriority: 'high'
+	}}
+/>
 
 <section class="intro">
 	<img
