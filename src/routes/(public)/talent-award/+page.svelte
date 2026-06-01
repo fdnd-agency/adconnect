@@ -8,7 +8,7 @@
 	const { data } = $props()
 
 	import { Hero, Divider, DividerText } from '$lib'
-	import { RCarousel, RSectionHero, Rseparator } from '$lib'
+	import { RCarousel, RSectionHero, Rseparator, RTalentAwardSection } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -141,6 +141,8 @@
 		uiteindelijke winnaars kiest.
 	</p>
 </section>
+
+<RTalentAwardSection { data }/>
 
 <RCarousel
 	nominations
