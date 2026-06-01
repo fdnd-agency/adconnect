@@ -36,12 +36,17 @@ export async function load() {
 	// Requested fields for the data from Directus API
 	const newsFields = 'title,description,date_updated,uuid,hero'
 	const cooperationFields = 'id,url,name,logo'
+	const faqFields = 'id,question,answer,important'
+
+	// Important faq filter
+	const faqFilters = { important: { _eq: true } }
 
 	// Fetch the content data via the ContentService.
-	const [homePageResponse, newsResponse, cooperationsResponse] = await Promise.all([
+	const [homePageResponse, newsResponse, cooperationsResponse, faqResponse] = await Promise.all([
 		ContentService.fetchContent('pageHome', null, homePageFields, null, false),
 		ContentService.fetchContent('news', null, newsFields, null, false),
-		ContentService.fetchContent('cooperations', null, cooperationFields, null, false)
+		ContentService.fetchContent('cooperations', null, cooperationFields, null, false),
+		ContentService.fetchContent('faqs', null, faqFields, faqFilters, false)
 	])
 
 	const homePageItem = homePageResponse.data.pageHome?.[0]
@@ -49,6 +54,7 @@ export async function load() {
 	return {
 		homePage: homePageItem ?? {},
 		news: Array.from(newsResponse.data.news.values()),
-		cooperations: Array.from(cooperationsResponse.data.cooperations.values())
+		cooperations: Array.from(cooperationsResponse.data.cooperations.values()),
+		faqs: Array.from(faqResponse.data.faqs.values())
 	}
 }
