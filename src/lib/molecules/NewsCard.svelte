@@ -17,6 +17,7 @@
 			src={`${DIRECTUS_URL}/assets/${article.hero}`}
 			width="300"
 			height="210"
+			style="height:auto;"
 		/>
 	</div>
 

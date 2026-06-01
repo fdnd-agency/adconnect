@@ -33,6 +33,7 @@
 				height={picture.height}
 				fetchpriority={picture.fetchpriority}
 				loading={picture.loading}
+				style="height:auto;"
 			/>
 		</section>
 	{/if}
