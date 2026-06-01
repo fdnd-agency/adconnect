@@ -47,11 +47,11 @@
 	</p>
 </section>
 
-<section class="logo-section">
-	<DividerText text="Partijen waarmee wij samenwerken" />
-	<RCarousel logos carouselItems={cooperation} />
-	<Divider />
-</section>
+<RCarousel
+	logos
+	carouselItems={cooperation}
+	dividerText="Partijen waarmee wij samenwerken"
+/>
 
 <div class="origins">
 	<section class="origin-text">

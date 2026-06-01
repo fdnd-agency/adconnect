@@ -15,8 +15,7 @@
 		alt="..."
 		width="600"
 		height="300"
-		fetchpriority="high"
-		loading="eager"
+		style="height: auto;"
 	/>
 </div>
 
