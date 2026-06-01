@@ -5,7 +5,7 @@
 </script>
 
 {#if src && isEnhanced}
-	<enhanced:img class="aa"
+	<enhanced:img
 		{src}
 		{alt}
 		{loading}
