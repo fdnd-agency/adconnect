@@ -11,7 +11,7 @@
 	<title>Documenten | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<div>
+<div class="wrapper-detail">
     <article class="detail">
         <p>{data.document.description}</p>
         {#if sourceFileId}
@@ -34,19 +34,7 @@
         {/if}
     </article>
 </div>
-<!-- 
-	<div class="wrapper-ad-day">
-		<section class="ad-day">
-			<h2>Kom naar de Ad-dag!</h2>
-			<p>Ontdek alles over Associate Degrees en laat je inspireren tijdens workshops en presentaties op de Landelijke Ad-dag.</p>
-            <RLink
-                href="/ad-dag"
-                class="button-outline-white"
-            >
-                Meer weten over de AD-dag
-            </RLink>
-		</section>
-	</div> -->
+
 
 <style>
 	.wrapper-detail {
@@ -74,15 +62,7 @@
 		}
 
 		.detail {
-			width: 55%;
-
-			:global(p) {
-				max-width: unset;
-			}
-
-			@media (min-width: 1024px) {
-				width: 65%;
-			}
+			width: clamp(55%, 60%, 65%);
 		}
 	}
 
@@ -100,52 +80,6 @@
 	@media (min-width: 1024px) {
 		.wrapper-detail {
 			gap: 5em;
-		}
-	}
-
-	:global(.detail img) {
-		width: 100%;
-		max-width: 70%;
-		object-fit: cover;
-		border-radius: 1em;
-	}
-
-	@media (min-width: 768px) {
-		.wrapper-ad-day {
-			width: 50%;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.wrapper-ad-day {
-			width: 30%;
-		}
-	}
-
-	.ad-day {
-		display: flex;
-		flex-direction: column;
-		gap: 1em;
-		padding: 2em;
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
-		color: var(--text-white);
-		border-radius: 1em;
-
-		h2 {
-			color: var(--text-white);
-			font-size: var(--h4-size);
-		}
-
-		a:hover {
-			color: var(--text-darkblue);
-			background-color: var(--text-white);
-		}
-	}
-
-	@media (min-width: 768px) {
-		.ad-day {
-			position: sticky;
-			top: 10em;
 		}
 	}
 </style>
