@@ -6,7 +6,9 @@
 </script>
 
 <section>
-    <Rseparator/>
+    <Rseparator
+        dividerText="Voorgaande talent award winnaars"
+    />
     <RTalentWinner { data }/>
 
     <RCardSection
