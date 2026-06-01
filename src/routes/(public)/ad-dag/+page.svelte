@@ -4,7 +4,38 @@
 	// Import images
 	import { addag1, addag2, addag3 } from '$lib'
 
-	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule, RSectionHero, RPicture, RSectionPage } from '$lib'
+	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule, RSectionHero, RPicture, RSectionPage, RSectionPlanning } from '$lib'
+
+	// TODO: schedule data that needs to be added to directus
+	const scheduleData = {
+		schedule: [
+			{
+				startTime: '09:30',
+				endTime: '10:00',
+				event: 'Inloop met koffie/thee'
+			},
+			{
+				startTime: '10:00',
+				endTime: '13:00',
+				event: 'Opening, keynote, gesprekken en Ad Talent Award'
+			},
+			{
+				startTime: '13:00',
+				endTime: '13:45',
+				event: 'Lunch'
+			},
+			{
+				startTime: '13:45',
+				endTime: '15:30',
+				event: 'Workshops en excursies'
+			},
+			{
+				startTime: '15:30',
+				endTime: '17:00',
+				event: 'Borrel & ontmoeting'
+			}
+		]
+	}
 </script>
 
 <svelte:head>
@@ -83,7 +114,28 @@
 		/>
 	</div>
 </section>
-<Schedule />
+
+<RSectionPlanning
+	sectionInfo={{
+		title: 'Planning',
+		description:
+			'Beleef de Landelijke Ad‑dag! De Landelijke Ad‑dag belooft een bruisende dag vol inspiratie, ontmoetingen en praktijkvoorbeelden te worden. Geleid door Maikel van Duinen, radiotalent en docent, word je meegenomen in een energieke dag vol boeiende sessies, waaronder een keynote over de maatschappelijke en economische impact van de Ad, inspirerende gesprekken tussen onderwijs, werkveld en studenten, de feestelijke uitreiking van de Ad Talent Award, workshops en excursies om de impact van Ad‑studenten van dichtbij te ervaren, en optredens met volop gelegenheid om elkaar te ontmoeten.'
+	}}
+	cardsData={[
+		{
+			title: 'Programma',
+			schedule: scheduleData,
+			link: { label: 'Bekijk Programma', href: '#' }
+		},
+		{
+			title: 'Workshops',
+			description:
+				'Tijdens de Landelijke Ad‑dag worden verschillende workshops georganiseerd waarin deelnemers samen leren, ervaringen delen en praktische handvatten krijgen op thema’s zoals diversiteit, professionalisering, inzet van technologie binnen Ad‑onderwijs, loopbaanontwikkeling, duurzaamheid en samenwerking met werkveld en onderwijs. De precieze workshoptitels en inhoud worden jaarlijks aangepast en zijn onderdeel van het programma',
+			link: { label: 'Bekijk workshops', href: '#' }
+		}
+	]}
+/>
+
 <Location />
 
 <style>
