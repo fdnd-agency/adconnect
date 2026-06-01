@@ -37,49 +37,47 @@
 
 
 <style>
-	.wrapper-detail {
+    .wrapper-detail {
         container: detail / inline-size;
-		display: flex;
-		flex-direction: column;
-		gap: 1em;
-		width: 90%;
-		padding: 3em 0;
-		max-width: 1400px;
-		margin: auto;
-	}
-
-	.detail {
-		display: flex;
-		flex-direction: column;
-		gap: 1em;
-	}
-
-	@media (min-width: 768px) {
-		.wrapper-detail {
-			flex-direction: row;
-			gap: 2em;
-			padding: 5em 0;
-		}
-
-		.detail {
-			width: clamp(55%, 60%, 65%);
-		}
-	}
-
-	.file {
-		display: flex;
-		flex-direction: column;
-		align-items: baseline;
-		gap: 1em;
-
-		iframe {
-			height: 30em;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.wrapper-detail {
-			gap: 5em;
-		}
-	}
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 100%;
+        max-width: 1400px;
+    }
+ 
+    .detail {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        margin: auto 3em;
+    }
+ 
+    @media (min-width: 768px) {
+        .wrapper-detail {
+            flex-direction: row;
+            gap: 2em;
+            padding: 5em 0;
+        }
+ 
+        .detail {
+            width: clamp(55%, 60%, 65%);
+        }
+    }
+ 
+    .file {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+ 
+        iframe {
+            height: 30em;
+        }
+    }
+ 
+    @media (min-width: 1024px) {
+        .wrapper-detail {
+            gap: 5em;
+        }
+    }
 </style>
