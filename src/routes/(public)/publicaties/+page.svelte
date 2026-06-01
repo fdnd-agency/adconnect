@@ -7,30 +7,15 @@
 	import { publicatie } from '$lib'
 
 	// Import components
-	import { Hero, RCardPublicaties, RSectionHero } from '$lib'
+	import { Hero } from '$lib'
+	import { RSectionHero, RFilterButtons, RCardPublicaties } from '$lib'
 
-	// Haal data op uit page.server.js via props
 	const { data } = $props()
-	let documents = $state(data.documents)
-	let categories = $state(data.categories)
-	let selectedCategory = $state(data.selectedCategory)
 
-	// Effect om de state te synchroniseren als props veranderen
-	$effect(() => {
-		documents = data.documents
-		categories = data.categories
-		selectedCategory = data.selectedCategory
-	})
+	const documents = $derived(data.documents)
+	const selectedCategory = $derived(data.selectedCategory)
+	const categories = $derived(data.categories)
 
-	// Update selectedCategory en URL bij wijziging
-	function handleChange(event) {
-		const { value } = event.target
-		selectedCategory = value
-
-		const url = new URL($page.url)
-		url.searchParams.set('category', value)
-		goto(url.toString(), { replaceState: true })
-	}
 </script>
 
 <svelte:head>
@@ -50,33 +35,10 @@
 	}}
 />
 
-<div class="filter-buttons">
-	<p>Filter op categorie:</p>
-	<div class="filter">
-		<a
-			href="?category=alle-publicaties"
-			class="button-outline-blue {selectedCategory === 'alle-publicaties' ? 'active' : ''}"
-			data-sveltekit-noscroll
-		>
-			Alle publicaties</a
-		>
-
-		{#each categories as categorie (categorie.id)}
-			<a
-				href={`?category=${categorie.title.toLowerCase()}`}
-				data-sveltekit-noscroll
-				class="button-outline-blue {selectedCategory.toLowerCase() === categorie.title.toLowerCase() ? 'active' : ''}"
-				>{categorie.title}
-			</a>
-		{/each}
-	</div>
-</div>
+<RFilterButtons {categories} {selectedCategory} {documents}/>
 
 <div class="section-documents">
-	<div class="filter-info">
-		<p>Categorie: {selectedCategory}</p>
-		<p>Aantal artikelen: {documents.length}</p>
-	</div>
+
 	<div class="documents-container">
 		<ul>
 			{#each documents as document (document.id)}
@@ -87,33 +49,6 @@
 </div>
 
 <style>
-	.filter-buttons {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-		gap: 1em;
-		width: 90%;
-		padding: 3em 0 0 0;
-		margin: auto;
-
-		@media (min-width: 768px) {
-			padding: 5em 0 0 0;
-			max-width: 1400px;
-		}
-
-		.filter {
-			display: flex;
-			flex-wrap: wrap;
-			flex-direction: row;
-			gap: 1em;
-		}
-	}
-
-	.button-outline-blue.active {
-		background-color: var(--primary-blue);
-		color: white;
-	}
-
 	.section-documents {
 		display: flex;
 		flex-direction: column;
@@ -125,11 +60,6 @@
 		@media (min-width: 768px) {
 			padding: 5em 0;
 			max-width: 1400px;
-		}
-
-		.filter-info {
-			display: flex;
-			gap: 1.5em;
 		}
 	}
 

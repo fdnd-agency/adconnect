@@ -125,8 +125,10 @@ export { default as RContactForm } from './refactored/molecules/ContactForm.svel
 export { default as RCarousel } from './refactored/molecules/Carousel.svelte'
 export { default as RTextSection } from './refactored/molecules/TextSection.svelte'
 export { default as RDetailsSection } from './refactored/organisms/DetailsSection.svelte'
+export { default as RFilterButtons } from './refactored/molecules/FilterButtons.svelte'
 
 // organisms
 export { default as RSectionHero } from './refactored/organisms/SectionHero.svelte'
 export { default as RSectionPage } from './refactored/organisms/SectionPage.svelte'
 export { default as RSectionPlanning } from './refactored/organisms/SectionPlanning.svelte'
+
