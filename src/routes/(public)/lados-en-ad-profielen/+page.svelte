@@ -2,28 +2,26 @@
 	import { Hero, LadoInfoCard, LadosOverview, overleggen } from '$lib'
 
 	const { data } = $props()
+	const ladoPage = $derived(data.ladoPage ?? {})
 
-	const infoCards = [
+	const infoCards = $derived([
 		{
-			title: 'Gezamenlijke profilering van vergelijkbare Ad-opleidingen',
-			description:
-				'In een LAdO stemmen de aangesloten Ad-opleidingen met elkaar af over een gezamenlijke profilering om tot landelijk herkenbare opleidingen te komen. Deze profilering is richtinggevend voor (aankomende) studenten, werkgevers en kwaliteitstoetsing door de NVAO.'
+			title: ladoPage.lado_card_1_title,
+			description: ladoPage.lado_card_1_body
 		},
 		{
-			title: 'Gezamenlijke afstemming op het specifieke werkveld',
-			description:
-				'Elke hogeschool heeft met haar eigen regio te maken, maar ook met landelijke werkgeversorganisaties, brancheorganisaties en beroepsverenigingen. Binnen een LAdO wordt hierover gezamenlijk afgestemd.'
+			title: ladoPage.lado_card_2_title,
+			description: ladoPage.lado_card_2_body
 		},
 		{
-			title: 'Gezamenlijke afstemming op andere (overheids)organen',
-			description:
-				"In de LAdO's is regelmatig afstemming met de NVAO, het ministerie van OCW en de Commissie Doelmatigheid Hoger Onderwijs. Opleidingen kunnen veel van elkaar leren als het gaat om accreditaties en onderwijsvernieuwingen."
+			title: ladoPage.lado_card_3_title,
+			description: ladoPage.lado_card_3_body
 		},
 		{
-			title: 'Onderlinge uitwisseling en afstemming over onderwijsuitvoering',
-			description: 'In de ontwikkeling en doorontwikkeling van Ad-opleidingen valt veel van elkaar te leren, bijvoorbeeld over niveau, toetsing, praktijkleren en digitaal onderwijsmateriaal.'
+			title: ladoPage.lado_card_4_title,
+			description: ladoPage.lado_card_4_body
 		}
-	]
+	])
 </script>
 
 <svelte:head>
@@ -31,18 +29,18 @@
 </svelte:head>
 
 <Hero
-	title="Landelijke Ad-overleggen en Ad-profielen"
-	description="Het Overlegplatform Associate degrees ondersteunt het belang van Ad-opleidingen om zich samen te positioneren en te profileren in het Nederlandse onderwijslandschap."
+	title={ladoPage.hero_heading}
+	description={ladoPage.hero_body}
 >
 	<a
 		slot="primary"
-		href="#over-lados"
-		class="button-outline-white">Lees meer</a
+		href={ladoPage.hero_primary_button_url}
+		class="button-outline-white">{ladoPage.hero_primary_button_text}</a
 	>
 	<a
 		slot="secondary"
-		href="#overzicht-lados"
-		class="button-outline-white">Bekijk overzicht</a
+		href={ladoPage.hero_secondary_button_url}
+		class="button-outline-white">{ladoPage.hero_secondary_button_text}</a
 	>
 	<img
 		class="hero-image"
@@ -57,7 +55,7 @@
 	id="over-lados"
 >
 	<div class="inner-wrapper">
-		<h2>Over LAdO's</h2>
+		<h2>{ladoPage.lado_section_heading}</h2>
 
 		<div class="card-grid">
 			{#each infoCards as card (card.title)}
