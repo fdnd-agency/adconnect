@@ -2,7 +2,7 @@
     import { DIRECTUS_URL } from '$lib/constants.js'
     import { RLink } from '$lib'
 
-    export let data
+    const { data, ...props } = $props()
 
     const sourceFileId = data?.document?.source_file?.id ?? data?.document?.source_file ?? null
 </script>
@@ -50,7 +50,7 @@
         display: flex;
         flex-direction: column;
         gap: 1em;
-        margin: auto 3em;
+        margin: auto min(6%, 3em);
     }
  
     @media (min-width: 768px) {
