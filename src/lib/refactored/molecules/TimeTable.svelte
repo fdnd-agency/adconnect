@@ -1,34 +1,5 @@
 <script>
-	// TODO: schedule data that needs to be added to directus
-	const scheduleData = {
-		schedule: [
-			{
-				startTime: '09:30',
-				endTime: '10:00',
-				event: 'Inloop met koffie/thee'
-			},
-			{
-				startTime: '10:00',
-				endTime: '13:00',
-				event: 'Opening, keynote, gesprekken en Ad Talent Award'
-			},
-			{
-				startTime: '13:00',
-				endTime: '13:45',
-				event: 'Lunch'
-			},
-			{
-				startTime: '13:45',
-				endTime: '15:30',
-				event: 'Workshops en excursies'
-			},
-			{
-				startTime: '15:30',
-				endTime: '17:00',
-				event: 'Borrel & ontmoeting'
-			}
-		]
-	}
+	const { scheduleData } = $props()
 </script>
 
 <ul class="schedule__list">
