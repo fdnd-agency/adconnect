@@ -6,9 +6,9 @@
 	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
 
 	const { data } = $props()
-
-	const { themes } = data
-	const { cooperation } = data
+	const themes = $derived(data.themes ?? [])
+	const cooperation = $derived(data.cooperation ?? [])
+	const aboutAdPage = $derived(data.aboutAdPage ?? {})
 </script>
 
 <svelte:head>
@@ -16,8 +16,8 @@
 </svelte:head>
 
 <Hero
-	title="Over Associate Degree's"
-	description="Associate Degrees zijn praktijkgerichte opleidingen van twee jaar die studenten voorbereiden op het werkveld en doorstroom naar een bachelor."
+	title={aboutAdPage.hero_heading}
+	description={aboutAdPage.hero_body}
 >
 	<img
 		class="hero-image"
@@ -27,33 +27,33 @@
 	/>
 	<a
 		slot="primary"
-		href="#benefit"
+		href={aboutAdPage.hero_button_url}
 		class="button-outline-white"
 		aria-label="Lees meer over Associate Degree's"
-		id="benefit">Lees meer →</a
+		id="benefit">{aboutAdPage.hero_button_text}</a
 	>
 </Hero>
 
 <section class="about-ad-hero">
 	<section class="intro">
-		<h2>Waarom kiezen voor Associate Degree's?</h2>
-		<p>Associate Degrees combineren praktijk en theorie in een korte, intensieve opleiding. Ze bereiden studenten effectief voor op actuele beroepen en geven een stevige basis voor verdere studie.</p>
+		<h2>{aboutAdPage.why_heading}</h2>
+		<p>{aboutAdPage.why_body}</p>
 	</section>
 
 	<section class="benefits">
 		<BenefitsCard
-			title="Doorstroom mogelijkheid"
-			excerpt="Met een Ad-opleiding stroom je gemakkelijk door naar een bachelor. Kennis en vaardigheden sluiten direct aan op vervolgopleidingen en het werkveld."
+			title={aboutAdPage.why_card_1_title}
+			excerpt={aboutAdPage.why_card_1_body}
 		></BenefitsCard>
 
 		<BenefitsCard
-			title="Korte studieduur"
-			excerpt="Ad-opleidingen duren doorgaans twee jaar. Hierdoor kan je snel aan de slag in het werkveld, terwijl je tegelijkertijd een erkend diploma haalt dat je carrièrekansen vergroot."
+			title={aboutAdPage.why_card_2_title}
+			excerpt={aboutAdPage.why_card_2_body}
 		></BenefitsCard>
 
 		<BenefitsCard
-			title="Persoonlijk & kleinschalig"
-			excerpt="De opleidingen zijn kleinschalig en persoonlijk ingericht. Docenten kennen de studenten goed, waardoor begeleiding op maat mogelijk is en studenten optimaal kunnen groeien."
+			title={aboutAdPage.why_card_3_title}
+			excerpt={aboutAdPage.why_card_3_body}
 		></BenefitsCard>
 	</section>
 </section>
@@ -62,10 +62,10 @@
 	image={doorstroom}
 	alt="Doorstroom Ad-bachelor"
 	{dots}
-	title="Doorstroom Ad-bachelor"
-	text="Met een Ad-diploma kun je rechtstreeks doorstromen naar een bacheloropleiding. Het programma is zo opgebouwd dat de kennis en vaardigheden aansluiten op de vervolgopleiding en de beroepspraktijk, zodat studenten soepel verder kunnen bouwen aan hun carrière."
-	link="/ad-dag"
-	linkText="Kom naar de Ad-dag"
+	title={aboutAdPage.bachelor_heading}
+	text={aboutAdPage.bachelor_body}
+	link={aboutAdPage.bachelor_button_url}
+	linkText={aboutAdPage.bachelor_button_text}
 	imagePosition="left"
 />
 
@@ -86,10 +86,10 @@
 	image={overleggen}
 	alt=""
 	{dots}
-	title="Landelijke Ad-overleggen en Ad-profielen"
-	text="Het Overlegplatform organiseert regelmatig landelijke overleggen waarin vertegenwoordigers van alle Ad-opleidingen samenkomen. Tijdens deze bijeenkomsten worden nieuwe Ad-profielen besproken, kwaliteitsrichtlijnen gedeeld en best practices uitgewisseld. Zo blijven opleidingen actueel en goed afgestemd op het werkveld."
-	link="/contact"
-	linkText="Meer weten? Neem contact op"
+	title={aboutAdPage.profiles_heading}
+	text={aboutAdPage.profiles_body}
+	link={aboutAdPage.profiles_button_url}
+	linkText={aboutAdPage.profiles_button_text}
 	imagePosition="right"
 	background="white"
 />
@@ -100,10 +100,10 @@
 	image={awards}
 	alt="2 vrouwen die genomineerden waren voor de Ad-talent Awards. beide met een abnormaal groote check van 250 euro en een trofee "
 	{dots}
-	title="Ad Talent Awards"
-	text="De Ad Talent Awards vieren de prestaties van studenten, docenten en opleidingen binnen het Associate Degree-onderwijs. De awards zetten talenten in het zonnetje die met hun inzet, creativiteit en innovatieve aanpak een positieve impact maken in het werkveld en de samenleving. Door deelname en nominaties worden best practices gedeeld en wordt de waarde van Ad-opleidingen zichtbaar voor een breed publiek."
-	link="/talent-award"
-	linkText="Meer over Ad talent Awards"
+	title={aboutAdPage.awards_heading}
+	text={aboutAdPage.awards_body}
+	link={aboutAdPage.awards_button_url}
+	linkText={aboutAdPage.awards_button_text}
 	imagePosition="left"
 	background="white"
 />
