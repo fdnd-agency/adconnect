@@ -7,7 +7,8 @@
 
 	const { data } = $props()
 
-	import { Hero, Divider, DividerText, RSectionHero } from '$lib'
+	import { Hero, Divider, DividerText } from '$lib'
+	import { RCarousel, RSectionHero, Rseparator } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -141,27 +142,11 @@
 	</p>
 </section>
 
-<section>
-	<DividerText text="Voorgaande nominaties" />
-</section>
-
-<section class="slider">
-	<ul class="slider-ul">
-		{#each data.nominations as item (item.id)}
-			<li class="nomination">
-				<h3>{item.title}</h3>
-
-				{#if item.profile_picture}
-					<img
-						src={imageUrl(item.profile_picture.id ?? item.profile_picture)}
-						alt="item.title"
-						class="profile-photo"
-					/>
-				{/if}
-			</li>
-		{/each}
-	</ul>
-</section>
+<RCarousel
+	nominations
+	carouselItems={data.nominations}
+	dividerText="Voorgaande nominaties"
+/>
 
 <style>
 	.intro,
@@ -270,17 +255,6 @@
 		margin-top: 1rem;
 	}
 
-	.slider {
-		overflow: visible;
-		width: 100vw;
-		max-width: 1400px;
-	}
-
-	.slider-ul {
-		display: flex;
-		animation: scroll 10s linear infinite;
-	}
-
 	ul:hover {
 		animation-play-state: paused;
 	}
@@ -294,27 +268,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-
-	.nomination {
-		position: relative;
-		margin-bottom: 3rem;
-	}
-
-	.profile-photo {
-		position: absolute;
-		bottom: 100%;
-		left: 50%;
-		transform: translateX(-50%) translateY(10px);
-		width: 150px;
-		opacity: 0;
-		pointer-events: none;
-		transition: 0.2s ease;
-	}
-
-	.nomination:hover .profile-photo {
-		opacity: 1;
-		transform: translateX(-50%) translateY(0);
 	}
 
 	.previous-winners {

@@ -62,6 +62,7 @@
 				src={imageSrc}
 				alt={imageAlt}
 				aria-hidden="true"
+				style="height:auto;"
 			/>
 		{/if}
 	</div>

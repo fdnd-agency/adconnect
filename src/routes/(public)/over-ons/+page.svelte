@@ -4,7 +4,7 @@
 	import logomobile from '$lib/assets/logomobile.svg'
 
 	// Import components
-	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
+	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero, RCarousel } from '$lib'
 
 	const { data } = $props()
 
@@ -47,11 +47,11 @@
 	</p>
 </section>
 
-<section class="logo-section">
-	<DividerText text="Partijen waarmee wij samenwerken" />
-	<LogoSection {cooperation} />
-	<Divider />
-</section>
+<RCarousel
+	logos
+	carouselItems={cooperation}
+	dividerText="Partijen waarmee wij samenwerken"
+/>
 
 <div class="origins">
 	<section class="origin-text">

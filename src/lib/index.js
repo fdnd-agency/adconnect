@@ -122,6 +122,7 @@ export { default as RCardPublicaties } from './refactored/molecules/CardPublicat
 export { default as RCardNews } from './refactored/molecules/CardNews.svelte'
 export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte'
 export { default as RContactForm } from './refactored/molecules/ContactForm.svelte'
+export { default as RCarousel } from './refactored/molecules/Carousel.svelte'
 export { default as RTextSection } from './refactored/molecules/TextSection.svelte'
 export { default as RDetailsSection } from './refactored/organisms/DetailsSection.svelte'
 
