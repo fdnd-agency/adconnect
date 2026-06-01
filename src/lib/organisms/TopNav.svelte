@@ -5,7 +5,7 @@
 <nav aria-label="Secundair">
 	<section class="nav-right">
 		<ul>
-			<li><a href="/#faq">FAQ's</a></li>
+			<li><a href="/faq">FAQ's</a></li>
 			<li>
 				<a
 					class={page.url.pathname === '/over-ons' ? 'active' : 'menu-button'}

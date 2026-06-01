@@ -1,15 +1,15 @@
 <script>
-	import placeholder from '$lib/assets/placeholder-hero.webp'
-
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from '$lib'
 
 	// Import images
 	import { zaal } from '$lib'
 
-	const { data } = $props()
-	const { news } = data
-	const { cooperation } = data
+	const props = $props()
+	const data = $derived(props.data)
+	const news = $derived(data.news)
+	const cooperations = $derived(data.cooperations)
+	const faqs = $derived(data.faqs)
 </script>
 
 <svelte:head>
@@ -40,7 +40,7 @@
 	/>
 </Hero>
 
-<NewsCardSection news={data.news.slice(0, 3)} />
+<NewsCardSection news={news.slice(0, 3)} />
 
 <Information
 	title="Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?"
@@ -78,7 +78,7 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 
 <section class="logo-section">
 	<DividerText text="Partijen waarmee wij samenwerken" />
-	<LogoSection {cooperation} />
+	<LogoSection {cooperations} />
 	<Divider />
 </section>
 
@@ -97,28 +97,14 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	id="faq"
 >
 	<h2>Veelgestelde vragen</h2>
-
 	<MultipleFaq>
-		<SingleFaq
-			open={true}
-			question="Wat is een Associate degree?"
-			answer="Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding."
-		/>
-
-		<SingleFaq
-			question="Hoe lang duurt een Associate degree?"
-			answer="Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring."
-		/>
-
-		<SingleFaq
-			question="Wat is het verschil tussen een Associate degree en een Bachelor?"
-			answer="Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld."
-		/>
-
-		<SingleFaq
-			question="Welke voordelen heeft het behalen van een Associate degree?"
-			answer="Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk."
-		/>
+		{#each faqs as faq, index (faq.id)}
+			<SingleFaq
+				open={index === 0}
+				question={faq.question}
+				answer={faq.answer}
+			/>
+		{/each}
 	</MultipleFaq>
 </section>
 
