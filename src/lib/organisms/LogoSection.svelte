@@ -1,27 +1,27 @@
 <script>
-	export let cooperation
+	export let cooperations
 	import { DIRECTUS_URL } from '$lib/constants.js'
 </script>
 
 <div class="carousel">
 	<ul>
-		{#each cooperation as logo (logo.id)}
+		{#each cooperations as cooperation (cooperation.id)}
 			<li>
 				<a
 					target="_blank"
-					href={logo.url}
+					href={cooperation.url}
 				>
 					<img
 						width="200"
 						height="100"
-						src={`${DIRECTUS_URL}/assets/${logo.logo}?width=800`}
+						src={`${DIRECTUS_URL}/assets/${cooperation.logo}?width=800`}
 						srcset="
-                        {DIRECTUS_URL}/assets/{logo.logo}?width=200 200w,
-                        {DIRECTUS_URL}/assets/{logo.logo}?width=400 400w,
-                        {DIRECTUS_URL}/assets/{logo.logo}?width=800 800w
+                        {DIRECTUS_URL}/assets/{cooperation.logo}?width=200 200w,
+                        {DIRECTUS_URL}/assets/{cooperation.logo}?width=400 400w,
+                        {DIRECTUS_URL}/assets/{cooperation.logo}?width=800 800w
                     "
 						sizes="(max-width: 600px) 200px, 247px"
-						alt={logo.name}
+						alt={cooperation.name}
 						style="max-width: 100%; height: auto;"
 					/>
 				</a>
