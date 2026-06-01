@@ -24,7 +24,8 @@
 		grid-template-columns: 1fr;
 		gap: 1em;
 		width: 100%;
-		max-width: 75ch;
+		max-width: 85ch;
+		padding: 0 min(5%, 3em);
 
 		.section-header__title {
 			grid-row: 2;
