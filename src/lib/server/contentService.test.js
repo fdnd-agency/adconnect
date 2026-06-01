@@ -60,7 +60,7 @@ describe('ContentService property-based tests', () => {
 	})
 
 	it('rejects unknown content types for any non-whitelisted string', async () => {
-		const knownTypes = new Set(['documents', 'categories', 'themes', 'events', 'cooperations', 'news', 'nominations', 'faqs'])
+		const knownTypes = new Set(['documents', 'categories', 'themes', 'events', 'cooperations', 'news', 'nominations', 'faqs', 'lados', 'courses', 'sectoralAdvisoryBoards', 'pageHome'])
 
 		await fc.assert(
 			fc.asyncProperty(
