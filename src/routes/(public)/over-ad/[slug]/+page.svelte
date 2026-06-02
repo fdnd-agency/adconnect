@@ -7,7 +7,6 @@
 	const themes = $derived(data.themes)
 
 	const visibleThemes = $derived(themes.length ? themes : [data])
-	// console.log(theme.description)
 </script>
 
 <RSectionHero
