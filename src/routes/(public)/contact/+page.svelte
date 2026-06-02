@@ -4,7 +4,7 @@
 	import { enhance } from '$app/forms'
 
 	// Import components Atomic Design
-	import { Breadcrumb, RContactForm } from '$lib'
+	import { Breadcrumb, RContactForm, RContactCard } from '$lib'
 
 	// Import images Atomic Design
 	import { mail, map, phone, lightcircle, darkcircle, birdcheck, loading, wrong } from '$lib'
@@ -33,7 +33,9 @@
 	<p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
 
 	<div class="contact-wrapper">
-		<section class="contact-info">
+
+		<RContactCard/>
+		<!-- <section class="contact-info">
 			<h2 class="white">Contactgegevens</h2>
 			<p class="white">Heb je vragen? Vul het contactformulier in of neem contact op via de onderstaande contactgegevens.</p>
 			<ul>
@@ -64,7 +66,7 @@
 				src={lightcircle}
 				alt=""
 			/>
-		</section>
+		</section> -->
 
 		<RContactForm />
 	</div>
