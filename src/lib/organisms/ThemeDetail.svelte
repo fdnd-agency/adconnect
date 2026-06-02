@@ -15,7 +15,7 @@
 	<title>{theme.title} | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
+<!-- <Hero
 	title={theme.title}
 	description={theme.description}
 >
@@ -26,7 +26,7 @@
 		aria-hidden="true"
 		fetchpriority="high"
 	/>
-</Hero>
+</Hero> -->
 
 <section class="wrapper-detail">
 	<div class="detail">
@@ -49,7 +49,7 @@
 
 <RSectionThemes
 	sectionInfo={{
-		title: "Bekijk ook andere thema's",
+		title: "Bekijk ook andere thema's"
 	}}
 	themes={visibleThemes.slice(0, 3)}
 	backgroundBlue
