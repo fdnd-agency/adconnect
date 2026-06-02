@@ -7,7 +7,7 @@
 <div class="section-documents">
 	<RFilterButtons
 		{filterCategories}
-		selectedCategory={selectedCategory}
+		{selectedCategory}
 		documents={filterResults}
 	/>
 

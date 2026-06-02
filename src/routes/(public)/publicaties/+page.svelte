@@ -15,7 +15,6 @@
 	const documents = $derived(data.documents)
 	const selectedCategory = $derived(data.selectedCategory)
 	const categories = $derived(data.categories)
-
 </script>
 
 <svelte:head>
@@ -25,7 +24,8 @@
 <RSectionHero
 	sectionInfo={{
 		title: 'Publicaties',
-		description: 'Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs.'
+		description:
+			'Hier zijn alle publicaties over Associate degrees te vinden, van onderzoeken en richtlijnen tot praktijkvoorbeelden. Blijf op de hoogte van ontwikkelingen en best practices binnen het Ad-onderwijs.'
 	}}
 	picture={{
 		isEnhanced: true,
@@ -35,4 +35,8 @@
 	}}
 />
 
-<RSectionFilter filterResults={documents} filterCategories={categories} {selectedCategory}/>
+<RSectionFilter
+	filterResults={documents}
+	filterCategories={categories}
+	{selectedCategory}
+/>

@@ -39,12 +39,12 @@
 			<legend class="category-filter__label">Filter op categorie:</legend>
 
 			<ul class="category-filter__list">
-				<li class="category-filter__item">
+				<li>
 					{@render categoryRadio({ value: 'alle-publicaties', label: 'Alle publicaties' })}
 				</li>
 
 				{#each filterCategories as category (category.id)}
-					<li class="category-filter__item">
+					<li>
 						{@render categoryRadio({ value: category.title.toLowerCase(), label: category.title })}
 					</li>
 				{/each}
@@ -53,7 +53,7 @@
 			<button
 				id="submit"
 				type="submit"
-				class="button-outline-blue category-filter__submit"
+				class="button-outline-blue"
 			>
 				Submit
 			</button>
@@ -64,8 +64,8 @@
 		class="filter-info"
 		aria-live="polite"
 	>
-		<p class="filter-info__category">Categorie: {selectedCategory}</p>
-		<p class="filter-info__count">Aantal artikelen: {documents.length}</p>
+		<p>Categorie: {selectedCategory}</p>
+		<p>Aantal artikelen: {documents.length}</p>
 	</div>
 </section>
 
@@ -112,10 +112,6 @@
 			list-style: none;
 			margin: 0;
 			padding: 0;
-
-			.category-filter__item {
-				font-family: var(--font-body);
-			}
 		}
 
 		.category-filter__button {
@@ -134,5 +130,9 @@
 	.filter-info {
 		display: flex;
 		gap: 1.5em;
+
+		p {
+			text-wrap: balance;
+		}
 	}
 </style>
