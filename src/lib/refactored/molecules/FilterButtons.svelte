@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { afterNavigate } from '$app/navigation'
+	import { goto } from '$app/navigation'
+	import { page } from '$app/state'
 
 	const { filterCategories, selectedCategory, documents } = $props()
 
@@ -7,17 +8,11 @@
 
 	let lastValue = $state<string | null>(null)
 
-	function filterClick(e: Event) {
-		const target = e.target as HTMLInputElement
-		lastValue = target.value
-		target.form?.requestSubmit()
+	function selectCategory(value: string) {
+		const url = new URL(page.url)
+		url.searchParams.set('category', value)
+		goto(url, { noScroll: true, keepFocus: true })
 	}
-
-	afterNavigate(() => {
-		if (!lastValue) return
-		document.querySelector<HTMLInputElement>(`input[value="${lastValue}"]`)?.focus()
-		lastValue = null
-	})
 </script>
 
 {#snippet categoryRadio(category)}
@@ -28,8 +23,7 @@
 			name="category"
 			value={category.value}
 			checked={normalized === category.value}
-			onclick={filterClick}
-			autofocus={normalized === category.value}
+			onclick={() => selectCategory(category.value)}
 		/>
 		<span>{category.label}</span>
 	</label>

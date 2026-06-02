@@ -1,8 +1,8 @@
 <script>
-	import { RDetailsSection } from '$lib';
+	import { RDetailsSection } from '$lib'
 	const { data } = $props()
 </script>
 
 <!-- <PublicationDetails {data} /> -->
 
-<RDetailsSection { data }/>
+<RDetailsSection {data} />
