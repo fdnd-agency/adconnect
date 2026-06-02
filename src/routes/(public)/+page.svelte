@@ -16,6 +16,31 @@
 		title: 'Het landelijke platform voor Associate degrees',
 		description: 'Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.'
 	}
+
+	// TODO: FAQ that needs to be added to directus
+	const faqData = {
+		faqs: [
+			{
+				question: 'Wat is een Associate degree?',
+				answer:
+					'Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding.'
+			},
+			{
+				question: 'Hoe lang duurt een Associate degree?',
+				answer: 'Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring.'
+			},
+			{
+				question: 'Wat is het verschil tussen een Associate degree en een Bachelor?',
+				answer:
+					'Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld.'
+			},
+			{
+				question: 'Welke voordelen heeft het behalen van een Associate degree?',
+				answer:
+					'Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk.'
+			}
+		]
+	}
 </script>
 
 <svelte:head>
@@ -104,4 +129,4 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	imageAlt="Studenten bij de Ad Talent Award die naast elkaar staan, allemaal met een certificaat in hun handen"
 />
 
-<RFaqSection title="Veelgestelde vragen" />
+<RFaqSection title="Veelgestelde vragen" {faqData} />
