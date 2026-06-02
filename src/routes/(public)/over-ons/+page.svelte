@@ -10,6 +10,22 @@
 
 	const { themes } = data
 	const { cooperation } = data
+
+	const originText = [
+		{
+			title: 'Oorsprong van de website',
+			paragraphs: [
+				'In een gesprek tussen leden van het Overlegplatform Associate Degree en Jan Bogerd (portefeuillehouder onderwijs Vereniging Hogescholen) en Bridget Kievits (bestuurscommissie onderwijs) op 21 januari 2019 is het verzoek naar voren gekomen om scenario’s te beschrijven over de positie van het Platform Associate degree.',
+				'Naar aanleiding van dit verzoek hebben Jaap ten Have (Windesheim, voorzitter Landelijk Platform Associate degrees), Niels Strolenberg (Hanze Hogeschool) Dirk Cornelissen (Vereniging Hogescholen) en Nina Spithost (NHL-Stenden), dit document opgesteld.'
+			]
+		},
+		{
+			title: 'Oprichtingsbrief',
+			paragraphs: [
+				'“Het overlegplatform Ad (OP-Ad) vormt – analoog aan het reeds bestaande landelijk platform masters – een community of practice. In principe zijn alle instellingen met een Ad in dit netwerk op medewerkersniveau vertegenwoordigd. Kennis en ervaring van alle hogescholen wordt er gebundeld. Daarnaast dient dit platform als een voorportaal voor de besluitvorming in de Vereniging Hogescholen over alle zaken die de Ad-opleidingen regarderen. De relevante stukken ter voorbereiding van de bestuurlijke besluitvorming worden in en door het OP-Ad voorbereid. Het OP-Ad rapporteert aan de portefeuillehouder onderwijs van de Vereniging Hogescholen.”'
+			]
+		}
+	]
 </script>
 
 <svelte:head>
@@ -46,26 +62,14 @@
 />
 
 <div class="origins">
-	<section class="origin-text">
-		<h2>Oorsprong van de website</h2>
-		<p>
-			In een gesprek tussen leden van het Overlegplatform Associate Degree en Jan Bogerd (portefeuillehouder onderwijs Vereniging Hogescholen) en Bridget Kievits (bestuurscommissie onderwijs) op 21
-			januari 2019 is het verzoek naar voren gekomen om scenario’s te beschrijven over de positie van het Platform Associate degree.
-		</p>
-		<p>
-			Naar aanleiding van dit verzoek hebben Jaap ten Have (Windesheim, voorzitter Landelijk Platform Associate degrees),Niels Strolenberg (Hanze Hogeschool) Dirk Cornelissen (Vereniging Hogescholen)
-			en Nina Spithost (NHL-Stenden), dit document opgesteld.
-		</p>
-	</section>
-	<section class="origin-letter">
-		<h2>Oprichtingsbrief</h2>
-		<p>
-			“Het overlegplatform Ad (OP-Ad) vormt – analoog aan het reeds bestaande landelijk platform masters – een community of practice. In principe zijn alle instellingen met een Ad in dit netwerk op
-			medewerkersniveau vertegenwoordigd. Kennis en ervaring van alle hogescholen wordt er gebundeld. Daarnaast dient dit platform als een voorportaal voor de besluitvorming in de Vereniging
-			Hogescholen over alle zaken die de Ad-opleidingen regarderen. De relevante stukken ter voorbereiding van de bestuurlijke besluitvorming worden in en door het OP-Ad voorbereid. Het OP-Ad
-			rapporteert aan de portefeuillehouder onderwijs van de Vereniging Hogescholen.”
-		</p>
-	</section>
+	{#each originText as section}
+		<section>
+			<h2>{section.title}</h2>
+			{#each section.paragraphs as paragraph}
+				<p>{paragraph}</p>
+			{/each}
+		</section>
+	{/each}
 </div>
 
 <Divider />
@@ -86,18 +90,15 @@
 		justify-content: center;
 		align-items: flex-start;
 		gap: 2.5em;
-		padding: 5em;
+		padding: min(5%, 5em);
 
 		@media (min-width: 1000px) {
 			flex-direction: row;
 			justify-content: space-evenly;
 		}
 
-		.origin-text,
-		.origin-letter {
-			h2 {
-				padding-bottom: 1em;
-			}
+		h2 {
+			padding-bottom: 1em;
 		}
 	}
 
