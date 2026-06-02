@@ -1,13 +1,12 @@
 <script>
-	import ThemeDetail from '$lib/organisms/ThemeDetail.svelte'
-
-	import { RSectionHero } from '$lib'
+	import { RSectionHero, RDetailsOverOns, RSectionThemes, Rseparator } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
 	const { data } = $props()
 	const theme = $derived(data.theme)
 	const themes = $derived(data.themes)
 
+	const visibleThemes = $derived(themes.length ? themes : [data])
 	// console.log(theme.description)
 </script>
 
@@ -24,20 +23,14 @@
 	}}
 />
 
-<!-- <Hero
-	title={theme.title}
-	description={theme.description}
->
-	<img
-		class="hero-image"
-		src={`${DIRECTUS_URL}/assets/${theme.hero}`}
-		alt={theme.title}
-		aria-hidden="true"
-		fetchpriority="high"
-	/>
-</Hero> -->
+<RDetailsOverOns documentData={theme} />
 
-<!-- <ThemeDetail
-	data={data.theme}
-	themes={data.themes}
-/> -->
+<Rseparator />
+
+<RSectionThemes
+	sectionInfo={{
+		title: "Bekijk ook andere thema's"
+	}}
+	themes={visibleThemes.slice(0, 3)}
+	backgroundBlue
+/>

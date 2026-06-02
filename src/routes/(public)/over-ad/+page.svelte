@@ -96,7 +96,7 @@
 	}}
 />
 
-<Divider />
+<Rseparator />
 
 <RSectionPage
 	mirrored

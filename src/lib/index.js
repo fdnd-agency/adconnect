@@ -132,3 +132,5 @@ export { default as RDetailsSection } from './refactored/organisms/DetailsSectio
 export { default as RTalentAwardSection } from './refactored/organisms/TalentAwardSection.svelte'
 export { default as RSectionPlanning } from './refactored/organisms/SectionPlanning.svelte'
 export { default as RSectionThemes } from './refactored/organisms/SectionThemes.svelte'
+export { default as RDetailsOverOns } from './refactored/organisms/DetailsOverOns.svelte'
+
