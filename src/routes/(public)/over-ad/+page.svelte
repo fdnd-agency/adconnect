@@ -1,10 +1,10 @@
 <script>
 	// Import images
-	import { doorstroom, overleggen, awards, dots, placeholder, overad } from '$lib'
+	import { doorstroom, overleggen, awards, overad } from '$lib'
 
 	// Import components
-	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
-	import { RSectionHero, RSectionPage, RCarousel, Rseparator, RAboutOverAD } from '$lib'
+	import { ThemeCard, Divider } from '$lib'
+	import { RSectionHero, RSectionPage, RCarousel, RAboutOverAD } from '$lib'
 
 	const { data } = $props()
 
