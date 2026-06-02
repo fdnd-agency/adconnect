@@ -1,9 +1,23 @@
 <script>
 	import { RCardNews } from '$lib'
 	import { IconCalendar } from '$lib/icons'
-	const { sectionInfo, newsItems } = $props()
-
 	import { formatDateNL } from '$lib/molecules/date'
+
+	const { sectionInfo, newsItems, itemsPerPage } = $props()
+
+	let currentPage = $state(1)
+
+	const totalPages = $derived(itemsPerPage ? Math.ceil(newsItems.length / itemsPerPage) : 1)
+
+	const visibleItems = $derived(itemsPerPage ? newsItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) : newsItems)
+
+	function nextPage() {
+		if (currentPage < totalPages) currentPage += 1
+	}
+
+	function previousPage() {
+		if (currentPage > 1) currentPage -= 1
+	}
 </script>
 
 <section class="news">
@@ -16,13 +30,35 @@
 
 	<section class="news-container">
 		<ul>
-			{#each newsItems as item (item.uuid)}
+			{#each visibleItems as item (item.uuid)}
 				<li>
 					<RCardNews {item} />
 				</li>
 			{/each}
 		</ul>
 	</section>
+
+	{#if itemsPerPage && totalPages > 1}
+		<div class="button-container">
+			<button
+				class="button-outline-blue"
+				onclick={previousPage}
+				disabled={currentPage === 1}
+			>
+				←
+			</button>
+
+			<p>Pagina {currentPage} van {totalPages}</p>
+
+			<button
+				class="button-outline-blue"
+				onclick={nextPage}
+				disabled={currentPage === totalPages}
+			>
+				→
+			</button>
+		</div>
+	{/if}
 </section>
 
 <style>
@@ -62,5 +98,13 @@
 		ul {
 			grid-template-columns: repeat(3, 1fr);
 		}
+	}
+
+	.button-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 2rem;
 	}
 </style>
