@@ -5,14 +5,15 @@
 
 <section
 	class="themes"
-	class:backgroundBlue
+	class:themes--background-blue={backgroundBlue}
 >
-	<h2>{sectionInfo.title}</h2>
+	<h2 class="themes__title">{sectionInfo.title}</h2>
+
 	{#if sectionInfo.description}
-		<p>{sectionInfo.description}</p>
+		<p class="themes__description">{sectionInfo.description}</p>
 	{/if}
 
-	<section class="themes-section">
+	<div class="themes__list">
 		{#each themes as theme (theme.title)}
 			<RCardTheme
 				title={theme.title}
@@ -21,35 +22,35 @@
 				infoCard
 			/>
 		{/each}
-	</section>
+	</div>
 </section>
 
 <style>
 	.themes {
-        --_background: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		--_background: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 
-		background-color: var(--_background);
-		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 2em;
+		width: 100%;
 		padding: 3em 0;
+		background-color: var(--_background);
 
 		@media (min-width: 768px) {
-			padding: 6em 0;
+			padding: 5em 0;
 		}
 	}
 
-	.backgroundBlue {
+	.themes--background-blue {
 		--_background: light-dark(var(--text-white), var(--blue-800));
 	}
 
-	.themes h2 {
+	.themes__title {
 		text-align: center;
 	}
 
-	.themes-section {
+	.themes__list {
 		display: flex;
 		flex-direction: column;
 		gap: 1em;
@@ -57,9 +58,9 @@
 		margin-top: 1em;
 
 		@media (min-width: 768px) {
-			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));
 			max-width: 1400px;
+			display: grid;
 		}
 	}
 </style>

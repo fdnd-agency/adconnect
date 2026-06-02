@@ -69,6 +69,7 @@
 			grid-row: 1;
 			grid-column: 2;
 			font-size: 23px;
+			text-wrap: balance !important;
 		}
 
 		.info-card__description {
@@ -80,6 +81,7 @@
 		.info-card__link {
 			grid-row: 3;
 			grid-column: 1/-1;
+			text-wrap: nowrap;
 			justify-self: start;
 			margin: 2em 0 1em 0;
 		}

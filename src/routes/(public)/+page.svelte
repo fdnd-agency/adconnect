@@ -26,12 +26,12 @@
 		{
 			title: 'Ad-dag',
 			description: 'De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.',
-			slug: 'ad-dag'
+			slug: '../ad-dag'
 		},
 		{
 			title: 'Ad-talent Award',
 			description: 'Jaarlijks wordt door het Overlegplatform de Ad Talent Award uitgereikt, waarmee 2 Associate degree-talenten verkozen worden.',
-			slug: 'talent-award'
+			slug: '../talent-award'
 		}
 	]
 </script>
