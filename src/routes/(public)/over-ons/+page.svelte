@@ -1,6 +1,6 @@
 <script>
 	// Import images
-	import { doorstroom, overleggen, awards, dots, placeholder, overad, RSectionHero } from '$lib'
+	import { doorstroom, overleggen, awards, dots, placeholder, overad, RSectionHero, RCardSection } from '$lib'
 	import logomobile from '$lib/assets/logomobile.svg'
 
 	// Import components
@@ -30,22 +30,14 @@
 	}}
 />
 
-<section class="intro">
-	<img
-		class="logo"
-		src={logomobile}
-		alt="Ad Talent Award Logo"
-		aria-hidden="true"
-		width="50"
-		height="50"
-	/>
-	<h2>Waarom AdConnect?</h2>
-	<p>
-		Het platform stimuleert naamsbekendheid en kennisdeling over de Associate degree. Het platform doet dit met en vanuit Vereniging Hogescholen en zet zich in om samenwerking te bevorderen tussen
+<div class="center">
+	<RCardSection
+		title="Waarom AdConnect?"
+		description="Het platform stimuleert naamsbekendheid en kennisdeling over de Associate degree. Het platform doet dit met en vanuit Vereniging Hogescholen en zet zich in om samenwerking te bevorderen tussen
 		onderwijs- en werkveldpartners en de overheid om de Ad te positioneren in Nederland. Ook ondersteunt het platform de Landelijke Ad-overleggen (LAdO’s) waarin samengewerkt wordt aan de gezamenlijke
-		profilering van de vergelijkbare Ad-opleidingen.
-	</p>
-</section>
+		profilering van de vergelijkbare Ad-opleidingen."
+	/>
+</div>
 
 <RCarousel
 	logos
@@ -78,37 +70,16 @@
 
 <Divider />
 
-<section class="advice">
-	<img
-		class="logo"
-		src={logomobile}
-		alt="Ad Talent Award Logo"
-		aria-hidden="true"
-		width="50"
-		height="50"
-	/>
-	<h2>Gevraagd en ongevraagd advies</h2>
-	<p>
-		Het Ad platform is als onderdeel van de Vereniging Hogescholen het adviserend en beleidsvoorbereidend orgaan dat zich als opdracht heeft gesteld de plaats van het Ad in het Nederlands hoger
+<div class="center">
+	<RCardSection
+		title="Gevraagd en ongevraagd advies"
+		description="Het Ad platform is als onderdeel van de Vereniging Hogescholen het adviserend en beleidsvoorbereidend orgaan dat zich als opdracht heeft gesteld de plaats van het Ad in het Nederlands hoger
 		onderwijs te versterken. Het platform geeft gevraagd en ongevraagd advies en werkt programmatisch en middels (met de portefeuillehouder onderwijs van de Vereniging Hogescholen afgestemde)
-		jaarplannen aan deze opdracht. Het platform kent vanuit elke hogeschool die een Ad verzorgt een afgevaardigde in het platform.
-	</p>
-</section>
+		jaarplannen aan deze opdracht. Het platform kent vanuit elke hogeschool die een Ad verzorgt een afgevaardigde in het platform."
+	/>
+</div>
 
 <style>
-	.intro {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5em;
-		padding: 5em;
-
-		h2 {
-			padding-bottom: 1em;
-		}
-	}
-
 	.origins {
 		display: flex;
 		flex-direction: column;
@@ -130,30 +101,8 @@
 		}
 	}
 
-	.advice {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5em;
-		padding: 5em;
-
-		h2 {
-			padding-bottom: 1em;
-		}
-	}
-
-	.logo-section {
-		display: flex;
-		gap: 2em;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		padding: 0 0 3em 0;
-
-		@media (min-width: 768px) {
-			gap: 3em;
-			padding: 0 0 5em 0;
-		}
+	.center {
+		justify-self: center;
+		padding: 5em 0;
 	}
 </style>
