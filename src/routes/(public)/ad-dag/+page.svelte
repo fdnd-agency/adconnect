@@ -1,10 +1,8 @@
 <script>
-	import logomobile from '$lib/assets/logomobile.svg'
-
 	// Import images
-	import { addag1, addag2, addag3 } from '$lib'
+	import { addag2, addag3, locationImage, Addag } from '$lib'
 
-	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule, RSectionHero, RPicture, RSectionPage, RSectionPlanning, RFaqSection } from '$lib'
+	import { RSectionHero, RSectionPage, RSectionPlanning, RFaqSection, RPicture, Rseparator } from '$lib'
 
 	// TODO: schedule data that needs to be added to directus
 	const scheduleData = {
@@ -104,7 +102,7 @@
 		backgroundBlack
 	/>
 
-	<div class="addag2">
+	<div class="faq-addag__image">
 		<RPicture
 			isEnhanced
 			src={addag2}
@@ -137,30 +135,61 @@
 	]}
 />
 
-<Location />
+<div class="location">
+	<Rseparator dividerText="Locatie Ad Dag" />
+
+	<p class="location__text">Addag is een programma dat meestal wordt aangeboden op en van Aeres scholen. Voor meer informatie over deelname of planning kun je contact met ons opnemen</p>
+
+	<div class="location__image">
+		<RPicture
+			isEnhanced
+			src={locationImage}
+			alt="Locatie van de Ad-dag"
+			width="600"
+			height="300"
+			style="height: auto;"
+		/>
+	</div>
+</div>
 
 <style>
 	.faq-addag {
 		display: flex;
 		flex-direction: column;
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 		padding: 3em 5%;
+		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
 		box-shadow: 0 0 0 100vmax var(--blue-100);
 		clip-path: inset(0 -100vmax);
 		overflow: hidden;
 
-
-		.addag2 {
-			margin-top: 5em;
+		.faq-addag__image {
 			align-self: center;
-			object-fit: cover;
 			width: 100%;
+			margin-top: 5em;
 			border-radius: 5em;
 
 			@media (min-width: 768px) {
-				height: 400px;
 				max-width: 1000px;
+				height: 400px;
 			}
+		}
+	}
+
+	.location__text {
+		max-width: 800px;
+		margin: 2em auto;
+		padding: 2em;
+		font-size: 1.125rem;
+	}
+
+	.location__image {
+		overflow: hidden;
+		width: 90%;
+		margin: auto;
+		border-radius: 33px 33px 0 0;
+
+		@media (min-width: 768px) {
+			width: 60%;
 		}
 	}
 </style>
