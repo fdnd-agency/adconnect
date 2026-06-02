@@ -1,6 +1,6 @@
 <script>
 	// Import components
-	import { ThemeCard, Hero, Divider } from '$lib'
+	import { ThemeCard, Hero, Divider, RSectionThemes } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -47,12 +47,13 @@
 
 <Divider />
 
-<section class="other-themes">
-	<h2>Bekijk ook andere thema's</h2>
-	<section class="themes">
-		<ThemeCard themes={visibleThemes.slice(0, 3)} />
-	</section>
-</section>
+<RSectionThemes
+	sectionInfo={{
+		title: "Bekijk ook andere thema's",
+	}}
+	themes={visibleThemes.slice(0, 3)}
+	backgroundBlue
+/>
 
 <style>
 	.wrapper-detail {
@@ -143,33 +144,6 @@
 		.ad-day {
 			position: sticky;
 			top: 10em;
-		}
-	}
-
-	.other-themes {
-		display: flex;
-		flex-direction: column;
-		gap: 2em;
-		width: 90%;
-		margin: auto;
-		padding: 3em 0;
-		align-items: center;
-
-		@media (min-width: 768px) {
-			max-width: 1400px;
-			padding: 5em 0;
-		}
-	}
-
-	.other-themes .themes {
-		display: flex;
-		flex-direction: column;
-		gap: 1em;
-	}
-
-	@media (min-width: 768px) {
-		.other-themes .themes {
-			flex-direction: row;
 		}
 	}
 </style>

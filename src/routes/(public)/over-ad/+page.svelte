@@ -77,7 +77,10 @@
 	backgroundBlack
 />
 
-<RSectionThemes {themes} />
+<RSectionThemes
+	sectionInfo={{ title: "Thema's binnen Associate degrees" }}
+	{themes}
+/>
 
 <RSectionPage
 	sectionInfo={{
