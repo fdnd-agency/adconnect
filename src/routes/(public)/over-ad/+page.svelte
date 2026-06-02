@@ -4,7 +4,7 @@
 
 	// Import components
 	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
-	import { RSectionHero, RSectionPage, RCarousel, Rseparator } from '$lib'
+	import { RSectionHero, RSectionPage, RCarousel, Rseparator, RSectionThemes } from '$lib'
 
 	const { data } = $props()
 
@@ -77,12 +77,7 @@
 	backgroundBlack
 />
 
-<section class="themes">
-	<h2>Thema's binnen Associate degrees</h2>
-	<section class="themes-section">
-		<ThemeCard {themes} />
-	</section>
-</section>
+<RSectionThemes {themes} />
 
 <RSectionPage
 	sectionInfo={{
@@ -149,38 +144,6 @@
 	@media (min-width: 1024px) {
 		.benefits {
 			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	/* Themes section */
-	.themes {
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1.5em;
-		padding: 0 0 3em 0;
-
-		@media (min-width: 768px) {
-			padding: 0 0 5em 0;
-		}
-	}
-
-	.themes h2 {
-		text-align: center;
-	}
-
-	.themes-section {
-		display: flex;
-		flex-direction: column;
-		gap: 1em;
-		width: 90%;
-
-		@media (min-width: 768px) {
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));
-			max-width: 1400px;
 		}
 	}
 </style>

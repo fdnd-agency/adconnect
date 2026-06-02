@@ -6,17 +6,18 @@
 
 <article class="info-card">
 	<div class="info-card__heading">
-		<h3 class="info-card__title">{title}</h3>
+		<h3 class="info-card__title truncate single">{title}</h3>
 		<IconDots variant="heading-three" />
 	</div>
 
-	<p class="info-card__description">{description}</p>
+	<p class="info-card__description truncate two">{description}</p>
 
 	{#if link}
 		<div class="info-card__link">
 			<RLink
 				href={link.href}
 				class="button-outline-blue clickable-container"
+				screenReaderText={link.screenReaderText}
 			>
 				{link.label}
 				<span
@@ -30,38 +31,75 @@
 
 <style>
 	.info-card {
-		background: light-dark(var(--background), var(--blue-800));
-		border-radius: 20px;
-		padding: 2rem;
+		container-type: inline-size;
+		container-name: info-card;
+
+		background: light-dark(var(--text-white), var(--blue-800));
+		border: 1px solid #cccccc;
+		border-radius: 1em;
+		padding: 2em;
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 0.75rem;
+		gap: 1em;
 		width: 100%;
-		max-width: 55ch;
 		position: relative;
+		flex: 1;
+		transition: 0.2s ease-in-out;
+
+		&:hover {
+			border: 1px solid #00408d;
+			box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
+			translate: 0 -1%;
+			transition: 0.2s ease-in-out;
+		}
 
 		.info-card__heading {
 			display: flex;
-			flex-direction: row-reverse;
-			gap: 0.75rem;
+			flex-direction: column-reverse;
+			gap: 0.5em;
 			justify-self: start;
-			align-items: center;
+
+			@container info-card (min-width: 360px) {
+				flex-direction: row-reverse;
+				align-items: center;
+			}
 		}
 
 		.info-card__title {
 			grid-row: 1;
 			grid-column: 2;
+			font-size: 23px;
 		}
 
 		.info-card__description {
 			grid-row: 2;
 			grid-column: 1/-1;
-			margin-bottom: 1rem;
+			text-wrap: wrap;
 		}
 
 		.info-card__link {
 			grid-row: 3;
 			grid-column: 1/-1;
+			justify-self: start;
+			margin: 2em 0 1em 0;
 		}
+	}
+
+	.truncate {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+	}
+
+	/* Truncate one sentence */
+	.truncate.single {
+		white-space: nowrap;
+		-webkit-line-clamp: 1;
+	}
+
+	/* Truncate two sentences */
+	.truncate.two {
+		-webkit-line-clamp: 3;
 	}
 </style>
