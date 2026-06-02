@@ -6,7 +6,7 @@
 
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
 
-	let lastValue = $state<string | null>(null)
+	// let lastValue = $state<string | null>(null)
 
 	function selectCategory(value: string) {
 		const url = new URL(page.url)
