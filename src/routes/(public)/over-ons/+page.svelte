@@ -1,14 +1,13 @@
 <script>
 	// Import images
-	import { doorstroom, overleggen, awards, dots, placeholder, overad, RSectionHero, RCardSection } from '$lib'
-	import logomobile from '$lib/assets/logomobile.svg'
+	import { doorstroom } from '$lib'
 
 	// Import components
-	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero, RCarousel } from '$lib'
+	import { RSectionHero, RCardSection, Rseparator, RCarousel } from '$lib'
 
 	const { data } = $props()
 
-	const { themes } = data
+	// const { themes } = data
 	const { cooperation } = data
 
 	const originText = [
@@ -72,7 +71,7 @@
 	{/each}
 </div>
 
-<Divider />
+<Rseparator />
 
 <div class="center">
 	<RCardSection
