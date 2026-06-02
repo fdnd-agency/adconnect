@@ -27,9 +27,9 @@
 
 <section class="news-detail">
 	{#each data.content as item (item.uuid)}
-		<article>
-			<h2>{item.title}</h2>
-			<p>{@html item.body}</p>
+		<article class="news-detail__article">
+			<h2 class="news-detail__title">{item.title}</h2>
+			<div>{@html item.body}</div>
 		</article>
 	{/each}
 </section>
@@ -40,30 +40,30 @@
 		flex-direction: column;
 		gap: 2em;
 		width: 80%;
-		padding: 3em 0;
 		margin: auto;
-	}
+		padding: 3em 0;
 
-	article {
-		max-width: 600px;
-		margin: 0 auto;
-		padding: 1.5em 0;
-		h2 {
-			font-size: 1.5rem;
-			margin-bottom: 1em;
-		}
-	}
-
-	@media (min-width: 900px) {
-		.news-detail {
+		@media (min-width: 900px) {
 			flex-direction: row;
 			align-items: flex-start;
 			justify-content: center;
 			gap: 4em;
 		}
-		article {
+	}
+
+	.news-detail__article {
+		max-width: 600px;
+		margin: 0 auto;
+		padding: 1.5em 0;
+
+		@media (min-width: 900px) {
 			margin: 0;
 			padding: 2em 0;
 		}
+	}
+
+	.news-detail__title {
+		margin-bottom: 1em;
+		font-size: 1.5rem;
 	}
 </style>
