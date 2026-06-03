@@ -5,21 +5,18 @@
 	import addag3 from '$lib/assets/addag-3.webp'
 
 	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule } from '$lib'
+
+	const { data } = $props()
+	const adDayPage = $derived(data.adDayPage ?? {})
 </script>
 
 <svelte:head>
 	<title>Ad dag | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-
 <Hero
-	title="Ad Dag "
-	description="De landelijks Ad-dag 2025 is hét moment waarop studenten,
-	docenten en professionals uit het Ad-onderwijs samenkomen.Ontdek, leer en
-	inspireer elkaar tijdens een dag vol sprekers, workshops en ontmoetingen.
-	Ervaar hoe de Ad-professional als veranderaar impact maakt en vier samen de
-	uitreiking van de Ad Talent Awards. Meld je aan voor de komende ad dag of
-	blijf op de hoogte "
+	title={adDayPage.hero_heading}
+	description={adDayPage.hero_body}
 >
 	<img
 		class="hero-image"
@@ -31,12 +28,8 @@
 
 <section class="intro">
 	<article>
-		<h2>Wat is de landelijke Ad-dag?</h2>
-		<p>
-			De Landelijke Ad-dag is het jaarlijkse moment waarop Associate degree (Ad)-onderwijs centraal staat. Studenten, docenten, coördinatoren, beleidsmakers en het werkveld komen samen om kennis te
-			delen, inspiratie op te doen en elkaar te ontmoeten. Verwacht een mix van plenaire sessies, panelgesprekken, workshops en praktijkvoorbeelden waarin je ziet wat niveau 5 toevoegt aan het hbo
-			en aan organisaties. Het is tegelijk een showcase en werkdag: je viert wat er al gebeurt én je neemt concrete ideeën mee om morgen toe te passen.
-		</p>
+		<h2>{adDayPage.about_heading}</h2>
+		<p>{adDayPage.about_body}</p>
 	</article>
 	<img
 		src={addag3}
@@ -51,28 +44,28 @@
 		src={logomobile}
 		alt=""
 	/>
-	<h2>Alles wat je wilt weten over de Ad-dag?</h2>
+	<h2>{adDayPage.faq_heading}</h2>
 
 	<MultipleFaq>
 		<SingleFaq
 			open={true}
-			question="Voor wie is de Ad-dag bedoeld?"
-			answer="De Landelijke Ad‑dag is bedoeld voor iedereen die betrokken is bij of interesse heeft in Associate degree‑onderwijs in Nederland. Dit omvat studenten, docenten, onderwijsprofessionals, werkveldpartners, onderwijsinstellingen en andere geïnteresseerden die willen zien hoe Ad‑onderwijs impact maakt op onderwijs en arbeidsmarkt."
+			question={adDayPage.faq_1_heading}
+			answer={adDayPage.faq_1_body}
 		/>
 
 		<SingleFaq
-			question="Wie komen er naar de Ad-dag?"
-			answer="De Landelijke Ad‑dag brengt alle betrokkenen van Associate degree‑onderwijs samen, zoals studenten en alumni, docenten en onderwijsprofessionals, werkveldpartners en werkgevers, en beleidsmakers en onderwijsorganisaties die kennis en ervaringen willen uitwisselen. Het is een dag vol inspiratie, netwerken en het delen van de impact van Ad‑onderwijs."
+			question={adDayPage.faq_2_heading}
+			answer={adDayPage.faq_2_body}
 		/>
 
 		<SingleFaq
-			question="Waarom zou ik naar de Ad-dag moeten gaan?"
-			answer="De Landelijke Ad‑dag is dé gelegenheid om inspiratie op te doen, te netwerken met studenten, docenten, werkveldpartners en beleidsmakers, en te ontdekken hoe Associate degree‑onderwijs impact maakt op zowel onderwijs als arbeidsmarkt. Je leert over innovatie, doorstroommogelijkheden en krijgt inzichten die je direct kunt toepassen in je studie, werk of organisatie."
+			question={adDayPage.faq_3_heading}
+			answer={adDayPage.faq_3_body}
 		/>
 
 		<SingleFaq
-			question="Wanneer en waar vindt de Ad-dag plaats?"
-			answer="De Landelijke Ad‑dag 2026 vindt plaats op vrijdag 17 april 2026 in Groningen, georganiseerd bij de Hanzehogeschool."
+			question={adDayPage.faq_4_heading}
+			answer={adDayPage.faq_4_body}
 		/>
 	</MultipleFaq>
 
@@ -84,9 +77,22 @@
 		height="300"
 	/>
 </section>
-<Schedule />
-<Location />
-
+<Schedule
+	planningHeading={adDayPage.planning_heading}
+	planningBody={adDayPage.planning_body}
+	programHeading={adDayPage.program_heading}
+	programBody={adDayPage.program_body}
+	programButtonText={adDayPage.program_button_text}
+	programButtonUrl={adDayPage.program_button_url}
+	workshopsHeading={adDayPage.workshops_heading}
+	workshopsBody={adDayPage.workshops_body}
+	workshopsButtonText={adDayPage.workshops_button_text}
+	workshopsButtonUrl={adDayPage.workshops_button_url}
+/>
+<Location
+	heading={adDayPage.location_heading}
+	body={adDayPage.location_body}
+/>
 
 <style>
 	.intro {

@@ -9,6 +9,7 @@
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
+	const talentAwardPage = $derived(data.talentAwardPage ?? {})
 	const imageUrl = (id) => `${DIRECTUS_URL}/assets/${id}`
 </script>
 
@@ -17,8 +18,8 @@
 </svelte:head>
 
 <Hero
-	title="Ad Talent Award"
-	description="Jaarlijks reikt het Overlegplatform de Ad Talent Award uit aan twee Associate degree-talenten, die worden benoemd tot landelijke Ad-ambassadeurs. Alle aangesloten hogescholen kunnen een Ad-talent nomineren. De winnaars ontvangen de award tijdens de jaarlijkse Ad-dag en vertegenwoordigen het Ad-onderwijs in Nederland."
+	title={talentAwardPage.hero_heading}
+	description={talentAwardPage.hero_body}
 >
 	<img
 		class="hero-image"
@@ -28,10 +29,10 @@
 	/>
 	<a
 		slot="primary"
-		href="#benefit"
+		href={talentAwardPage.hero_button_url}
 		class="button-outline-white"
 		id="benefit"
-		>Lees meer <span aria-hidden="true">→</span> <span class="visually-hidden">over aadee talent award</span>
+		>{talentAwardPage.hero_button_text} <span aria-hidden="true">→</span> <span class="visually-hidden">over aadee talent award</span>
 	</a>
 </Hero>
 
@@ -44,11 +45,8 @@
 		width="50"
 		height="50"
 	/>
-	<h2>Wat is Ad Talent award?</h2>
-	<p>
-		De Ad Talent Award is een jaarlijkse onderscheiding die door het Overlegplatform Associate degrees wordt uitgereikt. Elke aangesloten hogeschool kan één student nomineren als “Ad Talent” en van
-		alle genomineerden worden er twee landelijk uitgeroepen tot Ad-ambassadeur. Deze erkenning vindt plaats tijdens de jaarlijkse Ad-dag.
-	</p>
+	<h2>{talentAwardPage.about_heading}</h2>
+	<p>{talentAwardPage.about_body}</p>
 </section>
 
 <section class="cards-ta">
@@ -61,12 +59,8 @@
 			width="50"
 			height="50"
 		/>
-		<h2>Wat maakt iemand tot een Ad Talent?</h2>
-		<p>
-			Een Ad Talent is een student die uitblinkt in zijn of haar Associate degree-opleiding. Dit kan blijken uit academische prestaties, leiderschap, betrokkenheid bij de gemeenschap, innovatie of
-			andere opmerkelijke bijdragen aan de hogeschool en de bredere samenleving. Ad Talenten worden erkend voor hun inzet, passie en potentieel om een positieve impact te maken in hun vakgebied en
-			daarbuiten.
-		</p>
+		<h2>{talentAwardPage.info_card_1_title}</h2>
+		<p>{talentAwardPage.info_card_1_body}</p>
 	</article>
 
 	<article class="dark">
@@ -78,12 +72,8 @@
 			width="50"
 			height="50"
 		/>
-		<h2>Waarom de Ad Talent Award?</h2>
-		<p>
-			De Ad Talent Award is opgericht om de uitmuntendheid en het potentieel van Associate degree-studenten te erkennen en te vieren. Door deze onderscheiding willen we niet alleen de prestaties van
-			individuele studenten benadrukken, maar ook het belang van Ad-onderwijs in Nederland onderstrepen. De award dient als inspiratie voor andere studenten en draagt bij aan het versterken van de
-			reputatie van Associate degrees als waardevolle en impactvolle opleidingsvorm.
-		</p>
+		<h2>{talentAwardPage.info_card_2_title}</h2>
+		<p>{talentAwardPage.info_card_2_body}</p>
 	</article>
 
 	<article class="light">
@@ -95,12 +85,8 @@
 			width="50"
 			height="50"
 		/>
-		<h2>Hoe gaat de verkiezing in zijn werk?</h2>
-		<p>
-			Elke hogeschool die is aangesloten bij het Overlegplatform Associate degrees kan één student nomineren voor de Ad Talent Award. Een onafhankelijke jury, bestaande uit vertegenwoordigers van het
-			onderwijsveld en het bedrijfsleven, beoordeelt de nominaties op basis van vooraf vastgestelde criteria. De beoordeling omvat academische prestaties, leiderschap, maatschappelijke betrokkenheid
-			en andere relevante factoren. Na een grondige evaluatie worden twee winnaars geselecteerd en tijdens de jaarlijkse Ad-dag bekendgemaakt als de landelijke Ad-ambassadeurs.
-		</p>
+		<h2>{talentAwardPage.info_card_3_title}</h2>
+		<p>{talentAwardPage.info_card_3_body}</p>
 	</article>
 </section>
 
@@ -136,11 +122,8 @@
 		width="50"
 		height="50"
 	/>
-	<h2>Voorgaande nominaties</h2>
-	<p>
-		Ontdek de talentvolle studenten die zijn genomineerd voor de AD Talent Award. Jaarlijks dragen hogescholen Associate degree-studenten voor die uitblinken in de praktijk, waarna een jury de
-		uiteindelijke winnaars kiest.
-	</p>
+	<h2>{talentAwardPage.nominations_heading}</h2>
+	<p>{talentAwardPage.nominations_body}</p>
 </section>
 
 <section>
