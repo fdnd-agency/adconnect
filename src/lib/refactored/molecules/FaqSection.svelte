@@ -1,32 +1,7 @@
 <script>
 	import { IconChevronDown, IconBackgroundCircle, IconDots } from '$lib/icons'
 
-	const { title } = $props()
-
-	// TODO: FAQ that needs to be added to directus
-	const faqData = {
-		faqs: [
-			{
-				question: 'Wat is een Associate degree?',
-				answer:
-					'Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding.'
-			},
-			{
-				question: 'Hoe lang duurt een Associate degree?',
-				answer: 'Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring.'
-			},
-			{
-				question: 'Wat is het verschil tussen een Associate degree en een Bachelor?',
-				answer:
-					'Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld.'
-			},
-			{
-				question: 'Welke voordelen heeft het behalen van een Associate degree?',
-				answer:
-					'Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk.'
-			}
-		]
-	}
+	const { title, faqData } = $props()
 </script>
 
 <section class="faq">
@@ -69,6 +44,12 @@
 		gap: 1em;
 		align-items: center;
 		margin-bottom: 2em;
+
+		h2 {
+			max-width: 12em;
+			text-align: center;
+			text-wrap: balance;
+		}
 	}
 
 	.faq-item {
@@ -137,7 +118,6 @@
 			width: 25em;
 			left: 10%;
 			bottom: 2%;
-			position: absolute;
 			z-index: 0;
 		}
 	}
