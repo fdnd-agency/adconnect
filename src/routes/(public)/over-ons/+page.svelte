@@ -10,6 +10,7 @@
 	const data = $derived(props.data)
 	const themes = $derived(data.themes)
 	const cooperations = $derived(data.cooperations)
+	const aboutUsPage = $derived(data.aboutUsPage ?? {})
 </script>
 
 <svelte:head>
@@ -17,8 +18,8 @@
 </svelte:head>
 
 <Hero
-	title="Over ons"
-	description="Het Overlegplatform Associate degrees is opgericht in 2019 en biedt een platform voor iedereen die geïnteresseerd is in Ad-onderwijs. Alle bekostigde hogescholen die Ad-opleidingen aanbieden of dit willen gaan doen, kunnen deelnemen aan het platform."
+	title={aboutUsPage.hero_heading}
+	description={aboutUsPage.hero_body}
 >
 	<img
 		class="hero-image"
@@ -38,12 +39,8 @@
 		width="50"
 		height="50"
 	/>
-	<h2>Waarom AdConnect?</h2>
-	<p>
-		Het platform stimuleert naamsbekendheid en kennisdeling over de Associate degree. Het platform doet dit met en vanuit Vereniging Hogescholen en zet zich in om samenwerking te bevorderen tussen
-		onderwijs- en werkveldpartners en de overheid om de Ad te positioneren in Nederland. Ook ondersteunt het platform de Landelijke Ad-overleggen (LAdO’s) waarin samengewerkt wordt aan de gezamenlijke
-		profilering van de vergelijkbare Ad-opleidingen.
-	</p>
+	<h2>{aboutUsPage.why_heading}</h2>
+	<p>{aboutUsPage.why_body}</p>
 </section>
 
 <section class="logo-section">
@@ -54,24 +51,12 @@
 
 <div class="origins">
 	<section class="origin-text">
-		<h2>Oorsprong van de website</h2>
-		<p>
-			In een gesprek tussen leden van het Overlegplatform Associate Degree en Jan Bogerd (portefeuillehouder onderwijs Vereniging Hogescholen) en Bridget Kievits (bestuurscommissie onderwijs) op 21
-			januari 2019 is het verzoek naar voren gekomen om scenario’s te beschrijven over de positie van het Platform Associate degree.
-		</p>
-		<p>
-			Naar aanleiding van dit verzoek hebben Jaap ten Have (Windesheim, voorzitter Landelijk Platform Associate degrees),Niels Strolenberg (Hanze Hogeschool) Dirk Cornelissen (Vereniging Hogescholen)
-			en Nina Spithost (NHL-Stenden), dit document opgesteld.
-		</p>
+		<h2>{aboutUsPage.origin_heading}</h2>
+		<p>{aboutUsPage.origin_body}</p>
 	</section>
 	<section class="origin-letter">
-		<h2>Oprichtingsbrief</h2>
-		<p>
-			“Het overlegplatform Ad (OP-Ad) vormt – analoog aan het reeds bestaande landelijk platform masters – een community of practice. In principe zijn alle instellingen met een Ad in dit netwerk op
-			medewerkersniveau vertegenwoordigd. Kennis en ervaring van alle hogescholen wordt er gebundeld. Daarnaast dient dit platform als een voorportaal voor de besluitvorming in de Vereniging
-			Hogescholen over alle zaken die de Ad-opleidingen regarderen. De relevante stukken ter voorbereiding van de bestuurlijke besluitvorming worden in en door het OP-Ad voorbereid. Het OP-Ad
-			rapporteert aan de portefeuillehouder onderwijs van de Vereniging Hogescholen.”
-		</p>
+		<h2>{aboutUsPage.founding_letter_heading}</h2>
+		<p>{aboutUsPage.founding_letter_body}</p>
 	</section>
 </div>
 
@@ -86,12 +71,8 @@
 		width="50"
 		height="50"
 	/>
-	<h2>Gevraagd en ongevraagd advies</h2>
-	<p>
-		Het Ad platform is als onderdeel van de Vereniging Hogescholen het adviserend en beleidsvoorbereidend orgaan dat zich als opdracht heeft gesteld de plaats van het Ad in het Nederlands hoger
-		onderwijs te versterken. Het platform geeft gevraagd en ongevraagd advies en werkt programmatisch en middels (met de portefeuillehouder onderwijs van de Vereniging Hogescholen afgestemde)
-		jaarplannen aan deze opdracht. Het platform kent vanuit elke hogeschool die een Ad verzorgt een afgevaardigde in het platform.
-	</p>
+	<h2>{aboutUsPage.advice_heading}</h2>
+	<p>{aboutUsPage.advice_body}</p>
 </section>
 
 <style>
