@@ -1,5 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 
+const PUBLICATIONS_PAGE_FIELDS = 'id,hero_heading,hero_body'
+
 export async function load({ url }) {
 	// Data from Directus API
 	const fields = 'title,id,description,slug,hero_image,source_file,category.*,date'
@@ -23,12 +25,16 @@ export async function load({ url }) {
 		filter = null
 	}
 
-	const documentsResponse = await ContentService.fetchContent('documents', null, fields, filter, false)
+	const [publicationsPageResponse, documentsResponse, categoriesResponse] = await Promise.all([
+		ContentService.fetchContent('pagePublications', null, PUBLICATIONS_PAGE_FIELDS, null, false),
+		ContentService.fetchContent('documents', null, fields, filter, false),
+		ContentService.fetchContent('categories', null, null, null, false)
+	])
 
-	// Convert category data to json
-	const categoriesResponse = await ContentService.fetchContent('categories', null, null, null, false)
+	const publicationsPageItem = publicationsPageResponse.data.pagePublications?.[0]
 
 	return {
+		publicationsPage: publicationsPageItem ?? {},
 		documents: Array.from(documentsResponse.data.documents?.values?.() ?? []),
 		categories: Array.from(categoriesResponse.data.categories?.values?.() ?? []),
 		selectedCategory: category || 'alle-publicaties'
