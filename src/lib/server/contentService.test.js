@@ -74,7 +74,8 @@ describe('ContentService property-based tests', () => {
 			'sectoralAdvisoryBoards',
 			'pageHome',
 			'pageAboutAd',
-			'pageLado'
+			'pageLado',
+			'pageTalentAward'
 		])
 
 		await fc.assert(
