@@ -14,21 +14,21 @@
 </script>
 
 <article class="publication-card">
-	<h3 class="publication-card__title truncate truncate--two">{document.title}</h3>
+	<h3 class="truncate truncate--two">{document.title}</h3>
 
 	<div class="publication-card__info">
 		<span class="publication-card__meta">
 			<IconLabel />
-			<p class="publication-card__meta-text">{document.category?.title ?? 'Geen categorie'}</p>
+			<p>{document.category?.title ?? 'Geen categorie'}</p>
 		</span>
 
 		<span class="publication-card__meta">
 			<IconCalendar />
-			<p class="publication-card__meta-text">{document.date?.slice(0, 4) ?? 'Geen datum'}</p>
+			<p>{document.date?.slice(0, 4) ?? 'Geen datum'}</p>
 		</span>
 	</div>
 
-	<p class="publication-card__description truncate truncate--two">{truncateWords(document.description, 20)}</p>
+	<p class="truncate truncate--two">{truncateWords(document.description, 20)}</p>
 
 	<div class="publication-card__link">
 		<RLink
@@ -79,6 +79,7 @@
 
 		.publication-card__link {
 			margin: 1em 0;
+			text-wrap: nowrap;
 		}
 	}
 

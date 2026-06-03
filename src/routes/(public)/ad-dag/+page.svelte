@@ -139,50 +139,6 @@
 <Location />
 
 <style>
-	.intro {
-		display: flex;
-		flex-direction: column;
-		padding: 3em 5%;
-		max-width: 1400px;
-		align-items: center;
-		gap: 4em;
-		align-self: center;
-		margin: auto;
-
-		img {
-			width: 100%;
-			border-radius: 1em;
-		}
-
-		article {
-			max-width: 600px;
-
-			p {
-				margin-top: 1em;
-			}
-		}
-	}
-
-	.addag3 {
-		overflow: hidden;
-		border-radius: 1em;
-		max-width: 600px;
-	}
-
-	@media (min-width: 768px) {
-		.intro {
-			flex-direction: row;
-			gap: 2em;
-			align-items: center;
-			padding: 5em 5%;
-			gap: 4em;
-
-			img {
-				width: 600px;
-			}
-		}
-	}
-
 	.info-addag {
 		display: flex;
 		flex-direction: column;
