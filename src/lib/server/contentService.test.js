@@ -75,6 +75,7 @@ describe('ContentService property-based tests', () => {
 			'pageHome',
 			'pageAboutAd',
 			'pageLado',
+			'pageTalentAward',
 			'pageNews',
 			'pagePublications'
 		])
