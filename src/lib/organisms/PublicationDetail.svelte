@@ -12,9 +12,7 @@
 	<title>Documenten | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title={data.document.title}
->
+<Hero title={data.document.title}>
 	<img
 		class="hero-image"
 		src={`${DIRECTUS_URL}/assets/${data.document.hero_image}?format=webp`}
