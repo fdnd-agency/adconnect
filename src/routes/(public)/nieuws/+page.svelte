@@ -18,7 +18,8 @@
 		isEnhanced: true,
 		src: Nieuwshero,
 		alt: '',
-		fetchpriority: 'high'
+		fetchpriority: 'high',
+		loading: 'eager'
 	}}
 />
 
