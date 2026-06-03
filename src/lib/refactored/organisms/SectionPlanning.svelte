@@ -12,6 +12,7 @@
 	/>
 
 	<div class="card-section__list">
+
 		{#each cardsData as card (card.title)}
 			<article class="card">
 				<div class="card__header">

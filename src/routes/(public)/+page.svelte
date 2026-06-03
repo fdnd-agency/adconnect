@@ -3,7 +3,7 @@
 
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
-	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo, RSectionHero, RSectionPage, RCarousel } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardTheme, RSectionHero, RSectionPage, RCarousel, RSectionThemes } from '$lib'
 
 	// Import images
 	import { zaal, overad } from '$lib'
@@ -16,6 +16,24 @@
 		title: 'Het landelijke platform voor Associate degrees',
 		description: 'Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.'
 	}
+
+	const themes = [
+		{
+			title: 'Doorstroom Ad',
+			description: 'Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma.',
+			slug: 'doorstroom-ad-bachelor'
+		},
+		{
+			title: 'Ad-dag',
+			description: 'De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.',
+			slug: '../ad-dag'
+		},
+		{
+			title: 'Ad-talent Award',
+			description: 'Jaarlijks wordt door het Overlegplatform de Ad Talent Award uitgereikt, waarmee 2 Associate degree-talenten verkozen worden.',
+			slug: '../talent-award'
+		}
+	]
 </script>
 
 <svelte:head>
@@ -55,37 +73,12 @@
 	}}
 />
 
-<InformationCards
-	heading="Ontdek het Ad‑onderwijs"
-	intro="Leer alles over Associate degrees, doorstroommogelijkheden en netwerkevenementen.
-Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatform."
-	items={[
-		{
-			title: 'Doorstroom Ad',
-			description: 'Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma.',
-			buttonText: "Meer over doorstroom Ad's",
-			buttonLink: '/over-ad/doorstroom-ad-bachelor'
-		},
-		{
-			title: 'Ad-dag',
-			description: 'De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.',
-			buttonText: 'Meer over de Ad-dag',
-			buttonLink: '/ad-dag'
-		},
-		{
-			title: 'Ad-talent Award',
-			description: 'Jaarlijks wordt door het Overlegplatform de Ad Talent Award uitgereikt, waarmee 2 Associate degree-talenten verkozen worden.',
-			buttonText: 'Meer over Talent Awards',
-			buttonLink: '/talent-award'
-		}
-	]}
-/>
-
-<RCardInfo
-	title="Doorstroom Ad"
-	description="Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma."
-	link={{ label: "Meer over doorstroom Ad's", href: '/over-ad' }}
-	infoCard
+<RSectionThemes
+	sectionInfo={{
+		title: 'Ontdek het Ad‑onderwijs',
+		description: 'Leer alles over Associate degrees, doorstroommogelijkheden en netwerkevenementen. ' + 'Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatform.'
+	}}
+	{themes}
 />
 
 <RCarousel
