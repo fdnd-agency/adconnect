@@ -3,7 +3,7 @@
 
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
-	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo, RSectionHero, RSectionPage, RCarousel } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardTheme, RSectionHero, RSectionPage, RCarousel, RSectionThemes } from '$lib'
 
 	// Import images
 	import { zaal, overad } from '$lib'
@@ -16,6 +16,48 @@
 		title: 'Het landelijke platform voor Associate degrees',
 		description: 'Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.'
 	}
+
+	// TODO: FAQ that needs to be added to directus
+	const faqData = {
+		faqs: [
+			{
+				question: 'Wat is een Associate degree?',
+				answer:
+					'Een Associate Degree is een praktijkgerichte, tweejarige opleiding op hbo-niveau. De opleiding combineert theoretische kennis met praktische ervaring, zodat studenten snel inzetbaar zijn in het werkveld en de mogelijkheid hebben om door te stromen naar een bacheloropleiding.'
+			},
+			{
+				question: 'Hoe lang duurt een Associate degree?',
+				answer: 'Een Ad duurt doorgaans twee jaar bij een voltijdopleiding. Bij deeltijd kan dit langer zijn, afhankelijk van de persoonlijke planning en werkervaring.'
+			},
+			{
+				question: 'Wat is het verschil tussen een Associate degree en een Bachelor?',
+				answer:
+					'Een bacheloropleiding duurt meestal vier jaar en richt zich breder op theorie en verdieping, terwijl een Ad intensief, praktijkgericht en korter is, met direct toepasbare vaardigheden voor het werkveld.'
+			},
+			{
+				question: 'Welke voordelen heeft het behalen van een Associate degree?',
+				answer:
+					'Met een Ad-diploma ben je snel inzetbaar in de praktijk, heb je een erkend hbo-kwalificatieniveau en kun je doorstromen naar een bachelor. Daarnaast vergroot het je carrièremogelijkheden en professionele netwerk.'
+			}
+		]
+	}
+	const themes = [
+		{
+			title: 'Doorstroom Ad',
+			description: 'Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma.',
+			slug: 'doorstroom-ad-bachelor'
+		},
+		{
+			title: 'Ad-dag',
+			description: 'De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.',
+			slug: '../ad-dag'
+		},
+		{
+			title: 'Ad-talent Award',
+			description: 'Jaarlijks wordt door het Overlegplatform de Ad Talent Award uitgereikt, waarmee 2 Associate degree-talenten verkozen worden.',
+			slug: '../talent-award'
+		}
+	]
 </script>
 
 <svelte:head>
@@ -55,37 +97,12 @@
 	}}
 />
 
-<InformationCards
-	heading="Ontdek het Ad‑onderwijs"
-	intro="Leer alles over Associate degrees, doorstroommogelijkheden en netwerkevenementen.
-Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatform."
-	items={[
-		{
-			title: 'Doorstroom Ad',
-			description: 'Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma.',
-			buttonText: "Meer over doorstroom Ad's",
-			buttonLink: '/over-ad/doorstroom-ad-bachelor'
-		},
-		{
-			title: 'Ad-dag',
-			description: 'De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.',
-			buttonText: 'Meer over de Ad-dag',
-			buttonLink: '/ad-dag'
-		},
-		{
-			title: 'Ad-talent Award',
-			description: 'Jaarlijks wordt door het Overlegplatform de Ad Talent Award uitgereikt, waarmee 2 Associate degree-talenten verkozen worden.',
-			buttonText: 'Meer over Talent Awards',
-			buttonLink: '/talent-award'
-		}
-	]}
-/>
-
-<RCardInfo
-	title="Doorstroom Ad"
-	description="Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een diploma."
-	link={{ label: "Meer over doorstroom Ad's", href: '/over-ad' }}
-	infoCard
+<RSectionThemes
+	sectionInfo={{
+		title: 'Ontdek het Ad‑onderwijs',
+		description: 'Leer alles over Associate degrees, doorstroommogelijkheden en netwerkevenementen. ' + 'Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatform.'
+	}}
+	{themes}
 />
 
 <RCarousel
@@ -104,4 +121,4 @@ Blijf op de hoogte van Ad‑opleidingen en activiteiten binnen het overlegplatfo
 	imageAlt="Studenten bij de Ad Talent Award die naast elkaar staan, allemaal met een certificaat in hun handen"
 />
 
-<RFaqSection title="Veelgestelde vragen" />
+<RFaqSection title="Veelgestelde vragen" {faqData} />
