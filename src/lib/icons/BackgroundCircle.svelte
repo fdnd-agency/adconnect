@@ -14,8 +14,8 @@
 <style>
 	svg {
 		--_color-fill: hsl(218, 42%, 71%);
-		--_icon-width: 469;
-		--_icon-height: 469;
+		--_icon-width: 469px;
+		--_icon-height: 469px;
 		width: 100%;
 	}
 </style>

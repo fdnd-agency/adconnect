@@ -134,6 +134,7 @@ export { default as RTalentAwardSection } from './refactored/organisms/TalentAwa
 export { default as RSectionPlanning } from './refactored/organisms/SectionPlanning.svelte'
 export { default as RAboutOverAD } from './refactored/organisms/AboutOverAD.svelte'
 export { default as RSectionNewsCard } from './refactored/organisms/SectionNewsCard.svelte'
+export { default as RNewsGridContainer } from './refactored/organisms/NewsGridContainer.svelte'
 export { default as RSectionThemes } from './refactored/organisms/SectionThemes.svelte'
 export { default as RDetailsOverOns } from './refactored/organisms/DetailsOverOns.svelte'
 export { default as RSectionFilter } from './refactored/organisms/SectionFilter.svelte'
