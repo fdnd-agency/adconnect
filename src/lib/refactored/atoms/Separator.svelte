@@ -15,9 +15,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		justify-self: center;
 		gap: 1rem;
 		width: 90%;
 		max-width: 1400px;
+		margin: 2em 0;
 	}
 
 	hr,
