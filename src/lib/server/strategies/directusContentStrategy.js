@@ -20,7 +20,8 @@ const COLLECTIONS = {
 	sectoralAdvisoryBoards: { path: 'adconnect_sectoral_advisory_boards', key: 'id' },
 	pageHome: { path: 'adconnect_page_home', key: 'id' },
 	pageAboutAd: { path: 'adconnect_page_about_ad', key: 'id' },
-	pageLado: { path: 'adconnect_page_lado', key: 'id' }
+	pageLado: { path: 'adconnect_page_lado', key: 'id' },
+	pagePublications: { path: 'adconnect_page_publications', key: 'id' }
 }
 
 function getConfig(contentType) {
