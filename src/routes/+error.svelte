@@ -89,6 +89,7 @@
 			flex-direction: column;
 			align-items: center;
 			flex-wrap: wrap;
+			gap: 1.5em;
 			
 			@media (min-width: 500px) {
 				justify-content: left;
