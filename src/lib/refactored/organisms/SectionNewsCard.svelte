@@ -9,16 +9,6 @@
 
 {#snippet newsCard(article)}
 	<article class="news-card">
-		<div class="news-card__media">
-			<RPicture
-				src={`${DIRECTUS_URL}/assets/${article.hero}`}
-				alt={article.title}
-				width="300"
-				height="210"
-				style="height:auto;"
-			/>
-		</div>
-
 		<div class="news-card__content">
 			<h2 class="news-card__title truncate single">{article.title}</h2>
 			<p class="news-card__description truncate two">{article.description}</p>
@@ -26,9 +16,20 @@
 				class="button-outline-blue news-card__link"
 				href="/nieuws/{article.uuid}"
 				screenReaderText="over {article.title}"
+				style="margin: 0 1em 1em 1em;"
 			>
 				Meer informatie
 			</RLink>
+
+			<div class="news-card__media">
+				<RPicture
+					src={`${DIRECTUS_URL}/assets/${article.hero}`}
+					alt={article.title}
+					width="300"
+					height="210"
+					style="height:auto;"
+				/>
+			</div>
 		</div>
 	</article>
 {/snippet}
@@ -80,23 +81,23 @@
 	}
 
 	.news-card__media {
+		grid-row: 1;
 		height: 210px;
 		border-radius: 0.5em;
 		overflow: hidden;
 	}
 
 	.news-card__content {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
+		display: grid;
 		gap: 1em;
-		padding: 1em;
 	}
 
 	.news-card__title,
 	.news-card__description {
 		width: 100%;
 		margin: 0;
+		padding: 0 1em;
+
 	}
 
 	.news-card__title {
