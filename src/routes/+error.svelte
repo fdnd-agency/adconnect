@@ -3,6 +3,7 @@
 
 	// Import Atomic Design
 	import { NavPros, TopNav, bird, Footer } from '$lib'
+	const { item } = $props()
 </script>
 
 <svelte:head>
@@ -108,5 +109,5 @@
 				color: var(--primary-orange);
 			}
 		}
-	}
+	} 
 </style>
