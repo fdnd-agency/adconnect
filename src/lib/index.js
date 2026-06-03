@@ -129,7 +129,7 @@ export { default as RTalentWinner } from './refactored/molecules/TalentWinner.sv
 // organisms
 export { default as RSectionHero } from './refactored/organisms/SectionHero.svelte'
 export { default as RSectionPage } from './refactored/organisms/SectionPage.svelte'
-export { default as RDetailsSection } from './refactored/organisms/DetailsSection.svelte'
+export { default as RDetailsPublicaties } from './refactored/organisms/DetailsPublicaties.svelte'
 export { default as RTalentAwardSection } from './refactored/organisms/TalentAwardSection.svelte'
 export { default as RSectionPlanning } from './refactored/organisms/SectionPlanning.svelte'
 export { default as RAboutOverAD } from './refactored/organisms/AboutOverAD.svelte'

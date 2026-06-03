@@ -1,14 +1,15 @@
 <script>
-	import { Hero } from '$lib'
+	import { RSectionHero, RDetailsPublicaties } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	const { data } = $props()
 
 	const sourceFileId = data?.document?.source_file?.id ?? data?.document?.source_file ?? null
-
-	import { RSectionHero, RDetailsSection } from '$lib'
 </script>
 
+<svelte:head>
+	<title>Documenten | Overlegplatform Associate Degrees</title>
+</svelte:head>
 
 <RSectionHero
 	sectionInfo={{
@@ -25,4 +26,4 @@
 	}}
 />
 
-<RDetailsSection {data} />
+<RDetailsPublicaties {data} />
