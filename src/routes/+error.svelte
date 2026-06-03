@@ -2,7 +2,7 @@
 	import { page } from '$app/state'
 
 	// Import Atomic Design
-	import { NavPros, TopNav, bird, Footer } from '$lib'
+	import { NavPros, TopNav, bird, Footer, RPicture } from '$lib'
 	const { item } = $props()
 </script>
 
@@ -19,10 +19,11 @@
 <div
 	class="wrapper-error"
 	id="main"
->
+>	
+	
 	<section>
-		<h1>Oeps {page.status} error</h1>
-		<p>De pagina die je probeert te bereiken lijkt niet te bestaan. Navigeer naar een van onze werkende pagina's hieronder.</p>
+		<h1 class="error-section_header">Oeps {page.status} error</h1>
+		<p class="error-section_description">De pagina die je probeert te bereiken lijkt niet te bestaan. Navigeer naar een van onze werkende pagina's hieronder.</p>
 
 		<ul>
 			<li><a href="/over-ad">Over Ad's</a></li>
@@ -35,15 +36,21 @@
 		</ul>
 	</section>
 
-	<img
-		src={bird}
-		alt="Een vogel in een pak met een bril die een boek vasthoud"
-	/>
+    <div class="image_container">
+        <RPicture
+            isEnhanced
+            src={bird}
+            style="height: auto; overflow:hidden;"
+            width="100"
+        />
+    </div>
+
 </div>
 
 <Footer />
 
 <style>
+	
 	.wrapper-error {
 		display: flex;
 		flex-direction: column-reverse;
@@ -53,22 +60,13 @@
 		max-width: 1400px;
 		padding: 3em 0;
 		padding-top: 9em;
-
+		
 		@media (min-width: 768px) {
 			padding: 5em 0;
 			padding-top: 10em;
 			flex-direction: row-reverse;
 		}
-
-		img {
-			width: 20em;
-			align-self: center;
-
-			@media (min-width: 768px) {
-				width: 25em;
-			}
-		}
-
+		
 		section {
 			display: flex;
 			flex-direction: column;
@@ -76,8 +74,8 @@
 			margin: auto;
 		}
 
-		h1,
-		p {
+		.error-section_header,
+		.error-section_description {
 			text-align: center;
 
 			@media (min-width: 768px) {
@@ -88,26 +86,28 @@
 
 		ul {
 			display: flex;
-			flex-direction: row;
+			flex-direction: column;
+			align-items: center;
 			flex-wrap: wrap;
-			gap: 0.5em 1.5em;
-			justify-content: center;
-
-			@media (min-width: 768px) {
+			
+			@media (min-width: 500px) {
 				justify-content: left;
+				flex-direction: row;
+				gap: 0.5em 1.5em;
 			}
 		}
 
-		li:first-of-type {
-			list-style-type: none;
-		}
-
 		a {
-			color: var(--blue-800);
+			color: light-dark(var(----text-darkblue), var(--text-white));
 
 			&:hover {
 				color: var(--primary-orange);
 			}
 		}
 	} 
+
+	.image_container {
+		width: 400px;
+		align-self: center;
+	}
 </style>
