@@ -34,7 +34,6 @@
 				</RLink>
 			</article>
 		{/each}
-
 	</div>
 </section>
 
