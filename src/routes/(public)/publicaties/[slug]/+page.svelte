@@ -1,5 +1,5 @@
 <script>
-	import { RSectionHero, RDetailsPublicaties, RDetailsSection } from '$lib'
+	import { RSectionHero, RDetailsPublicaties } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	const { data } = $props()
@@ -27,4 +27,3 @@
 />
 
 <RDetailsPublicaties {data} />
-<RDetailsSection {data} />
