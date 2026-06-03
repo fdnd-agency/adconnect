@@ -3,7 +3,7 @@
 
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
-	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardTheme, RSectionHero, RSectionPage, RCarousel, RSectionThemes, RCardInfo, RSectionNewsCard } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardTheme, RSectionHero, RSectionPage, RCarousel, RSectionThemes, RSectionNewsCard } from '$lib'
 
 	// Import images
 	import { zaal, overad } from '$lib'
