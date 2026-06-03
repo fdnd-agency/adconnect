@@ -3,7 +3,7 @@
 
 	// Import components
 	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit } from '$lib'
-	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo, RSectionHero, RSectionPage, RCarousel } from '$lib'
+	import { RLink, Rseparator, RFaqSection, RPicture, RCardHero, RCardSection, RCardInfo, RSectionHero, RSectionPage, RCarousel, RSectionNewsCard } from '$lib'
 
 	// Import images
 	import { zaal, overad } from '$lib'
@@ -38,7 +38,7 @@
 	backgroundBlue
 />
 
-<NewsCardSection news={data.news.slice(0, 3)} />
+<RSectionNewsCard news={data.news.slice(0, 3)} />
 
 <RSectionPage
 	vertical
