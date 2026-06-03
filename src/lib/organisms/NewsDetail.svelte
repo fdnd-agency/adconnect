@@ -40,7 +40,7 @@
 	{#each data.content as item (item.uuid)}
 		<article>
 			<h2>{item.title}</h2>
-			<p>{@html item.body}</p>
+			<div>{@html item.body}</div>
 		</article>
 	{/each}
 </section>
@@ -58,9 +58,18 @@
 		max-width: 600px;
 		margin: 0 auto;
 		padding: 1.5em 0;
+
 		h2 {
 			font-size: 1.5rem;
 			margin-bottom: 1em;
+		}
+
+		div {
+			font-family: var(--font-body);
+			font-weight: var(--text-font-weight);
+			font-size: var(--p-s-size);
+			line-height: var(--p-s-line-height);
+			max-width: var(--p-s-max-width);
 		}
 	}
 	img {
