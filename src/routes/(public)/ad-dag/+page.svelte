@@ -75,7 +75,8 @@
 		isEnhanced: true,
 		src: Addag,
 		alt: '',
-		fetchpriority: 'high'
+		fetchpriority: 'high',
+		loading: 'eager'
 	}}
 />
 
@@ -147,6 +148,7 @@
 			alt="Locatie van de Ad-dag"
 			width="600"
 			height="300"
+			loading='eager'
 			style="height: auto;"
 		/>
 	</div>
