@@ -2,7 +2,8 @@
     import { DIRECTUS_URL } from '$lib/constants.js'
     import { RLink } from '$lib'
 
-    const { data, ...props } = $props()
+    const { data } = $props()
+
 
     const sourceFileId = data?.document?.source_file?.id ?? data?.document?.source_file ?? null
 </script>

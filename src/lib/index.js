@@ -120,10 +120,10 @@ export { default as RCardSection } from './refactored/molecules/CardSection.svel
 export { default as RCardInfo } from './refactored/molecules/CardInfo.svelte'
 export { default as RCardPublicaties } from './refactored/molecules/CardPublicaties.svelte'
 export { default as RCardNews } from './refactored/molecules/CardNews.svelte'
-export { default as RFaqSection } from './refactored/molecules/FaqSection.svelte'
 export { default as RContactForm } from './refactored/molecules/ContactForm.svelte'
 export { default as RCarousel } from './refactored/molecules/Carousel.svelte'
 export { default as RTextSection } from './refactored/molecules/TextSection.svelte'
+export { default as RFilterButtons } from './refactored/molecules/FilterButtons.svelte'
 export { default as RTalentWinner } from './refactored/molecules/TalentWinner.svelte'
 
 // organisms
@@ -132,3 +132,5 @@ export { default as RSectionPage } from './refactored/organisms/SectionPage.svel
 export { default as RDetailsSection } from './refactored/organisms/DetailsSection.svelte'
 export { default as RTalentAwardSection } from './refactored/organisms/TalentAwardSection.svelte'
 export { default as RSectionPlanning } from './refactored/organisms/SectionPlanning.svelte'
+export { default as RSectionFilter } from './refactored/organisms/SectionFilter.svelte'
+
