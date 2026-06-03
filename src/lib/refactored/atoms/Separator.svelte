@@ -1,8 +1,8 @@
 <script lang="ts">
-	let { dividerText }: { dividerText: string } = $props()
+	const { dividerText, noMargin } = $props()
 </script>
 
-<section>
+<section class:noMargin>
 	<hr />
 	{#if dividerText}
 		<p>{dividerText}</p>
@@ -20,6 +20,10 @@
 		width: 90%;
 		max-width: 1400px;
 		margin: 5em 0;
+	}
+
+	.noMargin {
+		margin: 0;
 	}
 
 	hr,

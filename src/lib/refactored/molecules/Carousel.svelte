@@ -1,8 +1,35 @@
 <script>
 	import { RLink, RPicture, Rseparator } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
-	const { carouselItems, logos, nominations, dividerText, backgroundBlack } = $props()
+
+	const { carouselItems = [], logos = false, nominations = false, dividerText, backgroundBlack = false, cooperations = [], nominationHrefBase = '/talent-award/nominaties' } = $props()
+
 	const imageUrl = (id) => `${DIRECTUS_URL}/assets/${id}`
+
+	const normalizeInstitutionKey = (value) =>
+		String(value ?? '')
+			.trim()
+			.toLowerCase()
+
+	const resolveCooperation = (institution) => {
+		if (!institution) return null
+
+		if (typeof institution === 'object') {
+			if (institution.logo || institution.name || institution.id) return institution
+			if (institution.adconnect_cooperation_id) return institution.adconnect_cooperation_id
+		}
+
+		const key = normalizeInstitutionKey(institution)
+		if (!key) return null
+
+		return (
+			cooperations?.find((cooperation) => {
+				const id = normalizeInstitutionKey(cooperation?.id)
+				const name = normalizeInstitutionKey(cooperation?.name)
+				return key === id || (name && key === name)
+			}) ?? null
+		)
+	}
 </script>
 
 {#snippet logoItem(logo)}
@@ -25,8 +52,23 @@
 {/snippet}
 
 {#snippet nominationItem(item)}
+	{@const cooperation = resolveCooperation(item.institution)}
+	{@const nominationHref = `${nominationHrefBase}/${item.slug ?? item.id}`}
 	<li class="carousel__item nomination">
-		<p class="nomination__name">{item.title}</p>
+		<a
+			class="nomination__link"
+			href={nominationHref}
+		>
+			<p class="nomination__name">{item.title}</p>
+
+			{#if cooperation?.logo}
+				<img
+					class="nomination__institution-logo"
+					src={imageUrl(cooperation.logo?.id ?? cooperation.logo)}
+					alt={cooperation?.name ?? 'Institution logo'}
+				/>
+			{/if}
+		</a>
 
 		{#if item.profile_picture}
 			<div class="nomination__photo">
@@ -45,11 +87,17 @@
 	class="logo-section"
 	class:logo-section--background-black={backgroundBlack}
 >
-	<Rseparator {dividerText} />
+	<Rseparator
+		{dividerText}
+		noMargin
+	/>
 
 	<div class="carousel">
-		<ul class="carousel__track">
-			{#each carouselItems as item (item.id)}
+		<ul
+			class="carousel__track"
+			style={`--item-count: ${carouselItems?.length ?? 0}`}
+		>
+			{#each [...(carouselItems ?? []), ...(carouselItems ?? [])] as item, index (`${item.id}-${index}`)}
 				{#if logos}
 					{@render logoItem(item)}
 				{:else if nominations}
@@ -59,7 +107,7 @@
 		</ul>
 	</div>
 
-	<Rseparator />
+	<Rseparator noMargin />
 </section>
 
 <style>
@@ -93,19 +141,22 @@
 
 	.carousel__track {
 		display: flex;
-		animation: scroll 10s linear infinite;
+		align-items: center;
+		gap: 2rem;
+		width: max-content;
+		animation: scroll calc(max(var(--item-count, 1), 1) * 4s) linear infinite;
+	}
+
+	.carousel:hover .carousel__track {
+		animation-play-state: paused;
 	}
 
 	.carousel__item {
-		flex: 0 0 33.3%;
+		flex: 0 0 auto;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
-
-		@media (min-width: 768px) {
-			flex: 0 0 25%;
-		}
 	}
 
 	.carousel__logo {
@@ -130,6 +181,23 @@
 		position: relative;
 	}
 
+	.nomination__link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.35rem;
+		text-decoration: none;
+		color: inherit;
+		text-align: center;
+		padding: 0.2rem 0.4rem;
+		border-radius: 8px;
+	}
+
+	.nomination__link:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 3px;
+	}
+
 	.nomination__name {
 		min-width: 200px;
 		text-wrap: nowrap;
@@ -137,6 +205,14 @@
 		line-height: var(--h3-line-height);
 		max-width: var(--h3-max-width);
 		font-weight: var(--heading-font-weight);
+	}
+
+	.nomination__institution-logo {
+		height: 28px;
+		max-width: 140px;
+		width: auto;
+		filter: grayscale(100%) brightness(0.85);
+		opacity: 0.85;
 	}
 
 	.nomination__photo {
@@ -151,6 +227,7 @@
 		transform: translateX(-50%) translateY(var(--_translate-y));
 		pointer-events: none;
 		transition: 0.2s ease;
+		z-index: 2;
 	}
 
 	.nomination:hover .nomination__photo {
@@ -176,7 +253,7 @@
 		}
 
 		100% {
-			transform: translateX(-25%);
+			transform: translateX(-50%);
 		}
 	}
 </style>
