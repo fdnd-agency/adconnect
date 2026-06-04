@@ -93,6 +93,8 @@
 	</div>
 </section>
 
+<!-- this field needs to be adjusted in the database -->
+<!-- schedule: adDayPage.program_body, -->
 <RSectionPlanning
 	sectionInfo={{ title: adDayPage.planning_heading, description: adDayPage.planning_body }}
 	cardsData={[
@@ -108,19 +110,6 @@
 		}
 	]}
 />
-
-<!-- <Schedule
-	planningHeading={adDayPage.planning_heading}
-	planningBody={adDayPage.planning_body}
-	programHeading={adDayPage.program_heading}
-	programBody={adDayPage.program_body}
-	programButtonText={adDayPage.program_button_text}
-	programButtonUrl={adDayPage.program_button_url}
-	workshopsHeading={adDayPage.workshops_heading}
-	workshopsBody={adDayPage.workshops_body}
-	workshopsButtonText={adDayPage.workshops_button_text}
-	workshopsButtonUrl={adDayPage.workshops_button_url}
-/> -->
 
 <div class="location">
 	<Rseparator dividerText={adDayPage.location_heading} />
