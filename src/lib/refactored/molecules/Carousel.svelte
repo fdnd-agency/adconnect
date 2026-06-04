@@ -111,6 +111,10 @@
 </section>
 
 <style>
+	section {
+		margin: 4em 0;
+	}
+
 	.logo-section {
 		--_background: transparent;
 
@@ -144,7 +148,7 @@
 		align-items: center;
 		gap: 2rem;
 		width: max-content;
-		animation: scroll calc(max(var(--item-count, 1), 1) * 4s) linear infinite;
+		animation: scroll calc(max(var(--item-count, 1), 1) * 5s) linear infinite;
 	}
 
 	.carousel:hover .carousel__track {

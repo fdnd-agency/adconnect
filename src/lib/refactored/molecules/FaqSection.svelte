@@ -36,6 +36,7 @@
 		box-sizing: border-box;
 		position: relative;
 		padding: 2em clamp(1em, 5vw, 5em);
+		overflow: clip;
 	}
 
 	.faq__title {
