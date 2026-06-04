@@ -85,6 +85,8 @@
 		}
 
 		ul {
+			list-style-position: inside;
+			
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -108,7 +110,7 @@
 	} 
 
 	.image_container {
-		width: 400px;
+		max-width: 400px;
 		align-self: center;
 	}
 </style>
