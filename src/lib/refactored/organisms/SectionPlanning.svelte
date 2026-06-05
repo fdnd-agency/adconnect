@@ -1,5 +1,5 @@
 <script>
-	import { RCardSection, RTimeTable, RLink } from '$lib'
+	import { RCardSection, RLink } from '$lib'
 	import { IconDots } from '$lib/icons'
 
 	const { sectionInfo, cardsData } = $props()
@@ -19,11 +19,7 @@
 					<h3 class="card__title">{card.title}</h3>
 				</div>
 
-				{#if card.description}
-					<p class="card__text">{card.description}</p>
-				{:else if card.schedule}
-					<RTimeTable scheduleData={card.schedule} />
-				{/if}
+				<p class="card__text">{card.content}</p>
 
 				<RLink
 					class="button-outline-blue"
@@ -87,5 +83,6 @@
 	.card__text {
 		max-width: 500px;
 		margin-bottom: auto;
+		white-space: pre-line;
 	}
 </style>

@@ -7,37 +7,6 @@
 	const props = $props()
 	const data = $derived(props.data)
 	const adDayPage = $derived(data.adDayPage ?? {})
-
-	// TODO: schedule data that needs to be added to directus
-	const scheduleData = {
-		schedule: [
-			{
-				startTime: '09:30',
-				endTime: '10:00',
-				event: 'Inloop met koffie/thee'
-			},
-			{
-				startTime: '10:00',
-				endTime: '13:00',
-				event: 'Opening, keynote, gesprekken en Ad Talent Award'
-			},
-			{
-				startTime: '13:00',
-				endTime: '13:45',
-				event: 'Lunch'
-			},
-			{
-				startTime: '13:45',
-				endTime: '15:30',
-				event: 'Workshops en excursies'
-			},
-			{
-				startTime: '15:30',
-				endTime: '17:00',
-				event: 'Borrel & ontmoeting'
-			}
-		]
-	}
 </script>
 
 <svelte:head>
@@ -93,19 +62,17 @@
 	</div>
 </section>
 
-<!-- this field needs to be adjusted in the database -->
-<!-- schedule: adDayPage.program_body, -->
 <RSectionPlanning
 	sectionInfo={{ title: adDayPage.planning_heading, description: adDayPage.planning_body }}
 	cardsData={[
 		{
 			title: adDayPage.program_heading,
-			schedule: scheduleData,
+			content: adDayPage.program_body,
 			link: { label: adDayPage.program_button_text, href: adDayPage.program_button_url }
 		},
 		{
 			title: adDayPage.workshops_heading,
-			description: adDayPage.workshops_body,
+			content: adDayPage.workshops_body,
 			link: { label: adDayPage.workshops_button_text, href: adDayPage.workshops_button_url }
 		}
 	]}
