@@ -35,11 +35,12 @@
 	.document-detail {
 		display: flex;
 		flex-direction: column;
+		align-self: center;
 		gap: 1em;
 		margin: 2em min(6%, 3em);
 
-		@media (min-width: 768px) {
-			align-self: center;
+		@media (min-width: 1025px) {
+			align-self: start;
 			width: 60%;
 		}
 	}

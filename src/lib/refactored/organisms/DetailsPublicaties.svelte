@@ -20,6 +20,8 @@
 		flex-direction: column;
 		gap: 1em;
 		width: 100%;
+		min-height: 600px;
+		padding: min(5%, 3em);
 
 		@media (min-width: 1025px) {
 			flex-direction: row;
