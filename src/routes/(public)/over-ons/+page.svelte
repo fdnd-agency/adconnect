@@ -1,139 +1,92 @@
 <script>
 	// Import images
-	import { doorstroom, overleggen, awards, dots, placeholder, overad } from '$lib'
-	import logomobile from '$lib/assets/logomobile.svg'
+	import { doorstroom } from '$lib'
 
 	// Import components
-	import { BenefitsCard, ThemeCard, ImageTextSection, Divider, DividerText, LogoSection, Hero } from '$lib'
+	import { RSectionHero, RCardSection, Rseparator, RCarousel } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
-	const themes = $derived(data.themes)
 	const cooperations = $derived(data.cooperations)
 	const aboutUsPage = $derived(data.aboutUsPage ?? {})
+
+	const originText = $derived([
+		{
+			title: aboutUsPage.origin_heading,
+			paragraphs: [aboutUsPage.origin_body]
+		},
+		{
+			title: aboutUsPage.founding_letter_heading,
+			paragraphs: [aboutUsPage.founding_letter_body]
+		}
+	])
 </script>
 
 <svelte:head>
 	<title>Over ons | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title={aboutUsPage.hero_heading}
-	description={aboutUsPage.hero_body}
->
-	<img
-		class="hero-image"
-		src={doorstroom}
-		alt="Waarom AdConnect?"
-		aria-hidden="true"
-		fetchpriority="high"
+<RSectionHero
+	sectionInfo={{ title: aboutUsPage.hero_heading, description: aboutUsPage.hero_body }}
+	picture={{
+		isEnhanced: true,
+		src: doorstroom,
+		alt: 'Waarom AdConnect?',
+		fetchpriority: 'high'
+	}}
+/>
+
+<div class="center">
+	<RCardSection
+		title={aboutUsPage.why_heading}
+		description={aboutUsPage.why_body}
 	/>
-</Hero>
-
-<section class="intro">
-	<img
-		class="logo"
-		src={logomobile}
-		alt="Ad Talent Award Logo"
-		aria-hidden="true"
-		width="50"
-		height="50"
-	/>
-	<h2>{aboutUsPage.why_heading}</h2>
-	<p>{aboutUsPage.why_body}</p>
-</section>
-
-<section class="logo-section">
-	<DividerText text="Partijen waarmee wij samenwerken" />
-	<LogoSection {cooperations} />
-	<Divider />
-</section>
-
-<div class="origins">
-	<section class="origin-text">
-		<h2>{aboutUsPage.origin_heading}</h2>
-		<p>{aboutUsPage.origin_body}</p>
-	</section>
-	<section class="origin-letter">
-		<h2>{aboutUsPage.founding_letter_heading}</h2>
-		<p>{aboutUsPage.founding_letter_body}</p>
-	</section>
 </div>
 
-<Divider />
+<RCarousel
+	logos
+	carouselItems={cooperations}
+	dividerText="Partijen waarmee wij samenwerken"
+/>
 
-<section class="advice">
-	<img
-		class="logo"
-		src={logomobile}
-		alt="Ad Talent Award Logo"
-		aria-hidden="true"
-		width="50"
-		height="50"
+<div class="origins">
+	{#each originText as section}
+		<section>
+			<h2>{section.title}</h2>
+			{#each section.paragraphs as paragraph}
+				<p>{paragraph}</p>
+			{/each}
+		</section>
+	{/each}
+</div>
+
+<Rseparator />
+
+<div class="center">
+	<RCardSection
+		title={aboutUsPage.advice_heading}
+		description={aboutUsPage.advice_body}
 	/>
-	<h2>{aboutUsPage.advice_heading}</h2>
-	<p>{aboutUsPage.advice_body}</p>
-</section>
+</div>
 
 <style>
-	.intro {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5em;
-		padding: 5em;
-
-		h2 {
-			padding-bottom: 1em;
-		}
-	}
-
 	.origins {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: flex-start;
 		gap: 2.5em;
-		padding: 5em;
-
+		padding: min(5%, 5em);
 		@media (min-width: 1000px) {
 			flex-direction: row;
 			justify-content: space-evenly;
 		}
-
-		.origin-text,
-		.origin-letter {
-			h2 {
-				padding-bottom: 1em;
-			}
-		}
-	}
-
-	.advice {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5em;
-		padding: 5em;
-
 		h2 {
 			padding-bottom: 1em;
 		}
 	}
-
-	.logo-section {
-		display: flex;
-		gap: 2em;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		padding: 0 0 3em 0;
-
-		@media (min-width: 768px) {
-			gap: 3em;
-			padding: 0 0 5em 0;
-		}
+	.center {
+		justify-self: center;
+		padding: 5em 0;
 	}
 </style>
