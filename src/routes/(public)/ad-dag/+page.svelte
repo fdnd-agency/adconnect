@@ -1,12 +1,11 @@
 <script>
-	import logomobile from '$lib/assets/logomobile.svg'
-	import addag1 from '$lib/assets/addag-1.png'
-	import addag2 from '$lib/assets/addag-2.png'
-	import addag3 from '$lib/assets/addag-3.webp'
+	// Import images
+	import { addag2, addag3, locationImage, Addag } from '$lib'
 
-	import { MultipleFaq, SingleFaq, Hero, Addag, Location, Schedule } from '$lib'
+	import { RSectionHero, RSectionPage, RSectionPlanning, RFaqSection, RPicture, Rseparator, Schedule } from '$lib'
 
-	const { data } = $props()
+	const props = $props()
+	const data = $derived(props.data)
 	const adDayPage = $derived(data.adDayPage ?? {})
 </script>
 
@@ -14,160 +13,127 @@
 	<title>Ad dag | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title={adDayPage.hero_heading}
-	description={adDayPage.hero_body}
->
-	<img
-		class="hero-image"
-		src={Addag}
-		alt=""
-		fetchpriority="high"
-	/>
-</Hero>
+<RSectionHero
+	sectionInfo={{ title: adDayPage.hero_heading, description: adDayPage.hero_body }}
+	picture={{
+		isEnhanced: true,
+		src: Addag,
+		alt: '',
+		fetchpriority: 'high',
+		loading: 'eager'
+	}}
+/>
 
-<section class="intro">
-	<article>
-		<h2>{adDayPage.about_heading}</h2>
-		<p>{adDayPage.about_body}</p>
-	</article>
-	<img
-		src={addag3}
-		alt=""
-		width="450px"
+<RSectionPage
+	sectionInfo={{ title: adDayPage.about_heading, description: adDayPage.about_body }}
+	picture={{
+		isEnhanced: true,
+		src: addag3,
+		alt: '...',
+		width: '450',
+		fetchpriority: 'high',
+		loading: 'eager'
+	}}
+/>
+
+<section class="faq-addag">
+	<RFaqSection
+		title={adDayPage.faq_heading}
+		faqData={{
+			faqs: [
+				{ question: adDayPage.faq_1_heading, answer: adDayPage.faq_1_body },
+				{ question: adDayPage.faq_2_heading, answer: adDayPage.faq_2_body },
+				{ question: adDayPage.faq_3_heading, answer: adDayPage.faq_3_body },
+				{ question: adDayPage.faq_4_heading, answer: adDayPage.faq_4_body }
+			]
+		}}
+		backgroundBlack
 	/>
+
+	<div class="faq-addag__image">
+		<RPicture
+			isEnhanced
+			src={addag2}
+			alt=""
+			width="600"
+			height="300"
+			style="height: auto;"
+		/>
+	</div>
 </section>
 
-<section class="info-addag">
-	<img
-		class="logo"
-		src={logomobile}
-		alt=""
-	/>
-	<h2>{adDayPage.faq_heading}</h2>
-
-	<MultipleFaq>
-		<SingleFaq
-			open={true}
-			question={adDayPage.faq_1_heading}
-			answer={adDayPage.faq_1_body}
-		/>
-
-		<SingleFaq
-			question={adDayPage.faq_2_heading}
-			answer={adDayPage.faq_2_body}
-		/>
-
-		<SingleFaq
-			question={adDayPage.faq_3_heading}
-			answer={adDayPage.faq_3_body}
-		/>
-
-		<SingleFaq
-			question={adDayPage.faq_4_heading}
-			answer={adDayPage.faq_4_body}
-		/>
-	</MultipleFaq>
-
-	<img
-		class="addag-2"
-		src={addag2}
-		alt=""
-		width="600"
-		height="300"
-	/>
-</section>
-<Schedule
-	planningHeading={adDayPage.planning_heading}
-	planningBody={adDayPage.planning_body}
-	programHeading={adDayPage.program_heading}
-	programBody={adDayPage.program_body}
-	programButtonText={adDayPage.program_button_text}
-	programButtonUrl={adDayPage.program_button_url}
-	workshopsHeading={adDayPage.workshops_heading}
-	workshopsBody={adDayPage.workshops_body}
-	workshopsButtonText={adDayPage.workshops_button_text}
-	workshopsButtonUrl={adDayPage.workshops_button_url}
+<RSectionPlanning
+	sectionInfo={{ title: adDayPage.planning_heading, description: adDayPage.planning_body }}
+	cardsData={[
+		{
+			title: adDayPage.program_heading,
+			content: adDayPage.program_body,
+			link: { label: adDayPage.program_button_text, href: adDayPage.program_button_url }
+		},
+		{
+			title: adDayPage.workshops_heading,
+			content: adDayPage.workshops_body,
+			link: { label: adDayPage.workshops_button_text, href: adDayPage.workshops_button_url }
+		}
+	]}
 />
-<Location
-	heading={adDayPage.location_heading}
-	body={adDayPage.location_body}
-/>
+
+<div class="location">
+	<Rseparator dividerText={adDayPage.location_heading} />
+
+	<p class="location__text">{adDayPage.location_body}</p>
+
+	<div class="location__image">
+		<RPicture
+			isEnhanced
+			src={locationImage}
+			alt="Locatie van de Ad-dag"
+			width="600"
+			height="300"
+			loading="eager"
+			style="height: auto;"
+		/>
+	</div>
+</div>
 
 <style>
-	.intro {
+	.faq-addag {
 		display: flex;
 		flex-direction: column;
 		padding: 3em 5%;
-		max-width: 1400px;
-		align-items: center;
-		gap: 4em;
-		align-self: center;
-		margin: auto;
-
-		img {
-			width: 100%;
-			border-radius: 1em;
-		}
-
-		article {
-			max-width: 600px;
-
-			p {
-				margin-top: 1em;
-			}
-		}
-	}
-
-	@media (min-width: 768px) {
-		.intro {
-			flex-direction: row;
-			gap: 2em;
-			align-items: center;
-			padding: 5em 5%;
-			gap: 4em;
-
-			img {
-				width: 600px;
-			}
-		}
-	}
-
-	.info-addag {
-		display: flex;
-		flex-direction: column;
 		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
-		gap: 2em;
-		padding: 3em 5%;
-		box-sizing: border-box;
-		position: relative;
 		box-shadow: 0 0 0 100vmax var(--blue-100);
 		clip-path: inset(0 -100vmax);
+		overflow: hidden;
 
-		.logo {
-			margin-top: 2em;
+		.faq-addag__image {
 			align-self: center;
-		}
+			width: 100%;
+			margin-top: 5em;
+			border-radius: 5em;
 
-		h2 {
-			text-align: center;
-			margin: auto;
-			max-width: 350px;
+			@media (min-width: 768px) {
+				max-width: 1000px;
+				height: 400px;
+			}
 		}
 	}
 
-	.addag-2 {
-		margin-top: 5em;
-		align-self: center;
-		object-fit: cover;
-		width: 100%;
-		border-radius: 5em;
+	.location__text {
+		max-width: 800px;
+		margin: 2em auto;
+		padding: 2em;
+		font-size: 1.125rem;
 	}
 
-	@media (min-width: 768px) {
-		.addag-2 {
-			height: 400px;
-			width: 1000px;
+	.location__image {
+		overflow: hidden;
+		width: 90%;
+		margin: auto;
+		border-radius: 33px 33px 0 0;
+
+		@media (min-width: 768px) {
+			width: 60%;
 		}
 	}
 </style>

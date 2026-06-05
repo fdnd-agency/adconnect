@@ -31,6 +31,7 @@
 		border: 1px solid var(--_border);
 		border-radius: 0.5em;
 		color: var(--_text);
+		interpolate-size: allow-keywords;
 	}
 
 	article:has(details[open]) {
@@ -80,6 +81,7 @@
 		height: 2px;
 		background: var(--text-white);
 		transform: translate(-50%, -50%);
+		transition: transform 0.1s ease-out;
 	}
 
 	.toggle::after {
@@ -88,6 +90,18 @@
 
 	details[open] .toggle::after {
 		transform: translate(-50%, -50%) rotate(0deg);
+	}
+
+	details::details-content {
+		block-size: 0;
+		overflow: hidden;
+		transition:
+			block-size 0.3s ease,
+			content-visibility 0.3s allow-discrete;
+	}
+
+	details[open]::details-content {
+		block-size: auto;
 	}
 
 	p {

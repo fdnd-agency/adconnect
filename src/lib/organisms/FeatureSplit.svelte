@@ -24,7 +24,7 @@
 		<h2 class="feature-title">{title}</h2>
 
 		{#if intro}
-			: <div class="feature-intro">
+			<div class="feature-intro">
 				{@html intro}
 			</div>
 		{/if}

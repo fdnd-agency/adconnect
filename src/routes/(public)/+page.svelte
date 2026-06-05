@@ -1,9 +1,9 @@
 <script>
 	// Import components
-	import { MultipleFaq, SingleFaq, DividerText, Divider, LogoSection, Hero, NewsCardSection, Information, InformationCards, FeatureSplit, Link } from '$lib'
+	import { FeatureSplit, RFaqSection, RSectionHero, RSectionPage, RCarousel, RSectionThemes, RSectionNewsCard } from '$lib'
 
 	// Import images
-	import { zaal } from '$lib'
+	import { zaal, overad } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
@@ -12,24 +12,21 @@
 	const faqs = $derived(data.faqs)
 	const homePage = $derived(data.homePage ?? {})
 
-	const informationCards = $derived([
+	const themes = $derived([
 		{
 			title: homePage.card_1_title,
 			description: homePage.card_1_body,
-			buttonText: homePage.card_1_button_text,
-			buttonLink: homePage.card_1_button_url
+			slug: homePage.card_1_button_url
 		},
 		{
 			title: homePage.card_2_title,
 			description: homePage.card_2_body,
-			buttonText: homePage.card_2_button_text,
-			buttonLink: homePage.card_2_button_url
+			slug: homePage.card_2_button_url
 		},
 		{
 			title: homePage.card_3_title,
 			description: homePage.card_3_body,
-			buttonText: homePage.card_3_button_text,
-			buttonLink: homePage.card_3_button_url
+			slug: homePage.card_3_button_url
 		}
 	])
 </script>
@@ -38,51 +35,45 @@
 	<title>Home | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title={homePage.hero_heading}
-	description={homePage.hero_body}
->
-	<Link
-		slot="secondary"
-		href={homePage.hero_secondary_button_url}
-		class="button-outline-white">{homePage.hero_secondary_button_text}</Link
-	>
-	<Link
-		slot="primary"
-		href={homePage.hero_primary_button_url}
-		class="button-outline-blue">{homePage.hero_primary_button_text}</Link
-	>
-	<img
-		class="hero-image"
-		src={zaal}
-		alt=""
-		fetchpriority="high"
-		width="300"
-		height="210"
-	/>
-</Hero>
-
-<NewsCardSection news={news.slice(0, 3)} />
-
-<Information
-	title={homePage.intro_heading}
-	description={homePage.intro_body}
-	buttonText={homePage.intro_button_text}
-	buttonLink={homePage.intro_button_url}
-	imageAlt="Studenten ontvangen award"
+<RSectionHero
+	sectionInfo={{ title: homePage.hero_heading, description: homePage.hero_body }}
+	primaryLink={{ label: homePage.hero_primary_button_text, href: homePage.hero_primary_button_url }}
+	secondaryLink={{ label: homePage.hero_secondary_button_text, href: homePage.hero_secondary_button_url }}
+	picture={{
+		isEnhanced: true,
+		src: zaal,
+		alt: 'Een grote zaal vol mensen die op stoelen zitten en luisteren naar een spreker.',
+		width: '300',
+		height: '210',
+		fetchpriority: 'high',
+		loading: 'eager'
+	}}
+	backgroundBlue
 />
 
-<InformationCards
-	heading={homePage.cards_heading}
-	intro={homePage.cards_intro}
-	items={informationCards}
+<RSectionNewsCard news={news.slice(0, 3)} />
+
+<RSectionPage
+	vertical
+	sectionInfo={{ title: homePage.intro_heading, description: homePage.intro_body }}
+	primaryLink={{ label: homePage.intro_button_text, href: homePage.intro_button_url }}
+	picture={{
+		isEnhanced: true,
+		src: overad,
+		alt: 'Een zaal met tafels in een cirkel, waar studenten luisteren naar hun docent die een presentatie geeft.'
+	}}
 />
 
-<section class="logo-section">
-	<DividerText text="Partijen waarmee wij samenwerken" />
-	<LogoSection {cooperations} />
-	<Divider />
-</section>
+<RSectionThemes
+	sectionInfo={{ title: homePage.cards_heading, description: homePage.cards_intro }}
+	{themes}
+/>
+
+<RCarousel
+	logos
+	carouselItems={cooperations}
+	dividerText="Partijen waarmee wij samenwerken"
+/>
 
 <FeatureSplit
 	title={homePage.why_heading}
@@ -93,76 +84,7 @@
 	imageAlt="Studenten bij AdTalent award"
 />
 
-<section
-	class="faq-section"
-	id="faq"
->
-	<h2>Veelgestelde vragen</h2>
-	<MultipleFaq>
-		{#each faqs as faq, index (faq.id)}
-			<SingleFaq
-				open={index === 0}
-				question={faq.question}
-				answer={faq.answer}
-			/>
-		{/each}
-	</MultipleFaq>
-</section>
-
-<style>
-	.hero-image {
-		display: block;
-		width: 100%;
-		max-height: 416px;
-		object-fit: cover;
-		border-radius: 30px 30px 0 0;
-	}
-
-	@media (min-width: 768px) {
-		.hero-image {
-			border-radius: 24px;
-			max-width: 604px;
-			margin-left: auto;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.hero-image {
-			max-width: 640px;
-		}
-	}
-
-	.logo-section {
-		display: flex;
-		gap: 2em;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-		padding: 0 0 3em 0;
-		@media (min-width: 768px) {
-			gap: 3em;
-			padding: 0 0 5em 0;
-		}
-	}
-
-	.faq-section {
-		display: flex;
-		flex-direction: column;
-		gap: 2em;
-		padding: 3em 5%;
-		box-sizing: border-box;
-		position: relative;
-
-		@media (min-width: 768px) {
-			padding: 2em 5em 5em 5em;
-		}
-	}
-
-	.faq-section h2 {
-		text-align: center;
-	}
-
-	#faq {
-		scroll-margin-top: 150px;
-	}
-</style>
+<RFaqSection
+	title="Veelgestelde vragen"
+	faqData={{ faqs }}
+/>

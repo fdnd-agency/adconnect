@@ -1,53 +1,39 @@
 <script>
 	import logomobile from '$lib/assets/logomobile.svg'
 	import logodark from '$lib/assets/logomobiledark.svg'
-	import Talent from '$lib/assets/ad-talent-awards.jpg'
 
-	const { data } = $props()
+	// Import images
+	import { Talent } from '$lib'
 
-	import { Hero, Divider, DividerText, NominationsCarousel } from '$lib'
+	// Import components
+	import { RSectionHero, RCardSection, RTalentAwardSection } from '$lib'
 
-	import { DIRECTUS_URL } from '$lib/constants.js'
-
+	const props = $props()
+	const data = $derived(props.data)
 	const talentAwardPage = $derived(data.talentAwardPage ?? {})
-	const imageUrl = (id) => `${DIRECTUS_URL}/assets/${id}`
 </script>
 
 <svelte:head>
 	<title>Talent Award| Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<Hero
-	title={talentAwardPage.hero_heading}
-	description={talentAwardPage.hero_body}
->
-	<img
-		class="hero-image"
-		src={Talent}
-		alt=""
-		fetchpriority="high"
-	/>
-	<a
-		slot="primary"
-		href={talentAwardPage.hero_button_url}
-		class="button-outline-white"
-		id="benefit"
-		>{talentAwardPage.hero_button_text} <span aria-hidden="true">→</span> <span class="visually-hidden">over aadee talent award</span>
-	</a>
-</Hero>
+<RSectionHero
+	sectionInfo={{ title: talentAwardPage.hero_heading, description: talentAwardPage.hero_body }}
+	primaryLink={{ label: talentAwardPage.hero_button_text, href: talentAwardPage.hero_button_url }}
+	picture={{
+		isEnhanced: true,
+		src: Talent,
+		alt: '',
+		fetchpriority: 'high'
+	}}
+/>
 
-<section class="intro">
-	<img
-		class="logo"
-		src={logomobile}
-		alt="Logo"
-		aria-hidden="true"
-		width="50"
-		height="50"
+<div class="intro">
+	<RCardSection
+		title={talentAwardPage.about_heading}
+		description={talentAwardPage.about_body}
 	/>
-	<h2>{talentAwardPage.about_heading}</h2>
-	<p>{talentAwardPage.about_body}</p>
-</section>
+</div>
 
 <section class="cards-ta">
 	<article class="light">
@@ -90,83 +76,12 @@
 	</article>
 </section>
 
-<section>
-	<DividerText text="Voorgaande talent award winnaars" />
-
-	<section class="previous-winners">
-		<ul>
-			{#each data.nominations.filter((item) => item.header?.toLowerCase() === 'winnaar' && item.profile_picture) as winner (winner.id)}
-				<li>
-					<section>
-						<h3>{winner.title}</h3>
-						<p>{winner.excerpt}</p>
-					</section>
-					<img
-						src={imageUrl(winner.profile_picture)}
-						alt="{winner.title} met krullend haar, glimlachend naar de camera"
-						height="200px"
-						width="200px"
-					/>
-				</li>
-			{/each}
-		</ul>
-	</section>
-</section>
-
-<section class="nominate">
-	<img
-		class="logo"
-		aria-hidden="true"
-		src={logomobile}
-		alt="Logo"
-		width="50"
-		height="50"
-	/>
-	<h2>{talentAwardPage.nominations_heading}</h2>
-	<p>{talentAwardPage.nominations_body}</p>
-</section>
-
-<section>
-	<DividerText text="Voorgaande nominaties" />
-</section>
-
-<NominationsCarousel
-	nominations={data.nominations}
-	cooperations={data.cooperations}
-	{imageUrl}
-/>
+<RTalentAwardSection {data} />
 
 <style>
-	.intro,
-	.nominate {
-		text-align: left;
-		margin: 0 auto;
-		padding: 2rem;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		max-width: min(900px, 92vw);
-
-		.logo {
-			display: block;
-			margin: 1rem auto;
-		}
-
-		h2 {
-			text-align: center;
-			margin-bottom: 1em;
-		}
-
-		p {
-			max-width: 500px;
-			margin: 0 auto;
-			text-align: left;
-		}
-	}
-
-	.nominate {
-		align-items: center;
-		gap: 1em;
+	.intro {
+		justify-self: center;
+		padding: 4rem 2rem
 	}
 
 	.cards-ta {
@@ -243,36 +158,6 @@
 		margin-top: 1rem;
 	}
 
-	.previous-winners {
-		background-color: light-dark(var(--blue-100), hsl(210, 30%, 8%));
-		padding: 2rem;
-		border-radius: 15px;
-		width: 90%;
-		max-width: 1000px;
-
-		li {
-			display: flex;
-			flex-direction: column-reverse;
-			gap: 2em;
-			align-items: flex-start;
-
-			section {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-			}
-
-			@media (min-width: 768px) {
-				flex-direction: row-reverse;
-				align-items: center;
-			}
-		}
-	}
-
-	.previous-winners img {
-		border-radius: 15px;
-	}
-
 	@media (min-width: 768px) {
 		.cards-ta {
 			gap: 2rem;
@@ -292,7 +177,7 @@
 		}
 	}
 
-	:global(main) {
+	/* :global(main) {
 		overflow-x: hidden;
-	}
+	} */
 </style>
