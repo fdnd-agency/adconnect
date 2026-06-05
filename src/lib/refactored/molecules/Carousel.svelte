@@ -2,7 +2,7 @@
 	import { RLink, RPicture, Rseparator } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
-	const { carouselItems = [], logos = false, nominations = false, dividerText, backgroundBlack = false, cooperations = [], nominationHrefBase = '/talent-award/nominaties' } = $props()
+	const { carouselItems = [], logos = false, nominations = false, dividerText, backgroundBlack = false, cooperations = [], nominationHrefBase = '/talent-award/nominaties', noMargin } = $props()
 
 	const imageUrl = (id) => `${DIRECTUS_URL}/assets/${id}`
 
@@ -86,6 +86,7 @@
 <section
 	class="logo-section"
 	class:logo-section--background-black={backgroundBlack}
+	class:noMargin
 >
 	<Rseparator
 		{dividerText}
@@ -111,10 +112,6 @@
 </section>
 
 <style>
-	section {
-		margin: 4em 0;
-	}
-
 	.logo-section {
 		--_background: transparent;
 
@@ -125,11 +122,16 @@
 		width: 100%;
 		padding: 0 0 3em 0;
 		background-color: var(--_background);
+		margin: 4em 0;
 
 		@media (min-width: 768px) {
 			gap: 3em;
 			padding: 0 0 5em 0;
 		}
+	}
+
+	.noMargin {
+		margin: 0;
 	}
 
 	.logo-section--background-black {

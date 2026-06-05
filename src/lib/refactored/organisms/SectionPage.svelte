@@ -56,7 +56,6 @@
 
 		@media (min-width: 1375px) {
 			gap: 5em;
-			padding: 5em 0;
 		}
 	}
 
