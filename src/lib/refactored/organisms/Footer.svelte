@@ -22,6 +22,16 @@
 	]
 
 	const contactLinks = [{ label: "E-mail platform Ad's", href: 'mailto:platformassociatedegrees@outlook.com' }]
+
+	let isDesktop = $state(false)
+
+	$effect(() => {
+		const mq = window.matchMedia('(min-width: 768px)')
+		const update = () => (isDesktop = mq.matches)
+		update()
+		mq.addEventListener('change', update)
+		return () => mq.removeEventListener('change', update)
+	})
 </script>
 
 {#snippet miniNavList(links)}
@@ -58,36 +68,21 @@
 		</section>
 
 		<section>
-			<div class="desktop-menu">
-				<h2>Menu</h2>
-				{@render miniNavList(menuLinks)}
-			</div>
-
-			<details class="mobile-menu">
+			<details open={isDesktop}>
 				<summary><h2>Menu</h2></summary>
 				{@render miniNavList(menuLinks)}
 			</details>
 		</section>
 
 		<section>
-			<div class="desktop-menu">
-				<h2>Thema's</h2>
-				{@render miniNavList(themaLinks)}
-			</div>
-
-			<details class="mobile-menu">
+			<details open={isDesktop}>
 				<summary><h2>Thema's</h2></summary>
 				{@render miniNavList(themaLinks)}
 			</details>
 		</section>
 
 		<section>
-			<div class="desktop-menu">
-				<h2>Contact</h2>
-				{@render miniNavList(contactLinks)}
-			</div>
-
-			<details class="mobile-menu">
+			<details open={isDesktop}>
 				<summary><h2>Contact</h2></summary>
 				{@render miniNavList(contactLinks)}
 			</details>
@@ -221,27 +216,6 @@
 		}
 	}
 
-	.desktop-menu {
-		display: none;
-	}
-
-	.mobile-menu {
-		display: block;
-	}
-
-	@media (min-width: 768px) {
-		.desktop-menu {
-			display: flex;
-			flex-direction: column;
-			gap: 1em;
-		}
-
-		.mobile-menu {
-			display: none;
-		}
-	}
-
-	/* Dropdown menu */
 	details {
 		margin: -0.7em 0 0 0;
 	}
@@ -253,7 +227,6 @@
 		gap: 0.5em;
 	}
 
-	/* Change icon when open and close */
 	summary::after {
 		content: url('/static/chevon-down.svg');
 	}
@@ -262,7 +235,6 @@
 		content: url('/static/chevron-up.svg');
 	}
 
-	/* Animation open and close */
 	::details-content {
 		transition:
 			height 0.5s ease,
@@ -274,5 +246,17 @@
 
 	[open]::details-content {
 		height: auto;
+	}
+
+	@media (min-width: 768px) {
+		summary {
+			pointer-events: none;
+			cursor: default;
+		}
+
+		summary::after,
+		details[open] summary::after {
+			content: none;
+		}
 	}
 </style>
