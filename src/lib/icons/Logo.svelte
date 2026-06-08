@@ -94,11 +94,14 @@
 <style>
 	.logo {
 		container: logo-container / inline-size;
+		display: block;
+		width: 100%;
+		height: 100%;
 	}
 
 	.logo__svg {
-		--_desktop-width: 200;
-		--_desktop-height: 57;
+		--_desktop-width: clamp(200px, 35vw, 230px);
+		--_desktop-height: clamp(57px, 5vw, 75px);
 		--_logo-balls: hsl(213, 100%, 28%);
 
 		--_mobile-width: 67;
