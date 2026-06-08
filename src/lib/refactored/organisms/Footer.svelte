@@ -1,41 +1,106 @@
 <script>
-	import favicon from '$lib/assets/favicon-adc.svg'
-	import logodark from '$lib/assets/logo-dark.svg'
+	import { logowhite, RLink } from '$lib'
+	import { IconLogo } from '$lib/icons'
 
-	import { RFooter, NavPros, TopNav, icondown, logowhite, PasswordGate } from '$lib'
+	const menuLinks = [
+		{ label: "Over Ad's?", href: '/over-ad' },
+		{ label: 'Publicaties', href: '/publicaties' },
+		{ label: 'Nieuws', href: '/nieuws' },
+		{ label: 'Talent Award', href: '/talent-award' },
+		{ label: 'Ad-dag', href: '/ad-dag' },
+		{ label: 'Over ons', href: '/over-ons' },
+		{ label: 'Contact', href: '/contact' }
+	]
 
-	const { data, children } = $props()
+	const themaLinks = [
+		{ label: 'Handreiking impactmakerschap', href: '/over-ad/handreiking-impactmakerschap' },
+		{ label: 'Impactmakerschap', href: '/over-ad/impactmakerschap' },
+		{ label: 'Niveau 5', href: '/over-ad/niveau-5' },
+		{ label: 'Doorstroom Ad bachelor', href: '/over-ad/doorstroom-ad-bachelor' },
+		{ label: 'Leren in beroepspraktijk', href: '/over-ad/leren-in-beroepspraktijk' },
+		{ label: 'Internationalisering', href: '/over-ad/internationalisering' }
+	]
+
+	const contactLinks = [{ label: "E-mail platform Ad's", href: 'mailto:platformassociatedegrees@outlook.com' }]
 </script>
 
-{#if !data.isAuthenticated}
-	<PasswordGate error={data.gateError} />
-{:else}
-	<a
-		href="#main"
-		class="skip-link">Ga naar inhoud</a
-	>
+{#snippet miniNavList(links)}
+	<ul>
+		{#each links as link}
+			<li>
+				<RLink
+					target="_blank"
+					href={link.href}
+					class="footer-link"
+				>
+					{link.label}
+				</RLink>
+			</li>
+		{/each}
+	</ul>
+{/snippet}
 
-	<header class="general-header">
-		<TopNav />
-		<NavPros />
-	</header>
+<footer class="footer-grid">
+	<div class="wrapper">
+		<a
+			href="/"
+			class="logo"
+		>
+			<IconLogo />
+		</a>
 
-	<main>
-		{@render children?.()}
-	</main>
+		<section>
+			<h2>Overlegplatform Ad's</h2>
+			<p>
+				Het Overlegplatform Associate degrees brengt Ad-opleidingen samen om kennis te delen en profielen af te stemmen. Zo blijven opleidingen relevant voor het werkveld en goed voorbereid op
+				doorstroom naar vervolgstudies.
+			</p>
+		</section>
 
-	<RFooter />
+		<section>
+			<div class="desktop-menu">
+				<h2>Menu</h2>
+				{@render miniNavList(menuLinks)}
+			</div>
 
-	<a
-		class="scroll"
-		href="#"
-		data-sveltekit-replacestate
-		><img
-			src={icondown}
-			alt=""
-		/><span class="sr-only">Scroll naar boven</span></a
-	>
-{/if}
+			<details class="mobile-menu">
+				<summary><h2>Menu</h2></summary>
+				{@render miniNavList(menuLinks)}
+			</details>
+		</section>
+
+		<section>
+			<div class="desktop-menu">
+				<h2>Thema's</h2>
+				{@render miniNavList(themaLinks)}
+			</div>
+
+			<details class="mobile-menu">
+				<summary><h2>Thema's</h2></summary>
+				{@render miniNavList(themaLinks)}
+			</details>
+		</section>
+
+		<section>
+			<div class="desktop-menu">
+				<h2>Contact</h2>
+				{@render miniNavList(contactLinks)}
+			</div>
+
+			<details class="mobile-menu">
+				<summary><h2>Contact</h2></summary>
+				{@render miniNavList(contactLinks)}
+			</details>
+		</section>
+
+		<div class="divider"></div>
+
+		<div class="footer-bottom">
+			<p>© Overlegplatform Associate degrees. Alle rechten voorbehouden</p>
+			<p>Ontwikkeld door studenten FDND</p>
+		</div>
+	</div>
+</footer>
 
 <style>
 	:root {
@@ -46,29 +111,6 @@
 		margin: 0;
 		padding: 0;
 		scroll-behavior: smooth;
-	}
-
-	main {
-		margin: 7.9em 0 0 0;
-	}
-
-	/* Skiplink */
-	.skip-link {
-		text-decoration: none;
-		color: var(--text-white);
-		background-color: var(--primary-blue);
-		border: 1px solid var(--primary-text);
-		padding: 0.7em 1.2em;
-		border-radius: 5px;
-		transition: 0.3s ease-in;
-		position: absolute;
-		top: -10rem;
-		left: 45%;
-		z-index: 99999999;
-
-		&:focus-visible {
-			top: 0;
-		}
 	}
 
 	footer {
@@ -232,28 +274,5 @@
 
 	[open]::details-content {
 		height: auto;
-	}
-
-	.scroll {
-		position: fixed;
-		bottom: 2em;
-		right: 5%;
-		font-size: 20px;
-		padding: 0.6em 0.8em 0.8em 0.8em;
-		z-index: 999999;
-		background-color: var(--primary-orange);
-
-		img {
-			width: 1em;
-		}
-	}
-
-	.sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
 	}
 </style>

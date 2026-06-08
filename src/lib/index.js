@@ -142,3 +142,4 @@ export { default as RNewsGridContainer } from './refactored/organisms/NewsGridCo
 export { default as RSectionThemes } from './refactored/organisms/SectionThemes.svelte'
 export { default as RDetailsOverOns } from './refactored/organisms/DetailsOverOns.svelte'
 export { default as RSectionFilter } from './refactored/organisms/SectionFilter.svelte'
+export { default as RFooter } from './refactored/organisms/Footer.svelte'
