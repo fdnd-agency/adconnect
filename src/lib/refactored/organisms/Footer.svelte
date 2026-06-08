@@ -22,16 +22,6 @@
 	]
 
 	const contactLinks = [{ label: "E-mail platform Ad's", href: 'mailto:platformassociatedegrees@outlook.com' }]
-
-	let isDesktop = $state(false)
-
-	$effect(() => {
-		const mq = window.matchMedia('(min-width: 768px)')
-		const update = () => (isDesktop = mq.matches)
-		update()
-		mq.addEventListener('change', update)
-		return () => mq.removeEventListener('change', update)
-	})
 </script>
 
 {#snippet miniNavList(links)}
@@ -52,12 +42,12 @@
 
 <footer class="footer-grid">
 	<div class="wrapper">
-		<a
+		<div
 			href="/"
 			class="logo"
 		>
 			<IconLogo />
-		</a>
+		</div>
 
 		<section>
 			<h2>Overlegplatform Ad's</h2>
@@ -68,21 +58,21 @@
 		</section>
 
 		<section>
-			<details open={isDesktop}>
+			<details>
 				<summary><h2>Menu</h2></summary>
 				{@render miniNavList(menuLinks)}
 			</details>
 		</section>
 
 		<section>
-			<details open={isDesktop}>
+			<details>
 				<summary><h2>Thema's</h2></summary>
 				{@render miniNavList(themaLinks)}
 			</details>
 		</section>
 
 		<section>
-			<details open={isDesktop}>
+			<details>
 				<summary><h2>Contact</h2></summary>
 				{@render miniNavList(contactLinks)}
 			</details>
@@ -146,17 +136,6 @@
 			width: 90%;
 			max-width: 1400px;
 			padding: 5em 0 2em 0;
-		}
-	}
-
-	a {
-		color: #fff;
-		text-decoration: none;
-		display: block;
-		transition: 0.2s ease-in-out;
-
-		&:hover {
-			transform: translate(5%, 0%);
 		}
 	}
 
@@ -257,6 +236,12 @@
 		summary::after,
 		details[open] summary::after {
 			content: none;
+		}
+
+		::details-content {
+			height: auto;
+			content-visibility: visible;
+			transition: none;
 		}
 	}
 </style>
