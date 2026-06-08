@@ -25,9 +25,9 @@
 </script>
 
 {#snippet miniNavList(links)}
-	<ul>
+	<ul class="footer__list">
 		{#each links as link}
-			<li>
+			<li class="footer__item">
 				<RLink
 					target="_blank"
 					href={link.href}
@@ -40,47 +40,48 @@
 	</ul>
 {/snippet}
 
-<footer class="footer-grid">
-	<div class="wrapper">
-		<div
+<footer class="footer">
+	<div class="footer__inner">
+		<a
 			href="/"
-			class="logo"
+			class="footer__logo"
+			aria-label="Home"
 		>
 			<IconLogo />
-		</div>
+		</a>
 
-		<section>
-			<h2>Overlegplatform Ad's</h2>
+		<section class="footer__column footer__column--about">
+			<h2 class="footer__heading">Overlegplatform Ad's</h2>
 			<p>
 				Het Overlegplatform Associate degrees brengt Ad-opleidingen samen om kennis te delen en profielen af te stemmen. Zo blijven opleidingen relevant voor het werkveld en goed voorbereid op
 				doorstroom naar vervolgstudies.
 			</p>
 		</section>
 
-		<section>
+		<section class="footer__column">
 			<details>
-				<summary><h2>Menu</h2></summary>
+				<summary><h2 class="footer__heading">Menu</h2></summary>
 				{@render miniNavList(menuLinks)}
 			</details>
 		</section>
 
-		<section>
+		<section class="footer__column">
 			<details>
-				<summary><h2>Thema's</h2></summary>
+				<summary><h2 class="footer__heading">Thema's</h2></summary>
 				{@render miniNavList(themaLinks)}
 			</details>
 		</section>
 
-		<section>
+		<section class="footer__column">
 			<details>
-				<summary><h2>Contact</h2></summary>
+				<summary><h2 class="footer__heading">Contact</h2></summary>
 				{@render miniNavList(contactLinks)}
 			</details>
 		</section>
 
-		<div class="divider"></div>
+		<div class="footer__divider"></div>
 
-		<div class="footer-bottom">
+		<div class="footer__bottom">
 			<p>© Overlegplatform Associate degrees. Alle rechten voorbehouden</p>
 			<p>Ontwikkeld door studenten FDND</p>
 		</div>
@@ -98,31 +99,24 @@
 		scroll-behavior: smooth;
 	}
 
-	footer {
-		width: 100%;
+	.footer {
 		display: flex;
 		flex-direction: column;
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		width: 100%;
 		border-radius: 1em 1em 0 0;
-
-		h2 {
-			color: var(--text-white);
-			font-size: 25px;
-		}
+		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
 	}
 
-	.wrapper {
-		background-color: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
-		margin: 0;
-		color: #fff;
-		display: flex;
-		flex-direction: column;
-		gap: 1.5em;
+	.footer__inner {
 		position: relative;
 		z-index: 20;
-		width: 90%;
+		display: flex;
+		flex-direction: column;
 		align-self: center;
+		gap: 1.5em;
+		width: 90%;
 		padding: 2em 0;
+		color: var(--text-white);
 
 		@media (min-width: 768px) {
 			display: grid;
@@ -133,34 +127,23 @@
 		@media (min-width: 1024px) {
 			grid-template-columns: 2fr 1fr 1fr 1fr;
 			grid-auto-rows: auto;
-			width: 90%;
 			max-width: 1400px;
 			padding: 5em 0 2em 0;
 		}
 	}
 
-	section {
+	.footer__heading {
+		color: var(--text-white);
+		font-size: 1.5625rem;
+	}
+
+	.footer__column {
 		display: flex;
 		flex-direction: column;
 		gap: 1em;
 	}
 
-	ul {
-		display: flex;
-		flex-direction: column;
-		gap: 0.7em;
-
-		li {
-			list-style-type: none;
-		}
-	}
-
-	.logo {
-		grid-column: 1 / 2;
-		grid-row: 2 / 3;
-	}
-
-	footer section:nth-of-type(1) {
+	.footer__column--about {
 		grid-column: 1 / 2;
 		grid-row: 1 / 2;
 		padding: 0 0 1em 0;
@@ -172,23 +155,30 @@
 		}
 	}
 
-	footer section:nth-of-type(5) {
-		grid-column: 2 / 3;
+	.footer__logo {
+		grid-column: 1 / 2;
 		grid-row: 2 / 3;
 	}
 
-	.divider {
-		height: 1px;
-		background-color: #fff;
-		grid-column: 1 / -1;
-	}
-
-	.footer-bottom {
-		grid-column: 1 / -1;
+	.footer__list {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5em;
+		gap: 0.7em;
+		list-style: none;
+	}
+
+	.footer__divider {
+		height: 1px;
+		grid-column: 1 / -1;
+		background-color: var(--text-white);
+	}
+
+	.footer__bottom {
+		display: flex;
+		flex-direction: column;
 		justify-content: space-between;
+		gap: 0.5em;
+		grid-column: 1 / -1;
 
 		@media (min-width: 768px) {
 			flex-direction: row;
@@ -200,10 +190,10 @@
 	}
 
 	summary {
-		list-style: none;
-		cursor: pointer;
 		display: flex;
 		gap: 0.5em;
+		list-style: none;
+		cursor: pointer;
 	}
 
 	summary::after {
@@ -215,12 +205,12 @@
 	}
 
 	::details-content {
+		height: 0;
+		padding: 0.7em 0 0 0;
+		overflow: clip;
 		transition:
 			height 0.5s ease,
 			content-visibility 0.5s ease allow-discrete;
-		height: 0;
-		overflow: clip;
-		padding: 0.7em 0 0 0;
 	}
 
 	[open]::details-content {
