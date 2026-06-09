@@ -64,6 +64,17 @@
 		}
 	}
 
+	.footer-link {
+		color: #fff;
+		text-decoration: none;
+		display: block;
+		transition: 0.2s ease-in-out;
+
+		&:hover {
+			transform: translate(5%, 0%);
+		}
+	}
+
 	.clickable-container::before {
 		/* add position relative to the container of the link component */
 		content: '';
