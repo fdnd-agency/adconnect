@@ -2,7 +2,7 @@
 	// Import images
 	import { addag2, addag3, locationImage, Addag } from '$lib'
 
-	import { RSectionHero, RSectionPage, RSectionPlanning, RFaqSection, RPicture, Rseparator, Schedule } from '$lib'
+	import { RSectionHero, RSectionPage, RSectionPlanning, RFaqSection, RPicture, Rseparator  } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)

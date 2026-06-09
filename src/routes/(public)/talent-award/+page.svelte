@@ -94,6 +94,7 @@
 		margin: 2rem auto 5rem;
 		width: 90%;
 		max-width: 1400px;
+
 	}
 
 	@container cards (min-width: 1024px) {
@@ -154,8 +155,6 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 1.5rem;
-		margin-bottom: 2rem;
-		margin-top: 1rem;
 	}
 
 	@media (min-width: 768px) {
@@ -176,8 +175,4 @@
 			margin-bottom: 5em;
 		}
 	}
-
-	/* :global(main) {
-		overflow-x: hidden;
-	} */
 </style>

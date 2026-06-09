@@ -69,7 +69,6 @@
 								<li>
 									<RLink
 										href={item.href}
-										active={$page.url.pathname === item.activePath}
 										class="nav-link admin">{item.label}</RLink
 									>
 								</li>
@@ -93,8 +92,7 @@
 						<li>
 							<RLink
 								href={item.href}
-								active={$page.url.pathname === item.activePath}
-								class="admin">{item.label}</RLink
+								class="nav-link admin">{item.label}</RLink
 							>
 						</li>
 					{/each}
@@ -302,7 +300,7 @@
 		margin: 0;
 		padding: 0;
 		max-height: 80vh;
-		overflow-y: auto;
+		margin-bottom: 0.5em;
 
 		@media (min-width: 1000px) {
 			display: flex;

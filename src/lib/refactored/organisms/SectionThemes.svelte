@@ -18,7 +18,7 @@
 			<RCardTheme
 				title={theme.title}
 				description={theme.description}
-				link={{ label: 'Meer informatie', href: `/over-ad/${theme.slug}`, screenReaderText: `over ${theme.title}` }}
+				link={{ label: 'Meer informatie', href: `${theme.slug}`, screenReaderText: `over ${theme.title}` }}
 				infoCard
 			/>
 		{/each}

@@ -7,7 +7,7 @@
 
 	const props = $props()
 	const data = $derived(props.data)
-	const themes = $derived(data.themes)
+	// const themes = $derived(data.themes)
 	const cooperations = $derived(data.cooperations)
 	const aboutAdPage = $derived(data.aboutAdPage ?? {})
 
@@ -16,6 +16,13 @@
 		{ title: aboutAdPage.why_card_2_title, excerpt: aboutAdPage.why_card_2_body },
 		{ title: aboutAdPage.why_card_3_title, excerpt: aboutAdPage.why_card_3_body }
 	])
+
+	const themes = $derived(
+		(data.themes ?? []).map((theme) => ({
+			...theme,
+			slug: `over-ad/${theme.slug}`
+		}))
+	)
 </script>
 
 <svelte:head>

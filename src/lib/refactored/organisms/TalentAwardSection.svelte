@@ -31,7 +31,5 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 3rem;
-		margin-bottom: 2rem;
-		margin-top: 1rem;
 	}
 </style>

@@ -4,6 +4,7 @@
 </script>
 
 <section
+	id="main"
 	class="hero"
 	class:backgroundBlue
 >
