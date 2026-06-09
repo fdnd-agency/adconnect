@@ -1,21 +1,31 @@
 <script>
 	import { page } from '$app/state'
+	import { NavPros, TopNav, bird, RFooter, RPicture } from '$lib'
 
-	// Import Atomic Design
-	import { bird } from '$lib'
+	const {
+		title = `Error ${page.status} | Overlegplatform Associate Degrees`,
+		heading = `Oeps ${page.status} error`,
+		description = "De pagina die je probeert te bereiken lijkt niet te bestaan. Navigeer naar een van onze werkende pagina's hieronder."
+	} = $props()
 </script>
 
 <svelte:head>
-	<title>Pagina in ontwikkeling | Overlegplatform Associate Degrees</title>
+	<title>{title}</title>
 </svelte:head>
+
+<header class="general-header">
+	<TopNav />
+</header>
+
+<NavPros />
 
 <div
 	class="wrapper-error"
 	id="main"
 >
 	<section>
-		<h1>Deze pagina is in ontwikkeling</h1>
-		<p>De pagina die je probeert te bereiken is op dit moment in ontwikkeling. Navigeer naar een van onze werkende pagina's hieronder.</p>
+		<h1>{heading}</h1>
+		<p>{description}</p>
 
 		<ul>
 			<li><a href="/over-ad">Over Ad's</a></li>
@@ -28,13 +38,24 @@
 		</ul>
 	</section>
 
-	<img
-		src={bird}
-		alt="Een vogel in een pak met een bril die een boek vasthoud"
-	/>
+	<div class="img-container">
+		<RPicture
+			isEnhanced
+			src={bird}
+			alt="Een vogel in een pak met een bril die een boek vasthoud"
+			width="300px"
+			height="300px"
+			fetchpriority="high"
+			loading="eager"
+			style="height:auto;"
+		/>
+	</div>
 </div>
 
+<RFooter />
+
 <style>
+	/* ongewijzigd t.o.v. je huidige ErrorPage */
 	.wrapper-error {
 		display: flex;
 		flex-direction: column-reverse;
@@ -43,13 +64,15 @@
 		width: 90%;
 		max-width: 1400px;
 		padding: 3em 0;
+		padding-top: 9em;
 
 		@media (min-width: 768px) {
 			padding: 5em 0;
+			padding-top: 10em;
 			flex-direction: row-reverse;
 		}
 
-		img {
+		.img-container {
 			width: 20em;
 			align-self: center;
 
@@ -61,14 +84,13 @@
 		section {
 			display: flex;
 			flex-direction: column;
+			align-self: center;
 			gap: 1em;
 			margin: auto;
 		}
 
 		h1,
 		p {
-			text-align: center;
-
 			@media (min-width: 768px) {
 				text-align: left;
 				max-width: 30em;
@@ -80,19 +102,13 @@
 			flex-direction: row;
 			flex-wrap: wrap;
 			gap: 0.5em 1.5em;
-			justify-content: center;
-
-			@media (min-width: 768px) {
-				justify-content: left;
-			}
-		}
-
-		li:first-of-type {
-			list-style-type: none;
+			justify-content: start;
+			align-self: center;
+			list-style-position: inside;
 		}
 
 		a {
-			color: var(--blue-800);
+			color: light-dark(hsl(210, 30%, 8%), var(--text-white));
 
 			&:hover {
 				color: var(--primary-orange);

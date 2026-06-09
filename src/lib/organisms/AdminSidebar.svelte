@@ -1,8 +1,7 @@
 <script>
 	const { user = null } = $props()
 
-	import { logo, logowhite } from '$lib'
-	import AdminNavLink from '$lib/atoms/AdminNavLink.svelte'
+	import { logo, logowhite, RLink } from '$lib'
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
 
@@ -68,11 +67,11 @@
 						<ul class="mobile-links">
 							{#each navItems as item (item.activePath)}
 								<li>
-									<AdminNavLink
+									<RLink
 										href={item.href}
-										label={item.label}
 										active={$page.url.pathname === item.activePath}
-									/>
+										class="nav-link admin">{item.label}</RLink
+									>
 								</li>
 							{/each}
 						</ul>
@@ -92,11 +91,11 @@
 				<ul class="desktop-nav">
 					{#each navItems as item (item.activePath)}
 						<li>
-							<AdminNavLink
+							<RLink
 								href={item.href}
-								label={item.label}
 								active={$page.url.pathname === item.activePath}
-							/>
+								class="admin">{item.label}</RLink
+							>
 						</li>
 					{/each}
 				</ul>
@@ -269,6 +268,10 @@
 		flex-direction: column;
 		gap: 1em;
 		padding: 5em 1em;
+
+		li {
+			padding: 0.5em 1em;
+		}
 	}
 
 	.sidebar-footer {
@@ -307,6 +310,10 @@
 			align-items: flex-start;
 			gap: 1em;
 			width: 100%;
+		}
+
+		li {
+			padding: 0.5em 1em;
 		}
 	}
 </style>

@@ -89,4 +89,10 @@
 		max-width: 14em;
 		text-align: center;
 	}
+
+	.admin {
+		font-weight: 600;
+		font-size: 1.2em;
+		color: light-dark(var(--blue-800), var(--text-white));
+	}
 </style>

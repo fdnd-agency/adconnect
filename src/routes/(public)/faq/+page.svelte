@@ -1,6 +1,6 @@
 <script>
 	// Import components
-	import { MultipleFaq, SingleFaq, RFaqSection } from '$lib'
+	import { RFaqSection } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
