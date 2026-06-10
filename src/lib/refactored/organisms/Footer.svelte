@@ -1,6 +1,8 @@
 <script>
-	import { logowhite, RLink } from '$lib'
+	import { logowhite, Link } from '$lib'
 	import { IconLogo } from '$lib/icons'
+
+	const { themaLinks = [] } = $props()
 
 	const menuLinks = [
 		{ label: "Over Ad's?", href: '/over-ad' },
@@ -12,29 +14,20 @@
 		{ label: 'Contact', href: '/contact' }
 	]
 
-	const themaLinks = [
-		{ label: 'Handreiking impactmakerschap', href: '/over-ad/handreiking-impactmakerschap' },
-		{ label: 'Impactmakerschap', href: '/over-ad/impactmakerschap' },
-		{ label: 'Niveau 5', href: '/over-ad/niveau-5' },
-		{ label: 'Doorstroom Ad bachelor', href: '/over-ad/doorstroom-ad-bachelor' },
-		{ label: 'Leren in beroepspraktijk', href: '/over-ad/leren-in-beroepspraktijk' },
-		{ label: 'Internationalisering', href: '/over-ad/internationalisering' }
-	]
-
 	const contactLinks = [{ label: "E-mail platform Ad's", href: 'mailto:platformassociatedegrees@outlook.com' }]
 </script>
 
 {#snippet miniNavList(links)}
 	<ul class="footer__list">
-		{#each links as link}
+		{#each links as link (link.label)}
 			<li class="footer__item">
-				<RLink
+				<Link
 					target="_blank"
 					href={link.href}
 					class="footer-link"
 				>
 					{link.label}
-				</RLink>
+				</Link>
 			</li>
 		{/each}
 	</ul>

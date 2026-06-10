@@ -34,6 +34,16 @@ function getConfig(contentType) {
 	return config
 }
 
+function ensureKeyField(fields, key) {
+	if (!fields) return fields
+	const list = fields
+		.split(',')
+		.map((field) => field.trim())
+		.filter(Boolean)
+	if (!list.includes(key)) list.push(key)
+	return list.join(',')
+}
+
 export class DirectusContentStrategy {
 	#resend = new Resend(RESEND_API_KEY)
 
@@ -94,7 +104,7 @@ export class DirectusContentStrategy {
 	async fetchContent(contentType = null, id = null, fields = null, filters = null, asMap = false, accessToken = null) {
 		const entries = contentType ? [[contentType, getConfig(contentType)]] : Object.entries(COLLECTIONS)
 
-		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, id, fields, filters, accessToken)))
+		const results = await Promise.all(entries.map(([, cfg]) => this.#fetchCollection(cfg.path, id, ensureKeyField(fields, cfg.key), filters, accessToken)))
 
 		const errors = []
 		const dataObj = {}

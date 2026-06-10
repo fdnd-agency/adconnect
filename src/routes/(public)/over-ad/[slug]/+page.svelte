@@ -1,5 +1,5 @@
 <script>
-	import { RSectionHero, RDetailsOverOns, RSectionThemes, Rseparator } from '$lib'
+	import { SectionHero, DetailsOverOns, SectionThemes, Separator } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
 	const props = $props()
@@ -15,7 +15,7 @@
 	<title>{theme?.title} | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: theme?.title, description: theme?.description }}
 	picture={{
 		isEnhanced: true,
@@ -28,11 +28,11 @@
 	}}
 />
 
-<RDetailsOverOns documentData={theme} />
+<DetailsOverOns documentData={theme} />
 
-<Rseparator />
+<Separator />
 
-<RSectionThemes
+<SectionThemes
 	sectionInfo={{ title: "Bekijk ook andere thema's" }}
 	themes={visibleThemes.slice(0, 3)}
 	backgroundBlue

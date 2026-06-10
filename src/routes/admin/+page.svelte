@@ -2,7 +2,7 @@
 	/** @type {{ data: { user: any } }} */
 	const { data } = $props()
 	import dots from '$lib/assets/dots.svg'
-	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question, LadoNetwork } from '$lib'
+	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question, LadoNetwork, Picture } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	import AdminUserMenu from '$lib/molecules/AdminUserMenu.svelte'
 	import AdminStatItem from '$lib/molecules/AdminStatItem.svelte'
@@ -59,10 +59,16 @@
 		<h2>Welkom, {data.user?.first_name ?? 'Beheerder'}</h2>
 	</section>
 
-	<div>
-		<img
+	<div class="img-container">
+		<Picture
+			isEnhanced
 			src={bird}
-			alt="Mascotte van ADConnect"
+			alt="Een vogel in een pak met een bril die een boek vasthoud"
+			width="80px"
+			height="80px"
+			fetchpriority="high"
+			loading="eager"
+			style="height:auto;"
 		/>
 	</div>
 </div>
@@ -152,9 +158,13 @@
 		}
 	}
 
-	.container-welcome img {
-		max-width: 250px;
-		height: auto;
+	.img-container {
+		width: 20em;
+		align-self: center;
+
+		@media (min-width: 768px) {
+			width: 25em;
+		}
 	}
 
 	.items-wrapper {

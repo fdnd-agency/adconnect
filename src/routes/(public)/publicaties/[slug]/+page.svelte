@@ -1,5 +1,5 @@
 <script>
-	import { RSectionHero, RDetailsPublicaties } from '$lib'
+	import { SectionHero, DetailsPublicaties } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
 	const props = $props()
@@ -10,7 +10,7 @@
 	<title>Documenten | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: data.document.title }}
 	picture={{
 		isEnhanced: true,
@@ -23,4 +23,4 @@
 	}}
 />
 
-<RDetailsPublicaties {data} />
+<DetailsPublicaties {data} />

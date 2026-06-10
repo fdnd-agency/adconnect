@@ -1,6 +1,6 @@
 <script>
 	// Import components
-	import { FeatureSplit, RFaqSection, RSectionHero, RSectionPage, RCarousel, RSectionThemes, RSectionNewsCard } from '$lib'
+	import { FeatureSplit, FaqSection, SectionHero, SectionPage, Carousel, SectionThemes, SectionNewsCard } from '$lib'
 
 	// Import images
 	import { zaal, overad } from '$lib'
@@ -35,7 +35,7 @@
 	<title>Home | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: homePage.hero_heading, description: homePage.hero_body }}
 	primaryLink={{ label: homePage.hero_primary_button_text, href: homePage.hero_primary_button_url }}
 	secondaryLink={{ label: homePage.hero_secondary_button_text, href: homePage.hero_secondary_button_url }}
@@ -51,10 +51,11 @@
 	backgroundBlue
 />
 
-<RSectionNewsCard news={news.slice(0, 3)} />
+<SectionNewsCard news={news.slice(0, 3)} />
 
-<RSectionPage
+<SectionPage
 	vertical
+	centered
 	sectionInfo={{ title: homePage.intro_heading, description: homePage.intro_body }}
 	primaryLink={{ label: homePage.intro_button_text, href: homePage.intro_button_url }}
 	picture={{
@@ -64,12 +65,12 @@
 	}}
 />
 
-<RSectionThemes
+<SectionThemes
 	sectionInfo={{ title: homePage.cards_heading, description: homePage.cards_intro }}
 	{themes}
 />
 
-<RCarousel
+<Carousel
 	logos
 	carouselItems={cooperations}
 	dividerText="Partijen waarmee wij samenwerken"
@@ -84,7 +85,7 @@
 	imageAlt="Studenten bij AdTalent award"
 />
 
-<RFaqSection
+<FaqSection
 	title="Veelgestelde vragen"
 	faqData={{ faqs }}
 />

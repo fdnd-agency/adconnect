@@ -3,7 +3,7 @@
 	import { publicatie } from '$lib'
 
 	// Import components
-	import { RSectionHero, RSectionFilter } from '$lib'
+	import { SectionHero, SectionFilter } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
@@ -17,7 +17,7 @@
 	<title>Documenten | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: publicationsPage.hero_heading, description: publicationsPage.hero_body }}
 	picture={{
 		isEnhanced: true,
@@ -27,7 +27,7 @@
 	}}
 />
 
-<RSectionFilter
+<SectionFilter
 	filterResults={documents}
 	filterCategories={categories}
 	{selectedCategory}

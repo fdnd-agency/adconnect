@@ -1,5 +1,5 @@
 <script>
-	import { RLink } from '$lib'
+	import { Link } from '$lib'
 
 	const { documentData } = $props()
 
@@ -19,9 +19,9 @@
 		<section class="ad-day">
 			<h2 class="ad-day__title">Kom naar de Ad-dag!</h2>
 			<p class="ad-day__text">Ontdek alles over Associate Degrees en laat je inspireren tijdens workshops en presentaties op de Landelijke Ad-dag.</p>
-			<RLink
+			<Link
 				href="/ad-dag"
-				class="button-outline-white">Meer weten over de Ad-dag</RLink
+				class="button-outline-white">Meer weten over de Ad-dag</Link
 			>
 		</section>
 	</div>

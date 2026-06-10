@@ -1,8 +1,7 @@
 <script>
-	// Import img
 	import { check } from '$lib'
 
-	const { benefitData } = $props()
+	const { benefitData, anchor } = $props()
 </script>
 
 {#snippet benefitCard(benefit)}
@@ -21,7 +20,7 @@
 	</article>
 {/snippet}
 
-<section class="benefits-section">
+<section class="benefits-section" id="{anchor}">
 	<section class="benefits-section__intro">
 		<h2>Waarom kiezen voor Associate Degree's?</h2>
 		<p>Associate Degrees combineren praktijk en theorie in een korte, intensieve opleiding. Ze bereiden studenten effectief voor op actuele beroepen en geven een stevige basis voor verdere studie.</p>

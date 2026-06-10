@@ -33,8 +33,8 @@
 <style>
 	svg {
 		--_color-fill: var(--button-blue-bg);
-		--_icon-width: 55;
-		--_icon-height: 40;
+		--_icon-width: 55px;
+		--_icon-height: 40px;
 
 		@media (prefers-color-scheme: dark) {
 			--_color-fill: hsl(10, 79%, 55%);

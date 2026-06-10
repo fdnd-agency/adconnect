@@ -13,7 +13,7 @@
 <style>
 	svg {
 		--_color-fill: hsl(0, 0%, 100%);
-		--_icon-width: 21;
-		--_icon-height: 16;
+		--_icon-width: 21px;
+		--_icon-height: 16px;
 	}
 </style>
