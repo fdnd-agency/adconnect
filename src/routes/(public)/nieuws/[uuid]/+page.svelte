@@ -1,6 +1,6 @@
 <script>
 	import { DIRECTUS_URL } from '$lib/constants.js'
-	import { RSectionHero } from '$lib'
+	import { SectionHero } from '$lib'
 
 	let { data } = $props()
 </script>
@@ -10,7 +10,7 @@
 </svelte:head>
 
 {#each data.content as item (item.uuid)}
-	<RSectionHero
+	<SectionHero
 		sectionInfo={{
 			title: item.title,
 			description: item.description

@@ -1,6 +1,6 @@
 <script>
 	// Import components Atomic Design
-	import { Breadcrumb, RContactForm, RContactCard } from '$lib'
+	import { Breadcrumb, ContactForm, ContactCard } from '$lib'
 </script>
 
 <svelte:head>
@@ -20,8 +20,8 @@
 	<p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
 
 	<div class="contact-wrapper">
-		<RContactCard />
-		<RContactForm />
+		<ContactCard />
+		<ContactForm />
 	</div>
 </section>
 

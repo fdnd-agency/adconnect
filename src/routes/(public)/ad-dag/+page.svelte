@@ -2,7 +2,7 @@
 	// Import images
 	import { addag2, addag3, locationImage, Addag } from '$lib'
 
-	import { RSectionHero, RSectionPage, RSectionPlanning, RFaqSection, RPicture, Rseparator, Schedule } from '$lib'
+	import { SectionHero, SectionPage, SectionPlanning, FaqSection, Picture, Separator  } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
@@ -13,7 +13,7 @@
 	<title>Ad dag | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: adDayPage.hero_heading, description: adDayPage.hero_body }}
 	picture={{
 		isEnhanced: true,
@@ -24,7 +24,7 @@
 	}}
 />
 
-<RSectionPage
+<SectionPage
 	sectionInfo={{ title: adDayPage.about_heading, description: adDayPage.about_body }}
 	picture={{
 		isEnhanced: true,
@@ -37,7 +37,7 @@
 />
 
 <section class="faq-addag">
-	<RFaqSection
+	<FaqSection
 		title={adDayPage.faq_heading}
 		faqData={{
 			faqs: [
@@ -51,7 +51,7 @@
 	/>
 
 	<div class="faq-addag__image">
-		<RPicture
+		<Picture
 			isEnhanced
 			src={addag2}
 			alt=""
@@ -62,7 +62,7 @@
 	</div>
 </section>
 
-<RSectionPlanning
+<SectionPlanning
 	sectionInfo={{ title: adDayPage.planning_heading, description: adDayPage.planning_body }}
 	cardsData={[
 		{
@@ -79,12 +79,12 @@
 />
 
 <div class="location">
-	<Rseparator dividerText={adDayPage.location_heading} />
+	<Separator dividerText={adDayPage.location_heading} />
 
 	<p class="location__text">{adDayPage.location_body}</p>
 
 	<div class="location__image">
-		<RPicture
+		<Picture
 			isEnhanced
 			src={locationImage}
 			alt="Locatie van de Ad-dag"

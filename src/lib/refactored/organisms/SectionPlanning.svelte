@@ -1,14 +1,15 @@
 <script>
-	import { RCardSection, RLink } from '$lib'
+	import { CardSection, Link } from '$lib'
 	import { IconDots } from '$lib/icons'
 
 	const { sectionInfo, cardsData } = $props()
 </script>
 
 <section class="card-section">
-	<RCardSection
+	<CardSection
 		title={sectionInfo.title}
 		description={sectionInfo.description}
+		centered
 	/>
 
 	<div class="card-section__list">
@@ -21,12 +22,12 @@
 
 				<p class="card__text">{card.content}</p>
 
-				<RLink
+				<Link
 					class="button-outline-blue"
 					href={card.link.href}
 				>
 					{card.link.label}
-				</RLink>
+				</Link>
 			</article>
 		{/each}
 	</div>

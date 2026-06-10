@@ -1,6 +1,6 @@
 <script>
 	import { DIRECTUS_URL } from '$lib/constants.js'
-	import { RLink } from '$lib'
+	import { Link } from '$lib'
 
 	const { data } = $props()
 
@@ -14,12 +14,12 @@
 		<div class="document-detail__file">
 			<p>
 				Hieronder een preview van het document of bekijk
-				<RLink
+				<Link
 					target="_blank"
 					href={`${DIRECTUS_URL}/assets/${sourceFileId}`}
 				>
 					hier
-				</RLink>
+				</Link>
 				het hele document
 			</p>
 			<iframe

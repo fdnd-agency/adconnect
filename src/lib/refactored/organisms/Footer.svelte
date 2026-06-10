@@ -1,5 +1,5 @@
 <script>
-	import { logowhite, RLink } from '$lib'
+	import { logowhite, Link } from '$lib'
 	import { IconLogo } from '$lib/icons'
 
 	const { themaLinks = [] } = $props()
@@ -21,13 +21,13 @@
 	<ul class="footer__list">
 		{#each links as link (link.label)}
 			<li class="footer__item">
-				<RLink
+				<Link
 					target="_blank"
 					href={link.href}
 					class="footer-link"
 				>
 					{link.label}
-				</RLink>
+				</Link>
 			</li>
 		{/each}
 	</ul>

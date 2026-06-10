@@ -1,5 +1,5 @@
 <script>
-    import { RPicture } from "$lib";
+    import { Picture } from "$lib";
     import { DIRECTUS_URL } from '$lib/constants.js'
     
     const { data } =  $props()
@@ -15,7 +15,7 @@
                     <p>{winner.excerpt}</p>
                 </section>
                 <div>
-                    <RPicture
+                    <Picture
                         src={imageUrl(winner.profile_picture)}
                         alt="{winner.title} met krullend haar, glimlachend naar de camera"
                         height="200px"

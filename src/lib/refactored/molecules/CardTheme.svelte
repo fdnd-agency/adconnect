@@ -1,5 +1,5 @@
 <script>
-	import { RLink } from '$lib'
+	import { Link } from '$lib'
 	import { IconDots, IconCalendar, IconLabel } from '$lib/icons'
 	const { title, description, link, children } = $props()
 </script>
@@ -14,7 +14,7 @@
 
 	{#if link}
 		<div class="info-card__link">
-			<RLink
+			<Link
 				href={link.href}
 				class="button-outline-blue clickable-container"
 				screenReaderText={link.screenReaderText}
@@ -24,7 +24,7 @@
 					class="info-card__cta-arrow"
 					aria-hidden="true">→</span
 				>
-			</RLink>
+			</Link>
 		</div>
 	{/if}
 </article>

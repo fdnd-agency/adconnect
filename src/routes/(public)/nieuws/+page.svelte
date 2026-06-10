@@ -1,5 +1,5 @@
 <script>
-	import { Nieuwshero, RNewsGridContainer, RSectionHero } from '$lib'
+	import { Nieuwshero, NewsGridContainer, SectionHero } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
@@ -10,7 +10,7 @@
 	<title>Nieuws | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: newsPage.hero_heading, description: newsPage.hero_body }}
 	picture={{
 		isEnhanced: true,
@@ -21,12 +21,12 @@
 	}}
 />
 
-<RNewsGridContainer
+<NewsGridContainer
 	sectionInfo={{ title: 'Laatste nieuws' }}
 	newsItems={data.latest3}
 />
 
-<RNewsGridContainer
+<NewsGridContainer
 	sectionInfo={{
 		title: 'Alle nieuws',
 		totalArticles: data.news.length

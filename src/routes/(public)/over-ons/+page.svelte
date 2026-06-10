@@ -3,7 +3,7 @@
 	import { doorstroom } from '$lib'
 
 	// Import components
-	import { RSectionHero, RCardSection, Rseparator, RCarousel } from '$lib'
+	import { SectionHero, CardSection, Separator, Carousel } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
@@ -26,7 +26,7 @@
 	<title>Over ons | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: aboutUsPage.hero_heading, description: aboutUsPage.hero_body }}
 	picture={{
 		isEnhanced: true,
@@ -37,13 +37,14 @@
 />
 
 <div class="center">
-	<RCardSection
+	<CardSection
 		title={aboutUsPage.why_heading}
 		description={aboutUsPage.why_body}
+		centered
 	/>
 </div>
 
-<RCarousel
+<Carousel
 	logos
 	carouselItems={cooperations}
 	dividerText="Partijen waarmee wij samenwerken"
@@ -60,12 +61,13 @@
 	{/each}
 </div>
 
-<Rseparator />
+<Separator />
 
 <div class="center">
-	<RCardSection
+	<CardSection
 		title={aboutUsPage.advice_heading}
 		description={aboutUsPage.advice_body}
+		centered
 	/>
 </div>
 
@@ -83,10 +85,12 @@
 		}
 		h2 {
 			padding-bottom: 1em;
+			text-align: center;
 		}
 	}
 	.center {
-		justify-self: center;
+		display: flex;
+		justify-content: center;
 		padding: 5em 0;
 	}
 </style>

@@ -1,6 +1,6 @@
 <script>
 	// Componenten
-	import { Rseparator, RLink, RPicture } from '$lib'
+	import { Separator, Link, Picture } from '$lib'
 
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
@@ -12,17 +12,17 @@
 		<div class="news-card__content">
 			<h2 class="news-card__title truncate single">{article.title}</h2>
 			<p class="news-card__description truncate two">{article.description}</p>
-			<RLink
+			<Link
 				class="button-outline-blue news-card__link"
 				href="/nieuws/{article.uuid}"
 				screenReaderText="over {article.title}"
 				style="margin: 0 1em 1em 1em;"
 			>
 				Meer informatie
-			</RLink>
+			</Link>
 
 			<div class="news-card__media">
-				<RPicture
+				<Picture
 					src={`${DIRECTUS_URL}/assets/${article.hero}`}
 					alt={article.title}
 					width="300"
@@ -35,7 +35,7 @@
 {/snippet}
 
 <div class="news">
-	<Rseparator dividerText="Het laatste nieuws" />
+	<Separator dividerText="Het laatste nieuws" />
 
 	<ul class="news__list">
 		{#each news as article (article.uuid)}
