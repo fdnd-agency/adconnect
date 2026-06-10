@@ -1,21 +1,41 @@
 # CardNews.svelte Component Documentation
+
 ## Overview
 
-This is the card component used on the news page.  
-The component consists of an h3 element, a date, a description, and a link to the page with more information about that news item.
-
-<details>
-<summary>Examples:</summary>
-
-<img width="764" height="652" alt="Image" src="https://github.com/user-attachments/assets/18fcc4c9-87f9-4dea-8ed4-a93bc8573806" />
-</details>
+The CardNews component (CardNews.svelte) renders a single news card with a title, formatted date, description, and a link to the full article. The whole card is clickable via the `clickable-container` link. It's typically rendered in a list by a parent section that handles pagination.
 
 ---
 
 ## Component Structure
+
+### Script
+
+```svelte
+<script>
+	import { Link } from '$lib'
+	import { IconCalendar } from '$lib/icons'
+	const { item, children } = $props()
+
+	import { formatDateNL } from '$lib/molecules/date'
+</script>
+```
+
+Props:
+- `item` - Object holding the news data
+  - `title` - The news headline
+  - `date` - The date, formatted for display via `formatDateNL`
+  - `description` - The news summary text
+  - `uuid` - Used to build the article link (`/nieuws/{uuid}`)
+
+> The date is run through `formatDateNL` to produce a Dutch-formatted date string.
+
+---
+
+### HTML
+
 ```svelte
 <article class="news-card">
-	<h2 class="news-card__title">{item.title}</h2>
+	<h3 class="news-card__title">{item.title}</h3>
 
 	<section class="news-card__date">
 		<IconCalendar />
@@ -24,7 +44,7 @@ The component consists of an h3 element, a date, a description, and a link to th
 
 	<p class="news-card__description">{item.description}</p>
 
-	<RLink
+	<Link
 		href={`/nieuws/${item.uuid}`}
 		class="button-outline-blue clickable-container"
 	>
@@ -33,19 +53,28 @@ The component consists of an h3 element, a date, a description, and a link to th
 			class="visually-hidden"
 			aria-hidden="true">over {item.title}</span
 		>
-	</RLink>
+	</Link>
 </article>
 ```
 
+> The `clickable-container` class on the link makes the entire card clickable.
+> The visually hidden span adds the article title to the link text for screen readers.
 
 ### Usage Examples
+
+The parent section bundles the data and renders a card per item. `item` carries everything one card needs:
+
 ```svelte
-<ul>
-	{#each paginatedNews as item (item.uuid)}
-		<li>
-			<RCardNews {item} />
-		</li>
-	{/each}
-</ul>
+item = { title, date, description, uuid }
 ```
-Send all data for a single news item into the component. Inside the component, values such as `item.title` and `item.description` are then used.
+
+Example: rendering paginated news items into cards
+
+```svelte
+{#each visibleItems as item (item.uuid)}
+	<li>
+		<CardNews {item} />
+	</li>
+{/each}
+```
+
