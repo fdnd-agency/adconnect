@@ -138,6 +138,7 @@
 			flex-direction: column;
 			align-items: flex-start;
 			height: 100%;
+			overflow: auto;
 		}
 	}
 
