@@ -1,7 +1,7 @@
 <script>
 	const { user = null } = $props()
 
-	import { logo, logowhite, RLink } from '$lib'
+	import { logo, logowhite, Link } from '$lib'
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
 
@@ -67,9 +67,9 @@
 						<ul class="mobile-links">
 							{#each navItems as item (item.activePath)}
 								<li>
-									<RLink
+									<Link
 										href={item.href}
-										class="nav-link admin">{item.label}</RLink
+										class="nav-link admin">{item.label}</Link
 									>
 								</li>
 							{/each}
@@ -90,9 +90,9 @@
 				<ul class="desktop-nav">
 					{#each navItems as item (item.activePath)}
 						<li>
-							<RLink
+							<Link
 								href={item.href}
-								class="nav-link admin">{item.label}</RLink
+								class="nav-link admin">{item.label}</Link
 							>
 						</li>
 					{/each}

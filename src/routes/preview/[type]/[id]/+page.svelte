@@ -1,5 +1,5 @@
 <script>
-	import { PreviewBanner, RSectionHero, RDetailsPublicaties, RDetailsOverOns } from '$lib'
+	import { PreviewBanner, SectionHero, DetailsPublicaties, DetailsOverOns } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	const { data } = $props()
 </script>
@@ -10,7 +10,7 @@
 	<p class="preview-message">{data.loadError}</p>
 {:else if data.type === 'news'}
 	{#each data.content as item (item.uuid)}
-		<RSectionHero
+		<SectionHero
 			sectionInfo={{
 				title: item.title,
 				description: item.description
@@ -34,7 +34,7 @@
 	</section>
 {:else if data.type === 'themes'}
 	{@const theme = data.content[0]}
-	<RSectionHero
+	<SectionHero
 		sectionInfo={{ title: theme?.title, description: theme?.description }}
 		picture={{
 			isEnhanced: true,
@@ -46,10 +46,10 @@
 			loading: 'eager'
 		}}
 	/>
-	<RDetailsOverOns documentData={theme} />
+	<DetailsOverOns documentData={theme} />
 {:else if data.type === 'documents'}
 	{@const doc = data.content[0]}
-	<RSectionHero
+	<SectionHero
 		sectionInfo={{ title: doc.title }}
 		picture={{
 			isEnhanced: true,
@@ -61,7 +61,7 @@
 			loading: 'eager'
 		}}
 	/>
-	<RDetailsPublicaties data={{ document: doc }} />
+	<DetailsPublicaties data={{ document: doc }} />
 {:else}
 	<p class="preview-message">Geen preview beschikbaar voor dit contenttype.</p>
 {/if}

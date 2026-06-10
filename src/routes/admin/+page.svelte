@@ -2,7 +2,7 @@
 	/** @type {{ data: { user: any } }} */
 	const { data } = $props()
 	import dots from '$lib/assets/dots.svg'
-	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question, LadoNetwork, RPicture } from '$lib'
+	import { bird, CupStar, Document, GraduationHat, NewsPaper, Collaborate, Events, Question, LadoNetwork, Picture } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	import AdminUserMenu from '$lib/molecules/AdminUserMenu.svelte'
 	import AdminStatItem from '$lib/molecules/AdminStatItem.svelte'
@@ -60,7 +60,7 @@
 	</section>
 
 	<div class="img-container">
-		<RPicture
+		<Picture
 			isEnhanced
 			src={bird}
 			alt="Een vogel in een pak met een bril die een boek vasthoud"
