@@ -31,7 +31,7 @@
 
 <SectionHero
 	sectionInfo={{ title: aboutAdPage.hero_heading, description: aboutAdPage.hero_body }}
-	primaryLink={{ label: "aboutAdPage.hero_button_text", href: aboutAdPage.hero_button_url }}
+	primaryLink={{ label: aboutAdPage.hero_button_text, href: aboutAdPage.hero_button_url }}
 	picture={{
 		isEnhanced: true,
 		src: overad,
@@ -40,7 +40,10 @@
 	}}
 />
 
-<AboutOverAD {benefitData} anchor="benefit" />
+<AboutOverAD
+	{benefitData}
+	anchor="benefit"
+/>
 
 <SectionPage
 	mirrored
