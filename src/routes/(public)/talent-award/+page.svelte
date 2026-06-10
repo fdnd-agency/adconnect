@@ -6,7 +6,7 @@
 	import { Talent } from '$lib'
 
 	// Import components
-	import { RSectionHero, RCardSection, RTalentAwardSection } from '$lib'
+	import { SectionHero, CardSection, TalentAwardSection } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
@@ -17,7 +17,7 @@
 	<title>Talent Award| Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: talentAwardPage.hero_heading, description: talentAwardPage.hero_body }}
 	primaryLink={{ label: talentAwardPage.hero_button_text, href: talentAwardPage.hero_button_url }}
 	picture={{
@@ -29,7 +29,7 @@
 />
 
 <div class="intro">
-	<RCardSection
+	<CardSection
 		title={talentAwardPage.about_heading}
 		description={talentAwardPage.about_body}
 		centered
@@ -77,7 +77,7 @@
 	</article>
 </section>
 
-<RTalentAwardSection {data} />
+<TalentAwardSection {data} />
 
 <style>
 	.intro {

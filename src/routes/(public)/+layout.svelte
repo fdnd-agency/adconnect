@@ -2,7 +2,7 @@
 	import favicon from '$lib/assets/favicon-adc.svg'
 	import logodark from '$lib/assets/logo-dark.svg'
 
-	import { RFooter, NavPros, TopNav, icondown, logowhite, PasswordGate } from '$lib'
+	import { Footer, NavPros, TopNav, icondown, logowhite, PasswordGate } from '$lib'
 
 	const { data, children } = $props()
 </script>
@@ -24,7 +24,7 @@
 		{@render children?.()}
 	</main>
 
-	<RFooter />
+	<Footer />
 
 	<a
 		class="scroll"

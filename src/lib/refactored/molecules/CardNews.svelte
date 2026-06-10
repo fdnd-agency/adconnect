@@ -1,5 +1,5 @@
 <script>
-	import { RLink } from '$lib'
+	import { Link } from '$lib'
 	import { IconCalendar } from '$lib/icons'
 	const { item, children } = $props()
 
@@ -16,7 +16,7 @@
 
 	<p class="news-card__description">{item.description}</p>
 
-	<RLink
+	<Link
 		href={`/nieuws/${item.uuid}`}
 		class="button-outline-blue clickable-container"
 	>
@@ -25,7 +25,7 @@
 			class="visually-hidden"
 			aria-hidden="true">over {item.title}</span
 		>
-	</RLink>
+	</Link>
 </article>
 
 <style>

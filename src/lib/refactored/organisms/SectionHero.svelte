@@ -1,5 +1,5 @@
 <script>
-	import { RCardHero, RLink, RPicture } from '$lib'
+	import { CardHero, Link, Picture } from '$lib'
 	const { sectionInfo, primaryLink, secondaryLink, picture, backgroundBlue } = $props()
 </script>
 
@@ -8,32 +8,32 @@
 	class="hero"
 	class:backgroundBlue
 >
-	<RCardHero
+	<CardHero
 		title={sectionInfo.title}
 		description={sectionInfo.description}
 	>
 		{#if primaryLink}
-			<RLink
+			<Link
 				href={primaryLink.href}
 				class="button-outline-white"
 				screenReaderText={primaryLink.screenReaderText}
 				>{primaryLink.label}
-			</RLink>
+			</Link>
 		{/if}
 
 		{#if secondaryLink}
-			<RLink
+			<Link
 				href={secondaryLink.href}
 				class="button-outline-blue"
 				screenReaderText={secondaryLink.screenReaderText}
 				>{secondaryLink.label}
-			</RLink>
+			</Link>
 		{/if}
-	</RCardHero>
+	</CardHero>
 
 	{#if picture}
 		<section class="hero__media">
-			<RPicture
+			<Picture
 				isEnhanced={picture.isEnhanced}
 				src={picture.src}
 				alt={picture.alt}

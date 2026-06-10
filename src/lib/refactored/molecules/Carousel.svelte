@@ -1,5 +1,5 @@
 <script>
-	import { RLink, RPicture, Rseparator } from '$lib'
+	import { Link, Picture, Separator } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 
 	const { carouselItems = [], logos = false, nominations = false, dividerText, backgroundBlack = false, cooperations = [], nominationHrefBase = '/talent-award/nominaties', noMargin } = $props()
@@ -34,12 +34,12 @@
 
 {#snippet logoItem(logo)}
 	<li class="carousel__item">
-		<RLink
+		<Link
 			target="_blank"
 			href={logo.url}
 		>
 			<div class="carousel__logo">
-				<RPicture
+				<Picture
 					src="{DIRECTUS_URL}/assets/{logo.logo}"
 					alt={logo.name}
 					width="350"
@@ -47,7 +47,7 @@
 					style="object-fit: contain;"
 				/>
 			</div>
-		</RLink>
+		</Link>
 	</li>
 {/snippet}
 
@@ -72,7 +72,7 @@
 
 		{#if item.profile_picture}
 			<div class="nomination__photo">
-				<RPicture
+				<Picture
 					src={imageUrl(item.profile_picture.id ?? item.profile_picture)}
 					alt={item.title}
 					width="150"
@@ -88,7 +88,7 @@
 	class:logo-section--background-black={backgroundBlack}
 	class:noMargin
 >
-	<Rseparator
+	<Separator
 		{dividerText}
 		noMargin
 	/>
@@ -108,7 +108,7 @@
 		</ul>
 	</div>
 
-	<Rseparator noMargin />
+	<Separator noMargin />
 </section>
 
 <style>

@@ -1,13 +1,13 @@
 <script>
 	// Import components
-	import { RFaqSection } from '$lib'
+	import { FaqSection } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
 	const faqs = $derived(data.faqs)
 </script>
 
-<RFaqSection
+<FaqSection
 	title="Veelgestelde vragen"
 	faqData={{ faqs }}
 />

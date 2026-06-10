@@ -1,5 +1,5 @@
 <script>
-	import { RPicture, birdcheck } from '$lib'
+	import { Picture, birdcheck } from '$lib'
 	export let status
 </script>
 

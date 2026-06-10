@@ -3,7 +3,7 @@
 	import { doorstroom, overleggen, awards, overad } from '$lib'
 
 	// Import components
-	import { RSectionHero, RSectionPage, RCarousel, Rseparator, RSectionThemes, RAboutOverAD } from '$lib'
+	import { SectionHero, SectionPage, Carousel, Separator, SectionThemes, AboutOverAD } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
@@ -29,7 +29,7 @@
 	<title>Over Ad's | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: aboutAdPage.hero_heading, description: aboutAdPage.hero_body }}
 	primaryLink={{ label: aboutAdPage.hero_button_text, href: aboutAdPage.hero_button_url }}
 	picture={{
@@ -40,9 +40,9 @@
 	}}
 />
 
-<RAboutOverAD {benefitData} />
+<AboutOverAD {benefitData} />
 
-<RSectionPage
+<SectionPage
 	mirrored
 	backgroundBlack
 	sectionInfo={{ title: aboutAdPage.bachelor_heading, description: aboutAdPage.bachelor_body }}
@@ -54,7 +54,7 @@
 	}}
 />
 
-<RCarousel
+<Carousel
 	logos
 	carouselItems={cooperations}
 	dividerText="Partijen waarmee wij samenwerken"
@@ -62,12 +62,12 @@
 	noMargin
 />
 
-<RSectionThemes
+<SectionThemes
 	sectionInfo={{ title: "Thema's binnen Associate degrees" }}
 	{themes}
 />
 
-<RSectionPage
+<SectionPage
 	sectionInfo={{ title: aboutAdPage.profiles_heading, description: aboutAdPage.profiles_body }}
 	primaryLink={{ label: aboutAdPage.profiles_button_text, href: aboutAdPage.profiles_button_url }}
 	picture={{
@@ -77,9 +77,9 @@
 	}}
 />
 
-<Rseparator />
+<Separator />
 
-<RSectionPage
+<SectionPage
 	mirrored
 	sectionInfo={{ title: aboutAdPage.awards_heading, description: aboutAdPage.awards_body }}
 	primaryLink={{ label: aboutAdPage.awards_button_text, href: aboutAdPage.awards_button_url }}

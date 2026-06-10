@@ -1,5 +1,5 @@
 <script>
-	import { RLink } from '$lib'
+	import { Link } from '$lib'
 	import { IconDots } from '$lib/icons'
 	const { title, description, link, children, centered } = $props()
 </script>
@@ -13,9 +13,9 @@
 	</div>
 
 	{#if link}
-		<RLink
+		<Link
 			href={link.href}
-			class="button-outline-white">{link.label}</RLink
+			class="button-outline-white">{link.label}</Link
 		>
 	{/if}
 </article>

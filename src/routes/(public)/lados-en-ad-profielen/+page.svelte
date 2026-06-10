@@ -1,5 +1,5 @@
 <script>
-	import { LadoInfoCard, LadosOverview, overleggen, RSectionHero } from '$lib'
+	import { LadoInfoCard, LadosOverview, overleggen, SectionHero } from '$lib'
 
 	const props = $props()
 	const data = $derived(props.data)
@@ -29,7 +29,7 @@
 	<title>LAdO's en Ad-profielen | Overlegplatform Associate Degrees</title>
 </svelte:head>
 
-<RSectionHero
+<SectionHero
 	sectionInfo={{ title: ladoPage.hero_heading, description: ladoPage.hero_body }}
 	primaryLink={{ label: ladoPage.hero_primary_button_text, href: ladoPage.hero_primary_button_url }}
 	secondaryLink={{ label: ladoPage.hero_secondary_button_text, href: ladoPage.hero_secondary_button_url }}

@@ -1,5 +1,5 @@
 <script>
-	import { RCardSection, RLink, RPicture } from '$lib'
+	import { CardSection, Picture } from '$lib'
 	import { IconBackgroundCircle } from '$lib/icons'
 	const { sectionInfo, primaryLink, picture, mirrored, backgroundBlack, vertical, centered } = $props()
 </script>
@@ -10,7 +10,7 @@
 	class:media-section--background-black={backgroundBlack}
 	class:media-section--vertical={vertical}
 >
-	<RCardSection
+	<CardSection
 		title={sectionInfo.title}
 		description={sectionInfo.description}
 		link={primaryLink}
@@ -20,7 +20,7 @@
 	{#if picture}
 		<div class="media-section__media-wrapper">
 			<section class="media-section__media">
-				<RPicture
+				<Picture
 					isEnhanced={picture.isEnhanced}
 					src={picture.src}
 					alt={picture.alt}

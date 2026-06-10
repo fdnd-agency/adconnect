@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/state'
-	import { NavPros, TopNav, bird, RFooter, RPicture } from '$lib'
+	import { NavPros, TopNav, bird, Footer, Picture } from '$lib'
 
 	const {
 		title = `Error ${page.status} | Overlegplatform Associate Degrees`,
@@ -39,7 +39,7 @@
 	</section>
 
 	<div class="img-container">
-		<RPicture
+		<Picture
 			isEnhanced
 			src={bird}
 			alt="Een vogel in een pak met een bril die een boek vasthoud"
@@ -52,7 +52,7 @@
 	</div>
 </div>
 
-<RFooter />
+<Footer />
 
 <style>
 	/* ongewijzigd t.o.v. je huidige ErrorPage */

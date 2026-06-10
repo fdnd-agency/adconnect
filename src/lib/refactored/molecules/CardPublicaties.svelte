@@ -1,5 +1,5 @@
 <script>
-	import { RLink } from '$lib'
+	import { Link } from '$lib'
 	import { IconCalendar, IconLabel } from '$lib/icons'
 	const { document } = $props()
 
@@ -28,7 +28,7 @@
 	<p class="truncate truncate--two">{truncateWords(document.description, 20)}</p>
 
 	<div class="publication-card__link">
-		<RLink
+		<Link
 			href="/publicaties/{document.slug}"
 			class="button-outline-blue clickable-container"
 		>
@@ -39,7 +39,7 @@
 			>
 				over {document.title}
 			</span>
-		</RLink>
+		</Link>
 	</div>
 </article>
 
