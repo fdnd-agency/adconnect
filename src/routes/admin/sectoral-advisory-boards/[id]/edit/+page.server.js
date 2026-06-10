@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van het sectorale adviescollege.'
 const GENERIC_LOAD_ERROR = 'Er is een probleem opgetreden bij het ophalen van het sectorale adviescollege.'
@@ -42,16 +43,16 @@ export const actions = {
 
 		submittedFormState.title = rawTitle
 
-		if (!token && process.env.E2E_TEST_MODE !== '1') {
-			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
 		if (!sectoralAdvisoryBoardId) {
 			return fail(400, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
 		}
 
-		if (!title) {
-			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
+		// Validation (Chain of Responsibility). In E2E mode the access token may be
+		// absent, so we treat that flag as a valid token for the chain.
+		const validator = ValidationChainFactory.create('sectoralAdvisoryBoard', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		const validationError = validator.handle({ token: token || process.env.E2E_TEST_MODE === '1', ...submittedFormState })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		try {

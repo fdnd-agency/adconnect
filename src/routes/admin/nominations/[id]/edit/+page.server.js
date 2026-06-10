@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van de nominatie.'
@@ -109,25 +110,16 @@ export const actions = {
 		const currentProfilePictureId = String(data.get('currentProfilePictureId') ?? '').trim()
 		const token = cookies.get('access_token')
 
-		if (!token) {
-			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
 		if (!nominationId) {
 			return fail(400, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
 		}
 
-		if (!title) return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
-		if (!header) return fail(400, { error: 'Vul een header in.', ...submittedFormState })
-		if (!date) return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
-		if (!excerpt) return fail(400, { error: 'Vul een samenvatting in.', ...submittedFormState })
-		if (!body) return fail(400, { error: 'Vul de body in.', ...submittedFormState })
-		if (!eventId) return fail(400, { error: 'Kies een event.', ...submittedFormState })
-		if (!institution) return fail(400, { error: 'Vul een instelling in.', ...submittedFormState })
-		if (!course) return fail(400, { error: 'Vul een opleiding in.', ...submittedFormState })
-		if (!previousCourse) return fail(400, { error: 'Vul een vorige opleiding in.', ...submittedFormState })
-		if (!educationVariant) return fail(400, { error: 'Vul een onderwijsvariant in.', ...submittedFormState })
-		if (!alumnus) return fail(400, { error: 'Vul alumnis in.', ...submittedFormState })
+		// Validation (Chain of Responsibility). The profile picture is optional in update mode.
+		const validator = ValidationChainFactory.create('nomination', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
+		}
 
 		const hasNewProfilePicture = profilePicture instanceof File && profilePicture.size > 0
 		let newProfilePictureId = null

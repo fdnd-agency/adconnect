@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van het nieuwsartikel.'
@@ -96,36 +97,16 @@ export const actions = {
 		submittedFormState.tags = String(submittedFormState.tags ?? '')
 		submittedFormState.body = String(submittedFormState.body ?? '')
 
-		if (!token) {
-			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
 		if (!newsId) {
 			return fail(400, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
 		}
 
-		if (!title) {
-			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
-		}
-
-		if (!description) {
-			return fail(400, { error: 'Vul een omschrijving in.', ...submittedFormState })
-		}
-
-		if (!date) {
-			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
-		}
-
-		if (!author) {
-			return fail(400, { error: 'Vul een auteur in.', ...submittedFormState })
-		}
-
-		if (tags.length === 0) {
-			return fail(400, { error: 'Vul tags in.', ...submittedFormState })
-		}
-
-		if (!body) {
-			return fail(400, { error: 'Vul de body in.', ...submittedFormState })
+		// Validation (Chain of Responsibility). In update mode the image is optional,
+		// so the chain keeps the existing one when no new file is uploaded.
+		const validator = ValidationChainFactory.create('news', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState, tags })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const uploadedFileIds = []

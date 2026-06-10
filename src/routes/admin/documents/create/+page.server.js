@@ -2,6 +2,7 @@ import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
 import { Slugify } from '$lib/server/slugify.js'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het document.'
@@ -37,10 +38,6 @@ export const actions = {
 
 		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
-		const title = String(submittedFormState.title ?? '').trim()
-		const description = String(submittedFormState.description ?? '').trim()
-		const date = String(submittedFormState.date ?? '').trim()
-		const category = String(submittedFormState.category ?? '').trim()
 		const token = cookies.get('access_token')
 
 		submittedFormState.title = String(submittedFormState.title ?? '')
@@ -48,32 +45,13 @@ export const actions = {
 		submittedFormState.date = String(submittedFormState.date ?? '')
 		submittedFormState.category = String(submittedFormState.category ?? '')
 
-		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
-		}
-
-		if (!title) {
-			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
-		}
-
-		if (!description) {
-			return fail(400, { error: 'Vul een omschrijving in.', ...submittedFormState })
-		}
-
-		if (!date) {
-			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
-		}
-
-		if (!category) {
-			return fail(400, { error: 'Kies een categorie.', ...submittedFormState })
-		}
-
-		if (!(image instanceof File) || image.size === 0) {
-			return fail(400, { error: 'Upload een afbeelding.', ...submittedFormState })
-		}
-
-		if (!(sourceFile instanceof File) || sourceFile.size === 0) {
-			return fail(400, { error: 'Upload een bronbestand.', ...submittedFormState })
+		// Validation (Chain of Responsibility
+		// The factory returns the chain for this content type. The first failing
+		// rule returns its { status, message }; null means everything passed.
+		const validator = ValidationChainFactory.create('document', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState, image, source_file: sourceFile })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const uploadedFileIds = []
@@ -104,12 +82,9 @@ export const actions = {
 			}
 			uploadedFileIds.push(sourceUpload.id)
 
-			const baseSlug = Slugify.slugify(title)
+			const baseSlug = Slugify.slugify(submittedFormState.title)
 			let payload = {
-				title,
-				description,
-				date,
-				category,
+				...submittedFormState,
 				hero_image: imageUpload.id,
 				source_file: sourceUpload.id,
 				slug: baseSlug,

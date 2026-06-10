@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het nieuwsartikel.'
@@ -51,36 +52,13 @@ export const actions = {
 		submittedFormState.tags = String(submittedFormState.tags ?? '')
 		submittedFormState.body = String(submittedFormState.body ?? '')
 
-		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
-		}
-
-		if (!title) {
-			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
-		}
-
-		if (!description) {
-			return fail(400, { error: 'Vul een omschrijving in.', ...submittedFormState })
-		}
-
-		if (!(image instanceof File) || image.size === 0) {
-			return fail(400, { error: 'Upload een afbeelding.', ...submittedFormState })
-		}
-
-		if (!date) {
-			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
-		}
-
-		if (!author) {
-			return fail(400, { error: 'Vul een auteur in.', ...submittedFormState })
-		}
-
-		if (tags.length === 0) {
-			return fail(400, { error: 'Vul tags in.', ...submittedFormState })
-		}
-
-		if (!body) {
-			return fail(400, { error: 'Vul de body in.', ...submittedFormState })
+		// Validation (Chain of Responsibility)
+		// The factory returns the chain for this content type. The first failing
+		// rule returns its { status, message }; null means everything passed.
+		const validator = ValidationChainFactory.create('news', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState, image, tags })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const uploadedFileIds = []

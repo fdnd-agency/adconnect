@@ -2,6 +2,7 @@ import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
 import { Slugify } from '$lib/server/slugify.js'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van het event.'
@@ -60,36 +61,11 @@ export const actions = {
 		submittedFormState.body = String(submittedFormState.body ?? '')
 		submittedFormState.nomination_ids = nominationIds
 
-		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
-		}
-
-		if (!title) {
-			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
-		}
-
-		if (!description) {
-			return fail(400, { error: 'Vul een omschrijving in.', ...submittedFormState })
-		}
-
-		if (!date) {
-			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
-		}
-
-		if (!timeDuration) {
-			return fail(400, { error: 'Vul een tijdsduur in.', ...submittedFormState })
-		}
-
-		if (!excerpt) {
-			return fail(400, { error: 'Vul een samenvatting in.', ...submittedFormState })
-		}
-
-		if (!body) {
-			return fail(400, { error: 'Vul de body in.', ...submittedFormState })
-		}
-
-		if (!(image instanceof File) || image.size === 0) {
-			return fail(400, { error: 'Upload een afbeelding.', ...submittedFormState })
+		// Validation (Chain of Responsibility)
+		const validator = ValidationChainFactory.create('event', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState, image })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const uploadedFileIds = []

@@ -1,11 +1,11 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van de samenwerking.'
 const GENERIC_LOAD_ERROR = 'Er is een probleem opgetreden bij het ophalen van de samenwerking.'
-const URL_REGEX = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
 
 async function rollbackUploadedFiles(fileIds, accessToken) {
 	for (const fileId of fileIds) {
@@ -77,24 +77,15 @@ export const actions = {
 		submittedFormState.name = String(submittedFormState.name ?? '')
 		submittedFormState.url = String(submittedFormState.url ?? '')
 
-		if (!token) {
-			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
 		if (!cooperationId) {
 			return fail(400, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
 		}
 
-		if (!name) {
-			return fail(400, { error: 'Vul een naam in.', ...submittedFormState })
-		}
-
-		if (!url) {
-			return fail(400, { error: 'Vul een URL in.', ...submittedFormState })
-		}
-
-		if (!URL_REGEX.test(url)) {
-			return fail(400, { error: 'Vul een geldige URL in (http:// of https://).', ...submittedFormState })
+		// Validation (Chain of Responsibility). The logo is optional in update mode.
+		const validator = ValidationChainFactory.create('cooperation', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const uploadedFileIds = []
