@@ -3,9 +3,6 @@
 	import { IconCalendar, IconLabel } from '$lib/icons'
 	const { document } = $props()
 
-	// Import images
-	import { fallback, calendar, label } from '$lib'
-
 	// Limit description text for screenreaders
 	function truncateWords(text, limit = 20) {
 		// split text into words, return the first 20 words

@@ -1,5 +1,5 @@
 <script>
-    import { RLink, RCardSection, lightcircle, mail, phone, RPicture } from "$lib"
+    import { RLink, RCardSection, mail, RPicture } from "$lib"
     const { ...props }=$props()
 </script>
 
