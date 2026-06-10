@@ -1,7 +1,9 @@
 # CardHero.svelte Component Documentation
 ## Overview
 The CardHero component (CardHero.svelte) renders a page header with a breadcrumb, title, and description. It optionally accepts child content (typically buttons or links) rendered in a wrapping row below the text.
+
 ---
+
 ## Component Structure
 ### Script
 ```svelte
@@ -16,6 +18,7 @@ Props:
 - `children` (optional) - Slot content rendered in a button row; omitted when not passed
 
 ---
+
 ### HTML
 ```svelte
 <div>
