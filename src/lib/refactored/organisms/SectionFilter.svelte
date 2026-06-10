@@ -1,11 +1,11 @@
 <script>
-	import { RFilterButtons, RCardPublicaties } from '$lib'
+	import { FilterButtons, CardPublicaties } from '$lib'
 
 	const { filterResults, filterCategories, selectedCategory } = $props()
 </script>
 
 <div class="section-documents">
-	<RFilterButtons
+	<FilterButtons
 		{filterCategories}
 		{selectedCategory}
 		documents={filterResults}
@@ -14,7 +14,7 @@
 	<div class="section-documents__container">
 		<ul class="section-documents__list">
 			{#each filterResults as document (document.id)}
-				<li class="section-documents__item"><RCardPublicaties {document} /></li>
+				<li class="section-documents__item"><CardPublicaties {document} /></li>
 			{/each}
 		</ul>
 	</div>

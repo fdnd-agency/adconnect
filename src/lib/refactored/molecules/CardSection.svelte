@@ -1,19 +1,21 @@
 <script>
-	import { RLink } from '$lib'
+	import { Link } from '$lib'
 	import { IconDots } from '$lib/icons'
-	const { title, description, link, children } = $props()
+	const { title, description, link, children, centered } = $props()
 </script>
 
 <article class="section-header">
-	<h2 class="section-header__title">{title}</h2>
+	<h2 class="section-header__title" class:centered>{title}</h2>
 	<p class="section-header__description">{description}</p>
 
-	<IconDots variant="heading-two" />
+	<div class:centered>
+		<IconDots variant="heading-two" />
+	</div>
 
 	{#if link}
-		<RLink
+		<Link
 			href={link.href}
-			class="button-outline-white">{link.label}</RLink
+			class="button-outline-white">{link.label}</Link
 		>
 	{/if}
 </article>
@@ -34,5 +36,10 @@
 		.section-header__description {
 			grid-row: 3;
 		}
+	}
+
+	.centered {
+		justify-self: center;
+		text-align: center;
 	}
 </style>

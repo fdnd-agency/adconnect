@@ -1,5 +1,5 @@
 <script>
-	import { RCardNews } from '$lib'
+	import { CardNews } from '$lib'
 	import { IconCalendar } from '$lib/icons'
 	import { formatDateNL } from '$lib/molecules/date'
 
@@ -32,7 +32,7 @@
 		<ul>
 			{#each visibleItems as item (item.uuid)}
 				<li>
-					<RCardNews {item} />
+					<CardNews {item} />
 				</li>
 			{/each}
 		</ul>

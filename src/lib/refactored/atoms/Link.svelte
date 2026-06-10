@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/state'
 
-	const { href, children, screenReaderText, ...props } = $props()
+	const { href, children, screenReaderText, class: className = '', ...props } = $props()
 
 	let isCurrent = $derived(page.url.pathname === href)
 </script>
@@ -9,6 +9,7 @@
 <a
 	{href}
 	{...props}
+	class="{className}{isCurrent ? ' active' : ''}"
 	aria-current={isCurrent ? 'page' : undefined}
 >
 	{@render children?.()}
@@ -58,10 +59,13 @@
 			transition: width 0.3s ease;
 		}
 
-		&:hover,
-		&.active {
+		&:hover {
 			--_underline-width: 100%;
 		}
+	}
+
+	.active {
+		--_underline-width: 100%;
 	}
 
 	.footer-link {
@@ -88,5 +92,11 @@
 		width: 100%;
 		max-width: 14em;
 		text-align: center;
+	}
+
+	.admin {
+		font-weight: 600;
+		font-size: 1.2em;
+		color: light-dark(var(--blue-800), var(--text-white));
 	}
 </style>

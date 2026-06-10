@@ -1,5 +1,5 @@
 <script>
-	import { RCardTheme } from '$lib'
+	import { CardTheme } from '$lib'
 	const { sectionInfo, themes, backgroundBlue } = $props()
 </script>
 
@@ -15,10 +15,10 @@
 
 	<div class="themes__list">
 		{#each themes as theme (theme.title)}
-			<RCardTheme
+			<CardTheme
 				title={theme.title}
 				description={theme.description}
-				link={{ label: 'Meer informatie', href: `/over-ad/${theme.slug}`, screenReaderText: `over ${theme.title}` }}
+				link={{ label: 'Meer informatie', href: `${theme.slug}`, screenReaderText: `over ${theme.title}` }}
 				infoCard
 			/>
 		{/each}

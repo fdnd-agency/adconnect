@@ -104,8 +104,8 @@
 		--_desktop-height: clamp(57px, 5vw, 75px);
 		--_logo-balls: hsl(213, 100%, 28%);
 
-		--_mobile-width: 67;
-		--_mobile-height: 46;
+		--_mobile-width: 67px;
+		--_mobile-height: 46px;
 
 		@media (prefers-color-scheme: dark) {
 			--_logo-balls: hsl(0, 0%, 100%);

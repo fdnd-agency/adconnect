@@ -1,11 +1,11 @@
 <script>
-	import { RTextSection } from '$lib'
+	import { TextSection } from '$lib'
 
 	const { data } = $props()
 </script>
 
 <div class="detail-layout">
-	<RTextSection {data} />
+	<TextSection {data} />
 
 	<section class="ad-day">
 		<h2 class="ad-day__title">Kom naar de Ad-dag!</h2>

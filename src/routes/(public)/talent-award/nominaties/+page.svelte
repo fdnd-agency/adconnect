@@ -1,7 +1,10 @@
 <script>
-    import { NavPros, Cta } from '$lib'
+	import { ErrorPage } from '$lib'
 </script>
 
-<NavPros />
-
-<Cta />
+<!-- development pagina -->
+<ErrorPage
+	title="Pagina in ontwikkeling | Overlegplatform Associate Degrees"
+	heading="Deze pagina is in ontwikkeling"
+	description="De pagina die je probeert te bereiken is op dit moment in ontwikkeling. Navigeer naar een van onze werkende pagina's hieronder."
+/>

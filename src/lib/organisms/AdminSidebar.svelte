@@ -1,8 +1,7 @@
 <script>
 	const { user = null } = $props()
 
-	import { logo, logowhite } from '$lib'
-	import AdminNavLink from '$lib/atoms/AdminNavLink.svelte'
+	import { logo, logowhite, Link } from '$lib'
 	import { page } from '$app/stores'
 	import { onMount } from 'svelte'
 
@@ -68,11 +67,10 @@
 						<ul class="mobile-links">
 							{#each navItems as item (item.activePath)}
 								<li>
-									<AdminNavLink
+									<Link
 										href={item.href}
-										label={item.label}
-										active={$page.url.pathname === item.activePath}
-									/>
+										class="nav-link admin">{item.label}</Link
+									>
 								</li>
 							{/each}
 						</ul>
@@ -92,11 +90,10 @@
 				<ul class="desktop-nav">
 					{#each navItems as item (item.activePath)}
 						<li>
-							<AdminNavLink
+							<Link
 								href={item.href}
-								label={item.label}
-								active={$page.url.pathname === item.activePath}
-							/>
+								class="nav-link admin">{item.label}</Link
+							>
 						</li>
 					{/each}
 				</ul>
@@ -141,6 +138,7 @@
 			flex-direction: column;
 			align-items: flex-start;
 			height: 100%;
+			overflow: auto;
 		}
 	}
 
@@ -269,6 +267,10 @@
 		flex-direction: column;
 		gap: 1em;
 		padding: 5em 1em;
+
+		li {
+			padding: 0.5em 1em;
+		}
 	}
 
 	.sidebar-footer {
@@ -299,7 +301,7 @@
 		margin: 0;
 		padding: 0;
 		max-height: 80vh;
-		overflow-y: auto;
+		margin-bottom: 0.5em;
 
 		@media (min-width: 1000px) {
 			display: flex;
@@ -307,6 +309,10 @@
 			align-items: flex-start;
 			gap: 1em;
 			width: 100%;
+		}
+
+		li {
+			padding: 0.5em 1em;
 		}
 	}
 </style>
