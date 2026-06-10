@@ -98,17 +98,6 @@ The dynamic styling is the card hover state and the line-clamp truncation; the r
 
 ```svelte
 <style>
-	.publication-card {
-		transition: 0.2s ease-in-out;
-
-		&:hover {
-			/* on hover: blue border, soft shadow, slight lift */
-			border: 1px solid #00408d;
-			box-shadow: 0 3px 10px rgba(141, 141, 141, 0.2);
-			translate: 0 -1%;
-		}
-	}
-
 	/* clamps text to a set number of lines with an ellipsis */
 	.truncate {
 		overflow: hidden;
