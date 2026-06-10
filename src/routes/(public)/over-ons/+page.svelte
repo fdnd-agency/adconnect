@@ -40,6 +40,7 @@
 	<RCardSection
 		title={aboutUsPage.why_heading}
 		description={aboutUsPage.why_body}
+		centered
 	/>
 </div>
 
@@ -66,6 +67,7 @@
 	<RCardSection
 		title={aboutUsPage.advice_heading}
 		description={aboutUsPage.advice_body}
+		centered
 	/>
 </div>
 
@@ -83,6 +85,7 @@
 		}
 		h2 {
 			padding-bottom: 1em;
+			text-align: center;
 		}
 	}
 	.center {

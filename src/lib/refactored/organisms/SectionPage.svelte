@@ -1,7 +1,7 @@
 <script>
 	import { RCardSection, RLink, RPicture } from '$lib'
 	import { IconBackgroundCircle } from '$lib/icons'
-	const { sectionInfo, primaryLink, picture, mirrored, backgroundBlack, vertical } = $props()
+	const { sectionInfo, primaryLink, picture, mirrored, backgroundBlack, vertical, centered } = $props()
 </script>
 
 <section
@@ -14,6 +14,7 @@
 		title={sectionInfo.title}
 		description={sectionInfo.description}
 		link={primaryLink}
+		{centered}
 	/>
 
 	{#if picture}

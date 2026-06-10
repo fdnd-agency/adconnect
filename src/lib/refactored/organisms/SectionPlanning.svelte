@@ -9,6 +9,7 @@
 	<RCardSection
 		title={sectionInfo.title}
 		description={sectionInfo.description}
+		centered
 	/>
 
 	<div class="card-section__list">

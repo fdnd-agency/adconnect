@@ -55,6 +55,7 @@
 
 <RSectionPage
 	vertical
+	centered
 	sectionInfo={{ title: homePage.intro_heading, description: homePage.intro_body }}
 	primaryLink={{ label: homePage.intro_button_text, href: homePage.intro_button_url }}
 	picture={{

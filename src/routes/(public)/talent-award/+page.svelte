@@ -32,6 +32,7 @@
 	<RCardSection
 		title={talentAwardPage.about_heading}
 		description={talentAwardPage.about_body}
+		centered
 	/>
 </div>
 
