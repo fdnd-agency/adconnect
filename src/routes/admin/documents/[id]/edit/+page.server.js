@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van het document.'
@@ -80,10 +81,6 @@ export const actions = {
 		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
 		const id = String(params.id ?? '').trim()
-		const title = String(submittedFormState.title ?? '').trim()
-		const description = String(submittedFormState.description ?? '').trim()
-		const date = String(submittedFormState.date ?? '').trim()
-		const category = String(submittedFormState.category ?? '').trim()
 		const token = cookies.get('access_token')
 
 		submittedFormState.title = String(submittedFormState.title ?? '')
@@ -91,28 +88,10 @@ export const actions = {
 		submittedFormState.date = String(submittedFormState.date ?? '')
 		submittedFormState.category = String(submittedFormState.category ?? '')
 
-		if (!token) {
-			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
-		if (!id) {
-			return fail(400, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
-		if (!title) {
-			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
-		}
-
-		if (!description) {
-			return fail(400, { error: 'Vul een omschrijving in.', ...submittedFormState })
-		}
-
-		if (!date) {
-			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
-		}
-
-		if (!category) {
-			return fail(400, { error: 'Kies een categorie.', ...submittedFormState })
+		const validator = ValidationChainFactory.create('document', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState, image, source_file: sourceFile })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const uploadedFileIds = []
@@ -121,10 +100,7 @@ export const actions = {
 
 		try {
 			const payload = {
-				title,
-				description,
-				date,
-				category
+				...submittedFormState
 			}
 
 			if (image instanceof File && image.size > 0) {

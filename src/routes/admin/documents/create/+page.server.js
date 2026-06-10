@@ -48,7 +48,7 @@ export const actions = {
 		// Validation (Chain of Responsibility
 		// The factory returns the chain for this content type. The first failing
 		// rule returns its { status, message }; null means everything passed.
-		const validator = ValidationChainFactory.create('document', GENERIC_CREATE_ERROR)
+		const validator = ValidationChainFactory.create('document', { mode: 'create', message: GENERIC_CREATE_ERROR })
 		const validationError = validator.handle({ token, ...submittedFormState, image, source_file: sourceFile })
 		if (validationError) {
 			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
