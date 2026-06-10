@@ -77,7 +77,7 @@
 	}}
 />
 
-<Separator />
+<Separator center />
 
 <SectionPage
 	mirrored

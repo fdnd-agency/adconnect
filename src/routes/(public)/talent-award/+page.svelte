@@ -81,7 +81,8 @@
 
 <style>
 	.intro {
-		justify-self: center;
+		display: flex;
+		justify-content: center;
 		padding: 4rem 2rem
 	}
 

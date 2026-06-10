@@ -61,7 +61,7 @@
 	{/each}
 </div>
 
-<Separator />
+<Separator center />
 
 <div class="center">
 	<CardSection
@@ -89,7 +89,8 @@
 		}
 	}
 	.center {
-		justify-self: center;
+		display: flex;
+		justify-content: center;
 		padding: 5em 0;
 	}
 </style>
