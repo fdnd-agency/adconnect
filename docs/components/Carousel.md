@@ -1,41 +1,53 @@
 # Carousel.svelte Component Documentation
+
 ## Overview
-The Carousel component (Carousel.svelte) renders an auto-scrolling horizontal carousel between two separators. It works in two modes: a `logos` mode that shows clickable, linked partner logos, and a `nominations` mode that shows names with a profile photo that appears on hover. Both modes pull their images from Directus.
+
+The Carousel component (Carousel.svelte) renders an auto-scrolling, infinitely looping carousel between two separators. It works in two modes: a `logos` mode showing clickable partner logos, and a `nominations` mode showing linked names with a hover-revealed photo and an optional institution logo. Both modes pull their images from Directus, and the track pauses on hover.
 
 ---
 
 ## Component Structure
+
 ### Script
+
 ```svelte
 <script>
-	import { RLink, RPicture, Rseparator } from '$lib'
+	import { Link, Picture, Separator } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
-	const { carouselItems, logos, nominations, dividerText, backgroundBlack } = $props()
+
+	const { carouselItems = [], logos = false, nominations = false, dividerText, backgroundBlack = false, cooperations = [], nominationHrefBase = '/talent-award/nominaties', noMargin } = $props()
+
 	const imageUrl = (id) => `${DIRECTUS_URL}/assets/${id}`
+	// ...resolveCooperation + helpers
 </script>
 ```
 
 Props:
-- `carouselItems` - list of items to render
+- `carouselItems` (default `[]`) - Array of items to render; shape depends on the active mode
   - logos mode: each item has `id`, `url`, `logo` (asset id), and `name`
-  - nominations mode: each item has `id`, `title`, and optional `profile_picture`
-- `logos` - uses the logo snippet inside the carousel
-- `nominations` - uses the nominations snippet
+  - nominations mode: each item has `id`, `title`, `slug`, optional `institution`, and optional `profile_picture`
+- `logos` (default `false`) - Renders each item as a linked logo
+- `nominations` (default `false`) - Renders each item as a linked name with a hover photo
 - `dividerText` (optional) - Label shown in the top separator
-- `backgroundBlack` (optional) - Applies a dark background color to the section
+- `backgroundBlack` (default `false`) - Applies a dark background color to the section
+- `cooperations` (default `[]`) - Lookup list used to resolve a nomination's institution to its logo and name
+- `nominationHrefBase` (default `/talent-award/nominaties`) - Base path for nomination links (`{base}/{slug ?? id}`)
+- `noMargin` (optional) - Removes the section's default vertical margin
+
+> `logos` and `nominations` select the render mode; pass exactly one.
+> `resolveCooperation` matches a nomination's `institution` against `cooperations` (by id or name) to find its logo; `imageUrl` builds the Directus asset URL from an id.
 
 ---
 
 ### HTML
+
 ```svelte
+<!-- one logo: a linked image that opens in a new tab -->
 {#snippet logoItem(logo)}
 	<li class="carousel__item">
-		<RLink
-			target="_blank"
-			href={logo.url}
-		>
+		<Link target="_blank" href={logo.url}>
 			<div class="carousel__logo">
-				<RPicture
+				<Picture
 					src="{DIRECTUS_URL}/assets/{logo.logo}"
 					alt={logo.name}
 					width="350"
@@ -43,17 +55,33 @@ Props:
 					style="object-fit: contain;"
 				/>
 			</div>
-		</RLink>
+		</Link>
 	</li>
 {/snippet}
 
+<!-- one nomination: name + optional institution logo, linking to its detail page -->
 {#snippet nominationItem(item)}
+	<!-- look up the institution's logo/name, and build the detail link -->
+	{@const cooperation = resolveCooperation(item.institution)}
+	{@const nominationHref = `${nominationHrefBase}/${item.slug ?? item.id}`}
 	<li class="carousel__item nomination">
-		<p class="nomination__name">{item.title}</p>
+		<a class="nomination__link" href={nominationHref}>
+			<p class="nomination__name">{item.title}</p>
 
+			<!-- only shown when the institution was resolved -->
+			{#if cooperation?.logo}
+				<img
+					class="nomination__institution-logo"
+					src={imageUrl(cooperation.logo?.id ?? cooperation.logo)}
+					alt={cooperation?.name ?? 'Institution logo'}
+				/>
+			{/if}
+		</a>
+
+		<!-- photo revealed on hover; only rendered when present -->
 		{#if item.profile_picture}
 			<div class="nomination__photo">
-				<RPicture
+				<Picture
 					src={imageUrl(item.profile_picture.id ?? item.profile_picture)}
 					alt={item.title}
 					width="150"
@@ -67,13 +95,19 @@ Props:
 <section
 	class="logo-section"
 	class:logo-section--background-black={backgroundBlack}
+	class:noMargin
 >
-	<Rseparator {dividerText} />
+	<Separator {dividerText} noMargin />
 
 	<div class="carousel">
-		<ul class="carousel__track">
-        <!-- depending on the prop, make a carousel for partner logo's, or for nominations -->
-			{#each carouselItems as item (item.id)}
+		<!-- --item-count drives the scroll speed -->
+		<ul
+			class="carousel__track"
+			style={`--item-count: ${carouselItems?.length ?? 0}`}
+		>
+			<!-- items are duplicated so the loop scrolls seamlessly -->
+			{#each [...(carouselItems ?? []), ...(carouselItems ?? [])] as item, index (`${item.id}-${index}`)}
+				<!-- pick the snippet based on the active mode -->
 				{#if logos}
 					{@render logoItem(item)}
 				{:else if nominations}
@@ -83,23 +117,21 @@ Props:
 		</ul>
 	</div>
 
-	<Rseparator />
+	<Separator noMargin />
 </section>
 ```
--  each item is rendered through a snippet based on the prop
-- Logos are links and open in a new tab
-- nomination photos are hidden until their item is hovered.
 
 ### Usage Examples
-Example: a logo carousel of partners
+
+The parent passes the data list and selects a mode. `data.nominations` and `cooperations` come from the page load:
+
 ```svelte
-<Carousel
-	logos
-	carouselItems={cooperation}
-	dividerText="Partijen waarmee wij samenwerken"
-/>
+nomination = { id, title, slug, institution, profile_picture }
+logo       = { id, url, logo, name }
 ```
+
 Example: a nominations carousel
+
 ```svelte
 <Carousel
 	nominations
@@ -108,19 +140,46 @@ Example: a nominations carousel
 />
 ```
 
+Example: a logo carousel of partners
+
+```svelte
+<Carousel
+	logos
+	carouselItems={cooperations}
+	dividerText="Partijen waarmee wij samenwerken"
+/>
+```
+
 ### CSS
-The dynamic/optional styling: the dark background toggled by `backgroundBlack`, plus the hover and motion behaviours that aren't standard layout.
+
+The dynamic/optional styling: the dark background and `noMargin` toggles, the speed-driven scroll animation, plus the hover and motion behaviours that aren't standard layout.
+
 ```svelte
 <section
 	class="logo-section"
 	<!-- toggled by the backgroundBlack prop -->
 	class:logo-section--background-black={backgroundBlack}
+	<!-- toggled by the noMargin prop -->
+	class:noMargin
 >
 
 <style>
+	.noMargin {
+		margin: 0;  /* removes the default 4em vertical margin */
+	}
+
 	.logo-section--background-black {
 		/* dark background: blue-100 in light mode, near-black in dark mode */
 		--_background: light-dark(var(--blue-100), hsl(210, 30%, 8%));
+	}
+
+	.carousel__track {
+		/* scroll duration scales with the number of items */
+		animation: scroll calc(max(var(--item-count, 1), 1) * 5s) linear infinite;
+	}
+
+	.carousel:hover .carousel__track {
+		animation-play-state: paused;  /* pause scrolling on hover */
 	}
 
 	.carousel__logo {
