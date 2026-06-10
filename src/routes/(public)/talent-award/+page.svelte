@@ -28,7 +28,7 @@
 	}}
 />
 
-<div class="intro">
+<div class="intro" id="benefit">
 	<CardSection
 		title={talentAwardPage.about_heading}
 		description={talentAwardPage.about_body}
