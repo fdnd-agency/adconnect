@@ -79,7 +79,7 @@
 />
 
 <div class="location">
-	<Separator dividerText={adDayPage.location_heading} center />
+	<Separator dividerText={adDayPage.location_heading} />
 
 	<p class="location__text">{adDayPage.location_body}</p>
 

@@ -61,7 +61,7 @@
 	{/each}
 </div>
 
-<Separator center />
+<Separator />
 
 <div class="center">
 	<CardSection

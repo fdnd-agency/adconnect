@@ -35,7 +35,7 @@
 {/snippet}
 
 <div class="news">
-	<Separator dividerText="Het laatste nieuws" center />
+	<Separator dividerText="Het laatste nieuws" />
 
 	<ul class="news__list">
 		{#each news as article (article.uuid)}

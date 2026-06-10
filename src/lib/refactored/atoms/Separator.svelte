@@ -1,8 +1,8 @@
 <script lang="ts">
-	const { dividerText, noMargin, center } = $props()
+	const { dividerText, noMargin } = $props()
 </script>
 
-<section class:noMargin class:center>
+<section class:noMargin>
 	<hr />
 	{#if dividerText}
 		<p>{dividerText}</p>
@@ -19,16 +19,11 @@
 		gap: 1rem;
 		width: 90%;
 		max-width: 1400px;
-		margin: 3em 0;
+		margin: 3em auto;
 	}
 
 	.noMargin {
 		margin: 0;
-	}
-
-	.center {
-		margin-left: 50%;
-		transform: translateX(-50%);
 	}
 
 	hr,
