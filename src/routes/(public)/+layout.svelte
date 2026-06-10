@@ -24,7 +24,7 @@
 		{@render children?.()}
 	</main>
 
-	<RFooter />
+	<RFooter themaLinks={data.themaLinks} />
 
 	<a
 		class="scroll"
