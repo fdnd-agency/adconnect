@@ -1,42 +1,45 @@
 # FilterButtons.svelte Component Documentation
+
 ## Overview
 
-This is a form component that creates a button (input with label) for each filter category.  
-The buttons are placed inside a `ul`, so screen readers can announce how many buttons there are.  
-Since it is a form, it also needs a submit button. This button is hidden when JavaScript is enabled, and the form is instead submitted via an onclick function on the input elements.  
-If JavaScript is disabled, the submit button is visible by default.  
-The component also includes an indicator that shows how many results are available.
+The FilterButtons component (FilterButtons.svelte) renders a category filter as a group of radio buttons styled as buttons. Selecting a category updates the URL's `category` search param (driving the filtering upstream), and a live region shows the active category and result count. It works as a plain GET form when JavaScript is disabled.
 
 ---
 
 ## Component Structure
 
 ### Script
+
 ```svelte
 <script lang="ts">
-	const { categories, selectedCategory, documents } = $props()
+	import { goto } from '$app/navigation'
+	import { page } from '$app/state'
+
+	const { filterCategories, selectedCategory, documents } = $props()
+
 	const normalized = $derived(selectedCategory?.toLowerCase() ?? '')
 
-	function filterClick(e: Event) {
-		// The element where the click event happens
-		const target = e.target as HTMLInputElement
-
-		//  find the nearest form element and submit it.
-		target.form?.requestSubmit()
+	function selectCategory(value: string) {
+		const url = new URL(page.url)
+		url.searchParams.set('category', value)
+		goto(url, { noScroll: true, keepFocus: true })
 	}
 </script>
 ```
-> filterClick is the function that submits the form (when JavaScript is enabled) 
+
+Props:
+- `filterCategories` - Array of category objects, each with an `id` and `title`; rendered as filter options
+- `selectedCategory` - The currently active category, used to mark the matching radio as checked
+- `documents` - The (already filtered) results; only its `length` is shown in the info bar
+
+> `selectCategory` updates the `category` URL param via `goto` without scrolling or losing focus; the actual filtering happens upstream from that param.
 
 ---
 
 ### HTML
-In this component, the exact same HTML for the filter buttons used to appear multiple times.  
-One button acted as a reset button to show all items, which was not provided by the database like the other buttons.  
-Instead of duplicating the HTML twice, I used a snippet that can be reused. This proved very useful because afterward I only had to change one button instead of two whenever I made updates.
 
 ```svelte
-<!-- snippet is a reusable piece of code that can be called again using {@render ...} -->
+<!-- one styled radio button per category -->
 {#snippet categoryRadio(category)}
 	<label class="button-outline-blue category-filter__button">
 		<input
@@ -45,87 +48,89 @@ Instead of duplicating the HTML twice, I used a snippet that can be reused. This
 			name="category"
 			value={category.value}
 			checked={normalized === category.value}
-			onclick={filterClick}
+			onclick={() => selectCategory(category.value)}
 		/>
 		<span>{category.label}</span>
 	</label>
 {/snippet}
+
+<section class="filter-section">
+	<form class="category-filter" method="GET" data-sveltekit-noscroll>
+		<fieldset class="category-filter__group">
+			<legend class="category-filter__label">Filter op categorie:</legend>
+
+			<ul class="category-filter__list">
+				<!-- static "all" option, always first -->
+				<li>
+					{@render categoryRadio({ value: 'alle-publicaties', label: 'Alle publicaties' })}
+				</li>
+
+				<!-- one option per category from the data -->
+				{#each filterCategories as category (category.id)}
+					<li>
+						{@render categoryRadio({ value: category.title.toLowerCase(), label: category.title })}
+					</li>
+				{/each}
+			</ul>
+
+			<!-- only shown when JS is disabled (see noscript below) -->
+			<button id="submit" type="submit" class="button-outline-blue">Submit</button>
+		</fieldset>
+	</form>
+
+	<!-- live region announcing the active filter and result count -->
+	<div class="filter-info" aria-live="polite">
+		<p>Categorie: {selectedCategory}</p>
+		<p>Aantal artikelen: {documents.length}</p>
+	</div>
+</section>
+
+<!-- JS disabled: reveal the submit button so the GET form still works -->
+<noscript>
+	<style>
+		#submit {
+			display: block !important;
+		}
+	</style>
+</noscript>
 ```
 
-```svelte
-<ul class="category-filter__list">
-	<li class="category-filter__item">
-		<!-- use the snippet for a button to show all results -->
-		{@render categoryRadio({ value: 'alle-publicaties', label: 'Alle publicaties' })}
-	</li>
-
-	{#each categories as category (category.id)}
-		<li class="category-filter__item">
-			<!-- use database categories to create all filter options/buttons -->
-			{@render categoryRadio({ value: category.title.toLowerCase(), label: category.title })}
-		</li>
-	{/each}
-</ul>
-```
+> The radios are visually hidden; the `label` styling provides the button appearance.
+> With JS, clicking a radio navigates immediately; without JS, the visible submit button posts the GET form instead.
 
 ### Usage Examples
-For this component, you need to pass the `documents` data to indicate how many items there are per filter,  
-the `categories` data to show all filter options,  
-and the `selectedCategory` prop to show the current category.
+
+The parent section passes the categories, the active category, and the filtered results straight through:
 
 ```svelte
-<RFilterButtons {categories} {selectedCategory} {documents}/>
+category = { id, title }
 ```
 
----
+Example: filter buttons above a document list
 
-### Expected Data Structures
-
-All three props come straight from Directus and are only passed through — the component does not transform them.
-
-### filterCategories
-An array of category objects from Directus.
-
-```js
-const filterCategories = [
-	{ id: 4, title: 'Externe publicaties' },
-	{ id: 5, title: 'Interne publicaties' }
-]
+```svelte
+<FilterButtons
+	{filterCategories}
+	{selectedCategory}
+	documents={filterResults}
+/>
 ```
 
-**Used by this component:** only `id` (as the `{#each}` key) and `title` (the button label, lowercased for matching). Any other fields Directus returns are ignored here.
+### CSS
 
-### documents
-An array of document objects from Directus. A single item looks like this:
+The dynamic styling is the checked-button highlight and the JS/no-JS submit button toggle.
 
-```js
-const documents = [
-	{
-		title: 'Beschrijving niveau 5 Associate degree (2022)',
-		id: 7,
-		description: 'In de landelijke Beschrijving niveau 5 Associate degree ...',
-		slug: 'beschrijving-niveau-5-associate-degree-2022',
-		hero_image: '4776665d-fcf9-469c-9775-6fe8532edfba',
-		source_file: 'ec009a53-b3f9-4794-ba83-7d00262e453c',
-		date: '2022-01-17',
-		category: { id: 4, title: 'Externe publicaties' }
+```svelte
+<style>
+	.category-filter__button {
+		/* highlight the button whose radio is checked */
+		&:has(input:checked) {
+			background-color: var(--primary-blue);
+		}
 	}
-	// ...more documents
-]
+
+	#submit {
+		display: none;  /* hidden when JS is enabled; the noscript block reveals it otherwise */
+	}
+</style>
 ```
-
-**Used by this component:** only `documents.length`, to show the result count ("Aantal artikelen"). None of the individual fields (`title`, `description`, `hero_image`, etc.) are read inside `RFilterButtons` — they are passed through to `RCardPublicaties`, which renders them.
-
-### selectedCategory
-A single string with the currently active category. It is lowercased internally and compared against `category.title.toLowerCase()` (or `'alle-publicaties'` for the show-all button).
-
-```js
-const selectedCategory = 'externe publicaties'
-// or 'alle-publicaties'
-// or undefined when no filter is active
-```
-
-**Used by this component:** the whole string — normalized to lowercase for matching the checked button, and shown as-is in the info panel ("Categorie:").
-
-
-
