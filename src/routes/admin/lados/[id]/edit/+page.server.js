@@ -1,5 +1,6 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van de Lado.'
 const GENERIC_LOAD_ERROR = 'Er is een probleem opgetreden bij het ophalen van de Lado.'
@@ -116,32 +117,18 @@ export const actions = {
 
 		submittedFormState.contactPersons = contactPersons
 
-		if (!token && process.env.E2E_TEST_MODE !== '1') {
-			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
 		if (!ladoId) {
 			return fail(400, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
 		}
 
-		if (!title) {
-			return fail(400, { error: 'Vul een naam in.', ...submittedFormState })
-		}
-
-		if (contactPersons.length === 0) {
-			return fail(400, { error: 'Vul een contactpersoon in.', ...submittedFormState })
-		}
-
-		if (!nationalAdProfile) {
-			return fail(400, { error: 'Vul een nationaal ad-profiel in.', ...submittedFormState })
-		}
-
-		if (!ladoStatus) {
-			return fail(400, { error: 'Vul een lado status in.', ...submittedFormState })
-		}
-
-		if (courseIds.length === 0) {
-			return fail(400, { error: 'Kies minimaal één opleiding.', ...submittedFormState })
+		// Validation (Chain of Responsibility) for the leading presence checks.
+		// In E2E mode the access token may be absent, so we treat that flag as a
+		// valid token. The integer/business rules (and the self-parent rule) stay
+		// inline below to keep the exact error order.
+		const validator = ValidationChainFactory.create('lado', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		const validationError = validator.handle({ token: token || process.env.E2E_TEST_MODE === '1', title, contactPersons, nationalAdProfile, ladoStatus, courseIds })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const validCourseIds = courseIds.map((id) => Number(id)).filter((id) => Number.isInteger(id) && id > 0)

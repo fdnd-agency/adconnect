@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van de faq.'
 const GENERIC_LOAD_ERROR = 'Er is een probleem opgetreden bij het ophalen van de faq.'
@@ -64,20 +65,15 @@ export const actions = {
 		submittedFormState.answer = rawAnswer
 		submittedFormState.important = important
 
-		if (!token) {
-			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
 		if (!faqId) {
 			return fail(400, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
 		}
 
-		if (!question) {
-			return fail(400, { error: 'Vul een vraag in.', ...submittedFormState })
-		}
-
-		if (!answer) {
-			return fail(400, { error: 'Vul een antwoord in.', ...submittedFormState })
+		// Validation (Chain of Responsibility)
+		const validator = ValidationChainFactory.create('faq', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const payload = {

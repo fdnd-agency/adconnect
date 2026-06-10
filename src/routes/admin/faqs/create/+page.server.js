@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van de faq.'
 const GENERIC_PUBLISH_WARNING = 'Faq opgeslagen als concept, maar publiceren is mislukt.'
@@ -24,16 +25,11 @@ export const actions = {
 		submittedFormState.answer = rawAnswer
 		submittedFormState.important = important
 
-		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
-		}
-
-		if (!question) {
-			return fail(400, { error: 'Vul een vraag in.', ...submittedFormState })
-		}
-
-		if (!answer) {
-			return fail(400, { error: 'Vul een antwoord in.', ...submittedFormState })
+		// Validation (Chain of Responsibility)
+		const validator = ValidationChainFactory.create('faq', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const payload = {

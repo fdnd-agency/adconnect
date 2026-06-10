@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const GENERIC_CREATE_ERROR = 'Er is iets misgegaan bij het opslaan van de opleiding.'
 
@@ -28,12 +29,11 @@ export const actions = {
 		submittedFormState.title = rawTitle
 		submittedFormState.cooperations = cooperationIds
 
-		if (!token) {
-			return fail(403, { error: GENERIC_CREATE_ERROR, ...submittedFormState })
-		}
-
-		if (!title) {
-			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
+		// Validation (Chain of Responsibility)
+		const validator = ValidationChainFactory.create('course', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const payload = { title }

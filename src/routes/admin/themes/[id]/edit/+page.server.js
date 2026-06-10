@@ -1,6 +1,7 @@
 import { ContentService } from '$lib/server/contentService.js'
 import { extractFormState } from '$lib/server/formUtils.js'
 import { fail } from '@sveltejs/kit'
+import { ValidationChainFactory } from '$lib/server/validation/chains/validationChainFactory.js'
 
 const FILE_LIBRARY_FOLDER = 'Adconnect'
 const GENERIC_UPDATE_ERROR = 'Er is iets misgegaan bij het bijwerken van het thema.'
@@ -59,32 +60,15 @@ export const actions = {
 		const currentHeroId = String(submittedFormState.currentHeroId ?? '').trim() || null
 		const token = cookies.get('access_token')
 
-		if (!token) {
-			return fail(403, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
-		}
-
 		if (!themeId) {
 			return fail(400, { error: GENERIC_UPDATE_ERROR, ...submittedFormState })
 		}
 
-		if (!title) {
-			return fail(400, { error: 'Vul een titel in.', ...submittedFormState })
-		}
-
-		if (!description) {
-			return fail(400, { error: 'Vul een omschrijving in.', ...submittedFormState })
-		}
-
-		if (!date) {
-			return fail(400, { error: 'Vul een datum in.', ...submittedFormState })
-		}
-
-		if (!excerpt) {
-			return fail(400, { error: 'Vul een samenvatting in.', ...submittedFormState })
-		}
-
-		if (!body) {
-			return fail(400, { error: 'Vul de body in.', ...submittedFormState })
+		// Validation (Chain of Responsibility). The image is optional in update mode.
+		const validator = ValidationChainFactory.create('theme', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		const validationError = validator.handle({ token, ...submittedFormState })
+		if (validationError) {
+			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
 
 		const hasNewImage = image instanceof File && image.size > 0
