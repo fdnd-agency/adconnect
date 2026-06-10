@@ -38,10 +38,6 @@ export const actions = {
 
 		const submitAction = String(rawSubmitAction ?? 'save').trim()
 		const shouldPublish = submitAction === 'publish'
-		const title = String(submittedFormState.title ?? '').trim()
-		const description = String(submittedFormState.description ?? '').trim()
-		const date = String(submittedFormState.date ?? '').trim()
-		const category = String(submittedFormState.category ?? '').trim()
 		const token = cookies.get('access_token')
 
 		submittedFormState.title = String(submittedFormState.title ?? '')
@@ -53,7 +49,7 @@ export const actions = {
 		// The factory returns the chain for this content type. The first failing
 		// rule returns its { status, message }; null means everything passed.
 		const validator = ValidationChainFactory.create('document', GENERIC_CREATE_ERROR)
-		const validationError = validator.handle({ token, title, description, date, category, image, source_file: sourceFile })
+		const validationError = validator.handle({ token, ...submittedFormState, image, source_file: sourceFile })
 		if (validationError) {
 			return fail(validationError.status, { error: validationError.message, ...submittedFormState })
 		}
@@ -86,12 +82,9 @@ export const actions = {
 			}
 			uploadedFileIds.push(sourceUpload.id)
 
-			const baseSlug = Slugify.slugify(title)
+			const baseSlug = Slugify.slugify(submittedFormState.title)
 			let payload = {
-				title,
-				description,
-				date,
-				category,
+				...submittedFormState,
 				hero_image: imageUpload.id,
 				source_file: sourceUpload.id,
 				slug: baseSlug,

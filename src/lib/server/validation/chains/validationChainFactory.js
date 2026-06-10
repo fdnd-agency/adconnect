@@ -8,7 +8,7 @@ import { createDocumentValidationChain } from '$lib/server/validation/chains/cre
  */
 export class ValidationChainFactory {
 	/**
-	 * @param {string} contentType - e.g. 'document'.
+	 * @param {string} contentType.
 	 * @param {string} genericCreateError - Message used for the missing-token (403) case.
 	 * @returns {import('$lib/server/validation/handlers/validationHandler.js').ValidationHandler}
 	 */
