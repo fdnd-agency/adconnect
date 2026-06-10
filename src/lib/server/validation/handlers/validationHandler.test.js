@@ -3,6 +3,8 @@ import { ValidationHandler } from '$lib/server/validation/handlers/validationHan
 import { AccessTokenHandler } from '$lib/server/validation/handlers/accessTokenHandler.js'
 import { RequiredFieldHandler } from '$lib/server/validation/handlers/requiredFieldHandler.js'
 import { RequiredFileHandler } from '$lib/server/validation/handlers/requiredFileHandler.js'
+import { RequiredArrayHandler } from '$lib/server/validation/handlers/requiredArrayHandler.js'
+import { PatternFieldHandler } from '$lib/server/validation/handlers/patternFieldHandler.js'
 
 describe('ValidationHandler (base handler)', () => {
 	it('returns null when it is the last link and nothing rejects the request', () => {
@@ -77,5 +79,46 @@ describe('RequiredFileHandler', () => {
 		const handler = new RequiredFileHandler('image', 'Upload een afbeelding.')
 		const file = new File(['data'], 'cover.png', { type: 'image/png' })
 		expect(handler.handle({ image: file })).toBe(null)
+	})
+})
+
+describe('RequiredArrayHandler', () => {
+	it('rejects with status 400 when the value is not an array', () => {
+		const handler = new RequiredArrayHandler('tags', 'Vul tags in.')
+		expect(handler.handle({ tags: 'not-an-array' })).toEqual({ status: 400, message: 'Vul tags in.' })
+	})
+
+	it('rejects an empty array', () => {
+		const handler = new RequiredArrayHandler('tags', 'Vul tags in.')
+		expect(handler.handle({ tags: [] })).toEqual({ status: 400, message: 'Vul tags in.' })
+	})
+
+	it('rejects when the field is missing entirely', () => {
+		const handler = new RequiredArrayHandler('tags', 'Vul tags in.')
+		expect(handler.handle({})).toEqual({ status: 400, message: 'Vul tags in.' })
+	})
+
+	it('passes when the array has at least one item', () => {
+		const handler = new RequiredArrayHandler('tags', 'Vul tags in.')
+		expect(handler.handle({ tags: ['nieuws'] })).toBe(null)
+	})
+})
+
+describe('PatternFieldHandler', () => {
+	const URL_PATTERN = /^https?:\/\/[^\s/$.?#].[^\s]*$/i
+
+	it('rejects with status 400 when the value does not match the pattern', () => {
+		const handler = new PatternFieldHandler('url', URL_PATTERN, 'Vul een geldige URL in (http:// of https://).')
+		expect(handler.handle({ url: 'geen-url' })).toEqual({ status: 400, message: 'Vul een geldige URL in (http:// of https://).' })
+	})
+
+	it('trims the value before matching the pattern', () => {
+		const handler = new PatternFieldHandler('url', URL_PATTERN, 'Vul een geldige URL in (http:// of https://).')
+		expect(handler.handle({ url: '  https://example.com  ' })).toBe(null)
+	})
+
+	it('passes when the value matches the pattern', () => {
+		const handler = new PatternFieldHandler('url', URL_PATTERN, 'Vul een geldige URL in (http:// of https://).')
+		expect(handler.handle({ url: 'https://example.com' })).toBe(null)
 	})
 })

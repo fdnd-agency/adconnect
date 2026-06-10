@@ -43,4 +43,139 @@ describe('ValidationChainFactory', () => {
 	it('throws for an unknown content type', () => {
 		expect(() => ValidationChainFactory.create('unknown', { mode: 'create', message: GENERIC_CREATE_ERROR })).toThrow('Geen validatie-chain gevonden voor contenttype: unknown')
 	})
+
+	it('returns a news chain that requires tags and the hero image (create)', () => {
+		const validator = ValidationChainFactory.create('news', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		const valid = {
+			token: 'token-123',
+			title: 'Titel',
+			description: 'Omschrijving',
+			image: new File(['img'], 'cover.png', { type: 'image/png' }),
+			date: '2026-03-18',
+			author: 'Auteur',
+			tags: ['nieuws'],
+			body: 'Body'
+		}
+
+		expect(validator.handle(valid)).toBe(null)
+		expect(validator.handle({ ...valid, tags: [] })).toEqual({ status: 400, message: 'Vul tags in.' })
+		expect(validator.handle({ ...valid, image: undefined })).toEqual({ status: 400, message: 'Upload een afbeelding.' })
+	})
+
+	it('returns a news update chain that keeps the existing image', () => {
+		const validator = ValidationChainFactory.create('news', { mode: 'update', message: GENERIC_UPDATE_ERROR })
+		expect(validator.handle({ token: 'token-123', title: 'Titel', description: 'Omschrijving', date: '2026-03-18', author: 'Auteur', tags: ['nieuws'], body: 'Body' })).toBe(null)
+	})
+
+	it('returns an event chain that requires the image only on create', () => {
+		const valid = {
+			token: 'token-123',
+			title: 'Titel',
+			description: 'Omschrijving',
+			date: '2026-03-18',
+			time_duration: '2 uur',
+			excerpt: 'Samenvatting',
+			body: 'Body',
+			image: new File(['img'], 'cover.png', { type: 'image/png' })
+		}
+
+		expect(ValidationChainFactory.create('event', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle(valid)).toBe(null)
+		expect(ValidationChainFactory.create('event', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle({ ...valid, image: undefined })).toEqual({ status: 400, message: 'Upload een afbeelding.' })
+		expect(ValidationChainFactory.create('event', { mode: 'update', message: GENERIC_UPDATE_ERROR }).handle({ ...valid, image: undefined })).toBe(null)
+	})
+
+	it('returns a faq chain that only needs a question and answer', () => {
+		const validator = ValidationChainFactory.create('faq', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		expect(validator.handle({ token: 'token-123', question: 'Vraag?', answer: 'Antwoord' })).toBe(null)
+		expect(validator.handle({ token: 'token-123', question: '', answer: 'Antwoord' })).toEqual({ status: 400, message: 'Vul een vraag in.' })
+	})
+
+	it('returns a theme chain that requires the image only on create', () => {
+		const valid = {
+			token: 'token-123',
+			title: 'Titel',
+			description: 'Omschrijving',
+			date: '2026-03-18',
+			excerpt: 'Samenvatting',
+			body: 'Body',
+			image: new File(['img'], 'cover.png', { type: 'image/png' })
+		}
+
+		expect(ValidationChainFactory.create('theme', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle(valid)).toBe(null)
+		expect(ValidationChainFactory.create('theme', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle({ ...valid, image: undefined })).toEqual({ status: 400, message: 'Upload een afbeelding.' })
+		expect(ValidationChainFactory.create('theme', { mode: 'update', message: GENERIC_UPDATE_ERROR }).handle({ ...valid, image: undefined })).toBe(null)
+	})
+
+	it('returns a cooperation chain that validates the url format and logo', () => {
+		const valid = {
+			token: 'token-123',
+			name: 'Naam',
+			url: 'https://example.com',
+			logo: new File(['img'], 'logo.png', { type: 'image/png' })
+		}
+
+		expect(ValidationChainFactory.create('cooperation', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle(valid)).toBe(null)
+		expect(ValidationChainFactory.create('cooperation', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle({ ...valid, url: 'geen-url' })).toEqual({
+			status: 400,
+			message: 'Vul een geldige URL in (http:// of https://).'
+		})
+		expect(ValidationChainFactory.create('cooperation', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle({ ...valid, logo: undefined })).toEqual({ status: 400, message: 'Upload een logo.' })
+		expect(ValidationChainFactory.create('cooperation', { mode: 'update', message: GENERIC_UPDATE_ERROR }).handle({ ...valid, logo: undefined })).toBe(null)
+	})
+
+	it('returns a nomination chain that requires the profile picture only on create', () => {
+		const valid = {
+			token: 'token-123',
+			title: 'Titel',
+			header: 'Header',
+			date: '2026-03-18',
+			excerpt: 'Samenvatting',
+			body: 'Body',
+			event_id: 'event-1',
+			institution: 'Instelling',
+			course: 'Opleiding',
+			previous_course: 'Vorige opleiding',
+			education_variant: 'Variant',
+			alumnus: 'Alumnus',
+			profile_picture: new File(['img'], 'foto.png', { type: 'image/png' })
+		}
+
+		expect(ValidationChainFactory.create('nomination', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle(valid)).toBe(null)
+		expect(ValidationChainFactory.create('nomination', { mode: 'create', message: GENERIC_CREATE_ERROR }).handle({ ...valid, profile_picture: undefined })).toEqual({
+			status: 400,
+			message: 'Upload een profielfoto.'
+		})
+		expect(ValidationChainFactory.create('nomination', { mode: 'update', message: GENERIC_UPDATE_ERROR }).handle({ ...valid, profile_picture: undefined })).toBe(null)
+	})
+
+	it('returns a course chain that only needs a title', () => {
+		const validator = ValidationChainFactory.create('course', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		expect(validator.handle({ token: 'token-123', title: 'Titel' })).toBe(null)
+		expect(validator.handle({ token: 'token-123', title: '' })).toEqual({ status: 400, message: 'Vul een titel in.' })
+	})
+
+	it('returns a sectoralAdvisoryBoard chain that only needs a title', () => {
+		const validator = ValidationChainFactory.create('sectoralAdvisoryBoard', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		expect(validator.handle({ token: 'token-123', title: 'Titel' })).toBe(null)
+		expect(validator.handle({ token: 'token-123', title: '' })).toEqual({ status: 400, message: 'Vul een titel in.' })
+	})
+
+	it('returns a lado chain that covers the leading presence checks', () => {
+		const validator = ValidationChainFactory.create('lado', { mode: 'create', message: GENERIC_CREATE_ERROR })
+		const valid = {
+			token: 'token-123',
+			title: 'Bedrijf X',
+			contactPersons: ['Persoon 1'],
+			nationalAdProfile: 'Nationaal profiel',
+			ladoStatus: 'Actief',
+			courseIds: ['123']
+		}
+
+		// The chain only validates presence; the integer/business rules stay
+		// inline in the route, so a request with valid presence passes here.
+		expect(validator.handle(valid)).toBe(null)
+		expect(validator.handle({ ...valid, contactPersons: [] })).toEqual({ status: 400, message: 'Vul een contactpersoon in.' })
+		expect(validator.handle({ ...valid, courseIds: [] })).toEqual({ status: 400, message: 'Kies minimaal één opleiding.' })
+		expect(validator.handle({ ...valid, token: null })).toEqual({ status: 403, message: GENERIC_CREATE_ERROR })
+	})
 })
