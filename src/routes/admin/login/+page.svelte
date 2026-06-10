@@ -1,5 +1,5 @@
 <script>
-	import { bird } from '$lib'
+	import { Picture, bird } from '$lib'
 
 	/** @type {{ form: import('./$types').ActionData }} */
 	const { form } = $props()
@@ -131,11 +131,18 @@
 		</div>
 
 		<!-- Bird mascot -->
-		<img
-			class="bird-mascot"
-			src={bird}
-			alt="ADConnect mascotte"
-		/>
+		<div class="bird-mascot">
+			<Picture
+				isEnhanced
+				src={bird}
+				alt="ADConnect mascotte"
+				width="300px"
+				height="300px"
+				fetchpriority="high"
+				loading="eager"
+				style="height:auto;"
+			/>
+		</div>
 
 		<!-- Decorative blob bottom-right -->
 		<div class="blob-br"></div>
