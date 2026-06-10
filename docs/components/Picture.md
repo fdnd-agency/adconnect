@@ -1,13 +1,10 @@
 # Picture.svelte Component Documentation
 ## Overview
-The Image component (Image.svelte) is a flexible image rendering component that handles modern image optimization.
-
-For static images, it uses `<enhanced:img>` to generate multiple image formats from a single source image. For Directus images, it uses a `<picture>` element to provide similar optimized image handling.
+The Picture component (Picture.svelte) is a flexible image rendering component that handles modern image optimization. For static images, it uses `<enhanced:img>` to generate multiple image formats from a single source. For Directus images, it uses a `<picture>` element with AVIF and JPEG sources to provide similar optimized handling. Nothing renders when no `src` is provided.
 
 ---
 
 ## Component Structure
-
 ### Script
 ```svelte
 <script lang="ts">
@@ -16,129 +13,90 @@ For static images, it uses `<enhanced:img>` to generate multiple image formats f
 	let { isEnhanced = false, src = undefined, width, height, alt = undefined, fetchpriority = 'auto' as FetchType, loading = 'lazy' as LoadingType, ...props } = $props()
 </script>
 ```
-
 Props:
-- `isEnhanced` (optional, default is `false`)
-  - Add `isEnhanced` to static images to automatically generate multiple image formats
-- `src` - The image source URL
-- `width` & `height` - Image width and height attributes
-- `alt` (optional) - Alternative text for accessibility
-  - Use meaningful alt text that describes the image content
-- `fetchpriority` (optional, default is `'auto'`)
-  - Set to `'high'` for hero images
-- `loading` (optional, default is `'lazy'`)
-  - Set to `'eager'` for images visible in the viewport on initial page load
-- `...props` - All other HTML attributes (class, data-*, aria-*, etc.)
-  - example: `style="border: 2px solid red; border-radius: 15px;"`
-  - > considering to remove this, because we do this via containers when callinf this component
+- `isEnhanced` (optional, default `false`) - Add to static images to automatically generate multiple image formats
+- `src` - The image source URL; nothing renders if omitted
+- `width` & `height` - Image dimensions (ignored by `enhanced:img`, which sets them automatically)
+- `alt` (optional) - Alternative text for accessibility; use meaningful text describing the image
+- `fetchpriority` (optional, default `'auto'`) - Set to `'high'` for hero images
+- `loading` (optional, default `'lazy'`) - Set to `'eager'` for images in the initial viewport
+- `...props` - All other HTML attributes (class, style, data-*, aria-*, etc.)
+
+> Only use `isEnhanced` for images saved inside the repository (static images). Directus images go through the `<picture>` branch.
 
 ---
 
 ### HTML
-The component uses conditional rendering to choose between two strategies:
-
-Enhanced imaghes (when `isEnhanced` is true):
+The component conditionally renders one of two strategies based on `isEnhanced`, and renders nothing without a `src`.
 ```svelte
-<enhanced:img
-	class="enhanced-img"
-	{src}
-	{alt}
-	{loading}
-	{fetchpriority}
-	{...props}
-/>
-```
-> Only use `isEnhanced` for images that are saved inside the repository (static images)
-> Enhanced:img adds height & width automatically
-
-Picture element:
-```svelte
-<picture>
-	<source type="image/avif" srcset={`${src}?format=avif`} />
-	<source type="image/jpeg" srcset={`${src}?format=jpeg`} />
-	<img
+{#if src && isEnhanced}
+	<enhanced:img
 		{src}
-		{width}
-		{height}
 		{alt}
 		{loading}
 		{fetchpriority}
 		{...props}
 	/>
-</picture>
+{:else if src}
+	<picture>
+		<source
+			type="image/avif"
+			srcset={`${src}?format=avif`}
+		/>
+		<source
+			type="image/jpeg"
+			srcset={`${src}?format=jpeg`}
+		/>
+		<img
+			{src}
+			{width}
+			{height}
+			{alt}
+			{loading}
+			{fetchpriority}
+			{...props}
+		/>
+	</picture>
+{/if}
 ```
-> For images fetched from directus
-
-
+> `enhanced:img` adds width & height automatically and outputs multiple formats from the static source.
+> The `<picture>` branch requests AVIF first, then falls back to JPEG, then to the plain `<img>`.
 ### Usage Examples
-
-Example: an image from directus outside of the viewport
+Example: an enhanced static image, sized by its parent container
 ```svelte
-<Picture
-	src="..."
-	alt="..."
-	width="1200"
-	height="600"
-/>
-```
-
-Example: an image inside the hero section
-```svelte
-<Picture
-	isEnhanced
-	src="..."
-	alt="..."
-	width="1200"
-	height="600"
-	fetchpriority="high"
-	loading="eager"
-/>
-```
-
----
-
-## CSS
-
-### Component Styling
-The component includes CSS to ensure that it fills its parent container.
-
-```css
-picture,
-enhanced\:img {
-	object-fit: cover;      /* Ensures image fills container while maintaining aspect ratio */
-	display: block;         /* Removes inline spacing */
-	width: 100%;            /* Picture element takes full width of the container it is in */
-}
-
-picture img {
-	width: 100%;            /* Image element takes full width of the container it is in */
-}
-```
-
-### Parent Styling
-Style the Image component through its parent container when you need additional styling like rounded corners:
-```svelte
-<section class="hero-media">
+<div class="img-container">
 	<Picture
-		slot="media"
 		isEnhanced
-		src={zaal}
-		alt="Een grote zaal vol mensen die op stoelen zitten en luisteren naar een spreker."
+		src={bird}
+		alt="Een vogel in een pak met een bril die een boek vasthoudt"
+		width="300px"
+		height="300px"
 		fetchpriority="high"
 		loading="eager"
-		width="300"
-		height="210"
+		style="height:auto;"
 	/>
-</section>
+</div>
 
 <style>
-	.hero-media {
-		border-radius: 0.5em;
-		overflow: hidden;
+	.img-container {
+		width: 20em;
+		align-self: center;
 	}
 </style>
 ```
-- The `hero-media` container has rounded corners
-- `overflow: hidden` clips the image to the rounded corners
+### CSS
+The component fills its parent container; size and shape are controlled from the parent (as shown above).
+```svelte
+<style>
+	picture,
+	enhanced\:img {
+		object-fit: cover;  /* fills container while keeping aspect ratio */
+		display: block;     /* removes inline spacing */
+		width: 100%;        /* takes full width of its container */
+	}
 
-
+	picture img {
+		width: 100%;        /* image fills the picture element */
+	}
+</style>
+```
