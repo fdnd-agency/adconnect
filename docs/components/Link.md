@@ -1,104 +1,93 @@
 # Link.svelte Component Documentation
-
 ## Overview
-
-The Link component (`Link.svelte`) is a universal, anchor element that serves multiple purposes throughout the application. It adapts to different use cases through CSS variants while maintaining consistent styling patterns and following FDND conventions.
+The Link component (Link.svelte) renders an anchor that automatically marks itself as active when its `href` matches the current page. It forwards any class and HTML attributes through to the anchor, and supports optional screen-reader-only text for accessibility, making it a shared link primitive used across navigation, footer, buttons, and more.
 
 ---
 
 ## Component Structure
-
-### Script Section
-
+### Script
 ```svelte
 <script>
-	const { href, children, screenReaderText, ...props } = $props()
+	import { page } from '$app/state'
+	const { href, children, screenReaderText, class: className = '', ...props } = $props()
+	let isCurrent = $derived(page.url.pathname === href)
 </script>
 ```
+Props:
+- `href` - The link destination; also compared against the current path to set the active state
+- `children` - Slot content rendered inside the link (the visible label)
+- `screenReaderText` (optional) - Visually hidden text for screen readers, appended after the children
+- `class` (optional) - Class string forwarded to the anchor; selects a style variant (e.g. `nav-link`, `footer-link`, `button-outline-white`)
+- `...props` - All other HTML attributes (target, rel, aria-*, etc.) spread onto the anchor
 
-**Props:**
-- `href` - URL destination for the link
-- `children` - Renders content inside the Link component
-  - ```svelte
-    <Link class="..." href="...">
-	    Meer informatie
-        <!-- children will render: 'meer informatie' -->
-    </Link>
-    ```
-- `screenReaderText` (optional) - Hidden text for screen readers
-- `...props` - All other HTML attributes (class, data-*, aria-*, etc.)
+> `isCurrent` compares `href` to the current pathname; when they match, the `active` class and `aria-current="page"` are added automatically.
+
+---
 
 ### HTML
-HTML inside the component:
 ```svelte
-<a {href} {...props}>
-	{@render children?.()}
 
+	{href}
+	{...props}
+	class="{className}{isCurrent ? ' active' : ''}"
+	aria-current={isCurrent ? 'page' : undefined}
+>
+	{@render children?.()}
 	{#if screenReaderText}
 		<span class="visually-hidden">{screenReaderText}</span>
 	{/if}
 </a>
 ```
-
-Usage in other files:
+> The `active` class is appended to whatever class is passed in; `aria-current` is only set on the current page.
+> `screenReaderText` renders in a visually hidden span, so it's announced by screen readers but not shown.
+### Usage Examples
+Example: a button-styled link with screen-reader text
 ```svelte
 <Link
-	class="button-outline-blue"
-	href="/nieuws/{article.uuid}"
-	screenReaderText="over {article.title}">Meer informatie
+	href={primaryLink.href}
+	class="button-outline-white"
+	screenReaderText={primaryLink.screenReaderText}
+>
+	{primaryLink.label}
 </Link>
 ```
-
-Output in the DOM:
+### CSS
+The component ships several style variants selected via the `class` prop. The dynamic bit is the animated underline, driven by the `--_underline-width` custom property on hover and active state.
 ```svelte
-<a
-	href="/nieuws/2db02c29-99c5-402a-9d2a-d4697ff869cf"
-	class="button-outline-blue s-e6aFGoMWy-BP">
-	Meer informatie
-	<span class="visually-hidden s-e6aFGoMWy-BP">over Landelijke Ad-dag</span>
-</a>
-```
+<style>
+	.nav-link {
+		/* underline grows from 0 to full width on hover/active */
+		--_underline-width: 0;
 
----
-
-## CSS - Component Variants
-
-To use different variants, you pass a class through HTML just like normally. The `...props` ensures that the class is added to the component. In the component itself, we have the corresponding classes nested.
-
-### Example 
-There are 3 nav-link versions:
-- A `desktop` version used when the navigation is fully open
-- A `hamburger` version for use in the hamburger menu
-- A `default` version used for the secondary navigation (FAQ, About Us & Contact)
-
-
-Usage:
-```css
-.nav-link {
-	/* shared styles for this class */
-
-	/* Desktop variant */
-	&.desktop {
-		/* usage: class="nav-link desktop" */
-	}
-
-	/* Hamburger variant */
-	&.hamburger {
-		/* usage: class="nav-link hamburger" */
-
+		&.desktop {
+			/* desktop nav variant */
+		}
+		&.hamburger {
+			/* mobile menu variant, underline disabled */
+			&::after {
+				all: unset;
+			}
+		}
 		&::after {
-			all: unset;
-			/* reset the after, we dont need after in this version */
+			/* the animated underline */
+			width: var(--_underline-width);
+		}
+		&:hover {
+			--_underline-width: 100%;
 		}
 	}
 
-	/* Shared pseudo-element */
-	&::after {
+	.active {
+		/* current-page link keeps the underline fully expanded */
+		--_underline-width: 100%;
 	}
 
-	&:hover,
-	&.active {
-		/* change styles on hover and active */
+	.clickable-container::before {
+		/* add position:relative to the link's container to make the whole container clickable */
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 10;
 	}
-}
+</style>
 ```
