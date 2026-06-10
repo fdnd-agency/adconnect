@@ -40,7 +40,7 @@
 	}}
 />
 
-<AboutOverAD {benefitData} />
+<AboutOverAD {benefitData} anchor="benefit" />
 
 <SectionPage
 	mirrored

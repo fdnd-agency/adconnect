@@ -83,7 +83,7 @@
 	.intro {
 		display: flex;
 		justify-content: center;
-		padding: 4rem 2rem
+		padding: 4rem 2rem;
 	}
 
 	.cards-ta {
@@ -96,7 +96,6 @@
 		margin: 2rem auto 5rem;
 		width: 90%;
 		max-width: 1400px;
-
 	}
 
 	@container cards (min-width: 1024px) {
