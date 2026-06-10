@@ -1,6 +1,6 @@
 # SectionHero.svelte Component Documentation
 ## Overview
-The SectionHero component (SectionHero.svelte) renders a responsive hero section that pairs a `CardHero` component with an optional image (`Picture` component). It supports up to two  links and an optional alternate background color, making it suitable as the top section of a page.
+The SectionHero component (SectionHero.svelte) renders a responsive hero section that pairs a CardHero component with an optional image (Picture component). It supports up to two call-to-action links and an optional alternate background color, making it suitable as the top section of a page.
 
 ---
 
@@ -8,14 +8,17 @@ The SectionHero component (SectionHero.svelte) renders a responsive hero section
 ### Script
 ```svelte
 <script>
-	import { RCardHero, RLink, RPicture } from '$lib'
+	import { CardHero, Link, Picture } from '$lib'
 	const { sectionInfo, primaryLink, secondaryLink, picture, backgroundBlue } = $props()
 </script>
 ```
 Props:
 - `sectionInfo` - Object holding the title and description for the card
 - `primaryLink` (optional) - Object for the primary link, styled as an outlined white button
-- `secondaryLink` (optional) - Object for the secondary link, styled as an outlined blue button
+  - `label` - The button text
+  - `href` - The link destination
+  - `screenReaderText` - Hidden text for screen readers
+- `secondaryLink` (optional) - Object for the secondary link, styled as an outlined blue button (same shape as `primaryLink`)
 - `picture` (optional) - Object holding every prop the Picture component uses
 - `backgroundBlue` (optional) - Applies the alternate background color to the section
 
@@ -28,31 +31,36 @@ The same goes for the Picture component: every prop the Picture component might 
 ### HTML
 ```svelte
 <section
-	class="container"
+	id="main"
+	class="hero"
 	class:backgroundBlue
 >
-	<RCardHero
+	<CardHero
 		title={sectionInfo.title}
 		description={sectionInfo.description}
 	>
 		{#if primaryLink}
-			<RLink
+			<Link
 				href={primaryLink.href}
-				class="button-outline-white">{primaryLink.label}</RLink
-			>
+				class="button-outline-white"
+				screenReaderText={primaryLink.screenReaderText}
+				>{primaryLink.label}
+			</Link>
 		{/if}
 
 		{#if secondaryLink}
-			<RLink
+			<Link
 				href={secondaryLink.href}
-				class="button-outline-blue">{secondaryLink.label}</RLink
-			>
+				class="button-outline-blue"
+				screenReaderText={secondaryLink.screenReaderText}
+				>{secondaryLink.label}
+			</Link>
 		{/if}
-	</RCardHero>
+	</CardHero>
 
 	{#if picture}
 		<section class="hero-media">
-			<RPicture
+			<Picture
 				isEnhanced={picture.isEnhanced}
 				src={picture.src}
 				alt={picture.alt}
@@ -64,19 +72,15 @@ The same goes for the Picture component: every prop the Picture component might 
 		</section>
 	{/if}
 </section>
-
 ```
-> Both links are optional and only render when their object is passed
-> `backgroundBlue` toggles the alternate background color.
-
+> Both links are optional and only render when their object is passed; `backgroundBlue` toggles the alternate background color.
 ### Usage Examples
-Example: a hero section with two links, an enhanced static image, and the alternate background
-
+Example: page data is bundled into objects and passed into the component. Here the text and button data come from `homePage`, while the image is set inline.
 ```svelte
 <SectionHero
-	sectionInfo={section}
-	primaryLink={{ label: "Meer over Ad's", href: '/over-ad' }}
-	secondaryLink={{ label: 'Kom naar de Ad-dag', href: '/ad-dag' }}
+	sectionInfo={{ title: homePage.hero_heading, description: homePage.hero_body }}
+	primaryLink={{ label: homePage.hero_primary_button_text, href: homePage.hero_primary_button_url }}
+	secondaryLink={{ label: homePage.hero_secondary_button_text, href: homePage.hero_secondary_button_url }}
 	picture={{
 		isEnhanced: true,
 		src: zaal,
@@ -91,18 +95,16 @@ Example: a hero section with two links, an enhanced static image, and the altern
 ```
 ### CSS
 The only dynamic/optional styling is the alternate background, toggled by the `backgroundBlue` prop.
-
 ```svelte
 <section
-	class="container"
+	class="hero"
 	<!-- toggled by the backgroundBlue prop -->
 	class:backgroundBlue
 >
 
 <style>
 	.backgroundBlue {
-        /* alternate background: white in light mode, blue-800 in dark mode */
-		background-color: light-dark(var(--text-white), var(--blue-800)); 
+		/* alternate background color */
 	}
 </style>
 ```
