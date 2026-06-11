@@ -21,6 +21,7 @@
     <Carousel
         nominations
         carouselItems={data.nominations}
+        cooperations={data.cooperations}
         dividerText="Voorgaande nominaties"
     />
 
