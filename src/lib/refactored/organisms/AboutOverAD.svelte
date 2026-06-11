@@ -42,7 +42,7 @@
 		max-width: 1400px;
 		margin: auto;
 		padding: 3em 5%;
-		background-color: light-dark(var(--text-white), var(--blue-800));
+		background-color: var(--_main-background);
 
 		@media (min-width: 1024px) {
 			gap: 4em;

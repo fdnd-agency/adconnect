@@ -19,6 +19,8 @@
 
 <style>
 	.page-header {
+		--_color: white;
+
 		display: flex;
 		flex-direction: column;
 		align-self: end;
@@ -26,6 +28,10 @@
 		width: 100%;
 		max-width: 75ch;
 		margin-top: 1em;
+	}
+
+	.page-header, .page-header__title {
+		color: var(--_color);
 	}
 
 	.page-header__buttons {

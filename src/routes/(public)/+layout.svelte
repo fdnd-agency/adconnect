@@ -49,7 +49,12 @@
 	}
 
 	main {
+		--_main-background: light-dark(var(--blue-150), var(--blue-800));
+		--_main-color: light-dark(black, white);
+
 		margin: 7.9em 0 0 0;
+		background-color: var(--_main-background);
+		color: var(--_main-color);
 	}
 
 	.skip-link {

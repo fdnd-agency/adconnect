@@ -118,7 +118,7 @@
 
 <style>
 	.lados-overview {
-		background: light-dark(var(--text-white), var(--blue-800));
+		background-color: var(--_main-background);
 		color: light-dark(var(--blue-800), var(--text-white));
 		padding: 3em 5% 5em;
 	}

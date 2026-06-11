@@ -126,7 +126,7 @@
 
 		@media (min-width: 768px) {
 			gap: 3em;
-			padding: 0 0 5em 0;
+			padding: 2.5em 0 2.5em 0;
 		}
 	}
 

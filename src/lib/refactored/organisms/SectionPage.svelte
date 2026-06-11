@@ -68,6 +68,11 @@
 
 	.media-section--background-black {
 		--_background: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		/* overwrite main-color to white here, because the component CardSection uses it for text color,
+		but in this situation (without the overwrite) the dark mode will have blue background with black text,
+		which is not enough contrast */
+		--_main-color: white;
+
 	}
 
 	.media-section--vertical {

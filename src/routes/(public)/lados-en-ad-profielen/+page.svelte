@@ -65,7 +65,7 @@
 
 <style>
 	.lado-info {
-		background: light-dark(var(--text-white), var(--blue-800));
+		background-color: var(--_main-background);
 		padding: 3em 5%;
 	}
 	.inner-wrapper {
