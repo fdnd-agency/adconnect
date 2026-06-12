@@ -18,6 +18,10 @@
 </div>
 
 <style>
+	h1, p {
+		color: var(--text-white);
+	}
+
 	.page-header {
 		display: flex;
 		flex-direction: column;
