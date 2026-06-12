@@ -119,6 +119,7 @@
 
 			&:has(input:checked) {
 				background-color: var(--primary-blue);
+				color: white;
 			}
 		}
 	}

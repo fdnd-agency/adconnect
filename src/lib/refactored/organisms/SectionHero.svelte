@@ -68,7 +68,7 @@
 	}
 
 	.backgroundBlue {
-		--_background: light-dark(var(--text-white), var(--blue-800));
+		--_background: light-dark(var(--primary-blue), var(--blue-800));
 	}
 
 	.hero__media {

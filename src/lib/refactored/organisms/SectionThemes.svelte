@@ -28,6 +28,7 @@
 <style>
 	.themes {
 		--_background: light-dark(var(--primary-blue), hsl(210, 30%, 8%));
+		--_color: white;
 
 		display: flex;
 		flex-direction: column;
@@ -48,6 +49,11 @@
 
 	.themes__title {
 		text-align: center;
+		color: var(--_color);
+	}
+
+	.themes__description {
+		color: var(--_color);
 	}
 
 	.themes__list {

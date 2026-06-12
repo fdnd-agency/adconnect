@@ -5,7 +5,12 @@
 </script>
 
 <article class="section-header">
-	<h2 class="section-header__title" class:centered>{title}</h2>
+	<h2
+		class="section-header__title"
+		class:centered
+	>
+		{title}
+	</h2>
 	<p class="section-header__description">{description}</p>
 
 	<div class:centered>
@@ -31,10 +36,15 @@
 
 		.section-header__title {
 			grid-row: 2;
+			color: var(--_main-color);
+			/* color: contrast-color(var(--_main-color)); */
 		}
 
 		.section-header__description {
 			grid-row: 3;
+			/* contrast-color() is not supported, that why it overwritten */
+			color: var(--_main-color);
+			/* color: contrast-color(var(--_main-color)); */
 		}
 	}
 
