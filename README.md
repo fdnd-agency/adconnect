@@ -275,7 +275,7 @@ The project contains updated documentation for design, code structure, CMS usage
 
 - [Overlegplatform Associate Degrees](https://www.deassociatedegree.nl/)
 - [Current styleguide](https://github.com/fdnd-agency/adconnect/blob/main/design/overlegplatform-ads-huisstijlgids.pdf)
-- [Redesign in Figma](https://www.figma.com/design/C3LofyCP8YMew5ZdOFOBzf/Gezamenlijk-ontwerp?node-id=29-2&t=jVM6qvXd8jzOXidn-1)
+- [Redesign in Figma](https://www.figma.com/design/MWooyTNuJWHPSHtrr6EOjg/Interface-Inventory-Ad-Connect?node-id=298-347)
 - [Design Challenge](https://github.com/fdnd-agency/adconnect/wiki/Design-Challenge)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [HANDOVER.md](HANDOVER.md)
