@@ -2,6 +2,8 @@
 	import { logo, logowhite } from '$lib'
 
 	import { page } from '$app/stores'
+
+	export let navButton = {}
 </script>
 
 <nav aria-label="Primair">
@@ -84,7 +86,7 @@
 		<li>
 			<a
 				class="button-outline-white"
-				href="/ad-dag">Kom naar Ad-dag</a
+				href={navButton.nav_button_url}>{navButton.nav_button_text}</a
 			>
 		</li>
 	</ul>
