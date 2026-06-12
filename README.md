@@ -135,7 +135,7 @@ Main component folders:
 - `src/lib/organisms/forms` - reusable admin forms for documents, news, events, FAQs, nominations, themes, cooperations, courses, LADO items and sectoral advisory boards;
 - `src/lib/icons` - shared icon components.
 
-The component documentation has also been updated. See [docs/components.md](docs/components.md) and the component-specific files in [docs/components](docs/components).
+The component documentation has also been updated. See and the component-specific files in [docs/components](docs/components).
 
 ## Admin portal
 
