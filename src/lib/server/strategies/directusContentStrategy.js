@@ -25,7 +25,8 @@ const COLLECTIONS = {
 	pageAdDay: { path: 'adconnect_page_ad_day', key: 'id' },
 	pageTalentAward: { path: 'adconnect_page_talent_award', key: 'id' },
 	pageNews: { path: 'adconnect_page_news', key: 'id' },
-	pagePublications: { path: 'adconnect_page_publications', key: 'id' }
+	pagePublications: { path: 'adconnect_page_publications', key: 'id' },
+	navButton: { path: 'adconnect_nav_button', key: 'id' }
 }
 
 function getConfig(contentType) {

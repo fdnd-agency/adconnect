@@ -17,7 +17,7 @@
 
 	<header class="general-header">
 		<TopNav />
-		<NavPros />
+		<NavPros navButton={data.navButton} />
 	</header>
 
 	<main>
