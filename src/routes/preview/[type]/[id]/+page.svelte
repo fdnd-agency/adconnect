@@ -1,5 +1,5 @@
 <script>
-	import { PreviewBanner, SectionHero, DetailsPublicaties, DetailsOverOns } from '$lib'
+	import { PreviewBanner, SectionHero, DetailsPublicaties, DetailsOverOns, NominationDetail, LadosOverview } from '$lib'
 	import { DIRECTUS_URL } from '$lib/constants.js'
 	const { data } = $props()
 </script>
@@ -62,6 +62,10 @@
 		}}
 	/>
 	<DetailsPublicaties data={{ document: doc }} />
+{:else if data.type === 'nominations'}
+	<NominationDetail data={{ nomination: data.content[0] }} />
+{:else if data.type === 'lados'}
+	<LadosOverview lados={data.content} />
 {:else}
 	<p class="preview-message">Geen preview beschikbaar voor dit contenttype.</p>
 {/if}
