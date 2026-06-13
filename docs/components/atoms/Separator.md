@@ -2,6 +2,14 @@
 ## Overview
 The Separator component (Separator.svelte) renders a horizontal divider line. When given text, it centers the label between two lines; without text, it shows a single full-width line. An optional `noMargin` prop removes the default vertical spacing.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1920" height="144" alt="image" src="https://github.com/user-attachments/assets/e799bffc-8a2f-4424-bb0d-33fbcdd5d6b8" />
+<img width="2394" height="224" alt="image" src="https://github.com/user-attachments/assets/1e5fa49f-0bb3-4b17-a8a7-de76dec2ee71" />
+
+</details>
+
 ---
 
 ## Component Structure
