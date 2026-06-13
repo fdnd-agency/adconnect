@@ -4,6 +4,13 @@
 
 The TextSection component (TextSection.svelte) renders a document's description and, when a source file is available, an inline preview of it (via an `<iframe>`) plus a link to open the full document in a new tab. The preview block is skipped entirely when no source file is present.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1748" height="1256" alt="image" src="https://github.com/user-attachments/assets/2fc5abdc-3468-4586-831d-af3eba7b4d4d" />
+
+</details>
+
 ---
 
 ## Component Structure
