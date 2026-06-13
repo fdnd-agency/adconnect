@@ -4,6 +4,13 @@
 
 The FaqSection component (FaqSection.svelte) renders a titled list of FAQ items as native `<details>` accordions, with the first item open by default. Each item animates open/closed with a rotating chevron, and a decorative background circle sits behind the section. It adapts to dark mode, reduced motion, high contrast, and inverted colors.
 
+
+<details>
+	<summary>Example</summary>
+
+<img width="1414" height="1016" alt="image" src="https://github.com/user-attachments/assets/62ad0b04-dded-49ee-9fa4-981283f94f20" />
+</details>
+
 ---
 
 ## Component Structure
