@@ -4,6 +4,16 @@
 
 The SectionThemes component (SectionThemes.svelte) renders a titled section with an optional description above a responsive grid of theme cards (CardTheme component). It builds each card's link from the theme data, and supports an optional alternate background color.
 
+
+<details>
+	<summary>Example</summary>
+
+<img width="2264" height="1142" alt="image" src="https://github.com/user-attachments/assets/5131fb02-fad8-4d61-891a-99114a7988d8" />
+<img width="2358" height="816" alt="image" src="https://github.com/user-attachments/assets/d77681aa-b3a0-410c-9089-e6a3a8443f92" />
+<img width="2338" height="740" alt="image" src="https://github.com/user-attachments/assets/cc46187a-7ba3-4064-89b0-28fb15a453d9" />
+
+</details>
+
 ---
 
 ## Component Structure
