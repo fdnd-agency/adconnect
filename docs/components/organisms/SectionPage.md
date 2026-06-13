@@ -4,6 +4,15 @@
 
 The SectionPage component (SectionPage.svelte) renders a responsive section that pairs a CardSection component with an optional image (Picture component). It supports a mirrored layout, a dark background, a vertical layout, and a centered card, making it the flexible building block for alternating content sections across a page.
 
+<details>
+	<summary>Example</summary>
+
+<img width="2392" height="892" alt="image" src="https://github.com/user-attachments/assets/6c4da049-f617-42c7-8aba-a1c55dadbb06" />
+<img width="2514" height="850" alt="image" src="https://github.com/user-attachments/assets/c09807f9-6250-4d4a-9dce-2cbfd7276fc7" />
+<img width="1158" height="1116" alt="image" src="https://github.com/user-attachments/assets/aa73c599-22af-429a-9097-5475fff4246d" />
+
+</details>
+
 ---
 
 ## Component Structure
