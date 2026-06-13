@@ -4,6 +4,13 @@
 
 The SectionFilter component (SectionFilter.svelte) renders a set of filter buttons (FilterButtons component) above a responsive grid of publication cards (CardPublicaties component). It displays the already-filtered results for the selected category, making it suitable for a filterable document or publication overview.
 
+<details>
+	<summary>Example</summary>
+
+<img width="2328" height="1230" alt="image" src="https://github.com/user-attachments/assets/f3f5649c-5043-4770-82f9-3cb9ea70ed89" />
+
+</details>
+
 ---
 
 ## Component Structure
