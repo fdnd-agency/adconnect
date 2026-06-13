@@ -4,6 +4,12 @@
 
 The CardNews component (CardNews.svelte) renders a single news card with a title, formatted date, description, and a link to the full article. The whole card is clickable via the `clickable-container` link. It's typically rendered in a list by a parent section that handles pagination.
 
+<details>
+	<summary>Example</summary>
+	
+<img width="794" height="664" alt="image" src="https://github.com/user-attachments/assets/3252a586-2ef4-451f-9601-916189417826" />
+</details>
+
 ---
 
 ## Component Structure
