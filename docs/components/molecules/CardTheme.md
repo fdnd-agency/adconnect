@@ -4,6 +4,13 @@
 
 The CardTheme component (CardTheme.svelte) renders a single theme card with a title, description, decorative dots icon, and an optional link with an arrow. The whole card is clickable, titles and descriptions are truncated, and the heading layout adapts based on the card's own width via a container query.
 
+
+<details>
+	<summary>Example</summary>
+
+<img width="810" height="532" alt="image" src="https://github.com/user-attachments/assets/dab69831-36ef-492d-818d-65c7ecc1a5f8" />
+</details>
+
 ---
 
 ## Component Structure
