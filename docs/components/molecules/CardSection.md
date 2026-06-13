@@ -4,6 +4,14 @@
 
 The CardSection component (CardSection.svelte) renders a section header with a title, description, a decorative dots icon, and an optional link. An optional `centered` prop centers the title and icon, making it reusable across both left-aligned and centered section layouts.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1050" height="764" alt="image" src="https://github.com/user-attachments/assets/b14f78e3-c900-42b8-af76-3fbaab518015" />
+<img width="1162" height="938" alt="image" src="https://github.com/user-attachments/assets/a94c70f7-63a6-4c88-9b4d-f79edd6e52b3" />
+
+</details>
+
 ---
 
 ## Component Structure
