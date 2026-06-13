@@ -4,6 +4,13 @@
 
 The ErrorPage component (ErrorPage.svelte) renders a full error/fallback page with its own header, navigation, footer, and a list of links to the working pages, alongside an illustration. All text defaults to error messaging built from the current `page.status`, but every piece can be overridden via props, so it doubles as a generic "page unavailable" screen.
 
+
+<details>
+	<summary>Example</summary>
+
+<img width="2444" height="722" alt="image" src="https://github.com/user-attachments/assets/866db9dc-b308-4cb1-836b-323b6b21e8a1" />
+</details>
+
 ---
 
 ## Component Structure
