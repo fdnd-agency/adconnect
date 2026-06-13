@@ -4,6 +4,13 @@
 
 The SectionPlanning component (SectionPlanning.svelte) renders a centered CardSection followed by a responsive grid of cards. Each card shows a heading, body text, and a call-to-action link, making it suitable for presenting a programme alongside related content like workshops.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1396" height="1112" alt="image" src="https://github.com/user-attachments/assets/9b7af774-265d-4cdf-b68d-07dda5c24153" />
+
+</details>
+
 ---
 
 ## Component Structure
