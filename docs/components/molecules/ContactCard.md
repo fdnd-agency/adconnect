@@ -4,6 +4,13 @@
 
 The ContactCard component (ContactCard.svelte) renders a static contact information card with a heading, intro text, and clickable phone and email links (each with an inline icon). A decorative background circle sits in the corner on wider screens. It takes no data props and is rendered as-is.
 
+
+<details>
+	<summary>Example</summary>
+
+<img width="690" height="794" alt="image" src="https://github.com/user-attachments/assets/2bf524ce-fea0-4da6-9728-19be3ab9f29f" />
+</details>
+
 ---
 
 ## Component Structure
