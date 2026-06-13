@@ -7,8 +7,7 @@ The NewsGridContainer component (NewsGridContainer.svelte) renders a titled, res
 <details>
 	<summary>Example</summary>
 
-<img width="2394" height="798" alt="image" src="https://github.com/user-attachments/assets/08859704-f2a5-4f38-82f9-e13118799123" />
-<img width="2364" height="1250" alt="image" src="https://github.com/user-attachments/assets/bd034c85-0147-4255-a754-208b74590c95" />
+<img width="2334" height="1162" alt="image" src="https://github.com/user-attachments/assets/6df19f76-3577-48ca-8930-ca04846e44a4" />
 
 </details>
 
