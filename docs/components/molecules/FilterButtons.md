@@ -4,6 +4,13 @@
 
 The FilterButtons component (FilterButtons.svelte) renders a category filter as a group of radio buttons styled as buttons. Selecting a category updates the URL's `category` search param (driving the filtering upstream), and a live region shows the active category and result count. It works as a plain GET form when JavaScript is disabled.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1104" height="334" alt="image" src="https://github.com/user-attachments/assets/92b4ad46-5ef5-4e84-a3ba-10c4b4e186a9" />
+
+</details>
+
 ---
 
 ## Component Structure
