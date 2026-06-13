@@ -4,6 +4,14 @@
 
 The Carousel component (Carousel.svelte) renders an auto-scrolling, infinitely looping carousel between two separators. It works in two modes: a `logos` mode showing clickable partner logos, and a `nominations` mode showing linked names with a hover-revealed photo and an optional institution logo. Both modes pull their images from Directus, and the track pauses on hover.
 
+<details>
+	<summary>Example</summary>
+
+<img width="2434" height="444" alt="image" src="https://github.com/user-attachments/assets/3fe09e2e-336e-43d6-8aa7-9da71d45ef03" />
+<img width="2382" height="412" alt="image" src="https://github.com/user-attachments/assets/67ecb4b4-efe7-4549-adda-862b189a97c8" />
+
+</details>
+
 ---
 
 ## Component Structure
