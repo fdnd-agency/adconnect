@@ -4,6 +4,13 @@
 
 The DetailsOverOns component (DetailsOverOns.svelte) renders a theme detail page: the theme's rich-text body in the main column and a sticky "Ad-dag" call-to-action card in the sidebar. The body is injected as raw HTML, with `:global` styles handling the elements that come from it. The page title is set from the theme.
 
+<details>
+	<summary>Example</summary>
+
+<img width="2460" height="974" alt="image" src="https://github.com/user-attachments/assets/095b0d00-8de4-4438-a43c-334c62bef2e6" />
+
+</details>
+
 ---
 
 ## Component Structure
