@@ -1,18 +1,24 @@
 # SectionHero.svelte Component Documentation
+
 ## Overview
+
 The SectionHero component (SectionHero.svelte) renders a responsive hero section that pairs a CardHero component with an optional image (Picture component). It supports up to two call-to-action links and an optional alternate background color, making it suitable as the top section of a page.
 
 ---
 
 ## Component Structure
+
 ### Script
+
 ```svelte
 <script>
 	import { CardHero, Link, Picture } from '$lib'
 	const { sectionInfo, primaryLink, secondaryLink, picture, backgroundBlue } = $props()
 </script>
 ```
+
 Props:
+
 - `sectionInfo` - Object holding the title and description for the card
 - `primaryLink` (optional) - Object for the primary link, styled as an outlined white button
   - `label` - The button text
@@ -29,6 +35,7 @@ The same goes for the Picture component: every prop the Picture component might 
 ---
 
 ### HTML
+
 ```svelte
 <section
 	id="main"
@@ -39,6 +46,7 @@ The same goes for the Picture component: every prop the Picture component might 
 		title={sectionInfo.title}
 		description={sectionInfo.description}
 	>
+		<!-- both links are optional; each renders only when its object is passed -->
 		{#if primaryLink}
 			<Link
 				href={primaryLink.href}
@@ -58,8 +66,9 @@ The same goes for the Picture component: every prop the Picture component might 
 		{/if}
 	</CardHero>
 
+	<!-- image is optional -->
 	{#if picture}
-		<section class="hero-media">
+		<section class="hero__media">
 			<Picture
 				isEnhanced={picture.isEnhanced}
 				src={picture.src}
@@ -68,14 +77,21 @@ The same goes for the Picture component: every prop the Picture component might 
 				height={picture.height}
 				fetchpriority={picture.fetchpriority}
 				loading={picture.loading}
+				style="height:auto;"
 			/>
 		</section>
 	{/if}
 </section>
 ```
-> Both links are optional and only render when their object is passed; `backgroundBlue` toggles the alternate background color.
+
+> `backgroundBlue` toggles the alternate background color via the `--_background` custom property.
+
 ### Usage Examples
-Example: page data is bundled into objects and passed into the component. Here the text and button data come from `homePage`, while the image is set inline.
+
+Page data is bundled into objects and passed in. The text and buttons come from page data, while the image is set inline.
+
+Example: a home hero with two links and the alternate background
+
 ```svelte
 <SectionHero
 	sectionInfo={{ title: homePage.hero_heading, description: homePage.hero_body }}
@@ -93,18 +109,39 @@ Example: page data is bundled into objects and passed into the component. Here t
 	backgroundBlue
 />
 ```
+
+Example: a minimal hero with just a title, description, and image (no links)
+
+```svelte
+<SectionHero
+	sectionInfo={{ title: theme?.title, description: theme?.description }}
+	picture={{
+		isEnhanced: true,
+		src: `${DIRECTUS_URL}/assets/${theme?.hero}`,
+		alt: '',
+		width: '300',
+		height: '210',
+		fetchpriority: 'high',
+		loading: 'eager'
+	}}
+/>
+```
+
 ### CSS
+
 The only dynamic/optional styling is the alternate background, toggled by the `backgroundBlue` prop.
+
 ```svelte
 <section
 	class="hero"
-	<!-- toggled by the backgroundBlue prop -->
+	// toggled by the backgroundBlue prop
 	class:backgroundBlue
 >
 
 <style>
 	.backgroundBlue {
-		/* alternate background color */
+		/* alternate background: shifts the dark-mode color to blue-800 */
+		--_background: light-dark(var(--primary-blue), var(--blue-800));
 	}
 </style>
 ```
