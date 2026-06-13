@@ -243,7 +243,7 @@ The project contains updated documentation for design, code structure, CMS usage
 - [docs/cms.md](docs/cms.md) - Directus CMS setup and endpoints;
 - [docs/datamodel.md](docs/datamodel.md) - data model and collection relationships;
 - [docs/code-structure.md](docs/code-structure.md) - code conventions and structure;
-- [docs/components.md](docs/components.md) - component overview;
+- [docs/components/overview.md](docs/components/overview.md) - component overview;
 - [docs/components](docs/components) - component-specific documentation;
 - [docs/technical-design/contentservice.md](docs/technical-design/contentservice.md) - ContentService explanation;
 - [docs/technical-design/validation-chain.md](docs/technical-design/validation-chain.md) - validation system explanation;
