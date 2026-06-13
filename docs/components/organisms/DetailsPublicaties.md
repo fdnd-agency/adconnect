@@ -4,6 +4,13 @@
 
 The DetailsPublicaties component (DetailsPublicaties.svelte) renders a publication detail page: the publication content (via the TextSection component) in the main column and a sticky "Ad-dag" call-to-action card alongside it. The sidebar content is static; everything data-driven is delegated to TextSection.
 
+
+<details>
+	<summary>Example</summary>
+
+<img width="2396" height="1220" alt="image" src="https://github.com/user-attachments/assets/c5004758-2457-4891-8bde-6a5956ff523c" />
+</details>
+
 ---
 
 ## Component Structure
