@@ -4,6 +4,14 @@
 
 The SectionHero component (SectionHero.svelte) renders a responsive hero section that pairs a CardHero component with an optional image (Picture component). It supports up to two call-to-action links and an optional alternate background color, making it suitable as the top section of a page.
 
+<details>
+	<summary>Example</summary>
+
+<img width="2424" height="878" alt="image" src="https://github.com/user-attachments/assets/ed7f8760-257e-4194-b115-27e1d1a7705a" />
+<img width="2262" height="724" alt="image" src="https://github.com/user-attachments/assets/5d36826f-0923-43f0-b02c-66fc8dfc4ada" />
+
+</details>
+
 ---
 
 ## Component Structure
