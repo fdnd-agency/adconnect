@@ -4,6 +4,13 @@
 
 The AboutOverAD component (AboutOverAD.svelte) renders a "why choose Associate Degrees" section: an intro heading and text followed by a responsive grid of benefit cards. Each card pairs a check icon with a title and excerpt, and reflows its layout based on the card's own width via a container query. The section takes an anchor id for in-page linking.
 
+<details>
+	<summary>Example</summary>
+
+<img width="2082" height="1014" alt="image" src="https://github.com/user-attachments/assets/6aef7de5-7472-4faa-bc49-6394f2976a6e" />
+
+</details>
+
 ---
 
 ## Component Structure
