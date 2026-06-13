@@ -4,6 +4,14 @@
 
 The NewsGridContainer component (NewsGridContainer.svelte) renders a titled, responsive grid of news cards (CardNews component). When given an `itemsPerPage`, it paginates the list with previous/next controls; without it, all items are shown. The grid columns respond to the container's own width.
 
+<details>
+	<summary>Example</summary>
+
+<img width="2394" height="798" alt="image" src="https://github.com/user-attachments/assets/08859704-f2a5-4f38-82f9-e13118799123" />
+<img width="2364" height="1250" alt="image" src="https://github.com/user-attachments/assets/bd034c85-0147-4255-a754-208b74590c95" />
+
+</details>
+
 ---
 
 ## Component Structure
