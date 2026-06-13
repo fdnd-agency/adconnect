@@ -4,6 +4,13 @@
 
 The TalentAwardSection component (TalentAwardSection.svelte) composes the Talent Award overview: a separator, the previous winners (TalentWinner component), a centered intro card (CardSection component), and a carousel of previous nominations (Carousel component). It's mostly a layout wrapper that passes the page `data` down to its children.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1930" height="1052" alt="image" src="https://github.com/user-attachments/assets/77ef1af7-3ed9-46df-8b47-5efcd3fdc90a" />
+
+</details>
+
 ---
 
 ## Component Structure
