@@ -2,6 +2,14 @@
 ## Overview
 The CardHero component (CardHero.svelte) renders a page header with a breadcrumb, title, and description. It optionally accepts child content (typically buttons or links) rendered in a wrapping row below the text.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1050" height="480" alt="image" src="https://github.com/user-attachments/assets/31d609b5-df4a-4c65-b28a-7c8418cb477e" />
+<img width="1056" height="548" alt="image" src="https://github.com/user-attachments/assets/93a04dab-d709-483e-b368-11180b8bb30f" />
+
+</details>
+
 ---
 
 ## Component Structure
