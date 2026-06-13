@@ -4,6 +4,13 @@
 
 The CardPublicaties component (CardPublicaties.svelte) renders a single publication card showing the title, category, year, and a truncated description, plus a link to the full publication. The whole card is clickable, and long titles and descriptions are clamped to two lines.
 
+<details>
+	<summary>Example</summary>
+
+<img width="824" height="676" alt="image" src="https://github.com/user-attachments/assets/96cbf6b0-fb30-4645-8962-dc245a8c4dea" />
+
+</details>
+
 ---
 
 ## Component Structure
