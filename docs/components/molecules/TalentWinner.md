@@ -4,6 +4,13 @@
 
 The TalentWinner component (TalentWinner.svelte) renders a list of previous Talent Award winners, each with a name, excerpt, and profile photo. It filters the supplied nominations down to those marked as winners with a photo, and pulls the images from Directus. The photo is hidden on smaller screens.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1768" height="594" alt="image" src="https://github.com/user-attachments/assets/5ce3b5ed-c082-42b6-b6f7-7e46c81d9dee" />
+
+</details>
+
 ---
 
 ## Component Structure
