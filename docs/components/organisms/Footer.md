@@ -4,6 +4,13 @@
 
 The Footer component (Footer.svelte) renders the site-wide footer: a logo, an about blurb, and collapsible columns for Menu, Thema's, and Contact links. On mobile the columns are `<details>` accordions; from 768px up they're always expanded. Only the Thema's column is data-driven; the rest are defined in the component.
 
+<details>
+	<summary>Example</summary>
+
+<img width="2338" height="808" alt="image" src="https://github.com/user-attachments/assets/248734bc-b977-4c09-b9a5-c873baa5edc5" />
+
+</details>
+
 ---
 
 ## Component Structure
