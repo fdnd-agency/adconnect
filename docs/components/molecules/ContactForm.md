@@ -4,6 +4,13 @@
 
 The ContactForm component (ContactForm.svelte) renders a contact form that submits via a SvelteKit form action with progressive enhancement. It tracks a submission status and swaps the form out for loading, success, and error states accordingly. It takes no data props and is rendered as-is.
 
+<details>
+	<summary>Example</summary>
+
+<img width="1616" height="770" alt="image" src="https://github.com/user-attachments/assets/df14615b-8a18-4c45-9742-b4eac6c0feed" />
+
+</details>
+
 ---
 
 ## Component Structure
