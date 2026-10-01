@@ -17,11 +17,11 @@
 	</div>
 
 	<h1>Vragen? Neem contact op</h1>
-	<p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p>
+	<!-- <p class="intro">Heb je vragen of wil je meer weten over Associate Degrees neem dan via het onderstaande formulier contact met ons op.</p> -->
 
 	<div class="contact-wrapper">
 		<ContactCard />
-		<ContactForm />
+		<!-- <ContactForm /> -->
 	</div>
 </section>
 
@@ -55,6 +55,11 @@
 	}
 
 	.contact-wrapper {
+		display:grid;
+		place-self: center;
+	}
+
+	/* .contact-wrapper {
 		display: flex;
 		flex-direction: column-reverse;
 		gap: 1em;
@@ -67,5 +72,7 @@
 			gap: 2em;
 			max-width: 1400px;
 		}
-	}
+	} */
+
+	
 </style>
