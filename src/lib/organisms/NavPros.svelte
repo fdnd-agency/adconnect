@@ -36,7 +36,7 @@
 		<ul class="panel">
 			<li><a href="/">Home</a></li>
 			<li><a href="/over-ad">Over Ad's</a></li>
-			<li><a href="/lados-en-ad-profielen">LAdO's en Ad-profielen</a></li>
+			<li><a href="/lados-en-ad-profielen">LAdO's</a></li>
 			<li><a href="/publicaties">Publicaties</a></li>
 			<li><a href="/talent-award">Talent Award</a></li>
 			<li><a href="/nieuws">Nieuws</a></li>
