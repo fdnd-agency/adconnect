@@ -98,7 +98,7 @@
 			class="carousel__track"
 			style={`--item-count: ${carouselItems?.length ?? 0}`}
 		>
-			{#each [...(carouselItems ?? []), ...(carouselItems ?? [])] as item, index (`${item.id}-${index}`)}
+			{#each carouselItems as item, index (`${item.id}-${index}`)}
 				{#if logos}
 					{@render logoItem(item)}
 				{:else if nominations}
@@ -146,11 +146,12 @@
 	}
 
 	.carousel__track {
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		align-items: center;
 		gap: 2rem;
-		width: max-content;
-		animation: scroll calc(max(var(--item-count, 1), 1) * 5s) linear infinite;
+
+		/* animation: scroll calc(max(var(--item-count, 1), 1) * 5s) linear infinite; */
 	}
 
 	.carousel:hover .carousel__track {
@@ -168,18 +169,25 @@
 	.carousel__logo {
 		--_filter: grayscale(100%) brightness(0.8);
 		--_opacity: 0.8;
+		padding:1rem;
+		border-radius:1rem;
+		background:#fff;
 
-		width: 350px;
-		height: 65px;
-		filter: var(--_filter);
+		/* width: 350px; */
+		/* height: 65px; */
+		/* filter: var(--_filter); */
 		opacity: var(--_opacity);
 		transition:
 			filter 0.3s ease,
-			opacity 0.3s ease;
+			opacity 0.3s ease,
+			background 0.3s ease,
+			scale 0.2s .1s ease;
 
 		&:hover {
 			--_filter: grayscale(0%) brightness(1);
 			--_opacity: 1;
+			scale:1.05;
+			background:#fff;
 		}
 	}
 
