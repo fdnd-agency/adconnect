@@ -89,11 +89,21 @@
 	/* =============== COLOR =============== */
 
 	/* Base HSL system */
-	--blue-hue: 213;
+	/* GUICK hack: teal hsl(182, 40%, 32%) and salmon hsl(25 53% 65%) brand colors */
+	
+	/* TEAL */
+	--blue-hue: 182;
+	--blue-sat: 40%;
+
+	/* SALMON */
+	--orange-hue: 25;
+	--orange-sat: 53%;
+
+	/* --blue-hue: 213;
 	--blue-sat: 100%;
 
 	--orange-hue: 10;
-	--orange-sat: 80%;
+	--orange-sat: 80%; */
 
 	--neutral-hue: 213;
 	--neutral-sat: 10%;
@@ -264,6 +274,8 @@ a {
 	font-weight: var(--button-font-weight);
 	cursor: pointer;
 	width: fit-content;
+	white-space: no-wrap;
+	margin-bottom: 1rem;
 
 	&:hover, a:hover & {
 		--_button-background: var(--_button-background-hover);

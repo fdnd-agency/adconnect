@@ -43,8 +43,7 @@
 			aria-hidden="true"
 			src={logomobile}
 			alt="Logo"
-			width="50"
-			height="50"
+
 		/>
 		<h2>{talentAwardPage.info_card_1_title}</h2>
 		<p>{talentAwardPage.info_card_1_body}</p>
@@ -56,8 +55,7 @@
 			aria-hidden="true"
 			src={logodark}
 			alt="Logo"
-			width="50"
-			height="50"
+
 		/>
 		<h2>{talentAwardPage.info_card_2_title}</h2>
 		<p>{talentAwardPage.info_card_2_body}</p>
@@ -69,8 +67,6 @@
 			aria-hidden="true"
 			src={logomobile}
 			alt="Logo"
-			width="50"
-			height="50"
 		/>
 		<h2>{talentAwardPage.info_card_3_title}</h2>
 		<p>{talentAwardPage.info_card_3_body}</p>

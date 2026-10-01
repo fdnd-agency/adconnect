@@ -21,8 +21,7 @@
 				src={logo}
 				alt=""
 				loading="lazy"
-				width="200"
-				height="150"
+				width="240"
 			/>
 		</picture>
 	</a>
@@ -100,16 +99,17 @@
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
-		background: var(--background);
+		background: #fff;
 		z-index: 99;
 		box-sizing: border-box;
 
+		height:5rem;
 		position: fixed;
 		top: 2.8em;
 		padding: 1em 5%;
 
 		.logo img {
-			height: 50px;
+			height: 60px;
 		}
 	}
 
@@ -227,7 +227,7 @@
 	}
 
 	/* Desktop */
-	@media (min-width: 1160px) {
+	@media (min-width: 1200px) {
 		nav {
 			padding: 1em 5%;
 		}
@@ -235,10 +235,6 @@
 		.logo {
 			display: block;
 			height: 50px;
-		}
-
-		.logo img {
-			width: 12em;
 		}
 
 		.menu {

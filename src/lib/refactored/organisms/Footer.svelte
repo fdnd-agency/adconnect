@@ -1,6 +1,5 @@
 <script>
 	import { logowhite, Link } from '$lib'
-	import { IconLogo } from '$lib/icons'
 
 	const { themaLinks = [] } = $props()
 
@@ -40,7 +39,7 @@
 			class="footer__logo"
 			aria-label="Home"
 		>
-			<IconLogo />
+			<img src="{logowhite}" alt="">
 		</a>
 
 		<section class="footer__column footer__column--about">

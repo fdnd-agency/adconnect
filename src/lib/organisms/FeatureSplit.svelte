@@ -17,8 +17,8 @@
 			src={dots}
 			alt=""
 			class="feature-dots"
-			width="80"
-			height="60"
+			width="109"
+			height="69"
 		/>
 
 		<h2 class="feature-title">{title}</h2>

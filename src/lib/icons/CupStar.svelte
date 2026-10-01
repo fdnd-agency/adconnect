@@ -52,7 +52,7 @@
 		--_icon-height: 60px;
 
 		@media (prefers-color-scheme: dark) {
-			--_color-stroke: hsl(10, 79%, 55%);
+			--_color-stroke: #c9824f;
 		}
 	}
 </style>

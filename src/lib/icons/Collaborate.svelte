@@ -37,7 +37,7 @@
 		--_icon-height: 40px;
 
 		@media (prefers-color-scheme: dark) {
-			--_color-fill: hsl(10, 79%, 55%);
+			--_color-fill: #c9824f;
 		}
 	}
 </style>

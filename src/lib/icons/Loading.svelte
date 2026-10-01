@@ -47,7 +47,7 @@
 
 <style>
 	svg {
-		--_color-fill-loaded: hsl(10, 79%, 55%);
+		--_color-fill-loaded: #c9824f;
 		--_color-fill-empty: hsl(220deg 63.64% 12.94%);
 		--_icon-width: 69px;
 		--_icon-height: 69px;
